@@ -17,7 +17,7 @@ data:
 diffusion:
   T_d: 1000
   schedule_continuous: cosine
-  schedule_alignment: sqrt_alpha   # [R6] sqrt_alpha | linear | independent
+  schedule_alignment: sqrt_alpha   # [R6] sqrt_alpha | alpha | linear ('independent' = alias of linear)
 
 model:
   trunk_layers: 12
