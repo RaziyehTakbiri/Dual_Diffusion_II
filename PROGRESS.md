@@ -121,6 +121,19 @@ core mechanism or ablation). Torch tests await R's cluster. E4.1b tools:
 `midi_lite.py` (stdlib MIDI reader, cross-validated), `score_align.py`
 (tests 4/4, full-corpus run complete).
 
+**M4 bugfix round (2026-07-15):** R's first cluster run caught 2 real denoiser
+bugs (4 failed tests, all same roots): (1) operator-precedence bug in the
+Gumbel sampler — clamp applied to the negative log ⇒ log(−1e−20)=NaN on every
+draw, poisoning the continuous head and coupling gradients; (2) faithful
+adaLN-Zero zero-init made all residual branches inert at initialization ⇒
+t/Δ-conditioning provably dead at init (block-level tests passed; trunk gated
+them out). Fixes: explicit-intermediate Gumbel with (1e−9, 1−1e−9) clamping
+(edge-verified numerically); adaLN small-init variant (std 0.02) — branches
+near-zero but all conditioning paths alive. Also cut the Monte-Carlo chain
+test 200k→30k (suite was 10:45 on R's CPU). Earlier same session: Databricks
+kernels inject PYTEST_ADDOPTS with a flag stock pytest rejects — notebooks now
+strip it and disable the cache plugin.
+
 ## Next actions
 1. **Raziyeh (top priority — critical path, E4.1):** ASAP recipe (no MAESTRO
    mapping needed; the repo contains all performance MIDIs + annotations):

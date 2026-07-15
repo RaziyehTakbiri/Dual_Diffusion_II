@@ -51,7 +51,7 @@ def test_beta_reconstructs_marginal():
     """Simulating the chain with per-step beta must reproduce the marginal m_t."""
     tab = _tables("sqrt_alpha")
     g = torch.Generator().manual_seed(0)
-    n = 200_000
+    n = 30_000  # sized for CI speed; 3-sigma tolerance below
     alive = torch.ones(n, dtype=torch.bool)
     for t in (1, 100, 400, 1000):
         # advance the chain from the previous checkpoint to t
@@ -60,7 +60,7 @@ def test_beta_reconstructs_marginal():
             u = torch.rand(n, generator=g)
             alive &= u >= tab.beta[step]
         emp = 1.0 - alive.float().mean().item()
-        assert abs(emp - tab.m[t].item()) < 0.005, (t, emp, tab.m[t].item())
+        assert abs(emp - tab.m[t].item()) < 0.012, (t, emp, tab.m[t].item())
 
 
 def test_discrete_corruption_marginal_and_identity():

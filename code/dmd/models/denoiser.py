@@ -40,13 +40,20 @@ def timestep_embedding(t: torch.Tensor, dim: int) -> torch.Tensor:
 
 
 class AdaLN(nn.Module):
-    """adaLN-Zero: LayerNorm modulated by the diffusion-time embedding."""
+    """adaLN, small-init variant (NOT adaLN-Zero).
+
+    adaLN-Zero's all-zero modulation makes every residual branch exactly
+    inert at initialization - t- and Delta-conditioning would be dead until
+    the first optimizer steps, which defeats init-time verification and
+    slows early signal flow. Small normal init keeps branches near-zero
+    (stable) but every conditioning path alive and testable.
+    """
 
     def __init__(self, d_model: int, d_cond: int):
         super().__init__()
         self.norm = nn.LayerNorm(d_model, elementwise_affine=False)
         self.mod = nn.Linear(d_cond, 3 * d_model)
-        nn.init.zeros_(self.mod.weight)
+        nn.init.normal_(self.mod.weight, std=0.02)
         nn.init.zeros_(self.mod.bias)
 
     def forward(self, x, cond):
@@ -131,9 +138,11 @@ class DualManifoldDenoiser(nn.Module):
 
         # ---- differentiable coupling (MODEL_SPEC §5) ----
         if coupling == "gumbel":
-            g = -torch.log(-torch.log(
-                torch.rand(logits.shape, device=logits.device,
-                           generator=generator).clamp_min(1e-20)).clamp_min(1e-20))
+            # explicit intermediates - a precedence bug here once clamped the
+            # NEGATIVE log and produced log(-1e-20) = NaN on every draw
+            u = torch.rand(logits.shape, device=logits.device,
+                           generator=generator).clamp(1e-9, 1.0 - 1e-9)
+            g = -torch.log(-torch.log(u))
             relaxed = F.softmax((logits + g) / tau, dim=-1)[..., 1]
         elif coupling == "straight_through":
             hard = logits.argmax(-1).float()
