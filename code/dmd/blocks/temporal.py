@@ -258,16 +258,20 @@ LADDER: Dict[str, Type[TemporalBlock]] = {
 
 def build_temporal_block(
     name: str, d_model: int, hidden: Optional[int] = None,
-    target_params: Optional[int] = None,
+    target_params: Optional[int] = None, match_rtol: float = 0.01,
 ) -> TemporalBlock:
     """Build a ladder rung. If `target_params` is given, the hidden width is
-    solved so total trainable parameters match within +/-1% (MODEL_SPEC [R12])."""
+    solved so total trainable parameters match within `match_rtol`
+    (MODEL_SPEC [R12]; default 1%). NOTE: recurrent rungs have ~quadratic
+    parameter growth in width, so 1% is unreachable below d_model ~ 128 -
+    small-scale probes should pass a looser match_rtol and report counts."""
     if name not in LADDER:
         raise KeyError(f"unknown block '{name}'; choose from {sorted(LADDER)}")
     cls = LADDER[name]
     if target_params is not None:
         from dmd.utils.params import match_width
-        hidden = match_width(lambda w: cls(d_model, w), target_params)
+        hidden = match_width(lambda w: cls(d_model, w), target_params,
+                             rtol=match_rtol)
     if hidden is None:
         hidden = 4 * d_model
     return cls(d_model, hidden)

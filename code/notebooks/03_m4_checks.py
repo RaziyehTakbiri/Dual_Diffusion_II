@@ -70,8 +70,12 @@ class Probe(torch.nn.Module):
     def __init__(self, block, d=64):
         super().__init__()
         self.inp = torch.nn.Linear(2, d)   # [noisy value, t/T_d]
+        # match_rtol=0.05: at d=64 the recurrent rungs' width granularity
+        # cannot hit 1% (documented in dmd/blocks); actual counts are printed
+        # in the results table, so near-matching stays transparent.
         self.block = build_temporal_block(block, d, hidden=None,
-                                          target_params=34_000)
+                                          target_params=34_000,
+                                          match_rtol=0.05)
         self.out = torch.nn.Linear(d, 1)
     def forward(self, x_t, tfrac, dt):
         h = self.inp(torch.cat([x_t, tfrac.expand_as(x_t)], -1))
@@ -82,6 +86,7 @@ def run_probe(block, dt_mode, steps=400, T=128, seed=0):
     tab = ScheduleTables(1000)
     Xtr, Xva = make_ar1(512, T, seed=1), make_ar1(128, T, seed=2)
     model = Probe(block)
+    n_params = sum(p.numel() for p in model.block.parameters())
     opt = torch.optim.Adam(model.parameters(), lr=2e-3)
     def batch(X, gseed):
         g = torch.Generator().manual_seed(gseed)
@@ -100,15 +105,16 @@ def run_probe(block, dt_mode, steps=400, T=128, seed=0):
         opt.zero_grad(); loss.backward(); opt.step()
     with torch.no_grad():
         x_t, tf, dt, eps = batch(Xva, 10_000)
-        return float(((model(x_t, tf, dt) - eps) ** 2).mean())
+        return float(((model(x_t, tf, dt) - eps) ** 2).mean()), n_params
 
-print(f"{'block':<14}{'dt':<9}{'val eps-MSE':>12}")
+print(f"{'block':<14}{'dt':<9}{'val eps-MSE':>12}{'block params':>14}")
 results = {}
 for block, dt_mode in [("ffn", "uniform"), ("gated_ffn", "uniform"),
                        ("gru", "uniform"), ("cfc", "uniform"),
                        ("cfc", "oracle"), ("node", "uniform")]:
-    results[(block, dt_mode)] = run_probe(block, dt_mode)
-    print(f"{block:<14}{dt_mode:<9}{results[(block, dt_mode)]:>12.4f}")
+    mse, n_params = run_probe(block, dt_mode)
+    results[(block, dt_mode)] = mse
+    print(f"{block:<14}{dt_mode:<9}{mse:>12.4f}{n_params:>14,}")
 
 # COMMAND ----------
 

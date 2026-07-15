@@ -24,6 +24,7 @@ def match_width(
     target: int,
     lo: int = 1,
     hi: int = 65536,
+    rtol: float = RTOL,
 ) -> int:
     """Binary-search the integer hidden width whose parameter count is closest
     to `target`. Counts are monotone in width for all ladder rungs."""
@@ -38,9 +39,9 @@ def match_width(
     n_lo, n_hi = count_params(build(lo)), count_params(build(hi))
     best = lo if abs(n_lo - target) <= abs(n_hi - target) else hi
     achieved = count_params(build(best))
-    if abs(achieved - target) / target > RTOL:
+    if abs(achieved - target) / target > rtol:
         raise ValueError(
-            f"cannot match target={target} within {RTOL:.0%}; "
+            f"cannot match target={target} within {rtol:.0%}; "
             f"closest width {best} gives {achieved}"
         )
     return best
