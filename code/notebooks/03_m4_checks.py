@@ -32,10 +32,13 @@ print("torch", torch.__version__)
 
 # COMMAND ----------
 
-import os, pytest
+import os, sys, pytest
 # Databricks kernels export PYTEST_ADDOPTS with flags stock pytest doesn't
 # recognize (--cache-dir=...); drop it or pytest aborts before running tests.
 os.environ.pop("PYTEST_ADDOPTS", None)
+# The /Workspace mount cannot mkdir __pycache__ (Errno 95) and pytest's
+# assertion rewriter hard-fails on that; keep rewritten bytecode in memory.
+sys.dont_write_bytecode = True
 rc = pytest.main([f"{CODE_DIR}/tests", "-q", "--no-header",
                   "-p", "no:cacheprovider"])
 assert rc == 0, "TEST FAILURES - stop and report the log above to Claude verbatim"
