@@ -14,7 +14,7 @@
 
 # COMMAND ----------
 
-CODE_DIR = "/Workspace/Repos/<you>/dual-diffusion/code"   # folder containing dmd/
+CODE_DIR = "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffusion_II/code"
 
 import sys
 sys.path.insert(0, CODE_DIR)

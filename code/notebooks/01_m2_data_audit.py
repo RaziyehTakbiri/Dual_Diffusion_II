@@ -20,11 +20,16 @@
 
 # COMMAND ----------
 
+
+
+# COMMAND ----------
+
 # ---- configuration (edit these) ---------------------------------------------
-CODE_DIR = "/Workspace/Repos/<you>/dual-diffusion/code"   # folder containing dmd/
-MIDI_GLOB = "/dbfs/FileStore/maestro-v3.0.0/**/*.mid*"    # recursive glob
-MAESTRO_CSV = "/dbfs/FileStore/maestro-v3.0.0/maestro-v3.0.0.csv"
-OUT_DIR = "/dbfs/FileStore/dmd_results"                    # downloadable via /files/
+CODE_DIR = "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffusion_II/code"   
+MIDI_GLOB = "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Drafts/maestro-v3.0.0/**/*.mid*" 
+MAESTRO_CSV = "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Drafts/maestro-v3.0.0/maestro-v3.0.0.csv"
+OUT_DIR = "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffusion_II/code/results"
+
 GRID = "fixed"           # 'fixed' now; rerun with 'asap' + ANNOTATION_MAP later
 ANNOTATION_MAP = None    # CSV 'midi_path,annotation_path' once ASAP lands
 SMOKE = True             # True: 20 pieces smoke run; False: full corpus
