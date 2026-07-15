@@ -100,16 +100,28 @@
 |---|---|---|
 | 2026-07-15 | Paper read & reviewed (see `reviews/`); agenda agreed; project folder + tracker created | R: drop codebase, generated samples, held-out set into folder. Claude: E1.1/E1.2 metrics core |
 | 2026-07-15 (later) | From-scratch rebuild decided. MODEL_SPEC v0.1 written (10 tagged revisions R1–R13). Repo scaffolded; milestone M1 done: B0–B5 temporal blocks + param matching + CPU test suite (syntax-checked; param-match tolerances verified analytically at d=128 and d=512 — all rungs ≤0.4%). PyPI unreachable in Claude's sandbox, so pytest execution is on R. | R: review Spec §10 checklist + run `pytest tests/`. Claude: M2 (representation + round-trip validator + human ACF study) |
+| 2026-07-15 (tex) | Original manuscript .tex received → `paper/original_manuscript.tex` (752 lines, Elsevier MLWA class). Confirms W10: γ, τ, optimizer, schedules appear only symbolically — no numeric hyperparameters anywhere. ASAP tooling added: verified TSV parser, `asap_map.py` generator, paired-comparison filter in `human_acf`; suite now 11/11. | — |
 | 2026-07-15 (M2) | Spec v0.1 **approved** (all §10 items); M1 tests green on R's machine. **M2 built and 10/10 ground-truth tests pass in Claude's sandbox** (numpy available there): representation encode/decode (exact round-trip), fixed-grid estimator (two-stage: IOI comb with signed-cosine score + unwrap/regression — first version had a real harmonic-locking bug, caught by the tests), chord grouping, ACF, metrical profile, `build_music` dataset builder, `human_acf` study script. E4.1 preview on synthetic drifting-tempo data: true-grid measurement exact (σ 14.9/15.0, ρ₁ 0.59/0.60); legacy fixed grid inflates σ 2.4× — the manuscript's human ρ₁≈0.12 is now formally suspect. | R: run human_acf + build_music on MAESTRO (fixed grid) and drop outputs into `results/`; secure ASAP. Claude: M3 (forward processes + objective) |
 
 ---
 
 ## Next actions
-1. **Raziyeh (top priority — critical path):** secure ASAP annotations and
-   rerun `01_m2_data_audit` with `GRID = "asap"` + `ANNOTATION_MAP`. The
-   fixed-grid arm is done and shows drift aliasing; ONLY the ASAP grid can now
-   give the paper's true human rubato magnitude + structure (E4.1). Verify
-   `beats_from_annotation_txt` against a real ASAP file (marked VERIFY).
+1. **Raziyeh (top priority — critical path, E4.1):** ASAP recipe (no MAESTRO
+   mapping needed; the repo contains all performance MIDIs + annotations):
+   a. Get https://github.com/fosfrancesco/asap-dataset onto Databricks
+      (git clone or zip download; ~no audio needed; CC BY-NC-SA, cite
+      Foscarin et al. 2020).
+   b. In a notebook: `from dmd.data.asap_map import main;
+      main(["--asap_root", "<asap>", "--out", "<out>/asap_map.csv"])`
+      (expect ≈1067 pairs).
+   c. Rerun `01_m2_data_audit` with `MIDI_GLOB = "<asap>/**/*.mid*"`,
+      `GRID = "asap"`, `ANNOTATION_MAP = "<out>/asap_map.csv"`.
+   d. Rerun once more with `GRID = "fixed"` and the SAME map (the map now
+      also filters the file set → paired comparison on identical pieces).
+   e. Drop all four output files into `results/`.
+   Parser is now VERIFIED against the ASAP README format (compound labels
+   `db,4/4`, `bR` beats included; unit-tested). Note: subdivision = beat/4
+   everywhere, incl. compound meters (documented simplification).
 2. **Raziyeh:** confirm whether the full run also executed the dataset-build
    cell (`SMOKE = False` → `maestro_fixed_{train,validation,test}.npz` +
    `maestro_fixed_audit.csv` on Databricks). If yes, drop the audit CSV into

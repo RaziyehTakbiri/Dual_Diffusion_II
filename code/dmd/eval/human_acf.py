@@ -158,6 +158,11 @@ def main(argv: Optional[List[str]] = None):
             ann = {r[0]: r[1] for r in csv.reader(fh) if len(r) >= 2}
 
     paths = sorted(glob.glob(args.midi_glob, recursive=True))
+    if ann:
+        # Restrict to mapped performances. This (a) skips ASAP's midi_score
+        # files, and (b) lets a --grid fixed run with the SAME map score the
+        # identical file set -> paired fixed-vs-asap comparison (E4.1).
+        paths = [p for p in paths if p in ann]
     if args.max_pieces:
         paths = paths[: args.max_pieces]
     rows, skipped = [], 0

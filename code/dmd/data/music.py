@@ -85,27 +85,40 @@ def grid_from_beats(beat_times: np.ndarray, subdivision: int = 4,
 
 
 def beats_from_annotation_txt(path: str) -> Tuple[np.ndarray, np.ndarray]:
-    """Parse an ASAP-style annotation file.
+    """Parse an ASAP annotation TSV (format VERIFIED against the ASAP README).
 
-    Robust to minor format variants: per line, first parseable float = beat
-    time; downbeat iff 'db' appears in the last field. Returns (times, is_db).
-    VERIFY against the concrete ASAP files once access lands (PROGRESS E4.1).
+    Each line: `time\ttime\tlabel`. The label's first comma-token classifies
+    the line: 'b' (beat), 'db' (downbeat), 'bR' (beat whose exact score
+    position is uncertain - rubato/pickup cases). Time-signature and key
+    changes ride on beat lines as extra comma tokens (e.g. 'db,4/4'); any
+    non-beat line is ignored. All three beat types are INCLUDED as grid
+    anchors (excluding bR would tear holes in the subdivision); is_db flags
+    downbeats. Returns (times, is_db), times strictly increasing.
     """
     times, is_db = [], []
     with open(path) as fh:
         for line in fh:
-            parts = line.split()
-            if not parts:
+            parts = line.rstrip("\n").split("\t")
+            if len(parts) < 2:
+                parts = line.split()
+            if len(parts) < 2:
+                continue
+            token = parts[-1].split(",")[0].strip().lower()
+            if token not in ("b", "db", "br"):
                 continue
             try:
                 t = float(parts[0])
             except ValueError:
                 continue
             times.append(t)
-            is_db.append("db" in parts[-1].lower())
+            is_db.append(token == "db")
     if len(times) < 2:
         raise ValueError(f"no beats parsed from {path}")
-    return np.asarray(times), np.asarray(is_db, dtype=bool)
+    order = np.argsort(times, kind="stable")
+    t_arr = np.asarray(times)[order]
+    d_arr = np.asarray(is_db, dtype=bool)[order]
+    uniq = np.concatenate([[True], np.diff(t_arr) > 1e-9])
+    return t_arr[uniq], d_arr[uniq]
 
 
 def comb_amplitude(onsets: np.ndarray, delta: float) -> float:

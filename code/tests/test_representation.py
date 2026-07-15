@@ -166,6 +166,32 @@ def test_excerpts_shapes_and_content():
     assert np.allclose(Dl, DELTA)
 
 
+def test_asap_annotation_parser_confirmed_format(tmp_path=None):
+    """Format per the ASAP README: 'time\ttime\tlabel'; labels b / db / bR,
+    with time-signature and key changes riding as comma tokens; non-beat
+    lines ignored; bR included as a grid anchor."""
+    import os, tempfile
+    from dmd.data.music import beats_from_annotation_txt
+    content = (
+        "0.500000\t0.500000\tdb,4/4\n"
+        "1.020000\t1.020000\tb\n"
+        "1.480000\t1.480000\tbR\n"
+        "2.010000\t2.010000\tb,-3\n"      # key change on a beat line
+        "garbage line without tabs\n"
+        "2.470000\t2.470000\tdb\n"
+        "1.020000\t1.020000\tb\n"          # duplicate -> deduped
+    )
+    fd, path = tempfile.mkstemp(suffix="_annotations.txt")
+    with os.fdopen(fd, "w") as fh:
+        fh.write(content)
+    try:
+        times, is_db = beats_from_annotation_txt(path)
+    finally:
+        os.unlink(path)
+    assert np.allclose(times, [0.5, 1.02, 1.48, 2.01, 2.47])
+    assert is_db.tolist() == [True, False, False, False, True]
+
+
 def test_analyze_piece_end_to_end():
     rng = np.random.default_rng(8)
     notes, _ = melody(rng, n_steps=3000)
