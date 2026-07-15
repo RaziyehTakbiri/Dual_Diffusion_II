@@ -32,8 +32,12 @@ print("torch", torch.__version__)
 
 # COMMAND ----------
 
-import pytest
-rc = pytest.main([f"{CODE_DIR}/tests", "-q", "--no-header"])
+import os, pytest
+# Databricks kernels export PYTEST_ADDOPTS with flags stock pytest doesn't
+# recognize (--cache-dir=...); drop it or pytest aborts before running tests.
+os.environ.pop("PYTEST_ADDOPTS", None)
+rc = pytest.main([f"{CODE_DIR}/tests", "-q", "--no-header",
+                  "-p", "no:cacheprovider"])
 assert rc == 0, "TEST FAILURES - stop and report the log above to Claude verbatim"
 
 # COMMAND ----------
