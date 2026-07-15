@@ -1,0 +1,68 @@
+{
+  "config": {
+    "midi_glob": "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffusion_II/data/asap-dataset-master/**/*.mid*",
+    "grid": "asap",
+    "annotation_map": "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffusion_II/code/results/asap_map.csv",
+    "subdivision": 4,
+    "max_lag": 8,
+    "max_pieces": 0,
+    "out": "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffusion_II/code/results/human_acf_asap"
+  },
+  "skipped": 0,
+  "aggregate": {
+    "n_pieces": 1067,
+    "n_notes_total": 3594981,
+    "sigma_ms": {
+      "mean": 43.20443384980828,
+      "sd_across_pieces": 31.521327091244707
+    },
+    "asynchrony_sigma_ms": {
+      "mean": 14.816236537612784,
+      "sd_across_pieces": 7.552227538918998
+    },
+    "keep_rate": {
+      "mean": 0.9843331578108478,
+      "sd_across_pieces": 0.025636706844510217
+    },
+    "wrap_rate": {
+      "mean": 0.003363856443191216,
+      "sd_across_pieces": 0.0031742532688431254
+    },
+    "collision_rate": {
+      "mean": 0.01566684218915204,
+      "sd_across_pieces": 0.025636706844510214
+    },
+    "rho_1": {
+      "mean": -0.05542989272305497,
+      "sd_across_pieces": 0.15033435342135323
+    },
+    "rho_2": {
+      "mean": -0.01426618245065335,
+      "sd_across_pieces": 0.11894588923464716
+    },
+    "rho_3": {
+      "mean": 0.04759274415379622,
+      "sd_across_pieces": 0.13300166258830476
+    },
+    "rho_4": {
+      "mean": 0.004928072976617793,
+      "sd_across_pieces": 0.08949206782552212
+    },
+    "rho_5": {
+      "mean": -0.009338903662159184,
+      "sd_across_pieces": 0.0797139846853077
+    },
+    "rho_6": {
+      "mean": 0.04962639737385373,
+      "sd_across_pieces": 0.102993236413677
+    },
+    "rho_7": {
+      "mean": 0.008042371826733287,
+      "sd_across_pieces": 0.06582417020518691
+    },
+    "rho_8": {
+      "mean": 0.005549703360466037,
+      "sd_across_pieces": 0.07469896896278161
+    }
+  }
+}

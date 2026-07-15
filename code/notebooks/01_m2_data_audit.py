@@ -20,19 +20,23 @@
 
 # COMMAND ----------
 
-
+# DBTITLE 1,Cell 4
+import sys
+sys.path.insert(0, "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffusion_II/code")
+from dmd.data.asap_map import main; main(["--asap_root", "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffusion_II/data/asap-dataset-master", "--out", "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffusion_II/code/results/asap_map.csv"])
 
 # COMMAND ----------
 
 # ---- configuration (edit these) ---------------------------------------------
 CODE_DIR = "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffusion_II/code"   
-MIDI_GLOB = "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Drafts/maestro-v3.0.0/**/*.mid*" 
+#MIDI_GLOB = "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Drafts/maestro-v3.0.0/**/*.mid*" 
+MIDI_GLOB = "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffusion_II/data/asap-dataset-master/**/*.mid*"
 MAESTRO_CSV = "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Drafts/maestro-v3.0.0/maestro-v3.0.0.csv"
 OUT_DIR = "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffusion_II/code/results"
 
-GRID = "fixed"           # 'fixed' now; rerun with 'asap' + ANNOTATION_MAP later
-ANNOTATION_MAP = None    # CSV 'midi_path,annotation_path' once ASAP lands
-SMOKE = True             # True: 20 pieces smoke run; False: full corpus
+GRID = "asap"           # 'fixed' now; rerun with 'asap' + ANNOTATION_MAP later
+ANNOTATION_MAP = "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffusion_II/code/results/asap_map.csv"
+SMOKE = False             # True: 20 pieces smoke run; False: full corpus
 
 import os, sys, glob as _glob
 sys.path.insert(0, CODE_DIR)
