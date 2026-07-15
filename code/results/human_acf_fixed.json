@@ -1,0 +1,68 @@
+{
+  "config": {
+    "midi_glob": "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Drafts/maestro-v3.0.0/**/*.mid*",
+    "grid": "fixed",
+    "annotation_map": null,
+    "subdivision": 4,
+    "max_lag": 8,
+    "max_pieces": 0,
+    "out": "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffusion_II/code/results/human_acf_fixed"
+  },
+  "skipped": 0,
+  "aggregate": {
+    "n_pieces": 1276,
+    "n_notes_total": 7040164,
+    "sigma_ms": {
+      "mean": 35.94192945623098,
+      "sd_across_pieces": 18.50797914749477
+    },
+    "asynchrony_sigma_ms": {
+      "mean": 18.61841852136406,
+      "sd_across_pieces": 4.820205090533748
+    },
+    "keep_rate": {
+      "mean": 0.9966422657199463,
+      "sd_across_pieces": 0.008343878214511633
+    },
+    "wrap_rate": {
+      "mean": 0.0,
+      "sd_across_pieces": 0.0
+    },
+    "collision_rate": {
+      "mean": 0.003357734280053703,
+      "sd_across_pieces": 0.008343878214511633
+    },
+    "rho_1": {
+      "mean": 0.07354353239381309,
+      "sd_across_pieces": 0.1474161767769737
+    },
+    "rho_2": {
+      "mean": 0.04751635364801812,
+      "sd_across_pieces": 0.11507144047150548
+    },
+    "rho_3": {
+      "mean": 0.016786472872068272,
+      "sd_across_pieces": 0.0933244723165633
+    },
+    "rho_4": {
+      "mean": 0.007473796607194378,
+      "sd_across_pieces": 0.0797309491040694
+    },
+    "rho_5": {
+      "mean": 0.001323783761006904,
+      "sd_across_pieces": 0.06604433056836023
+    },
+    "rho_6": {
+      "mean": -0.0008372172555688485,
+      "sd_across_pieces": 0.058181407180483834
+    },
+    "rho_7": {
+      "mean": -0.0017495080262247796,
+      "sd_across_pieces": 0.051819332107376284
+    },
+    "rho_8": {
+      "mean": -0.0008466338377486507,
+      "sd_across_pieces": 0.049210732516999825
+    }
+  }
+}
