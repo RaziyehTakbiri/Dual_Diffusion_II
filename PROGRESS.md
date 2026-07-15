@@ -89,10 +89,16 @@
 | 2026-07-15 | Headline ablation = B0–B5 ladder (ffn → +time input → +gating → +recurrence → CFC → ODE) | Each rung isolates one factor; kills the W2 gating/recurrence confounds by construction |
 | 2026-07-15 | Masked continuous loss [R8], ASAP grid [R3], recurrent bidirectional CFC [R11] proposed as new defaults | Pending Raziyeh sign-off (Spec §10 checklist) |
 | 2026-07-15 | **Manuscript's human timing targets (σ≈20 ms, ρ₁≈0.12) declared unreliable** — full-corpus fixed-grid measurement gives σ≈36 ms at the drift-aliasing saturation, ρ₁≈0.07 with huge cross-piece spread | All revised-paper timing targets will be re-derived: magnitude + structure from the ASAP grid (E4.1); within-chord asynchrony (σ≈18.6 ms) adopted as an additional grid-robust target metric |
+| 2026-07-15 | **Operating mode change:** Raziyeh delegates decision authority; Claude picks best actions optimizing for ICML-level manuscript; only irreversible/budget-heavy calls escalated | Standing instruction |
+| 2026-07-15 | **Spec v0.2 decided (Option A):** tempo curve = generated per-step channel C^step=log(δ/δ̄) [R14]; Δ-feedback sampling [R15]; s=4 kept, s=12 = appendix ablation [R16]; Δ-feedback de-risked via block-expressivity probe before full training | Aims the ladder at the strongest structure (ρ₁≈0.64); structurally defeats W1 jitter objection; publishable mechanism; negligible compute |
+| 2026-07-15 | **Central empirical reframing:** rubato's temporal structure lives in the beat-level TEMPO CURVE (ρ₁≈0.64, style-dependent), NOT in grid residuals (ρ₁≈−0.06 uniformly = quantization artifact on any sixteenth grid). The manuscript's open problem ("no model captures rubato structure, human ρ₁≈0.12") was measuring the wrong quantity. | New target metrics: tempo-curve ACF, chord asynchrony, residual σ (stratified). Spec v0.2 question raised: should the model GENERATE the tempo curve (log-Δ as a third continuous channel)? → Raziyeh to decide |
 
 ## Run log (Databricks)
 | Date | Run/Experiment | Config/seeds | Metrics file in `results/` | Notes |
 |---|---|---|---|---|
+| 2026-07-15 | **E4.1b score-aligned micro-timing** (run locally by Claude; stdlib MIDI reader cross-validated vs pretty_midi: 0.019% note-count diff; synthetic ground-truth tests 4/4) | 1036/1067 aligned (31 skips = ASAP's documented unaligned perfs), 16 s | `score_align_asap.{csv,json}` | **Note-level micro-timing IS structured: ρ₁=0.39±0.19 (all), 0.24±0.17 (duple-only)** vs −0.06 on grid residuals — the structure was real, the grid instrument destroyed it. σ=49 ms (43 duple); 28% of notes non-duple (triplets/ornaments — the artifact source, quantified). Asynchrony σ=27 ms (score-exact chords). Unbiased (median 0.00 ms); match rate 92%. Per-composer duple ρ₁ uniformly positive (0.18–0.28); σ scales Bach 25→Ravel 72 ms. Caveats: beat annotations derived from performances (on-beat deviations partly absorbed); greedy matching noise attenuates ρ (estimates conservative). |
+| 2026-07-15 | E4.1 human-ACF study, **ASAP grid**, 1067 perfs / 3.59M notes | grid=asap, s=4, paired map | `human_acf_asap.{csv,json}` | σ=43.2±31.5 ms (WORSE than fixed!), ρ₁=−0.055±0.150 — **uniformly negative across all composers** → measurement artifact: subdivision–rhythm mismatch (triplets/ornaments/runs land between sixteenth cells; collisions blow up for ornamental composers: Liszt 4.2%, Ravel 5.4%). Asynchrony 14.8 ms behaves like true signal (Bach 9.7 → Ravel 21.8, musically sensible gradient). |
+| 2026-07-15 | **E4.1b tempo-curve study (beat annotations only — no grid)** | 1067 perfs, all beats | `tempo_curve_asap.{csv,json}` | **THE REAL STRUCTURE: tempo-curve ρ₁=0.64±0.22**, slow decay (ρ₈=0.36); style-dependent exactly as musicology predicts (Bach 0.37 < Chopin 0.53 < Liszt 0.67) while residual-channel ρ₁ is uniformly ≈−0.06 (artifact). Median period CV 0.26. Macro-rubato structure lives at the BEAT level, not in grid residuals. |
 | 2026-07-15 | E4.3 human-ACF study, **fixed grid**, full MAESTRO v3 | grid=fixed, s=4, 1276 pieces / 7.04M notes, 0 skipped | `human_acf_fixed.{csv,json}` | σ=35.9±18.5 ms (median 33.8; 76% of pieces in 25–45 ms ≈ δ/√12 saturation band → residuals dominated by ALIASED TEMPO DRIFT, not note-level rubato). ρ₁=0.074±0.147 (median 0.085; 25% of pieces negative) — manuscript's "σ≈20 ms, ρ₁≈0.12" does NOT reproduce; old targets were estimator-dependent. corr(σ,ρ₁)=0.19 (drift inflates both). **Clean signal: within-chord asynchrony σ=18.6±4.8 ms** — grid-robust, matches melody-lead literature. Round-trip on real data: onset err ≤1e-5 ms, keep 99.7% (min 90.1%), wraps 0. |
 
 ## Session log
@@ -104,6 +110,16 @@
 | 2026-07-15 (M2) | Spec v0.1 **approved** (all §10 items); M1 tests green on R's machine. **M2 built and 10/10 ground-truth tests pass in Claude's sandbox** (numpy available there): representation encode/decode (exact round-trip), fixed-grid estimator (two-stage: IOI comb with signed-cosine score + unwrap/regression — first version had a real harmonic-locking bug, caught by the tests), chord grouping, ACF, metrical profile, `build_music` dataset builder, `human_acf` study script. E4.1 preview on synthetic drifting-tempo data: true-grid measurement exact (σ 14.9/15.0, ρ₁ 0.59/0.60); legacy fixed grid inflates σ 2.4× — the manuscript's human ρ₁≈0.12 is now formally suspect. | R: run human_acf + build_music on MAESTRO (fixed grid) and drop outputs into `results/`; secure ASAP. Claude: M3 (forward processes + objective) |
 
 ---
+
+**M4 status (2026-07-15, done):** `dmd/models/denoiser.py` (DiT trunk: token
+per grid step, adaLN-Zero, ladder in the FFN slot, dual heads, Gumbel/ST/
+detached/none coupling modes) + `tests/test_denoiser.py` (coupling-gradient
+proof, Δ-propagation dissociation, whole-model param matching) +
+`notebooks/03_m4_checks` incl. the [R15] Δ-feedback de-risk probe (block
+expressivity on synthetic AR(1) tempo curves; decides whether Δ-feedback is
+core mechanism or ablation). Torch tests await R's cluster. E4.1b tools:
+`midi_lite.py` (stdlib MIDI reader, cross-validated), `score_align.py`
+(tests 4/4, full-corpus run complete).
 
 ## Next actions
 1. **Raziyeh (top priority — critical path, E4.1):** ASAP recipe (no MAESTRO
@@ -126,15 +142,15 @@
    cell (`SMOKE = False` → `maestro_fixed_{train,validation,test}.npz` +
    `maestro_fixed_audit.csv` on Databricks). If yes, drop the audit CSV into
    `results/`; the .npz stay on Databricks for M5 training.
-3. **Raziyeh (Databricks, ML runtime cluster, ~2 min):** run
-   `02_m3_checks` notebook (.py or .ipynb) — executes the FULL test suite
-   (M1+M2+M3) with torch. It's a gate, nothing to download; report any
-   failure verbatim.
-4. **Claude (next session):** M4 — denoiser trunk (transformer + adaLN
-   diffusion-time conditioning, block ladder slot-in, structure/continuous
-   heads, Gumbel-Softmax bridge) + tests, then M5 training harness
-   (TorchDistributor + MLflow). Also: within-chord asynchrony metric goes
-   into the M7 suite (adopted target: human 18.6 ms).
+3. **Raziyeh (Databricks, ML runtime, ~5 min):** run `03_m4_checks` (it
+   supersedes 02 — runs the full suite M1–M4 as its gate, then the Δ-feedback
+   probe). Paste the probe table + read-out cell output into chat or drop
+   into `results/`. This is the only thing blocking on your side.
+4. **Claude (next session):** decide [R15] core-vs-ablation from the probe;
+   M5 training harness (TorchDistributor + MLflow, γ grad-matching at init,
+   config-diff enforcement) + M6 sampler (DDIM + calibrated unmasking +
+   Δ-feedback loop) + v0.2 data loader (log-Δ channel from the existing
+   ASAP npz). Then the first real training smoke run.
 
 **M3 status (2026-07-15, done):** `dmd/diffusion/{schedules,forward,objective}.py`
 + `tests/test_diffusion.py` + `notebooks/02_m3_checks`. Schedule math verified

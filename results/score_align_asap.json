@@ -1,0 +1,102 @@
+{
+  "n_pieces": 1036,
+  "skipped": 31,
+  "aggregate": {
+    "match_rate_score": {
+      "mean": 0.9163359227827207,
+      "sd_across_pieces": 0.06762695541361165
+    },
+    "match_rate_perf": {
+      "mean": 0.9445975601966045,
+      "sd_across_pieces": 0.04000689972183495
+    },
+    "bias_ms": {
+      "mean": -0.22479624181601882,
+      "sd_across_pieces": 1.7663064815947636
+    },
+    "sigma_ms": {
+      "mean": 49.27530447996055,
+      "sd_across_pieces": 19.51225670442935
+    },
+    "sigma_duple_ms": {
+      "mean": 42.57427554256146,
+      "sd_across_pieces": 16.273349738451998
+    },
+    "sigma_offbeat_ms": {
+      "mean": 56.226292272852575,
+      "sd_across_pieces": 22.566284373375677
+    },
+    "frac_nonduple": {
+      "mean": 0.2811862212920371,
+      "sd_across_pieces": 0.24803678998303633
+    },
+    "asynchrony_sigma_ms": {
+      "mean": 26.920141066403154,
+      "sd_across_pieces": 9.876778640290262
+    },
+    "rho_1": {
+      "mean": 0.39175096973768997,
+      "sd_across_pieces": 0.18635206884407615
+    },
+    "rho_2": {
+      "mean": 0.30061796504629756,
+      "sd_across_pieces": 0.1985292198878796
+    },
+    "rho_3": {
+      "mean": 0.1738902574678754,
+      "sd_across_pieces": 0.1907317994109126
+    },
+    "rho_4": {
+      "mean": 0.17438428489353772,
+      "sd_across_pieces": 0.19079090216391006
+    },
+    "rho_5": {
+      "mean": 0.11926940942885605,
+      "sd_across_pieces": 0.16285415310795737
+    },
+    "rho_6": {
+      "mean": 0.15766146315465543,
+      "sd_across_pieces": 0.16876534845255178
+    },
+    "rho_7": {
+      "mean": 0.11003670600655105,
+      "sd_across_pieces": 0.14304927139007104
+    },
+    "rho_8": {
+      "mean": 0.13747832821912176,
+      "sd_across_pieces": 0.14453415981950926
+    },
+    "rho_duple_1": {
+      "mean": 0.24119281020541428,
+      "sd_across_pieces": 0.17258490542696456
+    },
+    "rho_duple_2": {
+      "mean": 0.16570747372057754,
+      "sd_across_pieces": 0.19481946239899545
+    },
+    "rho_duple_3": {
+      "mean": 0.07642685440491931,
+      "sd_across_pieces": 0.14451730035730867
+    },
+    "rho_duple_4": {
+      "mean": 0.13803823694928927,
+      "sd_across_pieces": 0.1550386024405303
+    },
+    "rho_duple_5": {
+      "mean": 0.06983994102795316,
+      "sd_across_pieces": 0.11191707799974981
+    },
+    "rho_duple_6": {
+      "mean": 0.10747056728730085,
+      "sd_across_pieces": 0.13950765988704858
+    },
+    "rho_duple_7": {
+      "mean": 0.0785386546088817,
+      "sd_across_pieces": 0.10094654524434327
+    },
+    "rho_duple_8": {
+      "mean": 0.13602623247904463,
+      "sd_across_pieces": 0.12104493217696893
+    }
+  }
+}
