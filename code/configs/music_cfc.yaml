@@ -1,0 +1,51 @@
+# Case Study A (music), rung B4 (CFC). One config file = one table row.
+# Sibling configs (music_ffn.yaml, music_gated_ffn.yaml, ...) differ ONLY in
+# model.block — enforced by a config-diff check in the trainer.
+
+data:
+  domain: music
+  dataset: maestro_v3
+  splits: official
+  grid:
+    source: asap            # [R3] asap | tracked | fixed (legacy comparison)
+    subdivision: 4          # sixteenth notes
+    chord_window_ms: 30     # [R5] chord grouping for metrics
+  T: 256                    # grid steps per excerpt
+  P: 88
+  K: 2                      # velocity in [0,1]; residual r/delta in (-1/2, 1/2]
+
+diffusion:
+  T_d: 1000
+  schedule_continuous: cosine
+  schedule_alignment: sqrt_alpha   # [R6] sqrt_alpha | linear | independent
+
+model:
+  trunk_layers: 12
+  d_model: 512
+  block: cfc                # ffn | ffn_timecond | gated_ffn | gru | cfc | node
+  param_match:
+    reference: ffn          # [R12] target = ffn @ hidden 4*d_model
+    rtol: 0.01
+  coupling: gumbel          # gumbel | straight_through | detached | none
+  tau: {start: 2.0, end: 0.1, anneal: cosine}
+
+loss:
+  discrete: focal           # [R7] focal | elbo_ce (bound-faithful ablation)
+  focal: {alpha: auto_class_freq, rho: 2.0}
+  supervise_silent: false   # [R8] masked continuous loss (true = legacy ablation)
+  gamma: auto_grad_match    # [R9] set at init from gradient-norm matching; logged
+
+sampling:
+  ddim_steps: 50
+  eta: 0.0
+  unmask_calibration: true  # [R13] MUST be applied uniformly across all models
+                            # in any table (parity), or disabled everywhere
+
+train:
+  seeds: [0, 1, 2, 3, 4]
+  batch_size: 64
+  lr: 3.0e-4
+  warmup_steps: 2000
+  max_steps: 200000
+  ema: 0.9999
+  mlflow_experiment: dmd/music_backbone_ladder

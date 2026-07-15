@@ -1,0 +1,273 @@
+"""Temporal block ladder B0-B5 (MODEL_SPEC.md §6).
+
+Every block maps (B, L, d) -> (B, L, d). `dt` has shape (B, L): dt[:, i] is the
+data-time interval between sequence elements i-1 and i (MODEL_SPEC [R1]).
+Blocks that are *defined* to ignore dt (B0-B3) accept it and must not use it;
+tests enforce this dissociation, mirroring the paper's claim structure.
+
+Ladder (one factor per rung):
+  B0 ffn           position-wise MLP                     (grid baseline)
+  B1 ffn_timecond  MLP + explicit time features          (is a time input enough?)
+  B2 gated_ffn     GLU gating, no recurrence, no dt      (is it just gating?)
+  B3 gru           bidirectional GRU scan                (is it just recurrence?)
+  B4 cfc           bidirectional closed-form continuous- (the claim)
+                   time scan, dt in the decay gate
+  B5 node          ODE-RNN scan, generic solver on dt    (closed form vs. solver)
+"""
+
+from __future__ import annotations
+
+import math
+from typing import Callable, Dict, Optional, Type
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+
+class TemporalBlock(nn.Module):
+    """Base class. Subclasses set USES_DT correctly; tests rely on it."""
+
+    USES_DT: bool = False
+
+    def forward(self, x: torch.Tensor, dt: Optional[torch.Tensor] = None) -> torch.Tensor:
+        raise NotImplementedError
+
+
+# ----------------------------------------------------------------------------- B0
+class PositionwiseFFN(TemporalBlock):
+    USES_DT = False
+
+    def __init__(self, d_model: int, hidden: int):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(d_model, hidden), nn.GELU(), nn.Linear(hidden, d_model)
+        )
+
+    def forward(self, x, dt=None):
+        return self.net(x)
+
+
+# ----------------------------------------------------------------------------- B1
+class TimeCondFFN(TemporalBlock):
+    """B0 plus explicit continuous-time features.
+
+    Time features per position: [dt_i, cumulative time (min-max normalized per
+    sequence), sin/cos of cumulative time at two learned frequencies].
+    The block *sees* time but has no continuous-time dynamics.
+    """
+
+    USES_DT = True
+    N_TIME_FEATS = 6
+
+    def __init__(self, d_model: int, hidden: int):
+        super().__init__()
+        self.freq = nn.Parameter(torch.tensor([1.0, 8.0]))
+        self.net = nn.Sequential(
+            nn.Linear(d_model + self.N_TIME_FEATS, hidden),
+            nn.GELU(),
+            nn.Linear(hidden, d_model),
+        )
+
+    def forward(self, x, dt=None):
+        B, L, _ = x.shape
+        if dt is None:
+            dt = x.new_ones(B, L)
+        cum = dt.cumsum(dim=1)
+        span = cum[:, -1:].clamp_min(1e-8)
+        cum_n = cum / span
+        feats = [dt.unsqueeze(-1), cum_n.unsqueeze(-1)]
+        for k in range(2):
+            ang = 2 * math.pi * self.freq[k] * cum_n
+            feats += [ang.sin().unsqueeze(-1), ang.cos().unsqueeze(-1)]
+        return self.net(torch.cat([x] + feats, dim=-1))
+
+
+# ----------------------------------------------------------------------------- B2
+class GatedFFN(TemporalBlock):
+    """SwiGLU-style gated unit: isolates *gating* without recurrence or dt.
+
+    If CFC's advantage were mere input-dependent gating, this rung would match it.
+    """
+
+    USES_DT = False
+
+    def __init__(self, d_model: int, hidden: int):
+        super().__init__()
+        self.w_gate = nn.Linear(d_model, hidden)
+        self.w_val = nn.Linear(d_model, hidden)
+        self.w_out = nn.Linear(hidden, d_model)
+
+    def forward(self, x, dt=None):
+        return self.w_out(F.silu(self.w_gate(x)) * self.w_val(x))
+
+
+# ----------------------------------------------------------------------------- B3
+class GRUBlock(TemporalBlock):
+    """Bidirectional GRU scan: isolates *recurrence* without continuous time."""
+
+    USES_DT = False
+
+    def __init__(self, d_model: int, hidden: int):
+        super().__init__()
+        self.rnn = nn.GRU(
+            d_model, hidden, batch_first=True, bidirectional=True
+        )
+        self.proj = nn.Linear(2 * hidden, d_model)
+
+    def forward(self, x, dt=None):
+        y, _ = self.rnn(x)
+        return self.proj(y)
+
+
+# ----------------------------------------------------------------------------- B4
+class _CfCCell(nn.Module):
+    """Closed-form continuous-time cell (MODEL_SPEC [R11]).
+
+    u_i = [x_i, h_{i-1}]
+    w_i = sigmoid(-softplus(f(u_i)) * dt_i)        # decay gate, rate > 0
+    h_i = w_i * g(u_i) + (1 - w_i) * hhat(u_i)
+
+    Limits: dt->inf  => h -> hhat(u)   (input-driven steady state)
+            dt->0    => h -> (g+hhat)/2 (gate at 1/2)
+    Deviations from manuscript Eq. (8) are documented in the spec.
+    """
+
+    def __init__(self, d_in: int, d_hidden: int):
+        super().__init__()
+        self.f = nn.Linear(d_in + d_hidden, d_hidden)
+        self.g = nn.Linear(d_in + d_hidden, d_hidden)
+        self.hhat = nn.Linear(d_in + d_hidden, d_hidden)
+
+    def gate(self, u: torch.Tensor, dt: torch.Tensor) -> torch.Tensor:
+        return torch.sigmoid(-F.softplus(self.f(u)) * dt.unsqueeze(-1))
+
+    def forward(self, x_i, h_prev, dt_i):
+        u = torch.cat([x_i, h_prev], dim=-1)
+        w = self.gate(u, dt_i)
+        return w * torch.tanh(self.g(u)) + (1.0 - w) * torch.tanh(self.hhat(u))
+
+
+class CFCBlock(TemporalBlock):
+    """Bidirectional CFC scan; dt enters *only* through the decay gate.
+
+    B4 vs B3 isolates the continuous-time gate given recurrence;
+    B4 vs B2 isolates it given gating.
+    """
+
+    USES_DT = True
+
+    def __init__(self, d_model: int, hidden: int):
+        super().__init__()
+        self.hidden = hidden
+        self.fwd = _CfCCell(d_model, hidden)
+        self.bwd = _CfCCell(d_model, hidden)
+        self.h0 = nn.Parameter(torch.zeros(2, hidden))
+        self.proj = nn.Linear(2 * hidden, d_model)
+
+    def _scan(self, cell, x, dt, h0, reverse: bool):
+        B, L, _ = x.shape
+        idx = range(L - 1, -1, -1) if reverse else range(L)
+        h = h0.expand(B, -1)
+        out = x.new_empty(B, L, self.hidden)
+        for i in idx:
+            # For the backward scan, the gap to the *next* element is dt_{i+1}.
+            j = min(i + 1, L - 1) if reverse else i
+            h = cell(x[:, i], h, dt[:, j])
+            out[:, i] = h
+        return out
+
+    def forward(self, x, dt=None):
+        B, L, _ = x.shape
+        if dt is None:
+            dt = x.new_ones(B, L)
+        f = self._scan(self.fwd, x, dt, self.h0[0], reverse=False)
+        b = self._scan(self.bwd, x, dt, self.h0[1], reverse=True)
+        return self.proj(torch.cat([f, b], dim=-1))
+
+
+# ----------------------------------------------------------------------------- B5
+class NeuralODEBlock(TemporalBlock):
+    """ODE-RNN scan (Rubanova et al. 2019 style): between elements, evolve h by
+    dh/ds = f(h) integrated over dt_i with fixed-step RK4 (deterministic; NFE
+    logged); at each element, a GRUCell update. Bidirectional like B3/B4.
+
+    Uses a generic solver where B4 uses a closed form - the B5 vs B4 comparison
+    is the manuscript's "closed form vs. generic ODE" control, now on equal
+    scan wiring.
+    """
+
+    USES_DT = True
+
+    def __init__(self, d_model: int, hidden: int, rk4_steps: int = 4):
+        super().__init__()
+        self.hidden = hidden
+        self.rk4_steps = rk4_steps
+        self.ode_f = nn.Sequential(
+            nn.Linear(hidden, hidden), nn.Tanh(), nn.Linear(hidden, hidden)
+        )
+        self.cell_fwd = nn.GRUCell(d_model, hidden)
+        self.cell_bwd = nn.GRUCell(d_model, hidden)
+        self.h0 = nn.Parameter(torch.zeros(2, hidden))
+        self.proj = nn.Linear(2 * hidden, d_model)
+        self.nfe = 0  # diagnostics, logged by the trainer
+
+    def _evolve(self, h, dt_i):
+        # RK4 with per-sample step h_s = dt_i / rk4_steps (dt_i shape: (B,))
+        step = (dt_i / self.rk4_steps).unsqueeze(-1)
+        for _ in range(self.rk4_steps):
+            k1 = self.ode_f(h)
+            k2 = self.ode_f(h + 0.5 * step * k1)
+            k3 = self.ode_f(h + 0.5 * step * k2)
+            k4 = self.ode_f(h + step * k3)
+            h = h + step / 6.0 * (k1 + 2 * k2 + 2 * k3 + k4)
+            self.nfe += 4
+        return h
+
+    def _scan(self, cell, x, dt, h0, reverse: bool):
+        B, L, _ = x.shape
+        idx = range(L - 1, -1, -1) if reverse else range(L)
+        h = h0.expand(B, -1).contiguous()
+        out = x.new_empty(B, L, self.hidden)
+        for i in idx:
+            j = min(i + 1, L - 1) if reverse else i
+            h = self._evolve(h, dt[:, j])
+            h = cell(x[:, i], h)
+            out[:, i] = h
+        return out
+
+    def forward(self, x, dt=None):
+        B, L, _ = x.shape
+        if dt is None:
+            dt = x.new_ones(B, L)
+        f = self._scan(self.cell_fwd, x, dt, self.h0[0], reverse=False)
+        b = self._scan(self.cell_bwd, x, dt, self.h0[1], reverse=True)
+        return self.proj(torch.cat([f, b], dim=-1))
+
+
+# ------------------------------------------------------------------- registry
+LADDER: Dict[str, Type[TemporalBlock]] = {
+    "ffn": PositionwiseFFN,
+    "ffn_timecond": TimeCondFFN,
+    "gated_ffn": GatedFFN,
+    "gru": GRUBlock,
+    "cfc": CFCBlock,
+    "node": NeuralODEBlock,
+}
+
+
+def build_temporal_block(
+    name: str, d_model: int, hidden: Optional[int] = None,
+    target_params: Optional[int] = None,
+) -> TemporalBlock:
+    """Build a ladder rung. If `target_params` is given, the hidden width is
+    solved so total trainable parameters match within +/-1% (MODEL_SPEC [R12])."""
+    if name not in LADDER:
+        raise KeyError(f"unknown block '{name}'; choose from {sorted(LADDER)}")
+    cls = LADDER[name]
+    if target_params is not None:
+        from dmd.utils.params import match_width
+        hidden = match_width(lambda w: cls(d_model, w), target_params)
+    if hidden is None:
+        hidden = 4 * d_model
+    return cls(d_model, hidden)
