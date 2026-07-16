@@ -23,6 +23,10 @@ CODE_DIR = "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffu
 
 import sys
 sys.path.insert(0, CODE_DIR)
+# Purge any dmd modules cached by a previous run in this same kernel session -
+# otherwise edited source files on disk are silently ignored (stale imports).
+for _m in [m for m in list(sys.modules) if m == "dmd" or m.startswith("dmd.")]:
+    del sys.modules[_m]
 import torch
 print("torch", torch.__version__)
 
