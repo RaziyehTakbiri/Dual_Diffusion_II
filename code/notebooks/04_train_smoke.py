@@ -72,18 +72,13 @@ assert last["loss"] < first["loss"], "no learning signal in 200 steps - report"
 
 # COMMAND ----------
 
-from dmd.data.loader import CorpusStats, destandardize_pitch
-from dmd.diffusion.schedules import ScheduleTables
-from dmd.models.denoiser import DualManifoldDenoiser
+from dmd.data.loader import destandardize_pitch
 from dmd.sample.sampler import generate
+from dmd.train.run import load_checkpoint
 
-ck = torch.load(f"{OUT_DIR}/ckpt.pt", weights_only=False)
-model = DualManifoldDenoiser(P=88, K=2, d_model=128, n_layers=4, n_heads=4,
-                             block="cfc", max_T=cfg["data"]["T"])
-model.load_state_dict(ck["ema"]); model.eval()
-stats = CorpusStats(**ck["corpus_stats"])
-tables = ScheduleTables(cfg["diffusion"]["T_d"],
-                        cfg["diffusion"]["schedule_alignment"])
+# checkpoint-driven reconstruction: identical to the trained model by
+# construction (manual rebuilds drift on param-matched widths)
+model, tables, stats, cfg = load_checkpoint(f"{OUT_DIR}/ckpt.pt")
 
 res = generate(model, tables, stats, B=4, T=cfg["data"]["T"], P=88,
                steps=cfg["sampling"]["ddim_steps"],

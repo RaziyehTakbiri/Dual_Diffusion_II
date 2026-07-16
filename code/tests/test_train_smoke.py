@@ -14,11 +14,8 @@ import numpy as np
 import torch
 import yaml
 
-from dmd.data.loader import CorpusStats, make_loader
-from dmd.diffusion.schedules import ScheduleTables
 from dmd.sample.sampler import generate
 from dmd.train.run import main as train_main
-from dmd.models.denoiser import DualManifoldDenoiser
 
 T, P = 16, 88
 
@@ -69,13 +66,10 @@ def test_train_and_sample_smoke():
         assert os.path.exists(os.path.join(out, "ckpt.pt"))
         assert os.path.exists(os.path.join(out, "train_log.json"))
 
-        ck = torch.load(os.path.join(out, "ckpt.pt"), weights_only=False)
-        model = DualManifoldDenoiser(P=P, K=2, d_model=32, n_layers=2,
-                                     n_heads=4, block="cfc", max_T=T)
-        model.load_state_dict(ck["ema"])
-        model.eval()
-        stats = CorpusStats(**ck["corpus_stats"])
-        tables = ScheduleTables(100, "sqrt_alpha")
+        # checkpoint-driven reconstruction (the only supported load path)
+        from dmd.train.run import load_checkpoint
+        model, tables, stats, _cfg = load_checkpoint(
+            os.path.join(out, "ckpt.pt"))
         res = generate(model, tables, stats, B=2, T=T, P=P, steps=8,
                        target_rate=0.05, seed=0)
 

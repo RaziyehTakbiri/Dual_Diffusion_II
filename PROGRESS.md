@@ -135,6 +135,15 @@ test 200k→30k (suite was 10:45 on R's CPU). Earlier same session: Databricks
 kernels inject PYTEST_ADDOPTS with a flag stock pytest rejects — notebooks now
 strip it and disable the cache plugin.
 
+**M5/M6 hardening (2026-07-15):** two integration-caught bugs fixed: (1)
+float64 schedule tables silently promoted data through the forward process
+into the f32 model — cast at source (forward ×2, ELBO weight, sampler) +
+dtype regression assertion in unit suite; (2) notebook rebuilt the sampling
+model by hand with default widths ≠ trainer's param-matched widths —
+`load_checkpoint()` added to run.py as the ONLY supported load path
+(reconstructs from the checkpoint's stored config); notebook + smoke test now
+use it. Gate + 200-step real-data training confirmed working on R's cluster.
+
 **M5/M6 status (2026-07-15, v1 done):** `dmd/data/loader.py` (v0.2 tensors:
 standardized pitch channels + log-Δ step channel [R14], corpus stats
 round-trip), `dmd/train/run.py` (trainer v1: γ grad-matching [R9], EMA,

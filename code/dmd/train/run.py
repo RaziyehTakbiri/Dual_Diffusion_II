@@ -50,6 +50,24 @@ def build_model(cfg: Dict, device) -> DualManifoldDenoiser:
     return model
 
 
+def load_checkpoint(path: str, device: str = "cpu", use_ema: bool = True):
+    """Reconstruct model + schedules + corpus stats FROM the checkpoint's own
+    stored config. The single supported way to load a trained model - manual
+    reconstruction drifts from the trainer (param-matched widths, 2026-07-15)
+    and is therefore banned in notebooks and evaluation code.
+
+    Returns (model.eval(), ScheduleTables, CorpusStats, config_dict)."""
+    from dmd.data.loader import CorpusStats
+
+    ck = torch.load(path, map_location=device, weights_only=False)
+    model = build_model(ck["config"], torch.device(device))
+    model.load_state_dict(ck["ema" if use_ema else "model"])
+    model.eval()
+    tables = ScheduleTables(ck["config"]["diffusion"]["T_d"],
+                            ck["config"]["diffusion"]["schedule_alignment"])
+    return model, tables, CorpusStats(**ck["corpus_stats"]), ck["config"]
+
+
 def losses_for_batch(model, fwd, tables, batch, cfg, device, tau: float,
                      gamma: float, generator=None):
     D0 = batch["D"].to(device)                       # (B,T,P) {0,1}
