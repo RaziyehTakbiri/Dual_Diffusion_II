@@ -96,6 +96,7 @@
 ## Run log (Databricks)
 | Date | Run/Experiment | Config/seeds | Metrics file in `results/` | Notes |
 |---|---|---|---|---|
+| 2026-07-15 | [R15] Δ-feedback de-risk probe (03 notebook; full suite green first) | 6 tiny models, d=64, ~34k block params each, AR(1) φ=0.8 proxy | table in tracker | ffn 0.529 / gated_ffn 0.530 / gru 0.404 / **cfc-uniform 0.405** / **cfc-oracle 0.088** / node 0.404. Findings: (1) with uninformative Δt, CFC≈GRU≈NODE — closed-form CT adds nothing over recurrence ⇒ original manuscript's CFC gain likely a recurrence effect (W2 resolved pre-training); (2) oracle-Δ 4.6× better ⇒ **[R15] promoted to CORE mechanism** (caveat: oracle Δt partially leaks target; 0.088 is an upper bound — realizable gain measured by the sampling-time uniform/feedback/oracle ablation); (3) gating-only null replicates manuscript's time-cond null. Revised thesis: continuous-time dynamics need meaningful time; co-generating the tempo map provides it. |
 | 2026-07-15 | **E4.1b score-aligned micro-timing** (run locally by Claude; stdlib MIDI reader cross-validated vs pretty_midi: 0.019% note-count diff; synthetic ground-truth tests 4/4) | 1036/1067 aligned (31 skips = ASAP's documented unaligned perfs), 16 s | `score_align_asap.{csv,json}` | **Note-level micro-timing IS structured: ρ₁=0.39±0.19 (all), 0.24±0.17 (duple-only)** vs −0.06 on grid residuals — the structure was real, the grid instrument destroyed it. σ=49 ms (43 duple); 28% of notes non-duple (triplets/ornaments — the artifact source, quantified). Asynchrony σ=27 ms (score-exact chords). Unbiased (median 0.00 ms); match rate 92%. Per-composer duple ρ₁ uniformly positive (0.18–0.28); σ scales Bach 25→Ravel 72 ms. Caveats: beat annotations derived from performances (on-beat deviations partly absorbed); greedy matching noise attenuates ρ (estimates conservative). |
 | 2026-07-15 | E4.1 human-ACF study, **ASAP grid**, 1067 perfs / 3.59M notes | grid=asap, s=4, paired map | `human_acf_asap.{csv,json}` | σ=43.2±31.5 ms (WORSE than fixed!), ρ₁=−0.055±0.150 — **uniformly negative across all composers** → measurement artifact: subdivision–rhythm mismatch (triplets/ornaments/runs land between sixteenth cells; collisions blow up for ornamental composers: Liszt 4.2%, Ravel 5.4%). Asynchrony 14.8 ms behaves like true signal (Bach 9.7 → Ravel 21.8, musically sensible gradient). |
 | 2026-07-15 | **E4.1b tempo-curve study (beat annotations only — no grid)** | 1067 perfs, all beats | `tempo_curve_asap.{csv,json}` | **THE REAL STRUCTURE: tempo-curve ρ₁=0.64±0.22**, slow decay (ρ₈=0.36); style-dependent exactly as musicology predicts (Bach 0.37 < Chopin 0.53 < Liszt 0.67) while residual-channel ρ₁ is uniformly ≈−0.06 (artifact). Median period CV 0.26. Macro-rubato structure lives at the BEAT level, not in grid residuals. |
@@ -134,7 +135,18 @@ test 200k→30k (suite was 10:45 on R's CPU). Earlier same session: Databricks
 kernels inject PYTEST_ADDOPTS with a flag stock pytest rejects — notebooks now
 strip it and disable the cache plugin.
 
+**M5/M6 status (2026-07-15, v1 done):** `dmd/data/loader.py` (v0.2 tensors:
+standardized pitch channels + log-Δ step channel [R14], corpus stats
+round-trip), `dmd/train/run.py` (trainer v1: γ grad-matching [R9], EMA,
+cosine LR+warmup, JSON logs, checkpoint; MLflow/DDP deferred to v2),
+`dmd/sample/sampler.py` (DDIM + confidence unmasking with [R13] calibration
+flag + **Δ-feedback loop [R15]**), `tests/test_train_smoke.py` (end-to-end
+CPU integration test), `notebooks/04_train_smoke` (gate → 200-step real-data
+smoke → first Δ-feedback samples). [R15] promoted to CORE per probe.
+
 ## Next actions
+0. **Raziyeh:** run `04_train_smoke` (GPU ~3 min). Success = suite green,
+   loss decreases, sample stats print. Then the experiment grid can start.
 1. **Raziyeh (top priority — critical path, E4.1):** ASAP recipe (no MAESTRO
    mapping needed; the repo contains all performance MIDIs + annotations):
    a. Get https://github.com/fosfrancesco/asap-dataset onto Databricks
