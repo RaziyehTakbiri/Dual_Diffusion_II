@@ -52,8 +52,8 @@ def generate(model, tables: ScheduleTables, stats: CorpusStats,
     delta = torch.full((B, T), delta_uniform_s, device=dev)
 
     ts = torch.linspace(tables.T_d, 1, steps).round().long().unique_consecutive()
-    ab = tables.alpha_bar.to(dev)
-    m = tables.m.to(dev)
+    ab = tables.alpha_bar.to(device=dev, dtype=torch.float32)
+    m = tables.m.to(device=dev, dtype=torch.float32)
 
     for k, t_cur in enumerate(ts):
         t_next = ts[k + 1] if k + 1 < len(ts) else torch.tensor(0)
@@ -61,7 +61,8 @@ def generate(model, tables: ScheduleTables, stats: CorpusStats,
         out = model(D, Cp, Cs, delta, t_b, tau=tau, coupling="detached")
 
         a_cur = ab[int(t_cur)]
-        a_next = ab[int(t_next)] if int(t_next) > 0 else torch.tensor(1.0, device=dev)
+        a_next = (ab[int(t_next)] if int(t_next) > 0
+                  else torch.tensor(1.0, device=dev))
 
         # --- x0 estimates + DDIM (eta=0) for both continuous streams
         for X, eps in ((Cp, out.eps_pitch), (Cs, out.eps_step)):

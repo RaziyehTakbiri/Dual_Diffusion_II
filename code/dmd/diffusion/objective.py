@@ -39,7 +39,8 @@ def discrete_loss(
     ce = -logp.gather(-1, D0.unsqueeze(-1)).squeeze(-1)          # (B, N)
 
     if mode == "elbo_ce":
-        w = tables.w_elbo.to(ce.device)[t].unsqueeze(-1)         # (B, 1)
+        # float64 tables: cast to the loss dtype (same hazard as forward.py)
+        w = tables.w_elbo.to(device=ce.device, dtype=ce.dtype)[t].unsqueeze(-1)
         per_pos = tables.T_d * w * ce                            # bound scale
     else:
         p_true = ce.neg().exp().clamp(1e-12, 1.0)

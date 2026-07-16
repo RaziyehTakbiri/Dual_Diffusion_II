@@ -85,6 +85,8 @@ def test_continuous_corruption_moments_and_eps_identity():
     for t_val in (50, 500, 950):
         t = torch.tensor([t_val])
         C_t, eps = fwd.corrupt_continuous(C0, t, generator=g)
+        # regression guard: float64 schedule tables must NOT promote the data
+        assert C_t.dtype == C0.dtype and eps.dtype == C0.dtype
         ab = tab.alpha_bar[t_val]
         assert abs(C_t.mean().item() - (ab.sqrt() * 0.7).item()) < 0.005
         assert abs(C_t.std().item() - (1 - ab).sqrt().item()) < 0.005

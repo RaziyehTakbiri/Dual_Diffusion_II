@@ -45,7 +45,8 @@ class BifurcatedForward:
                          generator: Optional[torch.Generator] = None
                          ) -> Tuple[torch.Tensor, torch.Tensor]:
         """q(D_t | D_0): each token independently -> MASK w.p. m_t."""
-        m_t = self.tab.m.to(D0.device)[t].unsqueeze(-1)          # (B,1)
+        # tables are float64 for precision; cast HERE so downstream stays f32
+        m_t = self.tab.m.to(device=D0.device, dtype=torch.float32)[t].unsqueeze(-1)
         u = torch.rand(D0.shape, device=D0.device, generator=generator)
         masked = u < m_t
         D_t = torch.where(masked, torch.full_like(D0, self.MASK_ID), D0)
@@ -57,8 +58,12 @@ class BifurcatedForward:
         """q(C_t | C_0) = N(sqrt(ab_t) C_0, (1 - ab_t) I); returns (C_t, eps).
 
         Runs on ALL positions (inactive ones carry pure noise through the
-        network); supervision is masked to active events downstream [R8]."""
-        ab_t = self.tab.alpha_bar.to(C0.device)[t].view(-1, *([1] * (C0.dim() - 1)))
+        network); supervision is masked to active events downstream [R8].
+        Schedule tables are float64 for precision; cast to the DATA dtype here
+        or float64 silently propagates into the model (caught by the
+        end-to-end smoke test, 2026-07-15)."""
+        ab_t = (self.tab.alpha_bar.to(device=C0.device, dtype=C0.dtype)[t]
+                .view(-1, *([1] * (C0.dim() - 1))))
         eps = torch.randn(C0.shape, device=C0.device, generator=generator,
                           dtype=C0.dtype)
         C_t = ab_t.sqrt() * C0 + (1.0 - ab_t).sqrt() * eps
