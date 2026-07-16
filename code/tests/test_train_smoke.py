@@ -68,7 +68,7 @@ def test_train_and_sample_smoke():
 
         # checkpoint-driven reconstruction (the only supported load path)
         from dmd.train.run import load_checkpoint
-        model, tables, stats, _cfg = load_checkpoint(
+        model, tables, stats, loaded_cfg = load_checkpoint(
             os.path.join(out, "ckpt.pt"))
         res = generate(model, tables, stats, B=2, T=T, P=P, steps=8,
                        target_rate=0.05, seed=0)

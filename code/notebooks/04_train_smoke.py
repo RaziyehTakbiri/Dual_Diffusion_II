@@ -36,8 +36,11 @@ print("torch", torch.__version__, "| cuda:", torch.cuda.is_available())
 import os, pytest
 os.environ.pop("PYTEST_ADDOPTS", None)
 sys.dont_write_bytecode = True
-rc = pytest.main([f"{CODE_DIR}/tests", "-q", "--no-header",
-                  "-p", "no:cacheprovider"])
+# Full suite (~10 min on CPU). For quick iteration on a single fix, point this
+# at one file, e.g. f"{CODE_DIR}/tests/test_train_smoke.py" (~90 s), then run
+# the full gate once before any results are trusted.
+GATE_TESTS = f"{CODE_DIR}/tests"
+rc = pytest.main([GATE_TESTS, "-q", "--no-header", "-p", "no:cacheprovider"])
 assert rc == 0, "TEST FAILURES - stop and report the log above to Claude verbatim"
 
 # COMMAND ----------

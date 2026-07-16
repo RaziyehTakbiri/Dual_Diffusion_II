@@ -135,6 +135,15 @@ test 200k→30k (suite was 10:45 on R's CPU). Earlier same session: Databricks
 kernels inject PYTEST_ADDOPTS with a flag stock pytest rejects — notebooks now
 strip it and disable the cache plugin.
 
+**Process fix (2026-07-15):** after a shadowing bug (`_cfg` variable vs
+`_cfg()` helper → UnboundLocalError) shipped unverified, added
+`tools/lint_shadow.py` — stdlib AST linter catching use-before-assignment /
+module-name shadowing, the class py_compile misses. **Standing rule: every
+shipment now passes py_compile + lint_shadow in Claude's sandbox before
+handoff.** Repo currently clean (0 findings / 40 files). 04 notebook gained a
+`GATE_TESTS` knob (single-file gate ~90 s for bugfix iteration; full suite
+before trusting results).
+
 **M5/M6 hardening (2026-07-15):** two integration-caught bugs fixed: (1)
 float64 schedule tables silently promoted data through the forward process
 into the f32 model — cast at source (forward ×2, ELBO weight, sampler) +
