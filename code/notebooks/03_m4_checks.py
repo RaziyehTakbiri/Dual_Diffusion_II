@@ -54,7 +54,9 @@ assert rc == 0, "TEST FAILURES - stop and report the log above to Claude verbati
 
 # COMMAND ----------
 
-import numpy as np
+import importlib, numpy as np
+import dmd.blocks.temporal
+importlib.reload(dmd.blocks.temporal)
 from dmd.blocks.temporal import build_temporal_block
 from dmd.diffusion.schedules import ScheduleTables
 
