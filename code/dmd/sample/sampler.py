@@ -41,7 +41,10 @@ def generate(model, tables: ScheduleTables, stats: CorpusStats,
              steps: int = 50, tau: float = 0.5,
              calibrate: bool = True, target_rate: float = 0.03,
              delta_feedback: bool = True, delta_uniform_s: float = 0.125,
+             delta_init: Optional[torch.Tensor] = None,
              seed: int = 0, device: str = "cpu") -> SampleResult:
+    """Δ-mode ablation entry points: feedback (delta_feedback=True), uniform
+    (False, no delta_init), oracle (False + delta_init = human Δ (B,T))."""
     g = torch.Generator(device="cpu").manual_seed(seed)
     dev = torch.device(device)
     MASK = 2
@@ -49,7 +52,8 @@ def generate(model, tables: ScheduleTables, stats: CorpusStats,
     D = torch.full((B, T, P), MASK, dtype=torch.long, device=dev)
     Cp = torch.randn(B, T, P, K, generator=g).to(dev)
     Cs = torch.randn(B, T, 1, generator=g).to(dev)
-    delta = torch.full((B, T), delta_uniform_s, device=dev)
+    delta = (delta_init.to(dev).clone() if delta_init is not None
+             else torch.full((B, T), delta_uniform_s, device=dev))
 
     ts = torch.linspace(tables.T_d, 1, steps).round().long().unique_consecutive()
     ab = tables.alpha_bar.to(device=dev, dtype=torch.float32)

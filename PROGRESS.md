@@ -162,10 +162,29 @@ flag + **Δ-feedback loop [R15]**), `tests/test_train_smoke.py` (end-to-end
 CPU integration test), `notebooks/04_train_smoke` (gate → 200-step real-data
 smoke → first Δ-feedback samples). [R15] promoted to CORE per probe.
 
+**Pilot grid ready (2026-07-15):** `dmd/exp/grid.py` (30-run matrix, pilot/
+final scales, hash-based piece-level split), `dmd/eval/generated.py` (matched-
+instrument metrics: W1, cell-grouped residual ρ₁, tempo-curve stats,
+asynchrony; jitter baselines defined at STEP level so ar1 hits target ρ₁ as
+measured), `notebooks/05_experiment_grid` (per-RUN_INDEX job: mini-gate →
+one-time split/reference/baselines → train → Δ-mode sampling sweep → metrics
+JSON). All numpy-verified in-sandbox (5/5 ground-truth tests) + lint clean.
+04 smoke on real data GREEN (loss 2.71→1.33, sane sample stats). Known
+bottleneck logged: CFC scan is kernel-launch-bound (~2.2 s/step tiny model) —
+scan optimization task queued BEFORE any 'final'-scale run.
+
 ## Next actions
-0. **Raziyeh:** run `04_train_smoke` (GPU ~3 min). Success = suite green,
-   loss decreases, sample stats print. Then the experiment grid can start.
-1. **Raziyeh (top priority — critical path, E4.1):** ASAP recipe (no MAESTRO
+0. **Raziyeh — LAUNCH THE PILOT GRID:** import `05_experiment_grid`, create a
+   Databricks Job with parameter `RUN_INDEX`, first wave indices
+   0, 5, 10, 15, 20, 25 (one seed per block; ~12 h each on 1 GPU), then the
+   remaining 24 in parallel as capacity allows. Download
+   `/dbfs/FileStore/dmd_grid/results/*.json` into `results/grid/` here as
+   they finish.
+1. **Claude (next session):** scan optimization (jit/compile the CFC/NODE
+   scans) gating the 'final' scale; results aggregator → Table 1 draft +
+   significance tests once ≥ first-wave JSONs land; then Phase-2 baselines
+   (distributional AR head, SCHmUBERT-style).
+2. **Raziyeh (background, E4.1 closing item):** ASAP recipe (no MAESTRO
    mapping needed; the repo contains all performance MIDIs + annotations):
    a. Get https://github.com/fosfrancesco/asap-dataset onto Databricks
       (git clone or zip download; ~no audio needed; CC BY-NC-SA, cite
