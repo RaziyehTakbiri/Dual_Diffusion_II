@@ -102,6 +102,29 @@ def test_param_matching_within_tolerance(name):
     )
 
 
+def test_node_checkpointing_grads_identical():
+    """Gradient checkpointing must be an exact memory/compute trade: same
+    forward, same gradients, to float precision."""
+    x, dt, _ = _inputs()
+    grads = {}
+    for flag in (True, False):
+        torch.manual_seed(0)
+        block = build_temporal_block("node", D, hidden=HID)
+        block.train()
+        block.use_checkpoint = flag
+        y = block(x.clone().requires_grad_(True), dt)
+        y.square().mean().backward()
+        grads[flag] = [p.grad.clone() for p in block.parameters()
+                       if p.grad is not None]
+        outs = y.detach().clone()
+        if flag:
+            out_ckpt = outs
+        else:
+            assert torch.allclose(out_ckpt, outs, atol=1e-6)
+    for ga, gb in zip(grads[True], grads[False]):
+        assert torch.allclose(ga, gb, atol=1e-5)
+
+
 def test_node_deterministic_and_counts_nfe():
     block = _block("node")
     block.eval()

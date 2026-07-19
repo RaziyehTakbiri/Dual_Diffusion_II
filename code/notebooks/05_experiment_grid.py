@@ -28,6 +28,13 @@ WORK = "/dbfs/FileStore/dmd_grid"       # checkpoints/results (NOT /Workspace)
 SCALE = "pilot"                          # 'final' only after scan optimization
 
 import os, sys, json, time
+# On a MULTI-GPU box you can run several notebook clones concurrently by
+# pinning each to its own device - set a different id per clone (0..7).
+# Must happen BEFORE torch initializes CUDA (that's also why late
+# PYTORCH_CUDA_ALLOC_CONF edits are no-ops).
+GPU_ID = os.environ.get("GPU_ID", "")     # "" = leave visibility unchanged
+if GPU_ID:
+    os.environ["CUDA_VISIBLE_DEVICES"] = GPU_ID
 sys.path.insert(0, CODE_DIR)
 for _m in [m for m in list(sys.modules) if m == "dmd" or m.startswith("dmd.")]:
     del sys.modules[_m]

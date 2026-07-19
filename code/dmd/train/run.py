@@ -186,6 +186,10 @@ def main(argv: Optional[List[str]] = None):
                        "l_c": float(l_c), "tau": tau,
                        "lr": opt.param_groups[0]["lr"],
                        "sec": round(time.time() - t0, 1)}
+                if device.type == "cuda":
+                    rec["peak_gb"] = round(
+                        torch.cuda.max_memory_allocated() / 2**30, 2)
+                    torch.cuda.reset_peak_memory_stats()
                 log["history"].append(rec)
                 print(rec)
             step += 1

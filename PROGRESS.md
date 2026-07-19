@@ -162,6 +162,14 @@ flag + **Δ-feedback loop [R15]**), `tests/test_train_smoke.py` (end-to-end
 CPU integration test), `notebooks/04_train_smoke` (gate → 200-step real-data
 smoke → first Δ-feedback samples). [R15] promoted to CORE per probe.
 
+**Grid launch fix (2026-07-15):** RUN_INDEX 25 (node) OOM'd a 22 GiB GPU —
+ODE-RNN backward stores 16 ode_f activation sets per position × direction ×
+layer. Fix: gradient checkpointing on the RK4 evolve (identical gradients —
+proven by new unit test comparing grads checkpointed vs direct; ~+33% compute
+for the node rung only, so no cross-run inconsistency with already-launched
+blocks). Trainer now logs `peak_gb` per interval. Notebook 05 gained GPU_ID
+pinning so one 8-GPU box can run 8 clones concurrently.
+
 **Pilot grid ready (2026-07-15):** `dmd/exp/grid.py` (30-run matrix, pilot/
 final scales, hash-based piece-level split), `dmd/eval/generated.py` (matched-
 instrument metrics: W1, cell-grouped residual ρ₁, tempo-curve stats,

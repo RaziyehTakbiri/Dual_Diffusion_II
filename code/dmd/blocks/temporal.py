@@ -211,6 +211,12 @@ class NeuralODEBlock(TemporalBlock):
         self.h0 = nn.Parameter(torch.zeros(2, hidden))
         self.proj = nn.Linear(2 * hidden, d_model)
         self.nfe = 0  # diagnostics, logged by the trainer
+        # Gradient-checkpoint the RK4 evolution during training: without it,
+        # backward stores 16 ode_f activation sets per position x 2 directions
+        # x n_layers - OOM'd a 22 GiB GPU at pilot scale (2026-07-15).
+        # Checkpointing recomputes RK4 in backward: IDENTICAL gradients,
+        # ~16x less scan-activation memory, ~+33% compute for this rung only.
+        self.use_checkpoint = True
 
     def _evolve(self, h, dt_i):
         # RK4 with per-sample step h_s = dt_i / rk4_steps (dt_i shape: (B,))
@@ -229,9 +235,15 @@ class NeuralODEBlock(TemporalBlock):
         idx = range(L - 1, -1, -1) if reverse else range(L)
         h = h0.expand(B, -1).contiguous()
         out = x.new_empty(B, L, self.hidden)
+        ckpt = (self.use_checkpoint and self.training
+                and torch.is_grad_enabled())
         for i in idx:
             j = min(i + 1, L - 1) if reverse else i
-            h = self._evolve(h, dt[:, j])
+            if ckpt:
+                h = torch.utils.checkpoint.checkpoint(
+                    self._evolve, h, dt[:, j], use_reentrant=False)
+            else:
+                h = self._evolve(h, dt[:, j])
             h = cell(x[:, i], h)
             out[:, i] = h
         return out
