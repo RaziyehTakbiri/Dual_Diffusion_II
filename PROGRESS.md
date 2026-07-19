@@ -162,6 +162,23 @@ flag + **Δ-feedback loop [R15]**), `tests/test_train_smoke.py` (end-to-end
 CPU integration test), `notebooks/04_train_smoke` (gate → 200-step real-data
 smoke → first Δ-feedback samples). [R15] promoted to CORE per probe.
 
+**Campaign status (2026-07-15):** FINAL scale (d=512, 12L). First wave: ffn(0)
+✔, ffn_timecond(5) ✔, gated_ffn(10) ✔, **gru(15) ✔**, cfc(20) and node(25)
+blocked on scan speed → optimization shipped, awaiting 06_speed_check numbers.
+Metrics JSONs for the four finished runs not yet received.
+
+**Scale decision + scan optimization (2026-07-15):** R confirmed the grid runs
+at FINAL scale (d=512, 12L); ffn/ffn_timecond/gated_ffn seed-0 runs complete;
+cfc+node infeasible at old scan speed. Rewrote CFC: 3 linears fused to one,
+input-side projections precomputed for all steps in one batched matmul (the
+cuDNN-RNN trick), loop TorchScripted with eager fallback — identical math,
+identical param count (re-audited: exact match at both scales). NODE: RK4
+scripted as standalone tensor fn (composes with checkpointing); rk4_steps
+default 4→1 (reported solver setting of the control; nothing had trained at
+4). New `06_speed_check` notebook measures sec/step for all blocks at final
+scale in ~3 min with a go/no-go decision rule. **Standing communication rule:
+plain-language numbered instructions to R; codenames stay in this file.**
+
 **Grid launch fix (2026-07-15):** RUN_INDEX 25 (node) OOM'd a 22 GiB GPU —
 ODE-RNN backward stores 16 ode_f activation sets per position × direction ×
 layer. Fix: gradient checkpointing on the RK4 evolve (identical gradients —

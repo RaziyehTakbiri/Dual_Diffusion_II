@@ -47,6 +47,9 @@ try:
 except NameError:
     RUN_INDEX = int(os.environ.get("RUN_INDEX", "0"))
 print(f"RUN_INDEX={RUN_INDEX}  scale={SCALE}  cuda={torch.cuda.is_available()}")
+assert not WORK.startswith("/Workspace"), (
+    "WORK must NOT live in /Workspace: checkpoints inside the Repos tree "
+    "blow the 1 GB working-dir cap and break Git (2026-07-15). Use /dbfs/...")
 os.makedirs(f"{WORK}/prep", exist_ok=True)
 os.makedirs(f"{WORK}/results", exist_ok=True)
 

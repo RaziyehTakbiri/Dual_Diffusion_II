@@ -1,0 +1,12 @@
+# Training artifacts and data NEVER belong in the repo tree
+# (Databricks Repos has a 1 GB working-dir cap - and ignored files still
+# count toward it, so keep artifacts on /dbfs, not just ignored)
+runs/
+dmd/runs/
+*.pt
+*.ckpt
+results/*.npz
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/

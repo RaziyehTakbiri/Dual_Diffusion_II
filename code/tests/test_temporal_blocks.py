@@ -10,7 +10,8 @@ These tests encode the *scientific* contract, not just shapes:
 import pytest
 import torch
 
-from dmd.blocks.temporal import LADDER, CFCBlock, build_temporal_block, _CfCCell
+from dmd.blocks.temporal import (LADDER, CFCBlock, build_temporal_block,
+                                 cfc_decay_gate)
 from dmd.utils.params import count_params, match_width
 
 # d_model = 128, not smaller: recurrent rungs have ~quadratic-in-width counts,
@@ -60,18 +61,17 @@ def test_dt_sensitivity_matches_declaration(name):
 
 def test_cfc_gate_monotone_in_dt():
     torch.manual_seed(0)
-    cell = _CfCCell(D, HID)
-    u = torch.randn(5, D + HID)
+    f_pre = torch.randn(5, HID)
     dts = torch.tensor([0.0, 0.1, 1.0, 10.0, 1000.0])
     prev = None
     for dt in dts:
-        w = cell.gate(u, dt.expand(5))
+        w = cfc_decay_gate(f_pre, dt.expand(5, 1))
         assert torch.isfinite(w).all() and (w >= 0).all() and (w <= 0.5 + 1e-6).all()
         if prev is not None:
             assert (w <= prev + 1e-6).all(), "gate must decay as dt grows"
         prev = w
     # dt=0 limit: gate exactly 1/2 (MODEL_SPEC [R11])
-    w0 = cell.gate(u, torch.zeros(5))
+    w0 = cfc_decay_gate(f_pre, torch.zeros(5, 1))
     assert torch.allclose(w0, torch.full_like(w0, 0.5))
 
 
@@ -86,8 +86,8 @@ def test_cfc_irregular_dt_changes_output_locally():
     k = L // 2
     dt2[:, k] = 5.0
     with torch.no_grad():
-        f1 = block._scan(block.fwd, x, dt, block.h0[0], reverse=False)
-        f2 = block._scan(block.fwd, x, dt2, block.h0[0], reverse=False)
+        f1 = block.direction_scan(x, dt, reverse=False)
+        f2 = block.direction_scan(x, dt2, reverse=False)
     assert torch.allclose(f1[:, :k], f2[:, :k]), "fwd scan leaked dt backwards"
     assert not torch.allclose(f1[:, k:], f2[:, k:])
 

@@ -121,31 +121,46 @@ class GRUBlock(TemporalBlock):
 
 
 # ----------------------------------------------------------------------------- B4
-class _CfCCell(nn.Module):
-    """Closed-form continuous-time cell (MODEL_SPEC [R11]).
+def _cfc_scan_eager(px: torch.Tensor, wh: torch.Tensor, dt: torch.Tensor,
+                    h0: torch.Tensor, reverse: bool) -> torch.Tensor:
+    """The CFC recurrence (MODEL_SPEC [R11]) over one direction.
 
-    u_i = [x_i, h_{i-1}]
-    w_i = sigmoid(-softplus(f(u_i)) * dt_i)        # decay gate, rate > 0
-    h_i = w_i * g(u_i) + (1 - w_i) * hhat(u_i)
+    px: (B, L, 3H) input-side projections W_x x_i + b, PREcomputed for all
+        steps in one batched matmul (the cuDNN-RNN trick); wh: (3H, H) the
+        hidden-side weight; dt: (B, L); h0: (H,).
 
-    Limits: dt->inf  => h -> hhat(u)   (input-driven steady state)
-            dt->0    => h -> (g+hhat)/2 (gate at 1/2)
-    Deviations from manuscript Eq. (8) are documented in the spec.
+    Per step: z = px_i + h W_h^T; split z -> (f, g, hhat);
+              w = sigmoid(-softplus(f) * dt); h = w*tanh(g) + (1-w)*tanh(hhat)
+    Identical math and identical parameter count to the original three-Linear
+    cell (W [x;h] = W_x x + W_h h); rewritten 2026-07-15 because the original
+    launched ~10 kernels per step and was wall-clock infeasible at d=512.
     """
+    B, L, H3 = px.shape
+    H = H3 // 3
+    h = h0.unsqueeze(0).expand(B, H).contiguous()
+    out = torch.empty(B, L, H, dtype=px.dtype, device=px.device)
+    for k in range(L):
+        i = L - 1 - k if reverse else k
+        j = min(i + 1, L - 1) if reverse else i
+        z = px[:, i] + h @ wh.t()
+        f, g, hh = z.chunk(3, dim=-1)
+        w = torch.sigmoid(-F.softplus(f) * dt[:, j].unsqueeze(-1))
+        h = w * torch.tanh(g) + (1.0 - w) * torch.tanh(hh)
+        out[:, i] = h
+    return out
 
-    def __init__(self, d_in: int, d_hidden: int):
-        super().__init__()
-        self.f = nn.Linear(d_in + d_hidden, d_hidden)
-        self.g = nn.Linear(d_in + d_hidden, d_hidden)
-        self.hhat = nn.Linear(d_in + d_hidden, d_hidden)
 
-    def gate(self, u: torch.Tensor, dt: torch.Tensor) -> torch.Tensor:
-        return torch.sigmoid(-F.softplus(self.f(u)) * dt.unsqueeze(-1))
+try:  # TorchScript removes per-step Python overhead; fall back if scripting
+    _cfc_scan = torch.jit.script(_cfc_scan_eager)
+except Exception:  # noqa: BLE001 - runtime-version quirks must not break math
+    _cfc_scan = _cfc_scan_eager
+    print("[dmd] WARNING: TorchScript unavailable for CFC scan; using eager "
+          "fallback (slower, same results). Report this.")
 
-    def forward(self, x_i, h_prev, dt_i):
-        u = torch.cat([x_i, h_prev], dim=-1)
-        w = self.gate(u, dt_i)
-        return w * torch.tanh(self.g(u)) + (1.0 - w) * torch.tanh(self.hhat(u))
+
+def cfc_decay_gate(f_pre: torch.Tensor, dt: torch.Tensor) -> torch.Tensor:
+    """w = sigmoid(-softplus(f_pre) * dt); exposed for unit tests."""
+    return torch.sigmoid(-F.softplus(f_pre) * dt)
 
 
 class CFCBlock(TemporalBlock):
@@ -160,33 +175,56 @@ class CFCBlock(TemporalBlock):
     def __init__(self, d_model: int, hidden: int):
         super().__init__()
         self.hidden = hidden
-        self.fwd = _CfCCell(d_model, hidden)
-        self.bwd = _CfCCell(d_model, hidden)
+        # per direction: input-side Linear(d->3H, bias) + hidden-side (3H, H)
+        self.wx_f = nn.Linear(d_model, 3 * hidden)
+        self.wx_b = nn.Linear(d_model, 3 * hidden)
+        k = 1.0 / (hidden ** 0.5)
+        self.wh_f = nn.Parameter(torch.empty(3 * hidden, hidden).uniform_(-k, k))
+        self.wh_b = nn.Parameter(torch.empty(3 * hidden, hidden).uniform_(-k, k))
         self.h0 = nn.Parameter(torch.zeros(2, hidden))
         self.proj = nn.Linear(2 * hidden, d_model)
 
-    def _scan(self, cell, x, dt, h0, reverse: bool):
-        B, L, _ = x.shape
-        idx = range(L - 1, -1, -1) if reverse else range(L)
-        h = h0.expand(B, -1)
-        out = x.new_empty(B, L, self.hidden)
-        for i in idx:
-            # For the backward scan, the gap to the *next* element is dt_{i+1}.
-            j = min(i + 1, L - 1) if reverse else i
-            h = cell(x[:, i], h, dt[:, j])
-            out[:, i] = h
-        return out
+    def direction_scan(self, x, dt, reverse: bool):
+        """One direction; exposed for causality unit tests."""
+        px = self.wx_b(x) if reverse else self.wx_f(x)
+        wh = self.wh_b if reverse else self.wh_f
+        h0 = self.h0[1] if reverse else self.h0[0]
+        return _cfc_scan(px, wh, dt, h0, reverse)
 
     def forward(self, x, dt=None):
         B, L, _ = x.shape
         if dt is None:
             dt = x.new_ones(B, L)
-        f = self._scan(self.fwd, x, dt, self.h0[0], reverse=False)
-        b = self._scan(self.bwd, x, dt, self.h0[1], reverse=True)
+        f = self.direction_scan(x, dt, reverse=False)
+        b = self.direction_scan(x, dt, reverse=True)
         return self.proj(torch.cat([f, b], dim=-1))
 
 
 # ----------------------------------------------------------------------------- B5
+def _rk4_evolve_eager(h: torch.Tensor, dt_i: torch.Tensor,
+                      w1: torch.Tensor, b1: torch.Tensor,
+                      w2: torch.Tensor, b2: torch.Tensor,
+                      rk4_steps: int) -> torch.Tensor:
+    """Fixed-step RK4 for dh/ds = W2 tanh(W1 h + b1) + b2 over interval dt_i.
+    Standalone tensor function so it can be TorchScripted AND wrapped in
+    gradient checkpointing (both needed at d=512)."""
+    step = (dt_i / rk4_steps).unsqueeze(-1)
+    for _ in range(rk4_steps):
+        k1 = torch.tanh(h @ w1.t() + b1) @ w2.t() + b2
+        k2 = torch.tanh((h + 0.5 * step * k1) @ w1.t() + b1) @ w2.t() + b2
+        k3 = torch.tanh((h + 0.5 * step * k2) @ w1.t() + b1) @ w2.t() + b2
+        k4 = torch.tanh((h + step * k3) @ w1.t() + b1) @ w2.t() + b2
+        h = h + step / 6.0 * (k1 + 2.0 * k2 + 2.0 * k3 + k4)
+    return h
+
+
+try:
+    _rk4_evolve = torch.jit.script(_rk4_evolve_eager)
+except Exception:  # noqa: BLE001
+    _rk4_evolve = _rk4_evolve_eager
+    print("[dmd] WARNING: TorchScript unavailable for RK4; eager fallback.")
+
+
 class NeuralODEBlock(TemporalBlock):
     """ODE-RNN scan (Rubanova et al. 2019 style): between elements, evolve h by
     dh/ds = f(h) integrated over dt_i with fixed-step RK4 (deterministic; NFE
@@ -195,11 +233,15 @@ class NeuralODEBlock(TemporalBlock):
     Uses a generic solver where B4 uses a closed form - the B5 vs B4 comparison
     is the manuscript's "closed form vs. generic ODE" control, now on equal
     scan wiring.
+
+    Solver setting: rk4_steps=1 (4 function evaluations per inter-note
+    interval) - reduced from 4 on 2026-07-15 for wall-clock feasibility at
+    d=512; a REPORTED hyperparameter of the control, not a tuned quantity.
     """
 
     USES_DT = True
 
-    def __init__(self, d_model: int, hidden: int, rk4_steps: int = 4):
+    def __init__(self, d_model: int, hidden: int, rk4_steps: int = 1):
         super().__init__()
         self.hidden = hidden
         self.rk4_steps = rk4_steps
@@ -219,16 +261,10 @@ class NeuralODEBlock(TemporalBlock):
         self.use_checkpoint = True
 
     def _evolve(self, h, dt_i):
-        # RK4 with per-sample step h_s = dt_i / rk4_steps (dt_i shape: (B,))
-        step = (dt_i / self.rk4_steps).unsqueeze(-1)
-        for _ in range(self.rk4_steps):
-            k1 = self.ode_f(h)
-            k2 = self.ode_f(h + 0.5 * step * k1)
-            k3 = self.ode_f(h + 0.5 * step * k2)
-            k4 = self.ode_f(h + step * k3)
-            h = h + step / 6.0 * (k1 + 2 * k2 + 2 * k3 + k4)
-            self.nfe += 4
-        return h
+        w1, b1 = self.ode_f[0].weight, self.ode_f[0].bias
+        w2, b2 = self.ode_f[2].weight, self.ode_f[2].bias
+        self.nfe += 4 * self.rk4_steps
+        return _rk4_evolve(h, dt_i, w1, b1, w2, b2, self.rk4_steps)
 
     def _scan(self, cell, x, dt, h0, reverse: bool):
         B, L, _ = x.shape
