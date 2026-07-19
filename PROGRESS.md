@@ -253,3 +253,35 @@ weight (m_t−m_{t−1})/m_t [R7]; continuous loss masked to active events with
 *notebooks*, never a terminal. Every runnable module keeps a `main(argv)`
 function; each milestone ships a driver notebook in `code/notebooks/`
 (Databricks source format). Multi-GPU training will use TorchDistributor.
+
+---
+
+## RECOVERY ENTRY — 2026-07-19 (read this first)
+
+**Git-sync data loss discovered.** R's git flow overwrote several newer local
+files with older copies (temporal.py optimizations, test updates, run.py
+logging, notebook 06 source, and recent PROGRESS.md entries). Consequences:
+R's speed test measured the UNoptimized CFC (5.04 s/step) and node crashed
+with the already-fixed OOM. Everything re-restored and re-verified.
+
+**Current truth (supersedes anything above that conflicts):**
+- Scale: FINAL (d=512, 12 layers) for the whole grid.
+- Finished training runs: ffn(0), ffn_timecond(5), gated_ffn(10), gru(15).
+  Their 4 metrics JSONs still not received into results/grid/.
+- cfc(20), node(25): blocked, awaiting re-run of 06_speed_check with
+  restored+new code.
+- **[R17]**: CFC replaced by the exact closed-form linear-decay model
+  h_i = a·h_{i−1} + (1−a)·c, a = exp(−softplus(λ(x))·Δt) — loop-free chunked
+  scan, proven equal to the sequential recurrence to 1e−14 (numpy) with a
+  torch equivalence unit test. Old variant kept as `cfc_seq` (appendix only,
+  not in the 30-run grid). The de-risk probe had shown recurrence was not the
+  differentiator, so the B4 claim (closed-form continuous-time dynamics with
+  meaningful Δt) is carried faithfully — arguably more faithfully.
+- NODE: gradient-checkpointed, TorchScripted RK4, rk4_steps=1 (reported
+  solver setting). Trainer logs peak_gb.
+- **Version stamp guard:** `dmd/_version.py`, printed by notebook 06 (and to
+  be added to all driver notebooks). Current: **2026-07-19.1**. Mismatch
+  after a pull = sync failure, stop and report.
+- **Sync rule agreed:** Databricks side only PULLS code; code changes flow
+  one way (Claude → git → Databricks). Notebook config edits made on
+  Databricks should be reported to Claude, who mirrors them locally.

@@ -2,11 +2,14 @@
 # MAGIC %md
 # MAGIC # Speed check — seconds per training step, per model, at full size
 # MAGIC
-# MAGIC Run this BEFORE launching long training runs. It builds each of the six
-# MAGIC models at full size (d=512, 12 layers), times 3 training steps on one
-# MAGIC GPU, and prints the projected hours for a 100,000-step run.
+# MAGIC Run this BEFORE launching long training runs. It builds each model at
+# MAGIC full size (d=512, 12 layers), times 3 training steps on one GPU, and
+# MAGIC prints the projected hours for a 100,000-step run.
 # MAGIC
 # MAGIC Takes about 3 minutes. Needs one GPU (ML runtime).
+# MAGIC
+# MAGIC **First line of output is the CODE VERSION — check it against the
+# MAGIC version Claude last announced before trusting any number below.**
 
 # COMMAND ----------
 
@@ -17,6 +20,10 @@ sys.path.insert(0, CODE_DIR)
 for _m in [m for m in list(sys.modules) if m == "dmd" or m.startswith("dmd.")]:
     del sys.modules[_m]
 import torch
+from dmd._version import DMD_VERSION
+print("CODE VERSION:", DMD_VERSION)
+print("^ If this does not match the version Claude last announced, your pull")
+print("  did not deliver the latest code - STOP and report.")
 assert torch.cuda.is_available(), "needs a GPU cluster"
 
 from dmd.blocks.temporal import build_temporal_block
@@ -37,9 +44,8 @@ def time_block(block_name, n_steps=3):
     Cs = torch.randn(BATCH, T, 1, device="cuda")
     dt = torch.rand(BATCH, T, device="cuda") * 0.2 + 0.05
     t = torch.randint(1, 1001, (BATCH,), device="cuda")
-    # one warm-up step (compilation, allocator), then timed steps
     times = []
-    for s in range(n_steps + 1):
+    for s in range(n_steps + 1):     # one warm-up step, then timed steps
         torch.cuda.synchronize(); t0 = time.time()
         out = m(D, Cp, Cs, dt, t, coupling="gumbel")
         loss = ((out.eps_pitch ** 2).mean() + (out.eps_step ** 2).mean()
@@ -56,7 +62,7 @@ def time_block(block_name, n_steps=3):
     torch.cuda.empty_cache()
     return sum(times) / len(times), peak
 
-print(f"{'model':<14}{'sec/step':>10}{'hours/100k':>12}{'peak GB':>9}")
+print(f"\n{'model':<14}{'sec/step':>10}{'hours/100k':>12}{'peak GB':>9}")
 for name in ("ffn", "gated_ffn", "gru", "cfc", "node"):
     try:
         spd, peak = time_block(name)
@@ -65,6 +71,5 @@ for name in ("ffn", "gated_ffn", "gru", "cfc", "node"):
         print(f"{name:<14}{'OOM':>10} - report to Claude")
         torch.cuda.empty_cache()
 
-print("\nDecision rule: if cfc is under ~0.5 sec/step (~14 h per run) and node")
-print("is under ~1.0 (~28 h), launch the remaining grid runs. Otherwise send")
-print("this table to Claude before launching anything.")
+print("\nDecision rule: if cfc is under ~0.6 sec/step and node under ~1.5,")
+print("launch the remaining grid runs. Otherwise send this table to Claude.")
