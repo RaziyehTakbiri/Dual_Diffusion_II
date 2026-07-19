@@ -1,0 +1,52 @@
+data:
+  K: 2
+  P: 88
+  T: 256
+  dataset: maestro_v3
+  domain: music
+  grid:
+    chord_window_ms: 30
+    source: asap
+    subdivision: 4
+  splits: official
+diffusion:
+  T_d: 1000
+  schedule_alignment: sqrt_alpha
+  schedule_continuous: cosine
+experiment:
+  block: gated_ffn
+  scale: final
+  seed: 0
+loss:
+  discrete: focal
+  focal:
+    alpha: auto_class_freq
+    rho: 2.0
+  gamma: auto_grad_match
+  supervise_silent: false
+model:
+  block: gated_ffn
+  coupling: gumbel
+  d_model: 512
+  n_heads: 8
+  param_match:
+    reference: ffn
+    rtol: 0.01
+  tau:
+    anneal: cosine
+    end: 0.1
+    start: 2.0
+  trunk_layers: 12
+sampling:
+  ddim_steps: 50
+  eta: 0.0
+  unmask_calibration: true
+train:
+  batch_size: 64
+  ema: 0.9999
+  lr: 0.0003
+  max_steps: 100000
+  mlflow_experiment: dmd/music_backbone_ladder
+  seeds:
+  - 0
+  warmup_steps: 2000

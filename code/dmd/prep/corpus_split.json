@@ -1,0 +1,8 @@
+{
+  "source": "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffusion_II/code/results/maestro_asap_all.npz",
+  "eval_frac": 0.1,
+  "n_train": 7678,
+  "n_eval": 937,
+  "n_train_pieces": 965,
+  "n_eval_pieces": 96
+}

@@ -1,0 +1,30 @@
+{
+  "jitter_iid": {
+    "activation_rate": 0.01484758203679865,
+    "residual_sigma": 0.19005578369251452,
+    "residual_rho1": 0.00023069360143530425,
+    "asynchrony_sigma_ms": 20.70628886390807,
+    "tempo_cv": 0.24211833975341157,
+    "tempo_rho1": 0.8401867427633722,
+    "n_excerpts": 512,
+    "velocity_w1": 0.0,
+    "residual_sigma_gap": 0.0021619173567160033,
+    "residual_rho1_gap": 0.06508344556492328,
+    "tempo_rho1_gap": 0.0,
+    "asynchrony_gap_ms": 0.2558539641795008
+  },
+  "jitter_ar1": {
+    "activation_rate": 0.01484758203679865,
+    "residual_sigma": 0.18957345274975523,
+    "residual_rho1": 0.02454622976506581,
+    "asynchrony_sigma_ms": 1.8067804631712712,
+    "tempo_cv": 0.24211833975341157,
+    "tempo_rho1": 0.8401867427633722,
+    "n_excerpts": 512,
+    "velocity_w1": 0.0,
+    "residual_sigma_gap": 0.0026442482994752936,
+    "residual_rho1_gap": 0.04076790940129278,
+    "tempo_rho1_gap": 0.0,
+    "asynchrony_gap_ms": 18.6436544365573
+  }
+}
