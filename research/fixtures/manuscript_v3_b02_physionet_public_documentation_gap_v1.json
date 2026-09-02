@@ -1,0 +1,290 @@
+{
+  "schema_version": "heterodiff-manuscript-v3-b02-physionet-public-documentation-gap-v1",
+  "record_sha256": "1ea241dcfeddbdefe6eb390e128e41ddcc972c25c0850f0dcc8ced6d0689d12c",
+  "reported_date": "2026-09-02",
+  "package_status": "CANDIDATE_PUBLIC_DOCUMENTATION_AND_EXACT_FUTURE_RECEIPT_CHECKLIST_ONLY",
+  "scope": {
+    "read_only_public_documentation_inspection": true,
+    "dataset_bytes_downloaded": false,
+    "restricted_or_private_data_accessed": false,
+    "authentication_attempted": false,
+    "person_or_institution_contacted": false,
+    "approval_created_or_inferred": false,
+    "scientific_execution_performed": false,
+    "tracker_or_ledger_edited": false,
+    "transport_request_count_claimed": false,
+    "raw_http_response_custody_claimed": false,
+    "external_identity_or_time_attestation_claimed": false
+  },
+  "public_documentation_observation": {
+    "observation_date_local_unattested": "2026-09-02",
+    "official_root_url": "https://physionet.org/content/challenge-2012/1.0.0/",
+    "official_file_metadata_url": "https://physionet.org/content/challenge-2012/1.0.0/set-a.tar.gz",
+    "official_license_url": "https://physionet.org/content/challenge-2012/view-license/1.0.0/",
+    "dataset_title": "Predicting Mortality of ICU Patients: The PhysioNet/Computing in Cardiology Challenge 2012",
+    "displayed_version": "1.0.0",
+    "displayed_published_date": "2012-01-20",
+    "displayed_access_class": "Challenge Open Access",
+    "displayed_access_policy": "Anyone can access the files, as long as they conform to the terms of the specified license.",
+    "displayed_file_license": "Open Data Commons Attribution License v1.0",
+    "displayed_set_a_archive_relative_path": "set-a.tar.gz",
+    "displayed_set_a_archive_byte_count": 6632372,
+    "displayed_set_a_record_count": 4000,
+    "displayed_set_a_outcomes_available": true,
+    "observed_page_published_raw_archive_sha256": null,
+    "raw_page_bytes_captured": false,
+    "raw_page_sha256": null,
+    "dataset_archive_downloaded": false,
+    "dataset_archive_sha256_computed": false,
+    "governance_approval_authenticated": false,
+    "accountable_owner_acceptance_authenticated": false,
+    "field_closure_supported_by_this_observation": []
+  },
+  "accepted_local_predecessors": {
+    "license_and_access_field_already_closed": "F021",
+    "license_observation_adds_no_new_field_delta": true,
+    "frozen_physionet_fields": [
+      "F021",
+      "F023",
+      "F024",
+      "F025",
+      "F026",
+      "F027",
+      "F028",
+      "F029",
+      "F030",
+      "F031",
+      "F032",
+      "F035",
+      "F036",
+      "F037"
+    ],
+    "frozen_governance_plan_fields": [
+      "F163",
+      "F166",
+      "F167"
+    ],
+    "accepted_f061_definition_sha256": "6c7beda87ccf1b9b60b0787619fc637eeb3ab34d5f68e09608d46b4dcf11f946",
+    "accepted_f061_review_raw_sha256": "906b12b78400cba6bc2b32527a1410c6d42f154bbad0775591d69ada7485668d",
+    "accepted_f061_policy": {
+      "allocation": [70, 15, 15],
+      "denominator": 100,
+      "minimum_counts": [1, 128, 128],
+      "exact_validation_count": 128,
+      "exact_test_count": 128,
+      "admissible_natural_group_totals": [852, 853, 854, 855]
+    },
+    "exact_control_bindings": [
+      {
+        "path": "src/heterodiff/data/two_domain_external_evidence_intake.py",
+        "bytes": 68846,
+        "raw_sha256": "ede0c1890d1e1f39a522a064fe94a78ab65fe5618687ca525c05b4cba7001d85"
+      },
+      {
+        "path": "research/fixtures/manuscript_v3_b02_b03_b09_external_evidence_intake_v1.json",
+        "bytes": 11920,
+        "raw_sha256": "af4d46e652d24d71382a746e3a043491c2f978275098e266e6f77f4286906a9f"
+      },
+      {
+        "path": "src/heterodiff/data/two_domain_governance_release_controls.py",
+        "bytes": 9720,
+        "raw_sha256": "8c5a1d74194a5cd1dbae1784360df2bffe392430bd48d74b1846fba6de802cef"
+      },
+      {
+        "path": "research/fixtures/manuscript_v3_f061_guarded_power_review_receipt_v1.json",
+        "bytes": 1924,
+        "raw_sha256": "906b12b78400cba6bc2b32527a1410c6d42f154bbad0775591d69ada7485668d"
+      }
+    ]
+  },
+  "existing_fail_closed_preflight": {
+    "source_path": "src/heterodiff/data/physionet_2012_admission_preflight.py",
+    "source_bytes": 136305,
+    "source_raw_sha256": "bf5c12dcb5debe99533d00a813d7b522c42b588f5431803a8c2bac99b0f2bf07",
+    "test_path": "tests/unit/test_physionet_2012_admission_preflight.py",
+    "test_bytes": 67299,
+    "test_raw_sha256": "25786cf1d2bc971c8b8f08c2aabc18fa192ed7b75fd67944486238fb83c8d57c",
+    "focused_tests_passed": 127,
+    "focused_tests_failed": 0,
+    "synthetic_state_can_claim_real_authority": false,
+    "real_shaped_receipts_can_self_authenticate": false,
+    "structural_preflight_can_claim_final_domain_admission": false,
+    "positive_structural_result": "ELIGIBLE_FOR_INDEPENDENT_ADMISSION",
+    "final_domain_admission_reserved_to_separate_review": true
+  },
+  "open_field_evidence_map": [
+    {
+      "ordinal": 0,
+      "field_id": "F019",
+      "json_pointer": "/domains/0/snapshot_version",
+      "required_evidence": "EXACT_ACQUIRED_ALLOWLISTED_SNAPSHOT_VERSION_RECEIPT_BOUND_TO_ONE_ARCHIVE_AND_MANIFEST",
+      "public_documentation_alone_sufficient": false,
+      "currently_present": false
+    },
+    {
+      "ordinal": 1,
+      "field_id": "F020",
+      "json_pointer": "/domains/0/raw_snapshot_sha256",
+      "required_evidence": "SHA256_OF_THE_EXACT_ACQUIRED_RAW_ALLOWLISTED_SNAPSHOT_WITH_BYTE_COUNT_AND_INDEPENDENT_VERIFICATION",
+      "public_documentation_alone_sufficient": false,
+      "currently_present": false
+    },
+    {
+      "ordinal": 2,
+      "field_id": "F022",
+      "json_pointer": "/domains/0/governance_approval_record",
+      "required_evidence": "AUTHENTICATED_APPLICABLE_GOVERNANCE_DETERMINATION_AND_ACCOUNTABLE_OWNER_ACCEPTANCE",
+      "public_documentation_alone_sufficient": false,
+      "currently_present": false
+    },
+    {
+      "ordinal": 3,
+      "field_id": "F033",
+      "json_pointer": "/domains/0/observation_reference",
+      "required_evidence": "CONTENT_ADDRESSED_OBSERVATION_REFERENCE_AND_ACQUISITION_JUSTIFICATION_RECEIPT",
+      "public_documentation_alone_sufficient": false,
+      "currently_present": false
+    },
+    {
+      "ordinal": 4,
+      "field_id": "F034",
+      "json_pointer": "/domains/0/positive_or_common_support_route",
+      "required_evidence": "FULL_SUPPORT_COMPONENT_PROOF_IMPLEMENTATION_CERTIFICATE_AND_INDEPENDENT_REVIEW_BOUND_TO_THE_EXACT_OBSERVATION_REFERENCE",
+      "public_documentation_alone_sufficient": false,
+      "currently_present": false
+    },
+    {
+      "ordinal": 5,
+      "field_id": "F058",
+      "json_pointer": "/split_and_leakage_plan/physionet_split_manifest_path",
+      "required_evidence": "PRIVATE_CONTENT_ADDRESSED_COMPLETE_PATIENT_DISJOINT_SPLIT_MANIFEST_FROM_THE_EXACT_VERIFIED_SNAPSHOT",
+      "public_documentation_alone_sufficient": false,
+      "currently_present": false
+    }
+  ],
+  "exact_next_authority_and_receipt_checklist": [
+    {
+      "ordinal": 0,
+      "check_id": "PHYS-E01-EXTERNAL-PRINCIPALS",
+      "phase": "EXTERNAL_INTAKE",
+      "requirement": "ASSIGN_NINE_PAIRWISE_DISTINCT_REAL_OPAQUE_PRINCIPALS_AND_OBTAIN_NINE_EXTERNALLY_AUTHENTICATED_ROLE_ACCEPTANCES",
+      "required_before_next": true,
+      "currently_satisfied": false,
+      "satisfied_by_this_package": false
+    },
+    {
+      "ordinal": 1,
+      "check_id": "PHYS-E02-DEFINITION-AND-CUSTODY-RECORDS",
+      "phase": "EXTERNAL_INTAKE",
+      "requirement": "AUTHENTICATE_SELECTOR_CONTACT_APPROVAL_VALIDATOR_CONFLICT_ESCROW_KEY_AND_ACL_RECORDS_UNDER_THE_ACCEPTED_INTAKE_CONTRACT",
+      "required_before_next": true,
+      "currently_satisfied": false,
+      "satisfied_by_this_package": false
+    },
+    {
+      "ordinal": 2,
+      "check_id": "PHYS-A01-POPULATED-PRECONTACT-REVIEW",
+      "phase": "PRECONTACT",
+      "requirement": "POPULATE_INDEPENDENTLY_REVIEW_AND_ADMIT_THE_EXACT_FINITE_PRECONTACT_INSTANCE",
+      "required_before_next": true,
+      "currently_satisfied": false,
+      "satisfied_by_this_package": false
+    },
+    {
+      "ordinal": 3,
+      "check_id": "PHYS-A02-FRESH-ADMIN-AUTHORITY",
+      "phase": "PRECONTACT",
+      "requirement": "RECORD_FRESH_EXACT_AUTHORITY_FOR_THE_ADMITTED_ADMINISTRATIVE_CONTACT_ROSTER_BEFORE_ANY_OPERATION",
+      "required_before_next": true,
+      "currently_satisfied": false,
+      "satisfied_by_this_package": false
+    },
+    {
+      "ordinal": 4,
+      "check_id": "PHYS-R01-ADMIN-AND-APPROVAL-RECEIPTS",
+      "phase": "ADMINISTRATIVE_EVIDENCE",
+      "requirement": "OBTAIN_AUTHENTICATED_VERSION_ARCHIVE_LICENSE_GOVERNANCE_REQUIREMENT_AND_EVERY_APPLICABLE_APPROVAL_RECEIPT_WITH_NO_DATA_DOWNLOAD",
+      "required_before_next": true,
+      "currently_satisfied": false,
+      "satisfied_by_this_package": false
+    },
+    {
+      "ordinal": 5,
+      "check_id": "PHYS-A03-DATA-ACCESS-INSTANCE",
+      "phase": "DATA_ACCESS",
+      "requirement": "POPULATE_INDEPENDENTLY_REVIEW_AND_ADMIT_A_SEPARATE_DATA_ACCESS_INSTANCE_THEN_RECORD_FRESH_EXACT_DATA_ACCESS_AUTHORITY",
+      "required_before_next": true,
+      "currently_satisfied": false,
+      "satisfied_by_this_package": false
+    },
+    {
+      "ordinal": 6,
+      "check_id": "PHYS-R02-SNAPSHOT",
+      "phase": "DATA_ACCESS",
+      "requirement": "ACQUIRE_EXACTLY_ONE_ALLOWLISTED_OPEN_ACCESS_SNAPSHOT_AND_BIND_VERSION_BYTE_COUNT_RAW_SHA256_SCHEMA_TOOLCHAIN_AND_PRIVATE_CUSTODY_RECEIPTS",
+      "required_before_next": true,
+      "currently_satisfied": false,
+      "satisfied_by_this_package": false
+    },
+    {
+      "ordinal": 7,
+      "check_id": "PHYS-R03-SUPPORT",
+      "phase": "DOMAIN_EVIDENCE",
+      "requirement": "CERTIFY_F033_AND_F034_WITH_OBSERVATION_REFERENCE_ACQUISITION_JUSTIFICATION_FULL_SUPPORT_COMPONENT_PROOF_IMPLEMENTATION_AND_INDEPENDENT_REVIEW",
+      "required_before_next": true,
+      "currently_satisfied": false,
+      "satisfied_by_this_package": false
+    },
+    {
+      "ordinal": 8,
+      "check_id": "PHYS-R04-RESOLVED-F061-REVIEW",
+      "phase": "DOMAIN_EVIDENCE",
+      "requirement": "BIND_THE_OBSERVED_NATURAL_GROUP_TOTAL_TO_THE_ACCEPTED_70_15_15_POLICY_AND_OBTAIN_A_DISTINCT_PHYSIONET_RESOLVED_COUNT_REVIEW",
+      "required_before_next": true,
+      "currently_satisfied": false,
+      "satisfied_by_this_package": false
+    },
+    {
+      "ordinal": 9,
+      "check_id": "PHYS-R05-SPLIT-AND-DUPLICATE-AUDIT",
+      "phase": "DOMAIN_EVIDENCE",
+      "requirement": "CREATE_AND_INDEPENDENTLY_VERIFY_THE_COMPLETE_PATIENT_DISJOINT_MANIFEST_AND_COMPLETE_METHOD_BLIND_CROSS_SPLIT_DUPLICATE_AND_NEAR_DUPLICATE_AUDIT",
+      "required_before_next": true,
+      "currently_satisfied": false,
+      "satisfied_by_this_package": false
+    },
+    {
+      "ordinal": 10,
+      "check_id": "PHYS-R06-STRUCTURAL-PREFLIGHT",
+      "phase": "ADMISSION",
+      "requirement": "RUN_THE_ACCEPTED_FAIL_CLOSED_PREFLIGHT_WITH_ALL_THIRTEEN_TRAIN_ONLY_VIOLATION_COUNTS_AND_ALL_SIX_RECEIPT_FLAGS_EXACTLY_PASSING",
+      "required_before_next": true,
+      "currently_satisfied": false,
+      "satisfied_by_this_package": false
+    },
+    {
+      "ordinal": 11,
+      "check_id": "PHYS-R07-INDEPENDENT-ADMISSION",
+      "phase": "ADMISSION",
+      "requirement": "OBTAIN_A_SEPARATE_INDEPENDENT_DOMAIN_ADMISSION_DECISION_BOUND_TO_THE_EXACT_EVIDENCE_AGGREGATE",
+      "required_before_next": true,
+      "currently_satisfied": false,
+      "satisfied_by_this_package": false
+    }
+  ],
+  "closure_projection": {
+    "field_ids_closed": [],
+    "field_count_delta": 0,
+    "blocker_ids_closed": [],
+    "blocker_count_delta": 0,
+    "operational_tasks_closed": [],
+    "timetable_checkbox_delta": 0,
+    "formal_test_delta": 0,
+    "result_slot_delta": 0,
+    "b02_status": "OPEN",
+    "b09_status": "OPEN",
+    "physionet_domain_admitted": false,
+    "wave3_physionet_complete": false,
+    "next_state": "HOLD_EXTERNAL_PRINCIPALS_APPROVALS_AUTHORITY_SNAPSHOT_SUPPORT_SPLIT_AND_INDEPENDENT_ADMISSION"
+  }
+}

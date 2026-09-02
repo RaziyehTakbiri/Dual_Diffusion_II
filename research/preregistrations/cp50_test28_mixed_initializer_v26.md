@@ -1,0 +1,4641 @@
+# CP50 Test-28 mixed-support initializer protocol v1 — DRAFT sidecar v26
+
+## 1. Status and authority
+
+This document is a **DRAFT**. It does not authorize a confirmatory run. It may
+be frozen only after the implementation, independent oracle, fixtures, tests,
+runner, dependency lock, and machine-readable manifest all exist and their
+SHA-256 digests have been inserted into a separate freeze receipt. The frozen
+copy must be byte-identical to the copy stored with every execution attempt.
+
+This file is the additive v26 DRAFT sidecar.  Its scientific protocol
+identifier remains `cp50-test28-mixed-initializer-v1`; the sidecar generation
+does not create a new scientific protocol, rewrite the immutable finalized v25
+protocol or manifest, freeze either v26 path, or authorize execution.  CP75
+binds the exact v25 bytes as predecessor-only subject custody and requires its
+four source/test hashes, eight materialized packet identities, and two live
+public record bundles to be supplied by this later manifest.  Those pins do
+not change v25's `DRAFT` state, fabricate an external review, reviewer key or
+response, accept the candidate or production schema, make either sidecar
+authoritative, permit later qualification construction, or make v26 an input
+consumed by CP75.  The proposed v15 lifecycle graph remains nonauthoritative
+for production.
+
+This is a new, forward-only CP50 protocol. It does not replace, reconstruct,
+or validate the unavailable CP29 primary bundle. In particular, it must not
+reuse the CP29 evidence identifier, timestamps, seed material, terminal digest,
+one-shot claim, or any `identity-*` stub file.
+
+## 2. Objective
+
+The objective is to test a three-strategy initializer interface on known laws
+over capped-Poisson mixed support while keeping the analytic and operational
+state spaces separate.
+
+Let \(\mathcal X_{\mathbb R}\) be the ideal mixed configuration space with
+real-valued continuous coordinates.  The symbol \(\Pi_N^{rat}\) denotes the
+analytic capped-Poisson reference with the declared exact-rational activity
+and type weights; \(\Pi_N^{b64}\) denotes the distinct analytic reference
+obtained by interpreting the stored binary64 activity and normalized type
+weights exactly, while retaining ideal Gaussian fibers.  For an independently
+specified, finite, measurable real-fiber score
+\(\bar q_c:\mathcal X_{\mathbb R}\to(-\infty,U]\), define
+
+\[
+\bar\rho_c^{rat}(dx)=(\bar Z_c^{rat})^{-1}
+e^{\bar q_c(x)}\Pi_N^{rat}(dx),\qquad
+\bar Z_c^{rat}=\int e^{\bar q_c(x)}\Pi_N^{rat}(dx),
+\]
+
+with the analogous \(\bar\rho_c^{b64}\) and \(\bar Z_c^{b64}\) under
+\(\Pi_N^{b64}\).  These two analytic laws are kept separate even when their
+parameters are numerically close.
+
+Let \(\mathcal X_{fp}\) be the configurations representable by the frozen
+finite-precision reference sampler. Under an explicitly assumed law for that
+sampler and its source, denote its proposal measure by \(\mu_{fp}\). The
+known-law exact-score provider certifies an exact rational
+represented-coordinate score
+\(q_c^{repr}:\mathcal X_{fp}\to\mathbb Q\). The operational target is
+
+\[
+\rho_c^{repr}(dx)=Z_{repr}^{-1}e^{q_c^{repr}(x)}\mu_{fp}(dx),\qquad
+Z_{repr}=\int e^{q_c^{repr}(x)}\mu_{fp}(dx).
+\]
+
+The strategies are selected before any random draw and are never changed in
+response to observed proposals, scores, acceptance, exhaustion, or ESS:
+
+1. complete finite-atomic enumeration;
+2. fixed-attempt bounded rejection; and
+3. fixed-particle sampling-importance-resampling (SIR).
+
+The code-level target uses the exact rational score retained by the known-law
+provider; its rounded binary64 display value is not substituted for that
+score.  The provider binds the exact reference object and separately declares
+a named real-polynomial \(\bar q_c\) and its pointwise restriction to
+canonical binary64 coordinates.  This chosen algebraic bridge does **not**
+prove that \(\Pi_N^{rat}=\Pi_N^{b64}=\mu_{fp}\), derive a normalizer by
+itself, or verify the runtime sampler/source law.  A separate, stdlib-only
+CP53 oracle now derives exact-rational outward predictions for the named
+`T28-M1-Q` and `T28-M2-Q` laws under \(\Pi_N^{rat}\) and
+\(\Pi_N^{b64}\).  Those fixture-specific analytic records neither identify
+either reference with \(\mu_{fp}\) nor derive \(Z_{repr}\).  The completed
+sealed, torch-lazy common score-provider facade admits separate CP30
+learned-composer, exact-known-law, and count-keyed atomic score-table
+adapters.  The completed kernel-v2
+consumes that facade directly, retains the exact upper envelope and any
+optional exact lower envelope, and does not convert the known-law provider
+into the CP30 composer type.  The two named paths have development-test and
+analytic-oracle evidence only.  This is neither a confirmatory execution nor
+evidence for an operational proposal law, live target equality, or manuscript
+result.  CP56 additionally carries the CP55 `T28-A0-Q` table through the
+third adapter and one generic finite-atomic kernel-v2 enumeration, then binds
+an exact count-keyed comparison with the stored-binary64 analytic interval
+target.  That deterministic categorical-weight comparison executes no draw
+and does not identify its base vector with a source law or its output with a
+probability measure.
+
+CP57 adds a sealed `T28-AESS` analytic stress oracle and the complete
+fourteen-row `T28-INVALID` expectation table.  Module import and oracle/table
+construction are stdlib-only; explicit verification of an observed production
+exception lazily imports its exact production class.  CP57 also hardens the
+kernel-v2 stochastic preflight so resource excess and count/type categorical
+resolution or retained-CDF custody failures refuse before runtime hashing or
+owned RNG construction.  The static refusal records bind expected behavior;
+separate hostile tests exercise the five production-preflight rows.  These
+artifacts remain nonconfirmatory and establish no runtime source or
+categorical law.
+
+CP58 adds a sealed, stdlib-only bounded-feature and SIR-diagnostic artifact.
+It freezes exact finite feature registries for `T28-M1-Q` and `T28-M2-Q`,
+including their rational projections, saturating coordinate transforms, and
+count, type, coordinate, and pair-interaction features.  It also separates
+proposal-configuration value uniqueness from same-cloud local particle-slot
+ancestry, records the one-selection ancestry contract of the current kernel,
+and derives a zero-draw conditional occupancy calculation for the
+predeclared `T28-AESS` cloud.  Its calibration inputs are fixed arithmetic
+checks only; they are not sampled output or target comparisons.  CP58 does not
+replay a provider, kernel, sampler, or RNG and establishes no source,
+categorical, iid, operational, or target law.
+
+CP59 adds a sealed conditional finite-precision arithmetic artifact.  For one
+supplied score cloud it independently recomputes the frozen binary64
+normalization formula, requires byte-identical supplied weights, constructs
+the sequential binary64 CDF with its last entry forced to one, and counts the
+exact right-sided cells of the (2^{53})-point categorical grid.  For a
+separately supplied finite proposal law it converts certified uint64 quotas
+into exact first-acceptance, exhaustion, and selected-atom masses under an
+abstract iid-proposal and independent-uniform-decision-word premise.  The
+zero-argument records for `T28-M1-Q` and `T28-M2-Q` are predeclared arithmetic
+tables, not sampled clouds or authenticated production observations.  CP59
+does not execute the reference sampler, initializer owner or plan, kernel
+normalization helper, or RNG; it does not identify \(\mu_{fp}\) or establish
+NumPy/Philox, iid, role-independence, uniform-word, unconditional rejection,
+refusal, or finite-\(J\) SIR laws.
+
+CP60 chooses the correlated branch left open by that source boundary.  It
+adds a sealed, stdlib-only definition of the whole-request pushforward under
+one explicitly **assumed**, but not verified, uniform uint64 plan seed.  For
+each future fully bound request and runtime it gives an exact mathematical
+totalization into validated rejection selection, rejection exhaustion, SIR
+selection, pre-execution refusal, execution failure, and nonreturn, and it
+states each probability as an exact seed-fiber count divided by \(2^{64}\).
+The zero-argument bundle contains sixteen prospective `T28-M1-Q`/`T28-M2-Q`
+strategy-and-budget templates.  Those labels do not instantiate a request or
+compiled runtime map, and CP60 enumerates no seed, computes no fiber count,
+verifies no seed source, and executes no sampler, kernel, provider, NumPy,
+SciPy, or RNG.  It requires a correlated whole-request model and deliberately
+does not assert a common \(\mu_{fp}\), proposal iid, cross-request iid,
+derived-word uniformity, role-stream independence, or rejection/SIR product
+formula.
+
+CP61 adds the sealed, stdlib-only **prospective design** for a later validated
+Monte Carlo approximation of those correlated whole-request laws.  It freezes
+the sixteen CP60 rows, 2,048 future external seed ordinals, a 300-second
+external deadline, and 554 estimands: 72 exhaustive deadline-scoped observable
+cells, 170 rejection first-attempt events, and 312 selected-conditioned CP58
+bounded-feature means.  It also freezes simultaneous uncertainty, a full
+stable semantic trace-projection requirement, exact planned work counts, and
+failure/censoring rules.  CP61 draws no seed, executes no request, imports or
+loads no CP58/CP60 module from its zero-argument builder, constructs no
+operational interval, and leaves every request, runtime, source, supervisor,
+sample, execution, operational, power, confirmatory, manuscript, and
+Test-28-closure flag false.  In particular, the current fixed-hash seed plan is
+not the future external iid seed sample required by this design.
+
+CP62 adds a sealed, stdlib-only-at-import **calibration-only execution
+capsule**.  It binds the exact sixteen CP61 row requests without seed values,
+one source/runtime/ABI candidate, the future 2,048-seed capsule schema, a
+fresh-process deadline supervisor contract, and raw-record and stable-trace
+schemas.  Its only public execution entry point accepts four module-owned
+deterministic calibration case identifiers; it exposes no production seed
+ingest, arbitrary-seed execution, or campaign loop.  Two fresh-child executions
+of each fixed case produced matching stable semantic projections after
+volatile supervisor custody was excluded.  These eight development launches
+are runtime-conditional calibration evidence only.  They are not draws from
+the future external source, production requests, estimates, intervals,
+operational predictions, a runtime-portability theorem, power evidence,
+confirmatory evidence, a manuscript claim, or Formal Test 28 closure.
+
+CP63 adds two sealed **development-rehearsal** surfaces.  The runner module
+parses the exact future seed-capsule syntax, defines the seed-major 32,768-
+request schedule, and generalizes the CP62 fresh-process supervisor and
+raw/stable records across all sixteen rows.  Its executable surface remains
+closed to sixteen module-owned case identifiers sharing the fixed development
+seed `12a5228200019dae`; every row was launched twice and each pair produced
+the same stable projection.  The separately implemented stdlib-only module
+imports neither that runner nor CP62, the kernel, NumPy, or SciPy.  It
+independently parses each stable trace and reproduces the complete 554-estimand
+rehearsal receipt.  The future capsule contains no production seed values, the
+logical schedule is not instantiated, and the 512-GiB raw and 256-GiB stable
+aggregate values are arithmetic ceilings rather than a capacity receipt.
+Nothing in CP63 binds an external seed source, production runtime, campaign,
+durable writer, shard map, estimate, interval, decision, confirmatory result,
+manuscript claim, or Formal Test 28 closure.
+
+CP64 adds a sealed, stdlib-only-at-import, **zero-execution production-custody
+preflight scaffold**.  It binds the historical v14 protocol and manifest,
+the CP61--CP63 semantic predecessors, the exact dependency lock, future
+external-seed acquisition and production-runtime receipts, a conservative
+capacity reservation contract, durable path and publication rules, a fixed
+32-shard candidate policy, a production shard-map receipt schema, a proposed
+v15 lifecycle, and seventeen fail-closed production gates.  Its builder does
+not read either proposed v15 path, acquire a seed, contact or authenticate a
+source, observe a runtime or filesystem, reserve capacity, write an attempt,
+materialize a production request, expose a campaign, authorize a launch, or
+execute numerical work.  All seventeen gates are `MISSING`, all four
+pre-existing production blockers remain open, and Formal Test 28 remains
+**OPEN**.
+
+CP65 adds paired sealed, stdlib-only, **zero-execution production receipt-
+schema and digest-preimage validators**.  The authoritative module freezes a
+bounded canonical-JSON grammar, exact receipt keysets and field domains,
+artifact and transient-path templates, digest preimages and SHA-pointer
+sources, executable pure predicates, auxiliary-size bounds, the seventeen
+gate requirements, and a verifier-only RSA-PSS launch-signature contract.
+The source-independent module imports neither that authoritative module nor
+any project module and reconstructs the same catalog semantics without a
+stored golden bundle.  Both validators operate only on caller-supplied bytes.
+They do not read a path, observe a host, clock, source, runtime, filesystem, or
+production receipt, establish a trust root or authority, transition a gate,
+authorize a launch, expose a production request or campaign, or execute
+numerical work.  CP65 satisfies one definition-only prerequisite, while all
+four production blockers remain open and Formal Test 28 remains **OPEN**.
+
+CP66 adds a sealed, standard-library **development-only runner-supervisor and
+closed-classifier qualification harness**.  Its closed fixture set contains
+sixteen live supervisor cases, sixteen accepted classifier-reachability cases,
+and eight rejected classifier cases.  Twelve exact event rules bind each
+declared preexecution refusal and execution failure to one event kind, phase,
+status, and machine code; arbitrary exceptions remain infrastructure-invalid.
+The harness exposes only internal case identifiers and no generic command,
+path, request, seed, campaign, production launch, or production-execution API.
+Its bounded scaled timing and two recorded Python-profile runs are development
+qualification only, not production clock fidelity or either production
+qualification receipt required by gates 11 and 12.  CP66 satisfies one
+hash-bound nonconfirmatory development prerequisite, while all four production
+blockers remain open and Formal Test 28 remains **OPEN**.
+
+CP67 adds a sealed, standard-library-at-import **development-only full-
+schedule materializer qualification**.  Its zero-argument runner constructs
+one closed module-owned synthetic capsule containing the sequential uint64
+values 0 through 2047, parses that capsule once directly, calls the CP63 bound-
+request surface on twenty frozen row and seed-boundary exemplars, and locally
+materializes all 32,768 seed-major request rows from the independently restated
+frozen formula.  The complete in-memory payload is validated by both the
+authoritative and source-independent CP65 validators and then discarded.  The
+synthetic values are not externally sourced IID uniform-with-replacement
+seeds, the source, acquisition-session, and freeze digests are explicit non-
+evidence sentinels, and no public seed, capsule, or filesystem-path API is
+exposed.  CP67 instantiates no production capsule or schedule, retains no
+production request sample, supplies no gate-7 evidence, implements no
+production runner or campaign, authorizes no execution, computes no estimate,
+interval, or decision, closes no production blocker, and leaves Formal Test 28
+**OPEN**.
+
+CP68 adds a sealed, source-independent, standard-library **development-only
+compact-projection aggregation and estimate/interval output-schema
+qualification**.  Its pure zero-argument runner streams one closed module-
+owned synthetic projection for each of the 32,768 seed-major request slots,
+aggregates without retaining the corpus, and emits exactly 554 sealed estimate
+and interval records under the frozen CP61 estimand inventory.  It independently
+certifies exact Clopper--Pearson endpoints on the 2^-256 grid for all 242
+binomial records and applies the frozen bounded-feature interval rule to 312
+feature records, of which 156 are computed and 156 are marked insufficient-
+selection.  The compact projections are synthetic development fixtures, not
+raw records or stable traces.  CP68 imports no predecessor or project module
+in either builder or runner, accepts no caller-supplied projection, path, raw
+record, or stable trace, performs no production recomputation, qualifies no
+decision path, supplies no gate-13 or gate-14 evidence, implements no
+production runner or campaign, authorizes no execution, closes no production
+blocker, and leaves Formal Test 28 **OPEN**.
+
+CP69 adds a sealed, source-independent, standard-library **development-only
+canonical byte-interchange qualification** between the frozen CP63 compact
+semantics and the exact CP68 projection view.  Its bounded public parser
+accepts one exact canonical byte record, preserves the four CP63 custody links
+as opaque values without authenticating them, and its sealed public mapper
+emits the exact CP68 projection fields and digest.  A separate zero-argument
+runner streams one closed module-owned synthetic byte record for each of the
+32,768 seed-major request slots while retaining at most one payload, parsed
+observation, and projection view.  The sixteen live CP63 compact anchors and
+the complete CP68 closed-fixture projection stream are independently
+cross-checked.  CP69 defines no raw-record or stable-trace schema or parser,
+adds no scientific semantics, computes no estimate, interval, threshold, or
+decision, authenticates no provenance, accepts no evidence, supplies no gate
+receipt, implements no production runner or campaign, authorizes no execution,
+closes no production blocker, and leaves Formal Test 28 **OPEN**.
+
+CP70 adds a sealed, source-independent, standard-library **development-only
+closed reducer and exact output-byte validation qualification** from the
+frozen CP69 canonical compact-interchange semantics to the exact CP68
+554-estimand output body.  Its only caller-data surface is a bounded validator
+for the exact closed CP68 output bytes.  A private injection seam and
+zero-argument runner independently stream and parse one closed module-owned
+CP69-equivalent byte record for each of the 32,768 seed-major request slots,
+reduce directly into fixed sufficient statistics, construct the complete
+554-record body, and validate its exact canonical bytes, record digests,
+families, states, arithmetic, Clopper--Pearson endpoints, feature threshold,
+and clipping.  CP70 exposes no generic stream reducer, raw-record or
+stable-trace API, path, command, writer, shard, campaign, receipt, evidence,
+threshold, or decision API.  It authenticates no provenance, parses no
+production record, performs no production recomputation, authorizes no
+execution, closes no production blocker, and leaves Formal Test 28 **OPEN**.
+
+CP71 adds a sealed, source-independent, standard-library **development-only
+bounded supplied-stream recomputation qualification**.  Its sole public
+caller-data processing API consumes exactly 32,768 canonical CP69 compact-
+interchange byte records in seed-major, row-minor order, admits only the
+intersection of CP69-semantic validity and explicit CP71 resource bounds,
+reduces directly into fixed sufficient statistics, and returns a new dynamic
+CP71 554-estimand arithmetic output plus one sealed scalar summary.  The
+public output uses CP71-only record, ordered-projection, stream-commitment,
+estimand, and output-body digest domains.  CP68-domain projection and output
+comparison occurs only in the private closed-baseline compatibility fixture.
+Opaque runtime, request-instance, stable-trace, and seed-plan digests provide
+coherence and integrity only; they authenticate no source, runtime, trace, or
+provenance.  CP71 exposes no public parser, output validator, projection
+mapper, raw-record, stable-trace, path, writer, primary-decision-threshold,
+decision, or evidence API.  It performs no production recomputation, makes no
+source-law or coverage claim, authorizes no execution, closes no production
+blocker, and leaves Formal Test 28 **OPEN**.
+
+
+CP72 adds a sealed, source-independent, standard-library **development-only
+standalone supplied-output internal validation qualification**.  Its sole
+public caller-data API accepts exact canonical bytes under the frozen CP71
+development-output schema and validates the exact 26-key root, 554-record
+inventory and order, exact 27-key record bodies, claim literals, record
+digests, stream-commitment preimage coherence, cross-record identities, and
+exact binomial and bounded-feature interval arithmetic.  It returns only a
+sealed scalar validation summary.  The ordered input, projection, plan-seed,
+request-instance, stable-trace, and runtime-lock digests remain opaque; CP72
+does not establish that an input stream exists or is related to the supplied
+output, authenticate authorship or provenance, verify a source law or
+coverage, perform production recomputation, qualify a primary decision
+threshold or decision, accept evidence, or expose a parser, stream reducer,
+path, writer, runner, receipt, caller-output custody, or production-custody
+authentication surface.  It authorizes no execution, closes no production
+blocker or gate, and leaves Formal Test 28 **OPEN**.
+
+CP73 adds a sealed, bounded, project-compositional **development-only exact
+supplied-stream/output relation qualification**.  Its sole caller-data API
+first completes the public CP72 exact-byte validation of supplied canonical
+CP71 development-output bytes before touching the caller stream, then invokes
+the public CP71 bounded stream reducer exactly once, requires exact canonical
+output-byte equality, cross-checks 32 sealed scalar fields, and returns only a
+sealed scalar relation summary.  CP73 imports the CP71 and CP72 project modules
+and therefore is neither source-independent nor stdlib-only; only its logic
+beyond those exact predecessor modules is standard-library.  The established
+relation authenticates no authorship, provenance, runtime, request,
+stable-trace, seed, external source, or source law and is not independent
+production recomputation.  CP73 exposes no caller-summary, standalone parser,
+reducer or output-validator, path, writer, runner, receipt, primary-decision-
+threshold, decision, or evidence API.  It authorizes no execution, closes no
+production blocker or gate, and leaves Formal Test 28 **OPEN**.
+
+This protocol is one prerequisite for Formal Test 28. It cannot close that
+test while this document is DRAFT or while any required implementation,
+independent-oracle, execution, or verification artifact is absent.
+
+## 3. Mathematical contracts
+
+### 3.1 Generic and operational bounded rejection
+
+For any proposal probability measure \(\mu\), let
+\(q:\mathcal X\to\mathbb R\) be finite, measurable, and bounded above by
+\(U\).  Then \(W=e^q\) satisfies \(0<W\le M=e^U\) and
+\(Z=\int W\,d\mu\in(0,M]\). Suppose proposals are iid from \(\mu\),
+decision uniforms are iid and independent of the proposals, and comparisons
+are exact. Set \(\alpha=Z/M\) and
+\(\rho_{\mu,q}(dx)=Z^{-1}e^{q(x)}\mu(dx)\). For a fixed attempt budget \(A\),
+first acceptance has augmented-state law
+
+\[
+K_A=\{1-(1-\alpha)^A\}\rho_{\mu,q}+(1-\alpha)^A\delta_E.
+\]
+
+Thus exhaustion is a result, not an exclusion, and
+
+\[
+\mathcal L(X\mid X\ne E)=\rho_{\mu,q}.
+\]
+
+The two analytic specializations use
+\((\mu,q)=(\Pi_N^{rat},\bar q_c)\) and
+\((\Pi_N^{b64},\bar q_c)\). The operational specialization uses
+\((\mu,q)=(\mu_{fp},q_c^{repr})\), conditional on the unverified
+source/sampler-law premise. No specialization proves either of the others,
+and rejection requires no finite global lower bound on \(q\).
+
+The operational uint64 rule uses
+
+\[
+K(x)=\left\lfloor 2^{64}e^{q_c^{repr}(x)-U}\right\rfloor
+\]
+
+and accepts iff the retained word is strictly below \(K(x)\). Conditional on
+an identical represented proposal-and-exact-score batch, couple each
+independent ideal decision uniform to an independent uniform 64-bit decision
+word. The probability that either augmented outcome differs is then less than
+\(A/2^{64}\). This narrow bound covers only decision quantization. It covers
+no error in the proposal transform, source/PRNG law, score semantics, or
+analytic-to-represented bridge. A
+selected-conditioned error is never inferred from this unconditioned coupling
+bound without an explicit lower bound on selection mass and conditioning
+amplification.
+
+The implemented kernel-v2 certifies the integer quota for every encountered
+exact rational gap \(q_c^{repr}(x)-U\le0\), including non-dyadic gaps, under
+the frozen trusted Python `Decimal`/libmpdec correctly-rounded-exponential
+contract.  It is not a formal verification of that library contract and is
+not an exact Bernoulli implementation.  Define
+
+\[
+p_{64}(x)=2^{-64}\left\lfloor
+2^{64}e^{q_c^{repr}(x)-U}\right\rfloor,
+\qquad
+\alpha_{64}=\int p_{64}(x)\,\mu_{fp}(dx),
+\]
+
+and, when \(\alpha_{64}>0\),
+
+\[
+\rho_{64}(dx)=\alpha_{64}^{-1}p_{64}(x)\mu_{fp}(dx).
+\]
+
+Only **if** a future evidence bundle establishes iid \(\mu_{fp}\)-proposals,
+independent uniform uint64 decision words, and the required stream premises
+does fixed-budget first acceptance have exhaustion probability
+\((1-\alpha_{64})^A\) and conditional selected law \(\rho_{64}\).  Those
+antecedents are open; the present implementation evidence certifies neither
+\(\alpha_{64}\), \(\rho_{64}\), nor equality with \(\rho_c^{repr}\).
+
+There is also a separate conditional analytic quantization theorem.  Let
+\(D=2^{64}\), let \(W=e^{q-U}\in(0,1]\) under one of the two named analytic
+reference layers, put \(\beta=\mathbb E[W]\),
+\(p_D=\lfloor DW\rfloor/D\), and \(\alpha_D=\mathbb E[p_D]\).  Then
+
+\[
+\beta-D^{-1}<\alpha_D\le\beta.
+\]
+
+When \(\beta>D^{-1}\), the fixed-budget exhaustion probability and the
+selected-law discrepancy, with
+\(\rho_D(dx)=p_D(x)\mu(dx)/\alpha_D\) and
+\(\rho(dx)=W(x)\mu(dx)/\beta\), obey
+
+\[
+(1-\beta)^A\le (1-\alpha_D)^A
+  <(1-\beta+D^{-1})^A,
+\qquad
+\lVert\rho_D-\rho\rVert_{TV}<\frac{D^{-1}}{\beta}.
+\]
+
+CP53 retains outward exact-Fraction records for
+\(A\in\{1,4,16,64\}\), both reference layers, and both mixed fixtures.  This
+is a synthetic analytic floor-quantization theorem, not a live prediction for
+\(p_{64}\), \(\alpha_{64}\), or \(\rho_{64}\): the law of \(\mu_{fp}\),
+the runtime score/source premises, and their independence remain open.
+
+### 3.2 Fixed-budget SIR
+
+For fixed \(J\), independent proposals \(Y_j\sim\mu\), and
+\(W_j=e^{q(Y_j)}\), exact SIR has marginal
+
+\[
+Q_J(B)=\mathbb E\left[
+\frac{\sum_{j=1}^J W_j\mathbf 1\{Y_j\in B\}}
+     {\sum_{j=1}^J W_j}
+\right].
+\]
+
+Finite \(J\) is not asserted to equal \(\rho_{\mu,q}\); in particular,
+\(Q_1=\mu\). With \(0<W_j\le M<\infty\) and
+\(Z=\mathbb E[W_j]>0\), the mathematical convergence claim is only
+\(\lVert Q_J-\rho_{\mu,q}\rVert_{TV}\to0\). Operational categorical
+rounding and finite-particle error are separate ledger terms.
+
+More quantitatively, augment the proposal cloud with its selected index.  A
+change-of-measure identity followed by data processing and
+Cauchy--Schwarz gives, for \(S_J=\sum_{j=1}^J W_j\),
+
+\[
+\lVert Q_J-\rho_{\mu,q}\rVert_{TV}
+\le \frac{\mathbb E|S_J-JZ|}{2JZ}
+\le \frac{\sqrt{\operatorname{Var}(W)}}{2Z\sqrt J}.
+\]
+
+CP53 supplies exact-rational outward enclosures of the coefficient
+\(\sqrt{\operatorname{Var}(W)}/(2Z)\) and the resulting bounds at
+\(J\in\{8,32,128,512\}\) for both named analytic layers and fixtures.  These
+are conservative exact-IID theorem bounds, not exact finite-\(J\)
+distributions, and no operational antecedent is certified.
+
+Kernel-v2 performs fail-closed binary64 normalization of the realized exact
+rational log weights and uses one 53-bit categorical transform whose stream
+binds \(J\). Therefore its retained trace is not an exact categorical draw
+from the mathematical normalized weights, and its finite-\(J\) output is not
+an exact target sample. The global lower envelope may be absent: it is
+retained when available but is not required for SIR. Any future operational
+law statement must separately establish the proposal, source, stream, and
+categorical-transform premises and quantify both float64 normalization and
+53-bit selection discrepancy.
+
+For completeness, this convergence is a theorem rather than an empirical
+extrapolation. With \(S_{J-1}=\sum_{j=2}^J W_j\), the Radon--Nikodym density of
+\(Q_J\) with respect to \(\mu\) is
+
+\[
+g_J(x)=J e^{q(x)}\,\mathbb E\left[
+  \{e^{q(x)}+S_{J-1}\}^{-1}
+\right].
+\]
+
+For fixed \(x\), put \(w=e^{q(x)}>0\) and
+\(G_J=\{S_{J-1}/(J-1)\ge Z/2\}\). On \(G_J\), for \(J\ge2\),
+
+\[
+\frac{J}{w+S_{J-1}}\le \frac{2J}{(J-1)Z}\le\frac4Z.
+\]
+
+Because \(0<W_j\le M\), Hoeffding's inequality gives
+
+\[
+\mathbb P(G_J^c)\le
+\exp\!\left\{-\frac{(J-1)Z^2}{2M^2}\right\}.
+\]
+
+The integrand is at most \(J/w\) on \(G_J^c\), so its bad-event expectation
+vanishes.  On \(G_J\), the strong law and dominated convergence give an
+expectation limit of \(1/Z\). Hence
+\(g_J(x)\to e^{q(x)}/Z\) for \(\mu\)-almost every \(x\); both densities
+integrate to one, so Scheffé's lemma gives total-variation convergence. This
+theorem still assumes iid \(\mu\)-proposals and exact positive weights. A
+finite experiment cannot certify those premises or the asymptotic statement.
+
+### 3.3 Finite-atomic enumeration
+
+Enumeration is admissible only when every declared event dimension is zero
+and the full support passes the finite-oracle resource gate. For count vector
+\(m\), the unnormalized target mass is
+
+\[
+e^{q_c(m)}\theta^{|m|}
+\prod_d\frac{w_d^{m_d}}{m_d!}.
+\]
+
+There is no additional \(|m|!\). Multiplicity factorials may not be dropped.
+Exponentials are generally non-dyadic even when \(q_c\) is rational, so any
+finite categorical implementation must report its numerical construction and
+its discrepancy from the ideal enumerated target.
+
+CP54 independently derives the cap-two, two-type base category masses from
+primitive activity, type weights, and complete count-vector support.  Its
+direct route uses
+
+\[
+u(m)=\theta^{|m|}\prod_d\frac{w_d^{m_d}}{m_d!},
+\]
+
+while its second route multiplies the unnormalized capped-Poisson count weight
+\(\theta^n/n!\) by the conditional multinomial mass
+\(n!\prod_d w_d^{m_d}/\prod_d m_d!\).  The two routes agree statewise and
+their common support sum is \(\sum_{n=0}^2\theta^n/n!\).  For
+\(\theta=1\) and two normalized type weights this is \(5/2\), yielding count
+probabilities \((2/5,2/5,1/5)\).  The hash-bound records cover the separately
+declared ideal-rational and stored-binary64 parameter layers; they do not
+identify either layer with a runtime sampler law or apply a target tilt.
+When any event type has positive dimension, this is only a derivation of the
+finite type-count category marginal; it neither enumerates the continuous
+configuration support nor makes the fixture eligible for finite-atomic
+enumeration.
+
+Kernel-v2's implemented enumeration lane starts from the reference
+`finite_atomic_oracle()` binary64 mass vector, here denoted
+\(P_{ref}^{oracle,b64}\), evaluates each state through the certified score
+provider, and performs fail-closed float64 normalization using the exact
+rational scores as inputs. It does not establish that
+\(P_{ref}^{oracle,b64}\) equals \(\mu_{fp}\), \(\Pi_N^{rat}\), or
+\(\Pi_N^{b64}\). CP55 supplies the independent high-precision analytic oracle
+and a sealed count-keyed exact score-table provider for `T28-A0-Q`. CP56
+admits that exact provider through a third sealed common-facade adapter and
+carries it through one generic kernel-v2 finite-atomic enumeration. The
+runtime finite-atomic support order differs from the protocol order, so the
+hash-bound comparison maps by exact count vector rather than positionally.
+It compares the resulting float64 categorical-weight record
+\(P_{enum}^{kernel,b64}\) with the CP55 stored-binary64 analytic interval
+target \(\Pi_{A0Q}^{b64}\). This is deterministic nonconfirmatory integration
+evidence only: no reference sampler is replayed, no categorical draw occurs,
+and no equality with \(\mu_{fp}\) or either analytic reference law follows.
+
+### 3.4 Frozen bounded-feature IPM and SIR ancestry diagnostics
+
+For a fixture-locked finite base registry \(F_0\), CP58 defines the implicit
+sign-closed class \(F=F_0\cup(-F_0)\) and, for two nonempty supplied samples
+\(A\) and \(B\), the exact empirical integral probability metric
+
+\[
+d_F(A,B)=\max_{f\in F_0}\left|
+  |A|^{-1}\sum_{x\in A}f(x)-|B|^{-1}\sum_{x\in B}f(x)
+\right|.
+\]
+
+Every coordinate must be a finite canonical built-in binary64 value, with
+negative zero refused, and is converted by `Fraction.from_float` before any
+feature arithmetic.  For an exact rational projection \(z\), the only
+coordinate transforms are
+
+\[
+o(z)=\max(-1,\min(1,z)),\qquad e(z)=\min(1,z^2).
+\]
+
+The frozen `T28-M1-Q` registry contains six base features: the two count
+one-hot indicators, the two cap-normalized type occupancies, and the odd and
+even transforms of the type-one axis projection \((1)\).  The frozen
+`T28-M2-Q` registry contains thirty-three base features.  Its projections are
+the type-zero axis \((1)\), the two type-one axes \((1,0)\) and \((0,1)\),
+and the type-one diagonals \((3/5,4/5)\) and \((3/5,-4/5)\).  Its feature
+families are the three count one-hot indicators, two cap-normalized type
+occupancies, odd and even transforms for all five projections, all three
+unordered type-pair occupancies, and all fifteen admissible unordered
+projected odd-product interactions.  Pair features use distinct event slots;
+same-type features with different projections use the frozen symmetrization
+rule.  The manifest serializes every projection and feature definition, its
+formula identifier, bound, normalization denominator, and semantic digest.
+
+This IPM is a finite-class pseudometric.  It is neither empirical
+continuous-space TV or KL nor the independently listed sliced-Wasserstein
+secondary diagnostic.  CP58's two predeclared four-configuration calibration
+pairs merely exercise the exact evaluator: the M1 calibration has IPM
+\(1/2\), witnessed by the even type-one axis feature, and the M2 calibration
+has IPM \(1/4\), witnessed by the type-\((0,1)\) pair occupancy.  Their input
+digest provenance remains unverified, and neither record compares an observed
+sample with a target law.
+
+An ancestor is a local particle **slot in one explicit proposal cloud**, not a
+configuration value.  Equal configurations in different slots remain
+different candidate ancestors, and selections from clouds with different
+identifiers may not be pooled.  The current kernel makes one categorical
+selection for one request, so its within-request selected-ancestor count is
+identically one and its occupied-slot fraction is \(1/J\); this fact is a
+construction contract, not evidence of resampling diversity.  Separately,
+the predeclared `T28-AESS` cloud has eight slots but six distinct configuration
+values, with two repeated-value excess slots.  That value-uniqueness summary
+is explicitly not ancestor occupancy.
+
+CP58 additionally records a conditional analytic counterfactual: if the
+eight fixed `T28-AESS` particle slots with normalized weights
+\((1,1,1,1,1,1024,1,1)/1031\) were subjected to \(R=J=8\) independent
+categorical selections from the same cloud, then for the number \(K\) of
+occupied particle slots,
+
+\[
+\mathbb E[K]=\sum_{i=1}^{8}\{1-(1-w_i)^8\},
+\]
+
+with the covariance-inclusive variance formula and exact rational result
+bound in the manifest.  The record collapses no equal configuration values,
+executes zero additional selections, and is report-only.  It is not output of
+the one-selection kernel, a prediction of an authenticated categorical source,
+or an observed production unique-ancestor statistic.
+
+### 3.5 Runtime-conditional finite-precision arithmetic and source boundary
+
+For one supplied realized score cloud \(q_1,\ldots,q_J\), CP59 applies the
+same frozen normalization expression as kernel-v2 through an independent
+local implementation,
+
+\[
+ m=\max_i \operatorname{float64}(q_i),\qquad
+ \widetilde w_i=\exp\{\operatorname{float64}(q_i)-m\},\qquad
+ S=\operatorname{fsum}_i\widetilde w_i,\qquad
+ w_i=\widetilde w_i/S.
+\]
+
+The supplied built-in binary64 weights must match this independently
+recomputed vector byte for byte.  CP59 then forms the current NumPy
+sequential binary64 cumulative sums \(C_i\), forces \(C_{J-1}=1\), and embeds
+the exact stored CDF increments as rational numbers.  Under the narrow
+counterfactual assumption that the categorical input is uniform on
+\(\{0,\ldots,2^{53}-1\}\), the current right-sided search rule has exact cell
+counts
+
+\[
+ n_i=\lceil 2^{53}C_i\rceil-
+     \lceil 2^{53}C_{i-1}\rceil,\qquad C_{-1}=0,
+\]
+
+and cell probabilities \(n_i/2^{53}\).  Exact-score exponential enclosures,
+the supplied raw float vector, its explicitly nonoperational exact
+renormalization, the CDF-increment probability vector, and the 53-bit cell
+law are retained as distinct objects.  When the raw float vector does not sum
+exactly to one, its discrepancy is half-L1 and is not labeled total
+variation.  NumPy is loaded only by the builder; its observed version and a
+cumsum runtime digest are custody fields, not a transform-law certificate.
+The normalization implementation does not call kernel-v2.
+
+For the finite rejection calibration law \(\nu=(\nu_i)\), exact scores
+\(q_i\le U\), and \(D=2^{64}\), CP59 records
+
+\[
+ K_i=\lfloor D e^{q_i-U}\rfloor,\qquad
+ p_i=K_i/D,\qquad
+ \alpha=\sum_i\nu_i p_i.
+\]
+
+Conditional only on abstract iid proposals from the declared finite law,
+independent uniform uint64 decision words, and proposal/decision
+independence, it derives
+
+\[
+ \Pr(T=t)=(1-\alpha)^{t-1}\alpha,\qquad
+ \Pr(E)=(1-\alpha)^A,\qquad
+ \Pr(X=i\mid X\ne E)=\frac{\nu_i p_i}{\alpha}
+\]
+
+when \(\alpha>0\); the selected law is undefined when \(\alpha=0\).  The
+predeclared calibration grid uses \(A\in\{1,4,16,64\}\), with uniform
+four-atom M1 and six-atom M2 synthetic proposal tables.  These are exact
+finite-law calculations, not live \(\alpha_{64}\), \(\rho_{64}\), refusal,
+or operational proposal predictions.
+
+The source boundary is substantive.  With one 64-bit plan seed the joint
+trace support is at most \(D\), whereas two independent uniform uint64 words
+have product support \(D^2\).  Hence every uniform-seed pushforward from the
+current surface is at total-variation distance at least
+\(1-D/D^2=1-2^{-64}\) from that two-word product law; a fixed seed is a point
+mass at distance \(1-D^{-2}\).  A declaration of iid or role independence
+cannot remove this support obstruction.  Unconditional closure therefore
+requires either a richer external independent-word/capsule source API or a
+whole-request pushforward law under a seed distribution, with correlated
+predictions and without iid/role-independence formulas.  This source-law
+lower bound supplies no output-law lower bound, because deterministic maps
+can contract total variation.
+
+### 3.6 Correlated whole-seed pushforward definition
+
+CP60 adopts the whole-request alternative; it does not retrofit independent
+words onto the current one-seed interface.  Let \(D=2^{64}\).  Its sole source
+premise is that, for **one** future fully fixed seed-free request \(R\) and
+fully fixed runtime \(E\), an external seed \(S\) is exactly uniform on
+\(\{0,\ldots,D-1\}\).  This is an assumption-only theorem premise.  It is not
+verified by the current fixed-hash seed plan and says nothing about a sequence
+of requests, operating-system entropy, derived Philox words, Gaussian words,
+categorical words, or independence between roles.
+
+For a seed \(s\), let \(K_{R,E}(s)\) denote current kernel-v2 after inserting
+that exact plan seed.  Its mathematical totalization \(F_{R,E}(s)\) retains
+one of six pairwise-disjoint tags, together with the complete applicable
+payload:
+
+1. `returned-rejection-selected`;
+2. `returned-rejection-exhausted`;
+3. `returned-sir-selected`;
+4. `preexecution-refusal`;
+5. `execution-failure`; or
+6. `nonreturn`.
+
+The returned rejection trace retains configuration values, exact scores and
+quota records, decision words, its acceptance vector, first selected index,
+and selected value or exhaustion.  The returned SIR trace retains the entire
+configuration cloud, exact scores, normalized-weight bytes, resampling word,
+uniform-53 value, selected index, and selected configuration value.  A
+selected empty configuration is not a refusal, failure, or nonreturn.  The
+explicit nonreturn tag makes the mathematical alphabet exhaustive; it does
+not prove backend termination or make failure versus nonreturn mechanically
+observable from an ordinary returned Python object.  For a fixed strategy,
+the returned-status tags belonging only to the other strategy have empty
+fibers.
+
+For every event \(B\) in that totalized outcome space, CP60 records only the
+exact formula
+
+\[
+ N_B=\#\{s\in\{0,\ldots,D-1\}:F_{R,E}(s)\in B\},\qquad
+ \Pr\{F_{R,E}(S)\in B\}=N_B/D.
+\]
+
+In particular, \(\Pr\{F_{R,E}(S)=y\}=N_y/D\), and the six aggregate
+status-fiber masses sum to one.  For rejection, \(N_{\mathrm{first},t}/D\)
+is the probability of a complete validated selected trace whose one-based
+first-acceptance index is \(t\); exhaustion, refusal, execution failure, and
+nonreturn are their separate fiber counts divided by \(D\).  The probability
+that slot \(t\) is recorded accepted **and** the complete rejection result is
+validated is \(N_{\mathrm{accept},t}/D\); this is an unconditional
+subprobability and does not condition away execution failure or nonreturn.
+The probability of no validated returned output is
+
+\[
+ (N_{\mathrm{preexecution\ refusal}}+N_{\mathrm{execution\ failure}}
+   +N_{\mathrm{nonreturn}})/D.
+\]
+
+For a selected value \(c\), the unconditional mass is \(N_{\mathrm{select},c}/D\).
+The selected-conditioned mass
+\(N_{\mathrm{select},c}/N_{\mathrm{selected}}\) is defined only after
+\(N_{\mathrm{selected}}>0\) is established.  SIR selected-value and arbitrary
+cloud/weight/cell events use the same whole-trace fiber rule.  No common
+\(\alpha_{64}\), \((1-\alpha_{64})^A\), \(\rho_{64}\), or
+product-\(\mu_{fp}^J\) formula follows.
+
+The joint realized proposal trace is one correlated pushforward of \(S\).
+For each explicitly reached and recorded slot \(t\), CP60 permits only the
+slot sublaw
+
+\[
+ \mu_{R,E,t}(C)=D^{-1}\#\{s:\text{slot }t\text{ is reached, recorded, and
+ has configuration in }C\}.
+\]
+
+This is generally a subprobability measure.  It may be normalized
+conditionally only if its reach mass is first established positive; CP60
+performs no such division.  The family of slot projections does not identify
+one common \(\mu_{fp}\) or an iid product law.  For one fixed seed \(s_0\), the
+law is instead the point mass
+\(\delta_{F_{R,E}(s_0)}\); deterministic replay neither establishes nor
+samples the uniform-seed pushforward.
+
+The bundle predeclares exactly sixteen prospective rows in fixture order
+`T28-M1-Q`, `T28-M2-Q`; within each fixture, rejection budgets
+\(1,4,16,64\) precede SIR budgets \(8,32,128,512\).  Every row has
+`request_parameters_fully_bound=false` and
+`fixed_request_map_instantiated=false`.  Source-file digests are custody
+labels only; the optional dependency-lock and runtime-record digests are
+absent.  No count defaults to zero: status, first-acceptance, selected-value,
+refusal, exhaustion, execution-failure, and nonreturn counts are all
+explicitly absent.
+
+An operational use must first freeze the transitive local sources; exact
+Python build and standard library; NumPy/SciPy distributions and loaded
+extensions; Philox, SeedSequence, 53-bit uniform, standard-normal Ziggurat
+code, tables, state schema, and variable word consumption; NumPy
+`exp`/`cumsum`/`searchsorted`; SciPy `gammaln`/`logsumexp`; Decimal/libmpdec;
+the linked libc/libm, compiler and ABI; and the operating system, architecture,
+CPU, endianness, and floating-rounding environment.  A version string or the
+current kernel runtime digest alone is insufficient.
+
+Any later Monte Carlo approximation must bind that request and totalized map
+before sampling; verify iid uniform uint64 seeds with replacement or freeze a
+separate without-replacement finite-population design; retain every refusal,
+failure, and nonreturn; prespecify a termination classifier or bounded
+external supervisor while keeping timeout censoring distinct from semantic
+nonreturn; forbid retry, drop, replacement, and data-dependent seed choice;
+and prespecify uncertainty, familywise multiplicity, positive-selected-count,
+and full custody rules.  CP60 performs none of those steps and computes no
+operational probability.
+
+### 3.7 Prospective whole-seed validated-Monte-Carlo design
+
+CP61 freezes one future design without asserting that its premises have been
+realized.  It preserves the CP60 row order exactly: `T28-M1-Q` precedes
+`T28-M2-Q`; within each fixture, rejection budgets \(1,4,16,64\) precede SIR
+budgets \(8,32,128,512\).  The future seed source must supply the ordered
+sample
+
+\[
+ (S_1,\ldots,S_{2048}),\qquad
+ S_i\mathrel{\mathrm{iid}}\operatorname{Unif}\{0,\ldots,2^{64}-1\},
+\]
+
+with replacement.  A repeated uint64 value is a retained draw, never grounds
+for a retry.  Seed ordinal \(i\) is reused across all sixteen rows, so the rows
+are paired by ordinal; their outcomes are not assumed independent.  The exact
+uint64 value \(S_i\) is passed **unchanged** as `plan_seed` to every row at that
+ordinal; no fixture-, strategy-, shard-, or request-hash runner derivation may
+intervene.  No draw or outcome may be retried, dropped, replaced, or topped
+up.  CP61 records these as future requirements only: it does not verify an
+external source, and the current fixed-hash seed plan is not such a sample.
+
+Every scheduled request has a 300-second external deadline.  For each of the
+eight rejection rows, the five deadline-scoped observable cells are
+`returned-rejection-selected-before-deadline`,
+`returned-rejection-exhausted-before-deadline`,
+`preexecution-refusal-before-deadline`,
+`execution-failure-before-deadline`, and
+`timeout-censored-at-deadline`.  For each of the eight SIR rows, the four cells
+are `returned-sir-selected-before-deadline`,
+`preexecution-refusal-before-deadline`,
+`execution-failure-before-deadline`, and
+`timeout-censored-at-deadline`.  This gives 72 binomial observable-cell
+estimands.  A deadline timeout is retained censoring at the supervisor
+boundary; it is **not** identified with CP60's mathematical semantic
+`nonreturn` tag.  Returned cells require a structurally validated return before
+the deadline.  Refusal and execution-failure cells require the corresponding
+observation before the deadline and are not called returned outputs.
+
+For each rejection row and every one-based attempt through its fixed budget,
+CP61 separately freezes the event that a complete validated predeadline return
+first selects at that attempt.  Across both fixtures this gives
+\(2(1+4+16+64)=170\) further binomial estimands.  Every observable and
+first-attempt proportion uses all 2,048 retained seed ordinals as its
+denominator; no failure or censoring may be conditioned away.
+
+For every row, CP61 also applies every feature in the row fixture's complete
+CP58 registry to validated predeadline selected configurations.  There are six
+M1 features and thirty-three M2 features, so the eight rows per fixture give
+\(8\cdot6+8\cdot33=312\) selected-conditioned bounded-feature means.  Their
+denominator is the selected count \(K\) in that row.  Together the frozen
+family contains
+
+\[
+ 72+170+312=554
+\]
+
+estimands.  These finite projections do not estimate a complete continuous
+trace law or total variation.
+
+The familywise error budget is \(1/100\).  CP61 assigns each of the 554
+estimators a two-sided error budget \(1/55{,}400\), hence each tail receives
+
+\[
+ \delta=1/110{,}800,
+ \qquad 554/55{,}400=2\cdot554/110{,}800=1/100.
+\]
+
+Every future binomial interval is the two-sided exact Clopper--Pearson interval
+with exact-rational tail evaluation and an explicitly outward dyadic
+bisection.  For \(X\sim\operatorname{Binomial}(n,p)\), the lower endpoint is
+zero when \(k=0\).  Otherwise initialize \(lo=0,hi=1\), perform exactly 256
+updates with \(mid=(lo+hi)/2\), and compute
+\(T=\Pr_{mid}\{X\ge k\}\) exactly: if \(T<\delta\), set \(lo=mid\); otherwise,
+including equality, set \(hi=mid\).  Publish \(lo\).  The upper endpoint is one
+when \(k=n\).  Otherwise repeat 256 updates using
+\(C=\Pr_{mid}\{X\le k\}\): if \(C>\delta\), set \(lo=mid\); otherwise,
+including equality, set \(hi=mid\).  Publish \(hi\).  Thus zero observed events
+still have a strictly positive upper endpoint.  CP61's public arithmetic
+helper is deliberately restricted to calibration inputs with \(n\le128\);
+the future \(n=2048\) intervals remain uncomputed.
+
+A selected-feature interval is published only when \(K\ge1040\).  It clips
+the sample feature mean plus or minus \(3/40\) of that feature's exact frozen
+range to the feature bounds.  Thus the target half-width is \(0.075\) for a
+\([0,1]\) feature and \(0.15\) for a \([-1,1]\) feature.  When \(K<1040\), the
+result is `insufficient-selection`, with no interval and no top-up.  At the
+minimum count, Hoeffding's one-sided exponent is exactly
+
+\[
+ 2(1040)(3/40)^2=117/10.
+\]
+
+The exact positive Taylor partial sum
+
+\[
+ \sum_{j=0}^{17}\frac{(117/10)^j}{j!}
+ =\frac{428914006377131589846189933005011}
+ {3753164800000000000000000000}>110800
+\]
+
+shows \(e^{-117/10}<1/110800\).  Each one-sided bounded-feature tail is
+therefore strictly below its assigned tail budget, the two-sided failure is
+strictly below \(1/55{,}400\), and a union bound over all 554 estimators is at
+most \(1/100\).  This is a simultaneous-coverage design calculation, not a
+selected-count probability or power guarantee.
+
+The future raw record must retain every complete raw trace and its digest.  A
+separate stable semantic projection must retain stable request, fixture,
+strategy, budget, plan-seed, local-source, facade/provider-certificate,
+reference/source-parameter, role-context, stable-runtime, derived-role-seed,
+RNG-state, canonical configuration-value/binary64-byte, independently
+recomputed provider/configuration-digest, exact score, quota, word,
+acceptance, complete rejection-attempt or SIR-cloud/weight/ESS/resampling, and
+closed status/failure-code fields.  It excludes raw process/object identities,
+address-bearing representations, unbounded exception text, and plan,
+owner/execution-certificate, nested, or result hashes that inherit volatile
+identity.  The projection does not replace the raw trace.  The compact
+554-estimand projection is not the full stable trace.  CP61 requires this
+contract but does not instantiate it on observations or establish
+cross-process parity.
+
+The fixed prospective work is 32,768 requests.  Its planned maxima are 348,160
+rejection proposal slots, 2,785,280 SIR proposal slots, 3,133,440 total
+proposal slots, 16,384 SIR resampling draws, 4,700,160 event occurrences, and
+7,833,600 coordinates.  These are scheduled or worst-case design counts, not
+observed consumption, timing evidence, an allocation receipt, or a power
+calculation.
+
+Any future supervisor, seed-source, durable-recording, or trace-custody
+infrastructure failure invalidates the **entire** Monte Carlo attempt before
+any interval is produced.  It is not an estimand cell, execution failure,
+timeout, dropped draw, retry, replacement, or top-up.  The observable-cell
+partition is conditional on infrastructure fidelity, which CP61 has not
+verified.  Requests, runtime, source capsule, supervisor, seed sample, raw
+trace sample, execution, estimates, intervals, operational predictions,
+full-trace law, total variation, power, confirmatory evidence, and manuscript
+promotion all remain absent.  Formal Test 28 therefore remains open.
+
+### 3.8 Calibration-only whole-seed execution capsule
+
+CP62 binds a concrete precursor to the future runner without enabling that
+runner.  Its exact sixteen seed-free request bindings preserve the CP61 row
+order and the CP60 rejection budgets (1,4,16,64) and SIR budgets
+(8,32,128,512).  Each binding fixes its source, facade, kernel, residual
+context, reference and score parameters, certificates, strategy, and budget,
+but contains no seed value and has
+`request_instance_fully_bound=false`.  Future logical requests remain ordered
+seed-major by
+
+\[
+  (\text{seed ordinal}-1)16+\text{row ordinal}.
+\]
+
+The capsule binds one Darwin/arm64 CPython 3.11.5, NumPy 2.4.6, SciPy 1.17.1
+runtime/source/ABI candidate, its dependency and executable/library closures,
+the relevant local-source capsule, a sanitized child environment, and
+round-to-nearest binary64 mode.  The candidate was observed in the fixed
+calibration children, but the runtime path is deliberately nonsemantic and the
+record keeps runtime portability, production-runtime matching, executed-bytecode
+attestation, and a transform-law theorem false.  The externally bound CP62
+source digest supplies self-custody; it does not convert a source-file
+observation into executed-bytecode attestation.
+
+The future seed-capsule contract fixes ordinals (1,\ldots,2048), ordered
+lowercase sixteen-hex-digit uint64 values, exact JSON keys, a 131,072-byte cap,
+duplicate retention, semantic ordering, and no retry, drop, replacement, or
+top-up.  It contains no seed values, source method, source receipt, acquisition
+session, or body digest.  The capsule is not instantiated, no external source
+is bound, and neither digest nor frequency checks would by themselves prove
+iid uniform sampling with replacement.
+
+The supervisor contract requires one fresh POSIX spawn/exec child and process
+group per request, a parent-monotonic 300-second deadline, completion strictly
+before the deadline, equality classified as timeout, an exact one-frame
+return, bounded request/raw/stderr frames, termination and reap ceilings, no
+retry, and whole-attempt invalidation for supervisor or custody failure.  It
+keeps timeout censoring distinct from CP60 semantic nonreturn.  Production
+entry is disabled.  The public raw schema retains canonical values, complete
+validated-return kernel traces, and volatile supervisor custody separately
+from the stable projection.  It predeclares closed refusal and failure shapes,
+but the calibration runner's closed refusal/failure classification is not
+implemented, the production schema is not frozen, and no production record or
+capacity receipt exists.
+
+The only executable cases are the two (A=64) rejection rows and two (J=512)
+SIR rows, one of each for `T28-M1-Q` and `T28-M2-Q`.  Their seeds are fixed
+domain-separated calibration constants, are not external-source draws or
+future capsule members, and cannot be supplied by a caller.  Each case is
+precommitted to exactly two fresh-child executions, with concurrency one and
+an eight-launch global maximum.  The stable projections matched across the
+two processes for all four cases; the retained raw records differ in volatile
+custody as expected.  The exact stable-projection receipts are:
+
+- `m1-rejection-a64`: SHA-256
+  `ad0fd60347f16adb6317d464d8708bd2b2f9277f2a5195b43441765a489f1d2a`,
+  296,473 canonical JSON bytes;
+- `m1-sir-j512`: SHA-256
+  `7685a2357efd06a8b7dc473759ec19ba799d6039fc3841486428ac17620202e9`,
+  850,656 canonical JSON bytes;
+- `m2-rejection-a64`: SHA-256
+  `146924d4a7c7504a4540b60249f46fb3ed71a7fc6b10195958b5b461f469d04f`,
+  342,364 canonical JSON bytes; and
+- `m2-sir-j512`: SHA-256
+  `37a982bc3cc8744087f7b9d356fc8ff15c3bd371c81d5f9508095f27e3724ccb`,
+  904,281 canonical JSON bytes.
+
+Those four receipts establish deterministic parity only for the fixed
+calibration cases in the bound candidate environment.  They do not establish
+production cross-process parity, the full stable-trace law, total variation,
+source iid, infrastructure fidelity, or production runtime matching.  CP62
+ingests no production seed, runs no production campaign, computes no estimate
+or interval, and derives no operational prediction.  The execution runner and
+independent recomputation blocker therefore remains open even though this
+capsule and calibration precursor is hash-bound.
+
+### 3.9 Development-only all-row runner and independent recomputation rehearsal
+
+CP63 binds a rehearsal of the next runner/recomputation interface without
+instantiating the production experiment.  The runner's seed-capsule parser
+accepts only the exact eleven-key, canonical, bounded future capsule shape,
+retains ordered duplicate uint64 values, and binds its body digest.  Parsing
+can establish syntax and digest consistency only; it cannot verify that the
+values are iid uniform draws with replacement or authorize their execution.
+The associated definition-only schedule has 2,048 seed ordinals, sixteen row
+ordinals, and 32,768 logical requests ordered exactly as
+
+\[
+  L=(\text{seed ordinal}-1)16+\text{row ordinal}.
+\]
+
+Each future seed value would pass unchanged as `plan_seed`.  No fixture,
+strategy, budget, or shard hash is interposed before that assignment;
+duplicate values remain distinguishable by seed ordinal.  CP63 binds no
+external capsule, source method, source receipt, acquisition session, shard
+map, instantiated production request, or production authorization.
+
+The executable rehearsal instead defines exactly sixteen module-owned cases,
+one for every CP61 row.  All use the fixed development seed
+`12a5228200019dae`, derived as the first eight big-endian bytes of
+SHA-256(`cp63-test28-all-row-rehearsal-seed-v1\0`).  This seed is neither an
+external-source draw nor a future capsule member.  Each case permits exactly
+two launches; concurrency is one and the global limit is 32.  The raw schema
+retains repetition, request identity, the complete semantic kernel trace, and
+volatile supervisor custody.  The stable projection drops only repetition,
+supervisor custody, and the raw-record digest, so the two launches can differ
+in raw custody while remaining byte-identical in semantic projection.  Its
+four closed arms distinguish return before deadline, pre-execution refusal,
+execution failure, and timeout censoring; a returned rejection arm may record
+selection or exhaustion.
+
+The separately bound independent recomputation module is source-independent
+of the runner: it imports neither the runner, CP62, the kernel, NumPy, nor
+SciPy.  It independently validates canonical stable bytes, produces one
+compact observation for each row, and enumerates exactly 72 observable, 170
+rejection-first-attempt, and 312 selected-feature estimands, 554 total.  From
+one complete sixteen-row set it creates a repetition-blind receipt; the two
+rehearsal repetitions produced identical compact observations and identical
+554-estimand receipts.
+
+The exact runner bundle is 26,642 canonical JSON bytes with plain SHA-256
+`8f7d52b0e1e5a529665d8f5d781a6381f8dfa5f8b4b17c62436c18c9c9018143`
+and record digest
+`442c4b0f134a96efe32b5246b4eb5b05233d61a13c62c0a7d1f21c9bbbd32f85`.
+Its seed-capsule, schedule, lifecycle, raw-schema, and resource component
+record digests are respectively
+`1765adf642962c73b61634dde767fe9d2c2fef5fd71c21305fe43c6d338cf80d`,
+`7ca5555de1aa852021c6b7fd181417a629dcec461455650ecafc495f5e6fb607`,
+`e335fe95f81c69ebe632a00344248d48095ceffb5c8cc1b7e4c5770b4f5a951a`,
+`29f17aa7528971e7892b6ea4ccb37b5943190a0e592191341ae444e8ed63b3cb`,
+and
+`17259329bbca1029e989029594af67570f81731d9b21355a5151277ba7938d40`.
+The machine manifest serializes those complete records and all sixteen case
+records, not merely this digest summary.
+
+The exact independent bundle, including all 554 ordered estimand identifiers,
+is 52,992 canonical JSON bytes with plain SHA-256
+`e78ad0e95db723af47e6c5f90a6c58e28f24fbdbc6433e5e572113c62fa2ef74`,
+record digest
+`b219de24a17af7c06b503af07110ed863c339bca19c7457c163412ae0e76ddb9`,
+and public tagged digest
+`473f7aa7fec510c92ea5f47c5bab79636fc84932986f6c5f420fb0e4c189594b`.
+The repetition-blind 554-estimand receipt is 12,939 canonical JSON bytes with
+plain SHA-256
+`4c281147b68adc5a83ddd88bab73c42cef619498a13a7f234acb4cd886a40ee7`,
+record digest
+`870b89d2252dd5e62fc0c10982d5d2f194402b2a941c4c7bd8a0b6214a2832dc`,
+and public tagged digest
+`895b3afbe514158fdfbc3c3d2ae67175cdab2a5834cbf25b00297e69aa179406`.
+
+The retained final focused acceptance ran both launches for all sixteen rows:
+151 tests passed in 281.71 seconds of pytest time (real 281.95, user 272.32,
+sys 5.29 seconds).  Its complete 24,810-byte canonical receipt has plain
+SHA-256
+`83113460c4a4963ea815a2c54b9f1f7a8e2c1fbe7d4698fbb56a0f7addc1cf4d`
+and domain-separated receipt digest
+`2b2f41f14424ddb164b6db793991ece8b222a4e4295d7e0143c6b6496c50097b`.
+The repetition-blind sixteen-launch semantic-pin receipt has digest
+`d7dfdae440b3b26b289279ccdda6e665fe43fee965c0836fe1d6dac91ce8d5e7`.
+The manifest retains the complete acceptance object, including all sixteen
+stable/compact pins and both raw-launch custody receipts for every row.
+
+CP63 conditionally reuses CP62's candidate runtime-lock record
+`5b40737ba345315075c1e5e619ea1e7cd2a6628f1ba63a0101128ae9223e2460`.
+It does not recompute the complete compiled runtime map or establish a
+production match.  Pre/post source-file hashing binds the observed source
+bytes but is not executed-bytecode or loaded-code-object attestation, and the
+runtime path remains nonsemantic.  The raw and stable aggregate bounds of
+549,755,813,888 and 274,877,906,944 bytes (512 and 256 GiB) are worst-case
+ceilings only: no storage, throughput, or capacity receipt is present.
+
+Accordingly, CP63 satisfies a new hash-bound nonconfirmatory rehearsal
+prerequisite but remains only a completed precursor to the production runner
+and unconditional operational-prediction blockers.  Production seed ingest,
+arbitrary-seed execution, a campaign loop, durable attempt writing, shard
+mapping, capacity allocation, complete 32,768-request recomputation, estimates,
+intervals, a decision, a frozen production schema, runner-blocker closure,
+confirmatory evidence, manuscript promotion, and Formal Test 28 closure all
+remain absent or false.
+
+### 3.10 Zero-execution production-custody preflight scaffold
+
+CP64 defines the custody boundary required before any later production
+attempt may become executable.  The sealed zero-argument bundle is
+deterministic and standard-library-only at import.  It imports no project
+module and performs no host-filesystem, process, network, clock, entropy, RNG,
+runtime, capacity, or project-state observation.  The artifact binds the exact
+v14 predecessor protocol and machine manifest and their DRAFT/OPEN state; it
+also binds the CP61 design, CP62 runtime/supervisor/projection contracts, CP63
+runner and independent-recomputation contracts, and
+`requirements/m1-reference-macos-arm64-py311.lock`.  The CP64 source hash is
+deliberately an external binding rather than a self-reference.
+
+The proposed v15 lifecycle is
+`DRAFT_PRE_FREEZE`, `FROZEN`, `STARTED`, and terminal `PASS`, `FAIL`,
+`INVALID_PROTOCOL`, `ABORTED_INFRA`, or `INCOMPLETE`.  From `FROZEN`, an
+attempt may either become `STARTED` or terminalize before start as
+`INVALID_PROTOCOL`, `ABORTED_INFRA`, or `INCOMPLETE`; from `STARTED`, it may
+enter any of the five terminal states.  Preflight and authorization are
+artifact stages, not lifecycle states.  This extension remains merely
+proposed: at bundle construction the v15 protocol/manifest availability and
+consumption flags are false and the transition graph is not authoritative for
+production.
+
+External-source custody begins with exclusive, no-follow creation and durable
+commit of both an acquisition journal and an acquisition-start receipt before
+source contact.  The journal is preallocated as a non-sparse file for at most
+2,048 fixed 80-byte chained binary entries, hence at most 163,840 bytes.  Its
+journal formulas are exactly
+`SHA256(cp64-external-seed-acquisition-journal-head-v1\0+acquisition-start-receipt-sha256)`
+for the initial head and
+`SHA256(cp64-external-seed-acquisition-journal-entry-v1\0+start-receipt-sha256+ordinal-uint64-be+value-uint64-be+previous-entry-sha256)`
+for entry $i$.  Thus each entry binds the start receipt, the big-endian uint64
+ordinal and value, and the previous entry digest.  The
+journal path/device/inode is rechecked before the start receipt and before
+every append, and every entry, including the final entry, must be file-fsynced
+before another draw or a completed source receipt.  A completed receipt must
+bind the journal digest, final head, exact count 2,048, and the same ordered
+seed-value commitment later cross-checked against the capsule.  Canonical
+syntax or a digest alone cannot establish source authority or iid uniform
+sampling.
+
+A durably committed acquisition start spends the attempt.  Any durable seed
+value also spends it.  If a source returns a value that cannot be journaled
+and fsynced, that value is not claimed retained, but the attempt is still
+spent and must terminalize `INCOMPLETE`.  Recovery accepts only the longest
+valid fsynced prefix; torn suffixes are not value evidence, and no resume,
+top-up, redraw, replacement, or reselection is allowed.  A partial-acquisition
+terminal receipt retains all durably journaled values.  The complete source
+receipt and partial terminal receipt are mutually exclusive.
+
+The runtime receipt must be attempt- and freeze-bound, postdate freeze, match
+the exact dependency lock, bind a complete source manifest including the
+externally bound CP64 source, record the pre-import environment, loaded local
+source closure, executable/framework/stdlib and NumPy/SciPy payload closures,
+and the compiled ABI map.  CP62's candidate runtime lock is a predecessor
+binding only: CP64 neither recomputes the full production lock nor verifies a
+production match.
+
+Capacity passes only after exclusive, disjoint destination and auxiliary
+reservations have actually been established on the same storage root and
+filesystem.  The destination reservation floor is 1,099,511,627,776 bytes
+(1 TiB); the conservative auxiliary-metadata reservation floor is
+34,359,738,368 bytes (32 GiB); and the combined floor is
+1,133,871,366,144 bytes.  Both physical non-sparse allocation and enforced
+quota must satisfy the applicable floor before and after reservation, at
+least 4,096 inodes must remain, and all filesystem/reservation verifications
+must pass.  A free-space or quota snapshot alone is insufficient.  The
+auxiliary reservation must remain exclusive, same-root, non-double-counted,
+consumed in place, and retained until commit.  Because the complete auxiliary
+type/range/size schema and bounded-size proof are not yet frozen or present,
+the capacity predicate is false in CP64.
+
+The frozen candidate policy partitions the 2,048 seed ordinals into 32
+contiguous shards of 64 seeds and 1,024 seed-major logical requests each.  All
+sixteen rows for one seed stay together.  Each candidate shard has a
+26,910,665,728-byte payload ceiling and an exact 34,359,738,368-byte (32-GiB)
+destination reservation; the 32 reservations total exactly 1 TiB.  Four
+reserved destination partial files per shard cover requests, raw records,
+stable traces, and bounded stderr records.  The future shard-map receipt must
+reproduce every candidate range/path/partition exactly, bind four ordered
+per-file reservation-entry digests, the schedule, capacity and durability
+receipts, the reservation manifest, and the attempt.  The candidate policy is
+frozen as a definition but is not selected, bound, or instantiated for
+production.
+
+The durability contract declares a closed relative-path inventory of 36
+global paths, eight paths per shard, and two conditional paths for partial
+seed acquisition and rejected authorization candidates.  Paths are
+POSIX-relative with no empty, dot, dot-dot, absolute, or backslash components;
+symlinks, hardlinks, overwrite, and post-commit append are forbidden.  This is
+the scaffolded acquisition-path inventory, not a frozen complete production
+roster.  Reserved partial inodes are exclusive, non-sparse, consumed in place,
+verified against the reservation manifest and inode identity, truncated only
+after complete writing, file-fsynced, hashed, renamed without replacement in
+the same directory, and followed by a directory fsync.  Raw records remain
+separately retained, and a stable projection never replaces them.
+`COMMITTED.json`, created only after the terminal state and SHA-256 manifest,
+is the sole publication boundary.
+
+Launch selection is a two-stage durable choice.  Before an `AUTHORIZATION`
+arm may win, an authorization candidate must already exist as an exclusive,
+no-follow, fsynced `launch_authorization.json.partial`.  The exclusive
+`preauthorization_outcome.json` chooses either `AUTHORIZATION` or one frozen
+prestart terminal arm.  Recovery completes that winner without reselection:
+the authorization winner publishes the verified prepared bytes by
+rename-no-replace and directory fsync; a terminal winner never publishes a
+final authorization and conditionally retains the losing prepared bytes as
+`rejected_launch_authorization_candidate.json`.  After final authorization,
+the exclusive `postauthorization_outcome.json` chooses either `STARTED` or a
+postauthorization prestart terminal arm.  Its winner is likewise recoverable
+without reselection.  A durable started arm and its binding `STARTED.json`
+must both precede every production runner, RNG, or child process.
+
+There are seventeen ordered production gates.  The preflight summary covers
+the first fifteen and requires fifteen aligned `PASS` states and fifteen exact
+nonzero evidence digests.  Independent signoff is gate 16, and explicit
+launch authorization is gate 17.  The future digest graph has twenty nodes
+and forty-four edges; it is acyclic and launch authorization is its sole
+sink.  CP64 supplies schemas and cross-bindings only: all seventeen gate
+states are `MISSING`, the evidence-present count is zero, and no summary,
+signoff, authorization, `STARTED.json`, durable output, metric, interval, or
+decision exists.
+
+In order, the gates are:
+
+1. `v15-protocol-sidecar-and-machine-manifest-frozen`;
+2. `complete-production-source-manifest`;
+3. `exact-dependency-lock-matched`;
+4. `full-production-runtime-lock-recomputed-and-matched`;
+5. `external-seed-source-receipt-and-authority`;
+6. `external-seed-capsule-sequence-crosscheck`;
+7. `production-request-schedule-materialized`;
+8. `capacity-receipt-meets-usable-and-quota-floor`;
+9. `durable-writer-qualified`;
+10. `production-shard-map-selected-and-materialized`;
+11. `production-runner-supervisor-qualified`;
+12. `closed-refusal-failure-classifier-qualified`;
+13. `independent-full-32768-recomputation-qualified`;
+14. `independent-554-estimate-interval-decision-path-qualified`;
+15. `power-review-and-32-primary-thresholds-frozen`;
+16. `independent-review-signoffs-present`; and
+17. `explicit-launch-authorization-present`.
+
+Consequently CP64 satisfies only the hash-bound nonconfirmatory scaffold
+prerequisite `whole_seed_production_custody_preflight_scaffold_definition`.
+It does not close `runner_and_recomputation`,
+`unconditional_operational_predictions`, `power_and_thresholds`, or
+`confirmatory_custody`; it creates no production evidence and leaves Formal
+Test 28 open.
+
+### 3.11 Zero-execution production schema, preimages, and validators
+
+CP65's authoritative zero-argument bundle is deterministic and standard-
+library-only at import.  It pins the exact v15 protocol at 125,063 bytes and
+SHA-256
+`79074586ce77d5a57ad49193098b0ba7c8e07e7446c002b42277572e10193df8`
+and the exact v15 machine manifest at 2,038,189 bytes and SHA-256
+`e9cd67841d12325e06cdd645e79d40737937b36d6052275ffb9e5185d8978376`.
+It also pins the CP64 source, test, bundle, and no-execution-gate records.
+Those are predecessor-custody facts only.  In particular, v15 remains DRAFT,
+the lifecycle remains `DRAFT_PRE_FREEZE`, no complete production roster is
+frozen, and no source, receipt, authority, or production evidence is inferred
+from the pins.
+
+The catalog contains exactly 801 field rules, 64 artifact schemas, 310
+transient-path contracts, 211 digest-preimage contracts, 315 SHA-pointer
+contracts, 1,031 executable predicate contracts, seventeen gate requirements,
+and 65 auxiliary bounds.  Its 54 global paths, eight per-shard templates over
+32 shards, and two conditional paths expand to 312 final paths.  There are 310
+transient paths and 622 final-plus-transient paths.  The artifact partitions
+contain 41 receipt envelopes, fifteen referenced execution-output types, and
+eight frozen or binary custody types.  The preflight gate DAG remains the
+twenty-node, forty-four-edge evidence-only graph.  The separate artifact-
+preimage DAG contains 456 nodes and 708 edges and is complete and acyclic for
+the catalogued preimage relationships.
+
+The auxiliary proof covers every catalogued artifact exactly once, counts the
+mutually exclusive authorization alias once, and derives a maximum logical
+payload of 21,845,344,321 bytes, maximum artifact-slot reservation of
+22,213,099,520 bytes, and a 1,073,741,824-byte allocation-and-directory policy
+slot.  Their 23,286,841,344-byte policy maximum plus 11,072,897,024 bytes of
+exclusive headroom equals the existing 34,359,738,368-byte auxiliary
+reservation floor.  This is bounded integer arithmetic, not observed or
+allocated storage.
+
+The launch signature profile is exactly
+`rsa-pss-sha256-3072-e65537-salt32-v1`.  CP65 implements strict verification
+of a caller-supplied signature under a caller-supplied key; it implements no
+signer or key generation, contains no public key or signature instance, binds
+no trust root, and establishes neither authority nor launch authorization.
+Likewise, syntax, intrinsic digest, cross-binding, registry, and mathematical
+signature results over supplied bytes are never promoted to external
+provenance, evidence acceptance, gate transition, authorization, or execution.
+
+The source-independent module reconstructs the complete authoritative
+canonical catalog byte for byte and independently implements the bounded
+supplied-byte validators.  Its compact bundle carries the same ordered IDs,
+counts, graphs, semantic digest, and claim boundary, while retaining
+`authoritative_module_imported=false`, `project_modules_imported=false`, and
+every evidence, authority, launch, and execution flag false.  This structural
+independence is not an independent reviewer signoff or an authority claim.
+
+The exact completeness scope is
+`supplied-receipt-envelope-instance-canonical-fields-digests-and-pure-gate-predicates-only;excludes-lifecycle-occurrence-branch-presence-provenance-trust-evidence-and-execution-output-semantics`.
+Thus exact receipt keysets, field type/range/size/domain rules, bounded
+auxiliary-size proof, generic prestart terminal record, digest preimages,
+signature preimage/verifier, gate-requirement schemas, and final path-template
+roster are internally complete.  The production digest-instance validation
+interface, complete production roster, occurrence and branch schema,
+production receipt schema, execution/output schema, and production schema are
+not frozen.  No external receipt, seed, source authority, runtime, capacity,
+durability, selected shard map, qualified runner or classifier, threshold,
+freeze receipt, signoff, authorization, start, request, campaign, estimate,
+interval, decision, confirmatory evidence, or manuscript claim exists.
+
+Consequently CP65 satisfies only the hash-bound nonconfirmatory prerequisite
+`whole_seed_production_schema_preimage_and_validator_definition`.  The DRAFT
+ledger advances from 19/15/4 to 20/16/4 solely by adding this definition-only
+entry.  It closes none of `runner_and_recomputation`,
+`unconditional_operational_predictions`, `power_and_thresholds`, or
+`confirmatory_custody`.
+
+### 3.12 Development runner-supervisor and closed-classifier qualification
+
+CP66's pure zero-argument bundle pins the exact v16 protocol at 139,376 bytes,
+2,484 LF-terminated lines, and SHA-256
+`091c3e5240673165fd05c2042edc54bc0174353247b4fde47cf485bff969f3d8`,
+and the exact v16 machine manifest at 5,993,725 bytes, 118,260 LF-terminated
+lines, and SHA-256
+`1ec8fb9427b2f28fcad3a749c708d5520f48e21985185cf5afc92ea6e9dc618f`.
+It also pins the relevant CP62 supervisor and raw-record contracts, CP63
+runner and raw-record contracts, CP64 no-execution gate contract, and CP65
+schema semantics.  These are predecessor-custody facts only.  The builder
+executes no child, reads no sidecar or path, observes no host or production
+receipt, and exposes no generic command, path, request, seed, campaign, or
+production-execution surface.
+
+The closed fixture set contains exactly forty cases in fixed order: sixteen
+supervisor cases, sixteen accepted classifier-reachability cases, and eight
+classifier-rejection cases.  The supervisor matrix includes two valid clean
+one-frame returns, five deadline-censored cases, and nine infrastructure-
+invalid cases.  It exercises deadline equality and postdeadline completion,
+SIGTERM and SIGKILL escalation, descendant process-group cleanup, zero,
+multiple, truncated, and oversized frames, abnormal exit, incremental stderr
+overflow, a positive no-extra-file-descriptor/environment control, inherited-
+descriptor drift, and environment drift.  Three timeout cases require an
+empty process group; the descriptor and environment checks each have one
+positive and one negative case.
+
+Every supervisor result is derived from observed development child-process
+mechanics rather than a disposition table.  The parent authenticates the
+same-source closed child entry point and controlled environment, uses a new
+process group, performs bounded continuous stdout and stderr reads, rejects an
+oversized length before allocating its body, treats completion at or after the
+deadline as timeout, escalates TERM to KILL when needed, reaps the child, and
+checks required group emptiness.  The scaled qualification deadline is 750
+milliseconds, TERM grace is 100 milliseconds, reap ceiling is 500
+milliseconds, and pipe-EOF grace is 100 milliseconds; per-case and suite wall
+ceilings are five and thirty seconds.  The 16,777,216-byte raw-frame,
+1,048,576-byte stderr, and 16,384-byte classifier-payload caps are resource
+contracts for this harness, not production observations or workload budgets.
+
+The closed classifier contains twelve ordered event rules: five declared
+preexecution-refusal rules and seven declared execution-failure rules.  A
+refusal or failure is accepted only when its exact event kind, phase, closed
+status, and failure code resolve to one rule.  The three returned statuses and
+the deadline-censored status are separately closed.  Unknown phases, statuses,
+or codes, strategy-incompatible returns, cross-phase codes, and failure codes
+on returned or timeout observations are rejected; arbitrary base exceptions
+are infrastructure-invalid rather than mapped into the semantic refusal or
+failure alphabet.  The classifier never retries, drops, replaces, or tops up a
+request.
+
+The domain-separated fixture-set digest over the ordered supervisor and
+classifier record hashes is
+`a8a763a14097f2831258c2451df4daab344125d3d48a725758620a7e783920d5`.
+The exact 38,005-byte canonical bundle has plain SHA-256
+`e73e37c7365593834539a78f2614eeae073c5a57b866fb55f7e45d0508dce654`,
+record digest
+`409a3ad764c1f12e0212d1c63de8bf32df36380287f39a81a9f82c4674cecec2`,
+and public tagged digest
+`fc336af22f689ab985e960156d39e67034896f41a8857573e9ece01dbaaf03bd`.
+The final focused suite passes 109/109 tests on each recorded Python profile
+under concurrent execution: 24.98 seconds under Python 3.9 and 22.16 seconds
+under Python 3.11.
+
+This is scaled, nonconfirmatory development qualification.  The production
+timing constants of 300 seconds, two seconds, and five seconds are pinned but
+not exercised, so production clock fidelity remains unqualified.  No source
+manifest, production runtime receipt, freeze receipt, production qualification
+receipt, retained production record, evidence, launch, request, campaign, or
+execution is observed.  Consequently CP66 satisfies only
+`whole_seed_runner_supervisor_and_closed_classifier_qualification_harness` in
+state
+`SATISFIED_BY_HASH_BOUND_NONCONFIRMATORY_DEVELOPMENT_QUALIFICATION_ARTIFACTS`.
+The DRAFT ledger advances from 20/16/4 to 21/17/4, while gates 11 and 12 and
+all four production blockers remain `MISSING` and Formal Test 28 remains
+**OPEN**.
+
+### 3.13 Development full-schedule materializer qualification
+
+CP67's pure zero-argument bundle pins the exact v17 protocol at 149,739 bytes,
+2,648 LF-terminated lines, and SHA-256
+`7805865a4e988e0b3de75a702d9310228ac2da999d3413dc53aba2ee01c95516`,
+and the exact v17 machine manifest at 6,012,833 bytes, 118,501 LF-terminated
+lines, and SHA-256
+`1129896e5de5858e7d8714bd75d9a32629974b4efbcea6fd13ce9fcedef65339`.
+It additionally pins the CP61 stable design, CP62 runtime-lock records, CP63
+capsule and schedule contracts, the authoritative and source-independent CP65
+schema semantics, and the CP66 qualification bundle.  These are predecessor-
+custody facts only.  The builder imports no project module, materializes no
+schedule, reads no path, observes no host, and exposes no caller-supplied seed,
+capsule, request, path, production-materialization, or campaign surface.
+
+The one closed development fixture contains exactly 2,048 distinct lowercase
+sixteen-hex-digit values, with seed value equal to seed ordinal minus one.
+Thus its range is `0000000000000000` through `00000000000007ff`.  The ordered-
+value digest is
+`cc2f7772823c44e3c417b4aa941268d4ffd464b9fd15a43fb8cc46c7aa531c09`.
+The 48,711-byte capsule has canonical SHA-256
+`48a171ca9e17561830297a96d7a98777266c04e91eccb2db4c7d91111fa62422`
+and body digest
+`f4854575583657c85d912816b6938503c9882fc488ff46f9b2407ba288cb8164`.
+Its source and acquisition-session identifiers are domain-separated synthetic
+sentinels, and its freeze field is the nonreceipt sentinel
+`40e5b236a608a00a50bade2de14154bb23214abc9d7984e50c6401de4dcb1ed7`.
+None authenticates a source, proves an IID law, or constitutes production
+evidence.
+
+The qualification parses the capsule once directly.  Each CP63 bound-request
+call reparses internally, so the truthful effective parser count is twenty-one.
+The twenty exact CP63 logical-request exemplars are 1 through 17, 32,752,
+32,753, and 32,768.  They cover all sixteen row shapes and both seed-boundary
+shapes.  The remaining rows are generated locally from the frozen seed-major
+formula, with each seed value passed unchanged as `plan_seed`.  The resulting
+26,749,445-byte schedule has canonical SHA-256
+`c830af2b1ff54e14dd6684d935a45bb1eabcf90abaa3ebe68e38a06c9176b544`,
+body digest
+`8e9156150a5666e5986d6e71eb0563c6e72aee2faa9bf013e1b47a99e2fda798`,
+ordered-request digest
+`ef4a97159d9b5e4828f5fc60c314d34ec48eeaa9a02c784c0dba654cd6b17be9`,
+first-row digest
+`72755276c4acb052d2148a26613d6b0ae4291e91d20c287b74014a9eb267b17f`,
+and last-row digest
+`8346f0a5f538d3fc2f065411da2d99f11736d9ae6237b9c5f04cccd6da803512`.
+All 32,768 request-instance and row digests are unique for this development
+fixture.
+
+Both CP65 validators accept the payload's bounded syntax and intrinsic digest
+preimages and report the same structural result: 98,307 validated and 65,539
+unresolved digest preimages, plus zero validated and three unresolved cross-
+artifact bindings.  The authoritative and independent validation-record
+digests are respectively
+`8b9cc46bf3944f109b602f3a0a4ed2ef2c29bae06f5580d1d48ab833528fae68`
+and
+`bc57a8fd08754b97176622f7543cc63725f8c89fa57bb779042e72f1c0d9eefa`.
+Unresolved sources and targets remain unresolved: neither validator accepts
+production evidence or permits execution.
+
+The domain-separated qualification fixture-set digest is
+`e5f48b09da24f6a98d1fb3fa0e903dffb306db56233001c1dc6eaa742a2f2a0c`.
+The exact 10,695-byte canonical bundle has plain SHA-256
+`6f047d5dc8cd0045220e289c13a14f86e6eeeda3374af7e5f60f9da0f69d13d4`,
+record digest
+`12dd4c44682a7db53a65258f146e96f6248755ebf2f2ed1db6aa0f4ad3d99c35`,
+and public tagged digest
+`80cd78507443c1826d0691db3f9857b39ffae356fcf356898d5694eb5cb6d548`.
+The compact 3,452-byte qualification record has plain SHA-256
+`40557ed8b88cd02a9c283da15eb3e6e25757e11b7d1135a8bd47a5e6524dae18`,
+record digest
+`b7572677e2188ac6fd68534a0ac208b7d806a9929298efac7274119509d2e078`,
+and public tagged digest
+`874ae10763dfc9d3ae7829c91bb96915f09f10e0944bad6a3cec6c93d0badb17`.
+The final focused suite passes 31/31 tests under the recorded Python 3.11 and
+3.12 profiles.  Under Python 3.9, 23 tests pass and eight runtime-path tests
+are explicitly skipped because the CP63/CP65 runtime qualification requires
+Python 3.10 or newer.
+
+This is nonconfirmatory development qualification over one synthetic fixture.
+The large schedule exists only transiently in memory and is discarded before
+the compact receipt is returned.  No production seed capsule or schedule,
+external source law, source authority, freeze receipt, runtime observation,
+retained request set, production runner, campaign, gate evidence, estimate,
+interval, decision, authorization, or execution is present.  Consequently
+CP67 satisfies only
+`whole_seed_full_schedule_materializer_qualification` in state
+`SATISFIED_BY_HASH_BOUND_NONCONFIRMATORY_DEVELOPMENT_QUALIFICATION_ARTIFACTS`.
+The DRAFT ledger advances from 21/17/4 to 22/18/4, while gate 7 and all four
+production blockers remain `MISSING` and Formal Test 28 remains **OPEN**.
+
+### 3.14 Development compact-projection aggregation and output-schema qualification
+
+CP68's pure zero-argument bundle pins the exact v18 protocol at 161,456 bytes,
+2,838 LF-terminated lines, and SHA-256
+`857d6ac7e35c0ba3f7f49d63f18c0f4558fa82528aa4fc3dda0ccf3bbdcea9a0`,
+and the exact v18 machine manifest at 6,035,828 bytes, 118,788 LF-terminated
+lines, and SHA-256
+`5f4f4bc2cf18f1e8bf10b39fa4bfa7c3e2d942d423c6f134d3e25e7f79df63c3`.
+It additionally pins the CP58 feature registries, CP61 design and estimand
+contracts, the CP63 independent receipt and schedule contract, and the CP67
+materializer source, test, bundle, fixture set, and schedule expectation.
+These are predecessor-custody facts only.  Neither the builder nor the runner
+imports a predecessor or any other project module.  Both read no path, observe
+no host, clock, RNG, network, or subprocess, and expose no caller-supplied
+projection, raw-record, stable-trace, path, production-recomputation, or
+campaign surface.
+
+The one closed synthetic fixture streams exactly 32,768 compact projections in
+seed-major, row-minor order over 2,048 seed ordinals and sixteen frozen rows.
+The selected counts by row are
+`(2048,1040,1039,0,2048,1040,1039,0,0,1039,1040,2048,0,1039,1040,2048)`.
+The stream covers every frozen observable cell and rejection first-attempt
+event while retaining at most one projection and never retaining the complete
+corpus.  Its domain-separated fixture-set digest is
+`6b8d7db706b94c32ee53efe9969e16560997e0f7b2345960e44ad4f18feb49ce`,
+and its ordered-projection digest is
+`f898741b035d59116f6e096a1deab6c642f83dd3ad0417b7995e182584731f42`.
+The projections are compact synthetic development values; they are not
+production raw records, stable traces, externally sourced requests, or
+admissible gate evidence.
+
+The aggregator emits exactly 554 sealed records under schema
+`cp68-estimate-interval-output-v1`: 242 binomial records and 312 bounded-feature
+records.  Exact Clopper--Pearson endpoints are independently certified on the
+2^-256 dyadic grid with per-tail budget 1/110800 for the binomial records.
+The feature rule requires at least 1,040 selected observations and uses the
+frozen three-fortieths range halfwidth clipped to each feature's bounds.  The
+closed fixture produces 398 computed intervals, comprising all 242 binomial
+and 156 feature intervals, plus 156 feature records in the exact
+`insufficient-selection` state.  No decision field is present.  The ordered
+estimand-record-digest aggregate is
+`c0dbf7e789551510c2cbf0abca77e755959609b11510c6e835d12b999abb6f06`,
+the output body digest is
+`03915b689c41c673805b1b46c76ef1dc296e3434522fbb28a153715cdd052fc5`,
+and the 660,947-byte canonical output has plain SHA-256
+`f9e1bf93354af057d08ca722d2cffe1a8188d2f1e823a0173f9b6a937ddc42c3`.
+
+The exact 7,335-byte canonical bundle has plain SHA-256
+`ff70910b3b37cc60c06e11dbf2b9ab3a7df0319a3c9d3e2f6cae3d7600dac2b0`,
+record digest
+`b301ea4cadb8a67fa238dfa5872c874b4689a08b7baec04f1133bef7191a2a83`,
+and public tagged digest
+`06f60b51bf77504f5144637a67680436638cacf75bd6a9a8b2f7a1c5cff7c9ed`.
+The exact 1,571-byte canonical qualification record has plain SHA-256
+`20c33cc99f7ad39908ed8ec8bafef7dcafb95a7e98ba32bc9e0fb8bc32b5261b`,
+record digest
+`881dc5b6539504a3bf42957d7e0b4298484db0cfd637e3fe861ce9847cf81400`,
+and public tagged digest
+`bcfafd20c223e0d5430070a9aa213bf8f020496e051045d93553723939e9abc2`.
+The final focused Python 3.11 suite passes 57/57 tests with warnings treated as
+errors in 130.28 seconds of pytest time (real 130.45, user 129.11, sys 0.84
+seconds).
+
+This is nonconfirmatory development qualification over one closed synthetic
+fixture.  It qualifies only streaming compact-projection aggregation and the
+shape and exact arithmetic of the 554 estimate/interval output records.  It
+does not parse or recompute production raw records or stable traces, verify a
+source or runtime, retain a production sample, instantiate or qualify a
+production runner, writer, shard map, campaign, decision, or independent full
+recomputation, produce a production qualification receipt, or supply evidence
+for gates 13 or 14.  Consequently CP68 satisfies only
+`whole_seed_full_schedule_compact_projection_aggregation_and_estimate_interval_output_schema_qualification`
+in state
+`SATISFIED_BY_HASH_BOUND_NONCONFIRMATORY_DEVELOPMENT_QUALIFICATION_ARTIFACTS`.
+The DRAFT ledger advances from 22/18/4 to 23/19/4, while gates 13 and 14 and
+all four production blockers remain `MISSING` and Formal Test 28 remains
+**OPEN**.
+
+### 3.15 Development CP63-compact to CP68-projection byte-interchange qualification
+
+CP69's pure zero-argument bundle pins the exact v19 protocol at 174,492 bytes,
+3,019 LF-terminated lines, and SHA-256
+`38558ba7f67f56fb21aa6974ee9a932350ffb703d47fc6b972e22b322a444d08`,
+and the exact v19 machine manifest at 6,059,388 bytes, 119,095 LF-terminated
+lines, and SHA-256
+`3649c90d3d1ddffa9edae27625246c0f97399c7c60319a5c09d7fa20b365b1ae`.
+It additionally pins the CP61 design and projection contract, the CP63 runner,
+independent compact semantics, rehearsal receipt and schedule contract, the
+CP67 schedule expectation, and the CP68 source, test, bundle, qualification,
+synthetic projection contract, aggregation expectation, fixture, ordered
+projection, and output digest.  These are predecessor-custody facts only.
+Neither the builder nor runner imports a predecessor or any other project
+module or reads a path, host, clock, RNG, network, or subprocess.
+
+The interchange schema is
+`cp69-test28-compact-projection-interchange-qualification-v1`.  It requires
+exact ASCII canonical JSON with lexicographically sorted keys, no whitespace,
+BOM, duplicate key, float, exponent, or nonfinite value, exact scalar types,
+and reduced rational values encoded as one-key `$fraction` objects containing
+two canonical decimal-integer strings with a positive denominator.  Each
+record is limited to 65,536 bytes, depth 16, 512 canonical nodes, 4,096 bytes
+per text value, and 256 bits per integer or fraction component; the complete
+stream is capped at 2,147,483,648 bytes.  The parser validates the frozen row
+roster and formula
+`(seed_ordinal-1)*16+row_ordinal`, outcome, selected-attempt, contribution-
+ordinal, and selected-feature semantics.  It transports
+`seed_free_request_sha256`, `request_instance_sha256`,
+`runtime_lock_sha256`, and `stable_trace_sha256` only as opaque custody links;
+their lowercase digest shape is checked, but their provenance is not
+authenticated.  Duplicate plan-seed values at distinct ordinals remain
+admissible.
+
+The closed fixture contains exactly 2,048 by sixteen, or 32,768, byte records
+in seed-major, row-minor order.  Its selected counts by row are
+`(2048,1040,1039,0,2048,1040,1039,0,0,1039,1040,2048,0,1039,1040,2048)`;
+the six status totals are 8,254 rejection selections, 2,034 rejection
+exhaustions, 8,254 SIR selections, 4,744 refusals, 4,742 failures, and 4,740
+timeouts.  There are 8,254 rejection first-attempt contributions and 321,906
+selected-feature contributions.  The 32,768 inputs total 51,506,557 bytes,
+but the runner retains at most one input payload, parsed observation, and
+projection view and never retains the corpus.  The fixture-set digest is
+`95a388b634e208b8d7b578a18657289390fe9306e23a4e5ecb3ed084771a8303`.
+The first and ordered CP69 interchange-record digests are respectively
+`de2237dfb851b4370d25cfa9b72698a73d6ea4c1c4f70b654f509999ecec34b8`
+and
+`754b058697dc9324611152b4987925a414520fc98dd764571321c3135d0ecc8d`.
+The mapped first and ordered CP68 projection digests are respectively
+`b40854463d8f441614621319f2e7a774059cd757d75284750906f84222744796`
+and
+`f898741b035d59116f6e096a1deab6c642f83dd3ad0417b7995e182584731f42`;
+the latter exactly reproduces CP68's frozen complete-stream expectation.
+
+The exact 8,325-byte canonical bundle has plain SHA-256
+`2182052b68c97db3ba9bba62abbaca31af194dcecf496e670dd11de9fae8bfb0`,
+record digest
+`39c937d3d78913fb7f91b777bc676648eddac6e38696b26973eb55a55becfe26`,
+and public tagged digest
+`19c98261b71da70f6c271f1c934f41443e9d0a2663ea7fe77f01c6b799a7d65b`.
+Its predecessor-custody and interchange-contract record digests are
+`148d99959321cfb9d231fa4a09f781dc7dc8fe33a4b3a7503737ea51b56582f5`
+and
+`6b64acc21209a7d32a1ddadcc45e0ced2f13eb94b87d571bd32f1d007b906caa`.
+The exact 1,107-byte full-stream expectation has plain SHA-256
+`30807b50492da369e485f477d037b757845ae5824df8e497e99df62e26a9bfdc`,
+record digest
+`6043a6241ffc74ac14b395b052f87f22627beae43e2132992b2bb0e6a156289f`,
+and public tagged digest
+`0a21e02f3209d9bfaed30004fa27f2e8a70920f1c2281f3a5d73d9e97e0fc1e9`.
+The exact 1,677-byte qualification record has plain SHA-256
+`69dcd5804b44fd62e2ebc6cbae6f12abd65ea5af7b1da1b168a20456c3944b53`,
+record digest
+`88dd43071ecf0545c9496e80b5de682ea9b7b0a5980a5fabe5b0f46f83586ab1`,
+and public tagged digest
+`3c09fc8e72509ae8c6d7c439b9d0b428dc83e02366ec7cf67ce06df2d6e46a68`.
+The final locked focused Python 3.11 suite passes 77/77 tests with warnings
+treated as errors in 239.12 seconds of pytest time (real 239.38, user 234.00,
+sys 3.10 seconds), with exit code zero.
+
+This is nonconfirmatory transport qualification over closed synthetic bytes.
+It creates no stable-trace intermediate schema and does not parse or recompute
+production raw records or stable traces, authenticate the four custody links,
+verify a source or runtime, retain a production sample, compute an estimate,
+interval, threshold, or decision, instantiate or qualify a production runner,
+writer, shard map, campaign, or independent full recomputation, accept
+evidence, produce a production qualification receipt, or supply any of the
+seventeen gate artifacts.  Consequently CP69 satisfies only
+`whole_seed_cp63_compact_semantics_to_cp68_projection_interchange_qualification`
+in state
+`SATISFIED_BY_HASH_BOUND_NONCONFIRMATORY_DEVELOPMENT_QUALIFICATION_ARTIFACTS`.
+The DRAFT ledger advances from 23/19/4 to 24/20/4, while all seventeen gates
+and all four production blockers remain `MISSING`, the lifecycle remains
+`DRAFT_PRE_FREEZE`, and Formal Test 28 remains **OPEN**.
+
+### 3.16 Development CP69-interchange to CP68-output reduction and validation qualification
+
+CP70's pure zero-argument bundle pins the exact v20 protocol at 189,122 bytes,
+3,228 LF-terminated lines, and SHA-256
+`9db40f14eade99cbfedb6d5ad8b28f04cf803f400cf8198629751f2dda46d2b0`,
+and the exact v20 machine manifest at 6,084,812 bytes, 119,427 LF-terminated
+lines, and SHA-256
+`29b718873e5ea5b3b829b267c1d917f0c6e0cc3ee9b0b1455b2b3142c4bfb909`.
+It additionally pins the CP61 design and projection contract, the CP63
+independent compact semantics and schedule contract, the CP68 aggregation
+source, test, bundle, output schema, expectation, qualification, fixture,
+ordered projection, ordered estimand-record digest, output-body digest, and
+output bytes, and the CP69 source, test, bundle, interchange contract,
+full-stream expectation, qualification, fixture, first and ordered
+interchange-record digests, total bytes, and ordered target projection.
+These are predecessor-custody facts only.  Neither the builder nor runner
+imports a predecessor or any other project module or reads a path, host,
+clock, RNG, network, or subprocess.
+
+The CP70 schema is
+`cp70-test28-estimate-interval-output-validation-qualification-v1`.  The
+sole public caller-data surface accepts only exact `bytes` containing the
+complete canonical CP68 554-record output body and either raises a stable
+CP70 error or returns one sealed validation record; it exposes no generic
+public stream reducer and permits no partial result or permissive mode.  The
+bounded decoder requires exact ASCII canonical JSON with lexicographically
+sorted keys, no whitespace, BOM, duplicate key, float, exponent, nonfinite
+value, or nonminimal fraction.  Fractions use one-key `$fraction` objects
+with two canonical reduced decimal strings and a positive denominator.  The
+output is capped at 1,048,576 bytes, eight nested containers with the root
+container counted as one, 32,768 decoded nodes, 64 characters per input key,
+256 characters per input text value, 155 decimal digits, and 512 bits per
+integer or fraction component.  The validator checks the exact root and
+estimand field sets, ordinal and 72/170/312 family union, all 554 record
+digests, output-body and payload digests, selected-count roster, computed
+versus insufficient interval states, exact rational arithmetic, membership in
+the frozen Clopper--Pearson endpoint table, feature threshold, and clipping,
+then requires exact equality with the closed CP68 fixture bytes.
+
+The private injection seam and zero-argument qualification runner stream
+exactly 2,048 by sixteen, or 32,768, closed CP69-equivalent records in
+seed-major, row-minor order.  Each record is capped at 65,536 bytes and the
+stream at 67,108,864 bytes.  The reducer parses directly into fixed output
+sufficient-statistic maps of sizes 72, 170, 16, and 312 and one six-entry
+diagnostic status-count map.  It retains at most one input payload and one
+parsed observation, never retains the interchange corpus, creates no sealed
+CP68 projection records, and constructs one 554-record output vector that is
+serialized and discarded before the public validator is invoked.  Plain CP68
+projection digest-preimage mappings are created transiently and discarded.
+The reducer output vector and the independent closed expected-output vector
+are never simultaneously materialized, and the closed cache retains only the
+output bytes and four scalar summaries.
+
+The closed fixture reproduces 51,506,557 CP69 input bytes, 362,928 aggregation
+updates, selected counts
+`(2048,1040,1039,0,2048,1040,1039,0,0,1039,1040,2048,0,1039,1040,2048)`,
+and the same six status totals as CP69.  It emits exactly 554 records: 72
+observable, 170 rejection-first-attempt, and 312 feature estimands; 242 use
+binomial intervals, 156 feature intervals are computed, 156 feature intervals
+are marked insufficient selection, and 398 intervals are computed in total.
+The sixteen distinct binomial counts use a frozen endpoint table independently
+certified by sixty adjacent-boundary comparisons.  The CP69 first and ordered
+interchange digests remain
+`de2237dfb851b4370d25cfa9b72698a73d6ea4c1c4f70b654f509999ecec34b8`
+and
+`754b058697dc9324611152b4987925a414520fc98dd764571321c3135d0ecc8d`;
+the ordered CP68 projection digest is
+`f898741b035d59116f6e096a1deab6c642f83dd3ad0417b7995e182584731f42`.
+The exact 660,947-byte output has ordered-estimand-record digest
+`c0dbf7e789551510c2cbf0abca77e755959609b11510c6e835d12b999abb6f06`,
+body digest
+`03915b689c41c673805b1b46c76ef1dc296e3434522fbb28a153715cdd052fc5`,
+and untagged canonical-byte digest
+`f9e1bf93354af057d08ca722d2cffe1a8188d2f1e823a0173f9b6a937ddc42c3`,
+exactly reproducing CP68.
+
+The seven sealed CP70 records bind the following canonical-byte, plain
+SHA-256, record-digest, and public-tagged-digest values:
+
+- predecessor custody: 3,429 bytes,
+  `a091fb2f590cb065a39455aa9b940c822dc5b22f25d05280c0805e1cdf2a38f6`,
+  `21edeea3ea0b15daf5ca0e5e336870030802bf8831a4ca5c918b9ad4995ff96d`,
+  and
+  `0e6f824423045d48ca7e9c3bb69dd85aeec6eb3a216122409cc78c301b4c32e7`;
+- source-independent reducer contract: 1,136 bytes,
+  `41af4d1593b60dac7c5748c7099ed5cf71944ccf61d9f2fc7876259c5ae0c2a1`,
+  `e171fa6fdb59ee7590189a8d07e67351d6554dfbef30b623f17b8c6b528d82f3`,
+  and
+  `6ed22b204092e11fc1f7221120d093036cf1a684672846af0897bc6b66273e8f`;
+- output-validation contract: 1,984 bytes,
+  `eee152b8ebf784b8e82425c0ffd701432519b1ee047effee765fce57eaddc530`,
+  `2d79f23b1ed937d94474bbc76f18f7469ff4f7ddf2510104a7eab4b39bf07611`,
+  and
+  `bc6040f42c7e72459ba1a131c139b689ab59a5e90b9b5f6f44ad14e30dcba9df`;
+- full-reduction expectation: 1,646 bytes,
+  `149cdd4ec073e15f43f0c086fbe677e0ec23e0e3229e0835782cfafaa7023076`,
+  `2cdd17a35ce37a8328c55ceddc9ed5b031dd2180c8ce2474740d3987f557d54c`,
+  and
+  `d234979eb77664592ab4a42f4f4adca5b52b86d22f1711da5931ce939b87bebb`;
+- exact-output validation: 1,454 bytes,
+  `df5aefce366a7d25e72fc0b30cee43b73204480af8711f6a4f07aa1334a7bdc8`,
+  `3980afcc98153cd55b0777c6a23f661fa5bd65ae8baff3ed30682fb7d809dc48`,
+  and
+  `afff0d186e0784cd00ecb6bdbb44648317836dbe2e5f1e0d352664a3371e5cdf`;
+- closed qualification: 1,787 bytes,
+  `752a60dc7fd3407675c782499ee36f575e1d005a87c0d64195c8b056a0d826dc`,
+  `5806f256e0b6601cc04b01aef132f58683334a3f1f35a99ae08c8cb9dbdedf96`,
+  and
+  `1c1c48d1be4580d958ecb196de693b5ccd6c94a2da342fb7bc4186e26989f21f`;
+  and
+- bundle: 10,970 bytes,
+  `f058b7ed5b72c967c8e98c2694563bebff9646a84b8292561194dcd4692f112c`,
+  `efb07acf0f8c591f5a8d4a088ec7b863a27a871c4f78661659c063cdf1aaf761`,
+  and
+  `0ed1bb0ced1636f8dc73e8ec49c4d1c947b75b27922c0038bdccfce3506fee13`.
+
+The final locked focused Python 3.11 suite passes 85/85 tests with warnings
+treated as errors in 161.65 seconds of pytest time (real 161.90, user 160.52,
+sys 0.55 seconds), with exit code zero.  It covers exact v20 and predecessor
+custody, independent reconstruction of all 32,768 interchange records and all
+554 output records, canonical grammar and fraction bounds, depth and node
+boundaries, exact Clopper--Pearson and feature arithmetic, corruption and
+resource attacks, iterator failures, cache retention and recovery, zero I/O
+and project imports, sealed-record type and identity custody including
+garbage-collection identity reuse, concurrency, tamper, Python 3.9
+compatibility, and explicit production nonclaims.
+
+This is nonconfirmatory development reduction and output-transport
+qualification over one closed synthetic fixture.  It does not authenticate
+the CP69 custody strings, define or parse a production raw record or stable
+trace, perform production recomputation, retain a production sample, compute
+or accept a production estimate or interval, qualify a decision path, expose
+a production runner, writer, shard, campaign, receipt, evidence, threshold, or
+authorization surface, produce production gate evidence, or supply a
+production qualification receipt.  Consequently CP70 satisfies only
+`whole_seed_cp69_compact_interchange_to_cp68_estimate_interval_output_source_independent_reducer_qualification`
+in state
+`SATISFIED_BY_HASH_BOUND_NONCONFIRMATORY_DEVELOPMENT_QUALIFICATION_ARTIFACTS`.
+The DRAFT ledger advances from 24/20/4 to 25/21/4, while all seventeen gates
+and all four production blockers remain `MISSING`, the lifecycle remains
+`DRAFT_PRE_FREEZE`, and Formal Test 28 remains **OPEN**.
+
+### 3.17 Bounded supplied CP69-interchange recomputation qualification
+
+CP71's pure zero-argument bundle pins the exact v21 protocol at 207,784 bytes,
+3,499 LF-terminated lines, and SHA-256
+`9287dc30849f9ba9fad37ed7e8a8c77bd49890b269f2ae63238947cb6cde2b9e`,
+and the exact v21 machine manifest at 6,114,005 bytes, 119,813 LF-terminated
+lines, and SHA-256
+`8fa3dbfece347406099c8521e178543761430b0a1493489c719ca543b29bd185`.
+It separately binds CP61 design and projection custody, CP63 independent
+compact semantics and schedule custody, CP68 aggregation/output custody,
+CP69 interchange custody, and CP70 reducer/output-validation custody.  These
+are exact predecessor identities only.  They authenticate no source, runtime,
+request, stable trace, plan seed, or production observation.
+
+The CP71 schema is
+`cp71-test28-supplied-interchange-recomputation-qualification-v1`.  Its sole
+public caller-data processing surface,
+`cp71_reduce_supplied_cp69_interchange_byte_stream`, accepts one caller
+iterable, invokes exactly 32,769 `next` operations on a successful call, never
+calls the iterable's `close`, and requires exactly 32,768 exact `bytes`
+payloads in seed-major, row-minor order.  Caller-iterator side effects,
+retention, and `next` liveness are outside the contract.  Only the module's
+direct filesystem, path, clock, RNG, network, and subprocess behavior is
+qualified as absent.  The module exposes no public parser, output validator,
+projection mapper, raw-record, stable-trace, filesystem-path, writer,
+primary-decision-threshold, decision, or evidence API.
+
+Each input must be exact ASCII canonical JSON under the frozen CP69 field and
+fraction grammar, including exact ordinal, row, outcome, feature, and record-
+digest semantics.  CP71 additionally requires one plan-seed value across each
+sixteen-row seed-ordinal group, exact matching of the sixteen development
+row-identity digests, and one coherent runtime-lock digest across the stream;
+duplicate plan-seed values across distinct seed ordinals remain admissible.
+The request-instance, stable-trace, runtime-lock, and seed-free-request digests
+are integrity/coherence identifiers only and are not authenticated custody or
+production request-schedule evidence.  The admitted domain is explicitly the
+intersection of CP69-semantic validity and CP71 resource bounds, not every
+possible CP69 stream.
+
+The bounds are 65,536 bytes per input record, 268,435,456 cumulative input
+bytes, depth sixteen, 512 decoded nodes, 4,096 input-text bytes, eighty decimal
+digits and 256 bits per input integer or fraction component, 4,096 bits per
+aggregate numerator and denominator after every update and derived arithmetic
+step, 2,049 cached exact binomial endpoint pairs, 65,536 bytes per output
+record, 8,388,608 bytes for the complete output, and exactly 554 output
+records.  On successful return the module owns at most one input payload and
+one parsed observation at a time, retains at most 2,048 plan-seed scalar
+values, materializes no full input corpus, and retains no input record or
+output body.  Canonical output serialization can simultaneously materialize
+at most 1,108 output-record mappings.  The sealed scalar-summary snapshot is
+retained only while its weak-key summary remains live; exception tracebacks
+can retain caller-call locals.
+
+The reducer emits 242 binomial and 312 selected-conditional bounded-feature
+estimands under new CP71 dynamic-input domains.  Binomial intervals are exact
+rational Clopper--Pearson equivalent outward endpoints on the \(2^{-256}\)
+grid for every encountered success count from zero through 2,048.  Feature
+means are present for every positive selected count; their clipped fixed-range
+intervals are present only at selected count at least 1,040.  These numeric
+estimand fields and arithmetic are compatible with CP68, while the binomial
+denominator is truthfully labelled as all 2,048 supplied seed-ordinal groups.
+The CP61 estimand digests are inventory crosswalks only; CP61 semantics,
+external seed provenance, iid/source law, coverage, and production-attempt
+validity are not claimed.  CP68 domains are used only in the private exact
+closed-baseline compatibility calculation and never for a caller-supplied
+dynamic stream.
+
+The four qualification fixtures, in frozen order, are
+`cp69-closed-baseline`, `all-selected-duplicate-pair-plan-seeds`,
+`all-nonselected-cyclic-statuses`, and `novel-k-mixed-selection`.  Their
+fixture-set digest is
+`bb4347afaca9e0ea41cb5b38ac74a3186b63fd95da9b4546b50de6aa1ffa83af`.
+Their stream commitments are, respectively,
+`ae84c3690749ec9d1c3926809604c12fb882eea33088eaff0e75e6f8c9f14ec9`,
+`50d761fd6f69e48a99af2eef9f6ace38e3215be712021addfb788ae223321ad5`,
+`93b88afc2089ff298dd1c4f07f471709c30a191ccf74dbfe86be123c73624fb7`,
+and
+`4a511d091f6fc8078996a120ac6ce28f8c31a2847347c8507d332f8a63f6410a`.
+Their summary record digests are
+`638d0450373f1f8b62df27af8106dba81a141999c5124f3830109723bbe575a6`,
+`449deac5eeffa209cb2a93485374bec0b38cc3c05a1922c891866880c967328e`,
+`908100bc0df23f8ea5811541b107c607ab6de9c1990738400787d375cb218a78`,
+and
+`6bd7c35ed3aaa7e540ec853d11dd0a87f156978c051e47ba0eac54f7f02f07d3`.
+The corresponding output sizes are 708,081, 724,245, 678,667, and 718,937
+bytes, with canonical-byte digests
+`b910b776d16cfe97813c821cc6358f88c068240e5d62fe26a1b30ff96937f1a7`,
+`f9096b3c15cea651567bd436715a90c7c381a69de4688023def289d96798d505`,
+`751bcd5ee2cca38be9edf88a94a54b60195b7c042838976b1987f5e9886b8239`,
+and
+`277476d47ada68c122173b8d1e8f9d871ae6fcb63802931800c00553657dc7b1`.
+The private baseline reconstruction exactly matches the 660,947-byte CP68
+output digest
+`f9e1bf93354af057d08ca722d2cffe1a8188d2f1e823a0173f9b6a937ddc42c3`;
+no dynamic CP68 fixture custody is claimed.
+
+Across the four fixtures the runner processes 131,072 requests and
+205,410,227 input bytes.  It encounters the twenty-six distinct binomial
+success counts
+`(0,1,12,13,32,64,65,127,128,252,253,256,259,260,336,337,512,682,683,777,1024,1039,1040,1271,2047,2048)`,
+including novel counts 1, 777, 1,024, and 2,047, and independently performs
+132 adjacent grid-boundary comparisons.  Approximate endpoint candidates
+never decide an endpoint.  The qualification emits a 554-record vector and
+reports a maximum of 1,108 simultaneously materialized output-record mappings.
+
+The six sealed CP71 record representatives bind the following canonical-byte,
+plain SHA-256, record-digest, and public-tagged-digest values:
+
+- predecessor custody: 3,055 bytes,
+  `cda25770c4519a2cfee84bf6079445a82a352b2b60da039d2e8012ef02805bc2`,
+  `acc4cd7f6b50170e183021bcb82a28da32a47ddcef744ad2abab133b00b86814`,
+  and `ce8729ce93b019d2fe775e27610364d63dcabb4b12137e8c48edd8271bcb2192`;
+- supplied-stream contract: 3,741 bytes,
+  `523935e3d54605ea397e60bc6f085fba0ef77ee4190a826d814477e9f6c029c3`,
+  `5aca44ab2240dfd9040ca3323b7306b12bbe6ee47a2c0af3128002b387f3236c`,
+  and `45160fd7ead31e20712213861cd0230316a7ac185a52feb37f00e986ab2897f8`;
+- dynamic estimate/interval output contract: 4,186 bytes,
+  `e92abc33ba4ed702608d889ee79d33b566df0d94d47c50da08f8b05cbdb91dc1`,
+  `13a76a7ce7b0c665ef33aa6e55c122c87bf61aa676530c984ce2fdaf63e345a3`,
+  and `117cc10b89332309e0108f8231941c4b2cb34aac5f3e0f56159fe528553e7bcb`;
+- novel-count reduction summary: 2,819 bytes,
+  `dc14ade2e78bcd6f3cb0d32b30bd24c87f47ea6061b75140e191c5c65584cba2`,
+  `6bd7c35ed3aaa7e540ec853d11dd0a87f156978c051e47ba0eac54f7f02f07d3`,
+  and `d8eb8f0ad250977d3c6f9432abad74309f367e24fe394121af73a117870f75d5`;
+- four-fixture qualification: 3,305 bytes,
+  `34198d5b802d1495d61e7745d0f28f58bfac959e681958a8dd932793ded9abc7`,
+  `aa25726473f54c17b3179ebabbaace3671e9815a6d3b4eec834ad6c1b8490611`,
+  and `ec2f8a1f4567bc7e1cb800f1e4c48f8f4b41c09212ea6550042b1e358cc1b92f`;
+  and
+- bundle: 14,130 bytes,
+  `96568bbbe0adc20dc6361fd5e7996d262fc271841473458229a90b184cb7c68f`,
+  `c49b4396c06f1ff792d2860176a2e318612bd12ad89ba3cf6f8804e2dc82169f`,
+  and `bc387799a9b4bbec015ac20b1a05ab3ac4d355e6542de405e000c8db42c801fd`.
+
+The exact CP71 source is 238,337 bytes and 5,181 LF-terminated lines with
+SHA-256
+`9be57c44592b5cb80bf68e876de335c8e253ffc1a11aa14fed2ad82213a49078`;
+the exact test is 107,345 bytes and 2,799 LF-terminated lines with SHA-256
+`7eaefe615325a76c16f8bb0b843bde82337c7f72d8686a4bcbcc7a8f7fb38352`.
+The locked focused Python 3.11 command is:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /usr/bin/time -p /private/tmp/diffusion-recovery-20260815/.venv-m1/bin/python -W error -m pytest -q -p no:cacheprovider tests/unit/test_mixed_initializer_test28_supplied_interchange_recomputation_qualification.py
+```
+
+It passes 82/82 tests with warnings treated as errors in 535.37 seconds of
+pytest time (real 535.59, user 531.07, sys 3.03 seconds), with exit code zero.
+The suite covers the exact public surface, all record fields and digest
+domains, caller-iterator boundaries, canonical grammar and group coherence,
+per-record, stream, aggregate-rational, endpoint-cache and output bounds,
+derived mean and interval caps, exact dynamic endpoint certification, sealing,
+failure atomicity, nonretention, concurrency, Python 3.9 compatibility,
+stdlib-only/source-independent import behavior, private-only CP68 compatibility,
+and explicit production and trust nonclaims.
+
+This is nonconfirmatory development recomputation qualification over caller-
+supplied bytes and closed qualification fixtures.  It does not establish that
+caller data arose from CP63, CP69, an external source, or a production runtime;
+authenticate custody; parse a raw record or stable trace; materialize the
+production schedule; perform production recomputation; qualify operational
+coverage or a decision path; supply a power review, primary thresholds,
+production receipt, gate evidence, production or confirmatory input-custody
+authentication, or authorization; or expose a
+production runner, writer, shard, or campaign.  Consequently CP71 satisfies
+only
+`whole_seed_bounded_supplied_cp69_interchange_to_dynamic_estimate_interval_recomputation_qualification`
+in state
+`SATISFIED_BY_HASH_BOUND_NONCONFIRMATORY_DEVELOPMENT_QUALIFICATION_ARTIFACTS`.
+The DRAFT ledger advances from 25/21/4 to 26/22/4, while all seventeen gates
+and all four production blockers remain `MISSING`, the lifecycle remains
+`DRAFT_PRE_FREEZE`, and Formal Test 28 remains **OPEN**.
+
+### 3.18 Supplied CP71 development-output internal validation qualification
+
+CP72's pure zero-argument bundle pins the exact v22 protocol at 226,943 bytes,
+3,773 LF-terminated lines, and SHA-256
+`389124f3e85b991fcd65ad503ba1899893777fb11f2c502323e05cc338630c50`,
+and the exact v22 machine manifest at 6,159,874 bytes, 120,504 LF-terminated
+lines, and SHA-256
+`06b5a547df62c2d01a7869f6c27af6f35157fd81f656b452dce307e333769dfd`.
+It separately binds the exact CP71 source, test, bundle, stream contract,
+output contract, qualification, fixture set, and four CP71 qualification
+output identities.  These are predecessor identities only and authenticate no
+source, runtime, request, trace, seed, authorship, provenance, or production
+observation.
+
+The CP72 schema is
+`cp72-test28-supplied-development-output-validation-qualification-v1`.
+Its sole caller-data API,
+`cp72_validate_supplied_cp71_development_output_bytes`, accepts exact built-in
+`bytes` only and validates the frozen
+`cp71-test28-supplied-development-estimate-interval-output-v1` development
+schema.  It exposes no public parser, stream reducer, raw-record, stable-trace,
+filesystem-path, writer, command, shard, campaign, primary-decision-threshold,
+decision, receipt, or evidence API.  Module import and execution are
+source-independent and standard-library only, with no direct filesystem,
+clock, RNG, network, subprocess, or project-module access.
+
+The validator admits at most 8,388,608 input bytes, 65,536 canonical bytes per
+estimand record, depth eight, 32,768 decoded nodes, 64 key characters, 4,096
+text characters, 1,234 decimal digits before integer or fraction conversion,
+4,096 bits per integer or fraction component and derived arithmetic value,
+2,049 cached exact binomial endpoint pairs, and exactly 554 estimand records.
+These depth, key, and text limits define CP72's validator subset; they are not
+represented as replacements for CP71's separately exported canonical parser
+limits.  The declared CP71 `total_input_bytes` value must be an exact non-bool
+integer in the inclusive interval from 32,768 through 268,435,456.
+
+Validation requires exact ASCII canonical JSON with duplicate keys, floats,
+nonfinite values, BOMs, noncanonical whitespace, lone surrogates, and excess
+resources rejected deterministically.  It checks the exact 26-key root and
+27-key record inventories by set and cardinality while canonical key order is
+certified by byte-for-byte reserialization.  The 554 records comprise 72
+observable-cell estimands, 170 rejection-first-attempt estimands, and 312
+selected-conditional feature estimands; the first two families form 242
+binomial estimands.  The ordered CP61 inventory crosswalk is independently
+bound under the CP72-only domain to
+`6861002c492af9f0a9f0212d954e4a0008bbeaa5749c23ec9ad5cb60c2c3da77`.
+All root and record claim booleans and labels are exact literals.
+
+The global validation phases are canonical grammar and resource checks, root
+schema and fixed literals, digest grammar, exact eight-field stream-commitment
+preimage coherence, declared-byte and vector inventory, a complete 554-record
+identity/order and CP61-crosswalk pass, a complete record-digest pass,
+per-record and cross-record arithmetic, and finally exact interval witnesses.
+Observable cells sum to 2,048 for every row, rejection-first-attempt counts sum
+to the corresponding selected count, and every feature denominator within a
+row equals its selected-cell count.  Binomial interval endpoints are exact
+Clopper--Pearson equivalent outward endpoints on the (2^{-256}) grid with
+adjacent exact inequalities; approximate candidates never decide an endpoint.
+Feature means and clipped fixed-range intervals follow CP71 arithmetic, with
+the development-only 1,040 selected-count sufficiency rule.  That rule is not
+a primary decision threshold and supplies no coverage or operational claim.
+
+The stream commitment is recomputed only for internal eight-field preimage
+coherence.  Its ordered interchange, projection, seed-plan, request-instance,
+stable-trace, and runtime components remain opaque and unauthenticated.  The
+ordered-estimand and output-body digests are computed into the CP72 scalar
+summary; they are not fields stored by the CP71 output and do not establish a
+relation to any input stream.  Successful validation establishes internal
+syntax, inventory, digest, identity, and arithmetic consistency only, not
+CP71 authorship, provenance, caller-output or production custody, source law,
+production-attempt validity, coverage, evidence, or production qualification.
+
+The five qualification fixtures, in frozen order, are
+`cp69-closed-baseline`, `all-selected-duplicate-pair-plan-seeds`,
+`all-nonselected-cyclic-statuses`, `novel-k-mixed-selection`, and
+`cp72-nonfixture-novel-success-counts`.  The fifth is a CP72-owned internally
+valid nonfixture output with selected counts
+`(2,17,257,513,769,1038,1041,1283,1537,1793,2046,3,511,778,1023,2045)`;
+the hostile suite also accepts a separately generated valid nonfixture output
+outside all qualification hashes, so the validator is not a fixture allowlist.
+The fixture-set digest is
+`58ca1ff512558ca10fc4bdc447474aaf0ee04decd272954a85fff3e56c89941d`.
+The five output sizes are `(708081,724245,678667,718937,696156)` bytes and
+their canonical-byte SHA-256 values are, respectively,
+`b910b776d16cfe97813c821cc6358f88c068240e5d62fe26a1b30ff96937f1a7`,
+`f9096b3c15cea651567bd436715a90c7c381a69de4688023def289d96798d505`,
+`751bcd5ee2cca38be9edf88a94a54b60195b7c042838976b1987f5e9886b8239`,
+`277476d47ada68c122173b8d1e8f9d871ae6fcb63802931800c00553657dc7b1`,
+and `8411f6657d0b689e1c6c7be3ff9f54fb2aeb0db19d166310574c4a3ec7ac2607`.
+Their validation-summary record digests are
+`ff8b5294298cf38ccafbaf58691338ff0f1b83a286a91adcd1cf307989122d38`,
+`127f5628410f2516d7a0dd57071234bb4a96940be13710c5c30b822b9254e56c`,
+`0e9a1e71e3f5fab294ed00cb87aff1ee34406c4618cc89d98a124c0e3a0b2a1c`,
+`4c85890555732f7ce0c62b99eb0b69249584bf919c2afa68b835f9fd6f103b35`,
+and `ae0a8f22ab672cf2e9ff39fc31c18db25f66c0be0240b2664dbbad0192fde32f`.
+Their computed-interval counts are `(398,554,242,320,386)` and their
+insufficient-selection counts are `(156,0,312,234,168)`.  The qualification
+processes 3,526,086 output bytes with one input payload and one parsed output
+at a time, retains no caller output body after successful return, and reports
+at most 1,108 simultaneously materialized estimand-record mappings during
+qualification serialization.
+
+The five sealed CP72 record types and the five representative summary
+instances bind canonical-byte length, plain SHA-256, record-digest, and public
+tagged-digest values as follows:
+
+- predecessor custody: 1,526 bytes,
+  `3a22949fd2a0330f7d4c415beb41a37ef1c0608a3b55b5af3fd435ef00d4d7ad`,
+  `3864e0219638a8a0bbe7062e50d15aed58d18eccbff3a32f58fcb313a9de7582`,
+  and `9169ddd1d4d5efdb73a1ecfa3ea8f07ac5d2bb18c5545e16093290c9338645b4`;
+- validation contract: 4,046 bytes,
+  `4e33a72698eed0c2233a6c63c16d26d7fdb9b7e7be7e8c4c427df36d05a727f0`,
+  `3768a8c5a70b137bc37553dd8e66fc3a9b66b51073c13a2a5d53b5ed8ae70b13`,
+  and `336dc9f940d62a9fff1d95c23ae5b3e6dc4f26e44886a3105fd46ca1f968a6f4`;
+- the five validation summaries: `(2784,2798,2726,2776,2779)` bytes, plain
+  digests
+  `(8524482f68909c03fcec0ea8f7cb4b66aedabb922f49ce19295dc594d3698ccd,`
+  `f03cc03b409427c0f39be91034bfbd4e0bbeed84def02e7cc3a0b8d857c743b1,`
+  `6c7d04abddc0a0f3ca27e3e9050b00cca49b819a6952a8e917331c77d3cfd468,`
+  `7a31a63467487900cad8b3f89c698996934bb255bfd6f0caa1f36fdb852057f3,`
+  `432da555df0d4c28072eb3d915b658cea9255644ed06169bc3a48fb6dc1ccef5)`,
+  the five record digests listed above, and public digests
+  `(ca18df26e605d05d61cade177a5a9eb339e553a674eb31885d5af566fa204db3,`
+  `f94382b86d2f22bd6d0ef94a4367800c48eb7b6288c35eea4d56dc1125ce9fae,`
+  `8ec49e8708feff60ebbb24b2923aef274528dc47b0ac9d6c83eecd492f039016,`
+  `51e6abc545b3cc758204b52eacdb250d74871a1b1848d28f4376aecccf9ec16a,`
+  `a8b925e17120705ada2136d0697f2b67f8f8a1e24e455190e6e8192c72a46c46)`;
+- five-fixture qualification: 2,860 bytes,
+  `5caee93077c96801b13521ce4ca868a62e624ee694f20834d6ec9790512215ef`,
+  `2202dc80acf16f0b7a59582979483bed60f19d6f57b2e86d044b68224518ac27`,
+  and `12b99a75d4ef04745fdc86f4f25c0658e37ca14e5fb43f1acf1587661f36c931`;
+  and
+- bundle: 8,644 bytes,
+  `c8d9495663fcb903726c0ebde34bbd95d32fedcda2d437916e1d58a49c558d6f`,
+  `ecbe0e07e02d7d1ee930fc65b558bd4a5f655da78b950cc8df616e2cc410fc70`,
+  and `60c0cd9d419c05edaefb2d2d160973c4d81f2b719528ccec1d0a01ae7205c421`.
+
+The exact CP72 source is 152,030 bytes and 3,160 LF-terminated lines with
+SHA-256
+`78f0558f318e45032b06856d21986d84fe53937185d9d005e395c2874df5167c`;
+the exact test is 97,223 bytes and 2,518 LF-terminated lines with SHA-256
+`ab4b2c5a74157863a621b59061b3ea38c872cbe1a9d30129c9ffc5922b5d4641`.
+The source exports exactly 43 public names.  The locked focused Python 3.11
+command is:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /usr/bin/time -p /private/tmp/diffusion-recovery-20260815/.venv-m1/bin/python -W error -m pytest -q -p no:cacheprovider tests/unit/test_mixed_initializer_test28_supplied_development_output_validation_qualification.py
+```
+
+It passes 131/131 tests with warnings treated as errors in 529.80 seconds of
+pytest time (real 530.03, user 522.38, sys 7.28 seconds), with exit code zero.
+The suite covers exact public fields and domains, grammar, resources, phase
+precedence, all inventory and arithmetic identities, endpoint boundaries,
+five exact fixtures, separately generated valid nonfixture acceptance,
+tamper, sealing, failure atomicity, nonretention, concurrency, Python 3.9,
+source independence, direct-I/O absence, and explicit nonclaims.
+
+This is nonconfirmatory internal validation of development-output bytes.  It
+does not establish an input-stream relation, authorship, provenance, caller-
+output or production custody, source law, runtime or request authenticity,
+production-attempt validity, coverage, production recomputation, operational
+prediction, primary decision threshold, decision path, production receipt,
+evidence, gate satisfaction, runner, writer, campaign, execution,
+authorization, or manuscript claim.
+Consequently CP72 satisfies only
+`whole_seed_supplied_cp71_development_output_internal_validation_qualification`
+in state
+`SATISFIED_BY_HASH_BOUND_NONCONFIRMATORY_DEVELOPMENT_QUALIFICATION_ARTIFACTS`.
+The DRAFT ledger advances from 26/22/4 to 27/23/4, while all seventeen gates
+and all four production blockers remain `MISSING`, the lifecycle remains
+`DRAFT_PRE_FREEZE`, and Formal Test 28 remains **OPEN**.
+
+### 3.19 Supplied CP69-semantic stream to CP71 development-output exact relation qualification
+
+CP73's pure zero-argument bundle pins the exact v23 protocol at 246,105 bytes,
+4,046 LF-terminated lines, and SHA-256
+`8b75852101a3849a22e50d66fa50c17353de18a77e34f381d56198926f6ed4f8`, and the exact v23 machine manifest at 6,201,962 bytes,
+121,172 LF-terminated lines, and SHA-256
+`8217f0d8ba14d241d2f8eb863c1372a46d7e99c352fe595b617b00afb163ea44`.  It separately binds the exact CP69, CP71, and CP72
+sources, tests, contracts, bundles, fixture identities, and predecessor
+summary records.  These are predecessor identities only and authenticate no
+source, runtime, request, trace, seed, authorship, provenance, or production
+observation.
+
+The CP73 schema is
+`cp73-test28-supplied-stream-output-relation-qualification-v1`.  Its sole
+caller-data API,
+`cp73_validate_supplied_cp71_development_output_relation_to_cp69_interchange_stream`,
+takes the supplied output object first and the caller stream second.  It must
+complete CP72 validation, including exact issued-record/type and fixed-claim
+checks, before calling `iter` or `next` on the stream.  Only after that phase
+does it call the public CP71 reducer exactly once.  It requires both equal
+length and constant-time exact-byte comparison of the recomputed and supplied
+canonical outputs, then checks 32 exact recursively typed scalar pairs across
+the sealed CP71 reduction and CP72 validation summaries before issuing the
+CP73 scalar summary.
+
+The 32 pairs cover output schema, request count, declared/observed input bytes,
+stream commitment, ordered interchange, projection, plan-seed,
+request-instance and stable-trace digests, runtime lock, selected and observable
+row counts, rejection-first-attempt counts, feature presence, binomial and
+feature interval counts, sufficient/insufficient counts, distinct binomial
+success counts, ordered estimand digest, output-body digest, canonical output
+size and SHA-256, and the shared production/trust/decision nonclaims.  Their
+domain-separated crosscheck commits the exact ordered field-pair inventory and
+the CP71 values.  Exact byte inequality is a caller relation mismatch; a
+crosscheck mismatch after exact bytes is an internal invariant failure rather
+than a caller-data claim.
+
+CP73 carries forward the CP71 per-record 65,536-byte cap, 268,435,456-byte
+stream cap, exactly 32,768 requests, at most 32,769 `next` calls, and the CP72
+8,388,608-byte output and 554-record caps.  Declared total input bytes must be
+between 32,768 and 268,435,456 inclusive.  Output validation errors are
+normalized separately from stream recomputation errors; predecessor resource
+exhaustion becomes CP73 resource exhaustion, predecessor internal or sealed-
+record errors remain CP73 internal failures, direct `MemoryError` is bounded
+resource exhaustion, and `KeyboardInterrupt`, `SystemExit`, and
+`GeneratorExit` are reraised.
+
+The exact comparison establishes only that the caller stream consumed in that
+call regenerated those supplied canonical development-output bytes under the
+two frozen predecessor APIs.  Runtime-lock, request-instance, and stable-trace
+digests remain explicitly unauthenticated.  A fabricated but internally
+coherent pair remains admissible.  Caller iterator side effects, retention,
+and `next` liveness remain unqualified.  CP73 promises no CP73 partial summary
+or CP73 payload cache on failure, but CP72 and CP71 predecessor summaries may
+have been transiently issued before a later failure, and exception traceback
+locals remain unqualified.  On successful return it deletes the recomputed
+output and both predecessor summaries before issuing one scalar-only CP73
+summary; the weak issued-summary metadata remains only while that summary is
+live.
+
+The module imports exactly the named public CP71 and CP72 APIs.  It is not
+source-independent or stdlib-only; it is standard-library-only beyond those
+two exact project modules and imports no third-party module.  The module owns
+zero stream or output fixture bodies, exposes no qualification runner, and its
+zero-argument bundle does not validate.  Qualification lives in the separately
+hash-bound hostile test.
+
+That test exercises the four complete development relations
+`cp69-closed-baseline`, `all-selected-duplicate-pair-plan-seeds`,
+`all-nonselected-cyclic-statuses`, and `novel-k-mixed-selection`.  Their output
+sizes are `(708081,724245,678667,718937)` bytes.  The four CP73 relation-summary
+record digests are
+`91359483a9114844d2acc6a48effd71de5a8deacbe59aebf77fb2e35b5cc7f36`,
+`ba7d49c58a872e240c5d50038dd7f6471abc2b20525a78cfd7b8c96cccccb374`,
+`8ab074c208c1dc51abfcd95a4fd77cc4d911d944ebb1d73aa49e81fd639461d6`, and
+`4203a928b175b9b9c350af3b8616345665b93cbb217535ecdb6d761d66762fc4`; their public tagged digests are
+`436a8e94233218aaf8d745d63c3e09a363f4307d4e3b990cba317ad9c71c21fa`,
+`0e05d7e3343b5bebf74c57f4370a62854d2a92c42da0f409a4f2fc76212428dd`,
+`571a0bccbc4b2fdaebc24c73c6ecd2d7874117643169c35a267cf0977493e8f6`, and
+`adfcbc9658347f0ec317c315904f2191ee0d0f1b0c06cd6f2511015ee9013268`.  Their canonical sizes are
+`(3110,3106,3106,3108)`.  Under the external test-owned domain
+`cp73-test28-external-real-relation-summary-set-v1` plus NUL and the four raw record digests in fixture
+order, the relation-summary set digest is
+`701c6f0cb54c11ab52d1e85bf84f9ee75c7222fbd5ea3e89c807eab6555c2dda`.  Independently valid nonfixture and cross-paired
+outputs are negative relation cases, so neither predecessor is bypassed and
+the API is not a fixture allowlist.
+
+The three static sealed CP73 records bind canonical-byte length, plain
+SHA-256, record digest, and public tagged digest as follows:
+
+- predecessor custody: 2,295 bytes,
+  `25a02e50ab059182f942f0b4d1e8a9be84aad07c4b135bdf07f71b6f256ed18d`,
+  `34b95df1b208ecb6e6feb10125a994dffab20c22920c4f948f4ad982329891d9`,
+  and `9b1712f407ae1648c71ed12d8b216d37c2130207d5afa998f9cdead02ad1abbe`;
+- relation contract: 7,837 bytes,
+  `90c891aa556a64100c519affd5833edae4892abddcbf578753e725b5c904fb39`,
+  `64773b82e2e73c2163acb3b5bea0a1e57efd87bf93cac6537dcdf2339b00c7d3`,
+  and `878790f89358342b171d9f894d86281c7c93166145dfa84d46db6055a2f26aea`;
+  and
+- bundle: 13,624 bytes,
+  `9bb3efc827958a29e742f3c9eb1da62fc0e85b18c70e30e08ae56eba96bcebd1`,
+  `c594505d2c4efa6d07940d07687bc54a2d5359e6d625b1f7df111808b820ab59`,
+  and `1953daa575b0fd584dead224d38e6e6c20890f8171cc75db2d31ff80e3aa6bd2`.
+
+The exact CP73 source is 75,905 bytes and 1,824 LF-terminated lines with
+SHA-256 `a53c591e38a3b1e37b17b8aaab1a6b30b4b2cf086dfb0d5b7e4608c8fdd217ff`; the exact test is 99,638 bytes and 2,582
+LF-terminated lines with SHA-256 `1c4d0c4802128b1db0df5b0b46ad16d17278dcf2d6cf312466cd4591a1900c79`.  The source exports exactly
+30 public names.  The locked focused Python 3.11 command is:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /usr/bin/time -p /private/tmp/diffusion-recovery-20260815/.venv-m1/bin/python -W error -m pytest -q -p no:cacheprovider tests/unit/test_mixed_initializer_test28_supplied_stream_output_relation_qualification.py
+```
+
+It passes 248/248 tests with warnings treated as errors in 341.31 seconds of
+pytest time (real 341.52, user 340.54, sys 0.79 seconds), with exit code zero.
+The suite covers exact public fields/domains, output-before-stream phase
+precedence, predecessor error normalization and fixed returns, exact byte
+relation and 32-field crosscheck, four full positive relations, valid
+nonfixture and cross-pair negatives, iterator/resource boundaries, sealing,
+no CP73 partial issuance, successful-return cleanup, GC, concurrency, Python
+3.9 compatibility under the locked Python 3.11 run, project-import and
+direct-I/O boundaries, and explicit
+production/trust/decision/gate nonclaims.
+
+This is nonconfirmatory development relation qualification only.  It does not
+authenticate authorship, provenance, caller-output or production custody,
+source law, runtime, request, trace or seed; establish production-attempt
+validity, iid or coverage; perform independent production recomputation;
+qualify a primary decision threshold or decision path; supply a production
+receipt, evidence, gate satisfaction, runner, writer, campaign, execution,
+authorization, or manuscript claim.  Consequently CP73 satisfies only
+`whole_seed_supplied_cp69_interchange_to_cp71_development_output_exact_relation_qualification`
+in state
+`SATISFIED_BY_HASH_BOUND_NONCONFIRMATORY_DEVELOPMENT_QUALIFICATION_ARTIFACTS`.
+The DRAFT ledger advances from 27/23/4 to 28/24/4, while all seventeen gates
+and all four production blockers remain `MISSING`, the lifecycle remains
+`DRAFT_PRE_FREEZE`, and Formal Test 28 remains **OPEN**.
+
+### 3.20 Candidate production occurrence/output descriptor and independent validator
+
+CP74 adds an authoritative **candidate-only descriptor packet** for the
+previously unresolved artifact-occurrence, lifecycle-branch, crash-cut, and
+execution-output envelope boundary.  It preserves every field of all 64 CP65
+artifact descriptors and overlays exactly eleven mutually exclusive terminal
+branches, six named at-cut crash scenarios, closed conditional occurrence
+rules, and dependency-downward-closed durable prefixes.  The overlay keeps the
+preimport `environment` snapshot acyclic and distinct from the fourteen
+stochastic or postexecution output families.  Complete started PASS/FAIL arms
+require 201 finalized referenced-output instances; abnormal started arms admit
+only whole finalized shard files in a dependency-closed prefix.  Transient
+partial-writer bytes are never output occurrences.
+
+The packet defines candidate envelopes, exact key inventories, value grammars,
+framing, ordering, cardinalities, digest preimages, and crossbindings for all
+fifteen CP65 opaque referenced-output families: nine global artifacts and six
+families across 32 shards.  A complete attempt has 196,617 heterogeneous
+top-level units or rows: canonical JSON documents, JSONL records, binary stderr
+frames, and RNG state rows.  Requests preserve the CP65 schedule-row digest;
+raw rows use a new CP74 candidate carrier; stable rows use plain SHA-256 of the
+exact canonical stable bytes before LF; stderr uses exact uint64-big-endian
+frames; and RNG containers reconstruct exact Philox state dictionaries before
+the inherited state hash.  Twenty-four candidate crossbindings close schedule,
+shard-map, index, receipt, raw/stable/stderr/RNG, environment/runtime,
+independent recomputation, metrics, decision-envelope, inventory, manifest,
+and terminal-consistency relations.
+
+These are descriptor definitions, not accepted production schemas.  The
+primary-decision envelope is deliberately non-executable: threshold operator,
+direction, selected value law, PASS/FAIL decision, and decision timestamp are
+unresolved and null pending external power review and later independent
+acceptance.  Consequently
+`candidate_descriptor_packet_internally_consistent=true` and
+`candidate_descriptor_definition_complete=true` coexist with
+`candidate_schema_executable=false`, `schema_acceptance_independent=false`,
+`authoritative_for_production=false`, and every production schema, evidence,
+gate, authorization, artifact-observation, and Formal-Test-28 flag false or
+`MISSING`.
+
+The authoritative bundle is 512,612 canonical bytes with plain SHA-256
+`a4185be6dcee4b8068445a1d0b158171d03e64a9ba8633d6fdb14ee92ac03366`,
+record digest
+`1d01714f666bf229a0d7f0c3e0092064a96b71dd11bf4c5268ecbfe611a6904b`,
+public tagged digest
+`9832a9a98f8c0545c2d42b71061f87b3a6aa959ab64fda74855949b1c5f6300d`,
+and candidate semantic digest
+`111ae93616ff0f5ba825d0d77d2b6790816ffe2974e8a45e1f58917b360a729a`.
+Its predecessor custody binds the finalized v24 Markdown at 263,275 bytes,
+4,278 LF-terminated lines, and SHA-256
+`0609ac037cce6d5ef22cbf1ca7ccbc11aa46b3c9a192a8b08d12de9e8a6cf135`,
+and the finalized v24 manifest at 6,249,780 bytes, 121,879 LF-terminated
+lines, and SHA-256
+`b271d19cd0a5f7f5912a1f324e88b565c7fe712111bb444d117c6ab650b6aadb`.
+The authoritative source path is
+`src/heterodiff/evaluation/mixed_initializer_test28_production_occurrence_output_schema_candidate.py`;
+it is 251,995 bytes and 5,130 LF-terminated lines with SHA-256
+`785f9738ebf168dfdf26c24751066b00a8c90a11b20bf60db8b02d8c9dbab347`;
+its hostile test path is
+`tests/unit/test_mixed_initializer_test28_production_occurrence_output_schema_candidate.py`;
+it is 129,967 bytes and 3,213 LF-terminated lines with SHA-256
+`7a64ddc59c122ae354ec6442ae6f12f1c3559601ea39136a4279027971fb726d`.
+
+The second CP74 module is standard-library-only, imports no authoritative or
+other project module, performs no filesystem, path, clock, RNG, network, or
+subprocess operation, and exposes one caller-data API accepting only exact
+canonical authoritative-bundle bytes.  It performs bounded ASCII and
+duplicate-free JSON parsing, lexical depth preflight, exact field/type and
+inventory checks, every individual record digest before semantic
+interpretation, the complete occurrence/output/crossbinding reconstruction,
+and ordered semantic and root digest checks.  It returns only one sealed scalar
+summary.  Issued records are weakly registered with canonical and recursive
+typed snapshots, so JSON-equivalent type substitution, nested-record
+replacement, deleted slots, and oversize tampering fail closed.
+
+The independent static bundle is 8,430 canonical bytes with plain SHA-256
+`30325915e79c934962e9e2a7897fa82c99a1793e6564119e169fa288296b948c`,
+record digest
+`c56116aacb41d425c2ec0991b7e2298eb31c54a5088e687e0d12fcb1f48913ca`,
+and public digest
+`d360e9c79d46d09c880d2bfa69bab62668bd38f1538f5e39bce3c195c55e51e1`.
+The exact validation summary is 2,612 bytes with plain SHA-256
+`4006cad676d3ee2a70714e0ed4a0124309e6707b1a02e753ad375b219248042f`,
+record digest
+`bb2b206eae22a49498aed1887d8c916a864e03bea0c4b4f10c14b3ef2e6ec4f0`,
+and public digest
+`f8704b1a4653d4ef72f8a92b17f50b31055b43cb67d30a8733c4e2fe50f3c8d0`.
+The independent source path is
+`src/heterodiff/evaluation/mixed_initializer_test28_independent_production_occurrence_output_schema_candidate_validator.py`;
+it is 158,494 bytes and 2,591 LF-terminated lines with SHA-256
+`ccbd88521fc92c373d5795205dc5980d2a1f217c990c1a92fc5e4579647e6b6b`;
+its hostile test path is
+`tests/unit/test_mixed_initializer_test28_independent_production_occurrence_output_schema_candidate_validator.py`;
+it is 65,171 bytes and 1,798 LF-terminated lines with SHA-256
+`598c3f82c1e65fbc3192e877519d1d09608ead191fd66eb8b152478ce5dc6aa5`.
+
+The exact completed focused command was:
+
+```text
+PYTHONPATH=src pytest -q tests/unit/test_mixed_initializer_test28_production_occurrence_output_schema_candidate.py tests/unit/test_mixed_initializer_test28_independent_production_occurrence_output_schema_candidate_validator.py
+```
+
+It passed 194/194 tests in 36.72 seconds of pytest time with exit code zero.
+No separate real, user, or sys timing was captured and none is inferred.  The
+receipt is nonconfirmatory unit-test evidence only.  It does not accept the
+candidate schema for production, observe a production body, resolve the
+decision function, satisfy a production gate, close a production blocker, or
+authorize execution.  CP74 satisfies only
+`whole_seed_candidate_production_artifact_occurrence_branch_and_execution_output_schema_definition`
+in state
+`SATISFIED_BY_HASH_BOUND_NONCONFIRMATORY_DEVELOPMENT_QUALIFICATION_ARTIFACTS`.
+The DRAFT ledger advances from 28/24/4 to 29/25/4; the same four production
+blockers and all seventeen gates remain `MISSING`, lifecycle state remains
+`DRAFT_PRE_FREEZE`, protocol state remains `DRAFT`, and Formal Test 28 remains
+**OPEN**.
+
+### 3.21 External schema-review request packet and single-response validator
+
+CP75 materializes the smallest local artifact set that can be handed to
+external reviewers without pretending that a review has occurred.  Its exact
+eight-file packet contains a human checklist and claim matrix, a closed
+response contract with synthetic untrusted cryptographic test vectors, four
+role-specific templates whose `template_only=true` and `issued=false` branches
+leave every external identity, key, authority, signature, disposition, and
+signoff field null, one canonical review request, and one content-addressed
+manifest.  The dependency direction is subject to checklist, contract/vectors,
+templates, request, then manifest.  The manifest inventories exactly the first
+six files plus the request and excludes itself; the request binds only the
+manifest path.  There is no request/manifest or template/request digest cycle.
+
+The request binds the exact finalized v25 Markdown and JSON plus the complete
+CP74 authoritative descriptor bundle, independent validator bundle, validation
+summary, graph custody, inventory, lifecycle, crash-cut, output, crossbinding,
+and nonclaim pins already embedded by v25.  It publishes twelve criteria across
+four required external roles: protocol and provenance, runtime and durability,
+statistical power and decision, and independent recomputation.  Its two axes
+separate a possible future scoped recommendation
+`ACCEPT_FOR_CP75_DEVELOPMENT_ONLY` for a nonexecutable candidate descriptor
+from production-executable-schema acceptance.  The current CP74 subject is
+structurally eligible to be reviewed only on the first scoped axis; its six
+known decision-executability items remain open, production acceptance is
+ineligible, and current outcomes are both `UNREVIEWED`.
+
+The authoritative request bundle is 45,650 canonical bytes with plain SHA-256
+`7fa8601dc3c058489281509eacab4448560a468d1051a71092f40fe49a04155b`,
+record digest
+`39447741a40efe80e4c6e084cea5f43ac1dd14db0aee9452c7725dfe6f9e2432`,
+and public tagged digest
+`266b5375de4685a5885bcbf49616209981f228d445e229bd7787034de544f86e`.
+It has `request_state=READY_FOR_EXTERNAL_REVIEW`, `response_count=0`, and
+`local_review_packet_release_qualified=true`.  Those local structural facts do
+not constitute reviewer eligibility, a response, authority, review, scoped
+acceptance, independent schema acceptance, production acceptance, or any
+permission to construct a later qualification.
+
+The packet's static content identities are:
+
+| Artifact | Bytes | LF | SHA-256 |
+| --- | ---: | ---: | --- |
+| checklist and claim matrix | 15,966 | 202 | `ef5aa6b23c015bdcc05498fc12eafbe00240d1e6e7fef717c39747460d4578b8` |
+| response contract and test vectors | 37,140 | 0 | `ac26babba509771fb9fb692e80b7739628da12b951e9709508ce63871be0196a` |
+| protocol/provenance unissued template | 6,792 | 0 | `41d0d45c329dc37c8b43a7f9786765f4bf84ebdbaa9193fa9b0f9378d7411ec0` |
+| runtime/durability unissued template | 7,024 | 0 | `15337712dd4a532fbba12b40d0c25e4d8dcb0a16b727a11bc9b9acd1149ca9de` |
+| statistical-power/decision unissued template | 6,167 | 0 | `15c962387c414c7fed9202b439acf17bf5c196ee953670b77d6dca10f23ece4d` |
+| independent-recomputation unissued template | 6,872 | 0 | `4c38f3314bfcf310729997aad979a6eb36738afc279c993c36ab427974384ec9` |
+| canonical request | 45,650 | 0 | `7fa8601dc3c058489281509eacab4448560a468d1051a71092f40fe49a04155b` |
+| self-excluding packet manifest | 4,347 | 0 | `2f76e7bbd74f992a4307e7c2b06974c24e31eefbbe7c0237e2d7527ae2039708` |
+
+The packet-manifest record digest is
+`f44b07d694888302fdaf1c009eca11a2f1b80cd1c118c69ebd8e09a3bb52b209`,
+and its ordered seven-entry digest is
+`7be0594e197a490fa857f52a3a3c8365022e57f89f80429d7e9171c4a87e666a`.
+The CP75 authoritative source is 97,673 bytes and 2,268 LF-terminated lines
+with SHA-256
+`a4c85339bca6259fdd8f9d8ae79623f613d9b930e4ca83e5e1495b34f688fcfb`;
+its hostile test is 59,268 bytes and 1,492 lines with SHA-256
+`543acd36fee5b624cb7f85473af0ecf40849d045ed98168e241373b3fd89b5e2`.
+
+The separate CP75 validator is standard-library-only and imports no project
+module.  It takes exact request, packet-manifest, one response, and one public-
+key-document byte string per call.  It reconstructs the entire packet oracle,
+then checks bounded canonical JSON, field and inventory closure, all row and
+root digests, request/subject/context/criterion/attachment bindings, the
+inherited key-identity formula and explicit organization equality, interval
+coherence, raw signature SHA, strict RSA-PSS-SHA256-3072 mathematics, and the
+current two-axis scope rules.  Its sealed summary deliberately reports all
+identity authentication, external trust, appointment, conflict-of-interest,
+independence, revocation, trusted-time, report, method, attachment,
+supersession, withdrawal, conflict, aggregation, review, acceptance, later-
+qualification permission, execution, gate, blocker, and Formal-Test-28 effects
+false or unverified.
+
+The independent validator bundle is 8,805 canonical bytes with plain SHA-256
+`2de4f0558ee66ca1294892e80774b9ef724ec6876d4c9b62c74d46125ad168c5`,
+record digest
+`90352f93f78a5e1515e6bb20a761f5104cb3dac13a0904dc2781845511b0333d`,
+and public digest
+`7ffc771e07f5d4c8dd7fc88cd8ce3b3a4c8f78fb50120f0945a35b04356d47bc`.
+Its source is 184,416 bytes and 3,474 LF-terminated lines with SHA-256
+`3cc681501156773e71caba3fba30d2af34f35743472b4d23e8952c4a4058faea`;
+its hostile test is 79,030 bytes and 2,050 lines with SHA-256
+`04510f9dc0c7b8eaebbc42c1e5fbe57bfb91f722a9867c46c249c380e52d0bc4`.
+
+The exact completed focused command was:
+
+```text
+/usr/bin/time -p python -m pytest -q tests/unit/test_mixed_initializer_test28_production_schema_acceptance_review_request.py tests/unit/test_mixed_initializer_test28_independent_production_schema_acceptance_review_response_validator.py
+```
+
+It passed 190/190 tests in 21.35 seconds of pytest time with exit code zero
+(real 21.67, user 21.47, sys 0.21 seconds).  This receipt covers only local
+packet construction and one-response structural/signature-mathematics
+validation.  CP75 satisfies only
+`whole_seed_external_production_schema_acceptance_review_request_and_response_structural_validation`
+in state
+`SATISFIED_BY_HASH_BOUND_NONCONFIRMATORY_DEVELOPMENT_QUALIFICATION_ARTIFACTS`.
+The DRAFT ledger advances from 29/25/4 to 30/26/4.  The same four production
+blockers and all seventeen gates remain `MISSING`, lifecycle state remains
+`DRAFT_PRE_FREEZE`, protocol state remains `DRAFT`, and Formal Test 28 remains
+**OPEN**.
+
+## 4. Frozen-fixture design
+
+The final machine manifest will serialize every scalar, array, support order,
+feature definition, projection, and expected formula. The following fixture
+families are mandatory; their final identifiers and numerical encodings cannot
+change after protocol freeze.
+
+### 4.1 Exact atomic target lane
+
+`T28-A0-H` uses cap two, activity one, and two zero-dimensional types with
+weights \((2/5,3/5)\). Its canonical support is
+
+\[
+[\varnothing,\{a\},\{b\},\{aa\},\{ab\},\{bb\}].
+\]
+
+The exact base masses are
+
+\[
+[2/5,4/25,6/25,4/125,12/125,9/125].
+\]
+
+For the independent multiplicative-factor oracle
+\([1,2,1/2,3,3/2,1/4]\), the normalizer is \(549/500\) and the exact target is
+
+\[
+[200,160,60,48,72,9]/549.
+\]
+
+This lane is an independent enumeration/arithmetic oracle. It is not evidence
+that any current production score provider can represent the logarithms of all
+six rational factors exactly.
+
+The CP54 ideal-rational record independently reconstructs the displayed base
+vector from \(\theta=1\), cap two, weights \((2/5,3/5)\), and the complete
+ordered count support.  Its stored-binary64 companion uses the separately
+declared exact dyadic weights
+\(3602879701896397/2^{53}\) and
+\(5404319552844595/2^{53}\), and produces a distinct base vector while
+preserving the cap-two count marginal.  Neither record applies the
+multiplicative-factor oracle, establishes \(h=\exp(q)\), or certifies
+finite-precision sampling.
+
+`T28-A0-Q` uses the same reference with the exact-rational score table
+
+\[
+q(\varnothing,\{a\},\{b\},\{aa\},\{ab\},\{bb\})
+  =(0,1/2,-1/2,1,1/2,-1),
+\]
+
+so its exact score envelope is \([-1,1]\). This is a new direct-score fixture;
+the table is explicitly not the logarithm of the `T28-A0-H` multiplicative
+factors. Put \(t=w_a\) and \(s=e^{-1/2}\). In protocol support order its base
+mass vector is
+
+\[
+p(t)=\bigl(2/5,2t/5,2(1-t)/5,t^2/5,
+           2t(1-t)/5,(1-t)^2/5\bigr),
+\]
+
+and its exponential score factors are
+\((1,s^{-1},s,s^{-2},s^{-1},s^2)\). Hence
+
+\[
+Z(t)=\sum_i p_i(t)e^{q_i},\qquad
+\pi_i(t)=\frac{p_i(t)e^{q_i}}{Z(t)}.
+\]
+
+For the ideal-rational layer \(t=2/5\), this specializes to
+
+\[
+Z(2/5)=\frac25+\frac{32}{125s}+\frac{6s}{25}
+       +\frac{4}{125s^2}+\frac{9s^2}{125}.
+\]
+
+Equivalently, after shifting by the upper envelope \(U=1\), the factors are
+\((s^2,s,s^3,1,s,s^4)\), the ideal acceptance mass is
+\(\beta(t)=s^2Z(t)\), and the normalized probabilities are unchanged.
+
+CP55 independently reconstructs the factorial base masses and encloses both
+routes with exact `Fraction` endpoints at precision stages
+\((64,128,192,256)\) bits for the ideal-rational weights
+\((2/5,3/5)\) and the separately declared stored-binary64 parameter weights.
+It also records the binary64-minus-ideal normalizer, acceptance-mass, category,
+and total-variation perturbations. The strict signs are interval-certified,
+not inferred from rounded displays.
+
+The protocol order of count vectors is
+\(((0,0),(1,0),(0,1),(2,0),(1,1),(0,2))\), whereas the runtime counting-space
+order is \(((0,0),(0,1),(1,0),(0,2),(1,1),(2,0))\). The current hash-bound
+DRAFT runtime-to-protocol permutation is \((0,2,1,5,4,3)\). CP56 verifies
+that mapping by exact count-keyed lookup through the new atomic-table facade
+adapter and generic kernel-v2 enumeration. The exact `Fraction.from_float`
+sum of the retained runtime base-mass vector is \(1+11\cdot2^{-57}\). In
+runtime order, the resulting float64 output weights are
+
+\[
+(\texttt{0x1.7ade79b3ae4fcp-2},
+ \texttt{0x1.13c13c86fd12fp-3},
+ \texttt{0x1.f3b835374e505p-3},
+ \texttt{0x1.9168b59dc254ap-6},
+ \texttt{0x1.2bd4ecbac896bp-3},
+ \texttt{0x1.498f2ed7ae37fp-4}).
+\]
+
+Their exact `Fraction.from_float` sum is
+\(1-2^{-57}\), not one. Every stored output point lies outside its CP55
+analytic interval, and the rigorous output-minus-analytic half-L1 interval is
+approximately \(8.508157450884242\times10^{-17}\). It is deliberately not
+called total variation because the output vector is not an exact probability
+measure. The manifest binds the exact residual, the runtime and protocol
+weight-vector hashes, and the exact rational half-L1 endpoints through the
+stable CP56 semantic comparison digest. The CP55 provider's own
+`facade_integrated=false` and `kernel_integrated=false` fields remain correct
+historical artifact-scope statements; CP56 does not rewrite that record.
+Neither CP55 nor CP56 identifies either analytic layer with
+\(P_{ref}^{oracle,b64}\), \(\mu_{fp}\), or an operational categorical law.
+
+### 4.2 Mixed atom/continuous cap-one lane
+
+`T28-M1-Q` uses ideal-rational activity one, cap one, a zero-dimensional
+type of weight \(2/5\), and a one-dimensional standard-Gaussian type of
+weight \(3/5\).  Its stored normalized binary64 weights are separately bound
+as
+
+\[
+\texttt{0x1.999999999999ap-2}
+=\frac{3602879701896397}{9007199254740992},\qquad
+\texttt{0x1.3333333333333p-1}
+=\frac{5404319552844595}{9007199254740992}.
+\]
+
+The ideal score is
+
+\[
+q(\varnothing)=q(\{a\})=0,\qquad q(\{(b,x)\})=-x^2/4.
+\]
+
+The continuous selected fiber is exactly Gaussian with variance \(2/3\). Its
+integrated weight is \(\sqrt{2/3}\), giving analytic empty/atomic/continuous
+category masses. The envelope is \(U=0\); the ideal-real score is unbounded
+below, and no represented-domain lower bound is certified. The sealed
+known-law provider and independent tests now bind the real polynomial, exact
+represented restriction, context, support, reference parameters, and upper
+envelope. They keep the ideal-rational analytic law, stored-binary64 analytic
+law, and runtime proposal law distinct. Development tests now carry this
+provider through the common facade and kernel-v2 without inventing a lower
+envelope.  Put \(t=w_0\).  CP53 independently encloses
+
+\[
+Z_1(t)=\frac{1+t+(1-t)\sqrt{2/3}}2,
+\qquad
+H_1(t)=\mathbb E[W^2]
+=\frac{1+t+(1-t)\sqrt{1/2}}2,
+\]
+
+with \(\operatorname{Var}(W)=H_1-Z_1^2\).  It retains the paired
+ideal-rational and stored-binary64 category tables, ideal acceptance
+\(Z_1\), second moment, variance, and exact-IID SIR coefficient.  If
+\(\epsilon=1/(5\,2^{53})\) is the stored type-weight perturbation, the exact
+proposal-law TV is \(\epsilon/2\).  The full analytic target TV equals its
+configuration-category TV because the conditional fiber laws are identical
+on disjoint categories.  These are named analytic-law predictions, not
+distributional validation of the runtime `T28-M1-Q` path.
+
+### 4.3 Heterogeneous cap-two lane
+
+`T28-M2-Q` uses the same separately bound ideal-rational and stored-binary64
+reference parameters, cap two, and one- and two-dimensional Gaussian event
+types. Its score is a frozen additive negative rational quadratic plus a
+frozen rational count penalty. The sealed known-law provider and independent
+tests bind its pointwise score semantics and exact upper envelope \(U=0\),
+without a finite ideal-real lower bound. The coefficient \(1/6\) makes the
+represented score generally non-dyadic, so CP50-v1's dyadic-only rejection
+quota cannot accept this fixture. Kernel-v2 development tests now exercise
+the separate arbitrary-rational quota on real non-dyadic `T28-M2-Q` score
+gaps while preserving the absent lower envelope. This closes the local
+adapter/quota/kernel integration prerequisite only.  Put
+
+\[
+r(t)=t\sqrt{2/3}+(1-t)\sqrt{3/5},\qquad
+s(t)=t\sqrt{1/2}+(1-t)\sqrt{2/5}.
+\]
+
+CP53 independently encloses
+
+\[
+Z_2(t)=\frac25+\frac25r(t)+\frac15e^{-1/4}r(t)^2,
+\qquad
+H_2(t)=\frac25+\frac25s(t)+\frac15e^{-1/2}s(t)^2,
+\]
+
+and retains the paired configuration-category, count, event-type, variance,
+and exact-IID SIR records.  Its exact proposal-law perturbation is
+\((16/25)\epsilon-(1/5)\epsilon^2\), and full analytic target TV again equals
+configuration-category TV because the conditional fiber laws match.  These
+analytic Gaussian quantities remain separated from runtime sampling and do
+not supply operational predictions.
+
+CP54 also rederives the `T28-M2-Q` untilted base configuration-category law
+from its primitive cap, activity, type weights, and complete count support by
+both factorial routes above.  The ideal-rational record reproduces the six
+declared base masses, while the stored-binary64 record is a distinct analytic
+parameter companion whose exact TV from the rational base vector agrees with
+the independently derived CP53 parameter perturbation.  This consistency does
+not apply the quadratic score or identify an operational proposal law.
+
+### 4.4 Stress and refusal lanes
+
+`T28-AESS` is a finite all-atomic exact-rational stress oracle on the ordered
+support
+
+\[
+(\varnothing,a,b,aa,ab,bb).
+\]
+
+Its factorially reconstructed base masses are
+
+\[
+\left(\frac25,\frac4{25},\frac6{25},\frac4{125},
+\frac{12}{125},\frac9{125}\right),
+\]
+
+and its multiplicative factors are \((1,1,1,1,1,1024)\).  Thus the
+unnormalized target masses are
+
+\[
+\left(\frac25,\frac4{25},\frac6{25},\frac4{125},
+\frac{12}{125},\frac{9216}{125}\right),
+\qquad Z=\frac{9332}{125},
+\]
+
+with exact target probabilities
+
+\[
+\left(\frac{25}{4666},\frac5{2333},\frac{15}{4666},
+\frac1{2333},\frac3{2333},\frac{2304}{2333}\right).
+\]
+
+The sole diagnostic cloud is predeclared analytic input, not a sampled cloud:
+for \(J=8\) its support indices are \((0,1,2,3,4,5,0,1)\), giving raw
+weights \((1,1,1,1,1,1024,1,1)\), sum 1031, squared sum 1,048,583,
+and
+
+\[
+\operatorname{ESS}=\frac{1{,}062{,}961}{1{,}048{,}583},
+\qquad
+\frac{\operatorname{ESS}}{J}=\frac{1{,}062{,}961}{8{,}388{,}664}<\frac14.
+\]
+
+The bound expectation is therefore a strict ESS warning at threshold
+\(J/4=2\).  Its policy is report-only: the expected reported particle count
+remains eight, the precommitted and post-warning strategy is fixed-budget SIR,
+exactly one resampling draw is expected, and the warning is expected to add no
+particle, draw, fallback, or cloud reuse.  These are oracle expectations, not
+observations of production behavior.  The factors are deliberately not
+represented as exponentials of an exact rational score, and this fixture is
+not integrated with the score facade or initializer kernel.
+
+`T28-INVALID` binds fourteen exact malformed-input expectations spanning five
+oracle-model rows, two direct categorical-helper rows, two direct
+score-provider input rows, and five production-kernel-preflight rows.  The
+categories are negative, NaN, and positive-infinite factors; a false envelope;
+zero or nonnormalized categorical mass; wrong dimension; noncanonical negative
+zero; stochastic occurrence and coordinate work limits; count/type sampling
+resolution; and the finite-atomic support limit.  Every row binds an exact
+refusal code, validation boundary, exception class and message, applicable
+strategies, zero owned RNG-factory calls for the proposal,
+rejection-decision, and SIR-resampling roles, byte-identical externally
+supplied sentinel-state digests, and no result artifact.  Every static row and
+the table itself keep `production_boundary_verified_by_this_record=false`.
+The hostile suite separately invokes the live production boundaries for the
+count/type resolution and three resource-limit rows and checks the exact
+lazy-imported exception identity.  A supplied-observation verifier proves only
+that caller-supplied fields match the current hash-bound DRAFT expectation; it
+does not verify boundary-invocation or RNG-digest provenance, authenticate
+evidence, run the production runner, or support a confirmatory claim.
+
+## 5. Budgets, streams, and execution shape
+
+CP61 supersedes the earlier DRAFT fixed-hash/per-shard execution proposal for
+the sixteen correlated whole-seed rows.  The active prospective design uses
+rejection caps \(A\in\{1,4,16,64\}\), SIR budgets
+\(J\in\{8,32,128,512\}\), exactly 2,048 retained external seed ordinals per
+row, and 32,768 total scheduled requests.  The old eight-shard proposal and
+its fixed per-shard counts remain historical DRAFT metadata only and are
+inadmissible for CP61.  CP61 freezes no shard count, shard assignment, or
+runner implementation.  A later runner may partition the fixed ordered work
+only after its mapping and custody are separately frozen without changing the
+seed ordinals, rows, outcomes, denominators, or total request count.  The
+power review must still justify adequate selected counts and every primary
+threshold.
+
+For future ordinal \(i\), the external source supplies \(S_i\), and the runner
+must pass that exact uint64 value unchanged as `plan_seed` for all sixteen
+rows.  It must not derive a replacement seed from a study root, fixture,
+strategy, shard, request index, or any other field.  The current kernel then
+derives its proposal, rejection-decision, and SIR-resampling role streams from
+that plan seed.  Proposal and rejection-decision derivations deliberately omit
+the attempt or particle budget, so within one seed ordinal and fixed
+fixture/strategy a smaller budget consumes an exact prefix of the larger
+budget stream.  SIR-resampling additionally binds \(J\), because each particle
+set has a separate one-draw categorical decision.  Rejection and SIR bind
+distinct strategy fields and do not share proposal roots.  These internal
+derived streams do not make the paired row outcomes independent.
+
+The earlier domain-separated runner-plan-seed rule, four study roots, eight
+shards, and CI/bootstrap derivation remain preserved in the manifest under
+explicit `historical_pre_cp61_*` labels; none is an admissible CP61 seed source
+or active runner specification.  CP61 freezes no replacement bootstrap or
+shard rule.  Before this protocol can leave DRAFT status, the exact external
+seed record, direct seed-to-`plan_seed` assignment, any later shard mapping,
+raw/stable trace custody, byte order, NumPy version, Philox class, internal
+kernel role derivation, draw chronology, and initial/final state digests must
+be frozen and independently verified.
+
+CP62 now freezes the exact seed-free contents of all sixteen requests, one
+candidate runtime/source/ABI closure, the future seed-capsule shape, and the
+fresh-process supervisor and raw/stable-record contracts.  Its four fixed
+development calibration cases exercise only rows 4, 8, 12, and 16, with two
+fresh children per case; they do not instantiate any of the 32,768 future
+production requests or supply a shard mapping.  A production runner must still
+bind all exact seed-valued request instances, implement the predeclared closed
+refusal/failure classifications, freeze the production record schema, retain
+the complete raw records, recompute stable projections and metrics
+independently, and reproduce the runtime/source/ABI requirements under the
+production launch path.  The calibration-only launch limit and case seeds are
+not a production seed source, runner partition, retry allowance, or campaign
+budget.
+
+CP63 now exercises the same sixteen row definitions in a bounded development
+rehearsal while preserving the production boundary.  The rehearsal fixes
+`seed_ordinal=1`, `logical_request_ordinal=row_ordinal`, and the one
+module-owned seed `12a5228200019dae`; its request-instance digest excludes the
+volatile repetition number, so each row's two fresh launches must project to
+the same stable bytes.  This does not synthesize a production bound request or
+an external capsule.  The future parser and schedule remain syntax/definition
+only, the production 32,768-request campaign is not exposed, and there is no
+durable attempt writer or shard map.  Complete rehearsal raw frames retain
+volatile supervisor custody separately; independent recomputation consumes
+only the complete canonical stable projection and removes repetition rather
+than inventing a replacement value.
+
+The runner records the same 300-second deadline, two-second termination grace,
+five-second reap ceiling, bounded request/raw/stderr frames, one fresh
+spawn/exec process group per launch, and whole-attempt infrastructure
+invalidation inherited from the CP62 development path.  These exercised
+rehearsal semantics do not bind the future production supervisor or prove
+infrastructure fidelity.  Likewise, the computed 512-GiB raw and 256-GiB
+stable maxima are aggregate ceilings, not evidence that storage or throughput
+has been provisioned.  A production runner must still bind the external
+2,048-seed capsule, exact production runtime and source attestation, full
+seed-valued request schedule, durable raw retention, shard/capacity receipts,
+and complete independent interval/decision recomputation.
+
+CP64 freezes a candidate production partition and receipt topology without
+instantiating either.  Logical request ordinal $L$ maps to shard
+\(\lfloor(L-1)/1024\rfloor+1\), so each of 32 shards contains the sixteen
+rows for 64 consecutive seed ordinals.  This candidate supersedes neither the
+seed-major CP61/CP63 schedule nor the requirement for a later selected,
+attempt-bound shard-map receipt.  Before source contact, a later writer must
+durably establish the acquisition journal and start receipt; before launch
+authorization, it must establish the complete source/capsule cross-check,
+production runtime match, disjoint 1-TiB destination and 32-GiB auxiliary
+reservations, durability qualification, all fifteen summarized preflight
+gates, and independent signoff.  CP64 performs none of those operations and
+its candidate partition supplies no production capacity or custody evidence.
+
+CP65 extends the definition-only roster to 54 global paths, the same eight
+per-shard templates, and the same two conditional paths.  The eighteen added
+global templates cover the dependency-lock match, source-custody and capsule
+cross-check, materialized schedule, runner/classifier/two independent
+qualification receipts, authority and reviewer key material, source
+attestation and frozen source materialization, the retained CP65 schema
+bundle, power-review signoff, preterminal inventory, external digest-preimage
+registry, and auxiliary transition journal.  These are closed path and byte-
+grammar definitions only.  CP65 creates none of the paths, does not select an
+occurrence or terminal branch, and does not expand the fixed scientific work
+budget, seed plan, shard assignment, or execution surface.
+
+The public supplied-artifact interface accepts at most 312 unique path-aware
+items and 536,870,912 total bytes, with bounded parse-node and decoded-string
+budgets.  A separate measured predecessor-only parser profile admits the
+already pinned v15 manifest.  Resource acceptance proves only bounded syntax
+processing of caller-supplied bytes; it is not source custody, filesystem
+observation, receipt provenance, or production evidence.
+
+Before certification and before any plan-owned execution RNG or stream is
+created, every stochastic plan must pass worst-case retained-work bounds
+
+\[
+A_{work}N_{cap}\le 500{,}000,
+\qquad
+A_{work}N_{cap}D_{max}\le 4{,}000{,}000,
+\]
+
+where \(A_{work}\) is the fixed rejection or SIR budget, \(N_{cap}\) is the
+reference total cap, and \(D_{max}\) is the largest declared event dimension.
+The exact constants must be imported from and bound to the certified reference
+surface. Enumeration certification must execute the complete finite-support
+oracle and refuse an oversized support before issuing a certificate. These
+are worst-case retained-object limits, not expected-work statements.
+
+CP57 fixes the stochastic preflight order.  After strategy-budget validation,
+the occurrence and coordinate work limits are checked first.  Only if they
+pass does the kernel rebuild the count categorical law from the public
+reference parameters and require exact byte equality with the retained count
+sampling CDF.  When the cap is positive it likewise rebuilds the type law from
+the public retained type weights, checks sampling resolution, and requires
+exact byte equality with the retained type CDF.  A zero cap skips the
+irrelevant type gate; finite-atomic enumeration is exempt from both stochastic
+sampling-resolution gates.  All of these stochastic refusals precede runtime
+hashing and owned RNG construction.  The preflight tests certify deterministic
+code paths only, not the probability law of a categorical transform.
+
+No finite PRNG battery or deterministic replay certifies an exact continuous
+Gaussian, uniform, iid, independent, or physically random source law. Those
+are explicit premises of the generic/analytic theorem and of any claimed law
+for \(\mu_{fp}\). Object custody and deterministic replay do not convert the
+runtime sampler into the analytic \(\Pi_N\) measure.
+
+## 6. Primary metrics and gates
+
+The final gate family, familywise error rate, per-gate allocation, sample
+sizes, and thresholds must be power-reviewed and frozen before `STARTED.json`
+is created. Unused error slots are never reallocated.
+
+Mandatory primary measurements are:
+
+- exact equality or certified numerical bounds for finite-atomic enumeration;
+- categorical total variation only on finite atomic/count/type marginals;
+- rejection acceptance, exhaustion, and attempt-index frequencies against the
+  frozen ideal and operational predictions, with simultaneous exact binomial
+  intervals;
+- conditional one-dimensional CDF discrepancies with simultaneous DKW bounds;
+- the CP58 finite sign-closed bounded-feature configuration IPM, using only
+  its frozen count, type, coordinate, and pair-interaction registries;
+- SIR results for the complete frozen \(J\) sequence, including ESS, maximum
+  normalized weight, weight entropy, perplexity, same-cloud local particle-slot
+  ancestry, and separately labeled proposal-value uniqueness summaries; and
+- valid-fixture operational refusal rate, which must be zero.
+
+Sliced Wasserstein, energy distance, and block-bootstrap intervals may be
+secondary diagnostics. A finite empirical measure is singular with respect to
+an absolutely continuous target, so empirical continuous-space TV and KL are
+forbidden labels and cannot be pass criteria.
+
+## 7. Decision and no-exclusion rules
+
+The historical v14 attempt graph retained in predecessor custody is
+
+`FROZEN -> STARTED -> {PASS, FAIL, INVALID_PROTOCOL, ABORTED_INFRA, INCOMPLETE}`.
+
+This DRAFT v15 sidecar proposes the additive lifecycle
+
+`DRAFT_PRE_FREEZE -> FROZEN`,
+
+`FROZEN -> {STARTED, INVALID_PROTOCOL, ABORTED_INFRA, INCOMPLETE}`, and
+
+`STARTED -> {PASS, FAIL, INVALID_PROTOCOL, ABORTED_INFRA, INCOMPLETE}`.
+
+The three direct `FROZEN` terminal arrows are a prospective v15 amendment,
+not an interpretation of the v14 graph.  Preflight and authorization remain
+artifact stages rather than lifecycle states.  The amendment is not
+authoritative for production until the separate v15 protocol and manifest are
+frozen and consumed by a later integration checkpoint.
+
+Algorithmic exhaustion is retained in the outcome denominator and is never an
+exclusion. A valid-fixture refusal, nonfinite primary metric, insufficient
+selected count, missing shard, digest mismatch, missing expected artifact, or
+material protocol deviation yields `FAIL` or `INVALID_PROTOCOL`; it does not
+authorize top-up, replacement, or a changed seed.
+
+No seed, budget, threshold, fixture, feature, projection, metric, gate order,
+or environment may change after `STARTED.json`.  A pre-durable-output
+infrastructure abort may receive a new attempt number only after written
+independent adjudication and with identical frozen inputs.  Once the
+acquisition start is durably committed, any source value has been returned, or
+any other stochastic output is durable, the attempt is spent.  A returned
+value lost before journal fsync is not claimed retained, but still forces an
+`INCOMPLETE` terminal attempt with no resume, top-up, redraw, or reselection.
+A failed v1 may motivate a separately named v2 but cannot be rewritten or
+replaced.
+
+## 8. Required evidence tree
+
+Every attempt directory must contain byte-identical frozen inputs and complete
+receipts for protocol, source, fixtures, environment, launch authorization,
+start, shards, raw outputs, RNG states, metrics, decisions, deviations,
+failures, exclusions, reruns, terminal state, and a complete SHA-256 manifest.
+Independent verification must recompute every primary metric and decision from
+hashed raw records using a separately implemented oracle path. Plots are
+nonauthoritative and every plotted value must reference a hashed raw or metric
+record.
+
+Under the proposed v15 extension, the prestart evidence graph is an acyclic
+twenty-node, forty-four-edge digest DAG with launch authorization as its only
+sink.  The preflight summary aligns the first fifteen gate identifiers,
+`PASS` states, evidence-node identifiers, and nonzero evidence digests;
+independent signoff and explicit launch authorization remain separate gates
+16 and 17.  The two durable outcome receipts, terminal record, manifest, and
+`COMMITTED.json` must preserve every winning prestart branch and crash cut.
+CP64 freezes this topology only; it supplies none of the future evidence.
+
+CP65 freezes canonical field, digest-preimage, pointer-source, and pure
+predicate definitions for the expanded 312-path final roster, plus a bounded
+supplied-byte validation interface.  It does not freeze lifecycle occurrence
+or branch presence, observe any retained path, or establish that a supplied
+byte string is an authentic production receipt.  The authoritative catalog
+itself must later be retained as
+`frozen_inputs/production_schema_preimage_validator_bundle.json` and bound by
+the future source manifest and freeze receipt.  Its current serialization in
+the DRAFT v16 machine manifest is development binding only.
+
+CP74 now binds a self-contained candidate descriptor packet and a separate
+source-independent exact-byte structural validator.  The v25 machine manifest
+embeds the complete authoritative bundle, independent static bundle, and one
+independent scalar validation summary together with their canonical, record,
+public, semantic, and four-file source/test identities.  This adds a
+nonconfirmatory local definition prerequisite only.  The future frozen source
+manifest, accepted production schema, actual output bodies, power review,
+external provenance, execution receipts, and all seventeen gate artifacts are
+still absent.
+
+CP75 now binds a complete content-addressed eight-file external-review request
+packet and a separate source-independent one-response structural/signature-
+mathematics validator.  The v26 machine manifest embeds the full authoritative
+request bundle, the full independent validator bundle, and exact metadata for
+all eight materialized files, together with all twelve new source/test/static
+identities.  It embeds no externally issued reviewer response, key, or
+signature, authority receipt, acceptance summary, or multi-response outcome.  The future
+external review, governed trust and appointment checks, accepted revised
+executable subject, production freeze, actual evidence, and all seventeen gate
+artifacts are still absent.
+
+## 9. Explicit nonclaims
+
+Even a passing execution would not by itself certify:
+
+- exact laws for NumPy, Philox, OS entropy, Gaussian transforms, categorical
+  transforms, iid sequences, or independence;
+- equality among the runtime finite-precision proposal law \(\mu_{fp}\), the
+  analytic ideal-rational reference \(\Pi_N^{rat}\), and the analytic
+  stored-binary64-parameter reference \(\Pi_N^{b64}\);
+- a general or uniquely inferred real-fiber extension from represented
+  scores. For `T28-M1-Q` and `T28-M2-Q` only, the backend declares a named
+  polynomial \(\bar q_c\) and verifies its pointwise canonical-binary64
+  restriction, and CP53 verifies fixture-specific normalizers and marginals
+  for that named score under the two declared analytic references.  This does
+  not establish a general or unique extension, any proposal-law equality,
+  operational \(Z_{repr}\), or equality with a posterior or true conditional
+  factor;
+- residual-network forward-error or statistical approximation-error bounds;
+- finite-\(J\) SIR equality with the normalized target;
+- interpretation of the `T28-AESS` factors as exponentials of an exact
+  rational score, interpretation of its predeclared diagnostic cloud as a
+  sample, or interpretation of its expected warning policy as observed
+  production behavior;
+- production-boundary or RNG-state provenance from the static `T28-INVALID`
+  table or its supplied-observation matcher.  The separate hostile tests are
+  unit-test evidence only and do not authenticate a runner execution;
+- a proposal, categorical, iid, independence, or target law from the CP57
+  stochastic work, sampling-resolution, or retained-CDF custody preflights;
+- a probability-law metric, target comparison, or observed output from the
+  CP58 calibration IPMs.  They are exact finite-class pseudometric arithmetic
+  over fixed supplied inputs, not empirical continuous-space TV, KL, or a
+  sliced-Wasserstein registry;
+- resampled ancestry from repeated configuration values, cross-request
+  selected positions, or pooled cloud identifiers.  CP58 proposal-value
+  uniqueness is separate from particle-slot ancestry, the current per-request
+  selected-ancestor count is one by construction, and the `T28-AESS` \(R=8\)
+  occupancy record is a conditional zero-draw analytic counterfactual;
+- an operational source or target law from CP59's predeclared arithmetic.
+  Its supplied SIR clouds have unverified configuration and result-digest
+  provenance; its finite rejection tables assume rather than verify iid
+  proposals, uniform decision words, and independence; and its observed
+  NumPy version/runtime digest is not a compiled-transform-law attestation;
+- a product-uniform role-stream model for the current one-uint64-seed source
+  surface.  Its support obstruction requires a richer external source API or
+  a correlated whole-seed pushforward analysis, and the source-level TV lower
+  bound does not imply an output-level TV lower bound;
+- an operational probability from CP60's symbolic seed-fiber definitions.
+  The uniform plan seed is an explicit one-request assumption only; the
+  current fixed-hash plan does not realize or sample it, the sixteen grid rows
+  are prospective request templates, no complete request/runtime map is
+  instantiated, and no numeric fiber count is computed;
+- a common \(\mu_{fp}\), proposal iid, cross-request iid, derived-word
+  uniformity, role-stream independence, \(\alpha_{64}\)/\(\rho_{64}\) product
+  formula, proved execution totality, or zero nonreturn mass from CP60.  Its
+  file/runtime digests are unverified custody labels and its Monte Carlo
+  requirements are future gates rather than completed evidence;
+- any observed estimate, interval, operational probability, selected-count
+  assurance, power guarantee, full stable trace law, or total-variation result
+  from CP61.  Its 2,048 external seed ordinals, sixteen rows, 554 estimands,
+  deadline classifier, stable projection, simultaneous uncertainty, and work
+  counts are prospective design fields only; no source, request, runtime,
+  supervisor, sample, trace, or execution is bound or observed;
+- source-law evidence from CP61's requirement of iid uniform uint64 sampling
+  with replacement.  The current fixed-hash seed plan is explicitly not that
+  sample; duplicate retention and same-ordinal cross-row pairing do not imply
+  cross-row independence; timeout censoring is not CP60 semantic nonreturn;
+  and the infrastructure-invalidation rule has not been exercised;
+- a complete continuous trace-law or TV estimate from CP61's 554 finite
+  estimand projections.  CP62 instantiates the required stable semantic
+  projection only for four fixed calibration cases and observes their
+  two-process parity; that bounded calibration does not instantiate a
+  production sample, estimate its law, or replace the separately retained raw
+  trace;
+- production seed or request custody from CP62's seed-free bindings and empty
+  future seed-capsule schema.  Its four fixed calibration seeds are not
+  external-source draws or future capsule members, its caller cannot supply an
+  arbitrary seed, and no production seed ingest or campaign loop is exposed;
+- production runner completeness from CP62's fresh-process calibration
+  supervisor.  Closed refusal and failure record shapes are predeclared, but
+  their calibration-runner classification is unimplemented, the production
+  schema is not frozen, and no production supervisor, runner, shard mapping,
+  infrastructure-fidelity receipt, capacity receipt, request, metric, or
+  decision record is bound;
+- a portable runtime or transform-law theorem from CP62's candidate lock and
+  calibration parity.  The parity receipts cover exactly four fixed
+  deterministic cases in the bound candidate environment, while production
+  runtime matching and production cross-process parity remain false;
+- external-seed or production-request custody from CP63's future capsule
+  parser and logical schedule definition.  The parser verifies only canonical
+  syntax and digests, the fixed rehearsal seed is not a source draw or capsule
+  member, and the 32,768-request schedule is not instantiated;
+- production runner completeness from CP63's all-row rehearsal.  Its sixteen
+  case identifiers, two launches per row, complete raw/stable records, and
+  stable pair parity are bounded development evidence; no arbitrary-seed API,
+  production campaign, durable writer, shard map, durable production sample,
+  or frozen production schema is exposed;
+- a production estimate, interval, or decision from CP63's independent
+  554-estimand rehearsal receipt.  Independent parsing and repetition-blind
+  equality establish only deterministic custody for the sixteen development
+  stable traces, not the N=2,048 sample or its law;
+- allocated production capacity, a portable runtime theorem, or executed-code
+  attestation from CP63.  The 512/256-GiB values are arithmetic ceilings, the
+  CP62 runtime candidate is reused conditionally rather than fully recomputed
+  and production-matched, and pre/post source-file hashes do not attest loaded
+  bytecode;
+- an external-source sample or source law from CP64's acquisition schemas.
+  The journal, start/partial/completed receipt shapes, sequence commitments,
+  and no-retry rules contain no seed value, source contact, authority
+  verification, or iid-uniform evidence, and CP64 creates none of those
+  artifacts;
+- allocated capacity or durable-writer qualification from CP64's arithmetic
+  floors and path inventory.  The candidate 1-TiB destination plus 32-GiB
+  auxiliary reservations are absent, the bounded auxiliary-size proof is
+  absent, no filesystem is observed, and no partial inode or publication
+  boundary is created;
+- a selected production shard map, materialized request, complete runtime
+  match, or production runner from CP64.  Its 32-shard partition is a frozen
+  candidate definition only, while every attempt-bound shard record,
+  per-file reservation link, runtime receipt, and production API remains
+  absent;
+- freeze, signoff, authorization, start, or blocker closure from CP64's
+  proposed lifecycle and seventeen-gate inventory.  The v15 paths are neither
+  consumed nor authoritative at bundle construction, every gate is
+  `MISSING`, and neither outcome receipt nor any terminal or committed attempt
+  exists;
+- a complete production schema from CP65's internal completeness flags.  The
+  exact claim covers supplied receipt-envelope canonical fields, digest
+  preimages, and pure gate predicates only; lifecycle occurrence, branch
+  presence, provenance, trust, evidence, and execution-output semantics remain
+  excluded, and the production receipt, execution/output, and overall schema
+  flags remain false;
+- production provenance, authority, signoff, authorization, or evidence from
+  CP65's supplied-byte validators.  Syntax, digest, cross-link, registry, and
+  RSA-PSS mathematical validity under supplied bytes never binds a trusted
+  key or source and never permits a gate transition, launch, or execution;
+- an independent reviewer decision from CP65's source-independent module.  It
+  reconstructs the authoritative catalog and validation semantics without
+  importing the authoritative or other project modules, but it does not
+  observe production, bind a trust root, accept evidence, or sign a review;
+- a production runner, supervisor, or closed classifier from CP66's closed
+  development harness.  Its forty internal cases, twelve exact event rules,
+  live child-process mechanics, and bounded scaled deadlines neither implement
+  the production runner nor establish production clock, runtime, source,
+  filesystem, request, campaign, or receipt fidelity;
+- gate 11 or gate 12 evidence from CP66's development results.  Neither
+  required production qualification receipt exists, both gate states remain
+  `MISSING`, all production and confirmatory evidence flags remain false, and
+  no execution or blocker closure is authorized;
+- an external IID uniform-with-replacement source from CP67's sequential
+  synthetic values.  The one module-owned capsule is a closed development
+  fixture, its source, acquisition-session, and freeze digests are explicit
+  non-evidence sentinels, and neither distinctness nor parser acceptance proves
+  a source law, source authority, custody, or admissible gate evidence;
+- a production seed capsule, request schedule, runner, campaign, or retained
+  sample from CP67's in-memory materialization.  The 32,768-row payload is
+  created only inside the zero-argument qualification runner, validated under
+  bounded CP63/CP65 development semantics, and discarded.  It authorizes and
+  observes no production execution, computes no estimate, interval, or
+  decision, and closes no blocker;
+- production raw/stable recomputation, production estimates or intervals, or
+  a decision path from CP68's 554 synthetic output records.  CP68 accepts only
+  its module-owned compact development stream, performs no raw-record or
+  stable-trace parsing, and explicitly leaves the decision schema absent;
+- gate 13 or gate 14 evidence from CP68's development results.  Neither
+  required production qualification receipt exists, both gate states remain
+  `MISSING`, all production and confirmatory evidence flags remain false, and
+  no execution, decision, or blocker closure is authorized;
+- a production raw-record or stable-trace schema, parser, or provenance
+  attestation from CP69's canonical compact interchange.  Its four CP63
+  custody links are transported as opaque lowercase digest-shaped values and
+  are deliberately not authenticated; the closed synthetic records are not
+  production traces, requests, or admissible evidence;
+- production aggregation, estimate, interval, threshold, decision, runner,
+  campaign, or gate evidence from CP69's exact parity with the CP68 projection
+  stream.  The mapper adds no scientific semantics, the runner retains no
+  production corpus, all seventeen gates and all four production blockers
+  remain `MISSING`, and no execution or blocker closure is authorized;
+- a production raw-record, stable-trace, provenance, or evidence validator
+  from CP70's exact closed-output byte validator.  The validator accepts only
+  the already frozen synthetic CP68 output body, authenticates no custody,
+  accepts no production evidence, and returns no estimate, interval,
+  threshold, decision, or production qualification receipt;
+- a public stream reducer, production recomputation, runner, writer, shard,
+  campaign, decision path, or gate evidence from CP70's private closed
+  CP69-equivalent reduction.  Its transient digest-preimage mappings and
+  single 554-record output vector are development implementation details; no
+  production corpus or output is retained, all seventeen gates and all four
+  production blockers remain `MISSING`, and no execution or blocker closure
+  is authorized;
+- authenticated provenance, an external seed law, a production raw/stable
+  parser, production recomputation, operational coverage, a primary threshold,
+  decision path, receipt, or gate evidence from CP71's supplied-stream
+  reducer.  Its runtime, request-instance, stable-trace, seed-free-request, and
+  plan-seed fields are coherence/integrity values only; its public intervals
+  are arithmetic transforms of unauthenticated caller bytes, CP68 compatibility
+  is private-baseline-only, all seventeen gates and all four production
+  blockers remain `MISSING`, and no execution or blocker closure is authorized;
+- an input-stream relation, authorship, provenance, production custody,
+  source-law, runtime/request/stable-trace authentication, operational
+  coverage, production recomputation, primary decision threshold, decision,
+  receipt, or gate evidence from CP72's standalone CP71 development-output
+  validator.  Its stream-commitment check is internal preimage coherence only;
+  ordered and runtime digests remain opaque, the scalar summary retains no
+  caller output body, all seventeen gates and all four production blockers
+  remain `MISSING`, and no execution or blocker closure is authorized;
+- authenticated authorship, provenance, source law, runtime, request,
+  stable-trace, seed or external-source custody, independent production
+  recomputation, coverage, a primary decision threshold, decision, receipt,
+  or gate evidence from CP73's exact supplied-stream/output relation.  The
+  relation covers only the caller stream and canonical development bytes in
+  that call; opaque digests remain unauthenticated, coherent fabricated pairs
+  remain admissible, all seventeen gates and all four production blockers
+  remain `MISSING`, and no execution or blocker closure is authorized;
+- equality between the CP55 `T28-A0-Q` analytic interval target and the CP56
+  kernel-v2 float64 finite-atomic categorical-weight record. CP56 binds their
+  nonzero half-L1 discrepancy interval, but the exact float64 output sum is
+  not one, so this is neither total variation nor an operational categorical
+  law;
+- empirical TV or KL on positive-dimensional fibers;
+- adaptive retry, adaptive particle counts, shared-cloud output independence,
+  or liveness outside frozen resource bounds;
+- CP40/CP49 source-law equivalence;
+- Brownian lineage, path construction, downstream sampler correctness;
+- real-domain validity, learned-model quality, cross-domain generality, or a
+  manuscript result.
+
+The manuscript files remain frozen while this protocol is DRAFT. Any later
+claim promotion requires a terminalized execution, independent verification,
+and a separate strict review of the exact evidence bundle.
+
+- an accepted or executable production schema from CP74.  Its authoritative
+  packet and source-independent validator establish candidate descriptor
+  consistency only.  They observe no production artifact or body, authenticate
+  no provenance, freeze no production receipt or execution-output schema,
+  resolve no primary decision operator or threshold, satisfy no gate, close no
+  production blocker, authorize no run, and create no confirmatory evidence,
+  manuscript claim, or Formal-Test-28 closure;
+
+- an external review, scoped candidate acceptance, or production-schema
+  acceptance from CP75.  Its content-addressed request packet is merely ready
+  to be supplied, and its independent validator proves only one response's
+  structure and signature mathematics.  It authenticates no identity, trust,
+  authority, appointment, independence, revocation, trusted time, report,
+  method, attachment, supersession, withdrawal, conflict, or aggregate;
+  permits no later qualification construction; freezes no schema; satisfies no
+  gate; closes no production blocker; authorizes no run; and creates no
+  confirmatory evidence, manuscript claim, or Formal-Test-28 closure;
+
+## 10. Current DRAFT state and blockers
+
+At the time of this draft, no confirmatory execution is authorized.
+
+### 10.1 Completed CP52--CP75 nonconfirmatory prerequisites
+
+The immutable v14 machine-readable DRAFT manifest remains the predecessor
+digest authority for the completed CP52--CP63 source-and-test surfaces.  The
+immutable v15 DRAFT protocol and manifest bind the additive CP64 source/test
+evidence and are the exact predecessor bytes pinned by CP65.  This separate
+immutable v16 DRAFT protocol and manifest bind the additive CP65 authoritative
+and source-independent source/test evidence and are the exact predecessor
+bytes pinned by CP66.  This separate v17 DRAFT pair binds the additive CP66
+development runner-supervisor and closed-classifier qualification source/test
+evidence and is the exact predecessor pair pinned by CP67.  This separate v18
+DRAFT pair binds the additive CP67 development full-schedule materializer
+qualification source/test evidence and is the exact predecessor pair pinned by
+CP68.  This separate v19 DRAFT pair binds the additive CP68 development
+compact-projection aggregation and estimate/interval output-schema
+qualification source/test evidence and is the exact predecessor pair pinned by
+CP69.  This separate v20 DRAFT pair binds the additive CP69 development
+CP63-compact-semantics to CP68-projection canonical byte-interchange
+qualification source/test evidence and is the exact predecessor pair pinned by
+CP70.  This separate v21 DRAFT pair binds the additive CP70 development
+CP69-compact-interchange to CP68-estimate/interval-output source-independent
+reducer and exact-output validator qualification source/test evidence and is
+the exact predecessor pair pinned by CP71.  This separate v22 DRAFT pair binds
+the additive CP71 bounded caller-supplied CP69-interchange to dynamic CP71
+estimate/interval recomputation qualification source/test evidence and is the
+exact predecessor pair pinned by CP72.  This separate v23 DRAFT pair binds the
+additive CP72 standalone supplied CP71 development-output internal-validation
+qualification source/test evidence and is the exact predecessor pair pinned by
+CP73.  This separate v24 DRAFT pair binds the additive CP73 supplied CP69-
+semantic stream to CP71 development-output exact relation qualification
+source/test evidence and is the exact predecessor pair pinned by CP74.  This
+separate v25 DRAFT pair binds the authoritative and independent CP74 candidate
+production occurrence/output descriptor source/test evidence and is the exact
+predecessor subject pair pinned by CP75.  This separate v26 DRAFT pair binds
+the CP75 external-review request packet, its eight materialized files, and the
+independent one-response structural/signature-mathematics validator.  None of
+these sidecars is a freeze receipt, external review, accepted production
+schema, or production authorization.  CP65 consumes v15, CP66 consumes v16,
+CP67 consumes v17, CP68 consumes v18, CP69 consumes v19, CP70 consumes v20,
+CP71 consumes v21, CP72 consumes v22, CP73 consumes v23, CP74 consumes v24,
+and CP75 consumes v25 only as predecessor custody; none consumes v26 or makes
+the proposed lifecycle authoritative.  Any byte change requires renewed
+testing and a new manifest binding before freeze review.
+
+The bound implementation/test pairs are
+`src/heterodiff/processes/certified_initial_score_provider_v1.py` with
+`tests/unit/test_certified_initial_score_provider_v1.py`,
+`src/heterodiff/processes/arbitrary_rational_uint64_exp_quota.py` with
+`tests/unit/test_arbitrary_rational_uint64_exp_quota.py`, and
+`src/heterodiff/processes/plugin_bridge_mixed_support_initial_tilt_initializer_kernel_v2.py`
+with
+`tests/unit/test_plugin_bridge_mixed_support_initial_tilt_initializer_kernel_v2.py`,
+and
+`src/heterodiff/evaluation/mixed_initializer_test28_predictions.py` with
+`tests/unit/test_mixed_initializer_test28_predictions.py`, and
+`src/heterodiff/evaluation/mixed_initializer_test28_factorial_derivation.py`
+with
+`tests/unit/test_mixed_initializer_test28_factorial_derivation.py`, and
+`src/heterodiff/evaluation/mixed_initializer_test28_atomic_q_oracle.py` with
+`tests/unit/test_mixed_initializer_test28_atomic_q_oracle.py`, and
+`src/heterodiff/evaluation/mixed_initializer_test28_atomic_q_operational_comparison.py`
+with
+`tests/unit/test_mixed_initializer_test28_atomic_q_operational_comparison.py`,
+and
+`src/heterodiff/evaluation/mixed_initializer_test28_stress_refusal_oracle.py`
+with
+`tests/unit/test_mixed_initializer_test28_stress_refusal_oracle.py`, and
+`src/heterodiff/evaluation/mixed_initializer_test28_bounded_sir_diagnostics.py`
+with
+`tests/unit/test_mixed_initializer_test28_bounded_sir_diagnostics.py`, and
+`src/heterodiff/evaluation/mixed_initializer_test28_runtime_conditional_predictions.py`
+with
+`tests/unit/test_mixed_initializer_test28_runtime_conditional_predictions.py`,
+and
+`src/heterodiff/evaluation/mixed_initializer_test28_uniform_seed_pushforward.py`
+with
+`tests/unit/test_mixed_initializer_test28_uniform_seed_pushforward.py`, and
+`src/heterodiff/evaluation/mixed_initializer_test28_whole_seed_mc_design.py`
+with
+`tests/unit/test_mixed_initializer_test28_whole_seed_mc_design.py`, and
+`src/heterodiff/evaluation/mixed_initializer_test28_execution_capsule.py`
+with
+`tests/unit/test_mixed_initializer_test28_execution_capsule.py`, and
+`src/heterodiff/evaluation/mixed_initializer_test28_runner_recomputation_rehearsal.py`
+with
+`tests/unit/test_mixed_initializer_test28_runner_recomputation_rehearsal.py`,
+and
+`src/heterodiff/evaluation/mixed_initializer_test28_independent_recomputation.py`
+with
+`tests/unit/test_mixed_initializer_test28_independent_recomputation.py`, and
+`src/heterodiff/evaluation/mixed_initializer_test28_production_custody_preflight.py`
+with
+`tests/unit/test_mixed_initializer_test28_production_custody_preflight.py`, and
+`src/heterodiff/evaluation/mixed_initializer_test28_production_schema_preimage_validator.py`
+with
+`tests/unit/test_mixed_initializer_test28_production_schema_preimage_validator.py`,
+and
+`src/heterodiff/evaluation/mixed_initializer_test28_independent_production_schema_preimage_validator.py`
+with
+`tests/unit/test_mixed_initializer_test28_independent_production_schema_preimage_validator.py`,
+and
+`src/heterodiff/evaluation/mixed_initializer_test28_runner_supervisor_classifier_qualification.py`
+with
+`tests/unit/test_mixed_initializer_test28_runner_supervisor_classifier_qualification.py`,
+and
+`src/heterodiff/evaluation/mixed_initializer_test28_full_schedule_materializer_qualification.py`
+with
+`tests/unit/test_mixed_initializer_test28_full_schedule_materializer_qualification.py`,
+and
+`src/heterodiff/evaluation/mixed_initializer_test28_compact_projection_aggregation_qualification.py`
+with
+`tests/unit/test_mixed_initializer_test28_compact_projection_aggregation_qualification.py`,
+and
+`src/heterodiff/evaluation/mixed_initializer_test28_compact_projection_interchange_qualification.py`
+with
+`tests/unit/test_mixed_initializer_test28_compact_projection_interchange_qualification.py`,
+and
+`src/heterodiff/evaluation/mixed_initializer_test28_estimate_interval_output_validation_qualification.py`
+with
+`tests/unit/test_mixed_initializer_test28_estimate_interval_output_validation_qualification.py`,
+and
+`src/heterodiff/evaluation/mixed_initializer_test28_supplied_interchange_recomputation_qualification.py`
+with
+`tests/unit/test_mixed_initializer_test28_supplied_interchange_recomputation_qualification.py`,
+and
+`src/heterodiff/evaluation/mixed_initializer_test28_supplied_development_output_validation_qualification.py`
+with
+`tests/unit/test_mixed_initializer_test28_supplied_development_output_validation_qualification.py`,
+and
+`src/heterodiff/evaluation/mixed_initializer_test28_supplied_stream_output_relation_qualification.py`
+with
+`tests/unit/test_mixed_initializer_test28_supplied_stream_output_relation_qualification.py`.
+The exact CP64 source binding is SHA-256
+`d35cbacb84e3348ae10549e053a0bb1572569583cdd03e66119353af4148bec2`
+over 109,716 bytes and 2,409 LF-terminated lines.  The exact CP64 test binding
+is SHA-256
+`5e2d3a4ee4803556812983a01506e1f0b146c62ac2e2017c98914474a799fca4`
+over 125,001 bytes and 2,944 LF-terminated lines.
+The exact CP65 authoritative source binding is SHA-256
+`774cd44ad6aa82ea629ef705bde3bbb7288ccd74bd0d3a5d5c79f552a5f6a06a`
+over 528,394 bytes and 12,931 LF-terminated lines; its exact test binding is
+SHA-256
+`59091977a8f288ee2205e3897636868a4d62e469ca59edd34563b1b636b31d58`
+over 280,839 bytes and 7,121 LF-terminated lines.  The exact CP65 independent
+source binding is SHA-256
+`503306d1005af2acfe2f77c0bc1dd89d9b1b003e0a35136b5a77efcae81b0c1b`
+over 406,323 bytes and 10,466 LF-terminated lines; its exact test binding is
+SHA-256
+`6535a1cdd4628e7c76bc1e16626d4a52dbd77a6a4a5fd959b5bdb24d1fb8be92`
+over 87,713 bytes and 2,243 LF-terminated lines.
+The exact CP66 source binding is SHA-256
+`54eab1ec63ee280cf6741ffc9611f7012678c633c044d8131138314a6abc2861`
+over 90,243 bytes and 2,544 LF-terminated lines; its exact test binding is
+SHA-256
+`5913e37c2c3f784b62a091ebdb82745c7d43e1acd85cd7942a68a0780bc1e55c`
+over 76,313 bytes and 2,101 LF-terminated lines.
+The exact CP67 source binding is SHA-256
+`e52e5e7229a46b22983aa7b2c3656d3e27a342de5033b5b9f582523d3d67b1c6`
+over 73,054 bytes and 1,770 LF-terminated lines; its exact test binding is
+SHA-256
+`698c2d4843f3a9d4234aabfe7eef66f3b796c8d08ee6415277f3db2fbeb49b40`
+over 81,753 bytes and 2,080 LF-terminated lines.
+The exact CP68 source binding is SHA-256
+`15afd7e4a8fb99c137faea8d57ef2bd2dc3ab3c193481883da4e205b75c16555`
+over 126,185 bytes and 2,543 LF-terminated lines; its exact test binding is
+SHA-256
+`5587785ad8c5fc3ac526758ce87ad91acbb5b4e1532563ceacc2e1c8d64f32e4`
+over 80,526 bytes and 2,183 LF-terminated lines.
+The exact CP69 source binding is SHA-256
+`69f2ac19c37697f8c68dd8b4b312a12e0efc46c7df05f0157c310cf97e221dac`
+over 82,008 bytes and 2,049 LF-terminated lines; its exact test binding is
+SHA-256
+`c8179496c3986fcc6130ebccf9371b59956630cb8eada6e343f216adea13938c`
+over 75,561 bytes and 1,974 LF-terminated lines.
+The exact CP70 source binding is SHA-256
+`f7b982067614892f3f24568fe775792faba1452999f7aab769832c084dad175f`
+over 140,333 bytes and 3,050 LF-terminated lines; its exact test binding is
+SHA-256
+`0638a7e7e5401a7df53eb1cc764e3c7139d573ca6cd0fb5f73fb6146fd1ec229`
+over 137,285 bytes and 3,613 LF-terminated lines.
+The exact CP71 source binding is SHA-256
+`9be57c44592b5cb80bf68e876de335c8e253ffc1a11aa14fed2ad82213a49078`
+over 238,337 bytes and 5,181 LF-terminated lines; its exact test binding is
+SHA-256
+`7eaefe615325a76c16f8bb0b843bde82337c7f72d8686a4bcbcc7a8f7fb38352`
+over 107,345 bytes and 2,799 LF-terminated lines.
+The exact CP72 source binding is SHA-256
+`78f0558f318e45032b06856d21986d84fe53937185d9d005e395c2874df5167c`
+over 152,030 bytes and 3,160 LF-terminated lines; its exact test binding is
+SHA-256
+`ab4b2c5a74157863a621b59061b3ea38c872cbe1a9d30129c9ffc5922b5d4641`
+over 97,223 bytes and 2,518 LF-terminated lines.
+The exact CP73 source binding is SHA-256
+`a53c591e38a3b1e37b17b8aaab1a6b30b4b2cf086dfb0d5b7e4608c8fdd217ff` over 75,905 bytes and 1,824 LF-terminated lines; its exact
+test binding is SHA-256 `1c4d0c4802128b1db0df5b0b46ad16d17278dcf2d6cf312466cd4591a1900c79` over 99,638 bytes and 2,582
+LF-terminated lines.
+The
+manifest also
+binds the lazy `src/heterodiff/evaluation/__init__.py` package surface that
+exposes CP53 without eagerly importing NumPy or SciPy while preserving the
+legacy evaluation exports.
+
+- The sealed, torch-lazy certified score-provider facade presents one exact
+  represented-score contract with an exact upper envelope \(U\), an optional
+  exact lower envelope \(L\), explicit context policy, retained source record,
+  and bounded structural validation. Its separate adapters cover the CP30
+  learned composer, the exact rational known-law provider, and the CP55
+  count-keyed atomic score-table provider. Import or use of either exact
+  adapter does not import PyTorch; structural validation does not replay a
+  learned forward pass or consume RNG. The atomic adapter's structural
+  validation inspects its retained CP55 evaluation records without calling
+  the source provider's `evaluate` method.
+- The arbitrary-rational uint64 quota certifies
+  \(\lfloor2^{64}e^\Delta\rfloor\) for admitted exact rational
+  \(\Delta\le0\), using exact rational terminal branches or adaptive outward
+  enclosures under the recorded trusted Python `Decimal`/libmpdec contract.
+  Ambiguity, runtime mismatch, and resource exhaustion fail closed. This is
+  neither formal libmpdec verification, a portable cross-runtime theorem, nor
+  an exact exponential Bernoulli sampler.
+- Kernel-v2 consumes only the common certified facade and implements
+  precommitted finite-atomic enumeration, fixed-attempt rejection, and
+  fixed-particle SIR. It retains \(U\) and optional \(L\), but no strategy
+  requires \(L\). It binds bounded work and strategy/role-separated streams,
+  embeds and validates arbitrary-rational quota certificates, and offers
+  structural result validation without replaying provider evaluation, the
+  proposal sampler, or RNG.
+- Hostile and integration tests exercise all three facade backends, sealed records,
+  tamper/refusal paths, torch-lazy exact use, non-dyadic `T28-M2-Q` rejection
+  gaps, and `T28-M1-Q`/`T28-M2-Q` development paths. They also exercise CP30
+  finite-atomic enumeration against the reference oracle surface. These are
+  deterministic implementation tests only, not fixture predictions,
+  distributional evidence, source-law evidence, or a Formal Test 28 run.
+- CP52 is additive. The audited CP50-v1 initializer remains unchanged,
+  byte-frozen, and not type-compatible with the exact known-law provider;
+  kernel-v2 neither imports it nor converts the exact provider into its CP30
+  composer type.
+- The CP53 oracle is stdlib-only and uses exact `Fraction` endpoints,
+  256-bit integer-isqrt brackets, and alternating rational Taylor bounds.  It
+  binds paired M1/M2 analytic normalizers, category/count/type tables,
+  acceptance, second moments, variances, exact-IID SIR coefficients, and the
+  exact rational-versus-binary64 proposal/target perturbations.  Its
+  conditional \(A\)- and \(J\)-indexed theorem records keep every operational,
+  source-law, confirmatory, and manuscript flag false.
+- The CP54 oracle is stdlib-only and accepts no base-mass vector.  From the
+  primitive activity, cap, type weights, and complete ordered count support it
+  independently reconstructs every `T28-A0-H` and `T28-M2-Q` base mass by a
+  product-factorial route and a count-times-multinomial route.  It binds the
+  ideal-rational and stored-binary64 analytic parameter layers separately and
+  keeps every operational, target-tilt, source-law, confirmatory, and
+  manuscript flag false.
+- The CP55 oracle is stdlib-only and accepts no injected base masses,
+  exponentials, normalizer, or probabilities. It binds the direct exact
+  `T28-A0-Q` score table, exact envelope, factorial base reconstruction,
+  count-keyed runtime permutation, paired ideal-rational and stored-binary64
+  analytic interval targets, direct and envelope-shifted derivations, and the
+  binary64-minus-ideal perturbation. Its sealed table provider remains an
+  analytic prerequisite whose own immutable record contains no common-facade
+  adapter, kernel-v2 integration, categorical comparison, source-law evidence,
+  confirmatory evidence, or manuscript claim; CP56 binds the separate
+  integration layer described next.
+- The CP56 comparison takes the exact CP55 oracle/provider pair, the third
+  common-facade adapter, and an already executed generic kernel-v2 enumeration.
+  It verifies the runtime-to-protocol permutation \((0,2,1,5,4,3)\) by count
+  key, binds the exact binary64 base/output vectors and their hashes, records
+  the output-sum residual \(-2^{-57}\), and encloses the output-minus-analytic
+  half-L1 discrepancy. Structural comparison validation does not execute the
+  kernel, replay provider evaluation, sample the reference, consume RNG, or
+  run a learned model. It executes no categorical draw and makes no source-law,
+  exact-target-equality, confirmatory, Formal Test 28, or manuscript claim.
+- The CP57 stress/refusal oracle has a stdlib-only top-level import and
+  oracle/table-construction path; explicit observed-production-exception
+  verification lazily imports its exact class.  It binds the exact
+  `T28-AESS` rational target,
+  its one predeclared \(J=8\) ESS diagnostic and report-only expected policy,
+  and all fourteen `T28-INVALID` expectation rows under one independently
+  digested bundle.  Its observation verifier is comparison-only and leaves
+  provenance, authentication, production-runner, confirmatory, Formal Test 28,
+  and manuscript flags false.
+- CP57 kernel-v2 stochastic preflight hardening checks work limits before
+  categorical resolution, reconstructs the count and retained type laws from
+  public parameters, verifies retained CDF byte custody, preserves the cap-zero
+  and enumeration exemptions, and refuses before runtime hashing or RNG
+  construction.  The five production-preflight cases are executed by separate
+  hostile tests; the static table does not claim to have invoked them.
+- The CP58 diagnostic artifact is stdlib-only, sealed, resource-bounded, and
+  exact after converting canonical binary64 coordinates to rational values.
+  It binds the complete six-feature M1 and thirty-three-feature M2 registries,
+  all six rational projections, two predeclared evaluator calibrations,
+  proposal-value uniqueness, the one-selection same-cloud ancestor contract,
+  and the conditional zero-draw `T28-AESS` \(R=J=8\) particle-slot occupancy
+  calculation.  Its tests independently enumerate feature IDs and projection
+  coefficients, rederive every calibration mean and occupancy expression, and
+  exercise cross-cloud, tamper, type, coordinate, resource, import, and claim-
+  scope refusals.  Neither the artifact nor its tests observe production,
+  authenticate a source, compare a sample with a target, or close a gate.
+- The CP59 artifact is sealed and stdlib-only at import.  Its explicit SIR
+  builder lazily imports NumPy, independently reproduces the frozen kernel-v2
+  binary64 normalization expression, requires the supplied built-in-float
+  vector to match byte for byte, forms the sequential CDF with final one, and
+  exactly counts all right-sided \(2^{53}\)-grid cells.  Its finite-law
+  rejection builder uses the hash-bound CP52 quota dependency to derive exact
+  atom quotas and the complete \(A\in\{1,4,16,64\}\) first-acceptance and
+  exhaustion grids under explicitly assumed abstract finite-law premises.
+  The trusted Decimal/libmpdec contract remains formally unverified.  The
+  zero-argument bundle is predeclared arithmetic only: no sampler, kernel
+  owner/plan, kernel normalization helper, or RNG executes, and it makes no
+  source-law, iid, independence, operational, confirmatory, Formal Test 28, or
+  manuscript claim.
+- CP59 also binds the current source-surface obstruction: one uniform 64-bit
+  plan seed has joint-trace support at most \(2^{64}\), so it cannot realize a
+  two-word product-uniform law of support \(2^{128}\).  This makes a richer
+  external source API or a correlated whole-seed pushforward analysis a
+  necessary future design choice; deterministic replay is not source-law
+  evidence, and the support-level TV bound does not furnish an output-law
+  lower bound.
+- CP60 selects the correlated whole-request design and binds a sealed,
+  stdlib-only, definition-only artifact.  Under one expressly assumed uniform
+  uint64 plan seed for one future fully fixed request/runtime, it defines a
+  six-tag totalized outcome alphabet and exact fiber-count formulas for every
+  status, atom, rejection first-acceptance and exhaustion event, SIR selected
+  value, no-returned-output event, joint realized proposal trace, and reached
+  slot sublaw.  It also records the fixed-seed point-mass theorem.  It neither
+  executes nor imports the kernel, NumPy, SciPy, provider, or RNG.
+- The CP60 bundle binds sixteen prospective templates: M1 then M2; within each,
+  rejection budgets \(1,4,16,64\) followed by SIR budgets
+  \(8,32,128,512\).  Every request/runtime binding and every numeric status,
+  selection, refusal, failure, exhaustion, and nonreturn count remains absent.
+  The source and optional runtime digests do not attest a compiled runtime;
+  the dependency-lock/runtime fields are absent, totality and zero nonreturn
+  mass are unproved, validated Monte Carlo has not run, and every operational,
+  production, confirmatory, Test-28-closure, and manuscript flag remains false.
+  The artifact requires correlated whole-request predictions and does not
+  identify a common \(\mu_{fp}\) or permit iid, role-independence, or
+  \(\alpha_{64}\)/\(\rho_{64}\) product formulas.
+- The CP61 artifact is a sealed, stdlib-only, zero-execution prospective
+  validated-Monte-Carlo design.  It binds all sixteen CP60 rows, the complete
+  2,048-ordinal with-replacement seed schedule, all 554 estimands and their
+  compact semantic digests, every row's complete CP58 feature inventory, the
+  300-second deadline classifier, the full stable-trace projection contract,
+  and the exact planned resource budget.  Its builder neither imports nor
+  loads CP58 or CP60; hostile tests independently compare the hard-coded
+  predecessor sources, bundles, rows, registries, feature definitions, and
+  ranges with the live hash-bound artifacts.
+- CP61 assigns familywise error \(1/100\), per-estimator error
+  \(1/55{,}400\), and per-tail error \(1/110{,}800\).  It freezes exact
+  outward 256-step Clopper--Pearson bisection for the 242 binomial estimands
+  and a minimum selected count 1,040 with half-width \(3/40\) of range for
+  the 312 bounded-feature means.  Its exact Taylor/Hoeffding certificate and
+  union bound are design arithmetic only.  The future \(n=2048\) intervals
+  are uncomputed, and no selected-count or power guarantee is claimed.
+- CP61 retains duplicate seed values, pairs rows by seed ordinal without
+  assuming cross-row independence, forbids retry/drop/replacement/top-up,
+  keeps timeout censoring distinct from CP60 semantic nonreturn, and makes any
+  infrastructure failure invalidate the whole attempt.  Every live request,
+  runtime, source, supervisor, infrastructure-fidelity, sample, execution,
+  estimate, interval, operational, power, confirmatory, manuscript, and
+  Test-28-closure field remains absent or false.
+- CP62 is sealed and stdlib-only at import.  It hash-binds the exact sixteen
+  seed-free request records, one runtime/source/ABI candidate, the uninstantiated
+  future seed-capsule contract, a fresh-process deadline supervisor, and
+  separate raw-record and stable-projection schemas.  The stable projection
+  recomputes its owned semantic leaf hashes, excludes volatile custody, and
+  never replaces the separately retained raw trace.
+- CP62's only executable entry point admits four fixed module-owned
+  development cases: M1/M2 (A=64) rejection and M1/M2 (J=512) SIR.  Each
+  runs in two fresh children, for eight launches total.  Stable projections
+  match across the two executions of every case.  The four case seeds are not
+  CP61 external-source draws, and raw custody fields are allowed to differ.
+  Production seed ingest, arbitrary-seed execution, and a production campaign
+  remain unavailable.
+- CP62 predeclares production refusal/failure record shapes but does not
+  implement their calibration-runner classification or freeze the production
+  schema.  It binds no production source, seed capsule, runtime match,
+  supervisor, runner, shard mapping, request, metric, interval, operational
+  prediction, power guarantee, confirmatory evidence, manuscript promotion,
+  or Test 28 closure.
+- CP63's runner surface is sealed and stdlib-only at import.  It freezes the
+  future capsule syntax, exact seed-major logical order and arithmetic resource
+  maxima, and all sixteen development rehearsal cases.  The all-row fixture
+  executes each case twice in a fresh child under one fixed module-owned seed;
+  complete raw records retain repetition and volatile supervisor custody while
+  stable projection removes exactly those nonsemantic fields.
+- CP63's independent surface imports neither the runner nor CP62, the kernel,
+  NumPy, or SciPy.  It independently parses the complete stable bytes,
+  enumerates all 554 ordered CP61 estimands, emits sixteen compact observations,
+  and reproduces one repetition-blind receipt identically from both runs.  The
+  manifest retains the exact runner and independent bundles, component and
+  case receipts, full estimand inventories, sixteen stable/compact pins, and
+  complete final acceptance receipt.
+- CP63 remains development-only.  Its future capsule is syntax-only, the
+  32,768-request schedule is uninstantiated, the fixed rehearsal seed has no
+  external provenance, the reused CP62 runtime candidate is conditional, and
+  file-byte hashes are not executed-code attestation.  No production campaign,
+  durable writer, shard map, capacity receipt, durable production raw sample,
+  estimate, interval, decision, production-schema freeze, runner-blocker
+  closure, confirmatory evidence, manuscript promotion, or Test 28 closure is
+  claimed.
+- CP64 is sealed, stdlib-only at import, deterministic, and zero-execution.  It
+  binds the immutable v14 predecessor custody, CP61--CP63 semantic digests,
+  exact dependency lock, and future external-source, runtime, capacity,
+  durability, shard-map, launch-authorization, and gate contracts.  Its
+  builder performs no filesystem, runtime, source, process, network, clock,
+  entropy, or RNG observation and imports no project module.
+- CP64 freezes a 2,048-entry chained seed-acquisition journal contract, a
+  no-resume spent-attempt rule, a 1-TiB destination plus conservative 32-GiB
+  auxiliary reservation predicate, and one contiguous 32-shard candidate
+  partition with four reserved destination files per shard.  These are future
+  schemas and arithmetic definitions only: no seed, source authority,
+  runtime match, capacity receipt, reservation, filesystem qualification,
+  shard map, or durable output exists.
+- CP64 predeclares two exclusive durable outcome selections, the proposed v15
+  prestart terminal transitions, a twenty-node, forty-four-edge digest DAG,
+  and seventeen ordered production gates.  The first fifteen gates would be
+  summarized before independent signoff and authorization.  At construction,
+  the v15 paths are unavailable/unconsumed, the lifecycle is nonauthoritative,
+  every gate is `MISSING`, and all production, execution, estimate, interval,
+  decision, confirmatory, manuscript, and Test-28-closure flags remain false.
+- CP65's authoritative surface is sealed, deterministic, stdlib-only, and
+  zero-execution.  Its exact v15 predecessor custody, 64 artifact schemas, 801
+  field rules, 211 digest-preimage contracts, 315 SHA-pointer classifications,
+  1,031 pure predicates, seventeen gate requirements, and 65 auxiliary bounds
+  are internally hash-bound.  Its zero-argument builder imports no project
+  module and performs no filesystem, host, clock, entropy, network, process,
+  source, runtime, capacity, or production observation.
+- CP65 expands the closed path-template definition to 54 global paths, eight
+  per-shard templates, and two conditional paths: 312 final paths and 310
+  transient paths.  Its complete final path-template roster and bounded
+  auxiliary proof do not constitute a complete production roster, occurrence
+  or branch schema, production receipt schema, output schema, allocated
+  storage, or durable artifact set.
+- The independent CP65 module imports neither the authoritative catalog nor
+  any project module and reconstructs the exact authoritative canonical bytes
+  and semantic digest without a retained golden blob.  Both modules validate
+  only bounded caller-supplied bytes.  Mathematical signature validity is not
+  trust or authority; every production-evidence, gate-transition, launch,
+  execution, estimate, decision, blocker-closure, confirmatory, manuscript,
+  and Test-28-closure flag remains false.
+- CP66's pure zero-argument builder is sealed, deterministic, stdlib-only, and
+  child-free.  It binds the exact v16 predecessor and a closed forty-case
+  fixture set containing sixteen live supervisor cases, sixteen accepted
+  classifier-reachability cases, eight rejection cases, and twelve exact
+  event rules.  Its public behavior accepts only bounded classifier bytes and
+  internal case identifiers; it exposes no generic command, path, request,
+  seed, campaign, production launch, or production-execution API.
+- CP66 exercises bounded same-source spawn/exec, continuous frame and stderr
+  limits, deadline equality, TERM-to-KILL escalation, descendant process-group
+  cleanup, reap, inherited-descriptor control, environment custody, and exact
+  event-rule classification.  These are scaled development mechanics only.
+  Production clock fidelity, runner and classifier implementation, both
+  production qualification receipts, gates 11 and 12, production evidence,
+  execution, blocker closure, and Formal Test 28 closure remain false or
+  `MISSING` as applicable.
+- CP67's pure zero-argument builder is sealed, deterministic, stdlib-only, and
+  does not materialize the large payload.  Only the explicit qualification
+  runner lazily imports CP63 and both CP65 validators, constructs the one
+  module-owned development capsule and 32,768 request rows in memory, validates
+  them, discards the capsule and schedule bytes, and returns a compact sealed
+  receipt.  No public input, seed, capsule, request, filesystem path,
+  production materialization, subprocess, or campaign API is exposed.
+- CP67's twenty CP63 exemplar calls cover all row shapes and seed boundaries;
+  exhaustive authoritative and source-independent CP65 validation agrees on
+  every frozen payload pin and structural count.  This is development
+  materializer qualification only.  External source custody and IID law,
+  production capsule and schedule, gate 7, retained production requests,
+  production runner and campaign, evidence, execution, estimates, intervals,
+  decision, blocker closure, and Formal Test 28 closure remain false,
+  unresolved, or `MISSING` as applicable.
+- CP68's pure zero-argument builder and runner are sealed, deterministic,
+  standard-library, source-independent, and zero-I/O.  Neither imports CP58,
+  CP61, CP63, CP67, or any project module.  The runner streams the closed
+  32,768-projection synthetic fixture with peak projection retention one and
+  emits exactly 554 sealed estimate/interval records.  No public projection,
+  raw-record, stable-trace, filesystem-path, production-recomputation,
+  subprocess, campaign, evidence-acceptance, or decision API is exposed.
+- CP68 independently verifies every frozen output pin, exact 2^-256-grid
+  Clopper--Pearson endpoint behavior, the selected-count threshold, bounded-
+  feature clipping, and the complete estimand inventory.  This is development
+  aggregation and output-schema qualification only.  Production raw/stable
+  parsing and recomputation, source and runtime observation, production
+  estimate/interval/decision semantics, qualification receipts, gates 13 and
+  14, runner-blocker closure, and Formal Test 28 closure remain false or
+  `MISSING` as applicable.
+- CP69's pure zero-argument builder and runner are sealed, deterministic,
+  standard-library, source-independent, and zero-I/O.  The public surface is
+  limited to one bounded exact-byte parser, one sealed CP68-view mapper, record
+  canonicalization and tagged hashing, the pure bundle, fixture digest, and
+  closed qualification runner.  No raw-record, stable-trace, filesystem-path,
+  production-runner, writer, shard, campaign, evidence-acceptance, estimate,
+  interval, threshold, or decision API is exposed.
+- CP69 independently cross-checks all sixteen live CP63 compact anchors and
+  every record of the 32,768-item closed stream against the frozen CP68
+  projection semantics, including canonical bytes, tagged fractions, exact
+  identities, outcome/attempt/features, digests, hostile iteration boundaries,
+  sealing, tamper, concurrency, resource bounds, Python 3.9 compatibility, and
+  zero I/O.  This is transport qualification only.  The four custody links are
+  opaque and unauthenticated; production schemas, raw/stable parsing,
+  recomputation, estimates, intervals, decisions, receipts, all seventeen
+  gates, runner-blocker closure, and Formal Test 28 closure remain false or
+  `MISSING` as applicable.
+- CP70's pure zero-argument bundle and runner are sealed, deterministic,
+  standard-library, source-independent, and zero-I/O.  Its sole caller-data
+  API is the bounded exact closed-output byte validator; the CP69-equivalent
+  stream seam is private.  No public generic reducer, raw-record, stable-trace,
+  filesystem-path, command, production-runner, writer, shard, campaign,
+  receipt, evidence-acceptance, threshold, or decision API is exposed.
+- CP70 independently reconstructs and reduces every record of its
+  32,768-item closed CP69-equivalent stream directly into bounded sufficient
+  statistics, emits and validates the exact frozen CP68 554-record output, and
+  checks canonical grammar, record and body digests, family inventory, exact
+  arithmetic, Clopper--Pearson endpoints, threshold and clipping, resource
+  bounds, cache retention, sealing and nested-record identity, tamper,
+  concurrency, Python 3.9 compatibility, and zero I/O.  This is closed
+  development reduction/output-validation qualification only.  The custody
+  strings are opaque and unauthenticated; production schemas, raw/stable
+  parsing, provenance, recomputation, estimates, intervals, decisions,
+  receipts, all seventeen gates, runner-blocker closure, and Formal Test 28
+  closure remain false or `MISSING` as applicable.
+- CP71's pure zero-argument bundle and qualification runner are sealed,
+  deterministic, standard-library, source-independent, and free of direct
+  module filesystem, clock, RNG, network, and subprocess access.  Its sole
+  public caller-data processing API is the bounded exact 32,768-record CP69-
+  interchange stream reducer.  No public parser, output validator, projection
+  mapper, raw/stable, filesystem-path, writer, primary-decision-threshold,
+  decision, or evidence API is exposed; caller-iterator behavior and liveness
+  are explicitly unqualified.
+- CP71 validates and reduces four full-stream fixtures into dynamic CP71
+  554-estimand outputs, certifies all encountered binomial endpoints without a
+  closed count table, checks bounded-feature arithmetic and every rational and
+  serialization cap, and retains no input corpus or dynamic output body after
+  successful return.  This is supplied-byte development recomputation only.
+  The custody-shaped inputs are opaque and unauthenticated; source law,
+  production schedule, production-attempt validity, coverage, production
+  recomputation, estimates, decisions, receipts, all seventeen gates,
+  runner-blocker closure, and Formal Test 28 closure remain false or `MISSING`
+  as applicable.
+- CP72's pure zero-argument bundle and five-fixture qualification runner are
+  sealed, deterministic, standard-library, source-independent, and free of
+  direct module filesystem, clock, RNG, network, subprocess, and project-
+  module access.  Its sole caller-data API accepts bounded exact CP71
+  development-output bytes.  No public parser, stream reducer, raw/stable,
+  filesystem-path, writer, command, shard, campaign, primary-decision-
+  threshold, decision, receipt, or evidence API is exposed.
+- CP72 validates exact root and 554-record inventories, claim literals,
+  record digests, stream-commitment internal preimage coherence, cross-record
+  identities, and exact interval arithmetic across five qualification outputs
+  and separately generated valid nonfixture bytes.  This is standalone
+  development-output internal validation only.  Input-stream relation,
+  authorship, provenance, source law, runtime/request/trace authentication,
+  production-attempt validity, coverage, production recomputation, decisions,
+  receipts, all seventeen gates, runner-blocker closure, and Formal Test 28
+  closure remain false or `MISSING` as applicable.
+- CP73's pure zero-argument bundle is sealed and deterministic but validates
+  nothing; the module owns no fixture stream or output body and exposes no
+  qualification runner.  Its sole caller-data API composes only the named
+  public CP72 output validator and CP71 stream reducer.  Project modules are
+  imported, so CP73 is neither source-independent nor stdlib-only; only its
+  logic beyond those exact predecessor modules is standard-library.
+- The external hostile CP73 suite qualifies four full caller-stream/output
+  development relations, valid nonfixture and cross-pair negatives,
+  output-before-stream precedence, exact bytes, the 32-field crosscheck,
+  sealing, cleanup and concurrency.  Authorship, provenance, source law,
+  runtime/request/trace/seed authentication, production validity, iid,
+  coverage, independent production recomputation, primary decision threshold,
+  decisions, receipts, all seventeen gates, runner-blocker closure, and Formal
+  Test 28 closure remain false or `MISSING` as applicable.
+- The current CP58 bounded-feature/SIR-diagnostic pair passes 81/81 focused
+  hostile tests.  The CP57 stress/refusal pair passes 41/41 focused tests, and
+  the current kernel-v2 regression passes 28/28 tests.  The prior ten-suite
+  CP50--CP56 and eleven-suite CP50--CP57 aggregates remain historical 483/483
+  and 524/524 records.  The manifest separately binds the historical twelve-suite
+  CP50--CP58 aggregate at 605/605 tests passed with warnings treated as errors.
+  It records exact commands, timings, and generation-appropriate hashes; prior
+  records retain their historical facade or kernel-v2 hashes and are not
+  rewritten as current-binding evidence.
+- The CP59 runtime-conditional arithmetic pair passes 70/70 focused hostile,
+  independent-math, normalization-parity, resource, type-sealing, digest,
+  import, and nonclaim tests.  The manifest binds its source, tests, bundle,
+  boundary, two SIR tables, and eight finite rejection records separately.
+  The historical thirteen-suite aggregate passes 675/675 tests with warnings
+  treated as errors and is recorded separately in the manifest; every earlier
+  aggregate remains immutable historical evidence.
+- The CP60 whole-seed definition pair passes 52/52 focused hostile,
+  independent-math, totalization, correlated-source, variable-word-
+  consumption, resource, type-sealing, digest, import, and nonclaim tests.
+  The historical fourteen-suite aggregate passes 727/727 tests with warnings
+  treated as errors.  The manifest records the exact focused and aggregate
+  commands, timings, then-current source/test hashes, bundle and canonical-bundle
+  digests, outcome-alphabet digest, and all sixteen child-definition digests;
+  historical verification records remain unchanged.
+- The CP61 prospective whole-seed validated-Monte-Carlo design pair passes
+  40/40 focused hostile, independent-inventory, complete-estimand,
+  multiplicity, exact-interval-calibration, Taylor/Hoeffding, resource,
+  projection, deadline, infrastructure, seal, digest, import, tamper, and
+  nonclaim tests.  The manifest serializes the exact complete CP61 bundle and
+  records its source/test hashes, canonical byte count and digest, stable
+  design semantic digest, bundle digest, projection digest, multiplicity
+  digest, resource digest, focused command, and timing.  The historical
+  fifteen-suite aggregate passes 767/767 tests with warnings treated as
+  errors; its exact command, timing, and all 31 then-current non-protocol source and
+  test bindings are recorded separately.  Every prior focused and aggregate
+  verification record remains immutable historical evidence.
+- The CP62 calibration-only execution-capsule pair passes 148/148 focused
+  hostile, exact-binding, runtime/source/ABI, seed-capsule, supervisor,
+  raw/stable-schema, fresh-child execution, cross-process parity, timeout,
+  resource, import, seal, digest, tamper, and nonclaim tests with warnings
+  treated as errors.  The authoritative acceptance replay took 190.38 seconds
+  of pytest time.  The manifest binds the exact source/test hashes, bundle and
+  semantic digests, canonical bundle byte count and digest, child-contract and
+  calibration-case digests, four stable-trace digests and canonical byte
+  counts, and the exact focused command and timing.  The historical sixteen-suite
+  aggregate passes 915/915 tests with warnings treated as errors; its exact
+  command, timing, and all 33 current non-protocol source and test bindings are
+  recorded separately without rewriting any historical verification record.
+  This is calibration-only development verification, not a production or
+  confirmatory run.
+- The CP63 runner and independent-recomputation pairs pass 151/151 focused
+  tests with warnings treated as errors.  The retained acceptance executes all
+  sixteen fixed rehearsal rows twice, validates 32 raw records, confirms
+  within-row stable parity, independently reproduces every stable/compact pin,
+  and obtains identical repetition-blind 554-estimand receipts.  Pytest time
+  was 281.71 seconds (real 281.95, user 272.32, sys 5.29 seconds).  The
+  manifest retains the complete 24,810-byte acceptance receipt, its
+  domain-separated digest, the sixteen-launch semantic-pin receipt, the exact
+  bundles and ordered inventories, output-file custody, command, and timing.
+  This is development rehearsal evidence only.
+- The CP64 production-custody-preflight pair passes 145/145 focused hostile,
+  predecessor-custody, journal, runtime, capacity, path-closure, durable-CAS,
+  shard, lifecycle, gate, digest-DAG, canonicalization, sealing, tamper,
+  cross-version, concurrency, import, and nonclaim tests with warnings treated
+  as errors.  Pytest time was 4.13 seconds (real 4.27, user 4.16, sys 0.07
+  seconds).  Its exact 77,595-byte canonical bundle has plain SHA-256
+  `31c1ff133f9dc6c3f9a5810359bd313f5fe5f46cb5e2bd6801b8dac0e241ae23`,
+  record digest
+  `32f7f0c62019d8ee906e6f74300f6c33fbe55984f69cfe4fe1061ffb92463f39`,
+  and public tagged digest
+  `caecd8630def94f7ac6da721422e3d9d71c26c351e753369abf17b224a90de83`.
+  The predecessor, external-source, runtime, capacity, durability, shard-policy,
+  production-shard-map, launch-authorization, and no-execution-gate component
+  record digests are respectively
+  `b3a6f04387a93eff4a327c8b8d9bf6951e13ce9a2dc8c7924bea8bd213398c4d`,
+  `03d29e3d8514ef7d7c0930620e23b4e35f52a7dd5b0c77955e89e62bf438a0fa`,
+  `0a347ca445aa300cdfa67204d01e81194783fc625c47b3974c8055c6782f1c3c`,
+  `968108bda050687408fe989186aff3137560b827d1c83622f685a597d208ecfe`,
+  `aced3702d8f1cbb240de9c41c6f97581a5ce019045e3300cc485bcb6328e76c2`,
+  `8623c092772eaa0e40066d7e423967095e86491c01d869aa824c81fa9ee4b4ea`,
+  `288bb8d9ff9970d7e6fedf8e78f50d91fbd83e0e2c700ae195b9615d03678196`,
+  `0c60d5484e0efb50991a95fa7da4b191dae7c48f25568f24207e594132ac17b5`,
+  and
+  `7ceb4f12ce712e7123509eb6380e134876855bb91e90c64a951f7e1bcbcb2633`.
+  The candidate shard-1 record digest is
+  `8e298aad172c3ad1c09c4f5790c224ee25cd4ae6394a7ecdedd19a7de6db8d93`.
+  This is definition-only development verification, not a production or
+  confirmatory run.
+- The paired CP65 authoritative and source-independent validator suites pass
+  238/238 focused predecessor-pin, catalog-closure, path, digest-preimage,
+  cross-artifact, registry, RSA-PSS, auxiliary-proof, source-archive,
+  terminal-publication, resource, Python 3.9/3.11, seal, concurrency, tamper,
+  and explicit no-evidence/nonclaim tests with warnings treated as errors.
+  Pytest time was 39.75 seconds (real 39.91, user 39.60, sys 0.27 seconds).
+  The authoritative 2,488,135-byte canonical bundle has plain SHA-256
+  `fd755453f7359f8db7c1dbbeea63748fd74551707ff8f5fd7e5d80a6982aa576`,
+  semantic digest
+  `8855d84a573344723bc6c4c32036b7aeb878d6c66a04d5423d5f591ed40316c0`,
+  record digest
+  `597f2b4b557bffb529d951858fd84e454135220db0c19dcd05fcf7ce93710f89`,
+  and public tagged digest
+  `48862957062f3f0c30b7e237c10323d28f666325ca07c0d4e9f0e10e980b3ec0`.
+  The independent 384,548-byte compact bundle has plain SHA-256
+  `5a0773dbd36246dec2986033b846d4a9bfe01cebd717a32cc661a72779e57db6`,
+  record digest
+  `f34b5e4463a8ab881ac81378b3162b2b73a961be12a1e83d59341a0ff7b6af52`,
+  and public tagged digest
+  `ae4d7bf6a2a746171b1f0b8b3a676a9ce312487c67df1351bf345f134fa0b8f7`.
+  The independent generator reconstructs the full authoritative canonical
+  bytes exactly.  This is definition-only unit-test evidence, not an
+  independent signoff, production receipt, authority decision, or execution.
+- The CP66 runner-supervisor and closed-classifier qualification suite passes
+  109/109 focused predecessor-custody, exact-roster, event-rule, bounded-parser,
+  live spawn/exec/process-group/TERM-to-KILL/reap, continuous-stream resource,
+  file-descriptor, environment, source-authentication, seal, tamper, Python
+  3.9/3.11, and explicit production-nonclaim tests on each of the two recorded
+  Python profiles under concurrent execution.  Python 3.9 pytest time was
+  24.98 seconds and Python 3.11 pytest time was 22.16 seconds.  The exact
+  38,005-byte canonical bundle has plain SHA-256
+  `e73e37c7365593834539a78f2614eeae073c5a57b866fb55f7e45d0508dce654`,
+  fixture-set digest
+  `a8a763a14097f2831258c2451df4daab344125d3d48a725758620a7e783920d5`,
+  record digest
+  `409a3ad764c1f12e0212d1c63de8bf32df36380287f39a81a9f82c4674cecec2`,
+  and public tagged digest
+  `fc336af22f689ab985e960156d39e67034896f41a8857573e9ece01dbaaf03bd`.
+  This is development qualification evidence only, not either production
+  qualification receipt, gate evidence, a production runner, authorization,
+  or execution.
+- The CP67 full-schedule materializer qualification suite passes 31/31 focused
+  predecessor-custody, exact-capsule, full-cardinality schedule, frozen-formula,
+  CP63-exemplar, authoritative/independent CP65 parity, graph/scalar/integer/
+  canonical-byte resource, cache-poisoning, lazy-import, seal, concurrency,
+  tamper, and explicit production-nonclaim tests under Python 3.11 and 3.12.
+  Python 3.11 pytest time was 29.61 seconds and Python 3.12 pytest time was
+  27.60 seconds.  Under Python 3.9, 23 tests pass in 2.67 seconds and eight
+  runtime qualification tests are intentionally skipped.  The exact
+  10,695-byte canonical bundle has plain SHA-256
+  `6f047d5dc8cd0045220e289c13a14f86e6eeeda3374af7e5f60f9da0f69d13d4`,
+  fixture-set digest
+  `e5f48b09da24f6a98d1fb3fa0e903dffb306db56233001c1dc6eaa742a2f2a0c`,
+  record digest
+  `12dd4c44682a7db53a65258f146e96f6248755ebf2f2ed1db6aa0f4ad3d99c35`,
+  and public tagged digest
+  `80cd78507443c1826d0691db3f9857b39ffae356fcf356898d5694eb5cb6d548`.
+  The compact qualification record has record digest
+  `b7572677e2188ac6fd68534a0ac208b7d806a9929298efac7274119509d2e078`
+  and public tagged digest
+  `874ae10763dfc9d3ae7829c91bb96915f09f10e0944bad6a3cec6c93d0badb17`.
+  This is development qualification evidence only, not an external seed-law
+  certificate, production capsule or schedule, gate-7 receipt, retained
+  production sample, runner, campaign, authorization, or execution.
+- The CP68 compact-projection aggregation and output-schema qualification
+  suite passes 57/57 focused predecessor-custody, independently reconstructed
+  32,768-projection stream and 554-record output, exact Clopper--Pearson
+  endpoint, feature-threshold and clipping, cardinality, corruption, bounded-
+  resource, zero-I/O and source-independence, cache, seal, concurrency, tamper,
+  Python 3.9-compatibility, and explicit production-nonclaim tests with
+  warnings treated as errors.  Pytest time was 130.28 seconds (real 130.45,
+  user 129.11, sys 0.84 seconds), and the exit code was zero.  The exact
+  7,335-byte canonical bundle has plain SHA-256
+  `ff70910b3b37cc60c06e11dbf2b9ab3a7df0319a3c9d3e2f6cae3d7600dac2b0`,
+  fixture-set digest
+  `6b8d7db706b94c32ee53efe9969e16560997e0f7b2345960e44ad4f18feb49ce`,
+  record digest
+  `b301ea4cadb8a67fa238dfa5872c874b4689a08b7baec04f1133bef7191a2a83`,
+  and public tagged digest
+  `06f60b51bf77504f5144637a67680436638cacf75bd6a9a8b2f7a1c5cff7c9ed`.
+  The qualification record has record digest
+  `881dc5b6539504a3bf42957d7e0b4298484db0cfd637e3fe861ce9847cf81400`
+  and public tagged digest
+  `bcfafd20c223e0d5430070a9aa213bf8f020496e051045d93553723939e9abc2`.
+  This is development aggregation and output-schema qualification only, not
+  raw/stable production recomputation, a production estimate, interval,
+  decision, qualification receipt, gate evidence, runner, authorization, or
+  execution.
+- The CP69 compact-projection byte-interchange qualification suite passes
+  77/77 focused v19/predecessor-custody, sixteen live-CP63-anchor crosswalk,
+  independently reconstructed 32,768-record stream, exact CP68 projection-
+  parity, canonical-JSON and exact-fraction grammar, corruption, cardinality,
+  resource, iterator-injection, digest, zero-I/O, source-independence, seal,
+  concurrency, tamper, Python 3.9-compatibility, and explicit production-
+  nonclaim tests with warnings treated as errors.  Pytest time was 239.12
+  seconds (real 239.38, user 234.00, sys 3.10 seconds), and the exit code was
+  zero.  The exact 8,325-byte canonical bundle has plain SHA-256
+  `2182052b68c97db3ba9bba62abbaca31af194dcecf496e670dd11de9fae8bfb0`,
+  fixture-set digest
+  `95a388b634e208b8d7b578a18657289390fe9306e23a4e5ecb3ed084771a8303`,
+  record digest
+  `39c937d3d78913fb7f91b777bc676648eddac6e38696b26973eb55a55becfe26`,
+  and public tagged digest
+  `19c98261b71da70f6c271f1c934f41443e9d0a2663ea7fe77f01c6b799a7d65b`.
+  The full-stream expectation has record digest
+  `6043a6241ffc74ac14b395b052f87f22627beae43e2132992b2bb0e6a156289f`;
+  the qualification record has record digest
+  `88dd43071ecf0545c9496e80b5de682ea9b7b0a5980a5fabe5b0f46f83586ab1`
+  and public tagged digest
+  `3c09fc8e72509ae8c6d7c439b9d0b428dc83e02366ec7cf67ce06df2d6e46a68`.
+  This is development transport qualification only, not a raw/stable schema,
+  provenance authentication, production estimate, interval, threshold,
+  decision, qualification receipt, gate evidence, runner, authorization, or
+  execution.
+- The CP70 source-independent closed reducer and exact output-byte validation
+  qualification suite passes 85/85 focused v20/predecessor-custody,
+  independently reconstructed 32,768-record CP69-equivalent stream and exact
+  554-record CP68 output, canonical JSON and exact-fraction grammar,
+  Clopper--Pearson endpoint, feature threshold and clipping, cardinality,
+  corruption, bounded-resource, iterator-injection, cache-retention,
+  zero-I/O, source-independence, seal and nested-identity, concurrency, tamper,
+  Python 3.9-compatibility, and explicit production-nonclaim tests with
+  warnings treated as errors.  Pytest time was 161.65 seconds (real 161.90,
+  user 160.52, sys 0.55 seconds), and the exit code was zero.  The exact
+  focused command was:
+
+  ```text
+  PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /usr/bin/time -p /private/tmp/diffusion-recovery-20260815/.venv-m1/bin/python -W error -m pytest -q -p no:cacheprovider tests/unit/test_mixed_initializer_test28_estimate_interval_output_validation_qualification.py
+  ```
+
+  The exact 10,970-byte canonical bundle has plain SHA-256
+  `f058b7ed5b72c967c8e98c2694563bebff9646a84b8292561194dcd4692f112c`,
+  record digest
+  `efb07acf0f8c591f5a8d4a088ec7b863a27a871c4f78661659c063cdf1aaf761`,
+  and public tagged digest
+  `0ed1bb0ced1636f8dc73e8ec49c4d1c947b75b27922c0038bdccfce3506fee13`.
+  The exact 1,454-byte validation record has plain SHA-256
+  `df5aefce366a7d25e72fc0b30cee43b73204480af8711f6a4f07aa1334a7bdc8`,
+  record digest
+  `3980afcc98153cd55b0777c6a23f661fa5bd65ae8baff3ed30682fb7d809dc48`,
+  and public tagged digest
+  `afff0d186e0784cd00ecb6bdbb44648317836dbe2e5f1e0d352664a3371e5cdf`.
+  The exact 1,787-byte qualification record has plain SHA-256
+  `752a60dc7fd3407675c782499ee36f575e1d005a87c0d64195c8b056a0d826dc`,
+  record digest
+  `5806f256e0b6601cc04b01aef132f58683334a3f1f35a99ae08c8cb9dbdedf96`,
+  and public tagged digest
+  `1c1c48d1be4580d958ecb196de693b5ccd6c94a2da342fb7bc4186e26989f21f`.
+  This is development reduction and output-transport qualification only, not
+  a raw/stable production schema, provenance authentication, production
+  recomputation, estimate, interval, threshold, decision, qualification
+  receipt, gate evidence, runner, authorization, or execution.
+- The historical eighteen-suite CP50--CP63 aggregate passes 1,066/1,066 tests
+  with warnings treated as errors and no warning, error, or failure output.
+  Pytest time was 972.67 seconds (real 973.37, user 951.79, sys 10.85
+  seconds).  The manifest records the exact approved command and all 37
+  non-protocol binding hashes without modifying any of the 33 historical
+  verification records that preceded CP63.
+- The historical nineteen-suite CP50--CP64 aggregate passes 1,211/1,211 tests
+  with warnings treated as errors and no warning, error, or failure output.
+  Pytest time was 932.79 seconds (real 933.20, user 923.44, sys 6.18
+  seconds).  This aggregate adds only the exact CP64 pair to the historical
+  CP50--CP63 suite set and does not rewrite any prior verification record.
+- The historical twenty-one-suite CP50--CP65 aggregate passes 1,449/1,449 tests
+  with warnings treated as errors and no warning, error, or failure output.
+  Pytest time was 1,149.15 seconds (real 1,149.69, user 1,138.65, sys 7.38
+  seconds).  This aggregate preserves the complete 1,211-test CP64 suite and
+  adds only the exact CP65 authoritative and source-independent validator
+  suites.  Its 43 non-protocol binding hashes are final, and none of the 37
+  historical verification records is rewritten.
+- The historical twenty-two-suite CP50--CP66 aggregate passes 1,558/1,558 tests
+  with warnings treated as errors and no warning, error, or failure output.
+  Pytest time was 991.32 seconds (real 992.14, user 964.86, sys 7.63 seconds).
+  This aggregate preserves the complete CP65 suite and adds only the exact
+  CP66 qualification hostile suite.  Its 45 non-protocol binding hashes are
+  final, and no historical verification record is rewritten.
+- The historical twenty-three-suite CP50--CP67 aggregate passes 1,589/1,589 tests
+  with warnings treated as errors and no warning, error, or failure output.
+  Pytest time was 1,078.79 seconds (real 1,079.39, user 1,034.12, sys 12.08
+  seconds) under the restored exact CP62-locked Python 3.11.5 runtime.  This
+  aggregate preserves the complete CP66 suite list and adds only the exact
+  CP67 qualification hostile suite.  Its 47 non-protocol binding hashes are
+  final, and no historical verification record is rewritten.
+- The historical twenty-four-suite CP50--CP68 aggregate passes 1,646/1,646 tests
+  with warnings treated as errors and no warning, error, or failure output.
+  Pytest time was 1,377.42 seconds (real 1,378.20, user 1,335.96, sys 17.02
+  seconds) under the restored exact CP62-locked Python 3.11.5 runtime.  It
+  preserves the exact v18 twenty-three-suite command and appends only
+  `tests/unit/test_mixed_initializer_test28_compact_projection_aggregation_qualification.py`.
+  The exact completed command is:
+
+  ```text
+  PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /usr/bin/time -p /private/tmp/diffusion-recovery-20260815/.venv-m1/bin/python -W error -m pytest -q -p no:cacheprovider tests/unit/test_mixed_initializer_test28_oracle.py tests/unit/test_plugin_bridge_mixed_support_initial_tilt_initializer_kernel.py tests/unit/test_exact_rational_quadratic_initial_tilt.py tests/unit/test_arbitrary_rational_uint64_exp_quota.py tests/unit/test_certified_initial_score_provider_v1.py tests/unit/test_plugin_bridge_mixed_support_initial_tilt_initializer_kernel_v2.py tests/unit/test_mixed_initializer_test28_predictions.py tests/unit/test_mixed_initializer_test28_factorial_derivation.py tests/unit/test_mixed_initializer_test28_atomic_q_oracle.py tests/unit/test_mixed_initializer_test28_atomic_q_operational_comparison.py tests/unit/test_mixed_initializer_test28_stress_refusal_oracle.py tests/unit/test_mixed_initializer_test28_bounded_sir_diagnostics.py tests/unit/test_mixed_initializer_test28_runtime_conditional_predictions.py tests/unit/test_mixed_initializer_test28_uniform_seed_pushforward.py tests/unit/test_mixed_initializer_test28_whole_seed_mc_design.py tests/unit/test_mixed_initializer_test28_execution_capsule.py tests/unit/test_mixed_initializer_test28_runner_recomputation_rehearsal.py tests/unit/test_mixed_initializer_test28_independent_recomputation.py tests/unit/test_mixed_initializer_test28_production_custody_preflight.py tests/unit/test_mixed_initializer_test28_production_schema_preimage_validator.py tests/unit/test_mixed_initializer_test28_independent_production_schema_preimage_validator.py tests/unit/test_mixed_initializer_test28_runner_supervisor_classifier_qualification.py tests/unit/test_mixed_initializer_test28_full_schedule_materializer_qualification.py tests/unit/test_mixed_initializer_test28_compact_projection_aggregation_qualification.py
+  ```
+
+  Its 49 non-protocol binding hashes are final, and no historical verification
+  record is rewritten.  This is nonconfirmatory development verification only;
+  it supplies no production or confirmatory evidence and authorizes no
+  execution.
+- The historical twenty-five-suite CP50--CP69 aggregate passes 1,723/1,723 tests
+  with warnings treated as errors and no warning, error, or failure output.
+  Pytest time was 1,412.22 seconds (real 1,412.99, user 1,360.93, sys 23.39
+  seconds), and the exit code was zero.  It preserves the exact finalized v19
+  twenty-four-path command and appends only
+  `tests/unit/test_mixed_initializer_test28_compact_projection_interchange_qualification.py`.
+  The exact completed command is:
+
+  ```text
+  PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /usr/bin/time -p /private/tmp/diffusion-recovery-20260815/.venv-m1/bin/python -W error -m pytest -q -p no:cacheprovider tests/unit/test_mixed_initializer_test28_oracle.py tests/unit/test_plugin_bridge_mixed_support_initial_tilt_initializer_kernel.py tests/unit/test_exact_rational_quadratic_initial_tilt.py tests/unit/test_arbitrary_rational_uint64_exp_quota.py tests/unit/test_certified_initial_score_provider_v1.py tests/unit/test_plugin_bridge_mixed_support_initial_tilt_initializer_kernel_v2.py tests/unit/test_mixed_initializer_test28_predictions.py tests/unit/test_mixed_initializer_test28_factorial_derivation.py tests/unit/test_mixed_initializer_test28_atomic_q_oracle.py tests/unit/test_mixed_initializer_test28_atomic_q_operational_comparison.py tests/unit/test_mixed_initializer_test28_stress_refusal_oracle.py tests/unit/test_mixed_initializer_test28_bounded_sir_diagnostics.py tests/unit/test_mixed_initializer_test28_runtime_conditional_predictions.py tests/unit/test_mixed_initializer_test28_uniform_seed_pushforward.py tests/unit/test_mixed_initializer_test28_whole_seed_mc_design.py tests/unit/test_mixed_initializer_test28_execution_capsule.py tests/unit/test_mixed_initializer_test28_runner_recomputation_rehearsal.py tests/unit/test_mixed_initializer_test28_independent_recomputation.py tests/unit/test_mixed_initializer_test28_production_custody_preflight.py tests/unit/test_mixed_initializer_test28_production_schema_preimage_validator.py tests/unit/test_mixed_initializer_test28_independent_production_schema_preimage_validator.py tests/unit/test_mixed_initializer_test28_runner_supervisor_classifier_qualification.py tests/unit/test_mixed_initializer_test28_full_schedule_materializer_qualification.py tests/unit/test_mixed_initializer_test28_compact_projection_aggregation_qualification.py tests/unit/test_mixed_initializer_test28_compact_projection_interchange_qualification.py
+  ```
+
+  Its 51 non-protocol binding hashes are final, and no historical verification
+  record is rewritten.  This is nonconfirmatory development verification only;
+  it supplies no production or confirmatory evidence and authorizes no
+  execution.
+- The historical twenty-six-suite CP50--CP70 aggregate passes 1,808/1,808 tests
+  with warnings treated as errors and no warning, error, or failure output.
+  Pytest time was 1,449.86 seconds (real 1,450.50, user 1,417.77, sys 12.06
+  seconds), and the exit code was zero.  It preserves the exact finalized v20
+  twenty-five-path command and appends only
+  `tests/unit/test_mixed_initializer_test28_estimate_interval_output_validation_qualification.py`.
+  The exact completed command is:
+
+  ```text
+  PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /usr/bin/time -p /private/tmp/diffusion-recovery-20260815/.venv-m1/bin/python -W error -m pytest -q -p no:cacheprovider tests/unit/test_mixed_initializer_test28_oracle.py tests/unit/test_plugin_bridge_mixed_support_initial_tilt_initializer_kernel.py tests/unit/test_exact_rational_quadratic_initial_tilt.py tests/unit/test_arbitrary_rational_uint64_exp_quota.py tests/unit/test_certified_initial_score_provider_v1.py tests/unit/test_plugin_bridge_mixed_support_initial_tilt_initializer_kernel_v2.py tests/unit/test_mixed_initializer_test28_predictions.py tests/unit/test_mixed_initializer_test28_factorial_derivation.py tests/unit/test_mixed_initializer_test28_atomic_q_oracle.py tests/unit/test_mixed_initializer_test28_atomic_q_operational_comparison.py tests/unit/test_mixed_initializer_test28_stress_refusal_oracle.py tests/unit/test_mixed_initializer_test28_bounded_sir_diagnostics.py tests/unit/test_mixed_initializer_test28_runtime_conditional_predictions.py tests/unit/test_mixed_initializer_test28_uniform_seed_pushforward.py tests/unit/test_mixed_initializer_test28_whole_seed_mc_design.py tests/unit/test_mixed_initializer_test28_execution_capsule.py tests/unit/test_mixed_initializer_test28_runner_recomputation_rehearsal.py tests/unit/test_mixed_initializer_test28_independent_recomputation.py tests/unit/test_mixed_initializer_test28_production_custody_preflight.py tests/unit/test_mixed_initializer_test28_production_schema_preimage_validator.py tests/unit/test_mixed_initializer_test28_independent_production_schema_preimage_validator.py tests/unit/test_mixed_initializer_test28_runner_supervisor_classifier_qualification.py tests/unit/test_mixed_initializer_test28_full_schedule_materializer_qualification.py tests/unit/test_mixed_initializer_test28_compact_projection_aggregation_qualification.py tests/unit/test_mixed_initializer_test28_compact_projection_interchange_qualification.py tests/unit/test_mixed_initializer_test28_estimate_interval_output_validation_qualification.py
+  ```
+
+  Its 53 non-protocol binding hashes are final, and no historical verification
+  record is rewritten.  This is nonconfirmatory development verification only;
+  it supplies no production or confirmatory evidence and authorizes no
+  execution.
+- The exact focused CP71 suite passes 82/82 tests with warnings treated as
+  errors and no warning, error, or failure output.  Pytest time was 535.37
+  seconds (real 535.59, user 531.07, sys 3.03 seconds), and the exit code was
+  zero.  Its exact completed command is:
+
+  ```text
+  PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /usr/bin/time -p /private/tmp/diffusion-recovery-20260815/.venv-m1/bin/python -W error -m pytest -q -p no:cacheprovider tests/unit/test_mixed_initializer_test28_supplied_interchange_recomputation_qualification.py
+  ```
+
+  This focused receipt is nonconfirmatory development verification only.  It
+  supplies no production or confirmatory evidence and authorizes no execution.
+- The historical twenty-seven-path CP50--CP71 aggregate passes 1,890/1,890
+  tests
+  with warnings treated as errors and no warning, error, or failure output.
+  Pytest time was 2,249.76 seconds (real 2,250.39, user 2,216.00, sys 13.76
+  seconds), and the exit code was zero.  It preserves the exact finalized v21
+  twenty-six-path command and appends only
+  `tests/unit/test_mixed_initializer_test28_supplied_interchange_recomputation_qualification.py`.
+  The exact completed command is:
+
+  ```text
+  PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /usr/bin/time -p /private/tmp/diffusion-recovery-20260815/.venv-m1/bin/python -W error -m pytest -q -p no:cacheprovider tests/unit/test_mixed_initializer_test28_oracle.py tests/unit/test_plugin_bridge_mixed_support_initial_tilt_initializer_kernel.py tests/unit/test_exact_rational_quadratic_initial_tilt.py tests/unit/test_arbitrary_rational_uint64_exp_quota.py tests/unit/test_certified_initial_score_provider_v1.py tests/unit/test_plugin_bridge_mixed_support_initial_tilt_initializer_kernel_v2.py tests/unit/test_mixed_initializer_test28_predictions.py tests/unit/test_mixed_initializer_test28_factorial_derivation.py tests/unit/test_mixed_initializer_test28_atomic_q_oracle.py tests/unit/test_mixed_initializer_test28_atomic_q_operational_comparison.py tests/unit/test_mixed_initializer_test28_stress_refusal_oracle.py tests/unit/test_mixed_initializer_test28_bounded_sir_diagnostics.py tests/unit/test_mixed_initializer_test28_runtime_conditional_predictions.py tests/unit/test_mixed_initializer_test28_uniform_seed_pushforward.py tests/unit/test_mixed_initializer_test28_whole_seed_mc_design.py tests/unit/test_mixed_initializer_test28_execution_capsule.py tests/unit/test_mixed_initializer_test28_runner_recomputation_rehearsal.py tests/unit/test_mixed_initializer_test28_independent_recomputation.py tests/unit/test_mixed_initializer_test28_production_custody_preflight.py tests/unit/test_mixed_initializer_test28_production_schema_preimage_validator.py tests/unit/test_mixed_initializer_test28_independent_production_schema_preimage_validator.py tests/unit/test_mixed_initializer_test28_runner_supervisor_classifier_qualification.py tests/unit/test_mixed_initializer_test28_full_schedule_materializer_qualification.py tests/unit/test_mixed_initializer_test28_compact_projection_aggregation_qualification.py tests/unit/test_mixed_initializer_test28_compact_projection_interchange_qualification.py tests/unit/test_mixed_initializer_test28_estimate_interval_output_validation_qualification.py tests/unit/test_mixed_initializer_test28_supplied_interchange_recomputation_qualification.py
+  ```
+
+  Its 55 non-protocol binding hashes are final, and no historical verification
+  record is rewritten.  This is nonconfirmatory development verification only;
+  it supplies no production or confirmatory evidence and authorizes no
+  execution.
+
+- The exact focused CP72 suite passes 131/131 tests with warnings treated as
+  errors and no warning, error, or failure output.  Pytest time was 529.80
+  seconds (real 530.03, user 522.38, sys 7.28 seconds), and the exit code was
+  zero.  Its exact completed command is:
+
+  ```text
+  PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /usr/bin/time -p /private/tmp/diffusion-recovery-20260815/.venv-m1/bin/python -W error -m pytest -q -p no:cacheprovider tests/unit/test_mixed_initializer_test28_supplied_development_output_validation_qualification.py
+  ```
+
+  This focused receipt is nonconfirmatory development verification only.  It
+  supplies no production or confirmatory evidence and authorizes no execution.
+- The historical twenty-eight-path CP50--CP72 aggregate passes 2,021/2,021
+  tests with warnings treated as errors and no warning, error, or failure
+  output.  Pytest time was 2,426.59 seconds (real 2,427.23, user 2,380.69,
+  sys 21.11 seconds), and the exit code was zero.  It preserves the exact
+  finalized v22 twenty-seven-path command and appends only
+  `tests/unit/test_mixed_initializer_test28_supplied_development_output_validation_qualification.py`.
+  The exact completed command is:
+
+  ```text
+  PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /usr/bin/time -p /private/tmp/diffusion-recovery-20260815/.venv-m1/bin/python -W error -m pytest -q -p no:cacheprovider tests/unit/test_mixed_initializer_test28_oracle.py tests/unit/test_plugin_bridge_mixed_support_initial_tilt_initializer_kernel.py tests/unit/test_exact_rational_quadratic_initial_tilt.py tests/unit/test_arbitrary_rational_uint64_exp_quota.py tests/unit/test_certified_initial_score_provider_v1.py tests/unit/test_plugin_bridge_mixed_support_initial_tilt_initializer_kernel_v2.py tests/unit/test_mixed_initializer_test28_predictions.py tests/unit/test_mixed_initializer_test28_factorial_derivation.py tests/unit/test_mixed_initializer_test28_atomic_q_oracle.py tests/unit/test_mixed_initializer_test28_atomic_q_operational_comparison.py tests/unit/test_mixed_initializer_test28_stress_refusal_oracle.py tests/unit/test_mixed_initializer_test28_bounded_sir_diagnostics.py tests/unit/test_mixed_initializer_test28_runtime_conditional_predictions.py tests/unit/test_mixed_initializer_test28_uniform_seed_pushforward.py tests/unit/test_mixed_initializer_test28_whole_seed_mc_design.py tests/unit/test_mixed_initializer_test28_execution_capsule.py tests/unit/test_mixed_initializer_test28_runner_recomputation_rehearsal.py tests/unit/test_mixed_initializer_test28_independent_recomputation.py tests/unit/test_mixed_initializer_test28_production_custody_preflight.py tests/unit/test_mixed_initializer_test28_production_schema_preimage_validator.py tests/unit/test_mixed_initializer_test28_independent_production_schema_preimage_validator.py tests/unit/test_mixed_initializer_test28_runner_supervisor_classifier_qualification.py tests/unit/test_mixed_initializer_test28_full_schedule_materializer_qualification.py tests/unit/test_mixed_initializer_test28_compact_projection_aggregation_qualification.py tests/unit/test_mixed_initializer_test28_compact_projection_interchange_qualification.py tests/unit/test_mixed_initializer_test28_estimate_interval_output_validation_qualification.py tests/unit/test_mixed_initializer_test28_supplied_interchange_recomputation_qualification.py tests/unit/test_mixed_initializer_test28_supplied_development_output_validation_qualification.py
+  ```
+
+  Its 57 non-protocol binding hashes are final, and no historical verification
+  record is rewritten.  This is nonconfirmatory development verification only;
+  it supplies no production or confirmatory evidence and authorizes no
+  execution.
+
+- The exact focused CP73 suite passes 248/248 tests with warnings treated as
+  errors and no warning, error, or failure output.  Pytest time was 341.31
+  seconds (real 341.52, user 340.54, sys 0.79 seconds), and the exit code was
+  zero.  Its exact completed command is:
+
+  ```text
+  PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /usr/bin/time -p /private/tmp/diffusion-recovery-20260815/.venv-m1/bin/python -W error -m pytest -q -p no:cacheprovider tests/unit/test_mixed_initializer_test28_supplied_stream_output_relation_qualification.py
+  ```
+
+  This focused receipt is nonconfirmatory development verification only.  It
+  supplies no production or confirmatory evidence and authorizes no execution.
+- The completed twenty-nine-path CP50--CP73 aggregate passes 2,269/2,269
+  tests with warnings treated as errors and no warning, error, or failure
+  output.  Pytest time was 2,762.94 seconds (real 2,763.72, user 2,716.78,
+  sys 21.95 seconds), and the exit code was zero.  It preserves the exact
+  finalized v23 twenty-eight-path command and appends only
+  `tests/unit/test_mixed_initializer_test28_supplied_stream_output_relation_qualification.py`.
+  The exact completed command is:
+
+  ```text
+  PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /usr/bin/time -p /private/tmp/diffusion-recovery-20260815/.venv-m1/bin/python -W error -m pytest -q -p no:cacheprovider tests/unit/test_mixed_initializer_test28_oracle.py tests/unit/test_plugin_bridge_mixed_support_initial_tilt_initializer_kernel.py tests/unit/test_exact_rational_quadratic_initial_tilt.py tests/unit/test_arbitrary_rational_uint64_exp_quota.py tests/unit/test_certified_initial_score_provider_v1.py tests/unit/test_plugin_bridge_mixed_support_initial_tilt_initializer_kernel_v2.py tests/unit/test_mixed_initializer_test28_predictions.py tests/unit/test_mixed_initializer_test28_factorial_derivation.py tests/unit/test_mixed_initializer_test28_atomic_q_oracle.py tests/unit/test_mixed_initializer_test28_atomic_q_operational_comparison.py tests/unit/test_mixed_initializer_test28_stress_refusal_oracle.py tests/unit/test_mixed_initializer_test28_bounded_sir_diagnostics.py tests/unit/test_mixed_initializer_test28_runtime_conditional_predictions.py tests/unit/test_mixed_initializer_test28_uniform_seed_pushforward.py tests/unit/test_mixed_initializer_test28_whole_seed_mc_design.py tests/unit/test_mixed_initializer_test28_execution_capsule.py tests/unit/test_mixed_initializer_test28_runner_recomputation_rehearsal.py tests/unit/test_mixed_initializer_test28_independent_recomputation.py tests/unit/test_mixed_initializer_test28_production_custody_preflight.py tests/unit/test_mixed_initializer_test28_production_schema_preimage_validator.py tests/unit/test_mixed_initializer_test28_independent_production_schema_preimage_validator.py tests/unit/test_mixed_initializer_test28_runner_supervisor_classifier_qualification.py tests/unit/test_mixed_initializer_test28_full_schedule_materializer_qualification.py tests/unit/test_mixed_initializer_test28_compact_projection_aggregation_qualification.py tests/unit/test_mixed_initializer_test28_compact_projection_interchange_qualification.py tests/unit/test_mixed_initializer_test28_estimate_interval_output_validation_qualification.py tests/unit/test_mixed_initializer_test28_supplied_interchange_recomputation_qualification.py tests/unit/test_mixed_initializer_test28_supplied_development_output_validation_qualification.py tests/unit/test_mixed_initializer_test28_supplied_stream_output_relation_qualification.py
+  ```
+
+  Its 59 non-protocol binding hashes are final, and no historical verification
+  record is rewritten.  This is nonconfirmatory development verification only;
+  it supplies no production or confirmatory evidence and authorizes no
+  execution.
+
+- The exact combined authoritative and independent CP74 focused suite passes
+  194/194 tests with exit code zero in 36.72 seconds of pytest time.  No
+  separate real, user, or sys timing was captured.  Its exact command is:
+
+  ```text
+  PYTHONPATH=src pytest -q tests/unit/test_mixed_initializer_test28_production_occurrence_output_schema_candidate.py tests/unit/test_mixed_initializer_test28_independent_production_occurrence_output_schema_candidate_validator.py
+  ```
+
+  The receipt covers all 64-by-11 occurrence cells, six crash cuts, fifteen
+  output descriptors, twenty-four crossbindings, all three exact public records,
+  deep resigned mutations, parser caps and precedence, atomicity, recursive
+  exact-type sealing, weak retention, concurrency, locked Python 3.9, import
+  and I/O boundaries, and explicit production nonclaims.  It is
+  nonconfirmatory development verification only.
+- The completed thirty-one-path CP50--CP74 aggregate passes 2,463/2,463
+  tests with warnings treated as errors and no warning, error, or failure
+  output.  Pytest time was 3,331.73 seconds (real 3,332.41, user 3,282.92,
+  sys 24.84 seconds), and the exit code was zero.  It preserves the exact
+  finalized v24 twenty-nine-path command and appends only
+  `tests/unit/test_mixed_initializer_test28_production_occurrence_output_schema_candidate.py`
+  and
+  `tests/unit/test_mixed_initializer_test28_independent_production_occurrence_output_schema_candidate_validator.py`.
+  The exact completed command is:
+
+  ```text
+  PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /usr/bin/time -p /private/tmp/diffusion-recovery-20260815/.venv-m1/bin/python -W error -m pytest -q -p no:cacheprovider tests/unit/test_mixed_initializer_test28_oracle.py tests/unit/test_plugin_bridge_mixed_support_initial_tilt_initializer_kernel.py tests/unit/test_exact_rational_quadratic_initial_tilt.py tests/unit/test_arbitrary_rational_uint64_exp_quota.py tests/unit/test_certified_initial_score_provider_v1.py tests/unit/test_plugin_bridge_mixed_support_initial_tilt_initializer_kernel_v2.py tests/unit/test_mixed_initializer_test28_predictions.py tests/unit/test_mixed_initializer_test28_factorial_derivation.py tests/unit/test_mixed_initializer_test28_atomic_q_oracle.py tests/unit/test_mixed_initializer_test28_atomic_q_operational_comparison.py tests/unit/test_mixed_initializer_test28_stress_refusal_oracle.py tests/unit/test_mixed_initializer_test28_bounded_sir_diagnostics.py tests/unit/test_mixed_initializer_test28_runtime_conditional_predictions.py tests/unit/test_mixed_initializer_test28_uniform_seed_pushforward.py tests/unit/test_mixed_initializer_test28_whole_seed_mc_design.py tests/unit/test_mixed_initializer_test28_execution_capsule.py tests/unit/test_mixed_initializer_test28_runner_recomputation_rehearsal.py tests/unit/test_mixed_initializer_test28_independent_recomputation.py tests/unit/test_mixed_initializer_test28_production_custody_preflight.py tests/unit/test_mixed_initializer_test28_production_schema_preimage_validator.py tests/unit/test_mixed_initializer_test28_independent_production_schema_preimage_validator.py tests/unit/test_mixed_initializer_test28_runner_supervisor_classifier_qualification.py tests/unit/test_mixed_initializer_test28_full_schedule_materializer_qualification.py tests/unit/test_mixed_initializer_test28_compact_projection_aggregation_qualification.py tests/unit/test_mixed_initializer_test28_compact_projection_interchange_qualification.py tests/unit/test_mixed_initializer_test28_estimate_interval_output_validation_qualification.py tests/unit/test_mixed_initializer_test28_supplied_interchange_recomputation_qualification.py tests/unit/test_mixed_initializer_test28_supplied_development_output_validation_qualification.py tests/unit/test_mixed_initializer_test28_supplied_stream_output_relation_qualification.py tests/unit/test_mixed_initializer_test28_production_occurrence_output_schema_candidate.py tests/unit/test_mixed_initializer_test28_independent_production_occurrence_output_schema_candidate_validator.py
+  ```
+
+  Its 63 non-protocol binding hashes are final, and no historical verification
+  record is rewritten.  This is nonconfirmatory development verification only;
+  it supplies no production or confirmatory evidence and authorizes no
+  execution.
+
+- The exact combined authoritative and independent CP75 focused suite passes
+  190/190 tests.  Pytest time was 21.35 seconds (real 21.67, user 21.47,
+  sys 0.21 seconds), and the exit code was zero.  Its exact command is:
+
+  ```text
+  /usr/bin/time -p python -m pytest -q tests/unit/test_mixed_initializer_test28_production_schema_acceptance_review_request.py tests/unit/test_mixed_initializer_test28_independent_production_schema_acceptance_review_response_validator.py
+  ```
+
+  The receipt covers the exact source/test quartet and materialized static8,
+  full request and manifest reconstruction, criteria/role/disposition/key/RSA
+  rules, deep drift mutations, parser caps and precedence, atomicity, recursive
+  exact-type sealing, weak retention, concurrency, locked Python 3.9, import
+  and I/O boundaries, and explicit no-review/no-authority/no-acceptance/no-
+  production-effect claims.  It is nonconfirmatory development verification
+  only.
+- The completed thirty-three-path CP50--CP75 aggregate passes 2,653/2,653
+  tests with warnings treated as errors and no warning, error, or failure
+  output.  Pytest time was 2,825.68 seconds (real 2,826.37, user 2,758.14,
+  sys 40.91 seconds), and the exit code was zero.  It preserves the exact
+  finalized v25 thirty-one-path command and appends only
+  `tests/unit/test_mixed_initializer_test28_production_schema_acceptance_review_request.py`
+  and
+  `tests/unit/test_mixed_initializer_test28_independent_production_schema_acceptance_review_response_validator.py`.
+  The exact completed command is:
+
+  ```text
+  PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /usr/bin/time -p /private/tmp/diffusion-recovery-20260815/.venv-m1/bin/python -W error -m pytest -q -p no:cacheprovider tests/unit/test_mixed_initializer_test28_oracle.py tests/unit/test_plugin_bridge_mixed_support_initial_tilt_initializer_kernel.py tests/unit/test_exact_rational_quadratic_initial_tilt.py tests/unit/test_arbitrary_rational_uint64_exp_quota.py tests/unit/test_certified_initial_score_provider_v1.py tests/unit/test_plugin_bridge_mixed_support_initial_tilt_initializer_kernel_v2.py tests/unit/test_mixed_initializer_test28_predictions.py tests/unit/test_mixed_initializer_test28_factorial_derivation.py tests/unit/test_mixed_initializer_test28_atomic_q_oracle.py tests/unit/test_mixed_initializer_test28_atomic_q_operational_comparison.py tests/unit/test_mixed_initializer_test28_stress_refusal_oracle.py tests/unit/test_mixed_initializer_test28_bounded_sir_diagnostics.py tests/unit/test_mixed_initializer_test28_runtime_conditional_predictions.py tests/unit/test_mixed_initializer_test28_uniform_seed_pushforward.py tests/unit/test_mixed_initializer_test28_whole_seed_mc_design.py tests/unit/test_mixed_initializer_test28_execution_capsule.py tests/unit/test_mixed_initializer_test28_runner_recomputation_rehearsal.py tests/unit/test_mixed_initializer_test28_independent_recomputation.py tests/unit/test_mixed_initializer_test28_production_custody_preflight.py tests/unit/test_mixed_initializer_test28_production_schema_preimage_validator.py tests/unit/test_mixed_initializer_test28_independent_production_schema_preimage_validator.py tests/unit/test_mixed_initializer_test28_runner_supervisor_classifier_qualification.py tests/unit/test_mixed_initializer_test28_full_schedule_materializer_qualification.py tests/unit/test_mixed_initializer_test28_compact_projection_aggregation_qualification.py tests/unit/test_mixed_initializer_test28_compact_projection_interchange_qualification.py tests/unit/test_mixed_initializer_test28_estimate_interval_output_validation_qualification.py tests/unit/test_mixed_initializer_test28_supplied_interchange_recomputation_qualification.py tests/unit/test_mixed_initializer_test28_supplied_development_output_validation_qualification.py tests/unit/test_mixed_initializer_test28_supplied_stream_output_relation_qualification.py tests/unit/test_mixed_initializer_test28_production_occurrence_output_schema_candidate.py tests/unit/test_mixed_initializer_test28_independent_production_occurrence_output_schema_candidate_validator.py tests/unit/test_mixed_initializer_test28_production_schema_acceptance_review_request.py tests/unit/test_mixed_initializer_test28_independent_production_schema_acceptance_review_response_validator.py
+  ```
+
+  Its 75 non-protocol binding hashes are final, and no historical verification
+  record is rewritten.  This is nonconfirmatory development verification only;
+  it supplies no production or confirmatory evidence, performs no external
+  review or schema acceptance, and authorizes no execution.
+
+These completed prerequisites do not authorize production or confirmatory
+execution, close any primary gate, identify either analytic target with the
+operational target, establish
+live \(p_{64}\), \(\alpha_{64}\), \(\rho_{64}\), or operational SIR, or
+support a manuscript claim. Formal Test 28 remains **OPEN**.
+
+### 10.2 Remaining blockers before freeze review
+
+The DRAFT blocker ledger now contains thirty entries: twenty-six satisfied by
+hash-bound nonconfirmatory artifacts and four still missing. CP60 satisfies
+the symbolic `whole_seed_pushforward_definition` prerequisite, and CP61
+satisfies the prospective `whole_seed_validated_mc_design` prerequisite. CP62
+satisfies the calibration-only `whole_seed_execution_capsule_and_calibration`
+prerequisite. CP63 satisfies the development-only
+`whole_seed_runner_recomputation_rehearsal` prerequisite. CP62 and CP63 are
+completed precursors to `runner_and_recomputation`; neither closes that runner
+blocker or `unconditional_operational_predictions`.  CP64 satisfies the new
+definition-only
+`whole_seed_production_custody_preflight_scaffold_definition` prerequisite,
+but closes none of the same four missing blockers.  CP65 satisfies only the
+definition-only
+`whole_seed_production_schema_preimage_and_validator_definition`
+prerequisite.  Its internally complete bounded supplied-envelope grammar,
+preimages, predicates, path templates, and independent reconstruction close no
+production blocker.  CP66 satisfies only the development qualification
+prerequisite
+`whole_seed_runner_supervisor_and_closed_classifier_qualification_harness`.
+Its closed internal fixture set and bounded live-process checks supply neither
+production qualification receipt required by gates 11 and 12, implement no
+production runner or campaign, and do not close `runner_and_recomputation`.
+CP67 satisfies only the development qualification prerequisite
+`whole_seed_full_schedule_materializer_qualification`.  Its closed synthetic
+capsule and transient 32,768-row schedule qualify the bounded materializer and
+dual-validator path, but bind no external source law, production capsule or
+schedule, gate-7 evidence, retained request set, runner, campaign, estimate,
+interval, or decision and do not close `runner_and_recomputation`.  CP62,
+CP63, CP66, and CP67 are completed development precursors to that blocker.
+CP68 satisfies only the development qualification prerequisite
+`whole_seed_full_schedule_compact_projection_aggregation_and_estimate_interval_output_schema_qualification`.
+Its closed synthetic compact-projection stream and 554-record output qualify
+the aggregation and estimate/interval schema arithmetic, but parse no
+production raw record or stable trace, qualify no production recomputation or
+decision path, supply neither gate-13 nor gate-14 receipt, and do not close
+`runner_and_recomputation`.  CP62, CP63, CP66, CP67, and CP68 are completed
+development precursors to that blocker.  CP69 satisfies only the development
+qualification prerequisite
+`whole_seed_cp63_compact_semantics_to_cp68_projection_interchange_qualification`.
+Its bounded byte parser, sealed projection mapper, sixteen live CP63-anchor
+crosswalks, and closed 32,768-record synthetic stream qualify only the canonical
+transport boundary.  It authenticates no custody link, defines or parses no
+production raw/stable schema, computes no estimate, interval, threshold, or
+decision, supplies no receipt or gate evidence, and does not close
+`runner_and_recomputation`.  CP62, CP63, CP66, CP67, CP68, and CP69 are
+completed development precursors to that blocker.  CP70 satisfies only the
+development qualification prerequisite
+`whole_seed_cp69_compact_interchange_to_cp68_estimate_interval_output_source_independent_reducer_qualification`.
+Its private closed stream and exact-output validator qualify direct bounded
+reduction from frozen CP69-equivalent compact interchange semantics to the
+exact CP68 554-record body.  It authenticates no custody, defines or parses no
+production raw/stable schema, performs no production recomputation, qualifies
+no decision path, supplies no production receipt or gate evidence, and does
+not close `runner_and_recomputation`.  CP62, CP63, CP66, CP67, CP68, CP69,
+and CP70 are completed development precursors to that blocker.  CP71 satisfies
+only the development qualification prerequisite
+`whole_seed_bounded_supplied_cp69_interchange_to_dynamic_estimate_interval_recomputation_qualification`.
+Its public bounded stream reducer validates caller-supplied CP69 semantics and
+computes a dynamic CP71 arithmetic output, but authenticates no source or
+provenance, parses no production raw/stable record, evaluates no production-
+attempt validity, performs no production recomputation, qualifies no decision
+path, supplies no production receipt or gate evidence, and does not close
+`runner_and_recomputation`.  CP62, CP63, CP66, CP67, CP68, CP69, CP70, and
+CP71 are completed development precursors to that blocker.  CP72 satisfies
+only the development qualification prerequisite
+`whole_seed_supplied_cp71_development_output_internal_validation_qualification`.
+Its bounded public validator checks standalone CP71 development-output bytes
+for internal syntax, inventory, digest, identity, and interval arithmetic
+consistency, but establishes no input-stream relation, authorship, provenance,
+source law, production-attempt validity, operational coverage, production
+recomputation, primary decision threshold, decision, receipt, gate evidence,
+or runner and does not close `runner_and_recomputation`.  CP62, CP63, CP66,
+CP67, CP68, CP69, CP70, CP71, and CP72 are completed development precursors
+to that blocker.  CP73 satisfies only the development qualification prerequisite
+`whole_seed_supplied_cp69_interchange_to_cp71_development_output_exact_relation_qualification`.
+Its output-first compositor proves exact relation only between one caller-
+supplied development stream and output under the two frozen predecessor APIs;
+it is not source-independent, authenticates no provenance or source law,
+performs no independent production recomputation, qualifies no primary
+decision threshold or decision, supplies no production receipt or gate
+evidence, exposes no runner, and does not close `runner_and_recomputation`.
+CP62, CP63, CP66, CP67, CP68, CP69, CP70, CP71, CP72, and CP73 are completed
+development precursors to that blocker; the missing set is unchanged.
+
+CP74 satisfies only the candidate-definition prerequisite
+`whole_seed_candidate_production_artifact_occurrence_branch_and_execution_output_schema_definition`.
+Its exact 64-artifact occurrence overlay, fifteen output envelope/framing/
+digest descriptors, twenty-four crossbindings, and independent supplied-byte
+reconstruction make the local candidate packet auditable, but the candidate is
+not accepted or executable for production.  Actual production bodies,
+provenance, source/runtime/attempt/durability evidence, threshold direction and
+decision semantics, external review, runner and writer implementations,
+qualification receipts, all seventeen gate artifacts, and production schema
+freeze remain absent.  CP74 therefore closes none of the same four production
+blockers.
+
+CP75 satisfies only the local review-request and response-structure validation
+prerequisite
+`whole_seed_external_production_schema_acceptance_review_request_and_response_structural_validation`.
+Its exact content-addressed packet and one-response signature-mathematics
+validator make a future external act auditable, but no externally issued
+reviewer identity, key, response, or signature, and no
+trust root, authority appointment, trusted time, report, method, attachment,
+multi-response aggregation, scoped candidate acceptance, independent schema
+acceptance, executable production schema, later qualification permission,
+production evidence, or authorization exists.  All seventeen gate artifacts,
+production schema freeze, and the same four production blockers remain absent.
+CP75 therefore closes none of those production blockers.
+
+Before a freeze review, the following missing items must all be present and
+hash-bound:
+
+- unconditional operational predictions under the selected correlated model:
+  fully instantiate every request parameter and the complete compiled runtime
+  map; bind the external supervisor and implement the full stable/raw trace
+  custody contract; realize and verify CP61's external iid uniform
+  uint64-with-replacement seed source; retain the complete seed and trace
+  sample without retry, drop, replacement, or top-up; execute all 32,768
+  scheduled requests under the frozen deadline and infrastructure-fidelity
+  rules; and compute and independently reproduce all 554 estimates and
+  applicable intervals.  A common \(\mu_{fp}\), proposal iid, derived-word
+  uniformity, role independence, and \(\alpha_{64}\)/\(\rho_{64}\) product
+  formulas are not required by this chosen within-request model and must not be
+  asserted.  Same-ordinal cross-row outcomes are paired and are not assumed
+  independent.  CP62's seed-free grid, empty seed schema, candidate runtime,
+  and four deterministic parity calibrations are completed precursors, but do
+  not satisfy any of these sample, campaign, estimate, or interval steps.
+  CP63's syntax-only capsule parser, uninstantiated schedule, fixed-seed
+  sixteen-row rehearsal, stable pair parity, and repetition-blind independent
+  554-estimand receipt are also completed precursors only: they bind no
+  external seed values or source law, production runtime, full 32,768-request
+  sample, estimate, interval, or decision.  CP64 adds the spent-attempt
+  acquisition journal and source/capsule cross-check schemas, but contains no
+  source values or authority, materialized schedule, campaign, estimate,
+  interval, or decision.  CP65 adds exact canonical schemas and bounded
+  supplied-byte validation for those future artifacts, but observes no source,
+  receipt, request, campaign, estimate, interval, or decision.  CP66 exposes
+  no production seed, request, campaign, estimate, interval, or decision and
+  performs no production execution.  CP67 materializes only its sequential
+  synthetic development fixture in memory; it verifies no external source or
+  IID law, retains no production capsule, request set, or trace, and computes
+  no estimate, interval, or decision.  CP70 reduces only its closed synthetic
+  CP69-equivalent stream to the already frozen CP68 development output; it
+  observes no external source or production runtime, retains no production
+  sample, and supplies no production estimate, interval, or decision.  CP71
+  accepts only unauthenticated caller-supplied CP69-valid bounded bytes and
+  computes arithmetic development outputs; it verifies no external source,
+  source law, production runtime, production schedule, attempt validity, or
+  retained production sample and supplies no operational prediction or
+  production estimate, interval, or decision.  CP72 validates only the
+  internal consistency of supplied CP71 development-output bytes; it
+  establishes no relation to an input stream, production sample, operational
+  prediction, estimate, interval, or decision.  CP73 establishes an exact relation
+  only between one caller-supplied development stream and output; it
+  authenticates no external source or production sample and supplies no
+  unconditional operational prediction, production estimate, interval, or
+  decision;
+- the execution runner, source/fixture/seed manifests, exact dependency lock,
+  complete runtime recorder, raw-record schema, and independent metric and
+  decision recomputation path.  CP62 binds a candidate lock, supervisor and
+  raw/stable schemas, and fixed calibration path, but a production seed ingest,
+  campaign loop, closed refusal/failure classifier, frozen production schema,
+  capacity receipt, production runtime match, runner/shard mapping, and
+  independent metric/decision recomputation remain absent.  CP63 exercises
+  all rows and independently recomputes the rehearsal receipt, but its external
+  capsule is absent, production execution APIs remain mechanically unavailable,
+  the CP62 runtime lock is only conditionally reused, source-file custody is
+  not executed-code attestation, and no campaign, durable writer, shard map,
+  capacity receipt, durable production raw retention, full recomputation,
+  estimate, interval, or decision is bound.  CP64 adds candidate shard,
+  runtime-receipt, reservation, durable-writer, classifier, and independent-
+  recomputation qualification schemas, but implements, qualifies, selects,
+  materializes, or observes none of them.  CP65 closes the receipt-envelope
+  field and preimage definition prerequisite only; occurrence/branch and
+  execution-output semantics, production implementations, qualifications,
+  retained records, and the overall production schema remain absent.  CP66
+  qualifies a closed scaled development harness only; the production runner,
+  production clock fidelity, source and runtime observation, retained
+  production qualification receipts, gates 11 and 12, complete campaign, and
+  independent production recomputation remain absent.  CP67 qualifies only
+  the development materializer and dual-validator path; the external capsule,
+  source authority and law, production schedule, gate 7, retained production
+  requests, runner, campaign, and independent full recomputation remain
+  absent.  CP68 qualifies only closed synthetic compact-projection aggregation
+  and estimate/interval output-schema arithmetic; production raw/stable
+  parsing, full recomputation, decision qualification, production receipts,
+  gates 13 and 14, and the production runner remain absent.  CP69 qualifies
+  only the bounded canonical transport from frozen CP63 compact semantics to
+  the exact CP68 projection view; a frozen production raw/stable schema and
+  parser, provenance authentication, production records, full recomputation,
+  estimates, intervals, decisions, receipts, all seventeen gates, and the
+  production runner remain absent.  CP70 qualifies only private closed
+  reduction and exact closed-output validation; production raw/stable parsing,
+  provenance, durable custody, complete recomputation, decision qualification,
+  production receipts, gates 13 and 14, and the production runner remain
+  absent.  CP71 qualifies a bounded caller-supplied compact-interchange
+  recomputation seam only; production raw/stable parsing, provenance and source
+  authentication, durable custody, retained production inputs and outputs,
+  complete production recomputation, decision qualification, production
+  receipts, gates 13 and 14, and the production runner remain absent.  CP72
+  adds only standalone internal validation of supplied CP71 development-output
+  bytes; input-stream relation, production provenance, retained production
+  inputs and outputs, independent production recomputation, decision
+  qualification, production receipts, gates 13 and 14, and the production
+  runner remain absent.  CP73 adds only a project-compositional
+  exact development relation under the public CP71 and CP72 APIs; production
+  provenance and custody, independent production recomputation, decision
+  qualification, production receipts, gates 13 and 14, and the production
+  runner remain absent;
+- a completed power review, exact frozen primary thresholds, and adequate
+  selected-count justification for every one of the 32 gate slots.  CP64
+  names the power-threshold receipt and gate but supplies neither artifact.
+  CP65 validates the future threshold-receipt and review-signoff grammar but
+  supplies no review text, selected-count justification, threshold value,
+  signed receipt, or gate evidence;
+  and
+- complete confirmatory custody: sidecar protocol digest, freeze receipt,
+  independent reviewer signoffs, attempt/exclusion/deviation/terminal receipt
+  machinery, and explicit launch authorization.  CP64's proposed lifecycle,
+  path inventory, two-stage outcome selection, publication order, digest DAG,
+  and authorization schema are definition-only; v15 sidecar freeze and later
+  bound consumption, receipt instances, signoffs, authorization, start, and a
+  committed attempt remain absent.  CP65 supplies internally complete bounded
+  receipt-envelope, digest-preimage, and verifier definitions, but no retained
+  schema-bundle artifact, trusted public key, signature instance, trust root,
+  authority decision, freeze receipt, reviewer signoff, or launch
+  authorization.
+
+Until those blockers are closed, confirmatory budgets, thresholds, unresolved
+fixture encodings, predictions, runner inputs, and execution records remain
+prospective DRAFT inputs. Development artifact bindings are not a freeze
+receipt. There is no `STARTED.json`, no confirmatory output, and no CP50
+evidence claim.

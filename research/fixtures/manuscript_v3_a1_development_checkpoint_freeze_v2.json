@@ -1,0 +1,381 @@
+{
+  "artifact_contract": {
+    "cache_reuse_from_v1_permitted": false,
+    "capsule_root_must_be_absent_before_execution": true,
+    "execution_entry_point": "PYTHONPATH=src .venv-m1/bin/python -P -m heterodiff.experiments.finite_association_development_checkpoint_runner_v2 --execute-development-checkpoint",
+    "expected_capsule_output_root": "artifacts/manuscript_v3_a1_development_checkpoint_v2",
+    "forbidden_output_roots": [
+      "artifacts/a1_campaign_v4",
+      "artifacts/a1_finite_association_production_order_v1"
+    ],
+    "preexisting_output_reuse_permitted": false,
+    "status_entry_point": "PYTHONPATH=src .venv-m1/bin/python -P -m heterodiff.experiments.finite_association_development_checkpoint_runner_v2 --status",
+    "v1_failure_artifact_must_remain_byte_identical": true,
+    "v1_failure_artifact_root": "artifacts/manuscript_v3_a1_development_checkpoint_v1",
+    "warm_start_from_v1_permitted": false
+  },
+  "authorization": {
+    "current_state": "FROZEN_EXECUTION_AUTHORIZED",
+    "development_checkpoint_execution_authorized": true,
+    "execution_conditions": [
+      "V1_FAILURE_CUSTODY_REVALIDATED",
+      "ZERO_UPDATE_V1_INFRASTRUCTURE_FAILURE_DISCLOSED",
+      "RUNNER_SOURCE_AND_TEST_HASH_BOUND",
+      "FINAL_SOURCE_MANIFEST_RECOMPUTED",
+      "FINAL_TRAINING_CONFIGURATION_RECOMPUTED",
+      "CANONICAL_MODULE_IDENTITY_REGRESSION_PASSED",
+      "TARGET_RUNTIME_ATTESTED",
+      "CAPSULE_ROOT_ABSENT",
+      "NO_WARM_START_OR_CACHE_REUSE",
+      "SINGLE_USE_PERMIT_ISSUED"
+    ],
+    "execution_permit_issuance_delegated_to_hash_bound_runner_after_fresh_preflight": true,
+    "execution_permit_issued": false,
+    "static_parameter_freeze_complete": true
+  },
+  "checkpoint_acceptance": {
+    "certificate_correction_limit": 20,
+    "exact_optimizer_update_count_required": 3000,
+    "final_update_snapshot_required": true,
+    "immutable_snapshot_required": true,
+    "optimizer_transcript_required": true,
+    "parent_confirmed_zero_child_exit_required": true,
+    "reopened_checkpoint_bytes_required": true,
+    "required_bound_identities": [
+      "V1_FAILURE_CUSTODY",
+      "CANONICAL_MODULE_IDENTITY",
+      "FIXTURE",
+      "PREREQUISITE_CONTENT",
+      "SOURCE_MANIFEST",
+      "TRAINING_CONFIGURATION",
+      "RUNTIME_OBSERVATION",
+      "COORDINATE",
+      "PREFLIGHT",
+      "DATASET",
+      "BATCH_SCHEDULE",
+      "INITIAL_PARAMETERS",
+      "LAUNCH_AUTHORIZATION",
+      "WORKER_SESSION",
+      "RUN_KEY",
+      "OPTIMIZER_TRANSCRIPT",
+      "FINAL_PARAMETERS",
+      "CLASSIFIER",
+      "CERTIFICATE",
+      "CHECKPOINT_BYTES",
+      "COMPLETION_RECEIPT"
+    ],
+    "success_ledger_state_required": "SUCCESS"
+  },
+  "coordinate": {
+    "accepted_example_budget": 32768,
+    "batch_size": 128,
+    "method": "guided",
+    "optimizer_updates": 3000,
+    "seed": 1729
+  },
+  "execution_record": {
+    "attempt_finished_at_utc": null,
+    "attempt_started_at_utc": null,
+    "attempt_status": null,
+    "capsule_manifest_path": null,
+    "capsule_manifest_sha256": null,
+    "execution_receipt_path": null,
+    "execution_receipt_sha256": null,
+    "runtime_observation_path": null,
+    "runtime_observation_sha256": null
+  },
+  "fixture": {
+    "birth_rates": [
+      0.38,
+      0.3,
+      0.24
+    ],
+    "cap": 3,
+    "confusion_matrix": [
+      [
+        0.62,
+        0.25,
+        0.13
+      ],
+      [
+        0.22,
+        0.58,
+        0.2
+      ],
+      [
+        0.18,
+        0.27,
+        0.55
+      ]
+    ],
+    "death_rates_per_occurrence": [
+      0.28,
+      0.34,
+      0.25
+    ],
+    "detection_probabilities": [
+      0.72,
+      0.63,
+      0.68
+    ],
+    "evaluation_grid": "t_j=j/32_for_j=0,...,32",
+    "horizon": 1,
+    "initial_capped_factorial_parameter": [
+      0.65,
+      0.5,
+      0.4
+    ],
+    "local_compatibility_fixture_admissible": false,
+    "local_compatibility_fixture_sha256": "b96901980055f5ecfda653373ed935010040698985e274e0ebd3f04822f3e75d",
+    "observation_clutter_rates": [
+      0.1,
+      0.08,
+      0.12
+    ],
+    "observation_count": 21,
+    "observation_reference": "UNIFORM_MASS_1_OVER_21",
+    "overflow_observation_index": 20,
+    "prerequisite_content_sha256": [
+      "69b4bbea518ab816bb1e96952c3ddda5295257f66f0f8c902ba38eec10b6c339",
+      "2c9da1e2e4d98e14d91459983a3b8fcbbf4b5409574863f68cba96642a89f08b",
+      "09273f6bcee7c1a09165392e6ecf0125157b747d242c1f993a982ce3b2833cc7",
+      "d6326ffb38c4c3ccf5aed1002f8cbd75fe5411f60d07172d5511730a63daba45",
+      "ff37337476c48fee1c01e812f78cd22c7f2ed69298329f79cd87ab2aab3de937"
+    ],
+    "production_fixture_sha256": "0121b487728b40356de6707a33ba4881100c3d1b587259b19723463a60cecdcc",
+    "replacement_matrix_row_source_column_destination": [
+      [
+        0,
+        0.16,
+        0.07
+      ],
+      [
+        0.11,
+        0,
+        0.15
+      ],
+      [
+        0.09,
+        0.13,
+        0
+      ]
+    ],
+    "state_count": 20,
+    "whole_observation_contamination_probability": 0.08
+  },
+  "global_preregistration_boundary": {
+    "confirmatory_execution_authorized": false,
+    "expected_existing_global_null_count": 174,
+    "expected_existing_unresolved_blocker_count": 12,
+    "global_preregistration_mutation_permitted_by_this_freeze": false,
+    "r1_r2_r3_r4_status_change_permitted": false
+  },
+  "implementation_binding": {
+    "isolated_runner_source_path": "src/heterodiff/experiments/finite_association_isolated_runner.py",
+    "isolated_runner_source_sha256": "13e0d042e9bb509e11c4ffc9d2381565f2a939def7a0add38380bfedce63240f",
+    "module_identity_test_path": "tests/unit/test_finite_association_isolated_runner_module_identity.py",
+    "module_identity_test_sha256": "137bbf176964ad79d1f328173d066cc46db1b4d29b59a10455ee993c978f7f95",
+    "runner_source_path": "src/heterodiff/experiments/finite_association_development_checkpoint_runner_v2.py",
+    "runner_source_sha256": "b4be8f5720aa5ba83fb777e39b60fbef168e054eff6c838e48a40a226823ce5a",
+    "runner_test_path": "tests/unit/test_finite_association_development_checkpoint_runner_v2.py",
+    "runner_test_sha256": "57c730c25a8db0ed3114bab09f94246743e2bab1f046d413b4758764569be336",
+    "source_manifest_sha256": "1ead8f21969b1ebf31d98fca846efc21edbf9dee95a8e4c7be8e19bf9b16dfb1",
+    "training_configuration_sha256": "eda69c9d2a57c62ce4805da1d3cad9606619ef703eda5d6a45fb1b602022f968"
+  },
+  "operational_limits": {
+    "exceeding_limit_disposition": "REFUSED_OR_FAILURE_NO_CHECKPOINT_CLAIM",
+    "maximum_capsule_output_bytes": 2147483648,
+    "maximum_recorded_peak_rss_bytes": 8589934592,
+    "maximum_wall_seconds": 3600,
+    "operational_only_not_scientific_thresholds": true,
+    "retry_or_substitute_coordinate_permitted_after_limit": false
+  },
+  "recovery_amendment": {
+    "amendment_class": "INFRASTRUCTURE_ONLY_AFTER_ZERO_OPTIMIZER_UPDATES",
+    "claim_promotion_effect": false,
+    "closes_c17": false,
+    "confirmatory_effect": false,
+    "disclosed_v1_failure": "EXECUTION_PERMIT_EXACT_SESSION_TYPE_CHECK_AFTER_SUCCESSFUL_PARENT_HANDSHAKE_DUE_TO_DUPLICATE_MODULE_IDENTITY",
+    "no_checkpoint_reuse": true,
+    "no_dataset_or_preflight_cache_reuse": true,
+    "no_optimizer_state_reuse": true,
+    "no_warm_start": true,
+    "production_order_effect": false,
+    "qualifies_r1": false,
+    "qualifies_r2": false,
+    "same_runtime_contract_as_v1": true,
+    "same_scientific_coordinate_as_v1": true,
+    "same_scientific_protocol_as_v1": true,
+    "v1_checkpoint_exists": false,
+    "v1_failed_stage": "PREPARED",
+    "v1_lane_id": "A1-DEV-GUIDED-1729-N32768-V1",
+    "v1_optimizer_updates": 0,
+    "v1_retry_resume_or_replacement_authorized": false,
+    "v1_state": "FAILURE",
+    "v2_attempt_count": 1,
+    "v2_fresh_single_attempt_authorized_after_final_binding": true,
+    "v2_lane_id": "A1-DEV-GUIDED-1729-N32768-V2"
+  },
+  "result_record": {
+    "certificate_sha256": null,
+    "checkpoint_path": null,
+    "checkpoint_present": false,
+    "checkpoint_sha256": null,
+    "classifier_sha256": null,
+    "completion_receipt_sha256": null,
+    "final_empirical_risk": null,
+    "optimizer_transcript_sha256": null,
+    "parameter_sha256": null
+  },
+  "runtime_contract": {
+    "accelerators_hidden": true,
+    "cpu_only": true,
+    "deterministic_algorithms": true,
+    "environment_lock_path": "requirements/m1-reference-macos-arm64-py311.lock",
+    "environment_lock_sha256": "ba373a4f7ef687e55d6f0a5cbc1f14eaf9db03ab1cf001cc8d6009e85adbbc5d",
+    "formal_production_runtime_identity_approval_present": false,
+    "formal_production_runtime_identity_approval_required_for_development_lane": false,
+    "fresh_development_runtime_observation_required": true,
+    "machine": "arm64",
+    "minimum_discovered_native_pool_count": 1,
+    "minimum_macos_version": "14.0",
+    "numpy": "2.4.6",
+    "python_abi": "cp311",
+    "python_implementation": "CPython",
+    "python_safe_path": true,
+    "python_source_import_path": "src",
+    "python_version": "3.11.5",
+    "python_write_bytecode": false,
+    "scipy": "1.17.1",
+    "system": "Darwin",
+    "target_environment_installation_verified_pre_freeze": true,
+    "thread_environment": {
+      "BLIS_NUM_THREADS": "1",
+      "CUDA_VISIBLE_DEVICES": "",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONHASHSEED": "0",
+      "PYTHONSAFEPATH": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "threadpoolctl": "3.6.0",
+    "torch": "2.12.1",
+    "torch_interop_threads": 1,
+    "torch_intraop_threads": 1,
+    "translated": false
+  },
+  "schema_version": "manuscript-v3-a1-development-checkpoint-freeze-v2",
+  "scientific_scope": {
+    "claim_promotion_permitted": false,
+    "closes_c17": false,
+    "confirmatory_or_production_evidence": false,
+    "development_checkpoint_only": true,
+    "lane_id": "A1-DEV-GUIDED-1729-N32768-V2",
+    "production_aggregate_admission_permitted": false,
+    "qualifies_r1": false,
+    "qualifies_r2": false,
+    "real_domain_test_access_permitted": false
+  },
+  "source_bindings": {
+    "a1_specification_path": "research/62_a1_association_guided_residual_falsification_spec.md",
+    "a1_specification_sha256": "475f4f450cb5703e6773c0d0ff242db995a16408acce5989401fa0674326e67c",
+    "freeze_document_path": "manuscript_v3/a1_development_checkpoint_freeze_v2.md",
+    "global_execution_preregistration_machine_path": "research/fixtures/manuscript_v3_execution_preregistration_v1.json",
+    "global_execution_preregistration_machine_sha256": "edd572fc8d8c1b72ad3bc947c4427b79095d45b4d9f44371c5806066d71b0706",
+    "global_execution_preregistration_path": "manuscript_v3/execution_preregistration.md",
+    "global_execution_preregistration_sha256": "a68215e77fe7d20dd0738e9f758f6037c2cd69304c98e92670ded3af3e00b64e",
+    "global_execution_preregistration_test_path": "tests/unit/test_manuscript_v3_scientific_route.py",
+    "global_execution_preregistration_test_sha256": "a76b2b7390999d2f43c1a7406f83f8347951d43b9762f3960410de3b188b01ae",
+    "machine_freeze_path": "research/fixtures/manuscript_v3_a1_development_checkpoint_freeze_v2.json"
+  },
+  "training_protocol": {
+    "architecture": [
+      21,
+      32,
+      32,
+      1
+    ],
+    "attempt_count": 1,
+    "batch_size": 128,
+    "checkpoint_rule": "FINAL_UPDATE_ONLY",
+    "checkpoint_tie_rule": "NOT_APPLICABLE_NO_SELECTION",
+    "correction_map": "2048*tanh(u/2048)",
+    "data_or_preflight_cache_reuse_permitted": false,
+    "early_stopping": false,
+    "experiment_level_optional_stopping_permitted": false,
+    "gradient_norm_limit": 1,
+    "hidden_activation": "SiLU",
+    "learning_rate_schedule": {
+      "final": 1e-05,
+      "formula": "eta_k=1e-5+0.5*(1e-3-1e-5)*(1+cos(pi*k/(K-1)))",
+      "initial": 0.001,
+      "update_index_domain": "k=0,...,2999"
+    },
+    "maximum_tuning_trials": 0,
+    "optimizer": {
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "epsilon": 1e-08,
+      "id": "AdamW",
+      "weight_decay": 1e-06
+    },
+    "optimizer_updates": 3000,
+    "parameter_count": 1793,
+    "precision": "binary64",
+    "rerun_or_replacement_permitted": false,
+    "rng_contract": {
+      "batch_order": "PCG64_PERMUTATION",
+      "categorical_sampling": "NUMPY_PCG64_INVERSE_CDF",
+      "seed_sequence": "SeedSequence(1729).spawn(3)",
+      "weight_initialization": "GENERATOR_DRIVEN_XAVIER_UNIFORM_FORWARD_LAYER_ORDER",
+      "zero_biases": true
+    },
+    "same_coordinate_second_launch_after_zero_update_v1_infrastructure_failure": true,
+    "v1_checkpoint_or_optimizer_state_reuse_permitted": false,
+    "v1_retry_resume_or_replacement": false,
+    "validation_checkpoint_selection_permitted": false,
+    "warm_start_permitted": false
+  },
+  "v1_failure_custody": {
+    "artifact_inventory_domain": "heterodiff-a1-development-artifact-inventory-v1",
+    "artifact_inventory_sha256": "c371a749a025527d8f34a305cca29da57f1ecfaf60ffc8d770d8e0c6866adbd9",
+    "artifact_root": "artifacts/manuscript_v3_a1_development_checkpoint_v1",
+    "checkpoint_file_count": 0,
+    "checkpoint_present": false,
+    "child_returncode": 1,
+    "claim_promotion": false,
+    "closes_c17": false,
+    "confirmatory_execution": false,
+    "failed_stage": "PREPARED",
+    "failure_receipt_path": "artifacts/manuscript_v3_a1_development_checkpoint_v1/failure-receipt.json",
+    "failure_receipt_raw_sha256": "005772f7dbbe5fc43696bd1f56dca4ec33f15bcc8bc4683558aa597260e4b721",
+    "failure_receipt_record_sha256": "fb8019f05982a128fe8a5c5d6bc3d60b6e009eece936afd053b7bbe8025f6e2b",
+    "inner_stderr_path": "artifacts/manuscript_v3_a1_development_checkpoint_v1/inner-run.stderr",
+    "inner_stderr_raw_sha256": "b1fdeaeec243e4f518930f7f4f2391b491b2c71bd14d3040085fcb459a3d0221",
+    "lane_id": "A1-DEV-GUIDED-1729-N32768-V1",
+    "ledger_path": "artifacts/manuscript_v3_a1_development_checkpoint_v1/capsule/artifacts/a1_campaign_v4/ledger.json",
+    "ledger_raw_sha256": "e9df396654a7763157259e4ace1c77eee6e0c1555881cdb1be5e1cab8e6f5016",
+    "ledger_record_sha256": "f63dfb6a7d8246b099ee059b6db3bb784cb269c647a70b4d6c3f26eaa32495ed",
+    "machine_freeze_path": "research/fixtures/manuscript_v3_a1_development_checkpoint_freeze_v1.json",
+    "machine_freeze_raw_sha256": "8ba0f406aee1428013d898077aa72e8178aa0d8fc34fb21c15aeb96129985c44",
+    "optimizer_updates": 0,
+    "production_order_admissible": false,
+    "qualifies_r1": false,
+    "qualifies_r2": false,
+    "regular_file_count": 269,
+    "replacement_permitted": false,
+    "resume_permitted": false,
+    "retained_authorized_freeze_path": "artifacts/manuscript_v3_a1_development_checkpoint_v1/authorized-freeze.json",
+    "retained_authorized_freeze_raw_sha256": "8ba0f406aee1428013d898077aa72e8178aa0d8fc34fb21c15aeb96129985c44",
+    "retry_permitted": false,
+    "schema": "heterodiff-a1-development-v1-failure-custody-binding-v1",
+    "scientific_result_eligible": false,
+    "state": "FAILURE",
+    "total_regular_file_bytes": 16474540
+  }
+}

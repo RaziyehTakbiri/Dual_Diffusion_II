@@ -1,0 +1,45 @@
+{
+  "schema_version": "manuscript-v3-b02-b03-locally-decidable-definition-records-v1",
+  "package_kind": "OFFLINE_DEFINITION_RECORDS_ONLY",
+  "state": "THREE_OFFLINE_DEFINITIONS_FROZEN_OPERATIONAL_HOLD",
+  "bindings": [
+    {"ordinal": 0, "path": "PROJECT_B02_B03_OFFLINE_PRECONTACT_ACTIVATION.md", "byte_count": 17235, "sha256": "a7e882f209b26d9cf6dec449eb4fd93b78df0903be9294704ea857066dfe00ed", "role": "sealed_activation_package_human"},
+    {"ordinal": 1, "path": "PROJECT_B02_B03_OFFLINE_PRECONTACT_ACTIVATION_INDEPENDENT_REVIEW.md", "byte_count": 10196, "sha256": "a1baf2b04740ac38540a4008dcb09042f8c92fa978c51fe22ac54cb30c81f0d0", "role": "sealed_activation_independent_review"},
+    {"ordinal": 2, "path": "PROJECT_B02_B03_LOCALLY_DECIDABLE_DEFINITION_RECORDS.md", "byte_count": 2996, "sha256": "29fc1c06ed81ac594ce24a23c2c8124d8bd1fef756d119d80a842b632682213a", "role": "successor_human"},
+    {"ordinal": 3, "path": "src/heterodiff/data/two_domain_precontact_definition_records.py", "byte_count": 12661, "sha256": "eb4bd98f9190d2e9e7275e5a4f6f1c7fddfa34f8bf3435214b3060f4180d4e30", "role": "pure_definition_source"}
+  ],
+  "definition_records": [
+    {"ordinal": 0, "name": "held_out_material_definition", "sha256": "6aa31c23117ee604cf862c8654175f33a7baa5c501a02983e91de4146154fc5d"},
+    {"ordinal": 1, "name": "final_opening_rule", "sha256": "fe0b51906c69930d6c1252491634588b1b08f4a3ec888a9a92bd6c13720c5efd"},
+    {"ordinal": 2, "name": "append_only_log_schema", "sha256": "cf2e70cffd0e9deea4c5884b72489fccbcb0731695f2493fcf2a1f2182274fd3"}
+  ],
+  "active_split_contract_lineage": {
+    "physionet": {"id": "PHYSIONET_PATIENT_HASH_EXPLICIT_F061_HAMILTON_V1", "sha256": "32651b654a1b11ceb256f4f6cc6df1ff567d34538c3c2c6033d9acf1fc020b2d"},
+    "retail": {"id": "RETAIL_F060_SOURCE_CIVIL_SHARED_F061_INTEGRATED_REPLAY_V3", "sha256": "b1a4fef836a50987b5d723e2bd133605bd907b4d7904f7cd6e87ca1d83077659"}
+  },
+  "blocked_non_f061_slots": {
+    "physionet_selector_record_sha256": null,
+    "retail_selector_record_sha256": null,
+    "contact_target_roster_sha256": null,
+    "contact_target_count": null,
+    "approval_requirement_roster_sha256": null,
+    "approval_receipt_validator_roster_sha256": null,
+    "contact_roster_complete": null,
+    "escrow_control_binding_sha256": null
+  },
+  "conflict_of_interest_determination_sha256": null,
+  "owner_principals": [null, null, null, null, null, null, null, null, null],
+  "owner_acceptance_sha256s": [null, null, null, null, null, null, null, null, null],
+  "keys": null,
+  "acl": null,
+  "external_observations": null,
+  "independent_review_receipt_sha256": null,
+  "authority": false,
+  "network_or_contact": false,
+  "data_opened": false,
+  "escrow_activated": false,
+  "scientific_execution": false,
+  "budgets": {"admin_contact": 0, "data_access": 0, "snapshot_open": 0, "split_execution": 0, "escrow_activation": 0, "scientific_execution": 0},
+  "closures": {"B02": 0, "B03": 0, "F061": 0, "operational_tasks": 0, "scientific_fields": 0},
+  "tracker_edited": false
+}

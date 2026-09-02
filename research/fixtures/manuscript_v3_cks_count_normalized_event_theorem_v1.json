@@ -1,0 +1,258 @@
+{
+  "assumptions": {
+    "capped_counting_configuration_space_standard_borel": true,
+    "count_scale_strictly_positive": true,
+    "event_encoding_borel_injective_and_permutation_invariant": true,
+    "event_kernel_bounded_measurable_positive_definite": true,
+    "event_kernel_characteristic": true,
+    "event_scale_strictly_positive": true,
+    "event_space_standard_borel": true,
+    "exact_not_unproved_random_feature_kernel": true,
+    "finite_cap_at_least_one": true,
+    "hilbert_rkhs_separable": true,
+    "outer_bandwidth_finite_positive": true
+  },
+  "authority_boundary": {
+    "agent_selected_bounded_paths_schema_and_proof_packaging": true,
+    "coordinator_lane": "OVERNIGHT_GATE_A_CKS_LOCAL_THEORY",
+    "network_contact_data_entropy_runtime_training_science_or_submission_authorized": false,
+    "normalized_visible_text": "Okay, sounds good. What I want you to do is to set aside a significant portion of work to do such that you are busy for around 8 hours, because I am going to sleep, and dont want my absence to make you idle.",
+    "normalized_visible_text_sha256": "44ed1336dd467043e3daebe7ad85093c5ab954921a895483153c98cb6d32bb9a",
+    "normalized_visible_text_utf8_bytes": 207,
+    "raw_transport_html_space_timestamp_account_or_signature_bound": false,
+    "substantial_local_project_work_authorized": true,
+    "tracker_edit_authorized_for_this_package": false
+  },
+  "edge_case_audit": {
+    "drop_count_counterexample": "DELTA_E_VS_TWO_DELTA_E_COLLIDE",
+    "duplicates_retained_by_empirical_mass": true,
+    "empty_vs_nonempty_detected_by_count": true,
+    "equal_count_different_multiplicity_detected_by_event_channel": true,
+    "noncharacteristic_event_kernel_counterexample_required": true,
+    "nonpositive_or_nonfinite_outer_bandwidth_invalid": true,
+    "ordering_used": false,
+    "same_normalized_measure_different_count_detected": true,
+    "unequal_mass_detected_by_count": true,
+    "unproved_finite_feature_approximation_invalid": true,
+    "zero_channel_scale_invalid": true
+  },
+  "embedding_contract": {
+    "configuration_kernel": "EXP_MINUS_NORM_PHI_X_MINUS_PHI_Y_SQUARED_OVER_TWO_SIGMA_SQUARED",
+    "configuration_object": "FINITE_COUNTING_MEASURE_WITH_MULTIPLICITY",
+    "count": "N_X_EQUALS_X_OF_E",
+    "count_and_event_channels_orthogonal": true,
+    "embedding": "PHI_X_EQUALS_A_N_X_DIRECT_SUM_B_MU_P_X",
+    "empty_event_channel": "ZERO_WITH_NO_INVENTED_EMPTY_PROBABILITY",
+    "multiplicity_retained": true,
+    "permutation_invariant": true,
+    "positive_normalized_measure": "P_X_EQUALS_X_DIVIDED_BY_N_X"
+  },
+  "global_state": "DRAFT_NOT_EXECUTABLE",
+  "nonclaims": {
+    "B04_closed": false,
+    "conditional_draw_count_selected": false,
+    "data_opened": false,
+    "domain_event_schema_kernel_transform_scale_cap_or_bandwidth_bound": false,
+    "effect_floor_confidence_or_multiplicity_selected": false,
+    "entropy_consumed": false,
+    "exact_physionet_or_retail_metric_instance_bound": false,
+    "external_contact_performed": false,
+    "gate_a_exact_metric_item_closed": false,
+    "metric_implementation_code_matched": false,
+    "network_access_performed": false,
+    "primary_metric_selected": false,
+    "production_metric_implemented": false,
+    "scientific_execution_performed": false,
+    "tracker_modified": false
+  },
+  "package_bindings": [
+    {
+      "bytes": 16151,
+      "path": "PROJECT_CKS_COUNT_NORMALIZED_EVENT_THEOREM.md",
+      "raw_sha256": "53445cb8617fb6573105ad8912616967dcad601dcf6b30b4a28d3bf9a3034c15",
+      "role": "human_theorem"
+    },
+    {
+      "bytes": 25728,
+      "path": "research/diagnostics/manuscript_v3_cks_count_normalized_event_theorem_v1.py",
+      "raw_sha256": "722d5781f05646e3252609939768a8e021274288ca90d9142eee7c220bf30576",
+      "role": "read_only_validator"
+    },
+    {
+      "bytes": 15192,
+      "path": "tests/unit/test_manuscript_v3_cks_count_normalized_event_theorem_v1.py",
+      "raw_sha256": "527e6349962e7180d19cfa6ebad9747a638b37a06225d3cc068fff7f1c15b61b",
+      "role": "hostile_test"
+    }
+  ],
+  "package_kind": "ADDITIVE_GENERIC_THEOREM_AND_ROUTE_DISPOSITION",
+  "predecessor_bindings": [
+    {
+      "bytes": 22491,
+      "path": "manuscript_v3/execution_preregistration.md",
+      "raw_sha256": "a68215e77fe7d20dd0738e9f758f6037c2cd69304c98e92670ded3af3e00b64e",
+      "role": "execution_preregistration_human"
+    },
+    {
+      "bytes": 39771,
+      "path": "research/fixtures/manuscript_v3_execution_preregistration_v1.json",
+      "raw_sha256": "edd572fc8d8c1b72ad3bc947c4427b79095d45b4d9f44371c5806066d71b0706",
+      "role": "execution_preregistration_machine"
+    },
+    {
+      "bytes": 23012,
+      "path": "PROJECT_SOLO_BLOCK2_STATIC_SELECTION_FREEZE.md",
+      "raw_sha256": "ab80a009f3d83be4186d3d2da13e3efd5939362e4215477dd2b1a89b870b3126",
+      "role": "static_metric_route_human"
+    },
+    {
+      "bytes": 33638,
+      "path": "research/fixtures/manuscript_v3_solo_block2_static_selection_freeze_v1.json",
+      "raw_sha256": "7ff0bf3bb5d9a03e2212f2f7f1853cde2283694b33e072931d258d98e1882590",
+      "role": "static_metric_route_machine"
+    },
+    {
+      "bytes": 56344,
+      "path": "research/diagnostics/manuscript_v3_solo_block2_static_selection_freeze_v1.py",
+      "raw_sha256": "8843cef229c24cbd25cd00e55697755c8fc7a1247f20044dfe110e182e558ec0",
+      "role": "static_metric_route_validator"
+    },
+    {
+      "bytes": 48158,
+      "path": "tests/unit/test_manuscript_v3_solo_block2_static_selection_freeze_v1.py",
+      "raw_sha256": "801fc7c87f57eb72da6cdfa7b2be93c6edd66b974fefe47dabbe5b91eaa0f005",
+      "role": "static_metric_route_test"
+    },
+    {
+      "bytes": 75457,
+      "path": "manuscript_v3/manuscript_v3.tex",
+      "raw_sha256": "0ad9abccbc38ccc41e9fb3f7a1f8db6a4a197d23c3946da60a3cd4b93b475ba9",
+      "role": "current_manuscript_tex_preliminary_metric_display"
+    },
+    {
+      "bytes": 66023,
+      "path": "manuscript_v3/manuscript_v3.md",
+      "raw_sha256": "0569b18aefb2aefa6c24af0559880f66c4a0daa6b2073169d30c892515e976a8",
+      "role": "current_manuscript_md_preliminary_metric_display"
+    }
+  ],
+  "preliminary_formula_disposition": {
+    "colliding_counting_measures": [
+      "TWO_DELTA_U",
+      "DELTA_V"
+    ],
+    "counterexample_event_space": [
+      "u",
+      "v"
+    ],
+    "counterexample_kernel_characteristic_on_event_probabilities": true,
+    "counterexample_rank_one_feature_values": {
+      "u": 1,
+      "v": 2
+    },
+    "future_manuscript_and_preregistration_formula_amendment_required": true,
+    "manuscript_current_formula": "RAW_UNNORMALIZED_EVENT_MEAN_WITHOUT_EXPLICIT_COUNT_CHANNEL",
+    "raw_unnormalized_formula_covered_by_theorem": false
+  },
+  "project_effects": {
+    "B04": {
+      "status": "OPEN",
+      "value": null
+    },
+    "F105": {
+      "status": "OPEN",
+      "value": null
+    },
+    "F106": {
+      "status": "OPEN",
+      "value": null
+    },
+    "F107": {
+      "status": "OPEN",
+      "value": null
+    },
+    "F108": {
+      "status": "OPEN",
+      "value": null
+    },
+    "F109": {
+      "status": "OPEN",
+      "value": null
+    },
+    "F110": {
+      "status": "OPEN",
+      "value": null
+    },
+    "F111": {
+      "status": "OPEN",
+      "value": null
+    },
+    "F112": {
+      "status": "OPEN",
+      "value": null
+    },
+    "F113": {
+      "status": "OPEN",
+      "value": null
+    },
+    "blockers_closed": 0,
+    "effective_open_blockers": 12,
+    "effective_unresolved_fields": 172,
+    "formal_tests_closed": 0,
+    "gate_a_exact_metric_checkbox_closed": false,
+    "gate_a_route_mathematically_viable": true,
+    "project_control_predicate": "GATE_A_CKS_COUNT_NORMALIZED_EVENT_ROUTE_MATHEMATICALLY_VIABLE",
+    "project_control_predicate_value_after_independent_validation": true,
+    "results_filled": 0,
+    "scientific_fields_closed": 0,
+    "scientific_scorecard_effect": 0,
+    "tracker_edit_performed": false
+  },
+  "proof_conclusions": {
+    "applies_to_each_finite_cap_after_exact_instance_binding": true,
+    "cks_strictly_proper": true,
+    "configuration_embedding_injective": true,
+    "empty_configuration_identified": true,
+    "equal_mass_distinct_empirical_measure_detected": true,
+    "outer_gaussian_characteristic_on_separable_hilbert": true,
+    "pullback_kernel_characteristic_on_configuration_laws": true,
+    "unequal_mass_detected": true
+  },
+  "publication_boundary": {
+    "absolute_user_path_credentials_person_or_dataset_rows_present": false,
+    "anonymous_or_public_inclusion_permitted": false,
+    "internal_evidence_only": true,
+    "publication_safe_derivative_and_fresh_proof_code_anonymity_review_required": true
+  },
+  "record_sha256": "613dd2a1be716f382215769babca2503bd9b0c6cd9ae48fa2972e5df353743a3",
+  "reported_date": "2026-08-30",
+  "schema_version": "heterodiff-manuscript-v3-cks-count-normalized-event-theorem-v1",
+  "state": "GENERIC_CKS_THEOREM_PROVED_EXACT_DOMAIN_INSTANCE_PENDING",
+  "strict_propriety": {
+    "R_at_least_two_required_for_unbiased_off_diagonal_self_term": true,
+    "empirical_guide_improvement_claimed": false,
+    "expected_regret": "MMD_SQUARED_K_GAMMA_OF_P_AND_Q",
+    "lower_is_better": true,
+    "positive_direct_minus_guide_favors_guide_for_this_candidate": true,
+    "score": "E_P_P_K_MINUS_TWO_E_P_DELTA_Y_K",
+    "unique_population_minimizer": "P_EQUALS_Q",
+    "within_method_conditional_iid_required": true
+  },
+  "synthetic_oracle": {
+    "binary_float_or_bool_scale_accepted": false,
+    "count_and_event_weights_strict_positive_exact_rationals": true,
+    "event_feature": "ONE_HOT_EMPIRICAL_FREQUENCY",
+    "kind": "PURE_EXACT_FINITE_CATEGORICAL_SEPARATION_ORACLE",
+    "maximum_cap": 4096,
+    "maximum_token_ascii_bytes": 128,
+    "real_domain_metric_implementation": false,
+    "scientific_result": false
+  },
+  "theorem_identity": {
+    "external_literature_lookup_used": false,
+    "proof_is_self_contained_in_human_artifact": true,
+    "scope": "ALL_BOREL_CONFIGURATION_LAWS_UNDER_K1_THROUGH_K6",
+    "status": "PROVED_GENERIC_CONDITIONAL",
+    "theorem_id": "COUNT_NORMALIZED_EVENT_CKS_CHARACTERISTICNESS_V1"
+  }
+}

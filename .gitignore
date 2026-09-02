@@ -1,0 +1,45 @@
+# Operating-system and editor state
+.DS_Store
+.idea/
+.junie/
+.vscode/
+*~
+
+# Python environments and caches
+.venv/
+.venv-*/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Notebook state
+.ipynb_checkpoints/
+
+# Data, credentials, and private operational material
+data/
+datasets/
+secrets/
+private/
+.env
+.env.*
+*.pem
+*.key
+*.p12
+
+# Local execution products
+artifacts/
+verification_runs/
+research/custody/
+local_runs/
+outputs/
+logs/
+*.log
+b08-databricks-capture*.json

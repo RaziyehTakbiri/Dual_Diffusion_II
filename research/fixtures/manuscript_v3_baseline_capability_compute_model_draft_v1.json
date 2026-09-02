@@ -1,0 +1,531 @@
+{
+  "schema_version": "heterodiff-manuscript-v3-baseline-capability-compute-model-draft-v1",
+  "state": "BASELINE_CAPABILITY_COMPUTE_MODEL_DRAFT_FROZEN_AWAITING_REPOSITORY_COMMIT_LICENSE_CONFIG_CAPACITY_AND_INDEPENDENT_REVIEW",
+  "global_state": "DRAFT_NOT_EXECUTABLE",
+  "package_kind": "STATIC_BASELINE_CAPABILITY_AND_COMPUTE_MODEL_DRAFT_NO_SCIENTIFIC_EFFECT",
+  "reported_date": "2026-08-30",
+  "authority_provenance": {
+    "normalized_visible_text": "Sounds great. Go ahead and finish them in parallel. Mark all the completed tasks as the end.",
+    "normalized_visible_text_utf8_bytes": 92,
+    "normalized_visible_text_sha256": "465aa47a0714b7914e33b6b6772afbfad3a56959cb6eb9f10b8e98f39c0f8d38",
+    "normalization": "TRAILING_HTML_SPACE_ENTITY_AND_TRANSPORT_WHITESPACE_REMOVED_ONLY",
+    "raw_transport_bytes_bound": false,
+    "conversation_envelope_bound": false,
+    "account_identity_bound": false,
+    "timestamp_bound": false,
+    "cryptographic_user_authentication_claimed": false,
+    "parallel_block2_block3_draft_work_authorized": true,
+    "tracker_edit_authorized_only_after_independent_validation": true,
+    "external_repository_license_or_paper_lookup_authorized": false,
+    "package_installation_or_procurement_authorized": false,
+    "data_access_training_tuning_or_scientific_execution_authorized": false,
+    "runtime_approval_or_claim_promotion_authorized": false
+  },
+  "draft_identity": {
+    "route_id": "BASELINE_CAPABILITY_LICENSE_AND_MATCHED_COMPUTE_DRAFT_V1",
+    "control_predicate": "BASELINE_FAMILIES_LICENSE_CAPABILITY_AND_COMPUTE_MODEL_DRAFT_VALIDATED",
+    "control_predicate_value_after_validation": true,
+    "draft_complete": true,
+    "baseline_matrix_populated": false,
+    "compute_capacity_selected_or_reserved": false,
+    "B06_closed": false,
+    "B08_closed": false,
+    "scientific_effect": 0
+  },
+  "primary_pair": [
+    {
+      "method_id": "association-aware-guide-plus-residual",
+      "future_receipts": {
+        "repository": null,
+        "commit": null,
+        "config_sha256": null,
+        "parameter_count": null,
+        "training_compute_budget": null,
+        "inference_compute_budget": null
+      }
+    },
+    {
+      "method_id": "unified-direct-conditioner",
+      "future_receipts": {
+        "repository": null,
+        "commit": null,
+        "config_sha256": null,
+        "parameter_count": null,
+        "training_compute_budget": null,
+        "inference_compute_budget": null
+      }
+    }
+  ],
+  "local_interpretation_controls": [
+    {
+      "control_id": "analytic-guide-only-residual-removed",
+      "row_kind": "LOCAL_INTERPRETATION_CONTROL",
+      "implementation": null,
+      "config_sha256": null,
+      "may_discharge_external_family_row_without_equivalence_proof": false
+    },
+    {
+      "control_id": "direct-or-residual-only-analytic-guide-removed",
+      "row_kind": "LOCAL_INTERPRETATION_CONTROL",
+      "implementation": null,
+      "config_sha256": null,
+      "may_discharge_external_family_row_without_equivalence_proof": false
+    },
+    {
+      "control_id": "association-destroyed-or-factorized-eventwise",
+      "row_kind": "LOCAL_INTERPRETATION_CONTROL",
+      "implementation": null,
+      "config_sha256": null,
+      "may_discharge_external_family_row_without_equivalence_proof": false
+    },
+    {
+      "control_id": "unconditional-base-sanity-reference",
+      "row_kind": "LOCAL_INTERPRETATION_CONTROL",
+      "implementation": null,
+      "config_sha256": null,
+      "may_discharge_external_family_row_without_equivalence_proof": false
+    }
+  ],
+  "literature_comparator_families": [
+    {
+      "comparator_family_id": "ngdb-style-auxiliary-guide-plus-correction",
+      "row_kind": "EXTERNAL_LITERATURE_FAMILY",
+      "required_domains": ["physionet-challenge-2012", "online-retail-ii"],
+      "domain_rows": [
+        {
+          "domain_id": "physionet-challenge-2012",
+          "implementation_receipt": null,
+          "inapplicability_or_equivalence_justification": null,
+          "capability_matrix": {
+            "VARIABLE_CARDINALITY_UNORDERED_CONFIGURATION": "UNKNOWN",
+            "DOMAIN_PHYSICAL_TIME": "UNKNOWN",
+            "SIMULTANEOUS_EVENTS_AND_MULTIPLICITY": "UNKNOWN",
+            "TYPED_EVENTS_AND_CONTINUOUS_MARKS": "UNKNOWN",
+            "MISSING_OR_PARTIALLY_OBSERVED_MARKS": "UNKNOWN",
+            "UNORDERED_SUBSET_AND_ASSOCIATION_AMBIGUITY": "UNKNOWN",
+            "HORIZON_CAP_SEGMENTATION_OVERFLOW_AND_STRUCTURAL_ZEROS": "UNKNOWN",
+            "CONDITIONAL_SAMPLING_INTERFACE": "UNKNOWN",
+            "SHARED_BASE_COMPATIBILITY": "UNKNOWN",
+            "TRAINING_TUNING_AND_INFERENCE_INTERFACES": "UNKNOWN",
+            "NATIVE_VERSUS_AUTHOR_EXTENSION_BOUNDARY": "UNKNOWN"
+          },
+          "admitted": false
+        },
+        {
+          "domain_id": "online-retail-ii",
+          "implementation_receipt": null,
+          "inapplicability_or_equivalence_justification": null,
+          "capability_matrix": {
+            "VARIABLE_CARDINALITY_UNORDERED_CONFIGURATION": "UNKNOWN",
+            "DOMAIN_PHYSICAL_TIME": "UNKNOWN",
+            "SIMULTANEOUS_EVENTS_AND_MULTIPLICITY": "UNKNOWN",
+            "TYPED_EVENTS_AND_CONTINUOUS_MARKS": "UNKNOWN",
+            "MISSING_OR_PARTIALLY_OBSERVED_MARKS": "UNKNOWN",
+            "UNORDERED_SUBSET_AND_ASSOCIATION_AMBIGUITY": "UNKNOWN",
+            "HORIZON_CAP_SEGMENTATION_OVERFLOW_AND_STRUCTURAL_ZEROS": "UNKNOWN",
+            "CONDITIONAL_SAMPLING_INTERFACE": "UNKNOWN",
+            "SHARED_BASE_COMPATIBILITY": "UNKNOWN",
+            "TRAINING_TUNING_AND_INFERENCE_INTERFACES": "UNKNOWN",
+            "NATIVE_VERSUS_AUTHOR_EXTENSION_BOUNDARY": "UNKNOWN"
+          },
+          "admitted": false
+        }
+      ]
+    },
+    {
+      "comparator_family_id": "deft-style-generalized-h-frozen-base-correction",
+      "row_kind": "EXTERNAL_LITERATURE_FAMILY",
+      "required_domains": ["physionet-challenge-2012", "online-retail-ii"],
+      "domain_rows": [
+        {
+          "domain_id": "physionet-challenge-2012",
+          "implementation_receipt": null,
+          "inapplicability_or_equivalence_justification": null,
+          "capability_matrix": {
+            "VARIABLE_CARDINALITY_UNORDERED_CONFIGURATION": "UNKNOWN",
+            "DOMAIN_PHYSICAL_TIME": "UNKNOWN",
+            "SIMULTANEOUS_EVENTS_AND_MULTIPLICITY": "UNKNOWN",
+            "TYPED_EVENTS_AND_CONTINUOUS_MARKS": "UNKNOWN",
+            "MISSING_OR_PARTIALLY_OBSERVED_MARKS": "UNKNOWN",
+            "UNORDERED_SUBSET_AND_ASSOCIATION_AMBIGUITY": "UNKNOWN",
+            "HORIZON_CAP_SEGMENTATION_OVERFLOW_AND_STRUCTURAL_ZEROS": "UNKNOWN",
+            "CONDITIONAL_SAMPLING_INTERFACE": "UNKNOWN",
+            "SHARED_BASE_COMPATIBILITY": "UNKNOWN",
+            "TRAINING_TUNING_AND_INFERENCE_INTERFACES": "UNKNOWN",
+            "NATIVE_VERSUS_AUTHOR_EXTENSION_BOUNDARY": "UNKNOWN"
+          },
+          "admitted": false
+        },
+        {
+          "domain_id": "online-retail-ii",
+          "implementation_receipt": null,
+          "inapplicability_or_equivalence_justification": null,
+          "capability_matrix": {
+            "VARIABLE_CARDINALITY_UNORDERED_CONFIGURATION": "UNKNOWN",
+            "DOMAIN_PHYSICAL_TIME": "UNKNOWN",
+            "SIMULTANEOUS_EVENTS_AND_MULTIPLICITY": "UNKNOWN",
+            "TYPED_EVENTS_AND_CONTINUOUS_MARKS": "UNKNOWN",
+            "MISSING_OR_PARTIALLY_OBSERVED_MARKS": "UNKNOWN",
+            "UNORDERED_SUBSET_AND_ASSOCIATION_AMBIGUITY": "UNKNOWN",
+            "HORIZON_CAP_SEGMENTATION_OVERFLOW_AND_STRUCTURAL_ZEROS": "UNKNOWN",
+            "CONDITIONAL_SAMPLING_INTERFACE": "UNKNOWN",
+            "SHARED_BASE_COMPATIBILITY": "UNKNOWN",
+            "TRAINING_TUNING_AND_INFERENCE_INTERFACES": "UNKNOWN",
+            "NATIVE_VERSUS_AUTHOR_EXTENSION_BOUNDARY": "UNKNOWN"
+          },
+          "admitted": false
+        }
+      ]
+    },
+    {
+      "comparator_family_id": "task-compatible-same-base-smc-or-feynman-kac",
+      "row_kind": "EXTERNAL_LITERATURE_FAMILY",
+      "required_domains": ["physionet-challenge-2012", "online-retail-ii"],
+      "domain_rows": [
+        {
+          "domain_id": "physionet-challenge-2012",
+          "implementation_receipt": null,
+          "inapplicability_or_equivalence_justification": null,
+          "capability_matrix": {
+            "VARIABLE_CARDINALITY_UNORDERED_CONFIGURATION": "UNKNOWN",
+            "DOMAIN_PHYSICAL_TIME": "UNKNOWN",
+            "SIMULTANEOUS_EVENTS_AND_MULTIPLICITY": "UNKNOWN",
+            "TYPED_EVENTS_AND_CONTINUOUS_MARKS": "UNKNOWN",
+            "MISSING_OR_PARTIALLY_OBSERVED_MARKS": "UNKNOWN",
+            "UNORDERED_SUBSET_AND_ASSOCIATION_AMBIGUITY": "UNKNOWN",
+            "HORIZON_CAP_SEGMENTATION_OVERFLOW_AND_STRUCTURAL_ZEROS": "UNKNOWN",
+            "CONDITIONAL_SAMPLING_INTERFACE": "UNKNOWN",
+            "SHARED_BASE_COMPATIBILITY": "UNKNOWN",
+            "TRAINING_TUNING_AND_INFERENCE_INTERFACES": "UNKNOWN",
+            "NATIVE_VERSUS_AUTHOR_EXTENSION_BOUNDARY": "UNKNOWN"
+          },
+          "admitted": false
+        },
+        {
+          "domain_id": "online-retail-ii",
+          "implementation_receipt": null,
+          "inapplicability_or_equivalence_justification": null,
+          "capability_matrix": {
+            "VARIABLE_CARDINALITY_UNORDERED_CONFIGURATION": "UNKNOWN",
+            "DOMAIN_PHYSICAL_TIME": "UNKNOWN",
+            "SIMULTANEOUS_EVENTS_AND_MULTIPLICITY": "UNKNOWN",
+            "TYPED_EVENTS_AND_CONTINUOUS_MARKS": "UNKNOWN",
+            "MISSING_OR_PARTIALLY_OBSERVED_MARKS": "UNKNOWN",
+            "UNORDERED_SUBSET_AND_ASSOCIATION_AMBIGUITY": "UNKNOWN",
+            "HORIZON_CAP_SEGMENTATION_OVERFLOW_AND_STRUCTURAL_ZEROS": "UNKNOWN",
+            "CONDITIONAL_SAMPLING_INTERFACE": "UNKNOWN",
+            "SHARED_BASE_COMPATIBILITY": "UNKNOWN",
+            "TRAINING_TUNING_AND_INFERENCE_INTERFACES": "UNKNOWN",
+            "NATIVE_VERSUS_AUTHOR_EXTENSION_BOUNDARY": "UNKNOWN"
+          },
+          "admitted": false
+        }
+      ]
+    },
+    {
+      "comparator_family_id": "closest-variable-cardinality-point-or-edit-generator",
+      "row_kind": "EXTERNAL_LITERATURE_FAMILY",
+      "required_domains": ["physionet-challenge-2012", "online-retail-ii"],
+      "domain_rows": [
+        {
+          "domain_id": "physionet-challenge-2012",
+          "implementation_receipt": null,
+          "inapplicability_or_equivalence_justification": null,
+          "capability_matrix": {
+            "VARIABLE_CARDINALITY_UNORDERED_CONFIGURATION": "UNKNOWN",
+            "DOMAIN_PHYSICAL_TIME": "UNKNOWN",
+            "SIMULTANEOUS_EVENTS_AND_MULTIPLICITY": "UNKNOWN",
+            "TYPED_EVENTS_AND_CONTINUOUS_MARKS": "UNKNOWN",
+            "MISSING_OR_PARTIALLY_OBSERVED_MARKS": "UNKNOWN",
+            "UNORDERED_SUBSET_AND_ASSOCIATION_AMBIGUITY": "UNKNOWN",
+            "HORIZON_CAP_SEGMENTATION_OVERFLOW_AND_STRUCTURAL_ZEROS": "UNKNOWN",
+            "CONDITIONAL_SAMPLING_INTERFACE": "UNKNOWN",
+            "SHARED_BASE_COMPATIBILITY": "UNKNOWN",
+            "TRAINING_TUNING_AND_INFERENCE_INTERFACES": "UNKNOWN",
+            "NATIVE_VERSUS_AUTHOR_EXTENSION_BOUNDARY": "UNKNOWN"
+          },
+          "admitted": false
+        },
+        {
+          "domain_id": "online-retail-ii",
+          "implementation_receipt": null,
+          "inapplicability_or_equivalence_justification": null,
+          "capability_matrix": {
+            "VARIABLE_CARDINALITY_UNORDERED_CONFIGURATION": "UNKNOWN",
+            "DOMAIN_PHYSICAL_TIME": "UNKNOWN",
+            "SIMULTANEOUS_EVENTS_AND_MULTIPLICITY": "UNKNOWN",
+            "TYPED_EVENTS_AND_CONTINUOUS_MARKS": "UNKNOWN",
+            "MISSING_OR_PARTIALLY_OBSERVED_MARKS": "UNKNOWN",
+            "UNORDERED_SUBSET_AND_ASSOCIATION_AMBIGUITY": "UNKNOWN",
+            "HORIZON_CAP_SEGMENTATION_OVERFLOW_AND_STRUCTURAL_ZEROS": "UNKNOWN",
+            "CONDITIONAL_SAMPLING_INTERFACE": "UNKNOWN",
+            "SHARED_BASE_COMPATIBILITY": "UNKNOWN",
+            "TRAINING_TUNING_AND_INFERENCE_INTERFACES": "UNKNOWN",
+            "NATIVE_VERSUS_AUTHOR_EXTENSION_BOUNDARY": "UNKNOWN"
+          },
+          "admitted": false
+        }
+      ]
+    }
+  ],
+  "external_domain_baselines": [
+    {
+      "domain_id": "physionet-challenge-2012",
+      "row_kind": "STRONGEST_TASK_COMPATIBLE_EXTERNAL_DOMAIN_BASELINE",
+      "future_receipts": {
+        "method_id": null,
+        "repository": null,
+        "commit": null,
+        "license": null,
+        "config_sha256": null,
+        "native_capability_and_extension_statement": null,
+        "tuning_budget": null
+      },
+      "capability_matrix": {
+        "VARIABLE_CARDINALITY_UNORDERED_CONFIGURATION": "UNKNOWN",
+        "DOMAIN_PHYSICAL_TIME": "UNKNOWN",
+        "SIMULTANEOUS_EVENTS_AND_MULTIPLICITY": "UNKNOWN",
+        "TYPED_EVENTS_AND_CONTINUOUS_MARKS": "UNKNOWN",
+        "MISSING_OR_PARTIALLY_OBSERVED_MARKS": "UNKNOWN",
+        "UNORDERED_SUBSET_AND_ASSOCIATION_AMBIGUITY": "UNKNOWN",
+        "HORIZON_CAP_SEGMENTATION_OVERFLOW_AND_STRUCTURAL_ZEROS": "UNKNOWN",
+        "CONDITIONAL_SAMPLING_INTERFACE": "UNKNOWN",
+        "SHARED_BASE_COMPATIBILITY": "UNKNOWN",
+        "TRAINING_TUNING_AND_INFERENCE_INTERFACES": "UNKNOWN",
+        "NATIVE_VERSUS_AUTHOR_EXTENSION_BOUNDARY": "UNKNOWN"
+      },
+      "admitted": false
+    },
+    {
+      "domain_id": "online-retail-ii",
+      "row_kind": "STRONGEST_TASK_COMPATIBLE_EXTERNAL_DOMAIN_BASELINE",
+      "future_receipts": {
+        "method_id": null,
+        "repository": null,
+        "commit": null,
+        "license": null,
+        "config_sha256": null,
+        "native_capability_and_extension_statement": null,
+        "tuning_budget": null
+      },
+      "capability_matrix": {
+        "VARIABLE_CARDINALITY_UNORDERED_CONFIGURATION": "UNKNOWN",
+        "DOMAIN_PHYSICAL_TIME": "UNKNOWN",
+        "SIMULTANEOUS_EVENTS_AND_MULTIPLICITY": "UNKNOWN",
+        "TYPED_EVENTS_AND_CONTINUOUS_MARKS": "UNKNOWN",
+        "MISSING_OR_PARTIALLY_OBSERVED_MARKS": "UNKNOWN",
+        "UNORDERED_SUBSET_AND_ASSOCIATION_AMBIGUITY": "UNKNOWN",
+        "HORIZON_CAP_SEGMENTATION_OVERFLOW_AND_STRUCTURAL_ZEROS": "UNKNOWN",
+        "CONDITIONAL_SAMPLING_INTERFACE": "UNKNOWN",
+        "SHARED_BASE_COMPATIBILITY": "UNKNOWN",
+        "TRAINING_TUNING_AND_INFERENCE_INTERFACES": "UNKNOWN",
+        "NATIVE_VERSUS_AUTHOR_EXTENSION_BOUNDARY": "UNKNOWN"
+      },
+      "admitted": false
+    }
+  ],
+  "license_receipt_contract": {
+    "required_receipts": [
+      "CANONICAL_METHOD_AND_PACKAGE_IDENTITY",
+      "CANONICAL_REPOSITORY_AND_IMMUTABLE_COMMIT_OR_RELEASE_DIGEST",
+      "LICENSE_RAW_BYTES_SHA256_AND_DEFENSIBLE_SPDX_EXPRESSION",
+      "LICENSE_SCOPE_FOR_CODE_WEIGHTS_CONFIGS_AND_MODIFICATIONS",
+      "ENVIRONMENT_AND_EXACT_CONFIG_DIGEST",
+      "PARAMETER_COUNT_PROCEDURE_AND_RESULT",
+      "NATIVE_CAPABILITY_MATRIX_AND_AUTHOR_EXTENSION_BOUNDARY",
+      "FINITE_TRAINING_INFERENCE_AND_TUNING_ALLOCATION",
+      "INDEPENDENT_REPRODUCTION_REVIEW_RECEIPT"
+    ],
+    "current_external_receipts_observed": 0,
+    "repository_or_license_inferred_from_family_name": false,
+    "missing_ambiguous_conflicting_or_incompatible_disposition": "ROW_NO_GO",
+    "post_test_replacement_extension_or_license_guess_permitted": false
+  },
+  "capability_contract": {
+    "axes": [
+      "VARIABLE_CARDINALITY_UNORDERED_CONFIGURATION",
+      "DOMAIN_PHYSICAL_TIME",
+      "SIMULTANEOUS_EVENTS_AND_MULTIPLICITY",
+      "TYPED_EVENTS_AND_CONTINUOUS_MARKS",
+      "MISSING_OR_PARTIALLY_OBSERVED_MARKS",
+      "UNORDERED_SUBSET_AND_ASSOCIATION_AMBIGUITY",
+      "HORIZON_CAP_SEGMENTATION_OVERFLOW_AND_STRUCTURAL_ZEROS",
+      "CONDITIONAL_SAMPLING_INTERFACE",
+      "SHARED_BASE_COMPATIBILITY",
+      "TRAINING_TUNING_AND_INFERENCE_INTERFACES",
+      "NATIVE_VERSUS_AUTHOR_EXTENSION_BOUNDARY"
+    ],
+    "allowed_draft_states": [
+      "NATIVE",
+      "AUTHOR_EXTENSION",
+      "INAPPLICABLE_WITH_PROOF",
+      "UNSUPPORTED",
+      "UNKNOWN"
+    ],
+    "admissible_final_states": ["NATIVE", "AUTHOR_EXTENSION", "INAPPLICABLE_WITH_PROOF"],
+    "unknown_blocks_admission": true,
+    "author_extension_requires_source_config_license_and_compute_receipts": true,
+    "one_implementation_may_fill_multiple_family_rows_without_row_specific_equivalence_proof": false,
+    "equivalence_dimensions": [
+      "OBJECTIVE",
+      "PROPOSAL_OR_CONDITIONING_SEMANTICS",
+      "MODEL_CLASS",
+      "COMPUTE",
+      "TASK_INTERFACE"
+    ]
+  },
+  "matched_compute_contract": {
+    "calculator_id": "EXACT_WEIGHTED_RESOURCE_LEDGER_V1",
+    "formula": "C_M_D_EQUALS_SUM_OVER_PHASE_AND_RESOURCE_OF_INTEGER_COUNT_TIMES_EXACT_RATIONAL_WEIGHT",
+    "phases": ["PILOT", "TUNING", "FINAL_TRAINING", "CONFIRMATORY_INFERENCE"],
+    "resource_events": [
+      "BASE_FORWARD",
+      "BASE_BACKWARD",
+      "CONDITIONER_FORWARD",
+      "CONDITIONER_BACKWARD",
+      "GUIDE_EVALUATION",
+      "RESAMPLING_STEP",
+      "ODE_OR_SDE_STEP",
+      "DATA_ADAPTER_RECORD",
+      "METRIC_DRAW_EVALUATION",
+      "OTHER_DECLARED_OPERATION"
+    ],
+    "accepted_count_type": "EXACT_NONNEGATIVE_PYTHON_INT_NOT_BOOL",
+    "accepted_weight_type": "STRICTLY_POSITIVE_EXACT_INT_OR_FRACTIONS_FRACTION_NOT_BOOL_OR_FLOAT",
+    "normalized_component_bit_bound": 4096,
+    "accumulated_component_bit_bound": 8192,
+    "hardware_calibration_weights_populated": false,
+    "hardware_or_environment_selected": false,
+    "prospective_equal_ceiling_required_for_primary_pair_within_domain": true,
+    "same_base_groups_cases_draws_precision_and_metric_workload_required": true,
+    "failed_attempts_author_extensions_and_unique_preprocessing_charged": true,
+    "unused_budget_transfer_or_postresult_topup_permitted": false,
+    "scalar_cost_sufficient_without_hard_axis_ceilings": false,
+    "additional_hard_axes": [
+      "WALL_TIME",
+      "ACCELERATOR_TIME",
+      "PEAK_DEVICE_MEMORY",
+      "PEAK_HOST_MEMORY",
+      "MODEL_EVALUATION_COUNT",
+      "PERSISTENT_BYTES",
+      "FAILURE_COUNT",
+      "PARAMETER_COUNT"
+    ],
+    "fairness_interpretation": "EQUAL_PROSPECTIVE_CEILING_AND_SELECTION_OPPORTUNITY_WITH_ALL_REALIZED_USE_REPORTED",
+    "real_compute_budget_or_capacity_claimed": false
+  },
+  "synthetic_qualification": {
+    "calculator_id": "EXACT_WEIGHTED_RESOURCE_LEDGER_V1",
+    "phase_costs": {
+      "PILOT": {"numerator": 4, "denominator": 1},
+      "TUNING": {"numerator": 20, "denominator": 1},
+      "FINAL_TRAINING": {"numerator": 31, "denominator": 1},
+      "CONFIRMATORY_INFERENCE": {"numerator": 30, "denominator": 1}
+    },
+    "total_cost": {"numerator": 85, "denominator": 1},
+    "binary_float_used": false
+  },
+  "nonclosure": {
+    "blocker_status": {"B06": "OPEN", "B08": "OPEN"},
+    "open_field_values": {
+      "F062": null,
+      "F063": null,
+      "F064": null,
+      "F065": null,
+      "F066": null,
+      "F067": null,
+      "F068": null,
+      "F069": null,
+      "F070": null,
+      "F071": null,
+      "F072": null,
+      "F073": null,
+      "F074": null,
+      "F075": null,
+      "F076": null,
+      "F077": null,
+      "F078": null,
+      "F079": null,
+      "F080": null,
+      "F081": null,
+      "F082": null,
+      "F083": null,
+      "F084": null,
+      "F085": null,
+      "F086": null,
+      "F087": null,
+      "F088": null,
+      "F089": null,
+      "F090": null,
+      "F091": null,
+      "F092": null,
+      "F093": null,
+      "F094": null,
+      "F095": null,
+      "F096": null,
+      "F097": null,
+      "F098": null,
+      "F099": null,
+      "F100": null,
+      "F101": null,
+      "F102": null,
+      "F103": null,
+      "F104": null,
+      "F150": null,
+      "F151": null,
+      "F152": null,
+      "F153": null,
+      "F154": null,
+      "F155": null,
+      "F156": null,
+      "F157": null,
+      "F158": null,
+      "F159": null,
+      "F160": null,
+      "F161": null,
+      "F162": null
+    },
+    "open_field_count_in_this_dependency_view": 56,
+    "effective_project_unresolved_field_count": 172,
+    "effective_project_open_blocker_count": 12,
+    "unresolved_fields_closed": 0,
+    "blockers_closed": 0,
+    "formal_scientific_tests_closed": 0,
+    "scientific_results_produced": 0,
+    "matched_total_compute_formula_written_to_preregistration": false,
+    "hardware_or_capacity_fields_written_to_preregistration": false
+  },
+  "scope_and_nonclaims": {
+    "static_draft_and_synthetic_exact_arithmetic_only": true,
+    "web_network_connector_repository_paper_or_license_contact_used": false,
+    "external_current_fact_verified": false,
+    "package_installed_or_environment_mutated": false,
+    "hardware_capacity_reserved_or_purchased": false,
+    "data_or_test_outcome_accessed": false,
+    "project_science_imported_or_invoked": false,
+    "training_tuning_pilot_or_scientific_execution_performed": false,
+    "scientific_seed_or_protocol_entropy_consumed": false,
+    "runtime_approved_or_claim_promoted": false,
+    "tracker_edited_by_package": false,
+    "existing_predecessor_modified": false,
+    "synthetic_vector_is_scientific_budget_or_capacity_evidence": false,
+    "package_internal_only": true,
+    "publication_safe_derivative_required": true
+  },
+  "evidence_bindings": [
+    {"ordinal": 0, "role": "EXECUTION_PREREGISTRATION_HUMAN", "path": "manuscript_v3/execution_preregistration.md", "bytes": 22491, "raw_sha256": "a68215e77fe7d20dd0738e9f758f6037c2cd69304c98e92670ded3af3e00b64e", "terminal_lf": true},
+    {"ordinal": 1, "role": "EXECUTION_PREREGISTRATION_MACHINE", "path": "research/fixtures/manuscript_v3_execution_preregistration_v1.json", "bytes": 39771, "raw_sha256": "edd572fc8d8c1b72ad3bc947c4427b79095d45b4d9f44371c5806066d71b0706", "terminal_lf": true},
+    {"ordinal": 2, "role": "PREEXECUTION_CLOSURE_HUMAN", "path": "manuscript_v3/execution_preregistration_preexecution_closure_v2.md", "bytes": 14938, "raw_sha256": "fb1218e86b4a4fdf434ed6b37b3ccf81e2698cc3fb46e331b5a52f279fd24a3d", "terminal_lf": true},
+    {"ordinal": 3, "role": "PREEXECUTION_CLOSURE_MACHINE", "path": "research/fixtures/manuscript_v3_execution_preregistration_preexecution_closure_v2.json", "bytes": 24571, "raw_sha256": "11329efc97d844f5a39223f170e8c4d5ea5341756ed6f89d9e40bbf4e0c529db", "terminal_lf": true},
+    {"ordinal": 4, "role": "SOLO_BLOCK2_STATIC_SELECTION_HUMAN", "path": "PROJECT_SOLO_BLOCK2_STATIC_SELECTION_FREEZE.md", "bytes": 23012, "raw_sha256": "ab80a009f3d83be4186d3d2da13e3efd5939362e4215477dd2b1a89b870b3126", "terminal_lf": true},
+    {"ordinal": 5, "role": "SOLO_BLOCK2_STATIC_SELECTION_MACHINE", "path": "research/fixtures/manuscript_v3_solo_block2_static_selection_freeze_v1.json", "bytes": 33638, "raw_sha256": "7ff0bf3bb5d9a03e2212f2f7f1853cde2283694b33e072931d258d98e1882590", "terminal_lf": true},
+    {"ordinal": 6, "role": "POWER_ALLOCATION_ROUTE_HUMAN", "path": "PROJECT_REAL_DOMAIN_POWER_ALLOCATION_ROUTE.md", "bytes": 15223, "raw_sha256": "a8edf99303e30b6ae6ea9912dce6350fadc9e07361fcd25743c03446a2bb0139", "terminal_lf": true},
+    {"ordinal": 7, "role": "POWER_ALLOCATION_ROUTE_MACHINE", "path": "research/fixtures/manuscript_v3_real_domain_power_allocation_route_v1.json", "bytes": 15915, "raw_sha256": "536493388d23aac2cc3aaf6f9bdc34a12fba77103e9546cbf110c1c8223dfd28", "terminal_lf": true}
+  ],
+  "package_bindings": [
+    {"ordinal": 0, "role": "HUMAN_DRAFT", "path": "PROJECT_BASELINE_CAPABILITY_COMPUTE_MODEL_DRAFT.md", "bytes": 10754, "raw_sha256": "33c9df737f45411861f2a60a9ed99220f61e4ac66461999ed0367c482b5dbe3d", "terminal_lf": true},
+    {"ordinal": 1, "role": "EXACT_CALCULATOR_AND_READ_ONLY_VALIDATOR", "path": "research/diagnostics/manuscript_v3_baseline_capability_compute_model_draft_v1.py", "bytes": 33361, "raw_sha256": "7032ad65de5b5f3f3aeed7e7d0b4866dbd318a3bc42850beeb9a1cfdd4a58297", "terminal_lf": true},
+    {"ordinal": 2, "role": "HOSTILE_UNIT_TEST", "path": "tests/unit/test_manuscript_v3_baseline_capability_compute_model_draft_v1.py", "bytes": 20209, "raw_sha256": "2dbc64fd4830b410cda7c9911495cbfbf9603e4ec598f6af3e2094326a01cddc", "terminal_lf": true}
+  ],
+  "record_sha256": "4cad447dca7896d45c424ee16594cddf3cd83e8497ed0cb3ec875ced03dd5840"
+}

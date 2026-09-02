@@ -1,0 +1,909 @@
+{
+  "schema_version": "manuscript-v3-execution-preregistration-v1",
+  "state": "DRAFT_NOT_EXECUTABLE",
+  "scope": "NARROW_THEORY_AND_TWO_DOMAIN_BENCHMARK",
+  "route_id": "route-a-narrow-theory-and-benchmark",
+  "confirmatory_execution_authorized": false,
+  "publication_preregistration_only": true,
+  "production_gate_or_blocker_effect": false,
+  "formal_test_28_effect": false,
+  "required_preexecution_null_fields_are_execution_blocking": true,
+  "postexecution_audit_plan_nulls_are_execution_blocking": false,
+  "postexecution_audit_plan_nulls_block_claim_promotion_and_submission": true,
+  "cp75_style_external_reviewer_appointment_or_signature_required": false,
+  "source_context": [
+    {
+      "artifact_id": "manuscript-v3",
+      "path": "manuscript_v3/manuscript_v3.md",
+      "sha256": "0569b18aefb2aefa6c24af0559880f66c4a0daa6b2073169d30c892515e976a8"
+    },
+    {
+      "artifact_id": "claim-ledger",
+      "path": "manuscript_v3/claim_ledger.md",
+      "sha256": "793f7fbda938f66d771af3dc480d13dc784862a439ee65452b79c776d78e8245"
+    },
+    {
+      "artifact_id": "executable-method-spec",
+      "path": "manuscript_v3/executable_method_spec.md",
+      "sha256": "58bdfd689caa1698a07e415074e98bd3a80e9d69467d9ddec8f8471aba36c34d"
+    },
+    {
+      "artifact_id": "executable-method-audit",
+      "path": "manuscript_v3/executable_method_audit.md",
+      "sha256": "4dbfe7ec57973dcac1dcaae4a03f46e60f66d828d6b75d1c77dd1b8776d35da0"
+    },
+    {
+      "artifact_id": "cp76-readiness-checklist",
+      "path": "research/preregistrations/cp76_manuscript_v3_submission_readiness_checklist_v1.md",
+      "sha256": "002aae4bdd9ccf3b80b514cea6de767a05390611fec63f416bce01cb4d8e56b4"
+    },
+    {
+      "artifact_id": "cp76-readiness-manifest",
+      "path": "research/fixtures/cp76_manuscript_v3_submission_readiness_manifest_v1.json",
+      "sha256": "b9ce9744b64212bf0e762d3342c9a221438c2676ebd9d69db2f50cbbebf9ac06"
+    }
+  ],
+  "claim_dispositions": [
+    {
+      "claim_id": "C0",
+      "ledger_status": "RETIRED",
+      "route_disposition": "RETIRED"
+    },
+    {
+      "claim_id": "C1",
+      "ledger_status": "DEFINED / FOUNDATION",
+      "route_disposition": "RETAIN_AS_ATTRIBUTED_FOUNDATION_NOT_CONTRIBUTION"
+    },
+    {
+      "claim_id": "C2",
+      "ledger_status": "RESTRICTED FOUNDATION",
+      "route_disposition": "RETAIN_AS_ATTRIBUTED_RESTRICTED_FOUNDATION_NOT_CONTRIBUTION"
+    },
+    {
+      "claim_id": "C3",
+      "ledger_status": "METHOD-DEFINITION-PENDING / NOVELTY-UNASSESSED",
+      "route_disposition": "CONDITIONAL_ONLY_AFTER_METHOD_NOVELTY_GO"
+    },
+    {
+      "claim_id": "C4",
+      "ledger_status": "RESULT-PENDING",
+      "route_disposition": "DEFER_NO_SAMPLE_EFFICIENCY_CLAIM"
+    },
+    {
+      "claim_id": "C5",
+      "ledger_status": "THEOREM/RESULT-PENDING",
+      "route_disposition": "REQUIRED_R1_R2_GATE_NOT_HEADLINE_CLAIM"
+    },
+    {
+      "claim_id": "C6",
+      "ledger_status": "TASK-ADMISSION/RESULT-PENDING",
+      "route_disposition": "REQUIRED_METHOD_BLIND_DOMAIN_ADMISSION_NOT_HEADLINE_CLAIM"
+    },
+    {
+      "claim_id": "C7",
+      "ledger_status": "RESULT-PENDING",
+      "route_disposition": "DEFER_NO_THREE_DOMAIN_GENERALITY_CLAIM"
+    },
+    {
+      "claim_id": "C8",
+      "ledger_status": "RESULT-PENDING",
+      "route_disposition": "REQUIRED_BASE_QUALITY_PREREQUISITE_NOT_HEADLINE_CLAIM"
+    },
+    {
+      "claim_id": "C9",
+      "ledger_status": "RESULT-PENDING",
+      "route_disposition": "REQUIRED_SCALING_PREREQUISITE_NOT_HEADLINE_CLAIM"
+    },
+    {
+      "claim_id": "C10",
+      "ledger_status": "RESULT-PENDING / SECONDARY",
+      "route_disposition": "DEFER_NO_HELD_OUT_TASK_FLEXIBILITY_CLAIM"
+    },
+    {
+      "claim_id": "C11",
+      "ledger_status": "LEDGER-PENDING / FALLBACK CANDIDATE",
+      "route_disposition": "DEFER_TO_SEPARATE_FUTURE_ROUTE_B"
+    },
+    {
+      "claim_id": "C12",
+      "ledger_status": "SOURCE-REPORTED / RESULT-PENDING",
+      "route_disposition": "SOURCE_REPORTED_ONLY_NO_REPRODUCTION_CLAIM"
+    },
+    {
+      "claim_id": "C13",
+      "ledger_status": "RESULT-PENDING / SECONDARY",
+      "route_disposition": "DEFER_NO_TEMPORAL_ARCHITECTURE_SUPERIORITY_CLAIM"
+    },
+    {
+      "claim_id": "C14",
+      "ledger_status": "RETIRED AS BROAD CLAIM",
+      "route_disposition": "RETIRED"
+    },
+    {
+      "claim_id": "C15",
+      "ledger_status": "RESULT-PENDING / OPTIONAL",
+      "route_disposition": "DEFER_NO_PERCEPTUAL_CLAIM"
+    },
+    {
+      "claim_id": "C16",
+      "ledger_status": "RESULT-PENDING / OPTIONAL",
+      "route_disposition": "DEFER_NO_CLINICAL_OR_RETAIL_UTILITY_CLAIM"
+    },
+    {
+      "claim_id": "C17",
+      "ledger_status": "THEOREM-TARGET",
+      "route_disposition": "CONDITIONAL_PRIMARY_NARROW_THEORY_TARGET"
+    },
+    {
+      "claim_id": "C18",
+      "ledger_status": "THEOREM-TARGET",
+      "route_disposition": "DEFER_BROAD_END_TO_END_RELIABILITY_THEOREM"
+    },
+    {
+      "claim_id": "C19",
+      "ledger_status": "TASK-ADMISSION-PENDING",
+      "route_disposition": "REQUIRED_DOMAIN_TASK_ADMISSION_NOT_HEADLINE_CLAIM"
+    },
+    {
+      "claim_id": "C20",
+      "ledger_status": "RESULT-PENDING",
+      "route_disposition": "CONDITIONAL_PRIMARY_TWO_DOMAIN_BENCHMARK_TARGET"
+    }
+  ],
+  "slot_plan": [
+    {
+      "slot_id": "R1-A1",
+      "role": "FINITE_ATOMIC_KNOWN_LAW_GATE",
+      "current_result": "Empty",
+      "current_status": "NOT_RUN",
+      "execution_ordinal": 1,
+      "claim_promotion_effect": "GATE_ONLY"
+    },
+    {
+      "slot_id": "R2-HYBRID",
+      "role": "MIXED_CTMC_OU_KNOWN_LAW_GATE",
+      "current_result": "Empty",
+      "current_status": "NOT_RUN",
+      "execution_ordinal": 2,
+      "claim_promotion_effect": "GATE_ONLY"
+    },
+    {
+      "slot_id": "R3-PHYS",
+      "role": "PHYSIONET_PRIMARY_BENCHMARK",
+      "current_result": "Empty",
+      "current_status": "NOT_RUN",
+      "execution_ordinal": 3,
+      "claim_promotion_effect": "C20_COMPONENT"
+    },
+    {
+      "slot_id": "R4-RETAIL",
+      "role": "ONLINE_RETAIL_II_PRIMARY_BENCHMARK",
+      "current_result": "Empty",
+      "current_status": "NOT_RUN",
+      "execution_ordinal": 4,
+      "claim_promotion_effect": "C20_COMPONENT"
+    }
+  ],
+  "excluded_slots": [
+    {
+      "slot_id": "R5-ASAP",
+      "disposition": "OUT_OF_SCOPE_NO_GENERALITY_CLAIM"
+    },
+    {
+      "slot_id": "F1-TIME",
+      "disposition": "OUT_OF_SCOPE_SEPARATE_FUTURE_ROUTE_B_ONLY"
+    }
+  ],
+  "execution_order_rule": "R1_A1_THEN_R2_HYBRID_THEN_BOTH_REAL_DOMAIN_SLOTS_WITH_NO_TEST_OUTCOME_BEFORE_ALL_PREREQUISITES_FREEZE",
+  "theory_and_known_law_plan": {
+    "current_partial_c17_target_document_path": "manuscript_v3/c17_hybrid_path_error_theorem.md",
+    "current_partial_c17_target_document_sha256": "d11dc3a98d19a52e7ab653aca1e06598490ad098a450b526870508b4499b9d8d",
+    "current_partial_c17_target_status": "UNPROVED_NOT_EXECUTABLE_NO_CLAIM_PROMOTION",
+    "current_partial_mixed_oracle_source_path": "src/heterodiff/evaluation/mixed_ctmc_ou_known_law_oracle.py",
+    "current_partial_mixed_oracle_source_sha256": "b07c406f837e51d02a5608377330f4eed256801305712efc8082741e38822198",
+    "current_partial_mixed_oracle_test_path": "tests/unit/test_mixed_ctmc_ou_known_law_oracle.py",
+    "current_partial_mixed_oracle_test_sha256": "6592a5a5bb8e081bdc042adb9344e5a20f2c39799db22c6be2e631c302573372",
+    "current_partial_mixed_oracle_scope": "FINITE_FACTORIZED_MIXED_CTMC_OU_DIAGNOSTIC",
+    "current_partial_mixed_oracle_focused_test_count": 10,
+    "current_partial_mixed_oracle_learned_residual_exercised": false,
+    "current_partial_mixed_oracle_path_kl_decomposition_exercised": false,
+    "current_partial_mixed_oracle_cap_defect_cancellation_exercised": false,
+    "current_partial_mixed_oracle_association_marginalization_exercised": false,
+    "current_partial_mixed_oracle_occurrence_attached_continuous_marks_exercised": false,
+    "current_partial_mixed_oracle_closes_c17": false,
+    "current_partial_mixed_oracle_closes_r2": false,
+    "current_partial_fork_b_contract_path": "manuscript_v3/c17_fork_b_direct_certificate_contract.md",
+    "current_partial_fork_b_contract_sha256": "80c00dd62106e9fd4743fd6999c1e642f0ef31b063cf9ae3c84822b7a68deae4",
+    "current_partial_path_kl_source_path": "src/heterodiff/evaluation/mixed_ctmc_ou_path_kl_diagnostic.py",
+    "current_partial_path_kl_source_sha256": "448f50ebde693aa6f7141fcbd91541b781fba4efde92eaf8e0674d8537ca7d7f",
+    "current_partial_path_kl_test_path": "tests/unit/test_mixed_ctmc_ou_path_kl_diagnostic.py",
+    "current_partial_path_kl_test_sha256": "60c9d458f496e458722c29985b69aeb87df5e3df4a0d49489043cad833ac1e48",
+    "current_partial_path_kl_scope": "FINITE_FACTORIZED_MIXED_CTMC_OU_DIRECT_PATH_KL",
+    "current_partial_path_kl_focused_test_count": 12,
+    "current_partial_path_kl_orientation": "KL(P_EXACT_H || P_PLUGIN_H_EXP_E)",
+    "current_partial_path_kl_components": {
+      "initializer": 0.12608683355724082,
+      "ou_continuous_gradient": 0.010453333333333335,
+      "birth": 0.029135431076622087,
+      "death": 0.016340611640645607,
+      "replacement": 0.04403186747022539,
+      "total": 0.22604807707806723
+    },
+    "current_partial_path_kl_reverse_orientation_total": 0.2180141647976705,
+    "current_partial_path_kl_direct_crosscheck_absolute_difference": 8.326672684688674e-17,
+    "current_partial_path_kl_mathematical_identity_exact_for_declared_fixture": true,
+    "current_partial_path_kl_float_interval_certified": false,
+    "current_partial_path_kl_learned_estimator_exercised": false,
+    "current_partial_path_kl_association_marginalization_exercised": false,
+    "current_partial_path_kl_occurrence_attached_continuous_marks_exercised": false,
+    "current_partial_path_kl_cap_defect_cancellation_exercised": false,
+    "current_partial_path_kl_closes_c17": false,
+    "current_partial_path_kl_closes_r2": false,
+    "current_partial_path_kl_authorizes_confirmatory_execution": false,
+    "current_partial_cap_defect_contract_path": "manuscript_v3/c17_cap_defect_cancellation_contract.md",
+    "current_partial_cap_defect_contract_sha256": "a0a57cdba08c588269c8706ab78bb68ac2360f29b97d20cd05cdcd3a8c93cb3f",
+    "current_partial_cap_defect_source_path": "src/heterodiff/evaluation/mixed_ctmc_ou_cap_defect_cancellation_diagnostic.py",
+    "current_partial_cap_defect_source_sha256": "50b9748a50982f10f289cba94c8ace9adab6ea003e57da091958fda8844f6ef9",
+    "current_partial_cap_defect_test_path": "tests/unit/test_mixed_ctmc_ou_cap_defect_cancellation_diagnostic.py",
+    "current_partial_cap_defect_test_sha256": "6de986e9b40d57e4f7e4ffdac82ebe04ff4c68ab3287df61c3c8a8ab36cca663",
+    "current_partial_cap_defect_scope": "FINITE_FACTORIZED_MIXED_CTMC_OU_SHARED_CAP3_GUIDE_CANCELLATION",
+    "current_partial_cap_defect_focused_test_count": 10,
+    "current_partial_cap_defect_evaluation_coordinates": [-1.0, 0.0, 1.0],
+    "current_partial_cap_defect_maximum_absolute_value": 0.5361111111111103,
+    "current_partial_cap_defect_identity_residual": 6.661338147750939e-16,
+    "current_partial_cap_defect_shared_guide_error_recovery_residual": 5.551115123125783e-17,
+    "current_partial_cap_defect_components": {
+      "initializer": 0.12608683355724076,
+      "ou_continuous_gradient": 0.010453333333333335,
+      "birth": 0.029135431076622087,
+      "death": 0.016340611640645607,
+      "replacement": 0.04403186747022539,
+      "total": 0.22604807707806718
+    },
+    "current_partial_cap_defect_path_total_excludes_defect": true,
+    "current_partial_cap_defect_matrix_exponential_interval_certified": false,
+    "current_partial_cap_defect_quadrature_interval_certified": false,
+    "current_partial_cap_defect_learned_estimator_exercised": false,
+    "current_partial_cap_defect_association_marginalization_exercised": false,
+    "current_partial_cap_defect_occurrence_attached_continuous_marks_exercised": false,
+    "current_partial_cap_defect_closes_c17": false,
+    "current_partial_cap_defect_closes_r2": false,
+    "current_partial_cap_defect_authorizes_confirmatory_execution": false,
+    "current_partial_a1_association_contract_path": "manuscript_v3/c17_finite_a1_association_component_contract.md",
+    "current_partial_a1_association_contract_sha256": "063a9acabd79a3c329aa721aded5c4ec8804749aaccde3d8e2096c41d5ce78c8",
+    "current_partial_a1_family_helper_source_path": "src/heterodiff/theory/finite_bridge_family_path_control.py",
+    "current_partial_a1_family_helper_source_sha256": "e7427b787bfefc8c8047d8ea80c69fff2df9803628b9238309839efdcf19449f",
+    "current_partial_a1_association_source_path": "src/heterodiff/evaluation/finite_association_fork_b_diagnostic.py",
+    "current_partial_a1_association_source_sha256": "a7279bd83a0e7cc65c132a9f5f73c18fd7bd15a896ceb86788aa4194650ac94d",
+    "current_partial_a1_association_test_path": "tests/unit/test_finite_association_fork_b_diagnostic.py",
+    "current_partial_a1_association_test_sha256": "9aca3ba8878e4e5eacef0bef255be624eb8db219b3128b67ce6ee200066cc7c6",
+    "current_partial_a1_association_scope": "FINITE_A1_CAPPED_ASSOCIATION_PATH_COMPONENTS_ONLY",
+    "current_partial_a1_association_status": "PARTIAL_COMPONENT_DIAGNOSTIC",
+    "current_partial_a1_association_focused_test_count": 24,
+    "current_partial_a1_association_local_compatibility_fixture_sha256": "b96901980055f5ecfda653373ed935010040698985e274e0ebd3f04822f3e75d",
+    "current_partial_a1_association_preregistered_production_fixture_sha256": "0121b487728b40356de6707a33ba4881100c3d1b587259b19723463a60cecdcc",
+    "current_partial_a1_association_path_content_sha256": "d269e5849a5b820605bafbb33f36c3c666f6e08ffa92c557212a6874c2ba3831",
+    "current_partial_a1_association_edge_family_partition_sha256": "bc54ccc360803bc1673508a540a59ba48c24d58b8a316b0c3674632542cefc6f",
+    "current_partial_a1_association_test_only_callback_used": true,
+    "current_partial_a1_association_callback_determinism_checked": true,
+    "current_partial_a1_association_production_checkpoint_supplied": false,
+    "current_partial_a1_association_production_checkpoint_evaluation_supported": false,
+    "current_partial_a1_association_all_21_observations_evaluated": true,
+    "current_partial_a1_association_overflow_observation_index": 20,
+    "current_partial_a1_association_active_edge_counts": [30, 30, 60],
+    "current_partial_a1_association_continuous_component_disposition": "NOT_APPLICABLE_NO_CONTINUOUS_COORDINATES",
+    "current_partial_a1_association_observation_weighted_components": {
+      "initializer": 0.00223346825475464,
+      "birth": 0.002322966460349031,
+      "death": 0.0009899328996185747,
+      "replacement": 3.66747719559582e-05,
+      "total": 0.005583042386678205
+    },
+    "current_partial_a1_association_maximum_primary_refined_total_change": 0.0,
+    "current_partial_a1_association_maximum_target_marginal_absolute_error": 3.3306690738754696e-16,
+    "current_partial_a1_association_maximum_terminal_log_potential_absolute_error": 2.3092638912203256e-14,
+    "current_partial_a1_association_maximum_family_aggregate_crosscheck_absolute_difference": 1.3877787807814457e-17,
+    "current_partial_a1_association_interval_certified": false,
+    "current_partial_a1_association_simultaneous_coverage_proved": false,
+    "current_partial_a1_association_rigorous_numerical_enclosure_present": false,
+    "current_partial_a1_association_occurrence_attached_mark_fibers_exercised": false,
+    "current_partial_a1_association_cap_defect_cancellation_exercised": false,
+    "current_partial_a1_association_closes_c17": false,
+    "current_partial_a1_association_r1_status": "NOT_RUN",
+    "current_partial_a1_association_r1_qualified": false,
+    "current_partial_a1_association_r2_status": "NOT_RUN",
+    "current_partial_a1_association_r2_qualified": false,
+    "current_partial_a1_association_promotes_manuscript_claim": false,
+    "current_partial_a1_association_authorizes_confirmatory_execution": false,
+    "current_partial_checkpoint_authorizes_confirmatory_execution": false,
+    "c17_final_theorem_statement": null,
+    "c17_assumption_inventory": null,
+    "c17_proof_artifact_path": null,
+    "c17_code_definition_crosswalk_path": null,
+    "excess_logistic_risk_to_hybrid_dirichlet_control_statement": null,
+    "coercivity_or_identifiability_assumptions": null,
+    "hybrid_dirichlet_continuous_gradient_term_required": true,
+    "hybrid_dirichlet_discrete_legal_edge_difference_term_required": true,
+    "cap_and_reference_error_decomposition": null,
+    "cap_and_reference_terms_nonoverlapping_required": true,
+    "guide_residual_base_initialization_terminal_and_numerical_terms_nonduplicated_required": true,
+    "a1_fixture_parameters": null,
+    "a1_evaluation_grid": null,
+    "a1_exact_kl_tv_tolerances": null,
+    "mixed_ctmc_ou_fixture_parameters": null,
+    "mixed_evaluation_grid": null,
+    "mixed_exact_or_certified_kl_tv_tolerances": null,
+    "drift_error_tolerance": null,
+    "birth_ratio_error_tolerance": null,
+    "death_ratio_error_tolerance": null,
+    "replacement_ratio_error_tolerance": null,
+    "initializer_error_tolerance": null,
+    "endpoint_error_tolerance": null,
+    "path_diagnostic_tolerance": null,
+    "source_destination_factor_checks_required": true,
+    "multiplicity_and_cap_flux_checks_required": true,
+    "association_normalization_checks_required": true,
+    "nuisance_invariance_checks_required": true,
+    "whole_method_hostile_audit_required": true,
+    "existing_incremental_audits_satisfy_whole_method_gate": false,
+    "cp29_or_test28_engineering_evidence_satisfies_scientific_gate": false
+  },
+  "domains": [
+    {
+      "domain_id": "physionet-challenge-2012",
+      "slot_id": "R3-PHYS",
+      "source_url": "https://physionet.org/content/challenge-2012/1.0.0/",
+      "snapshot_version": null,
+      "raw_snapshot_sha256": null,
+      "license_and_access_record": null,
+      "governance_approval_record": null,
+      "natural_group": "patient",
+      "split_policy": "PATIENT_DISJOINT",
+      "generated_endpoint_semantics": null,
+      "context_semantics": null,
+      "observation_semantics": null,
+      "event_type_and_mark_schema": null,
+      "physical_time_semantics": null,
+      "horizon": null,
+      "cap": null,
+      "segmentation_rule": null,
+      "overflow_and_exclusion_rule": null,
+      "clean_observation_kernel": null,
+      "observation_reference": null,
+      "positive_or_common_support_route": null,
+      "detection_noise_confusion_clutter_rule": null,
+      "method_blind_training_only_admission_statistic": null,
+      "method_blind_training_only_admission_threshold": null,
+      "admission_state": "TBD_USER_DECISION",
+      "post_outcome_replacement_permitted": false
+    },
+    {
+      "domain_id": "online-retail-ii",
+      "slot_id": "R4-RETAIL",
+      "source_url": "https://archive.ics.uci.edu/dataset/502/online+retail+ii",
+      "snapshot_version": null,
+      "raw_snapshot_sha256": null,
+      "license_and_access_record": null,
+      "governance_approval_record": null,
+      "natural_group": "customer",
+      "split_policy": "CUSTOMER_DISJOINT_AND_TEMPORAL",
+      "generated_endpoint_semantics": null,
+      "context_semantics": null,
+      "observation_semantics": null,
+      "event_type_and_mark_schema": null,
+      "physical_time_semantics": null,
+      "horizon": null,
+      "cap": null,
+      "segmentation_rule": null,
+      "overflow_and_exclusion_rule": null,
+      "cancellation_country_and_simultaneous_line_item_rule": null,
+      "clean_observation_kernel": null,
+      "observation_reference": null,
+      "positive_or_common_support_route": null,
+      "detection_noise_confusion_clutter_rule": null,
+      "method_blind_training_only_admission_statistic": null,
+      "method_blind_training_only_admission_threshold": null,
+      "admission_state": "TBD_USER_DECISION",
+      "post_outcome_replacement_permitted": false
+    }
+  ],
+  "split_and_leakage_plan": {
+    "physionet_split_manifest_path": null,
+    "retail_split_manifest_path": null,
+    "retail_temporal_cutoff_and_window_rule": null,
+    "train_validation_test_proportions_or_counts": null,
+    "preprocessing_fit_scope": "TRAIN_ONLY",
+    "vocabulary_fit_scope": "TRAIN_ONLY",
+    "normalization_fit_scope": "TRAIN_ONLY",
+    "task_noise_model_fit_scope": "TRAIN_ONLY",
+    "primary_metric_fitting_scope": "TRAIN_ONLY",
+    "validation_only_checkpoint_selection": true,
+    "test_access_before_full_freeze_permitted": false,
+    "exact_duplicate_audit_required": true,
+    "near_duplicate_audit_required": true,
+    "group_overlap_audit_required": true,
+    "temporal_leakage_audit_required": true,
+    "paired_conditioning_cases_across_methods": true,
+    "paired_observation_randomness_across_methods": true,
+    "test_set_exclusion_permitted": false
+  },
+  "method_and_baseline_plan": {
+    "same_frozen_unconditional_base_within_domain_required": true,
+    "primary_method": {
+      "method_id": "association-aware-guide-plus-residual",
+      "repository": null,
+      "commit": null,
+      "config_sha256": null,
+      "parameter_count": null,
+      "training_compute_budget": null,
+      "inference_compute_budget": null
+    },
+    "primary_comparator": {
+      "method_id": "unified-direct-conditioner",
+      "repository": null,
+      "commit": null,
+      "config_sha256": null,
+      "parameter_count": null,
+      "training_compute_budget": null,
+      "inference_compute_budget": null
+    },
+    "required_controls": [
+      {
+        "control_id": "analytic-guide-only-residual-removed",
+        "implementation": null,
+        "config_sha256": null
+      },
+      {
+        "control_id": "direct-or-residual-only-analytic-guide-removed",
+        "implementation": null,
+        "config_sha256": null
+      },
+      {
+        "control_id": "association-destroyed-or-factorized-eventwise",
+        "implementation": null,
+        "config_sha256": null
+      },
+      {
+        "control_id": "unconditional-base-sanity-reference",
+        "implementation": null,
+        "config_sha256": null
+      }
+    ],
+    "required_literature_comparator_families": [
+      {
+        "comparator_family_id": "ngdb-style-auxiliary-guide-plus-correction",
+        "required_domains": [
+          "physionet-challenge-2012",
+          "online-retail-ii"
+        ],
+        "implementation_by_domain": null,
+        "inapplicability_or_equivalence_justification_by_domain": null
+      },
+      {
+        "comparator_family_id": "deft-style-generalized-h-frozen-base-correction",
+        "required_domains": [
+          "physionet-challenge-2012",
+          "online-retail-ii"
+        ],
+        "implementation_by_domain": null,
+        "inapplicability_or_equivalence_justification_by_domain": null
+      },
+      {
+        "comparator_family_id": "task-compatible-same-base-smc-or-feynman-kac",
+        "required_domains": [
+          "physionet-challenge-2012",
+          "online-retail-ii"
+        ],
+        "implementation_by_domain": null,
+        "inapplicability_or_equivalence_justification_by_domain": null
+      },
+      {
+        "comparator_family_id": "closest-variable-cardinality-point-or-edit-generator",
+        "required_domains": [
+          "physionet-challenge-2012",
+          "online-retail-ii"
+        ],
+        "implementation_by_domain": null,
+        "inapplicability_or_equivalence_justification_by_domain": null
+      }
+    ],
+    "each_literature_comparator_requires_implementation_or_frozen_domain_specific_justification": true,
+    "comparator_equivalence_claim_requires_matched_objective_conditioning_model_compute_and_task_interface": true,
+    "external_domain_baselines": [
+      {
+        "domain_id": "physionet-challenge-2012",
+        "method_id": null,
+        "repository": null,
+        "commit": null,
+        "license": null,
+        "config_sha256": null,
+        "native_capability_and_extension_statement": null,
+        "tuning_budget": null
+      },
+      {
+        "domain_id": "online-retail-ii",
+        "method_id": null,
+        "repository": null,
+        "commit": null,
+        "license": null,
+        "config_sha256": null,
+        "native_capability_and_extension_statement": null,
+        "tuning_budget": null
+      }
+    ],
+    "matched_total_compute_formula": null,
+    "post_test_baseline_or_ablation_change_permitted": false
+  },
+  "metric_and_estimand_plan": {
+    "primary_metric_id": null,
+    "primary_metric_selection_rule": "CKS_ONLY_IF_CHARACTERISTICNESS_IS_PROVED_OTHERWISE_ONE_NAMED_VALIDATED_ALTERNATIVE_MUST_BE_FROZEN_BEFORE_TEST_ACCESS",
+    "runtime_or_post_result_metric_fallback_permitted": false,
+    "domain_estimand": "NATURAL_GROUP_WEIGHTED_PAIRED_MEAN_OF_PRIMARY_SCORE_DIRECT_MINUS_PRIMARY_SCORE_GUIDE",
+    "cross_domain_pooling_permitted": false,
+    "favorable_direction": null,
+    "aggregation_unit": null,
+    "training_only_metric_fitting_rule": null,
+    "conditional_draws_per_case": null,
+    "minimum_meaningful_effect": null,
+    "real_real_floor_definition": null,
+    "confidence_interval_method": null,
+    "multiplicity_rule": null,
+    "known_law_primary_metrics": [
+      "EXACT_OR_CERTIFIED_KL",
+      "EXACT_OR_CERTIFIED_TV"
+    ],
+    "constraint_metrics": [
+      {
+        "metric_id": "calibration-and-coverage",
+        "direction": null,
+        "threshold_or_margin": null
+      },
+      {
+        "metric_id": "support-validity",
+        "direction": null,
+        "threshold_or_margin": null
+      },
+      {
+        "metric_id": "event-count-type-mark-and-time-fidelity",
+        "direction": null,
+        "threshold_or_margin": null
+      },
+      {
+        "metric_id": "initializer-error",
+        "direction": null,
+        "threshold_or_margin": null
+      },
+      {
+        "metric_id": "association-approximation-error",
+        "direction": null,
+        "threshold_or_margin": null
+      },
+      {
+        "metric_id": "run-failure-rate",
+        "direction": "UPPER_BOUND",
+        "threshold_or_margin": null
+      },
+      {
+        "metric_id": "latency",
+        "direction": "UPPER_BOUND",
+        "threshold_or_margin": null
+      },
+      {
+        "metric_id": "peak-memory",
+        "direction": "UPPER_BOUND",
+        "threshold_or_margin": null
+      },
+      {
+        "metric_id": "total-compute",
+        "direction": "UPPER_BOUND",
+        "threshold_or_margin": null
+      }
+    ],
+    "secondary_metrics_can_rescue_primary_failure": false
+  },
+  "power_and_seed_plan": {
+    "design": "FIXED_N_PAIRED",
+    "familywise_alpha": null,
+    "primary_hypothesis_family": [
+      "R3-PHYS",
+      "R4-RETAIL"
+    ],
+    "target_power": null,
+    "minimum_effect_used_for_power": null,
+    "pilot_variance_source": null,
+    "pilot_uses_train_or_validation_only": true,
+    "pilot_excluded_from_confirmatory_estimation": true,
+    "independent_training_seed_count": null,
+    "training_seed_values_or_generation_receipt": null,
+    "natural_group_count_by_domain": null,
+    "conditioning_cases_per_group": null,
+    "conditional_draws_per_case": null,
+    "hierarchical_paired_analysis_formula": null,
+    "confidence_interval_resample_count": null,
+    "training_seed_is_replication_unit": true,
+    "conditional_draw_is_independent_replication_unit": false,
+    "primary_methods_share_paired_seeds": true,
+    "seed_topup_replacement_or_selection_permitted": false,
+    "sequential_stopping_permitted": false,
+    "cp50_v26_seed_count_reused": false,
+    "cp50_v26_test28_multiplicity_thresholds_reused": false
+  },
+  "training_and_checkpoint_plan": {
+    "optimizer": null,
+    "learning_rate_schedule": null,
+    "precision": null,
+    "batch_construction": null,
+    "maximum_epochs_or_steps": null,
+    "validation_metric": null,
+    "early_stopping_patience": null,
+    "checkpoint_tie_rule": null,
+    "maximum_tuning_trials_per_method": null,
+    "validation_early_stopping_allowed_only_if_frozen": true,
+    "experiment_level_optional_stopping_permitted": false
+  },
+  "stopping_failure_and_exclusion_plan": {
+    "terminal_status_domain": [
+      "COMPLETE",
+      "ALGORITHMIC_FAILURE",
+      "NONFINITE",
+      "OOM_OR_TIMEOUT",
+      "INFRA_ABORT"
+    ],
+    "algorithmic_failure_retained": true,
+    "initializer_refusal_or_exhaustion_retained": true,
+    "nonfinite_retained": true,
+    "oom_or_timeout_retained": true,
+    "infrastructure_rerun_predicate": null,
+    "infrastructure_rerun_requires_no_usable_output": true,
+    "infrastructure_rerun_uses_same_seed_and_config": true,
+    "all_attempts_recorded": true,
+    "maximum_admissible_failure_rate": null,
+    "test_set_exclusion_permitted": false,
+    "post_result_topup_or_replacement_permitted": false,
+    "post_result_domain_metric_threshold_or_seed_change_permitted": false,
+    "route_b_salvage_after_route_a_outcome_permitted": false
+  },
+  "compute_and_fairness_plan": {
+    "hardware": null,
+    "software_environment_sha256": null,
+    "container_or_lockfile_sha256": null,
+    "deterministic_settings": null,
+    "per_run_wall_time_ceiling": null,
+    "per_run_accelerator_hour_ceiling": null,
+    "per_run_peak_memory_ceiling": null,
+    "per_run_model_evaluation_ceiling": null,
+    "pilot_compute_allocation": null,
+    "tuning_compute_allocation": null,
+    "final_compute_allocation": null,
+    "failure_reserve": null,
+    "total_compute_ceiling": null,
+    "primary_training_and_inference_compute_matched": true,
+    "realized_compute_report_required": true,
+    "post_result_compute_topup_permitted": false
+  },
+  "ethics_release_and_review_plan": {
+    "data_license_compliance_plan": null,
+    "code_model_and_artifact_release_plan": null,
+    "submission_anonymization_plan": null,
+    "physionet_clinical_governance_and_interpretation_plan": null,
+    "retail_privacy_duplicate_exposure_and_membership_inference_plan": null,
+    "proof_and_code_audit_plan": null,
+    "proof_and_code_audit_artifact_path": null,
+    "methods_and_statistics_audit_plan": null,
+    "clean_room_reproduction_audit_plan": null,
+    "review_assignments_are_scientific_checks_not_production_authority": true
+  },
+  "required_preexecution_artifacts": [
+    "fully-populated-preregistration-and-machine-companion",
+    "code-commit-and-environment-or-container-digest",
+    "dataset-acquisition-license-schema-preprocessing-and-split-manifests",
+    "method-base-baseline-ablation-and-checkpoint-selection-configs",
+    "seed-registry-and-power-report",
+    "domain-admission-reports",
+    "c17-theorem-proof-and-code-crosswalk",
+    "r1-r2-known-law-gate-receipts",
+    "base-quality-and-association-scaling-gate-receipts",
+    "run-schedule-metric-threshold-and-compute-budget",
+    "test-access-freeze-receipt"
+  ],
+  "required_postexecution_artifacts": [
+    "raw-predictions-samples-and-primary-inputs",
+    "per-run-logs-and-checkpoints",
+    "primary-and-secondary-metric-tables",
+    "failure-exclusion-deviation-and-aborted-attempt-ledger",
+    "planned-and-realized-compute-receipt",
+    "fresh-proof-and-code-audit",
+    "fresh-methods-and-statistics-audit",
+    "clean-room-reproduction-report",
+    "claim-to-evidence-map",
+    "timestamped-exact-claim-ledger-transition"
+  ],
+  "promotion_rules": {
+    "c17": "PROMOTE_ONLY_AFTER_FINAL_STATEMENT_ASSUMPTIONS_PROOF_EXECUTABLE_QUANTITIES_CODE_CROSSWALK_BOUNDARY_CASES_AND_INDEPENDENT_PROOF_AUDIT_PASS",
+    "c20": "PROMOTE_ONLY_IF_R3_AND_R4_EACH_EXCEED_THE_FROZEN_MINIMUM_EFFECT_IN_THE_FAVORABLE_DIRECTION_WITH_MULTIPLICITY_ADJUSTED_CONFIDENCE_BOUNDS_AND_ALL_R1_R2_DOMAIN_ADMISSION_BASE_QUALITY_SCALING_CALIBRATION_SUPPORT_FAILURE_COMPUTE_AND_ARTIFACT_GATES_PASS",
+    "c3": "PROMOTE_ONLY_IF_METHOD_IS_EXACTLY_FROZEN_AND_INDEPENDENT_CODE_AWARE_NOVELTY_AUDIT_ISSUES_METHOD_NOVELTY_GO",
+    "c4": "REMAINS_DEFERRED_WITHOUT_A_SEPARATELY_POWERED_FROZEN_MULTI_BUDGET_LEARNING_CURVE",
+    "c7": "REMAINS_DEFERRED_WITHOUT_R5_ASAP_AND_A_THREE_DOMAIN_INVARIANT_METHOD_GATE",
+    "null_negative_or_failed_gate_is_terminal": true,
+    "every_domain_and_scheduled_run_reported": true,
+    "secondary_metric_salvage_permitted": false,
+    "new_domain_seed_metric_threshold_or_route_after_outcome_permitted": false
+  },
+  "unresolved_blockers": [
+    {
+      "blocker_id": "final-c17-statement-and-claim-wording",
+      "owner": "USER_SCIENTIFIC_DECISION",
+      "blocking_stage": "CONFIRMATORY_EXECUTION",
+      "blocking_json_paths": [
+        "/theory_and_known_law_plan/c17_final_theorem_statement",
+        "/theory_and_known_law_plan/c17_assumption_inventory",
+        "/theory_and_known_law_plan/excess_logistic_risk_to_hybrid_dirichlet_control_statement",
+        "/theory_and_known_law_plan/coercivity_or_identifiability_assumptions",
+        "/theory_and_known_law_plan/cap_and_reference_error_decomposition"
+      ]
+    },
+    {
+      "blocker_id": "physionet-data-governance-representation-task-and-admission",
+      "owner": "USER_SCIENTIFIC_AND_GOVERNANCE_DECISION",
+      "blocking_stage": "CONFIRMATORY_EXECUTION",
+      "blocking_json_paths": [
+        "/domains/0/snapshot_version",
+        "/domains/0/raw_snapshot_sha256",
+        "/domains/0/license_and_access_record",
+        "/domains/0/governance_approval_record",
+        "/domains/0/generated_endpoint_semantics",
+        "/domains/0/observation_semantics",
+        "/domains/0/positive_or_common_support_route",
+        "/domains/0/method_blind_training_only_admission_threshold"
+      ]
+    },
+    {
+      "blocker_id": "retail-data-governance-representation-task-and-admission",
+      "owner": "USER_SCIENTIFIC_AND_GOVERNANCE_DECISION",
+      "blocking_stage": "CONFIRMATORY_EXECUTION",
+      "blocking_json_paths": [
+        "/domains/1/snapshot_version",
+        "/domains/1/raw_snapshot_sha256",
+        "/domains/1/license_and_access_record",
+        "/domains/1/governance_approval_record",
+        "/domains/1/generated_endpoint_semantics",
+        "/domains/1/observation_semantics",
+        "/domains/1/positive_or_common_support_route",
+        "/domains/1/method_blind_training_only_admission_threshold"
+      ]
+    },
+    {
+      "blocker_id": "primary-metric-proof-and-effect-thresholds",
+      "owner": "USER_SCIENTIFIC_DECISION",
+      "blocking_stage": "CONFIRMATORY_EXECUTION",
+      "blocking_json_paths": [
+        "/metric_and_estimand_plan/primary_metric_id",
+        "/metric_and_estimand_plan/favorable_direction",
+        "/metric_and_estimand_plan/minimum_meaningful_effect",
+        "/metric_and_estimand_plan/multiplicity_rule"
+      ]
+    },
+    {
+      "blocker_id": "known-law-scaling-no-regression-and-failure-thresholds",
+      "owner": "USER_SCIENTIFIC_DECISION",
+      "blocking_stage": "CONFIRMATORY_EXECUTION",
+      "blocking_json_paths": [
+        "/theory_and_known_law_plan/a1_exact_kl_tv_tolerances",
+        "/theory_and_known_law_plan/mixed_exact_or_certified_kl_tv_tolerances",
+        "/metric_and_estimand_plan/constraint_metrics",
+        "/stopping_failure_and_exclusion_plan/maximum_admissible_failure_rate"
+      ]
+    },
+    {
+      "blocker_id": "baseline-identities-and-matched-compute",
+      "owner": "USER_SCIENTIFIC_AND_RESOURCE_DECISION",
+      "blocking_stage": "CONFIRMATORY_EXECUTION",
+      "blocking_json_paths": [
+        "/method_and_baseline_plan/external_domain_baselines",
+        "/method_and_baseline_plan/required_literature_comparator_families",
+        "/method_and_baseline_plan/matched_total_compute_formula"
+      ]
+    },
+    {
+      "blocker_id": "power-analysis-and-seed-schedule",
+      "owner": "USER_STATISTICAL_DECISION",
+      "blocking_stage": "CONFIRMATORY_EXECUTION",
+      "blocking_json_paths": [
+        "/power_and_seed_plan/familywise_alpha",
+        "/power_and_seed_plan/target_power",
+        "/power_and_seed_plan/pilot_variance_source",
+        "/power_and_seed_plan/independent_training_seed_count",
+        "/power_and_seed_plan/natural_group_count_by_domain",
+        "/power_and_seed_plan/conditioning_cases_per_group",
+        "/power_and_seed_plan/conditional_draws_per_case",
+        "/power_and_seed_plan/hierarchical_paired_analysis_formula"
+      ]
+    },
+    {
+      "blocker_id": "hardware-compute-and-tuning-budget",
+      "owner": "USER_RESOURCE_DECISION",
+      "blocking_stage": "CONFIRMATORY_EXECUTION",
+      "blocking_json_paths": [
+        "/compute_and_fairness_plan/hardware",
+        "/compute_and_fairness_plan/tuning_compute_allocation",
+        "/compute_and_fairness_plan/final_compute_allocation",
+        "/compute_and_fairness_plan/total_compute_ceiling"
+      ]
+    },
+    {
+      "blocker_id": "data-license-clinical-governance-and-retail-privacy-plan",
+      "owner": "USER_ETHICS_AND_DATA_GOVERNANCE_DECISION",
+      "blocking_stage": "CONFIRMATORY_EXECUTION",
+      "blocking_json_paths": [
+        "/ethics_release_and_review_plan/data_license_compliance_plan",
+        "/ethics_release_and_review_plan/physionet_clinical_governance_and_interpretation_plan",
+        "/ethics_release_and_review_plan/retail_privacy_duplicate_exposure_and_membership_inference_plan"
+      ]
+    },
+    {
+      "blocker_id": "code-model-artifact-release-and-submission-anonymization-plan",
+      "owner": "PRE_SUBMISSION_RELEASE_DECISION",
+      "blocking_stage": "CLAIM_PROMOTION_AND_SUBMISSION_NOT_CONFIRMATORY_EXECUTION",
+      "blocking_json_paths": [
+        "/ethics_release_and_review_plan/code_model_and_artifact_release_plan",
+        "/ethics_release_and_review_plan/submission_anonymization_plan"
+      ]
+    },
+    {
+      "blocker_id": "proof-methods-statistics-and-reproduction-audit-plans",
+      "owner": "PRE_SUBMISSION_QUALITY_ASSURANCE",
+      "blocking_stage": "CLAIM_PROMOTION_AND_SUBMISSION_NOT_CONFIRMATORY_EXECUTION",
+      "blocking_json_paths": [
+        "/ethics_release_and_review_plan/proof_and_code_audit_plan",
+        "/ethics_release_and_review_plan/proof_and_code_audit_artifact_path",
+        "/ethics_release_and_review_plan/methods_and_statistics_audit_plan",
+        "/ethics_release_and_review_plan/clean_room_reproduction_audit_plan"
+      ]
+    },
+    {
+      "blocker_id": "remaining-method-implementation-and-whole-method-gates",
+      "owner": "IMPLEMENTATION",
+      "blocking_stage": "CONFIRMATORY_EXECUTION",
+      "blocking_json_paths": [
+        "/theory_and_known_law_plan",
+        "/method_and_baseline_plan",
+        "/required_preexecution_artifacts"
+      ]
+    }
+  ],
+  "cp50_v26_reuse_boundary": {
+    "allowed_precedents": [
+      "immutable-config-and-seed-custody",
+      "no-mutation-after-start",
+      "no-topup-or-replacement",
+      "failure-and-abort-retention",
+      "hash-bound-artifact-provenance"
+    ],
+    "cp50_v26_protocol_state": "DRAFT",
+    "cp50_v26_confirmatory_execution_authorized": false,
+    "cp50_v26_power_review_complete": false,
+    "cp50_v26_production_requests_executed": false,
+    "forbidden_reuse": [
+      "2048-seed-count-as-manuscript-power",
+      "32-shard-layout-as-manuscript-design",
+      "554-estimand-inventory-as-manuscript-family",
+      "test28-bonferroni-thresholds-as-manuscript-thresholds",
+      "cp29-development-diagnostic-as-scientific-result"
+    ]
+  },
+  "freeze_predicate": {
+    "all_required_preexecution_scientific_semantic_and_numeric_fields_nonnull": false,
+    "all_confirmatory_execution_blockers_closed": false,
+    "all_claim_promotion_and_submission_blockers_closed": false,
+    "all_required_preexecution_artifacts_present_and_hash_bound": false,
+    "claim_boundary_approved": false,
+    "domain_admission_complete": false,
+    "power_review_complete": false,
+    "known_law_and_whole_method_gates_complete": false,
+    "test_data_unopened_before_freeze": null,
+    "freeze_receipt_present": false,
+    "frozen_executable_state_if_and_only_if_execution_predicates_true": "FROZEN_EXECUTABLE",
+    "claim_promotion_or_submission_permitted": false,
+    "current_state": "DRAFT_NOT_EXECUTABLE"
+  }
+}

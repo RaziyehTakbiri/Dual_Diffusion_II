@@ -1,0 +1,15 @@
+# Exact-byte validators require stable text bytes across local and Databricks clones.
+* text=auto
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.toml text eol=lf
+*.tex text eol=lf
+*.lock text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+
+# Binary scientific and transport formats.
+*.npy binary
+*.npz binary
+*.zip binary

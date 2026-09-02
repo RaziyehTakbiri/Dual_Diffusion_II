@@ -1,0 +1,131 @@
+{
+  "schema_version": "heterodiff-f105-manuscript-production-integration-v1",
+  "state": "F105_MANUSCRIPT_DISPLAY_AND_PRODUCTION_EVALUATOR_INTEGRATED_PREOUTCOME",
+  "target_predicate": {
+    "predicate_id": "F105_MANUSCRIPT_DISPLAY_AND_PRODUCTION_EVALUATOR_INTEGRATED_PREOUTCOME",
+    "value": true,
+    "basis": "EXACT_DISPLAY_AND_CODE_MATCHED_PRODUCTION_PROJECTION_QUALIFIED"
+  },
+  "primary_metric_id": "TWO_DOMAIN_COUNT_NORMALIZED_EVENT_CKS_V1",
+  "production_integration_id": "F105_CKS_BINARY64_PROJECTION_V1",
+  "package_bindings": [
+    {
+      "path": "PROJECT_F105_MANUSCRIPT_PRODUCTION_INTEGRATION.md",
+      "role": "HUMAN_INTEGRATION_RECORD",
+      "bytes": 7358,
+      "raw_sha256": "954d914459362d6690028b93c3fa2c84fc37aeb2954e073a6c578bc3b812220a"
+    },
+    {
+      "path": "src/heterodiff/evaluation/two_domain_count_normalized_event_cks_production.py",
+      "role": "PRODUCTION_EVALUATOR",
+      "bytes": 21619,
+      "raw_sha256": "42a023483816c391c1ba0e9d8bfb23c36d10d74d0ed55901727cda790c2f15ad"
+    },
+    {
+      "path": "tests/unit/test_two_domain_count_normalized_event_cks_production.py",
+      "role": "FOCUSED_PRODUCTION_TESTS",
+      "bytes": 8782,
+      "raw_sha256": "bb259c370fcee1d1b21b08ab98903072d394e49510e7bc4a4a054017ed9557b4"
+    },
+    {
+      "path": "manuscript_v3/manuscript_v3_f105_metric_integration_successor_v2.md",
+      "role": "CURRENT_MARKDOWN_METRIC_DISPLAY",
+      "bytes": 6355,
+      "raw_sha256": "65c852f669ea08f4993da2e8b3b427d864fffba8ae59a303a8722146edad78d2"
+    },
+    {
+      "path": "manuscript_v3/manuscript_v3_f105_metric_integration_successor_v2.tex",
+      "role": "CURRENT_TEX_METRIC_DISPLAY",
+      "bytes": 3812,
+      "raw_sha256": "558ab5f0067ebfe5cd08be615d03859415c400638688cfd54e9c8e0c3dbdbf56"
+    },
+    {
+      "path": "manuscript_v3/claim_ledger_f105_metric_integration_successor_v2.md",
+      "role": "ADDITIVE_CLAIM_BOUNDARY",
+      "bytes": 1968,
+      "raw_sha256": "c373bd7fab96666de4b20870b41abdfa1d24c0e52e9de87e5e497a414bfebb80"
+    }
+  ],
+  "frozen_inputs": [
+    {
+      "path": "src/heterodiff/evaluation/two_domain_count_normalized_event_cks.py",
+      "role": "EXACT_F105_SOURCE",
+      "raw_sha256": "567b0262ff8950b3ab297ce08137e89fa3e09d0953f559a4d9470cab1760f881"
+    },
+    {
+      "path": "research/fixtures/manuscript_v3_f105_two_domain_cks_metric_instance_v1.json",
+      "role": "EXACT_F105_MACHINE_RECORD",
+      "raw_sha256": "560b6275a4e30d188cc35ed8190118ba01ad8fc3bacc9199daf5b6f305cc96c9",
+      "semantic_sha256": "14cefa1f0b8e300c26373a9ffdfc01ede99f783a326feb78c68166d187168b52"
+    },
+    {
+      "path": "manuscript_v3/manuscript_v3_locked_route_successor_v1.md",
+      "role": "HISTORICAL_CURRENT_ROUTE_PREDECESSOR",
+      "raw_sha256": "e06cb6780974dea98b85df03c04104b034bfcf4bdd7b3825d9b375d6983849db"
+    }
+  ],
+  "metric_semantics": {
+    "domains": {
+      "R3-PHYS": {
+        "dimension": 112,
+        "event_map": "ONEHOT37_PARAMETER__T_OVER_2880__TYPE_SPECIFIC_PRESENT37__TYPE_SPECIFIC_V_OVER_1_PLUS_V37",
+        "configuration_cap": 131072,
+        "time_support": "CLOSED_INTEGER_MINUTES_0_2880"
+      },
+      "R4-RETAIL": {
+        "dimension": 10,
+        "event_map": "RAW_INVOICE_J__CANCEL__STOCK_J__DESCRIPTION_MASK_J__SOURCE_CIVIL_U_OVER_H__SIGNED_QUANTITY__SIGNED_PRICE__COUNTRY_MASK_J",
+        "configuration_cap": 1067371,
+        "time_support": "SOURCE_CIVIL_HALF_OPEN_2009_12_01_TO_2011_12_10",
+        "horizon_microseconds": 63849600000000
+      }
+    },
+    "event_tau_squared": "1",
+    "count_scale_squared": "1",
+    "event_scale_squared": "1",
+    "outer_sigma_squared": "1",
+    "empty_event_mean": "ZERO",
+    "draw_count_formal_domain": {
+      "minimum": 2,
+      "maximum": 128
+    },
+    "score_direction": "LOWER_IS_BETTER",
+    "comparison_direction": "POSITIVE_DIRECT_MINUS_GUIDE_FAVORS_GUIDE",
+    "cross_domain_evaluation": "FORBIDDEN"
+  },
+  "production_contract": {
+    "builds_formal_score_from_frozen_configuration_kernel": true,
+    "redefines_event_map_or_kernel": false,
+    "binary64_projection_only_after_exact_symbol_construction": true,
+    "formal_score_sha256_recorded": true,
+    "binary64_hex_recorded": true,
+    "default_symbolic_event_pair_work_limit": 10000000,
+    "maximum_symbolic_event_pair_work_limit": 1000000000,
+    "material_negative_squared_distance_refuses": true,
+    "nonfinite_output_refuses": true,
+    "cross_domain_input_refuses": true,
+    "unmatched_direct_guide_draw_count_refuses": true,
+    "comparison_work_ceiling_is_combined": true,
+    "records_factory_only_and_revalidated": true,
+    "performs_io_or_randomness_or_fitting_or_threshold_decision": false,
+    "factory_issued_field_integrity_digest_revalidated": true
+  },
+  "closure_effect": {
+    "timetable_task_closed": "F105_MANUSCRIPT_DISPLAY_AND_PRODUCTION_EVALUATOR_INTEGRATED_PREOUTCOME",
+    "field_count_delta": 0,
+    "blocker_count_delta": 0,
+    "formal_test_count_delta": 0,
+    "result_count_delta": 0,
+    "f109_f112_closed": false,
+    "b04_closed": false,
+    "all_b01_b12_open": true,
+    "data_or_domain_admission": false,
+    "runtime_or_scientific_execution": false,
+    "claim_promotion": false
+  },
+  "validator_and_tests_outside_semantic_self_binding": [
+    "research/diagnostics/manuscript_v3_f105_manuscript_production_integration_v1.py",
+    "tests/unit/test_manuscript_v3_f105_manuscript_production_integration_v1.py"
+  ],
+  "record_sha256": "6c5480374ed3d1993e28711ef8640d8f12c0cadf40a51e0ce7d8991f5233f5ae"
+}

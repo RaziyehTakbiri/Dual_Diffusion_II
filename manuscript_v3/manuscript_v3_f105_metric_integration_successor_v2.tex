@@ -1,0 +1,89 @@
+\section*{Exact F105 metric integration successor v2}
+
+\textbf{Status:} pre-outcome method-display successor. The primary metric is
+\texttt{TWO\_DOMAIN\_COUNT\_NORMALIZED\_EVENT\_CKS\_V1}; its production
+projection is \texttt{F105\_CKS\_BINARY64\_PROJECTION\_V1}. This additive
+successor replaces only the stale F105/CKS statements in the locked-route v1
+successor. Historical files are not rewritten.
+
+For domain $d\in\{\mathrm{R3\mbox{-}PHYS},\mathrm{R4\mbox{-}RETAIL}\}$, let
+$J_d(e)\in\mathbb R^{D_d}$ be the injective domain event map, where
+$D_{\mathrm{PHYS}}=112$ and $D_{\mathrm{RETAIL}}=10$. Define
+\[
+k_{E,d}(e,e')=\exp\!\left(-\frac{\lVert J_d(e)-J_d(e')\rVert_2^2}{2}\right).
+\]
+For an occurrence-expanded configuration $x$, write $n_x=x(E_d)$ and
+\[
+m_d(x)=
+\begin{cases}
+0,&n_x=0,\\
+n_x^{-1}\sum_{e\in x}k_{E,d}(e,\cdot),&n_x>0,
+\end{cases}
+\qquad \Phi_d(x)=(n_x,m_d(x)).
+\]
+All four squared parameters satisfy
+$a_d^2=b_d^2=\tau_d^2=\sigma_d^2=1$, so
+\[
+k_{\Gamma,d}(x,x')=\exp\!\left[-\frac12\left\{
+(n_x-n_{x'})^2+\lVert m_d(x)-m_d(x')\rVert_{\mathcal H_d}^2
+\right\}\right].
+\]
+For $2\le R\le128$ independent conditional draws,
+\[
+\widehat{\operatorname{CKS}}_d
+=\frac{1}{R(R-1)}\sum_{r\ne r'}k_{\Gamma,d}(X_r,X_{r'})
+-\frac{2}{R}\sum_{r=1}^{R}k_{\Gamma,d}(X_r,x).
+\]
+This is lower-is-better. The paired effect is direct minus guide, so a
+positive value favors the guide. Cross-domain evaluation is forbidden.
+
+For PhysioNet, with one-hot parameter vector $u_p$, elapsed minute
+$t\in\{0,\ldots,2880\}$, and exact nonnegative present value $v$,
+\[
+J_{\mathrm{PHYS}}(t,p,v)=\left(
+u_p,\frac{t}{2880},
+\mathbf 1_{\{v\ \mathrm{present}\}}u_p,
+\mathbf 1_{\{v\ \mathrm{present}\}}\frac{v}{1+v}u_p
+\right)\in\mathbb R^{112}.
+\]
+The source token $-1$ denotes missingness and differs from present zero.
+Multiplicity and ties are retained. One configuration comprises all admitted
+time-series rows for one \texttt{RecordID} during the first 48 hours; the cap
+is $2^{17}$. Overflow or required-row exclusion is whole-domain no-go.
+
+For a UTF-8 byte string $s=(b_1,\ldots,b_L)$, set
+\[
+c(s)=\frac{256^L-1}{255}+\sum_{i=1}^{L}b_i256^{L-i},
+\qquad J(s)=\frac{c(s)}{c(s)+1}.
+\]
+For Online Retail II, with raw invoice $I$, cancellation indicator $C(I)$,
+stock code $S$, optional description $D$, source-civil microseconds $u$, signed
+quantity $q$, exact-decimal unit price $p$, optional country $G$, masks
+$m_D,m_G$, and $H=63{,}849{,}600{,}000{,}000$,
+\[
+J_{\mathrm{RETAIL}}=\left(
+J(I),C(I),J(S),m_D,m_DJ(D),\frac{u}{H},
+\frac{q}{1+|q|},\frac{p}{1+|p|},m_G,m_GJ(G)
+\right)\in\mathbb R^{10}.
+\]
+The horizon is the half-open source-civil interval
+\texttt{[2009-12-01,2011-12-10)}; no UTC or instant meaning is asserted. One
+configuration contains every admitted line item for one canonical positive
+decimal \texttt{CustomerID}; the conservative cap is 1,067,371. Overflow or
+required-row/customer exclusion is whole-domain no-go.
+
+The production evaluator builds the same exact formal score, projects only its
+nested exponentials and final finite sum to binary64, and records the exact
+formal-score digest plus the hexadecimal binary64 output. Supported audit
+records are factory-only and revalidate their derived digest, numeric score,
+paired effect, and domain-separated integrity digest over all public audit
+fields. Its default caller-visible symbolic work ceiling is
+10,000,000 event-pair units; for a direct-versus-guide comparison it applies
+to the combined work of both arms. It does
+not parse, fit, draw randomness, access data, threshold, or decide a scientific
+gate.
+
+This successor completes only manuscript display and production evaluator
+integration. F109--F112 and B04 remain open. It admits no dataset, runs no
+science, fills no result, closes no Formal Test or blocker, and promotes no
+claim.

@@ -1,0 +1,249 @@
+{
+  "schema_version": "heterodiff-b02-b03-b09-external-evidence-intake-v1",
+  "package_kind": "OFFLINE_EXTERNAL_EVIDENCE_INTAKE_CONTRACT_ONLY",
+  "state": "INTAKE_CONTRACT_FROZEN_AWAITING_REAL_EXTERNAL_EVIDENCE",
+  "contract_record_sha256": "0d145f31dcb3f1a1a84c7845cf6a469c5e4b8ade8a9a66eb630c988d2eda02b9",
+  "bindings": [
+    {
+      "ordinal": 0,
+      "path": "PROJECT_B02_B03_B09_EXTERNAL_EVIDENCE_INTAKE_PACKAGE.md",
+      "byte_count": 8700,
+      "sha256": "08813c91b11e33f34bd6ff5a3e41197d029bd3d90fd18431c43182771e6b16ad",
+      "role": "candidate_human_contract"
+    },
+    {
+      "ordinal": 1,
+      "path": "src/heterodiff/data/two_domain_external_evidence_intake.py",
+      "byte_count": 68846,
+      "sha256": "ede0c1890d1e1f39a522a064fe94a78ab65fe5618687ca525c05b4cba7001d85",
+      "role": "pure_machine_contract_and_structural_validator"
+    },
+    {
+      "ordinal": 2,
+      "path": "PROJECT_B02_B03_OFFLINE_PRECONTACT_ACTIVATION.md",
+      "byte_count": 17235,
+      "sha256": "a7e882f209b26d9cf6dec449eb4fd93b78df0903be9294704ea857066dfe00ed",
+      "role": "accepted_activation_human"
+    },
+    {
+      "ordinal": 3,
+      "path": "PROJECT_B02_B03_OFFLINE_PRECONTACT_ACTIVATION_INDEPENDENT_REVIEW.md",
+      "byte_count": 10196,
+      "sha256": "a1baf2b04740ac38540a4008dcb09042f8c92fa978c51fe22ac54cb30c81f0d0",
+      "role": "accepted_activation_review"
+    },
+    {
+      "ordinal": 4,
+      "path": "research/fixtures/manuscript_v3_b02_b03_offline_precontact_activation_v1.json",
+      "byte_count": 22137,
+      "sha256": "d74333a2c381daa953803e9346efb0ab63d6744265bfa8e7e260b1d1932fc0ee",
+      "role": "accepted_activation_machine"
+    },
+    {
+      "ordinal": 5,
+      "path": "PROJECT_B02_B03_LOCALLY_DECIDABLE_DEFINITION_RECORDS.md",
+      "byte_count": 2996,
+      "sha256": "29fc1c06ed81ac594ce24a23c2c8124d8bd1fef756d119d80a842b632682213a",
+      "role": "accepted_local_definitions_human"
+    },
+    {
+      "ordinal": 6,
+      "path": "research/fixtures/manuscript_v3_b02_b03_locally_decidable_definition_records_v1.json",
+      "byte_count": 3032,
+      "sha256": "7b8ae7f454fd094cb1ce1b7b3b93fc50f72bf329cc550d9365c3df1779344e7f",
+      "role": "accepted_local_definitions_machine"
+    },
+    {
+      "ordinal": 7,
+      "path": "PROJECT_B02_B03_LOCALLY_DECIDABLE_DEFINITION_RECORDS_INDEPENDENT_REVIEW.md",
+      "byte_count": 4836,
+      "sha256": "4206aaf45508f2d5bf66d14fe8ebb4fa7b837ec287abf6fe221538f454d4a817",
+      "role": "accepted_local_definitions_review"
+    },
+    {
+      "ordinal": 8,
+      "path": "PROJECT_F061_PRESERVATION_FIRST_ALLOCATION_PROPOSAL.md",
+      "byte_count": 12695,
+      "sha256": "2769df9d8da86b054857973b7025c03f6932e88fa683848171dd32af507ec052",
+      "role": "accepted_f061_human"
+    },
+    {
+      "ordinal": 9,
+      "path": "research/fixtures/manuscript_v3_f061_guarded_power_review_receipt_v1.json",
+      "byte_count": 1924,
+      "sha256": "906b12b78400cba6bc2b32527a1410c6d42f154bbad0775591d69ada7485668d",
+      "role": "accepted_f061_review_receipt"
+    },
+    {
+      "ordinal": 10,
+      "path": "PROJECT_F061_PRESERVATION_FIRST_ALLOCATION_INDEPENDENT_REVIEW.md",
+      "byte_count": 6841,
+      "sha256": "053de959f3fffabf0da21a4c9e997b96e170f1fbc4b9295d71fef8e8347835eb",
+      "role": "accepted_f061_review"
+    },
+    {
+      "ordinal": 11,
+      "path": "PROJECT_TWO_DOMAIN_GOVERNANCE_RELEASE_CONTROLS.md",
+      "byte_count": 15756,
+      "sha256": "e2ab4740c530460e0b6352e33cd7c129ea80e928a7a2da7a8be2f40ef668a19c",
+      "role": "accepted_governance_controls_human"
+    },
+    {
+      "ordinal": 12,
+      "path": "research/fixtures/manuscript_v3_two_domain_governance_release_controls_v1.json",
+      "byte_count": 17729,
+      "sha256": "340448f48d577b620d3bad62a21184e0cdde24408aff230cf467d45670afb33c",
+      "role": "accepted_governance_controls_machine"
+    },
+    {
+      "ordinal": 13,
+      "path": "PROJECT_RETAIL_CUSTOMER_DISJOINT_TEMPORAL_SPLIT_DESIGN.md",
+      "byte_count": 11226,
+      "sha256": "49a38fbe8bfdbc2fcb93de766f7280ba8affd18b2ebedbcc004d079550b752d1",
+      "role": "accepted_retail_split_design_human"
+    },
+    {
+      "ordinal": 14,
+      "path": "research/fixtures/manuscript_v3_retail_customer_disjoint_temporal_split_design_v1.json",
+      "byte_count": 13409,
+      "sha256": "b27086c5979d2f7018b4b8b50b3fffacf03b3fe2691d60567bc42b179d53e98b",
+      "role": "accepted_retail_split_design_machine"
+    },
+    {
+      "ordinal": 15,
+      "path": "PROJECT_PHYSIONET_PATIENT_DISJOINT_SPLIT_DESIGN.md",
+      "byte_count": 10761,
+      "sha256": "2d84753fe87032a81d377a469f858f1702b14474371bfd2d147fd87824bb4b7a",
+      "role": "accepted_physionet_split_design_human"
+    },
+    {
+      "ordinal": 16,
+      "path": "research/fixtures/manuscript_v3_physionet_patient_disjoint_split_design_v1.json",
+      "byte_count": 16543,
+      "sha256": "a9fc01ae42ba7942e6c61def5120d6497b74fc99c82b0c5b68188f221b4b68a8",
+      "role": "accepted_physionet_split_design_machine"
+    }
+  ],
+  "resolved_local_definitions": {
+    "held_out_material_definition_sha256": "6aa31c23117ee604cf862c8654175f33a7baa5c501a02983e91de4146154fc5d",
+    "final_opening_rule_sha256": "fe0b51906c69930d6c1252491634588b1b08f4a3ec888a9a92bd6c13720c5efd",
+    "append_only_log_schema_sha256": "cf2e70cffd0e9deea4c5884b72489fccbcb0731695f2493fcf2a1f2182274fd3",
+    "f061_allocation_definition_sha256": "6c7beda87ccf1b9b60b0787619fc637eeb3ab34d5f68e09608d46b4dcf11f946",
+    "f061_power_review_receipt_raw_sha256": "906b12b78400cba6bc2b32527a1410c6d42f154bbad0775591d69ada7485668d"
+  },
+  "owner_role_manifest": [
+    {"ordinal": 0, "role_id": "ACCOUNTABLE_GOVERNANCE_OWNER", "principal_field": "accountable_governance_owner_id", "acceptance_field": "accountable_governance_owner_acceptance_sha256"},
+    {"ordinal": 1, "role_id": "LICENSE_PRIVACY_INSTITUTIONAL_APPROVAL_ENDPOINT", "principal_field": "license_privacy_institutional_approval_endpoint_id", "acceptance_field": "license_privacy_institutional_approval_endpoint_acceptance_sha256"},
+    {"ordinal": 2, "role_id": "RAW_SNAPSHOT_CUSTODIAN", "principal_field": "raw_snapshot_custodian_id", "acceptance_field": "raw_snapshot_custodian_acceptance_sha256"},
+    {"ordinal": 3, "role_id": "DETERMINISTIC_SPLIT_OPERATOR", "principal_field": "deterministic_split_operator_id", "acceptance_field": "deterministic_split_operator_acceptance_sha256"},
+    {"ordinal": 4, "role_id": "INDEPENDENT_HELD_OUT_ESCROW_CUSTODIAN", "principal_field": "independent_held_out_escrow_custodian_id", "acceptance_field": "independent_held_out_escrow_custodian_acceptance_sha256"},
+    {"ordinal": 5, "role_id": "INDEPENDENT_FINAL_OPENING_APPROVER", "principal_field": "independent_final_opening_approver_id", "acceptance_field": "independent_final_opening_approver_acceptance_sha256"},
+    {"ordinal": 6, "role_id": "KEY_ACL_ACCEPTANCE_AUTHORITY", "principal_field": "key_acl_acceptance_authority_id", "acceptance_field": "key_acl_acceptance_authority_acceptance_sha256"},
+    {"ordinal": 7, "role_id": "RETENTION_DELETION_OWNER", "principal_field": "retention_deletion_owner_id", "acceptance_field": "retention_deletion_owner_acceptance_sha256"},
+    {"ordinal": 8, "role_id": "INCIDENT_RESPONSE_OWNER", "principal_field": "incident_response_owner_id", "acceptance_field": "incident_response_owner_acceptance_sha256"}
+  ],
+  "unresolved_definition_slot_manifest": [
+    {"ordinal": 0, "field": "physionet_selector_record_sha256", "exact_type": "LOWERCASE_SHA256"},
+    {"ordinal": 1, "field": "retail_selector_record_sha256", "exact_type": "LOWERCASE_SHA256"},
+    {"ordinal": 2, "field": "contact_target_roster_sha256", "exact_type": "LOWERCASE_SHA256"},
+    {"ordinal": 3, "field": "contact_target_count", "exact_type": "EXACT_INTEGER_TWO"},
+    {"ordinal": 4, "field": "approval_requirement_roster_sha256", "exact_type": "LOWERCASE_SHA256"},
+    {"ordinal": 5, "field": "approval_receipt_validator_roster_sha256", "exact_type": "LOWERCASE_SHA256"},
+    {"ordinal": 6, "field": "conflict_of_interest_determination_sha256", "exact_type": "LOWERCASE_SHA256"},
+    {"ordinal": 7, "field": "contact_roster_complete", "exact_type": "EXACT_TRUE"},
+    {"ordinal": 8, "field": "escrow_control_binding_sha256", "exact_type": "LOWERCASE_SHA256"}
+  ],
+  "evidence_role_manifest": [
+    "PHYSIONET_SELECTOR_RECORD",
+    "RETAIL_SELECTOR_RECORD",
+    "CONTACT_TARGET_ROSTER",
+    "APPROVAL_REQUIREMENT_ROSTER",
+    "APPROVAL_RECEIPT_VALIDATOR_ROSTER",
+    "CONFLICT_OF_INTEREST_DETERMINATION",
+    "ESCROW_CONTROL_BINDING",
+    "KEY_MANIFEST",
+    "ACL_MANIFEST",
+    "ACCOUNTABLE_GOVERNANCE_OWNER_ACCEPTANCE",
+    "LICENSE_PRIVACY_INSTITUTIONAL_APPROVAL_ENDPOINT_ACCEPTANCE",
+    "RAW_SNAPSHOT_CUSTODIAN_ACCEPTANCE",
+    "DETERMINISTIC_SPLIT_OPERATOR_ACCEPTANCE",
+    "INDEPENDENT_HELD_OUT_ESCROW_CUSTODIAN_ACCEPTANCE",
+    "INDEPENDENT_FINAL_OPENING_APPROVER_ACCEPTANCE",
+    "KEY_ACL_ACCEPTANCE_AUTHORITY_ACCEPTANCE",
+    "RETENTION_DELETION_OWNER_ACCEPTANCE",
+    "INCIDENT_RESPONSE_OWNER_ACCEPTANCE"
+  ],
+  "empty_intake_instance": {
+    "schema_version": "heterodiff-b02-b03-b09-external-evidence-intake-v1",
+    "intake_contract_sha256": "0d145f31dcb3f1a1a84c7845cf6a469c5e4b8ade8a9a66eb630c988d2eda02b9",
+    "principals": {
+      "accountable_governance_owner_id": null,
+      "license_privacy_institutional_approval_endpoint_id": null,
+      "raw_snapshot_custodian_id": null,
+      "deterministic_split_operator_id": null,
+      "independent_held_out_escrow_custodian_id": null,
+      "independent_final_opening_approver_id": null,
+      "key_acl_acceptance_authority_id": null,
+      "retention_deletion_owner_id": null,
+      "incident_response_owner_id": null
+    },
+    "acceptance_receipts": {
+      "accountable_governance_owner_acceptance_sha256": null,
+      "license_privacy_institutional_approval_endpoint_acceptance_sha256": null,
+      "raw_snapshot_custodian_acceptance_sha256": null,
+      "deterministic_split_operator_acceptance_sha256": null,
+      "independent_held_out_escrow_custodian_acceptance_sha256": null,
+      "independent_final_opening_approver_acceptance_sha256": null,
+      "key_acl_acceptance_authority_acceptance_sha256": null,
+      "retention_deletion_owner_acceptance_sha256": null,
+      "incident_response_owner_acceptance_sha256": null
+    },
+    "definition_bindings": {
+      "physionet_selector_record_sha256": null,
+      "retail_selector_record_sha256": null,
+      "contact_target_roster_sha256": null,
+      "contact_target_count": null,
+      "approval_requirement_roster_sha256": null,
+      "approval_receipt_validator_roster_sha256": null,
+      "conflict_of_interest_determination_sha256": null,
+      "contact_roster_complete": null,
+      "escrow_control_binding_sha256": null
+    },
+    "evidence_manifest": [],
+    "external_independent_review_receipt_sha256": null,
+    "authority": {
+      "network_or_contact": false,
+      "authentication": false,
+      "download_or_data_access": false,
+      "snapshot_open": false,
+      "split_execution": false,
+      "escrow_activation": false,
+      "final_opening": false,
+      "scientific_execution": false,
+      "publication_or_submission": false
+    },
+    "attempt_budgets": {
+      "admin_contact": 0,
+      "data_access": 0,
+      "snapshot_open": 0,
+      "split_execution": 0,
+      "escrow_activation": 0,
+      "final_opening": 0,
+      "scientific_execution": 0
+    },
+    "tracker_or_ledger_edited": false,
+    "blockers_closed": []
+  },
+  "closure_effect": {
+    "project_control_item_after_independent_acceptance": "B02_B03_B09_EXTERNAL_EVIDENCE_INTAKE_CONTRACT_IMPLEMENTED_AND_QUALIFIED",
+    "field_count_delta": 0,
+    "blocker_count_delta": 0,
+    "operational_task_count_delta": 0,
+    "formal_test_count_delta": 0,
+    "scientific_result_count_delta": 0,
+    "b02_closed": false,
+    "b03_closed": false,
+    "b09_closed": false
+  },
+  "tracker_edited": false
+}

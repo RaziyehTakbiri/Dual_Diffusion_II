@@ -1,0 +1,517 @@
+{
+  "schema_version": "heterodiff-b02-b03-offline-precontact-activation-v1",
+  "state": "OFFLINE_ACTIVATION_PREFLIGHT_COMPLETE_AWAITING_HUMAN_OWNER_ROSTER",
+  "authority_provenance": {
+    "normalized_visible_text": "Okay, let's move forward then.",
+    "normalized_visible_text_sha256": "706de12ea5e317649aa6550fa4c7c53a4b0a19b369a3fe032d80f38f76872138",
+    "offline_construction_and_review_authorized": true,
+    "external_contact_or_browsing_authorized": false,
+    "authentication_download_or_data_access_authorized": false,
+    "institutional_determination_created": false,
+    "identity_or_time_externally_authenticated": false
+  },
+  "package_bindings": [
+    {
+      "ordinal": 0,
+      "path": "PROJECT_B02_B03_OFFLINE_PRECONTACT_ACTIVATION.md",
+      "bytes": 17235,
+      "raw_sha256": "a7e882f209b26d9cf6dec449eb4fd93b78df0903be9294704ea857066dfe00ed"
+    },
+    {
+      "ordinal": 1,
+      "path": "src/heterodiff/data/two_domain_offline_precontact_activation.py",
+      "bytes": 51882,
+      "raw_sha256": "f192e3eedbeb73f2eb1ea0705e56af65ea723a91071db93835b9b8f56046d97c"
+    },
+    {
+      "ordinal": 2,
+      "path": "tests/unit/test_two_domain_offline_precontact_activation.py",
+      "bytes": 32506,
+      "raw_sha256": "e96d4648095fe25332ae36deac5f27a1aafe80cc5ac3b50a1efcd9f39b4b1144"
+    },
+    {
+      "ordinal": 3,
+      "path": "src/heterodiff/data/physionet_2012_admission_preflight.py",
+      "bytes": 136305,
+      "raw_sha256": "bf5c12dcb5debe99533d00a813d7b522c42b588f5431803a8c2bac99b0f2bf07"
+    },
+    {
+      "ordinal": 4,
+      "path": "tests/unit/test_physionet_2012_admission_preflight.py",
+      "bytes": 67299,
+      "raw_sha256": "25786cf1d2bc971c8b8f08c2aabc18fa192ed7b75fd67944486238fb83c8d57c"
+    },
+    {
+      "ordinal": 5,
+      "path": "src/heterodiff/data/online_retail_ii_admission_preflight.py",
+      "bytes": 89545,
+      "raw_sha256": "3f204d65c87b8ee7896209c687f2394a1a9c23cdf9a7670b40227cf46e518764"
+    },
+    {
+      "ordinal": 6,
+      "path": "tests/unit/test_online_retail_ii_admission_preflight.py",
+      "bytes": 52656,
+      "raw_sha256": "1016755132b5bfd0ef8378c6adee60eacbe5fb571240c06d5e84804c99769c5a"
+    }
+  ],
+  "frozen_inputs": [
+    {
+      "ordinal": 0,
+      "path": "PROJECT_TEST_DATA_PROSPECTIVE_SEAL.md",
+      "bytes": 7078,
+      "raw_sha256": "ad58c5fcb9d47531a7af041eb59f71386fd42a81b1fe31701df167f064f951c2"
+    },
+    {
+      "ordinal": 1,
+      "path": "research/fixtures/manuscript_v3_test_data_prospective_no_acquisition_seal_v1.json",
+      "bytes": 8461,
+      "raw_sha256": "0357fc48394d5888632e3e2d7f5c9180e683141ebc10bef3dec9879a58cdf0e8"
+    },
+    {
+      "ordinal": 2,
+      "path": "PROJECT_SOLO_BLOCK2_STATIC_SELECTION_FREEZE.md",
+      "bytes": 23012,
+      "raw_sha256": "ab80a009f3d83be4186d3d2da13e3efd5939362e4215477dd2b1a89b870b3126"
+    },
+    {
+      "ordinal": 3,
+      "path": "research/fixtures/manuscript_v3_solo_block2_static_selection_freeze_v1.json",
+      "bytes": 33638,
+      "raw_sha256": "7ff0bf3bb5d9a03e2212f2f7f1853cde2283694b33e072931d258d98e1882590"
+    },
+    {
+      "ordinal": 4,
+      "path": "PROJECT_SOLO_BLOCK2_PRECONTACT_INSTANCE_CANDIDATE.md",
+      "bytes": 17965,
+      "raw_sha256": "ed211b7bf5aaf45a839e18d15484177fa0c51d7cb95540cdccc61587b2b8250f"
+    },
+    {
+      "ordinal": 5,
+      "path": "research/fixtures/manuscript_v3_solo_block2_precontact_instance_candidate_v1.json",
+      "bytes": 23932,
+      "raw_sha256": "95bae0a0ff0d5a199afc23cfc048de04cce28c47300ada301b927c21c60166be"
+    },
+    {
+      "ordinal": 6,
+      "path": "PROJECT_F105_TWO_DOMAIN_CKS_METRIC_INSTANCE.md",
+      "bytes": 15242,
+      "raw_sha256": "5d495ee917357a763e53b73cd40008a02da32918c7cb83503cbd0df851227cef"
+    },
+    {
+      "ordinal": 7,
+      "path": "research/fixtures/manuscript_v3_f105_two_domain_cks_metric_instance_v1.json",
+      "bytes": 23899,
+      "raw_sha256": "560b6275a4e30d188cc35ed8190118ba01ad8fc3bacc9199daf5b6f305cc96c9"
+    },
+    {
+      "ordinal": 8,
+      "path": "PROJECT_TWO_DOMAIN_GOVERNANCE_RELEASE_CONTROLS.md",
+      "bytes": 15756,
+      "raw_sha256": "e2ab4740c530460e0b6352e33cd7c129ea80e928a7a2da7a8be2f40ef668a19c"
+    },
+    {
+      "ordinal": 9,
+      "path": "research/fixtures/manuscript_v3_two_domain_governance_release_controls_v1.json",
+      "bytes": 17729,
+      "raw_sha256": "340448f48d577b620d3bad62a21184e0cdde24408aff230cf467d45670afb33c"
+    },
+    {
+      "ordinal": 10,
+      "path": "PROJECT_REAL_DOMAIN_POWER_ALLOCATION_ROUTE.md",
+      "bytes": 15223,
+      "raw_sha256": "a8edf99303e30b6ae6ea9912dce6350fadc9e07361fcd25743c03446a2bb0139"
+    },
+    {
+      "ordinal": 11,
+      "path": "research/fixtures/manuscript_v3_real_domain_power_allocation_route_v1.json",
+      "bytes": 15915,
+      "raw_sha256": "536493388d23aac2cc3aaf6f9bdc34a12fba77103e9546cbf110c1c8223dfd28"
+    },
+    {
+      "ordinal": 12,
+      "path": "PROJECT_PHYSIONET_PATIENT_DISJOINT_SPLIT_DESIGN.md",
+      "bytes": 10761,
+      "raw_sha256": "2d84753fe87032a81d377a469f858f1702b14474371bfd2d147fd87824bb4b7a"
+    },
+    {
+      "ordinal": 13,
+      "path": "research/fixtures/manuscript_v3_physionet_patient_disjoint_split_design_v1.json",
+      "bytes": 16543,
+      "raw_sha256": "a9fc01ae42ba7942e6c61def5120d6497b74fc99c82b0c5b68188f221b4b68a8"
+    },
+    {
+      "ordinal": 14,
+      "path": "PROJECT_RETAIL_CUSTOMER_DISJOINT_TEMPORAL_SPLIT_DESIGN.md",
+      "bytes": 11226,
+      "raw_sha256": "49a38fbe8bfdbc2fcb93de766f7280ba8affd18b2ebedbcc004d079550b752d1"
+    },
+    {
+      "ordinal": 15,
+      "path": "research/fixtures/manuscript_v3_retail_customer_disjoint_temporal_split_design_v1.json",
+      "bytes": 13409,
+      "raw_sha256": "b27086c5979d2f7018b4b8b50b3fffacf03b3fe2691d60567bc42b179d53e98b"
+    }
+  ],
+  "operation_roster": [
+    {
+      "ordinal": 0,
+      "operation_id": "PHYSIONET_ADMIN_METADATA_LICENSE_GOVERNANCE",
+      "domain_id": "physionet-challenge-2012",
+      "phase": "ADMIN",
+      "exact_target": "https://physionet.org/content/challenge-2012/1.0.0/",
+      "target_derivation": "LITERAL_REGISTERED_SOURCE_URL",
+      "selector_identity": "PHYSIONET_CHALLENGE_2012_VERSION_1_0_0_EXACT_REGISTERED_URL_SELECTOR_V1",
+      "permitted_request_kind": "ADMIN_METADATA_LICENSE_GOVERNANCE_ONLY_NO_AUTH_NO_DOWNLOAD_NO_DATA",
+      "administrative_questions": [
+        "What is the canonical dataset identifier and current immutable version or revision for the registered target?",
+        "Is there exactly one immutable archive locator, with SHA-256 and byte count, for that version?",
+        "What exact license or terms govern access, storage, analysis, publication, redistribution, and retention?",
+        "What account, authentication, or data-use-agreement requirements apply?",
+        "What governance, ethics, privacy, clinical, or institutional approvals are required before access?",
+        "What storage, deletion, retention, disclosure, and publication controls are mandatory?",
+        "What schema and timezone metadata are required to evaluate the frozen selector and split rules deterministically?"
+      ],
+      "matching_admin_operation_id": null,
+      "required_prior_receipts": [
+        "POPULATED_INSTANCE_REVIEW",
+        "FRESH_EXACT_ADMIN_CONTACT_AUTHORITY",
+        "DURABLE_INTENT"
+      ],
+      "authentication_permitted": false,
+      "download_permitted": false,
+      "data_opening_permitted": false,
+      "protected_data_permitted": false,
+      "maximum_attempt_count": 1,
+      "retry_limit": 0,
+      "redirect_limit": 0,
+      "fallback_limit": 0,
+      "current_execution_budget": 0,
+      "success_predicate": "EXACT_REGISTERED_TARGET_NO_REDIRECT_AND_ONE_CANONICAL_VERSION_REVISION_AND_EXACTLY_ONE_IMMUTABLE_ARCHIVE_LOCATOR_SHA256_BYTE_COUNT_AND_COMPLETE_LICENSE_GOVERNANCE_ACCESS_SCHEMA_TIMEZONE_REQUIREMENTS_RECEIPT",
+      "terminal_disposition": "ADMIN_CONTACT_TERMINAL_NO_GO"
+    },
+    {
+      "ordinal": 1,
+      "operation_id": "RETAIL_ADMIN_METADATA_LICENSE_GOVERNANCE",
+      "domain_id": "online-retail-ii",
+      "phase": "ADMIN",
+      "exact_target": "https://archive.ics.uci.edu/dataset/502/online+retail+ii",
+      "target_derivation": "LITERAL_REGISTERED_SOURCE_URL",
+      "selector_identity": "UCI_DATASET_502_ONLINE_RETAIL_II_EXACT_REGISTERED_URL_SELECTOR_V1",
+      "permitted_request_kind": "ADMIN_METADATA_LICENSE_GOVERNANCE_ONLY_NO_AUTH_NO_DOWNLOAD_NO_DATA",
+      "administrative_questions": [
+        "What is the canonical dataset identifier and current immutable version or revision for the registered target?",
+        "Is there exactly one immutable archive locator, with SHA-256 and byte count, for that version?",
+        "What exact license or terms govern access, storage, analysis, publication, redistribution, and retention?",
+        "What account, authentication, or data-use-agreement requirements apply?",
+        "What governance, ethics, privacy, clinical, or institutional approvals are required before access?",
+        "What storage, deletion, retention, disclosure, and publication controls are mandatory?",
+        "What schema and timezone metadata are required to evaluate the frozen selector and split rules deterministically?"
+      ],
+      "matching_admin_operation_id": null,
+      "required_prior_receipts": [
+        "POPULATED_INSTANCE_REVIEW",
+        "FRESH_EXACT_ADMIN_CONTACT_AUTHORITY",
+        "DURABLE_INTENT"
+      ],
+      "authentication_permitted": false,
+      "download_permitted": false,
+      "data_opening_permitted": false,
+      "protected_data_permitted": false,
+      "maximum_attempt_count": 1,
+      "retry_limit": 0,
+      "redirect_limit": 0,
+      "fallback_limit": 0,
+      "current_execution_budget": 0,
+      "success_predicate": "EXACT_REGISTERED_TARGET_NO_REDIRECT_AND_ONE_CANONICAL_VERSION_REVISION_AND_EXACTLY_ONE_IMMUTABLE_ARCHIVE_LOCATOR_SHA256_BYTE_COUNT_AND_COMPLETE_LICENSE_GOVERNANCE_ACCESS_SCHEMA_TIMEZONE_REQUIREMENTS_RECEIPT",
+      "terminal_disposition": "ADMIN_CONTACT_TERMINAL_NO_GO"
+    },
+    {
+      "ordinal": 2,
+      "operation_id": "PHYSIONET_DATA_AUTHENTICATION_OR_DOWNLOAD",
+      "domain_id": "physionet-challenge-2012",
+      "phase": "DATA",
+      "exact_target": null,
+      "target_derivation": "DETERMINISTIC_FROM_MATCHING_ADMIN_EXACT_SUCCESS_ONLY",
+      "selector_identity": "PHYSIONET_CHALLENGE_2012_VERSION_1_0_0_EXACT_REGISTERED_URL_SELECTOR_V1",
+      "permitted_request_kind": "DORMANT_DATA_OPERATION_NOT_AUTHORIZED_BY_OFFLINE_PACKAGE",
+      "administrative_questions": [],
+      "matching_admin_operation_id": "PHYSIONET_ADMIN_METADATA_LICENSE_GOVERNANCE",
+      "required_prior_receipts": [
+        "MATCHING_ADMIN_EXACT_SUCCESS",
+        "ALL_REQUIRED_APPROVAL_RECEIPTS",
+        "SEPARATELY_REVIEWED_DATA_ACCESS_INSTANCE",
+        "FRESH_EXACT_DATA_ACCESS_AUTHORITY",
+        "DURABLE_INTENT"
+      ],
+      "authentication_permitted": false,
+      "download_permitted": false,
+      "data_opening_permitted": false,
+      "protected_data_permitted": false,
+      "maximum_attempt_count": 1,
+      "retry_limit": 0,
+      "redirect_limit": 0,
+      "fallback_limit": 0,
+      "current_execution_budget": 0,
+      "success_predicate": "EXACT_MATCHING_ADMIN_SUCCESS_AND_ALL_REQUIRED_APPROVAL_RECEIPTS_AND_SEPARATELY_REVIEWED_DATA_ACCESS_INSTANCE_AND_FRESH_EXACT_DATA_ACCESS_AUTHORITY_AND_DURABLE_INTENT_AND_ONE_CONTENT_ADDRESSED_ARCHIVE_MATCHING_VERSION_LOCATOR_SHA256_AND_BYTE_COUNT",
+      "terminal_disposition": "DATA_ACCESS_TERMINAL_NO_GO"
+    },
+    {
+      "ordinal": 3,
+      "operation_id": "RETAIL_DATA_AUTHENTICATION_OR_DOWNLOAD",
+      "domain_id": "online-retail-ii",
+      "phase": "DATA",
+      "exact_target": null,
+      "target_derivation": "DETERMINISTIC_FROM_MATCHING_ADMIN_EXACT_SUCCESS_ONLY",
+      "selector_identity": "UCI_DATASET_502_ONLINE_RETAIL_II_EXACT_REGISTERED_URL_SELECTOR_V1",
+      "permitted_request_kind": "DORMANT_DATA_OPERATION_NOT_AUTHORIZED_BY_OFFLINE_PACKAGE",
+      "administrative_questions": [],
+      "matching_admin_operation_id": "RETAIL_ADMIN_METADATA_LICENSE_GOVERNANCE",
+      "required_prior_receipts": [
+        "MATCHING_ADMIN_EXACT_SUCCESS",
+        "ALL_REQUIRED_APPROVAL_RECEIPTS",
+        "SEPARATELY_REVIEWED_DATA_ACCESS_INSTANCE",
+        "FRESH_EXACT_DATA_ACCESS_AUTHORITY",
+        "DURABLE_INTENT"
+      ],
+      "authentication_permitted": false,
+      "download_permitted": false,
+      "data_opening_permitted": false,
+      "protected_data_permitted": false,
+      "maximum_attempt_count": 1,
+      "retry_limit": 0,
+      "redirect_limit": 0,
+      "fallback_limit": 0,
+      "current_execution_budget": 0,
+      "success_predicate": "EXACT_MATCHING_ADMIN_SUCCESS_AND_ALL_REQUIRED_APPROVAL_RECEIPTS_AND_SEPARATELY_REVIEWED_DATA_ACCESS_INSTANCE_AND_FRESH_EXACT_DATA_ACCESS_AUTHORITY_AND_DURABLE_INTENT_AND_ONE_CONTENT_ADDRESSED_ARCHIVE_MATCHING_VERSION_LOCATOR_SHA256_AND_BYTE_COUNT",
+      "terminal_disposition": "DATA_ACCESS_TERMINAL_NO_GO"
+    }
+  ],
+  "activation_contract": {
+    "shared_core_schema_version": "heterodiff-two-domain-offline-precontact-activation-v2",
+    "forward_only_stages": [
+      "DESIGN_FROZEN_AWAITING_POPULATED_PRECONTACT_INSTANCE",
+      "PRECONTACT_INSTANCE_POPULATED_AWAITING_INDEPENDENT_REVIEW",
+      "PRECONTACT_INSTANCE_REVIEWED_AWAITING_FRESH_ADMIN_CONTACT_AUTHORITY",
+      "ADMIN_CONTACT_AUTHORIZED_AWAITING_DURABLE_INTENT",
+      "ADMIN_CONTACT_INTENT_RESERVED_AWAITING_CONTACT",
+      "ADMIN_CONTACT_OUTCOME_RECORDED_AWAITING_REQUIRED_APPROVALS",
+      "APPROVALS_COMPLETE_AWAITING_REVIEWED_DATA_ACCESS_INSTANCE",
+      "DATA_ACCESS_INSTANCE_REVIEWED_AWAITING_FRESH_DATA_ACCESS_AUTHORITY",
+      "DATA_ACCESS_AUTHORIZED_AWAITING_DURABLE_INTENT",
+      "DATA_ACCESS_INTENT_RESERVED_AWAITING_ACCESS",
+      "SNAPSHOT_OBSERVED_AND_CUSTODIED_AWAITING_DETERMINISTIC_SPLIT",
+      "SPLIT_ASSIGNED_AND_HELD_OUT_ESCROW_ACTIVE",
+      "FINAL_OPENING_AWAITING_SEPARATE_AUTHORITY"
+    ],
+    "current_stage": "DESIGN_FROZEN_AWAITING_POPULATED_PRECONTACT_INSTANCE",
+    "populated_instance_present": false,
+    "independent_operational_admission_present": false,
+    "fresh_admin_authority_present": false,
+    "durable_intent_present": false,
+    "data_rows_dormant": true,
+    "terminal_no_retry": true,
+    "strict_stage_skipping_refusal": true
+  },
+  "execution_boundary": {
+    "operational_authority_present": false,
+    "admin_contact_authority_present": false,
+    "data_access_authority_present": false,
+    "durable_intent_present": false,
+    "network_or_contact_authorized": false,
+    "authentication_authorized": false,
+    "download_authorized": false,
+    "data_opening_authorized": false,
+    "split_execution_authorized": false,
+    "escrow_activation_authorized": false,
+    "admin_contact_attempt_budget": 0,
+    "data_access_attempt_budget": 0,
+    "snapshot_open_budget": 0,
+    "split_execution_budget": 0,
+    "escrow_activation_budget": 0,
+    "scientific_execution_budget": 0
+  },
+  "shared_f061_policy_boundary": {
+    "schema_version": "heterodiff-two-domain-f061-shared-policy-v1",
+    "allowed_method_id": "POWER_REVIEWED_EXACT_PROPORTIONS_HAMILTON_V1",
+    "retail_adapter_id": "SHARED_POLICY_TO_RETAIL_F061_PROPOSAL_ADAPTER_V1",
+    "retail_adapter_sha256": "c442a1a7ee95078d07852d600f7ea2c35ec52c309b6f97d9cbdba41374f878ee",
+    "physionet_adapter_id": "SHARED_POLICY_AND_NATURAL_GROUP_COUNT_TO_PHYSIONET_F061_PROPOSAL_ADAPTER_V1",
+    "physionet_adapter_sha256": "018def4ab7d7f991d4820da612489b5162d91d8c04e4231f3429295cb032a52b",
+    "f061_field_status": "OPEN",
+    "unresolved_policy_slots": {
+      "f061_allocation_id": null,
+      "f061_mode": null,
+      "f061_values": null,
+      "f061_denominator_is_null": null,
+      "f061_denominator": null,
+      "f061_minimum_counts": null,
+      "f061_rounding_rule_id": null,
+      "f061_power_requirement_id": null,
+      "f061_allocation_proposal_sha256": null,
+      "f061_power_review_receipt_sha256": null,
+      "f061_power_review_accepted": null,
+      "f061_allocation_definition_sha256": null
+    },
+    "shared_policy_present": false,
+    "shared_policy_external_review_present": false,
+    "shared_policy_is_exact_domain_allocation": false,
+    "retail_native_proposal_requires_shared_policy_definition_binding": true,
+    "retail_native_proposal_present": false,
+    "physionet_natural_group_count_observed": false,
+    "physionet_native_proposal_requires_shared_policy_definition_binding": true,
+    "physionet_native_proposal_present": false,
+    "physionet_resolved_counts_require_separate_external_review": true,
+    "physionet_exact_count_external_review_present": false
+  },
+  "other_unresolved_definition_slots": {
+    "physionet_selector_record_sha256": null,
+    "retail_selector_record_sha256": null,
+    "contact_target_roster_sha256": null,
+    "contact_target_count": null,
+    "approval_requirement_roster_sha256": null,
+    "approval_receipt_validator_roster_sha256": null,
+    "contact_roster_complete": null,
+    "escrow_control_binding_sha256": null,
+    "held_out_material_definition_sha256": null,
+    "final_opening_rule_sha256": null,
+    "append_only_log_schema_sha256": null
+  },
+  "external_review_slots": {
+    "external_review_receipt_sha256": null,
+    "external_review_decision": null,
+    "external_reviewer_principal_id": null
+  },
+  "domain_split_contract_boundary": {
+    "physionet-challenge-2012": {
+      "active_contract_id": "PHYSIONET_PATIENT_HASH_EXPLICIT_F061_HAMILTON_V1",
+      "active_contract_sha256": "32651b654a1b11ceb256f4f6cc6df1ff567d34538c3c2c6033d9acf1fc020b2d",
+      "active_implementation_sha256": "f9bed4ebcc86e692977ce7a49da1901c15f20a056757ad14fab98e16c81d37a8",
+      "historical_design_id": "PHYSIONET_PATIENT_HASH_HAMILTON_70_15_15_V1",
+      "historical_design_raw_sha256": "a9fc01ae42ba7942e6c61def5120d6497b74fc99c82b0c5b68188f221b4b68a8",
+      "active_contract_runtime_recomputed": true
+    },
+    "online-retail-ii": {
+      "active_contract_id": "RETAIL_F060_SOURCE_CIVIL_SHARED_F061_INTEGRATED_REPLAY_V3",
+      "active_contract_sha256": "b1a4fef836a50987b5d723e2bd133605bd907b4d7904f7cd6e87ca1d83077659",
+      "historical_design_id": "RETAIL_CUSTOMER_DISJOINT_TEMPORAL_HAMILTON_70_15_15_V1",
+      "historical_design_raw_sha256": "b27086c5979d2f7018b4b8b50b3fffacf03b3fe2691d60567bc42b179d53e98b",
+      "legacy_misbound_f105_semantic_sha256": "14cefa1f0b8e300c26373a9ffdfc01ede99f783a326feb78c68166d187168b52",
+      "legacy_misbound_digest_is_split_contract": false,
+      "active_contract_runtime_recomputed": true
+    }
+  },
+  "domain_readiness": {
+    "physionet-challenge-2012": {
+      "implemented_offline_controls": [
+        "snapshot_and_archive_receipt_validation",
+        "explicit_f061_patient_disjoint_split",
+        "duplicate_and_near_duplicate_audit_validation",
+        "support_receipt_validation",
+        "thirteen_component_six_receipt_admission"
+      ],
+      "open_field_ids": [
+        "F019",
+        "F020",
+        "F022",
+        "F033",
+        "F034",
+                              "F058",
+                              "F061"
+      ],
+      "actual_domain_admission_present": false
+    },
+    "online-retail-ii": {
+      "implemented_offline_controls": [
+        "snapshot_and_schema_receipt_validation",
+        "source_civil_f060_v2_explicit_f061_customer_temporal_split",
+        "duplicate_and_near_duplicate_audit_validation",
+        "accepted_positive_dominated_support_policy_receipt_validation",
+        "thirteen_component_six_receipt_admission"
+      ],
+      "open_field_ids": [
+        "F038",
+        "F039",
+        "F041",
+        "F053",
+        "F054",
+        "F059",
+        "F061"
+      ],
+      "actual_domain_admission_present": false
+    }
+  },
+  "unresolved_owner_manifest": {
+    "accountable_governance_owner": {
+      "principal_id": null,
+      "acceptance_sha256": null
+    },
+    "license_privacy_or_institutional_approval_endpoint": {
+      "principal_id": null,
+      "acceptance_sha256": null
+    },
+    "raw_snapshot_custodian": {
+      "principal_id": null,
+      "acceptance_sha256": null
+    },
+    "deterministic_split_operator": {
+      "principal_id": null,
+      "acceptance_sha256": null
+    },
+    "independent_heldout_escrow_custodian": {
+      "principal_id": null,
+      "acceptance_sha256": null
+    },
+    "final_opening_approver": {
+      "principal_id": null,
+      "acceptance_sha256": null
+    },
+    "key_and_acl_acceptance_authority": {
+      "principal_id": null,
+      "acceptance_sha256": null
+    },
+    "retention_and_deletion_owner": {
+      "principal_id": null,
+      "acceptance_sha256": null
+    },
+    "incident_response_owner": {
+      "principal_id": null,
+      "acceptance_sha256": null
+    },
+    "conflict_of_interest_determination_sha256": null
+  },
+  "future_observations": {
+    "administrative_contact_outcomes": null,
+    "data_access_outcomes": null,
+    "observed_snapshot_versions": null,
+    "raw_snapshot_sha256_values": null,
+    "snapshot_byte_counts": null,
+    "etags_or_equivalents": null,
+    "license_text_receipts": null,
+    "governance_approval_receipts": null,
+    "ethics_approval_receipts": null,
+    "split_counts": null,
+    "split_manifest_sha256": null,
+    "escrow_receipts": null,
+    "access_log_head_sha256": null
+  },
+  "closure_effect": {
+    "completed_enabling_timetable_item": "B02_B03_JOINT_OFFLINE_ACTIVATION_PREFLIGHT_IMPLEMENTED_AND_QUALIFIED",
+    "field_count_delta": 0,
+    "blocker_count_delta": 0,
+    "b02_closed": false,
+    "b03_closed": false,
+    "seven_operational_tasks_closed_count": 0,
+    "formal_test_count_delta": 0,
+    "scientific_result_count_delta": 0,
+    "tracker_update_permitted_after_independent_go": true
+  },
+  "qualification_boundary": {
+    "synthetic_inputs_only": true,
+    "real_dataset_opened_or_parsed": false,
+    "network_connector_or_subprocess_route": false,
+    "credential_or_secret_route": false,
+    "entropy_training_inference_result_or_release_route": false,
+    "validator_and_tests_outside_semantic_self_binding": true
+  },
+  "record_sha256": "2a150e0b3037d01e6b311d9ab4c17157f20031f75b644a7c8778007c168b9fec"
+}
