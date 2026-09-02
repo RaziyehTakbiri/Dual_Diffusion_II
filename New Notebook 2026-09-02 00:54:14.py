@@ -38,7 +38,11 @@ assert sha256(helper) == EXPECTED_HELPER, "Helper bytes differ from reviewed ver
 assert sha256(template) == EXPECTED_TEMPLATE, "Template bytes differ from reviewed version."
 assert sha256(init_script) == EXPECTED_INIT_SCRIPT, "Init-script bytes differ from reviewed version."
 
-base = Path("/local_disk0/heterodiff-b08")
+# Notebook Python runs as a restricted user on some dedicated clusters and
+# cannot create a directory directly under /local_disk0.  The reviewed B08
+# contract permits a private physical /tmp directory for transient preflight
+# staging; it is never treated as durable evidence or reserved capacity.
+base = Path("/tmp/heterodiff-b08")
 base.mkdir(mode=0o700, parents=True, exist_ok=True)
 os.chmod(base, 0o700)
 
@@ -125,7 +129,8 @@ report = {
     "python_version": platform.python_version(),
     "machine": machine,
     "cpu_count": os.cpu_count(),
-    "local_disk0": {
+    "transient_staging_filesystem": {
+        "root_kind": "PHYSICAL_TMP_NOT_DURABLE_EVIDENCE",
         "total_bytes": fs.f_blocks * fs.f_frsize,
         "available_bytes": fs.f_bavail * fs.f_frsize,
         "available_inodes": fs.f_favail,
