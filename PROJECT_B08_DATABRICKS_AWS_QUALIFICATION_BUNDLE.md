@@ -406,6 +406,16 @@ enumeration, calibration, or study-data access. It accepts only:
    `sha256:<64-lowercase-hex>` form; and
 4. an explicit physical local output path that does not already exist.
 
+For dedicated access, the helper accepts the current Databricks API value
+`DATA_SECURITY_MODE_DEDICATED`, its legacy API alias `SINGLE_USER`, and the
+project's earlier sanitized-input alias `DEDICATED`. The current API enum is
+normalized to `DEDICATED`; the two earlier spellings retain their established
+receipt representations so historical receipts remain verifiable. Shared,
+standard, automatic, and `NONE` modes fail closed. A raw workspace export must
+not be used directly when it contains operator identity, cluster identity,
+policy identity, custom organizational tags, or other fields outside the
+approved sanitized record.
+
 The two JSON inputs must be canonical ASCII JSON with sorted keys, compact
 separators, and exactly one terminal line feed. They must reside in ordinary
 physical local-driver custody for capture. `/dbfs/...` and `/Volumes/...`

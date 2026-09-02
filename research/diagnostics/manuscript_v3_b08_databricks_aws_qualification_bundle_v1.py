@@ -15,16 +15,16 @@ import types
 ROOT = Path(__file__).resolve().parents[2]
 EXPECTED = {
     "PROJECT_B08_DATABRICKS_AWS_QUALIFICATION_BUNDLE.md": (
-        25_824,
-        "28b064a60e07e9179a4a870b97cf0ad8deb8503018555d486a36c8c941fc2dc4",
+        26_458,
+        "a94e4ae80ece430bf1986cf23c777d87b76af943721224e3dc1b3fd8b7335fe7",
     ),
     "src/heterodiff/experiments/b08_databricks_aws_qualification.py": (
         24_825,
         "632bb5dd078cd91b9c7e4148e5d284d499f91f4ee5697df52a73e279f3c78e1f",
     ),
     "research/diagnostics/b08_databricks_aws_qualification_capture_v1.py": (
-        39_191,
-        "f1123e302f1f7731570d0649af45ed7fc881c7d4487beda29578a741d0b75642",
+        39_892,
+        "ce16f4c6c797f64b2f101c54ffc0338824e9e7ebf91fca276ca2d50260c8be4d",
     ),
     "research/fixtures/manuscript_v3_b08_databricks_aws_qualification_template_v1.json": (
         3_834,
@@ -39,8 +39,8 @@ EXPECTED = {
         "8a76dfd44c6542748b1911dceee49f03fb1b412de337b892aece78b470caaf60",
     ),
     "tests/unit/test_b08_databricks_aws_qualification_capture_v1.py": (
-        7_244,
-        "ee95a5dc522ab0ba3ee5ac25b3e8f23f8fd4a7cd0e374947df3f4196dad1ec9c",
+        10_141,
+        "8f06738fcfdc4f58132dbd781d6eb205a569b6741c161a466412184887da05b7",
     ),
 }
 

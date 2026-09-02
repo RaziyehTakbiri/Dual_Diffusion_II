@@ -1,5 +1,8 @@
 # Independent hostile review: B08 Databricks AWS qualification bundle
 
+**Current review boundary:** enum and deterministic-capture compatibility
+successor accepted
+
 ## Review disposition
 
 **GO for the bounded, data-free qualification-bundle purpose, with no open
@@ -17,14 +20,14 @@ blocker closure, or timetable closure.
 
 | File | Bytes | SHA-256 |
 |---|---:|---|
-| `PROJECT_B08_DATABRICKS_AWS_QUALIFICATION_BUNDLE.md` | 25,824 | `28b064a60e07e9179a4a870b97cf0ad8deb8503018555d486a36c8c941fc2dc4` |
+| `PROJECT_B08_DATABRICKS_AWS_QUALIFICATION_BUNDLE.md` | 26,458 | `a94e4ae80ece430bf1986cf23c777d87b76af943721224e3dc1b3fd8b7335fe7` |
 | `src/heterodiff/experiments/b08_databricks_aws_qualification.py` | 24,825 | `632bb5dd078cd91b9c7e4148e5d284d499f91f4ee5697df52a73e279f3c78e1f` |
-| `research/diagnostics/b08_databricks_aws_qualification_capture_v1.py` | 39,191 | `f1123e302f1f7731570d0649af45ed7fc881c7d4487beda29578a741d0b75642` |
+| `research/diagnostics/b08_databricks_aws_qualification_capture_v1.py` | 39,892 | `ce16f4c6c797f64b2f101c54ffc0338824e9e7ebf91fca276ca2d50260c8be4d` |
 | `research/fixtures/manuscript_v3_b08_databricks_aws_qualification_template_v1.json` | 3,834 | `d5a31b69ee3a4aa586bc040c49d12d05e13fc11d66b81f1ef3a05db4958470ca` |
 | `research/fixtures/manuscript_v3_b08_databricks_aws_admin_storage_reservation_template_v1.json` | 1,175 | `f8a910f8c3d8c9458b7c68de18adcefc439fa2975f8fa83957ad2af1755ec8cf` |
 | `tests/unit/test_b08_databricks_aws_qualification.py` | 8,568 | `8a76dfd44c6542748b1911dceee49f03fb1b412de337b892aece78b470caaf60` |
-| `tests/unit/test_b08_databricks_aws_qualification_capture_v1.py` | 7,244 | `ee95a5dc522ab0ba3ee5ac25b3e8f23f8fd4a7cd0e374947df3f4196dad1ec9c` |
-| `research/diagnostics/manuscript_v3_b08_databricks_aws_qualification_bundle_v1.py` | 9,256 | `b572a7dc992b4d00bbb664313cb1f13f2a0564e6a54f159dcb546ce3b062b7b3` |
+| `tests/unit/test_b08_databricks_aws_qualification_capture_v1.py` | 10,141 | `8f06738fcfdc4f58132dbd781d6eb205a569b6741c161a466412184887da05b7` |
+| `research/diagnostics/manuscript_v3_b08_databricks_aws_qualification_bundle_v1.py` | 9,257 | `82b0b4e274c8b62153dca502a252386b372bb5d720c9133ef7a147059cf92981` |
 | `tests/unit/test_manuscript_v3_b08_databricks_aws_qualification_bundle_v1.py` | 2,940 | `3c3d5fc3c1b573cb0d1bc50c447917400904c22171f1af01934fa61a1e2b0dbe` |
 
 The qualification-template canonical semantic digest independently reproduced
@@ -32,7 +35,8 @@ as `771b150637bce72480164ed5ef168e9d426a58277962161b6962ed9d02520239`.
 
 ## Reproduction receipt
 
-- Focused core, capture, and package-validator tests: **41 passed**.
+- Focused core, capture, and package-validator tests: **51 passed**.
+- Broad B08 compatibility suite: **130 passed**.
 - Package validator from the project root: **PASS**.
 - Package validator from `/private/tmp` with absolute interpreter/script paths:
   **PASS**.
@@ -68,6 +72,22 @@ secret/private-identity keys (including `clientSecret`, `apiToken`,
 rejected.  `/tmp` is expressly limited to transient staging with custody
 checks and cannot satisfy capacity or durability evidence.  These repairs
 close the two P1 defects found against the pre-freeze candidate.
+
+The enum-compatibility successor accepts Databricks' current
+`DATA_SECURITY_MODE_DEDICATED` value and maps it to the established
+`DEDICATED` receipt representation. Independently generated predecessor
+receipts using `SINGLE_USER` and `DEDICATED` remain valid. Every other official
+security-mode value tested failed closed; explicit `SHARED` and
+`USER_ISOLATION` cases also failed closed; and snake/camel-case private-identity
+keys remained rejected when the current enum was supplied. The change
+introduces no network, Spark, data, calibration, closure, or tracker authority.
+
+The successor also repairs a capture-completeness mismatch exposed by the
+real preflight: the helper's allowlist now includes `BLIS_NUM_THREADS`,
+`PYTHONDONTWRITEBYTECODE`, `PYTHONNOUSERSITE`, and `PYTHONSAFEPATH`. A
+cross-module regression requires every deterministic control in the governing
+qualification core to be capturable and verifies the exact values. This adds
+receipt visibility only; it does not install, infer, or approve any control.
 
 ## Final findings table
 

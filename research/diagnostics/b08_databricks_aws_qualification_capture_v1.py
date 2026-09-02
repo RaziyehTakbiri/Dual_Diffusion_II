@@ -46,6 +46,7 @@ MAX_STRING_CHARACTERS = 1_048_576
 MAX_DISTRIBUTIONS = 20_000
 
 DETERMINISM_ENV_ALLOWLIST = (
+    "BLIS_NUM_THREADS",
     "CUBLAS_WORKSPACE_CONFIG",
     "CUDA_VISIBLE_DEVICES",
     "DATABRICKS_RUNTIME_VERSION",
@@ -58,14 +59,29 @@ DETERMINISM_ENV_ALLOWLIST = (
     "NVIDIA_TF32_OVERRIDE",
     "OMP_NUM_THREADS",
     "OPENBLAS_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE",
     "PYTHONHASHSEED",
     "PYTHONIOENCODING",
+    "PYTHONNOUSERSITE",
+    "PYTHONSAFEPATH",
     "PYTHONUTF8",
     "TF_CUDNN_DETERMINISTIC",
     "TF_DETERMINISTIC_OPS",
     "TZ",
     "VECLIB_MAXIMUM_THREADS",
 )
+
+# Databricks currently emits DATA_SECURITY_MODE_DEDICATED from the Clusters
+# API. SINGLE_USER is its legacy API alias. DEDICATED is retained solely for
+# backward compatibility with pre-existing project-sanitized inputs. Preserve
+# the earlier aliases' established receipt values so already-captured receipts
+# remain verifiable; map only the current API enum to the existing DEDICATED
+# representation.
+_DEDICATED_ACCESS_MODE_NORMALIZATION = {
+    "DATA_SECURITY_MODE_DEDICATED": "DEDICATED",
+    "DEDICATED": "DEDICATED",
+    "SINGLE_USER": "SINGLE_USER",
+}
 
 _SHA256 = re.compile(r"[0-9a-f]{64}\Z")
 _CONTAINER_DIGEST = re.compile(r"sha256:[0-9a-f]{64}\Z")
@@ -483,8 +499,9 @@ def _cluster_spec_candidate(
 
 def _cluster_target_signals(cluster_json: Mapping[str, Any]) -> Dict[str, Any]:
     location, candidate = _cluster_spec_candidate(cluster_json)
-    mode = candidate["data_security_mode"]
-    if mode not in ("SINGLE_USER", "DEDICATED"):
+    raw_mode = candidate["data_security_mode"]
+    mode = _DEDICATED_ACCESS_MODE_NORMALIZATION.get(raw_mode)
+    if mode is None:
         raise CaptureError("CLUSTER_DATA_SECURITY_MODE_NOT_DEDICATED")
     spark_version = candidate["spark_version"]
     node_type = candidate["node_type_id"]

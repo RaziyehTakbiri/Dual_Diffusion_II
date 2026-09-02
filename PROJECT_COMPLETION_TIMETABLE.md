@@ -565,6 +565,25 @@ view remains 62 checked / 101 open / 163 total; fields remain 24 open / 148
 closed; blockers remain 7 open / 5 closed; Formal Tests remain
 `OPEN`/`OPEN`/`PENDING`; and B08 and Wave 2 remain open.**
 
+**Additive AWS Databricks existing-cluster preflight checkpoint (2026-09-02):
+the sanitized, data-free report proves that the current single-node candidate
+has enough raw local free space, but it is a terminal no-go in its present
+configuration. Its AWS Graviton architecture and Machine Learning runtime are
+both incompatible with the required dedicated custom-container route; the
+deterministic environment is incomplete; free instance-store capacity is not
+an accountable durable reservation; and on-demand/Photon/effective-policy
+facts remain unresolved. No capture or study/test-data operation occurred.
+The independently accepted capture-helper successor now recognizes the current
+Databricks dedicated-mode enum while preserving legacy receipts and captures
+every deterministic control required by the governing B08 core; that
+implementation correction also has zero tracked delta.
+This checkpoint closes no timetable task: the marked view remains 62 checked /
+101 open / 163 total; fields remain 24 / 148; blockers remain 7 open / 5
+closed; Formal Tests remain `OPEN`/`OPEN`/`PENDING`; and B08 and Wave 2 remain
+open. The next eligible action is construction of the exact x86_64,
+standard-runtime successor described in the
+[preflight record](PROJECT_B08_DATABRICKS_AWS_EXISTING_CLUSTER_PREFLIGHT_NO_GO.md).**
+
 #### Solo Block 3 — SW5–8 — 2026-09-28 to 2026-10-25
 
 - [x] **Project control —

@@ -8,6 +8,8 @@ import stat
 
 import pytest
 
+from heterodiff.experiments import b08_databricks_aws_qualification as qualification
+
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "research/diagnostics/b08_databricks_aws_qualification_capture_v1.py"
@@ -65,6 +67,90 @@ def test_admin_storage_input_template_is_canonical_hold_only():
     }
 
 
+def test_capture_allowlist_covers_every_required_deterministic_control(
+    monkeypatch,
+):
+    required = qualification.DETERMINISTIC_ENVIRONMENT_CONTROLS
+    assert set(required) <= set(capture_module.DETERMINISM_ENV_ALLOWLIST)
+    for name, value in required.items():
+        monkeypatch.setenv(name, value)
+    captured = capture_module._determinism_environment()
+    assert {name: captured["present"][name] for name in required} == required
+
+
+@pytest.mark.parametrize(
+    ("input_mode", "receipt_mode"),
+    [
+        ("DATA_SECURITY_MODE_DEDICATED", "DEDICATED"),
+        ("SINGLE_USER", "SINGLE_USER"),
+        ("DEDICATED", "DEDICATED"),
+    ],
+)
+def test_current_and_legacy_dedicated_mode_aliases_are_normalized(
+    input_mode, receipt_mode
+):
+    signals = capture_module._cluster_target_signals(
+        {
+            "aws_attributes": {"availability": "ON_DEMAND"},
+            "data_security_mode": input_mode,
+            "node_type_id": "m6i.4xlarge",
+            "spark_version": "16.4.x-scala2.12",
+        }
+    )
+    assert signals["dedicated_access_mode"] == receipt_mode
+
+
+@pytest.mark.parametrize(
+    "input_mode",
+    [
+        "DATA_SECURITY_MODE_AUTO",
+        "DATA_SECURITY_MODE_STANDARD",
+        "NONE",
+        "SHARED",
+        "USER_ISOLATION",
+    ],
+)
+def test_non_dedicated_data_security_modes_fail_closed(input_mode):
+    with pytest.raises(
+        capture_module.CaptureError, match="CLUSTER_DATA_SECURITY_MODE_NOT_DEDICATED"
+    ):
+        capture_module._cluster_target_signals(
+            {
+                "aws_attributes": {"availability": "ON_DEMAND"},
+                "data_security_mode": input_mode,
+                "node_type_id": "m6i.4xlarge",
+                "spark_version": "16.4.x-scala2.12",
+            }
+        )
+
+
+def test_current_databricks_dedicated_enum_round_trips_without_identity_data(
+    tmp_path,
+):
+    cluster, reservation = valid_inputs(tmp_path)
+    cluster_value = json.loads(cluster.read_text(encoding="ascii"))
+    cluster_value["data_security_mode"] = "DATA_SECURITY_MODE_DEDICATED"
+    write_canonical(cluster, cluster_value)
+    output = tmp_path / "current-enum-receipt.json"
+
+    created = capture_module.capture(
+        str(cluster), str(reservation), str(output), None
+    )
+    receipt = json.loads(output.read_text(encoding="ascii"))
+    assert receipt["input_captures"]["exported_sanitized_cluster_json"][
+        "content"
+    ]["data_security_mode"] == "DATA_SECURITY_MODE_DEDICATED"
+    assert receipt["cluster_target_signals"]["dedicated_access_mode"] == (
+        "DEDICATED"
+    )
+    assert created["decision"] == (
+        "CAPTURE_WRITTEN_REQUIRES_LATER_NORMALIZATION_AND_EXTERNAL_REVIEW"
+    )
+    capture_module.validate_only(
+        str(cluster), str(reservation), str(output), None
+    )
+
+
 def test_end_to_end_capture_validate_no_clobber_and_private_mode(tmp_path):
     cluster, reservation = valid_inputs(tmp_path)
     output = tmp_path / "receipt.json"
@@ -111,7 +197,7 @@ def test_recursive_secret_and_private_identity_keys_fail_closed(
         {
             "aws_attributes": {"availability": "ON_DEMAND"},
             sensitive_key: "redacted-but-forbidden-value",
-            "data_security_mode": "SINGLE_USER",
+            "data_security_mode": "DATA_SECURITY_MODE_DEDICATED",
             "node_type_id": "m6i.4xlarge",
             "spark_version": "16.4.x-scala2.12",
         },
