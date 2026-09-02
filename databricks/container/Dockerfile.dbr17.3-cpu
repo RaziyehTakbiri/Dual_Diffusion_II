@@ -1,0 +1,74 @@
+# syntax=docker/dockerfile:1.7
+
+# This build intentionally has no default base.  Supply a DBR 17.3 LTS
+# linux/amd64 image by immutable OCI digest, for example:
+#   --build-arg BASE_IMAGE=databricksruntime/standard:17.3-LTS@sha256:<64 hex>
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE} AS heterodiff-runtime
+
+ARG BASE_IMAGE
+
+# FROM must resolve before a RUN instruction can execute, but no image produced
+# by this Dockerfile is eligible unless the supplied reference is digest-bound.
+RUN /bin/bash -euo pipefail -c \
+    '[[ "${BASE_IMAGE}" =~ ^[^[:space:]]+@sha256:[0-9a-f]{64}$ ]]'
+
+ENV BLIS_NUM_THREADS=1 \
+    B08_BASE_IMAGE_REFERENCE=${BASE_IMAGE} \
+    CUDA_VISIBLE_DEVICES="" \
+    LANG=C \
+    LC_ALL=C \
+    MKL_NUM_THREADS=1 \
+    NUMEXPR_NUM_THREADS=1 \
+    OMP_NUM_THREADS=1 \
+    OPENBLAS_NUM_THREADS=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONHASHSEED=0 \
+    PYTHONNOUSERSITE=1 \
+    PYTHONSAFEPATH=1 \
+    PYTHONUTF8=1 \
+    TZ=UTC \
+    VECLIB_MAXIMUM_THREADS=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_NO_INDEX=1 \
+    PIP_REQUIRE_HASHES=1
+
+WORKDIR /opt/heterodiff
+
+# These three resolved inputs deliberately do not exist in the construction
+# package.  A reviewed linux/amd64 CPython 3.12 resolver must create them from
+# the checked-in .in file and unresolved manifest template.  Consequently this
+# Dockerfile cannot build by silently consuming the template or an unhashed
+# online dependency.
+COPY requirements/b08-databricks-aws-dbr17.3-x86_64-cpu-py312.lock \
+    /opt/heterodiff/requirements.lock
+COPY requirements/b08-databricks-aws-dbr17.3-x86_64-cpu-py312.wheel-manifest.json \
+    /opt/heterodiff/wheel-manifest.json
+COPY requirements/b08-databricks-aws-dbr17.3-x86_64-cpu-py312.runtime-profile.json \
+    /opt/heterodiff/runtime-profile.json
+COPY requirements/wheelhouse/b08-databricks-aws-dbr17.3-x86_64-cpu-py312/ \
+    /opt/heterodiff/wheelhouse/
+COPY databricks/container/verify-runtime.py \
+    /opt/heterodiff/verify-runtime.py
+
+RUN --network=none chmod 0444 \
+        /opt/heterodiff/requirements.lock \
+        /opt/heterodiff/wheel-manifest.json \
+        /opt/heterodiff/runtime-profile.json \
+        /opt/heterodiff/wheelhouse/* \
+    && chmod 0555 /opt/heterodiff/verify-runtime.py \
+    && /databricks/python3/bin/python /opt/heterodiff/verify-runtime.py \
+        --supply-chain-only \
+    && /databricks/python3/bin/python -m pip install \
+        --no-cache-dir \
+        --no-deps \
+        --no-index \
+        --find-links=/opt/heterodiff/wheelhouse \
+        --only-binary=:all: \
+        --require-hashes \
+        -r /opt/heterodiff/requirements.lock \
+    && /databricks/python3/bin/python -m pip check \
+    && /databricks/python3/bin/python /opt/heterodiff/verify-runtime.py
+
+# Databricks Container Services ignores Docker CMD and ENTRYPOINT.  Runtime
+# qualification is performed explicitly above and again on the target cluster.

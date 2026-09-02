@@ -1,0 +1,14 @@
+# UNRESOLVED INPUT ONLY -- THIS FILE IS NOT A PRODUCTION LOCK.
+#
+# Resolve for CPython 3.12 on linux/amd64 using the PyTorch CPU wheel index.
+# The resolver must generate exact transitive pins and SHA-256 hashes, download
+# every wheel into the declared offline wheelhouse, build and hash exactly one
+# heterodiff wheel, and populate the adjacent unresolved JSON template.
+# Never install this .in file directly on Databricks.
+
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+numpy==2.4.6
+scipy==1.17.1
+threadpoolctl==3.6.0
+torch==2.12.1+cpu
