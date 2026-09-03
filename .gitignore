@@ -26,6 +26,9 @@ dist/
 # Data, credentials, and private operational material
 data/
 datasets/
+!src/heterodiff/data/
+src/heterodiff/data/*
+!src/heterodiff/data/*.py
 secrets/
 private/
 .env
@@ -36,6 +39,9 @@ private/
 
 # Local execution products
 artifacts/
+!src/heterodiff/artifacts/
+src/heterodiff/artifacts/*
+!src/heterodiff/artifacts/*.py
 verification_runs/
 research/custody/
 local_runs/

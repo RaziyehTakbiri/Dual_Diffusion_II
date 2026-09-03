@@ -43,6 +43,16 @@ manuscript revision and its AWS Databricks execution handoff.
   Volume path.
 - `PROJECT_B08_N1_UC_VOLUME_WRITE_CAPABILITY_PROBE_INDEPENDENT_REVIEW.md`:
   independent source acceptance for one exact authorized probe run.
+- `PROJECT_B08_N1_UC_VOLUME_WRITE_CAPABILITY_PROBE_001_OUTCOME.md`: recorded
+  PASS from the one authorized probe-001 execution; both exact leaves are
+  retained and permanently spent.
+- `databricks/notebooks/b08_n1_uc_native_overlay_lock_candidate_launcher.py`:
+  hash-first entrypoint for the UC Volume-native candidate-003 builder.
+- `databricks/notebooks/b08_n1_uc_native_overlay_lock_candidate.py`: bounded,
+  default-off, flat append-only UC Volume-native overlay/lock candidate builder.
+- `PROJECT_B08_N1_UC_NATIVE_OVERLAY_LOCK_CANDIDATE_BUILDER_V1.md` and its
+  independent review: exact successor contract, source bindings, hostile-test
+  acceptance, operator gates, and zero-delta project boundary.
 
 ## Databricks boundary
 
@@ -65,55 +75,51 @@ Ubuntu `24.04.4 LTS`, and all 15 deterministic environment values exactly. The
 independently accepted V2 target successor corrects only the prospective Ubuntu
 patch release. The base-runtime package differences and absent Torch are the
 expected reason for constructing a separate native overlay; they are not an
-F151 or F152 receipt. The exact N1 overlay/lock-candidate notebook is now
-independently accepted as
-`PASS_N1_ISOLATED_OVERLAY_LOCK_CANDIDATE_BUILDER_V2_ZERO_DELTA`. Data-free
-preflights have run, but no construction has succeeded. Candidate-002 is
-permanently spent: its repeatable path-visible snapshots contain exactly the
-expected intent and failure receipt. That resolves the forensic uncertainty but
-leaves the existing builder's POSIX durability/identity assumptions unsuitable
-for reuse on the Unity Catalog Volume. F151, F152, B08, and Wave 2 remain open.
+F151 or F152 receipt. The earlier N1 V2 overlay/lock-candidate notebook remains
+accepted only as historical source evidence and must not be reused on this
+Unity Catalog Volume. Candidate-002 is permanently spent: its repeatable
+path-visible snapshots contain exactly the expected intent and failure receipt.
+F151, F152, B08, and Wave 2 remain open.
 
 The operator helpers and templates are already present at their canonical
 `requirements/`, `research/diagnostics/`, and `research/fixtures/` paths.
 Preserve those paths when running or reviewing the bundle.
 
-The data-free native-runtime discovery and candidate-002 forensic steps are
-complete. The next operator action is the independently accepted bounded Unity
-Catalog Volume write-capability probe:
+The native-runtime discovery, candidate-002 forensics, and the one authorized
+Unity Catalog Volume capability probe are complete. Probe-001 passed exact
+exclusive-create, non-overwriting collision, exactly-one-winner process-race,
+and repeated content-bound readback checks. Its two exact 4 KiB leaves are
+retained evidence and permanently spent: do not rerun, delete, rename, repair,
+replace, or reuse them.
 
-1. commit and push the complete current repository, then pull that exact commit
-   into the Databricks Git folder;
-2. open `databricks/notebooks/b08_n1_uc_volume_write_capability_probe.py` and
-   attach the same dedicated DBR 17.3 x86_64 cluster;
-3. use **Run all** once with the three default values `PREFLIGHT_ONLY`, `false`,
-   and `NOT_AUTHORIZED`; this read-only run materializes the dropdowns and
-   should return `HOLD_UC_VOLUME_PROBE_AUTHORITY_INCOMPLETE`, both leaves
-   `ABSENT`, and no preflight errors;
-4. stop and return that JSON if any of those conditions differs; otherwise set
-   the three dropdowns exactly to
-   `RUN_ONE_BOUNDED_UC_VOLUME_WRITE_CAPABILITY_PROBE`, `true`, and
-   `AUTHORIZE_ONE_DATA_FREE_UC_VOLUME_WRITE_CAPABILITY_PROBE_001`;
-5. use **Run all** once for the authorized probe and retain the complete JSON
-   output for review.
+This PASS clears only the observed storage-behavior prerequisite. It does not
+make the existing POSIX-oriented builder safe, create an F151/F152 value, or
+establish physical durability, capacity, runtime, or scientific readiness. A
+replacement candidate-003 builder and hash-first launcher now implement the
+verified flat append-only protocol and are locally accepted for a default-off,
+data-free Databricks preflight. No candidate construction has run or is
+authorized by that source acceptance.
 
-Do not manually enter or invent a destination path. The notebook is bound to
-the existing parent
-`/Volumes/development/team_eds_supplychain/b08_runtime_output` and exactly two
-retained probe leaves. If either leaf exists, stop; do not delete, rename,
-repair, or reuse it. If the result says cluster termination is required before
-forensics, terminate the cluster and stop. The probe performs no package
-resolution, direct external network contact, Spark/REST operation, study/test-data
-access, calibration, training, or inference. Even a PASS authorizes no
-candidate construction: a separately implemented and reviewed Unity Catalog
-Volume-native successor writer must follow.
+The next operator action is to commit and push the complete current source,
+including every Python file under `src/heterodiff/data/` and
+`src/heterodiff/artifacts/`, then pull that exact commit into Databricks. Open
+only the hash-first launcher and use **Run all** once with its default
+`NOT_AUTHORIZED` value; this creates the launcher widget and must return
+`HOLD_REVIEWED_BUILDER_SHA256_REQUIRED` without executing the builder. Enter
+the exact builder SHA-256 listed in the independent review, leave all four
+builder construction gates at their defaults when they appear, and use
+**Run all** once more for the default-off builder preflight. Return that complete
+JSON for review. Do not authorize construction, and do not run the builder
+directly.
 
 ## Repository hygiene
 
 Do not commit datasets, secrets, credentials, virtual environments, caches,
 historical custody archives, private cluster exports, raw capture receipts, or
-runtime outputs. Sanitized reviewed receipts may be added only through the
-applicable project contract.
+runtime outputs. The `src/heterodiff/data/` and `src/heterodiff/artifacts/`
+directories contain Python package source—not datasets or generated runtime
+artifacts—and must be tracked. Sanitized reviewed receipts may be added only
+through the applicable project contract.
 
 This tree was initialized from the active revision workspace on 2026-09-02.
 Its predecessor music-diffusion working tree was moved to a recoverable sibling
