@@ -651,6 +651,28 @@ marked view remains 62 checked / 101 open / 163 total; fields remain 24 open /
 bounded Databricks construction and separate acceptance of the resulting
 evidence.**
 
+**Additive candidate-002 forensics and Unity Catalog Volume probe-source
+checkpoint (2026-09-03): the failed candidate-002 construction is frozen as a
+[terminal no-go](PROJECT_B08_N1_CANDIDATE_002_TERMINAL_NO_GO.md). Its first
+[read-only forensic attempt](PROJECT_B08_N1_CANDIDATE_002_FORENSIC_V1_BINDING_MISMATCH.md)
+correctly stopped when the failed-run device/inode binding did not project onto
+managed object-storage semantics. The reviewed V2 notebook then completed two
+equal path-visible roster-and-content snapshots; the
+[recorded outcome](PROJECT_B08_N1_CANDIDATE_002_OBJECT_SNAPSHOT_FORENSICS_V2_OUTCOME.md)
+classifies the retained path as
+`STABLY_COMPLETE_EXPECTED_INTENT_VISIBLE`, with exactly the expected 2,322-byte
+intent and 2,009-byte failure receipt and no unexpected leaves. Candidate-002
+is permanently spent. The separate
+[Unity Catalog Volume capability probe](databricks/notebooks/b08_n1_uc_volume_write_capability_probe.py)
+and its [independent hostile review](PROJECT_B08_N1_UC_VOLUME_WRITE_CAPABILITY_PROBE_INDEPENDENT_REVIEW.md)
+are accepted as `PASS_SOURCE_SAFE_FOR_ONE_EXACT_AUTHORIZED_PROBE_RUN`, with
+P0/P1/P2 `0/0/0`, 38/38 focused passes, and 136/136 combined regressions. The
+probe has not run, and its acceptance does not make the old builder safe or
+authorize candidate-003. No checklist item is marked complete: the marked view
+remains 62 checked / 101 open / 163 total; fields remain 24 open / 148 closed;
+blockers remain 7 open / 5 closed; Formal Tests remain
+`OPEN`/`OPEN`/`PENDING`; and F151/F152, B08, and Wave 2 remain open.**
+
 #### Solo Block 3 — SW5–8 — 2026-09-28 to 2026-10-25
 
 - [x] **Project control —
@@ -1343,6 +1365,7 @@ Update this table at each Sunday week close. A blank is not a zero.
 | 2026-09-02 native-DBR V2 target/pending-N1-builder checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The independently accepted V2 target successor corrects only Ubuntu `24.04.3 LTS` to the discovery-observed `24.04.4 LTS`, with P0/P1/P2 `0/0/0` and exact zero tracked delta. The frozen N1 isolated-overlay/F152-lock builder remains pending independent review and has not run in Databricks. No lock, overlay, runtime capture, capacity, calibration, data, science, or result exists. No checklist item closes: marked tasks remain 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, and F151/F152, B08, and Wave 2 remain open pending Databricks execution and independent evidence acceptance. |
 | 2026-09-03 historical N1 V1 builder acceptance checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The historical V1 notebook hash `0f340a8a...` and test hash `ae1162f...` were independently accepted as `PASS_N1_ISOLATED_OVERLAY_LOCK_CANDIDATE_BUILDER_V1_ZERO_DELTA`, with P0/P1/P2 `0/0/0`, 49/49 focused tests from both working directories, 96/96 combined V1/V2/N1 tests, and 414/414 broader B08 tests. V1 remains exact-byte historical evidence and is superseded only for future execution by V2. Exact delta was zero: no checklist item closed; marked tasks remained 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, and F151/F152, B08, and Wave 2 remained open. |
 | 2026-09-03 N1 V2 builder source-acceptance checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The exact current notebook and tests are independently accepted as `PASS_N1_ISOLATED_OVERLAY_LOCK_CANDIDATE_BUILDER_V2_ZERO_DELTA`, with P0/P1/P2 `0/0/0`, 62/62 focused passes from both working directories, 109/109 combined V1/V2/N1 passes, 361/361 independent broader B08 passes, and 427/427 expanded compatibility passes. V2 corrects the Ubuntu PRETTY_NAME comparison and accepts the ensurepip-independent, full-payload-bound, hash-locked private-venv bootstrap. Data-free preflights ran, but no construction succeeded and no candidate lock, overlay, manifest, success receipt, runtime capture, capacity, calibration, data, science, or result exists. Exact delta is zero: no checklist item closes; marked tasks remain 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, and F151/F152, B08, and Wave 2 remain open. |
+| 2026-09-03 candidate-002 forensics / UC Volume probe-source checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | Candidate-002 remains a permanently spent terminal no-go. Its V2 forensic run completed two equal path-visible roster-and-content snapshots and classified exactly the expected intent plus failure receipt as `STABLY_COMPLETE_EXPECTED_INTENT_VISIBLE`, resolving the prior object-storage/device-inode mismatch without claiming lineage or construction success. The bounded UC Volume exclusive-create/collision/race probe source is independently accepted as `PASS_SOURCE_SAFE_FOR_ONE_EXACT_AUTHORIZED_PROBE_RUN`, with P0/P1/P2 `0/0/0`, 38/38 focused passes, and 136/136 combined regressions; the probe itself has not run. The old builder is not cleared and candidate-003 is not authorized. Exact delta is zero: marked tasks remain 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, and F151/F152, B08, and Wave 2 remain open. |
 | SW1 — 2026-09-06 |  |  |  |  |  |  |  |  |  |
 | SW2 — 2026-09-13 |  |  |  |  |  |  |  |  | Solo Block 1 target |
 | SW3 — 2026-09-20 |  |  |  |  |  |  |  |  |  |

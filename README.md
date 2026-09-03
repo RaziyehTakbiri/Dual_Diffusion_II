@@ -27,6 +27,22 @@ manuscript revision and its AWS Databricks execution handoff.
   historical exact-byte review of the superseded V1 builder.
 - `PROJECT_B08_N1_ISOLATED_OVERLAY_LOCK_CANDIDATE_BUILDER_V2_INDEPENDENT_REVIEW.md`:
   active hostile zero-delta acceptance of the exact N1 V2 notebook and tests.
+- `PROJECT_B08_N1_CANDIDATE_002_TERMINAL_NO_GO.md`: frozen record of the spent
+  candidate-002 construction failure before any network or package operation.
+- `PROJECT_B08_N1_CANDIDATE_002_FORENSIC_V1_BINDING_MISMATCH.md`: preserved V1
+  forensic mismatch caused by applying device/inode semantics to managed object
+  storage.
+- `PROJECT_B08_N1_CANDIDATE_002_OBJECT_SNAPSHOT_FORENSICS_V2_OUTCOME.md`: the
+  successful two-snapshot classification of candidate-002 as
+  `STABLY_COMPLETE_EXPECTED_INTENT_VISIBLE`.
+- `databricks/notebooks/b08_n1_candidate_002_object_snapshot_forensics_v2.py`
+  and `PROJECT_B08_N1_CANDIDATE_002_OBJECT_SNAPSHOT_FORENSICS_V2_INDEPENDENT_REVIEW.md`:
+  the exact accepted read-only forensic source and its hostile review.
+- `databricks/notebooks/b08_n1_uc_volume_write_capability_probe.py`: exact
+  bounded, data-free successor capability probe for the selected Unity Catalog
+  Volume path.
+- `PROJECT_B08_N1_UC_VOLUME_WRITE_CAPABILITY_PROBE_INDEPENDENT_REVIEW.md`:
+  independent source acceptance for one exact authorized probe run.
 
 ## Databricks boundary
 
@@ -52,34 +68,45 @@ expected reason for constructing a separate native overlay; they are not an
 F151 or F152 receipt. The exact N1 overlay/lock-candidate notebook is now
 independently accepted as
 `PASS_N1_ISOLATED_OVERLAY_LOCK_CANDIDATE_BUILDER_V2_ZERO_DELTA`. Data-free
-preflights have run, but no construction has succeeded. F151, F152, B08, and
-Wave 2 remain open until bounded Databricks construction and separate
-acceptance of its resulting evidence.
+preflights have run, but no construction has succeeded. Candidate-002 is
+permanently spent: its repeatable path-visible snapshots contain exactly the
+expected intent and failure receipt. That resolves the forensic uncertainty but
+leaves the existing builder's POSIX durability/identity assumptions unsuitable
+for reuse on the Unity Catalog Volume. F151, F152, B08, and Wave 2 remain open.
 
 The operator helpers and templates are already present at their canonical
 `requirements/`, `research/diagnostics/`, and `research/fixtures/` paths.
 Preserve those paths when running or reviewing the bundle.
 
-The data-free native-runtime discovery step in
-`databricks/notebooks/b08_n1_native_runtime_discovery.py` is complete. The next
-operator action is deliberately read-only:
+The data-free native-runtime discovery and candidate-002 forensic steps are
+complete. The next operator action is the independently accepted bounded Unity
+Catalog Volume write-capability probe:
 
 1. commit and push the complete current repository, then pull that exact commit
    into the Databricks Git folder;
-2. choose an existing Unity Catalog Volume and a new absent child such as
-   `/Volumes/<catalog>/<schema>/<volume>/b08-n1-overlay-candidate-001`;
-3. open `databricks/notebooks/b08_n1_isolated_overlay_lock_candidate.py`, attach
-   the same DBR 17.3 x86_64 cluster, and enter only that destination path;
-4. leave execution mode at `PREFLIGHT_ONLY`, network/build authorization at
-   `false`, and acknowledgement at `NOT_AUTHORIZED`;
-5. use **Run all** once and retain the complete JSON output for review.
+2. open `databricks/notebooks/b08_n1_uc_volume_write_capability_probe.py` and
+   attach the same dedicated DBR 17.3 x86_64 cluster;
+3. use **Run all** once with the three default values `PREFLIGHT_ONLY`, `false`,
+   and `NOT_AUTHORIZED`; this read-only run materializes the dropdowns and
+   should return `HOLD_UC_VOLUME_PROBE_AUTHORITY_INCOMPLETE`, both leaves
+   `ABSENT`, and no preflight errors;
+4. stop and return that JSON if any of those conditions differs; otherwise set
+   the three dropdowns exactly to
+   `RUN_ONE_BOUNDED_UC_VOLUME_WRITE_CAPABILITY_PROBE`, `true`, and
+   `AUTHORIZE_ONE_DATA_FREE_UC_VOLUME_WRITE_CAPABILITY_PROBE_001`;
+5. use **Run all** once for the authorized probe and retain the complete JSON
+   output for review.
 
-That preflight performs no network access, package resolution, installation,
-Spark/REST operation, data access, calibration, training, or inference. Do not
-enable the construction gates or reuse a candidate path before the preflight
-output is reviewed. With those three gates deliberately left off, the expected
-top-level decision is `HOLD_PREFLIGHT_INPUTS_OR_AUTHORITY_INCOMPLETE`; that is
-the safe preflight state, not a runtime-profile failure.
+Do not manually enter or invent a destination path. The notebook is bound to
+the existing parent
+`/Volumes/development/team_eds_supplychain/b08_runtime_output` and exactly two
+retained probe leaves. If either leaf exists, stop; do not delete, rename,
+repair, or reuse it. If the result says cluster termination is required before
+forensics, terminate the cluster and stop. The probe performs no package
+resolution, direct external network contact, Spark/REST operation, study/test-data
+access, calibration, training, or inference. Even a PASS authorizes no
+candidate construction: a separately implemented and reviewed Unity Catalog
+Volume-native successor writer must follow.
 
 ## Repository hygiene
 
