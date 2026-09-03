@@ -9,9 +9,11 @@
 # MAGIC transfers to the builder, the launcher performs no network, Spark, REST,
 # MAGIC study-data, package, or filesystem-write operation.
 # MAGIC The active launcher cannot cryptographically self-attest its own bytes:
-# MAGIC executing the exact reviewed, Git-tracked launcher is the operator-held
-# MAGIC procedural trust anchor. Its launch evidence is therefore an operator-
-# MAGIC attested binding, not an unforgeable self-attestation.
+# MAGIC executing the reviewed launcher is the operator-held procedural trust
+# MAGIC anchor. Its source binding ignores exactly one optional terminal LF,
+# MAGIC because Databricks may omit that semantically inert byte when
+# MAGIC materializing a source-format notebook. Its launch evidence is therefore
+# MAGIC an operator-attested binding, not an unforgeable self-attestation.
 
 # COMMAND ----------
 
@@ -30,8 +32,16 @@ LAUNCHER_RELATIVE_PATH = PurePosixPath(
     "databricks/notebooks/b08_n1_uc_native_overlay_lock_candidate_launcher.py"
 )
 BUILDER_BYTE_LIMIT = 4 * 1024 * 1024
-LAUNCH_SCHEMA = "heterodiff-b08-n1-hash-first-launch-v1"
+LAUNCH_SCHEMA = "heterodiff-b08-n1-hash-first-launch-v2"
+LAUNCHER_SOURCE_IDENTITY_KIND = (
+    "SHA256_OF_CANONICAL_LAUNCHER_PAYLOAD"
+)
+LAUNCHER_TERMINAL_LF_POLICY = "IGNORE_EXACTLY_ONE_OPTIONAL_TERMINAL_LF"
 _DBUTILS = globals().get("dbutils")
+
+
+def canonical_launcher_payload(payload):
+    return payload[:-1] if payload.endswith(b"\n") else payload
 
 
 def launcher_parameter():
@@ -192,8 +202,9 @@ def main():
     )
     observed_sha256 = hashlib.sha256(payload).hexdigest()
     observed_size = len(payload)
-    launcher_sha256 = hashlib.sha256(launcher_payload).hexdigest()
-    launcher_size = len(launcher_payload)
+    launcher_identity_payload = canonical_launcher_payload(launcher_payload)
+    launcher_sha256 = hashlib.sha256(launcher_identity_payload).hexdigest()
+    launcher_size = len(launcher_identity_payload)
     if re.fullmatch(r"[0-9a-f]{64}", expected_sha256 or "") is None:
         print(
             json.dumps(
@@ -235,8 +246,10 @@ def main():
         "executed_payload_sha256": observed_sha256,
         "executed_payload_size_bytes": observed_size,
         "launcher_relative_path": LAUNCHER_RELATIVE_PATH.as_posix(),
+        "launcher_source_identity_kind": LAUNCHER_SOURCE_IDENTITY_KIND,
         "launcher_source_sha256": launcher_sha256,
         "launcher_source_size_bytes": launcher_size,
+        "launcher_terminal_lf_policy": LAUNCHER_TERMINAL_LF_POLICY,
         "same_in_memory_payload_compiled_and_executed": True,
     }
     namespace = {

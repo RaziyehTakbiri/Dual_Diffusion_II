@@ -35,11 +35,16 @@
 # MAGIC launcher. Construction additionally requires the execution mode,
 # MAGIC network/build authority, exact one-shot acknowledgement, and an exact
 # MAGIC review-package authorization token issued only after the default preflight
-# MAGIC output is independently reviewed. A direct builder-notebook run cannot
-# MAGIC authorize construction.
+# MAGIC output is independently reviewed. A normal direct builder-notebook run
+# MAGIC lacks the required launcher evidence and is not a supported construction
+# MAGIC entry point.
 # MAGIC The caller-supplied launch evidence is procedural operator attestation;
-# MAGIC the exact reviewed, Git-tracked launcher is the trust anchor and cannot
-# MAGIC cryptographically self-attest its own active bytes.
+# MAGIC the exact reviewed launcher is the trust anchor and cannot
+# MAGIC cryptographically self-attest its own active bytes. Databricks standard
+# MAGIC Git folders need not expose Git CLI metadata, so source identity is
+# MAGIC established instead by a hard-pinned, offline-reviewed content snapshot.
+# MAGIC Runtime source-mode presentation and one optional terminal LF on the
+# MAGIC launcher are excluded from identity; selected build-input bytes are not.
 # MAGIC
 # MAGIC The output is a candidate requiring independent review. It does not update
 # MAGIC the repository lock, close F152/B08/Wave 2, or authorize runtime use.
@@ -82,11 +87,17 @@ ACKNOWLEDGEMENT_TEXT = (
 REVIEW_AUTHORIZATION_PREFIX = (
     "AUTHORIZE_REVIEWED_CANDIDATE_003_PACKAGE_SHA256_"
 )
-REVIEW_PACKAGE_DOMAIN = b"heterodiff/b08/n1/candidate-003-review-package/v1\0"
-HASH_FIRST_LAUNCH_SCHEMA = "heterodiff-b08-n1-hash-first-launch-v1"
-GIT_REVISION_VERIFICATION_STATE = (
-    "VERIFIED_READ_ONLY_BEFORE_INTENT_POST_INTENT_RECHECK_REQUIRED_"
-    "BEFORE_NETWORK_OR_BUILD"
+REVIEW_PACKAGE_DOMAIN = b"heterodiff/b08/n1/candidate-003-review-package/v2\0"
+HASH_FIRST_LAUNCH_SCHEMA = "heterodiff-b08-n1-hash-first-launch-v2"
+LAUNCHER_SOURCE_IDENTITY_KIND = (
+    "SHA256_OF_CANONICAL_LAUNCHER_PAYLOAD"
+)
+SOURCE_IDENTITY_DOMAIN = (
+    b"heterodiff/b08/n1/content-addressed-source-identity/v2\0"
+)
+SOURCE_IDENTITY_VERIFICATION_STATE = (
+    "REVIEWED_SNAPSHOT_VERIFIED_AT_PREFLIGHT_BEFORE_INTENT_AND_"
+    "AFTER_INTENT_BEFORE_NETWORK_OR_BUILD"
 )
 
 
@@ -258,14 +269,36 @@ BUILDER_NOTEBOOK_RELATIVE_PATH = Path(
 LAUNCHER_NOTEBOOK_RELATIVE_PATH = Path(
     "databricks/notebooks/b08_n1_uc_native_overlay_lock_candidate_launcher.py"
 )
-NOTEBOOK_SCHEMA = "heterodiff-b08-n1-uc-native-overlay-construction-v1"
-MANIFEST_SCHEMA = "heterodiff-b08-n1-uc-native-overlay-manifest-v1"
-RECEIPT_SCHEMA = "heterodiff-b08-n1-uc-native-overlay-receipt-v1"
-ATTEMPT_INTENT_SCHEMA = "heterodiff-b08-n1-uc-native-attempt-intent-v1"
+SOURCE_SNAPSHOT_RELATIVE_PATH = Path(
+    "requirements/b08-n1-candidate-003-project-source-snapshot-v1.json"
+)
+EXPECTED_SOURCE_SNAPSHOT_FILE_SHA256 = (
+    "1e9ee7f36286333e7f8936acf61068597c7ea23338b663aad7cabd441c794ebe"
+)
+EXPECTED_SOURCE_SNAPSHOT_FILE_SIZE_BYTES = 726
+EXPECTED_PROJECT_SOURCE_MANIFEST_SHA256 = (
+    "0e2decc9d0c6dbb4ff6b41dec4ee78b6139ea2aa8a419880e3e06ff4f8716021"
+)
+EXPECTED_PROJECT_SOURCE_FILE_COUNT = 304
+EXPECTED_PROJECT_SOURCE_TOTAL_SIZE_BYTES = 18_924_848
+REVIEWED_SOURCE_GIT_COMMIT = "c13b3ac0d8585b6af65f3aac6bfff16872ce9f55"
+REVIEWED_SOURCE_DATE_EPOCH = 1_788_447_596
+SOURCE_SNAPSHOT_SCHEMA = (
+    "heterodiff-b08-n1-reviewed-project-source-snapshot-v1"
+)
+SOURCE_IDENTITY_SCHEMA = (
+    "heterodiff-b08-n1-content-addressed-source-identity-v2"
+)
+CANONICAL_SOURCE_MODE_OCTAL = "0644"
+LAUNCHER_TERMINAL_LF_POLICY = "IGNORE_EXACTLY_ONE_OPTIONAL_TERMINAL_LF"
+NOTEBOOK_SCHEMA = "heterodiff-b08-n1-uc-native-overlay-construction-v2"
+MANIFEST_SCHEMA = "heterodiff-b08-n1-uc-native-overlay-manifest-v2"
+RECEIPT_SCHEMA = "heterodiff-b08-n1-uc-native-overlay-receipt-v2"
+ATTEMPT_INTENT_SCHEMA = "heterodiff-b08-n1-uc-native-attempt-intent-v2"
 FAILURE_RECEIPT_SCHEMA = "heterodiff-b08-n1-uc-native-failure-receipt-v1"
 SOURCE_MANIFEST_DOMAIN = b"heterodiff/b08/n1/project-source-manifest/v1\0"
-OVERLAY_MANIFEST_DOMAIN = b"heterodiff/b08/n1/uc-native-overlay-manifest/v1\0"
-ATTEMPT_INTENT_DOMAIN = b"heterodiff/b08/n1/uc-native-attempt-intent/v1\0"
+OVERLAY_MANIFEST_DOMAIN = b"heterodiff/b08/n1/uc-native-overlay-manifest/v2\0"
+ATTEMPT_INTENT_DOMAIN = b"heterodiff/b08/n1/uc-native-attempt-intent/v2\0"
 
 EXPECTED_DISTRIBUTIONS = {
     "heterodiff": "0.1.0",
@@ -982,19 +1015,19 @@ def candidate_review_package(
     source_manifest,
     builder_source_binding,
     launcher_source_binding,
-    source_git_binding,
+    source_identity_binding,
     profile_validation,
     review_binding,
     probe_review_binding,
     probe_outcome_binding,
 ):
     projection = {
-        "schema_version": "heterodiff-b08-n1-candidate-003-review-package-v1",
+        "schema_version": "heterodiff-b08-n1-candidate-003-review-package-v2",
         "builder_source_binding": builder_source_binding,
         "launcher_source_binding": launcher_source_binding,
         "project_source_manifest_sha256": source_manifest["record_sha256"],
         "project_source_file_count": len(source_manifest["files"]),
-        "source_git_binding": source_git_binding,
+        "source_identity_binding": source_identity_binding,
         "native_profile_file_sha256": profile_validation["file_sha256"],
         "native_profile_semantic_sha256": profile_validation[
             "semantic_sha256"
@@ -1034,8 +1067,10 @@ def validate_hash_first_launch_evidence(
         "executed_payload_sha256",
         "executed_payload_size_bytes",
         "launcher_relative_path",
+        "launcher_source_identity_kind",
         "launcher_source_sha256",
         "launcher_source_size_bytes",
+        "launcher_terminal_lf_policy",
         "same_in_memory_payload_compiled_and_executed",
     }
     if type(evidence) is not dict:
@@ -1049,8 +1084,10 @@ def validate_hash_first_launch_evidence(
         "executed_payload_sha256": builder_source_binding["sha256"],
         "executed_payload_size_bytes": builder_source_binding["size_bytes"],
         "launcher_relative_path": LAUNCHER_NOTEBOOK_RELATIVE_PATH.as_posix(),
+        "launcher_source_identity_kind": LAUNCHER_SOURCE_IDENTITY_KIND,
         "launcher_source_sha256": launcher_source_binding["sha256"],
         "launcher_source_size_bytes": launcher_source_binding["size_bytes"],
+        "launcher_terminal_lf_policy": LAUNCHER_TERMINAL_LF_POLICY,
         "same_in_memory_payload_compiled_and_executed": True,
     }
     if evidence != expected:
@@ -1083,15 +1120,16 @@ def preflight():
         "UC_VOLUME_PROBE_001_OUTCOME",
     )
     source_manifest = project_source_manifest(repo_root)
-    builder_source_binding = regular_file_binding(
+    builder_source_binding = canonical_source_binding(
         repo_root,
         BUILDER_NOTEBOOK_RELATIVE_PATH,
         "BUILDER_NOTEBOOK",
     )
-    launcher_source_binding = regular_file_binding(
+    launcher_source_binding = canonical_source_binding(
         repo_root,
         LAUNCHER_NOTEBOOK_RELATIVE_PATH,
         "HASH_FIRST_LAUNCHER_NOTEBOOK",
+        ignore_one_optional_terminal_lf=True,
     )
     authorized_review_package_sha256 = parse_review_package_authorization(
         REVIEW_PACKAGE_AUTHORIZATION
@@ -1113,63 +1151,42 @@ def preflight():
     )
 
     errors = list(profile_validation["errors"])
-    source_git_preflight_journal = []
     try:
-        (
-            source_git_revision,
-            source_git_epoch,
-            source_git_provenance,
-        ) = git_identity(
+        source_identity_binding = reviewed_source_snapshot_identity(
             repo_root,
-            source_git_preflight_journal,
-            read_only_tool_environment(),
-            PRIMARY_SIMPLE_INDEX_URL,
-            PYTORCH_CPU_SIMPLE_INDEX_URL,
-            None,
-            None,
             source_manifest,
             builder_source_binding,
             launcher_source_binding,
         )
-    except (CandidateConstructionError, OSError) as git_error:
-        source_git_preflight = {
+    except (CandidateConstructionError, OSError) as source_error:
+        source_identity_preflight = {
             "exact": False,
-            "revision": None,
-            "source_date_epoch": None,
-            "provenance": None,
+            "identity": None,
             "error_code": (
-                git_error.code
-                if isinstance(git_error, CandidateConstructionError)
-                else "SOURCE_GIT_PREFLIGHT_FILESYSTEM_FAILED"
+                source_error.code
+                if isinstance(source_error, CandidateConstructionError)
+                else "SOURCE_IDENTITY_PREFLIGHT_FILESYSTEM_FAILED"
             ),
             "error_detail": (
-                git_error.detail
-                if isinstance(git_error, CandidateConstructionError)
-                else type(git_error).__name__
+                source_error.detail
+                if isinstance(source_error, CandidateConstructionError)
+                else type(source_error).__name__
             ),
-            "command_journal": source_git_preflight_journal,
         }
-        errors.append("BOUND_SOURCE_GIT_PREFLIGHT_FAILED")
+        errors.append("REVIEWED_SOURCE_SNAPSHOT_PREFLIGHT_FAILED")
     else:
-        source_git_preflight = {
+        source_identity_preflight = {
             "exact": True,
-            "revision": source_git_revision,
-            "source_date_epoch": source_git_epoch,
-            "provenance": source_git_provenance,
+            "identity": source_identity_binding,
             "error_code": None,
             "error_detail": None,
-            "command_journal": source_git_preflight_journal,
         }
-    if source_git_preflight["exact"]:
-        source_git_review_binding = {
-            key: source_git_preflight[key]
-            for key in ("revision", "source_date_epoch", "provenance")
-        }
+    if source_identity_preflight["exact"]:
         review_package = candidate_review_package(
             source_manifest,
             builder_source_binding,
             launcher_source_binding,
-            source_git_review_binding,
+            source_identity_binding,
             profile_validation,
             review_binding,
             probe_review_binding,
@@ -1252,7 +1269,7 @@ def preflight():
 
     construction_authorized = (
         profile_validation["valid"]
-        and source_git_preflight["exact"]
+        and source_identity_preflight["exact"]
         and not errors
         and not required_inputs
         and EXECUTION_MODE == CONSTRUCT_MODE
@@ -1284,7 +1301,7 @@ def preflight():
         "builder_source_binding": builder_source_binding,
         "launcher_source_binding": launcher_source_binding,
         "review_package": review_package,
-        "source_git_preflight": source_git_preflight,
+        "source_identity_preflight": source_identity_preflight,
         "authorized_review_package_sha256": (
             authorized_review_package_sha256
         ),
@@ -1304,7 +1321,7 @@ def preflight():
             "bounded_widget_input_accessed": _WIDGET_INPUT_ACCESSED,
             "databricks_rest_api_accessed": False,
             "direct_external_network_or_contact_accessed": False,
-            "read_only_local_git_child_processes_executed": True,
+            "read_only_local_git_child_processes_executed": False,
             "databricks_managed_uc_metadata_io_may_have_been_performed": True,
             "package_resolution_executed": False,
             "project_wheel_build_executed": False,
@@ -1484,7 +1501,7 @@ def project_source_manifest(repo_root):
     records = []
     total_size = 0
     for path in sources:
-        relative, payload, observed_mode = read_physical_source_bytes(
+        relative, payload, _observed_mode = read_physical_source_bytes(
             path, repo_root
         )
         size = len(payload)
@@ -1494,13 +1511,15 @@ def project_source_manifest(repo_root):
                 "SOURCE_TOTAL_BYTE_LIMIT_EXCEEDED"
             )
         digest = sha256_bytes(payload)
-        canonical_mode = 0o755 if observed_mode & 0o111 else 0o644
         records.append(
             {
                 "relative_path": relative.as_posix(),
                 "sha256": digest,
                 "size_bytes": size,
-                "mode_octal": format(canonical_mode, "04o"),
+                # Databricks workspace materialization may present source files
+                # as executable. Build identity and staging use the reviewed,
+                # transport-stable source mode instead of mount presentation.
+                "mode_octal": CANONICAL_SOURCE_MODE_OCTAL,
             }
         )
     if not records:
@@ -1539,20 +1558,231 @@ def regular_file_binding(repo_root, relative_path, label):
     }
 
 
+def canonical_source_binding(
+    repo_root,
+    relative_path,
+    label,
+    ignore_one_optional_terminal_lf=False,
+):
+    path = repo_root / relative_path
+    try:
+        relative, payload, _observed_mode = read_physical_source_bytes(
+            path, repo_root
+        )
+    except CandidateConstructionError as error:
+        raise CandidateConstructionError(
+            label + "_NOT_PHYSICAL_REGULAR_FILE",
+            relative_path.as_posix(),
+        ) from error
+    if relative != relative_path:
+        raise CandidateConstructionError(label + "_RELATIVE_PATH_MISMATCH")
+    canonical_payload = payload
+    if ignore_one_optional_terminal_lf and canonical_payload.endswith(b"\n"):
+        canonical_payload = canonical_payload[:-1]
+    binding = {
+        "relative_path": relative_path.as_posix(),
+        "sha256": sha256_bytes(canonical_payload),
+        "size_bytes": len(canonical_payload),
+        "canonical_mode_octal": CANONICAL_SOURCE_MODE_OCTAL,
+        "runtime_mode_used_for_identity": False,
+    }
+    if ignore_one_optional_terminal_lf:
+        binding["terminal_lf_policy"] = LAUNCHER_TERMINAL_LF_POLICY
+    else:
+        binding["terminal_lf_policy"] = "EXACT_BYTES"
+    return binding
+
+
+def reviewed_source_snapshot_identity(
+    repo_root,
+    source_manifest,
+    builder_source_binding,
+    launcher_source_binding,
+):
+    snapshot_relative, snapshot_raw, _snapshot_mode = (
+        read_physical_source_bytes(
+            repo_root / SOURCE_SNAPSHOT_RELATIVE_PATH,
+            repo_root,
+        )
+    )
+    if snapshot_relative != SOURCE_SNAPSHOT_RELATIVE_PATH:
+        raise CandidateConstructionError(
+            "SOURCE_SNAPSHOT_RELATIVE_PATH_MISMATCH"
+        )
+    snapshot_file_sha256 = sha256_bytes(snapshot_raw)
+    if (
+        snapshot_file_sha256 != EXPECTED_SOURCE_SNAPSHOT_FILE_SHA256
+        or len(snapshot_raw) != EXPECTED_SOURCE_SNAPSHOT_FILE_SIZE_BYTES
+    ):
+        raise CandidateConstructionError(
+            "SOURCE_SNAPSHOT_FILE_BINDING_MISMATCH"
+        )
+    try:
+        snapshot = json.loads(snapshot_raw.decode("ascii"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise CandidateConstructionError(
+            "SOURCE_SNAPSHOT_NOT_CANONICAL_ASCII_JSON"
+        ) from error
+    if snapshot_raw != canonical_json_bytes(snapshot) + b"\n":
+        raise CandidateConstructionError(
+            "SOURCE_SNAPSHOT_BYTES_NOT_CANONICAL_JSON_PLUS_NEWLINE"
+        )
+    expected_snapshot = {
+        "declared_git_commit": REVIEWED_SOURCE_GIT_COMMIT,
+        "declared_git_commit_epoch": REVIEWED_SOURCE_DATE_EPOCH,
+        "git_commit_declaration_basis": (
+            "OFFLINE_REPOSITORY_REVIEW_NOT_RUNTIME_ATTESTATION"
+        ),
+        "live_git_checkout_identity_claimed": False,
+        "project_source_file_count": EXPECTED_PROJECT_SOURCE_FILE_COUNT,
+        "project_source_manifest_sha256": (
+            EXPECTED_PROJECT_SOURCE_MANIFEST_SHA256
+        ),
+        "project_source_total_size_bytes": (
+            EXPECTED_PROJECT_SOURCE_TOTAL_SIZE_BYTES
+        ),
+        "runtime_git_metadata_required": False,
+        "schema_version": SOURCE_SNAPSHOT_SCHEMA,
+        "selected_source_definition": (
+            "README.md, pyproject.toml, and recursively sorted "
+            "src/heterodiff/**/*.py"
+        ),
+        "source_date_epoch": REVIEWED_SOURCE_DATE_EPOCH,
+        "staging_mode_octal": CANONICAL_SOURCE_MODE_OCTAL,
+        "whole_repository_cleanliness_claimed": False,
+    }
+    if snapshot != expected_snapshot:
+        raise CandidateConstructionError(
+            "SOURCE_SNAPSHOT_SEMANTIC_BINDING_MISMATCH"
+        )
+    records = source_manifest.get("files")
+    if type(records) is not list or not records:
+        raise CandidateConstructionError("SOURCE_MANIFEST_FILES_INVALID")
+    paths = []
+    total_size = 0
+    for record in records:
+        if type(record) is not dict or set(record) != {
+            "relative_path",
+            "sha256",
+            "size_bytes",
+            "mode_octal",
+        }:
+            raise CandidateConstructionError("SOURCE_MANIFEST_RECORD_INVALID")
+        relative_path = record["relative_path"]
+        if (
+            type(relative_path) is not str
+            or not is_selected_project_source_path(relative_path)
+            or relative_path in paths
+            or record["mode_octal"] != CANONICAL_SOURCE_MODE_OCTAL
+            or re.fullmatch(r"[0-9a-f]{64}", record["sha256"] or "")
+            is None
+            or type(record["size_bytes"]) is not int
+            or isinstance(record["size_bytes"], bool)
+            or record["size_bytes"] < 0
+        ):
+            raise CandidateConstructionError(
+                "SOURCE_MANIFEST_RECORD_BINDING_INVALID"
+            )
+        paths.append(relative_path)
+        total_size += record["size_bytes"]
+    if paths != [
+        "pyproject.toml",
+        "README.md",
+        *sorted(path for path in paths if path.startswith("src/heterodiff/")),
+    ]:
+        raise CandidateConstructionError("SOURCE_MANIFEST_PATH_ORDER_INVALID")
+    manifest_projection = {
+        "schema_version": "heterodiff-b08-n1-project-source-manifest-v1",
+        "files": records,
+    }
+    recomputed_manifest_sha256 = sha256_bytes(
+        SOURCE_MANIFEST_DOMAIN + canonical_json_bytes(manifest_projection)
+    )
+    if (
+        set(source_manifest) != {"schema_version", "files", "record_sha256"}
+        or source_manifest.get("schema_version")
+        != manifest_projection["schema_version"]
+        or source_manifest.get("record_sha256")
+        != EXPECTED_PROJECT_SOURCE_MANIFEST_SHA256
+        or recomputed_manifest_sha256
+        != EXPECTED_PROJECT_SOURCE_MANIFEST_SHA256
+        or len(records) != EXPECTED_PROJECT_SOURCE_FILE_COUNT
+        or total_size != EXPECTED_PROJECT_SOURCE_TOTAL_SIZE_BYTES
+    ):
+        raise CandidateConstructionError(
+            "SOURCE_MANIFEST_DIFFERS_FROM_REVIEWED_SNAPSHOT"
+        )
+    for binding, expected_path, expected_policy in (
+        (
+            builder_source_binding,
+            BUILDER_NOTEBOOK_RELATIVE_PATH.as_posix(),
+            "EXACT_BYTES",
+        ),
+        (
+            launcher_source_binding,
+            LAUNCHER_NOTEBOOK_RELATIVE_PATH.as_posix(),
+            LAUNCHER_TERMINAL_LF_POLICY,
+        ),
+    ):
+        if (
+            type(binding) is not dict
+            or binding.get("relative_path") != expected_path
+            or re.fullmatch(r"[0-9a-f]{64}", binding.get("sha256", ""))
+            is None
+            or type(binding.get("size_bytes")) is not int
+            or isinstance(binding.get("size_bytes"), bool)
+            or binding["size_bytes"] <= 0
+            or binding.get("canonical_mode_octal")
+            != CANONICAL_SOURCE_MODE_OCTAL
+            or binding.get("runtime_mode_used_for_identity") is not False
+            or binding.get("terminal_lf_policy") != expected_policy
+        ):
+            raise CandidateConstructionError(
+                "EXECUTION_SOURCE_BINDING_INVALID", expected_path
+            )
+    projection = {
+        "schema_version": SOURCE_IDENTITY_SCHEMA,
+        "identity_kind": "REVIEWED_CONTENT_ADDRESSED_SOURCE_SNAPSHOT",
+        "reviewed_snapshot_anchor": {
+            "relative_path": SOURCE_SNAPSHOT_RELATIVE_PATH.as_posix(),
+            "sha256": snapshot_file_sha256,
+            "size_bytes": len(snapshot_raw),
+            "canonical_mode_octal": CANONICAL_SOURCE_MODE_OCTAL,
+            "runtime_mode_used_for_identity": False,
+        },
+        "offline_declared_git_commit": REVIEWED_SOURCE_GIT_COMMIT,
+        "source_date_epoch": REVIEWED_SOURCE_DATE_EPOCH,
+        "project_source_manifest_sha256": source_manifest["record_sha256"],
+        "project_source_file_count": len(records),
+        "project_source_total_size_bytes": total_size,
+        "construction_notebook": builder_source_binding,
+        "hash_first_launcher": launcher_source_binding,
+        "selected_source_bytes_match_reviewed_snapshot": True,
+        "runtime_git_metadata_consulted": False,
+        "live_git_checkout_identity_verified": False,
+        "whole_repository_cleanliness_checked": False,
+    }
+    return {
+        **projection,
+        "record_sha256": sha256_bytes(
+            SOURCE_IDENTITY_DOMAIN + canonical_json_bytes(projection)
+        ),
+    }
+
+
 def copy_source_tree(repo_root, source_manifest, destination):
     destination.mkdir(mode=0o750)
     for record in source_manifest["files"]:
         source = repo_root / record["relative_path"]
         target = destination / record["relative_path"]
-        relative, payload, observed_mode = read_physical_source_bytes(
+        relative, payload, _observed_mode = read_physical_source_bytes(
             source, repo_root
         )
-        canonical_mode = 0o755 if observed_mode & 0o111 else 0o644
         if (
             relative.as_posix() != record["relative_path"]
             or sha256_bytes(payload) != record["sha256"]
             or len(payload) != record["size_bytes"]
-            or format(canonical_mode, "04o") != record["mode_octal"]
+            or record["mode_octal"] != CANONICAL_SOURCE_MODE_OCTAL
         ):
             raise CandidateConstructionError(
                 "SOURCE_CHANGED_BEFORE_STAGING_COPY"
@@ -5646,9 +5876,11 @@ def initial_attempt_state():
         "managed_uc_last_confirmed_binding": None,
         "managed_uc_confirmed_bindings": [],
         "staging_write_begun": False,
-        "preintent_git_verification_begun": False,
-        "preintent_git_verification_completed": False,
-        "source_identity_verification_begun": False,
+        "preintent_source_identity_verification_begun": False,
+        "preintent_source_identity_verification_completed": False,
+        "postintent_source_identity_verification_begun": False,
+        "postintent_source_identity_verification_completed": False,
+        "staged_source_manifest_verified": False,
         "network_contact_begun": False,
         "package_resolution_begun": False,
         "isolated_venv_creation_begun": False,
@@ -5705,7 +5937,7 @@ def build_attempt_intent(
     review_binding,
     probe_review_binding,
     probe_outcome_binding,
-    preintent_git_binding,
+    preintent_source_identity,
     source_manifest,
     builder_binding,
     launcher_binding,
@@ -5728,19 +5960,18 @@ def build_attempt_intent(
             "uc_volume_probe_001_outcome": probe_outcome_binding,
         },
         "source": {
-            "git_revision": preintent_git_binding["revision"],
-            "source_date_epoch": preintent_git_binding[
+            "reviewed_source_identity": preintent_source_identity,
+            "source_date_epoch": preintent_source_identity[
                 "source_date_epoch"
             ],
-            "git_revision_verification_state": (
-                GIT_REVISION_VERIFICATION_STATE
+            "source_identity_verification_state": (
+                SOURCE_IDENTITY_VERIFICATION_STATE
             ),
-            "preintent_git_provenance": preintent_git_binding[
-                "provenance"
-            ],
             "source_manifest_sha256": source_manifest["record_sha256"],
             "construction_notebook": builder_binding,
             "hash_first_launcher": launcher_binding,
+            "live_git_checkout_identity_verified": False,
+            "whole_repository_cleanliness_checked": False,
         },
         "external_review_authority": {
             "review_package": review_package,
@@ -5993,7 +6224,7 @@ def construct_candidate(preflight_result):
             raise CandidateConstructionError(
                 "PROJECT_SOURCE_MANIFEST_CHANGED_AFTER_PREFLIGHT"
             )
-        builder_source_binding = regular_file_binding(
+        builder_source_binding = canonical_source_binding(
             repo_root,
             BUILDER_NOTEBOOK_RELATIVE_PATH,
             "BUILDER_NOTEBOOK",
@@ -6004,10 +6235,11 @@ def construct_candidate(preflight_result):
             raise CandidateConstructionError(
                 "BUILDER_SOURCE_BINDING_CHANGED_AFTER_PREFLIGHT"
             )
-        launcher_source_binding = regular_file_binding(
+        launcher_source_binding = canonical_source_binding(
             repo_root,
             LAUNCHER_NOTEBOOK_RELATIVE_PATH,
             "HASH_FIRST_LAUNCHER_NOTEBOOK",
+            ignore_one_optional_terminal_lf=True,
         )
         if launcher_source_binding != preflight_result[
             "launcher_source_binding"
@@ -6022,52 +6254,32 @@ def construct_candidate(preflight_result):
             raise CandidateConstructionError(
                 "HASH_FIRST_LAUNCH_EVIDENCE_REQUIRED"
             )
-        attempt_state["preintent_git_verification_begun"] = True
-        (
-            preintent_revision,
-            preintent_source_date_epoch,
-            preintent_source_provenance,
-        ) = git_identity(
+        attempt_state[
+            "preintent_source_identity_verification_begun"
+        ] = True
+        preintent_source_identity = reviewed_source_snapshot_identity(
             repo_root,
-            journal,
-            provisional_environment,
-            primary_url,
-            torch_url,
-            None,
-            None,
             source_manifest,
             builder_source_binding,
             launcher_source_binding,
         )
-        preintent_git_binding = {
-            "revision": preintent_revision,
-            "source_date_epoch": preintent_source_date_epoch,
-            "provenance": preintent_source_provenance,
-        }
-        expected_git_preflight = preflight_result.get(
-            "source_git_preflight"
+        expected_source_preflight = preflight_result.get(
+            "source_identity_preflight"
         )
         if (
-            type(expected_git_preflight) is not dict
-            or expected_git_preflight.get("exact") is not True
-            or any(
-                expected_git_preflight.get(key)
-                != preintent_git_binding[key]
-                for key in (
-                    "revision",
-                    "source_date_epoch",
-                    "provenance",
-                )
-            )
+            type(expected_source_preflight) is not dict
+            or expected_source_preflight.get("exact") is not True
+            or expected_source_preflight.get("identity")
+            != preintent_source_identity
         ):
             raise CandidateConstructionError(
-                "SOURCE_GIT_BINDING_CHANGED_AFTER_PREFLIGHT"
+                "SOURCE_IDENTITY_CHANGED_AFTER_PREFLIGHT"
             )
         review_package = candidate_review_package(
             source_manifest,
             builder_source_binding,
             launcher_source_binding,
-            preintent_git_binding,
+            preintent_source_identity,
             profile_validation,
             preflight_result["v2_independent_review_binding"],
             preflight_result["uc_volume_probe_review_binding"],
@@ -6081,13 +6293,15 @@ def construct_candidate(preflight_result):
             raise CandidateConstructionError(
                 "REVIEW_PACKAGE_AUTHORITY_CHANGED_AFTER_PREFLIGHT"
             )
-        attempt_state["preintent_git_verification_completed"] = True
+        attempt_state[
+            "preintent_source_identity_verification_completed"
+        ] = True
         attempt_intent, attempt_intent_bytes = build_attempt_intent(
             profile_validation,
             preflight_result["v2_independent_review_binding"],
             preflight_result["uc_volume_probe_review_binding"],
             preflight_result["uc_volume_probe_outcome_binding"],
-            preintent_git_binding,
+            preintent_source_identity,
             source_manifest,
             builder_source_binding,
             launcher_source_binding,
@@ -6157,28 +6371,42 @@ def construct_candidate(preflight_result):
             attempt_intent_sha256,
             len(attempt_intent_bytes),
         )
-        revision, source_date_epoch, source_provenance = git_identity(
+        attempt_state[
+            "postintent_source_identity_verification_begun"
+        ] = True
+        postintent_source_manifest = project_source_manifest(repo_root)
+        postintent_builder_source_binding = canonical_source_binding(
             repo_root,
-            journal,
-            provisional_environment,
-            primary_url,
-            torch_url,
-            attempt_state,
-            destination_binding,
-            source_manifest,
-            builder_source_binding,
-            launcher_source_binding,
+            BUILDER_NOTEBOOK_RELATIVE_PATH,
+            "BUILDER_NOTEBOOK",
+        )
+        postintent_launcher_source_binding = canonical_source_binding(
+            repo_root,
+            LAUNCHER_NOTEBOOK_RELATIVE_PATH,
+            "HASH_FIRST_LAUNCHER_NOTEBOOK",
+            ignore_one_optional_terminal_lf=True,
+        )
+        postintent_source_identity = reviewed_source_snapshot_identity(
+            repo_root,
+            postintent_source_manifest,
+            postintent_builder_source_binding,
+            postintent_launcher_source_binding,
         )
         if (
-            revision != preintent_git_binding["revision"]
-            or source_date_epoch
-            != preintent_git_binding["source_date_epoch"]
-            or source_provenance != preintent_git_binding["provenance"]
+            postintent_source_manifest != source_manifest
+            or postintent_builder_source_binding != builder_source_binding
+            or postintent_launcher_source_binding != launcher_source_binding
+            or postintent_source_identity != preintent_source_identity
         ):
             raise CandidateConstructionError(
-                "SOURCE_GIT_BINDING_CHANGED_AFTER_INTENT",
+                "SOURCE_IDENTITY_CHANGED_AFTER_INTENT",
                 telemetry=immutable_json_snapshot(attempt_state),
             )
+        attempt_state[
+            "postintent_source_identity_verification_completed"
+        ] = True
+        source_identity = postintent_source_identity
+        source_date_epoch = source_identity["source_date_epoch"]
         attempt_state["command_journal"] = list(journal)
         try:
             staging_root = Path(tempfile.mkdtemp(prefix="heterodiff-b08-n1-"))
@@ -6219,6 +6447,13 @@ def construct_candidate(preflight_result):
         )
 
         copy_source_tree(repo_root, source_manifest, copied_source)
+        staged_source_manifest = project_source_manifest(copied_source)
+        if staged_source_manifest != source_manifest:
+            raise CandidateConstructionError(
+                "STAGED_SOURCE_MANIFEST_MISMATCH",
+                telemetry=immutable_json_snapshot(attempt_state),
+            )
+        attempt_state["staged_source_manifest_verified"] = True
 
         verify_durable_intent_custody(
             destination_binding,
@@ -6544,11 +6779,12 @@ def construct_candidate(preflight_result):
                 ],
             },
             "source": {
-                "git_revision": revision,
-                "bound_source_head_index_worktree_exact": True,
+                "reviewed_source_identity": source_identity,
+                "selected_source_bytes_match_reviewed_snapshot": True,
+                "live_git_checkout_identity_verified": False,
+                "whole_repository_cleanliness_checked": False,
                 "source_date_epoch": source_date_epoch,
                 "manifest": source_manifest,
-                "git_provenance": source_provenance,
                 "construction_notebook": builder_source_binding,
                 "hash_first_launcher": launcher_source_binding,
                 "external_review_package": review_package,
@@ -6644,6 +6880,8 @@ def construct_candidate(preflight_result):
                 "LARGE_OBJECT_WRITE_GENERALIZATION_FROM_PROBE",
                 "CAPACITY_OR_STORAGE_RESERVATION",
                 "DRIVER_WORKER_EQUIVALENCE",
+                "LIVE_GIT_CHECKOUT_IDENTITY",
+                "WHOLE_REPOSITORY_CLEANLINESS",
                 "THIRD_PARTY_CHILD_PROCESS_UNRELATED_FILE_ACCESS_ABSENT",
                 "THIRD_PARTY_CHILD_PROCESS_SIDE_EFFECTS_OUTSIDE_STAGING_ABSENT",
                 "THIRD_PARTY_CHILD_PROCESS_NETWORK_ENDPOINT_CONFINEMENT",
@@ -6702,9 +6940,10 @@ def construct_candidate(preflight_result):
             "uc_volume_probe_outcome_sha256": preflight_result[
                 "uc_volume_probe_outcome_binding"
             ]["sha256"],
-            "source_revision": revision,
+            "reviewed_source_identity": source_identity,
             "source_manifest_sha256": source_manifest["record_sha256"],
-            "source_git_provenance": source_provenance,
+            "live_git_checkout_identity_verified": False,
+            "whole_repository_cleanliness_checked": False,
             "construction_notebook": builder_source_binding,
             "hash_first_launcher": launcher_source_binding,
             "external_review_package": review_package,

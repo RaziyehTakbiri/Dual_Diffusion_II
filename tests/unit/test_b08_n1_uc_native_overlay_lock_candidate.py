@@ -232,16 +232,9 @@ def test_default_widgets_hold_without_network_or_write(
     fake_dbutils = _Dbutils()
     source_before = NOTEBOOK.read_bytes()
     monkeypatch.setattr(socket, "socket", _forbidden("network attempted"))
-    real_popen = subprocess.Popen
-    observed_git_commands = []
-
-    def allow_bounded_read_only_git(command, *args, **kwargs):
-        assert isinstance(command, (list, tuple))
-        assert command and Path(command[0]).name == "git"
-        observed_git_commands.append(tuple(command))
-        return real_popen(command, *args, **kwargs)
-
-    monkeypatch.setattr(subprocess, "Popen", allow_bounded_read_only_git)
+    monkeypatch.setattr(
+        subprocess, "Popen", _forbidden("child process attempted")
+    )
     monkeypatch.setattr(tempfile, "mkdtemp", _forbidden("temp write attempted"))
     monkeypatch.setattr(venv.EnvBuilder, "create", _forbidden("venv attempted"))
     original_open = os.open
@@ -274,7 +267,11 @@ def test_default_widgets_hold_without_network_or_write(
     assert result["decision"].startswith("HOLD_")
     assert result["safety"]["files_written"] is False
     assert result["safety"]["direct_external_network_or_contact_accessed"] is False
-    assert observed_git_commands
+    assert result["source_identity_preflight"]["exact"] is True
+    assert "source_git_preflight" not in result
+    assert result["safety"][
+        "read_only_local_git_child_processes_executed"
+    ] is False
     assert fake_dbutils.widgets.defaults == {
         "b08_n1_uc_native_execution_mode": "PREFLIGHT_ONLY",
         "b08_n1_uc_native_network_build_authorized": "false",
@@ -363,13 +360,17 @@ def _install_ready_preflight_fakes(module, monkeypatch):
         "relative_path": module["BUILDER_NOTEBOOK_RELATIVE_PATH"].as_posix(),
         "sha256": "b" * 64,
         "size_bytes": 101,
-        "mode_octal": "0644",
+        "canonical_mode_octal": "0644",
+        "runtime_mode_used_for_identity": False,
+        "terminal_lf_policy": "EXACT_BYTES",
     }
     launcher = {
         "relative_path": module["LAUNCHER_NOTEBOOK_RELATIVE_PATH"].as_posix(),
         "sha256": "c" * 64,
         "size_bytes": 102,
-        "mode_octal": "0644",
+        "canonical_mode_octal": "0644",
+        "runtime_mode_used_for_identity": False,
+        "terminal_lf_policy": module["LAUNCHER_TERMINAL_LF_POLICY"],
     }
     source_manifest = {
         "record_sha256": "d" * 64,
@@ -382,10 +383,12 @@ def _install_ready_preflight_fakes(module, monkeypatch):
             }
         ],
     }
-    source_git_binding = {
-        "revision": "a" * 40,
-        "source_date_epoch": 1_700_000_000,
-        "provenance": {"projection_sha256": "f" * 64},
+    source_identity = {
+        "schema_version": module["SOURCE_IDENTITY_SCHEMA"],
+        "record_sha256": "f" * 64,
+        "source_date_epoch": module["REVIEWED_SOURCE_DATE_EPOCH"],
+        "selected_source_bytes_match_reviewed_snapshot": True,
+        "live_git_checkout_identity_verified": False,
     }
     by_label = {
         "V2_INDEPENDENT_REVIEW": review,
@@ -420,12 +423,13 @@ def _install_ready_preflight_fakes(module, monkeypatch):
     )
     monkeypatch.setitem(
         globals_,
-        "git_identity",
-        lambda *args, **kwargs: (
-            source_git_binding["revision"],
-            source_git_binding["source_date_epoch"],
-            source_git_binding["provenance"],
-        ),
+        "canonical_source_binding",
+        lambda root, path, label, **kwargs: dict(by_label[label]),
+    )
+    monkeypatch.setitem(
+        globals_,
+        "reviewed_source_snapshot_identity",
+        lambda *args, **kwargs: dict(source_identity),
     )
     monkeypatch.setitem(
         globals_, "object_kind", lambda path: "ABSENT"
@@ -449,7 +453,7 @@ def _install_ready_preflight_fakes(module, monkeypatch):
         source_manifest,
         builder,
         launcher,
-        source_git_binding,
+        source_identity,
         profile_validation,
         review,
         probe_review,
@@ -462,8 +466,14 @@ def _install_ready_preflight_fakes(module, monkeypatch):
         "executed_payload_sha256": builder["sha256"],
         "executed_payload_size_bytes": builder["size_bytes"],
         "launcher_relative_path": launcher["relative_path"],
+        "launcher_source_identity_kind": module[
+            "LAUNCHER_SOURCE_IDENTITY_KIND"
+        ],
         "launcher_source_sha256": launcher["sha256"],
         "launcher_source_size_bytes": launcher["size_bytes"],
+        "launcher_terminal_lf_policy": module[
+            "LAUNCHER_TERMINAL_LF_POLICY"
+        ],
         "same_in_memory_payload_compiled_and_executed": True,
     }
     ready = {
@@ -557,6 +567,22 @@ def test_preflight_requires_exact_review_package_authorization_and_hash_launch(
     invalid = module["preflight"]()
     assert invalid["construction_authorized"] is False
     assert "HASH_FIRST_LAUNCH_EVIDENCE_BINDING_MISMATCH" in invalid["errors"]
+
+    missing_policy = dict(evidence)
+    del missing_policy["launcher_terminal_lf_policy"]
+    validated, errors = module["validate_hash_first_launch_evidence"](
+        missing_policy, builder, launcher
+    )
+    assert validated is None
+    assert errors == ["HASH_FIRST_LAUNCH_EVIDENCE_SHAPE_INVALID"]
+
+    wrong_policy = dict(evidence)
+    wrong_policy["launcher_terminal_lf_policy"] = "EXACT_BYTES"
+    validated, errors = module["validate_hash_first_launch_evidence"](
+        wrong_policy, builder, launcher
+    )
+    assert validated is None
+    assert errors == ["HASH_FIRST_LAUNCH_EVIDENCE_BINDING_MISMATCH"]
 
     validated, errors = module["validate_hash_first_launch_evidence"](
         evidence, builder, launcher
@@ -1852,7 +1878,7 @@ def test_candidate_root_is_created_before_all_candidate_children():
     assert all(parent < child for child in child_creates)
 
 
-def test_construct_rebinds_git_review_package_before_attempt_intent():
+def test_construct_rebinds_source_identity_review_package_before_attempt_intent():
     tree = ast.parse(NOTEBOOK.read_text(encoding="utf-8"))
     construct = next(
         node
@@ -1871,17 +1897,19 @@ def test_construct_rebinds_git_review_package_before_attempt_intent():
     review_call = review_calls[0]
     assert len(review_call.args) == 8
     assert isinstance(review_call.args[3], ast.Name)
-    assert review_call.args[3].id == "preintent_git_binding"
+    assert review_call.args[3].id == "preintent_source_identity"
 
     construct_source = ast.get_source_segment(
         NOTEBOOK.read_text(encoding="utf-8"), construct
     )
     assert construct_source is not None
-    git_rebind = construct_source.index("preintent_git_binding = {")
+    source_rebind = construct_source.index(
+        "preintent_source_identity = reviewed_source_snapshot_identity("
+    )
     review_rebind = construct_source.index("candidate_review_package(")
     attempt_intent = construct_source.index("build_attempt_intent(")
     durable_start = construct_source.index("start_durable_attempt(")
-    assert git_rebind < review_rebind < attempt_intent < durable_start
+    assert source_rebind < review_rebind < attempt_intent < durable_start
 
 
 def test_real_ensurepip_observation_is_portable_and_matches_runtime(module):
@@ -3610,17 +3638,18 @@ def test_attempt_intent_binds_namespace_evidence_and_network_hashes(module):
         "schema_version": module["HASH_FIRST_LAUNCH_SCHEMA"],
         "same_in_memory_payload_compiled_and_executed": True,
     }
-    preintent_git_binding = {
-        "revision": "a" * 40,
+    preintent_source_identity = {
+        "record_sha256": "a" * 64,
         "source_date_epoch": 1_700_000_000,
-        "provenance": {"projection_sha256": "b" * 64},
+        "selected_source_bytes_match_reviewed_snapshot": True,
+        "live_git_checkout_identity_verified": False,
     }
     record, payload = module["build_attempt_intent"](
         profile,
         binding,
         probe_review,
         probe_outcome,
-        preintent_git_binding,
+        preintent_source_identity,
         source_manifest,
         builder,
         launcher,
@@ -3639,16 +3668,17 @@ def test_attempt_intent_binds_namespace_evidence_and_network_hashes(module):
     assert record["record_sha256"] == expected_record_hash
     assert payload == module["canonical_json_bytes"](record) + b"\n"
     assert record["state"] == "ATTEMPT_SPENT_BEFORE_NETWORK_OR_BUILD"
-    assert record["source"]["git_revision"] == preintent_git_binding["revision"]
+    assert record["source"]["reviewed_source_identity"] == (
+        preintent_source_identity
+    )
     assert record["source"]["source_date_epoch"] == (
-        preintent_git_binding["source_date_epoch"]
+        preintent_source_identity["source_date_epoch"]
     )
-    assert record["source"]["preintent_git_provenance"] == (
-        preintent_git_binding["provenance"]
+    assert record["source"]["source_identity_verification_state"] == (
+        module["SOURCE_IDENTITY_VERIFICATION_STATE"]
     )
-    assert record["source"]["git_revision_verification_state"] == (
-        module["GIT_REVISION_VERIFICATION_STATE"]
-    )
+    assert record["source"]["live_git_checkout_identity_verified"] is False
+    assert record["source"]["whole_repository_cleanliness_checked"] is False
     assert record["destination"]["reserved_leaf_names"] == list(
         module["reserved_candidate_leaf_names"]()
     )
@@ -3689,6 +3719,326 @@ def test_runtime_profile_observation_explicitly_limits_exactness_claim(module):
         "service",
         "spark_version",
     }
+
+
+def _materialize_reviewed_snapshot_repo(
+    module,
+    tmp_path,
+    *,
+    executable_presentation=False,
+    launcher_without_terminal_lf=False,
+):
+    repo = tmp_path / "snapshot-repo"
+    (repo / "src").mkdir(parents=True)
+    shutil.copytree(ROOT / "src" / "heterodiff", repo / "src" / "heterodiff")
+    selected = (
+        Path("README.md"),
+        Path("pyproject.toml"),
+        module["SOURCE_SNAPSHOT_RELATIVE_PATH"],
+        module["BUILDER_NOTEBOOK_RELATIVE_PATH"],
+        module["LAUNCHER_NOTEBOOK_RELATIVE_PATH"],
+    )
+    for relative in selected:
+        target = repo / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(ROOT / relative, target)
+    if launcher_without_terminal_lf:
+        launcher = repo / module["LAUNCHER_NOTEBOOK_RELATIVE_PATH"]
+        payload = launcher.read_bytes()
+        assert payload.endswith(b"\n")
+        launcher.write_bytes(payload[:-1])
+    if executable_presentation:
+        for path in (
+            repo / "README.md",
+            repo / "pyproject.toml",
+            *(repo / "src" / "heterodiff").rglob("*.py"),
+            repo / module["SOURCE_SNAPSHOT_RELATIVE_PATH"],
+            repo / module["BUILDER_NOTEBOOK_RELATIVE_PATH"],
+            repo / module["LAUNCHER_NOTEBOOK_RELATIVE_PATH"],
+        ):
+            path.chmod(0o755)
+    return repo
+
+
+def _reviewed_snapshot_bindings(module, repo):
+    manifest = module["project_source_manifest"](repo)
+    builder = module["canonical_source_binding"](
+        repo,
+        module["BUILDER_NOTEBOOK_RELATIVE_PATH"],
+        "BUILDER_NOTEBOOK",
+    )
+    launcher = module["canonical_source_binding"](
+        repo,
+        module["LAUNCHER_NOTEBOOK_RELATIVE_PATH"],
+        "HASH_FIRST_LAUNCHER_NOTEBOOK",
+        ignore_one_optional_terminal_lf=True,
+    )
+    return manifest, builder, launcher
+
+
+def test_reviewed_snapshot_identity_is_gitless_mode_and_lf_transport_stable(
+    module, monkeypatch, tmp_path
+):
+    repo = _materialize_reviewed_snapshot_repo(
+        module,
+        tmp_path,
+        executable_presentation=True,
+        launcher_without_terminal_lf=True,
+    )
+    assert not (repo / ".git").exists()
+    monkeypatch.setattr(
+        subprocess, "Popen", _forbidden("Git or child process attempted")
+    )
+    manifest, builder, launcher = _reviewed_snapshot_bindings(module, repo)
+    identity = module["reviewed_source_snapshot_identity"](
+        repo, manifest, builder, launcher
+    )
+
+    assert manifest["record_sha256"] == (
+        module["EXPECTED_PROJECT_SOURCE_MANIFEST_SHA256"]
+    )
+    assert len(manifest["files"]) == module["EXPECTED_PROJECT_SOURCE_FILE_COUNT"]
+    assert {record["mode_octal"] for record in manifest["files"]} == {"0644"}
+    assert builder["canonical_mode_octal"] == "0644"
+    assert launcher["canonical_mode_octal"] == "0644"
+    assert identity["selected_source_bytes_match_reviewed_snapshot"] is True
+    assert identity["runtime_git_metadata_consulted"] is False
+    assert identity["live_git_checkout_identity_verified"] is False
+    assert identity["whole_repository_cleanliness_checked"] is False
+    projection = dict(identity)
+    digest = projection.pop("record_sha256")
+    assert digest == hashlib.sha256(
+        module["SOURCE_IDENTITY_DOMAIN"]
+        + module["canonical_json_bytes"](projection)
+    ).hexdigest()
+
+
+def test_reviewed_snapshot_rejects_one_byte_source_change(module, tmp_path):
+    repo = _materialize_reviewed_snapshot_repo(module, tmp_path)
+    source = repo / "src" / "heterodiff" / "__init__.py"
+    source.write_bytes(source.read_bytes() + b"\n")
+    manifest, builder, launcher = _reviewed_snapshot_bindings(module, repo)
+
+    with pytest.raises(module["CandidateConstructionError"]) as raised:
+        module["reviewed_source_snapshot_identity"](
+            repo, manifest, builder, launcher
+        )
+    assert _error_code(raised) == "SOURCE_MANIFEST_DIFFERS_FROM_REVIEWED_SNAPSHOT"
+
+
+def test_reviewed_snapshot_rejects_anchor_substitution(module, tmp_path):
+    repo = _materialize_reviewed_snapshot_repo(module, tmp_path)
+    anchor = repo / module["SOURCE_SNAPSHOT_RELATIVE_PATH"]
+    anchor.write_bytes(anchor.read_bytes().replace(b"304", b"305", 1))
+    manifest, builder, launcher = _reviewed_snapshot_bindings(module, repo)
+
+    with pytest.raises(module["CandidateConstructionError"]) as raised:
+        module["reviewed_source_snapshot_identity"](
+            repo, manifest, builder, launcher
+        )
+    assert _error_code(raised) == "SOURCE_SNAPSHOT_FILE_BINDING_MISMATCH"
+
+
+def test_reviewed_snapshot_rejects_unreviewed_extra_source(module, tmp_path):
+    repo = _materialize_reviewed_snapshot_repo(module, tmp_path)
+    (repo / "src" / "heterodiff" / "unreviewed_extra.py").write_bytes(
+        b"UNREVIEWED = True\n"
+    )
+    manifest, builder, launcher = _reviewed_snapshot_bindings(module, repo)
+
+    with pytest.raises(module["CandidateConstructionError"]) as raised:
+        module["reviewed_source_snapshot_identity"](
+            repo, manifest, builder, launcher
+        )
+    assert _error_code(raised) == "SOURCE_MANIFEST_DIFFERS_FROM_REVIEWED_SNAPSHOT"
+
+
+def test_launcher_binding_ignores_exactly_one_optional_terminal_lf(
+    module, tmp_path
+):
+    repo = _materialize_reviewed_snapshot_repo(module, tmp_path)
+    relative = module["LAUNCHER_NOTEBOOK_RELATIVE_PATH"]
+    with_lf = module["canonical_source_binding"](
+        repo,
+        relative,
+        "HASH_FIRST_LAUNCHER_NOTEBOOK",
+        ignore_one_optional_terminal_lf=True,
+    )
+    launcher = repo / relative
+    launcher.write_bytes(launcher.read_bytes()[:-1])
+    without_lf = module["canonical_source_binding"](
+        repo,
+        relative,
+        "HASH_FIRST_LAUNCHER_NOTEBOOK",
+        ignore_one_optional_terminal_lf=True,
+    )
+    assert with_lf == without_lf
+    launcher.write_bytes(launcher.read_bytes() + b"\n\n")
+    two_lf = module["canonical_source_binding"](
+        repo,
+        relative,
+        "HASH_FIRST_LAUNCHER_NOTEBOOK",
+        ignore_one_optional_terminal_lf=True,
+    )
+    assert two_lf != without_lf
+
+
+def test_nonterminal_launcher_change_invalidates_review_package(
+    module, tmp_path
+):
+    repo = _materialize_reviewed_snapshot_repo(module, tmp_path)
+    manifest, builder, launcher = _reviewed_snapshot_bindings(module, repo)
+    identity = module["reviewed_source_snapshot_identity"](
+        repo, manifest, builder, launcher
+    )
+    profile = {"file_sha256": "1" * 64, "semantic_sha256": "2" * 64}
+    review = {"relative_path": "review", "sha256": "3" * 64}
+    probe_review = {"relative_path": "probe-review", "sha256": "4" * 64}
+    probe_outcome = {"relative_path": "probe-outcome", "sha256": "5" * 64}
+    original = module["candidate_review_package"](
+        manifest,
+        builder,
+        launcher,
+        identity,
+        profile,
+        review,
+        probe_review,
+        probe_outcome,
+    )
+
+    launcher_path = repo / module["LAUNCHER_NOTEBOOK_RELATIVE_PATH"]
+    payload = launcher_path.read_bytes()
+    launcher_path.write_bytes(b"# changed\n" + payload)
+    changed_launcher = module["canonical_source_binding"](
+        repo,
+        module["LAUNCHER_NOTEBOOK_RELATIVE_PATH"],
+        "HASH_FIRST_LAUNCHER_NOTEBOOK",
+        ignore_one_optional_terminal_lf=True,
+    )
+    changed_identity = module["reviewed_source_snapshot_identity"](
+        repo, manifest, builder, changed_launcher
+    )
+    changed = module["candidate_review_package"](
+        manifest,
+        builder,
+        changed_launcher,
+        changed_identity,
+        profile,
+        review,
+        probe_review,
+        probe_outcome,
+    )
+
+    assert changed_launcher["sha256"] != launcher["sha256"]
+    assert changed["record_sha256"] != original["record_sha256"]
+
+
+def test_builder_change_invalidates_launch_and_review_authorization(
+    module, tmp_path
+):
+    repo = _materialize_reviewed_snapshot_repo(module, tmp_path)
+    manifest, builder, launcher = _reviewed_snapshot_bindings(module, repo)
+    identity = module["reviewed_source_snapshot_identity"](
+        repo, manifest, builder, launcher
+    )
+    profile = {"file_sha256": "1" * 64, "semantic_sha256": "2" * 64}
+    review = {"relative_path": "review", "sha256": "3" * 64}
+    probe_review = {"relative_path": "probe-review", "sha256": "4" * 64}
+    probe_outcome = {"relative_path": "probe-outcome", "sha256": "5" * 64}
+    original = module["candidate_review_package"](
+        manifest,
+        builder,
+        launcher,
+        identity,
+        profile,
+        review,
+        probe_review,
+        probe_outcome,
+    )
+    launch_evidence = {
+        "schema_version": module["HASH_FIRST_LAUNCH_SCHEMA"],
+        "builder_relative_path": builder["relative_path"],
+        "operator_expected_builder_sha256": builder["sha256"],
+        "executed_payload_sha256": builder["sha256"],
+        "executed_payload_size_bytes": builder["size_bytes"],
+        "launcher_relative_path": launcher["relative_path"],
+        "launcher_source_identity_kind": module[
+            "LAUNCHER_SOURCE_IDENTITY_KIND"
+        ],
+        "launcher_source_sha256": launcher["sha256"],
+        "launcher_source_size_bytes": launcher["size_bytes"],
+        "launcher_terminal_lf_policy": module[
+            "LAUNCHER_TERMINAL_LF_POLICY"
+        ],
+        "same_in_memory_payload_compiled_and_executed": True,
+    }
+
+    changed_builder = dict(builder)
+    changed_builder["sha256"] = "f" * 64
+    changed_identity = module["reviewed_source_snapshot_identity"](
+        repo, manifest, changed_builder, launcher
+    )
+    changed = module["candidate_review_package"](
+        manifest,
+        changed_builder,
+        launcher,
+        changed_identity,
+        profile,
+        review,
+        probe_review,
+        probe_outcome,
+    )
+    validated, errors = module["validate_hash_first_launch_evidence"](
+        launch_evidence, changed_builder, launcher
+    )
+
+    assert validated is None
+    assert errors == ["HASH_FIRST_LAUNCH_EVIDENCE_BINDING_MISMATCH"]
+    assert changed["record_sha256"] != original["record_sha256"]
+
+
+def test_source_copy_uses_reviewed_mode_not_runtime_mount_mode(module, tmp_path):
+    repo = tmp_path / "source"
+    package = repo / "src" / "heterodiff"
+    package.mkdir(parents=True)
+    (repo / "pyproject.toml").write_bytes(b"[project]\nname='mode-test'\n")
+    (repo / "README.md").write_bytes(b"mode test\n")
+    (package / "__init__.py").write_bytes(b"VALUE = 1\n")
+    for path in (repo / "pyproject.toml", repo / "README.md", package / "__init__.py"):
+        path.chmod(0o755)
+    manifest = module["project_source_manifest"](repo)
+    destination = tmp_path / "copied"
+
+    module["copy_source_tree"](repo, manifest, destination)
+
+    assert module["project_source_manifest"](destination) == manifest
+    for record in manifest["files"]:
+        copied = destination / record["relative_path"]
+        assert stat.S_IMODE(copied.stat().st_mode) == 0o644
+
+
+def test_active_preflight_and_construct_never_call_git_identity():
+    source = NOTEBOOK.read_text(encoding="utf-8")
+    tree = ast.parse(source)
+    functions = {
+        node.name: node
+        for node in tree.body
+        if isinstance(node, ast.FunctionDef)
+    }
+    for name in ("preflight", "construct_candidate"):
+        calls = {
+            node.func.id
+            for node in ast.walk(functions[name])
+            if isinstance(node, ast.Call) and isinstance(node.func, ast.Name)
+        }
+        assert "git_identity" not in calls
+    construct_source = ast.get_source_segment(source, functions["construct_candidate"])
+    assert construct_source is not None
+    postintent = construct_source.index(
+        "postintent_source_identity = reviewed_source_snapshot_identity("
+    )
+    staging = construct_source.index("tempfile.mkdtemp(")
+    assert postintent < staging
 
 
 def _git_source_binding(path, repo_root):

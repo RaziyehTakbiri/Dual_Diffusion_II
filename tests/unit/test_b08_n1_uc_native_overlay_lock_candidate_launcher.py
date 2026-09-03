@@ -138,14 +138,33 @@ def test_exact_hash_compiles_and_executes_the_same_in_memory_payload_with_eviden
         "executed_payload_sha256": expected_sha256,
         "executed_payload_size_bytes": len(payload),
         "launcher_relative_path": launcher["LAUNCHER_RELATIVE_PATH"].as_posix(),
+        "launcher_source_identity_kind": launcher[
+            "LAUNCHER_SOURCE_IDENTITY_KIND"
+        ],
         "launcher_source_sha256": hashlib.sha256(
-            launcher_path.read_bytes()
+            launcher["canonical_launcher_payload"](launcher_path.read_bytes())
         ).hexdigest(),
-        "launcher_source_size_bytes": len(launcher_path.read_bytes()),
+        "launcher_source_size_bytes": len(
+            launcher["canonical_launcher_payload"](launcher_path.read_bytes())
+        ),
+        "launcher_terminal_lf_policy": launcher[
+            "LAUNCHER_TERMINAL_LF_POLICY"
+        ],
         "same_in_memory_payload_compiled_and_executed": True,
     }
     assert namespace["__file__"] == str(builder)
     assert namespace["__name__"] == "__main__"
+
+
+def test_launcher_identity_ignores_one_optional_terminal_lf_only(launcher):
+    payload = b"print('launcher')"
+    canonical = launcher["canonical_launcher_payload"]
+    assert canonical(payload) == payload
+    assert canonical(payload + b"\n") == payload
+    assert canonical(payload + b"\n\n") == payload + b"\n"
+    assert hashlib.sha256(canonical(payload)).hexdigest() == hashlib.sha256(
+        canonical(payload + b"\n")
+    ).hexdigest()
 
 
 def test_absent_builder_fails_closed_before_compile_or_exec(
