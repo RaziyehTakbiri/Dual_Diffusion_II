@@ -751,6 +751,33 @@ open / 5 closed; Formal Tests remain `OPEN`/`OPEN`/`PENDING`; results remain
 0/4; and F151/F152, B08, and Wave 2 remain open. Construction remains
 unauthorized.**
 
+**Additive candidate-003 V2 Databricks default-off preflight checkpoint
+(2026-09-03): COMPLETE.** The operator-supplied V2 preflight is registered in
+the [outcome record](PROJECT_B08_N1_UC_NATIVE_OVERLAY_LOCK_CANDIDATE_003_V2_DATABRICKS_PREFLIGHT_OUTCOME.md)
+and independently accepted by the [hostile review](PROJECT_B08_N1_UC_NATIVE_OVERLAY_LOCK_CANDIDATE_003_V2_DATABRICKS_PREFLIGHT_INDEPENDENT_REVIEW.md)
+as
+`PASS_DATABRICKS_V2_DEFAULT_OFF_PREFLIGHT_REVIEW_PACKAGE_REPRODUCED_CANDIDATE_003_UNSPENT_AS_OBSERVED`,
+with P0/P1/P2 `0/0/0` and 194/194 focused tests. The error-free HOLD is the
+expected safe outcome: exact builder `7c7edb28...`, canonical launcher
+`7035ee3f...`, 304-file source manifest `0e2decc9...`, source-identity record
+`9716f236...`, and review-package digest `5404dd58...` all reproduce; the
+wheel-selection ABI runtime, 15-variable environment, and V2 profile are exact;
+the candidate-003 prefix and all 132 reserved leaves are absent; and the
+canonical F152 lock is absent. Only the deliberately withheld construction
+mode, network/build authority, one-shot acknowledgement, and package token
+remain unset. No write, network, resolution, build, install, data, Spark, REST,
+or scientific operation occurred, so candidate-003 remains absent and unspent
+as observed. The exact reviewed package is now bound by a separate
+[one-shot authorization record](PROJECT_B08_N1_UC_NATIVE_OVERLAY_LOCK_CANDIDATE_003_V2_ONE_SHOT_CONSTRUCTION_AUTHORIZATION.md),
+accepted by its [independent hostile review](PROJECT_B08_N1_UC_NATIVE_OVERLAY_LOCK_CANDIDATE_003_V2_ONE_SHOT_CONSTRUCTION_AUTHORIZATION_INDEPENDENT_REVIEW.md)
+with P0/P1/P2 `0/0/0`, but operator activation and construction have not
+occurred. This non-counted
+checkpoint closes no operational checklist item: the marked view remains 62
+checked / 101 open / 163 total; fields remain 24 open / 148 closed (PRE
+23/143, POST 1/5); blockers remain 7 open / 5 closed; Formal Tests remain
+`OPEN`/`OPEN`/`PENDING`; results remain 0/4; and F151/F152, B08, and Wave 2
+remain open.**
+
 #### Solo Block 3 — SW5–8 — 2026-09-28 to 2026-10-25
 
 - [x] **Project control —
@@ -1447,6 +1474,7 @@ Update this table at each Sunday week close. A blank is not a zero.
 | 2026-09-03 UC Volume probe-001 execution checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The non-counted probe-execution checkpoint is complete and recorded as `PASS_UC_VOLUME_EXCLUSIVE_CREATE_AND_REPEATABLE_READBACK_CAPABILITY`. One spent data-free run used all four bounded exclusive-create calls, preserved a non-overwritten primary leaf, produced exactly one winner in the two-process race, and completed two exact readbacks of each retained 4 KiB leaf. The exact [outcome record](PROJECT_B08_N1_UC_VOLUME_WRITE_CAPABILITY_PROBE_001_OUTCOME.md) is 5,120 bytes with SHA-256 `f96160da93789d4749b3ce005182a0f57a49a5bc4408296d46ca4fd7fc71bcd7`. The leaves must not be rerun, deleted, renamed, repaired, replaced, or reused. This clears only the observed storage-behavior prerequisite; no operational task, field, blocker, Formal Test, result, lock, runtime, capacity, or science closes. Marked tasks remain 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, and F151/F152, B08, and Wave 2 remain open. |
 | 2026-09-03 UC-native candidate-003 builder source-acceptance checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The exact fixed builder/launcher successor is independently accepted as `PASS_UC_NATIVE_CANDIDATE_003_BUILDER_AND_HASH_FIRST_LAUNCHER_ZERO_DELTA`, with P0/P1/P2 `0/0/0`, 184/184 focused passes, and 685/685 broad B08 passes. It binds a flat 132-leaf append-only protocol, hash-first launch, clean Git source before intent, post-intent recheck before network/build, isolated wheel-only construction, complete artifact/installed-payload closure, and success-receipt ambiguity suppression. Current source is not yet committed, so the default local preflight correctly withholds the commit-dependent review package. Construction remains unauthorized and unexecuted. Exact delta is zero: marked tasks remain 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, and F151/F152, B08, and Wave 2 remain open. |
 | 2026-09-03 candidate-003 Databricks V1 HOLD / V2 portability-successor checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The V1 default-off Databricks preflight stopped solely because the standard Git folder exposed no usable local repository; it made no writes or external contact and left candidate-003 absent/unspent. The independently accepted V2 successor replaces only the failed prospective live-Git/runtime-presentation route with an exact reviewed 304-file content snapshot plus separately bound builder/launcher bytes, and claims neither live Git checkout identity nor whole-repository cleanliness. Both hostile audits report P0/P1/P2 0/0/0; 194/194 focused and 695/695 broad B08 tests pass, including Gitless and launcher-to-builder preflights. This non-counted corrective checkpoint has exact zero delta: marked tasks remain 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, results 0/4, and F151/F152, B08, and Wave 2 remain open; construction is unauthorized. |
+| 2026-09-03 candidate-003 V2 Databricks default-off preflight checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The complete operator-supplied V2 output is independently accepted as `PASS_DATABRICKS_V2_DEFAULT_OFF_PREFLIGHT_REVIEW_PACKAGE_REPRODUCED_CANDIDATE_003_UNSPENT_AS_OBSERVED`, with P0/P1/P2 0/0/0 and 194/194 focused tests. The error-free HOLD reproduces the exact builder, canonical launcher, reviewed 304-file source identity, runtime ABI/environment/profile, absent 132-leaf candidate namespace, absent canonical lock, and review-package digest `5404dd58...`. It performed no write/network/build/install/data/science action and leaves candidate-003 absent/unspent as observed. A separate exact-package-bound one-shot authorization record is independently accepted with P0/P1/P2 0/0/0, but operator activation and construction have not occurred. Exact delta is zero: marked tasks remain 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, results 0/4, and F151/F152, B08, and Wave 2 remain open. |
 | SW1 — 2026-09-06 |  |  |  |  |  |  |  |  |  |
 | SW2 — 2026-09-13 |  |  |  |  |  |  |  |  | Solo Block 1 target |
 | SW3 — 2026-09-20 |  |  |  |  |  |  |  |  |  |
