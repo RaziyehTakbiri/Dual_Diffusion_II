@@ -1410,6 +1410,73 @@ def test_failed_tool_step_records_truthful_phase_telemetry(
     os.close(binding["descriptor"])
 
 
+def test_failed_bootstrap_install_retains_phase_and_pip_provenance(
+    monkeypatch,
+    tmp_path,
+    capsys,
+):
+    namespace = _load_namespace(capsys)
+    _allow_local_test_ancestor(namespace, monkeypatch)
+    destination = tmp_path / "candidate"
+    intent = b'{"state":"spent"}\n'
+    binding = namespace["start_durable_attempt"](
+        destination,
+        _local_ancestor_binding(tmp_path),
+        intent,
+    )
+    state = namespace["initial_attempt_state"]()
+    state["durable_intent_committed"] = True
+    state["durable_intent_expected_sha256"] = hashlib.sha256(intent).hexdigest()
+    state["durable_intent_expected_size_bytes"] = len(intent)
+    state["host_pip_identity"] = {"pip_version": "25.0.1"}
+    state["bootstrap_pip_wheel_binding"] = {
+        "filename": "pip-25.0.1-py3-none-any.whl",
+        "sha256": "a" * 64,
+    }
+
+    monkeypatch.setattr(
+        subprocess,
+        "run",
+        lambda argv, **kwargs: subprocess.CompletedProcess(
+            argv,
+            1,
+            b"",
+            b"injected",
+        ),
+    )
+    journal = []
+    with pytest.raises(namespace["CandidateConstructionError"]) as caught:
+        namespace["run_tool"](
+            journal,
+            "bootstrap_pip_into_isolated_venv",
+            ["host-python", "-m", "pip", "--python", "venv", "install"],
+            tmp_path,
+            {},
+            namespace["PRIMARY_SIMPLE_INDEX_URL"],
+            namespace["PYTORCH_CPU_SIMPLE_INDEX_URL"],
+            state,
+            ("bootstrap_pip_install_begun", "build_tool_install_begun"),
+            binding,
+        )
+
+    assert caught.value.code == "TOOL_STEP_FAILED"
+    telemetry = caught.value.telemetry
+    assert telemetry["bootstrap_pip_install_begun"] is True
+    assert telemetry["build_tool_install_begun"] is True
+    assert telemetry["project_wheel_build_begun"] is False
+    assert telemetry["overlay_install_begun"] is False
+    assert telemetry["last_started_step"] == (
+        "bootstrap_pip_into_isolated_venv"
+    )
+    assert telemetry["last_failed_step"] == (
+        "bootstrap_pip_into_isolated_venv"
+    )
+    assert telemetry["host_pip_identity"] == {"pip_version": "25.0.1"}
+    assert telemetry["bootstrap_pip_wheel_binding"]["sha256"] == "a" * 64
+    assert journal[0]["returncode"] == 1
+    os.close(binding["descriptor"])
+
+
 def test_git_external_execution_config_is_rejected_after_intent(
     monkeypatch, tmp_path, capsys
 ):
@@ -2430,6 +2497,502 @@ def test_v2_profile_review_and_builder_are_bound_in_attempt_intent(capsys):
         "DEFERRED_GIT_REVISION_STATE"
     ]
     assert payload == namespace["canonical_json_bytes"](record) + b"\n"
+
+
+@pytest.mark.parametrize(
+    ("observed", "accepted"),
+    [
+        ("24.04.4 LTS", True),
+        ("Ubuntu 24.04.4 LTS", True),
+        ("Ubuntu 24.04.3 LTS", False),
+        ("Debian 24.04.4 LTS", False),
+        ("", False),
+        (None, False),
+    ],
+)
+def test_operating_system_release_accepts_only_profile_or_pretty_name(
+    observed,
+    accepted,
+    capsys,
+):
+    namespace = _load_namespace(capsys)
+    assert namespace["operating_system_release_matches"](
+        "Ubuntu",
+        "24.04.4 LTS",
+        observed,
+    ) is accepted
+
+
+def test_observe_runtime_preserves_pretty_name_without_false_release_mismatch(
+    monkeypatch,
+    capsys,
+):
+    namespace = _load_namespace(capsys)
+    profile, validation = namespace["validate_profile"](
+        ROOT / namespace["PROFILE_RELATIVE_PATH"]
+    )
+    assert validation["valid"] is True
+    monkeypatch.setitem(
+        namespace["observe_runtime"].__globals__,
+        "read_os_release",
+        lambda: {
+            "NAME": "Ubuntu",
+            "PRETTY_NAME": "Ubuntu 24.04.4 LTS",
+        },
+    )
+
+    result = namespace["observe_runtime"](profile)
+
+    assert result["observed"]["operating_system_release"] == (
+        "Ubuntu 24.04.4 LTS"
+    )
+    assert "operating_system_release" not in result["mismatches"]
+
+
+def test_pip_bootstrap_plan_records_observed_ensurepip_state(
+    monkeypatch,
+    capsys,
+):
+    namespace = _load_namespace(capsys)
+    globals_map = namespace["pip_bootstrap_plan"].__globals__
+
+    monkeypatch.setattr(
+        globals_map["importlib"].util,
+        "find_spec",
+        lambda name: None,
+    )
+    absent = namespace["pip_bootstrap_plan"]()
+    assert absent["required_pip_version"] == "25.0.1"
+    assert absent["ensurepip_observation"] == {
+        "available": False,
+        "origin": None,
+    }
+
+    fake_spec = type("FakeSpec", (), {"origin": "/stdlib/ensurepip/__init__.py"})()
+    monkeypatch.setattr(
+        globals_map["importlib"].util,
+        "find_spec",
+        lambda name: fake_spec,
+    )
+    present = namespace["pip_bootstrap_plan"]()
+    assert present["required_pip_version"] == "25.0.1"
+    assert present["ensurepip_observation"] == {
+        "available": True,
+        "origin": "/stdlib/ensurepip/__init__.py",
+    }
+
+
+def test_bind_pip_identity_rechecks_reported_files(
+    monkeypatch,
+    tmp_path,
+    capsys,
+):
+    namespace = _load_namespace(capsys)
+    module_file = tmp_path / "pip" / "__init__.py"
+    record_file = tmp_path / "pip-25.0.1.dist-info" / "RECORD"
+    module_file.parent.mkdir()
+    record_file.parent.mkdir()
+    module_file.write_bytes(b"__version__ = '25.0.1'\n")
+    record_file.write_bytes(b"pip/__init__.py,,\n")
+    python_executable = str(tmp_path / "python")
+
+    def identity_payload():
+        return json.dumps(
+            {
+                "pip_distribution_root": str(tmp_path.resolve()),
+                "pip_install_prefix": str(tmp_path.resolve()),
+                "pip_module_file": str(module_file.resolve()),
+                "pip_module_file_sha256": hashlib.sha256(
+                    module_file.read_bytes()
+                ).hexdigest(),
+                "pip_module_file_size_bytes": module_file.stat().st_size,
+                "pip_payload_closure_exact": True,
+                "pip_payload_file_count": 2,
+                "pip_payload_hashed_record_count": 0,
+                "pip_payload_manifest_sha256": "c" * 64,
+                "pip_payload_unhashed_record_count": 2,
+                "pip_payload_unrecorded_bytecode_count": 0,
+                "pip_record_file": str(record_file.resolve()),
+                "pip_record_file_sha256": hashlib.sha256(
+                    record_file.read_bytes()
+                ).hexdigest(),
+                "pip_record_file_size_bytes": record_file.stat().st_size,
+                "pip_version": "25.0.1",
+                "python_executable": str(Path(python_executable).resolve()),
+            },
+            sort_keys=True,
+        ).encode("utf-8")
+
+    frozen_payload = identity_payload()
+    identity_commands = []
+
+    def fake_identity_run_tool(*args, **kwargs):
+        identity_commands.append(list(args[2]))
+        return frozen_payload
+
+    monkeypatch.setitem(
+        namespace["bind_pip_identity"].__globals__,
+        "run_tool",
+        fake_identity_run_tool,
+    )
+    identity = namespace["bind_pip_identity"](
+        [],
+        "bind_test_pip",
+        python_executable,
+        tmp_path,
+        {},
+        namespace["PRIMARY_SIMPLE_INDEX_URL"],
+        namespace["PYTORCH_CPU_SIMPLE_INDEX_URL"],
+        {},
+        object(),
+        "25.0.1",
+        expected_root=tmp_path,
+    )
+    assert identity["pip_version"] == "25.0.1"
+    assert identity_commands == [
+        [
+            python_executable,
+            "-I",
+            "-B",
+            "-c",
+            namespace["PIP_IDENTITY_PROBE"],
+        ]
+    ]
+
+    invalid_closure = json.loads(frozen_payload)
+    invalid_closure["pip_payload_closure_exact"] = False
+    monkeypatch.setitem(
+        namespace["bind_pip_identity"].__globals__,
+        "run_tool",
+        lambda *args, **kwargs: json.dumps(invalid_closure).encode("utf-8"),
+    )
+    with pytest.raises(namespace["CandidateConstructionError"]) as caught:
+        namespace["bind_pip_identity"](
+            [],
+            "bind_test_pip",
+            python_executable,
+            tmp_path,
+            {},
+            namespace["PRIMARY_SIMPLE_INDEX_URL"],
+            namespace["PYTORCH_CPU_SIMPLE_INDEX_URL"],
+            {},
+            object(),
+            "25.0.1",
+            expected_root=tmp_path,
+        )
+    assert caught.value.code == "PIP_IDENTITY_PAYLOAD_CLOSURE_INVALID"
+
+    monkeypatch.setitem(
+        namespace["bind_pip_identity"].__globals__,
+        "run_tool",
+        lambda *args, **kwargs: frozen_payload,
+    )
+    module_file.write_bytes(b"changed\n")
+    with pytest.raises(namespace["CandidateConstructionError"]) as caught:
+        namespace["bind_pip_identity"](
+            [],
+            "bind_test_pip",
+            python_executable,
+            tmp_path,
+            {},
+            namespace["PRIMARY_SIMPLE_INDEX_URL"],
+            namespace["PYTORCH_CPU_SIMPLE_INDEX_URL"],
+            {},
+            object(),
+            "25.0.1",
+            expected_root=tmp_path,
+        )
+    assert caught.value.code == "PIP_IDENTITY_FILE_BINDING_MISMATCH"
+
+
+def test_bootstrap_inspects_retains_and_hash_locks_exact_pip_wheel(
+    monkeypatch,
+    tmp_path,
+    capsys,
+):
+    namespace = _load_namespace(capsys)
+    candidate_root = tmp_path / "candidate"
+    tool_wheelhouse = candidate_root / "build-tool-wheelhouse"
+    tool_wheelhouse.mkdir(parents=True)
+    build_venv = tmp_path / "build-venv"
+    venv_python = str(build_venv / "bin" / "python")
+    wheel_record = {
+        "filename": "pip-25.0.1-py3-none-any.whl",
+        "sha256": "a" * 64,
+        "size_bytes": 123,
+        "distribution_name": "pip",
+        "normalized_name": "pip",
+        "version": "25.0.1",
+        "wheel_tags": ["py3-none-any"],
+        "embedded_record_sha256": "b" * 64,
+        "embedded_payload_file_count": 9,
+    }
+    events = []
+    commands = []
+
+    def fake_bind(*args, **kwargs):
+        step = args[1]
+        events.append(step)
+        if step == "bind_isolated_venv_pip_identity_after_bootstrap":
+            return {"bound_scope": "isolated_venv"}
+        return {"bound_scope": "host"}
+
+    def fake_run_tool(
+        journal,
+        step,
+        argv,
+        cwd,
+        environment,
+        primary_url,
+        torch_url,
+        attempt_state=None,
+        phase_flags=(),
+        durable_attempt=None,
+    ):
+        events.append(step)
+        commands.append(
+            {"step": step, "argv": list(argv), "phase_flags": phase_flags}
+        )
+        if step == "download_bootstrap_pip_wheel":
+            (tool_wheelhouse / wheel_record["filename"]).write_bytes(b"wheel")
+        return b""
+
+    def fake_inspect(directory):
+        events.append("inspect_bootstrap_pip_wheel")
+        assert directory == tool_wheelhouse
+        return [wheel_record]
+
+    globals_map = namespace["bootstrap_pip_into_isolated_venv"].__globals__
+    monkeypatch.setitem(globals_map, "bind_pip_identity", fake_bind)
+    monkeypatch.setitem(globals_map, "run_tool", fake_run_tool)
+    monkeypatch.setitem(globals_map, "inspect_wheel_directory", fake_inspect)
+
+    attempt_state = {}
+    result = namespace["bootstrap_pip_into_isolated_venv"](
+        [],
+        tmp_path,
+        build_venv,
+        venv_python,
+        tool_wheelhouse,
+        {},
+        {},
+        namespace["PRIMARY_SIMPLE_INDEX_URL"],
+        namespace["PYTORCH_CPU_SIMPLE_INDEX_URL"],
+        attempt_state,
+        object(),
+    )
+
+    assert events == [
+        "bind_host_pip_identity_before_bootstrap",
+        "download_bootstrap_pip_wheel",
+        "inspect_bootstrap_pip_wheel",
+        "rebind_host_pip_identity_before_target_install",
+        "bootstrap_pip_into_isolated_venv",
+        "bind_isolated_venv_pip_identity_after_bootstrap",
+    ]
+    assert result["bootstrap_wheel"] == wheel_record
+    assert result["host_pip_identity"] == {
+        "bound_scope": "host"
+    }
+    assert result["isolated_venv_pip_identity"] == {
+        "bound_scope": "isolated_venv"
+    }
+    assert result[
+        "host_pip_identity_reverified_before_target_install"
+    ] is True
+    assert attempt_state["host_pip_identity"] == result["host_pip_identity"]
+    assert attempt_state[
+        "host_pip_identity_reverified_before_target_install"
+    ] is True
+    assert attempt_state["bootstrap_pip_wheel_binding"] == wheel_record
+    assert attempt_state["bootstrap_pip_lock_binding"] == result[
+        "bootstrap_lock"
+    ]
+    assert attempt_state["isolated_venv_pip_identity"] == result[
+        "isolated_venv_pip_identity"
+    ]
+    assert (tool_wheelhouse / wheel_record["filename"]).is_file()
+    bootstrap_lock = candidate_root / "bootstrap-pip.lock"
+    assert bootstrap_lock.is_file()
+    assert result["bootstrap_lock"]["filename"] == bootstrap_lock.name
+    assert result["bootstrap_lock"]["sha256"] == hashlib.sha256(
+        bootstrap_lock.read_bytes()
+    ).hexdigest()
+    download = commands[0]
+    assert download["argv"][:5] == [
+        namespace["sys"].executable,
+        "-I",
+        "-B",
+        "-m",
+        "pip",
+    ]
+    assert download["argv"][-1] == "pip==25.0.1"
+    install = commands[1]
+    assert install["argv"][:5] == [
+        namespace["sys"].executable,
+        "-I",
+        "-B",
+        "-m",
+        "pip",
+    ]
+    assert install["argv"].index("--python") < install["argv"].index("install")
+    assert install["argv"][install["argv"].index("--python") + 1] == venv_python
+    assert "--require-hashes" in install["argv"]
+    assert str(bootstrap_lock) in install["argv"]
+    assert install["phase_flags"] == (
+        "bootstrap_pip_install_begun",
+        "build_tool_install_begun",
+    )
+
+
+def test_bootstrap_rejects_wrong_wheel_before_install(
+    monkeypatch,
+    tmp_path,
+    capsys,
+):
+    namespace = _load_namespace(capsys)
+    candidate_root = tmp_path / "candidate"
+    tool_wheelhouse = candidate_root / "build-tool-wheelhouse"
+    tool_wheelhouse.mkdir(parents=True)
+    steps = []
+
+    def fake_run_tool(
+        journal,
+        step,
+        argv,
+        cwd,
+        environment,
+        primary_url,
+        torch_url,
+        attempt_state=None,
+        phase_flags=(),
+        durable_attempt=None,
+    ):
+        steps.append(step)
+        if step == "download_bootstrap_pip_wheel":
+            (tool_wheelhouse / "wheel-0.45.1-py3-none-any.whl").write_bytes(
+                b"wrong"
+            )
+        return b""
+
+    globals_map = namespace["bootstrap_pip_into_isolated_venv"].__globals__
+    monkeypatch.setitem(
+        globals_map,
+        "bind_pip_identity",
+        lambda *args, **kwargs: {"pip_version": "25.0.1"},
+    )
+    monkeypatch.setitem(globals_map, "run_tool", fake_run_tool)
+    monkeypatch.setitem(
+        globals_map,
+        "inspect_wheel_directory",
+        lambda directory: [
+            {
+                "filename": "wheel-0.45.1-py3-none-any.whl",
+                "normalized_name": "wheel",
+                "version": "0.45.1",
+            }
+        ],
+    )
+
+    with pytest.raises(namespace["CandidateConstructionError"]) as caught:
+        namespace["bootstrap_pip_into_isolated_venv"](
+            [],
+            tmp_path,
+            tmp_path / "build-venv",
+            str(tmp_path / "build-venv" / "bin" / "python"),
+            tool_wheelhouse,
+            {},
+            {},
+            namespace["PRIMARY_SIMPLE_INDEX_URL"],
+            namespace["PYTORCH_CPU_SIMPLE_INDEX_URL"],
+            {},
+            object(),
+        )
+
+    assert caught.value.code == "BOOTSTRAP_PIP_WHEEL_IDENTITY_MISMATCH"
+    assert steps == ["download_bootstrap_pip_wheel"]
+
+
+def test_bootstrap_rejects_host_pip_identity_change_before_install(
+    monkeypatch,
+    tmp_path,
+    capsys,
+):
+    namespace = _load_namespace(capsys)
+    candidate_root = tmp_path / "candidate"
+    tool_wheelhouse = candidate_root / "build-tool-wheelhouse"
+    tool_wheelhouse.mkdir(parents=True)
+    steps = []
+    identity_steps = []
+
+    def fake_bind(*args, **kwargs):
+        step = args[1]
+        identity_steps.append(step)
+        return {
+            "pip_version": "25.0.1",
+            "pip_payload_manifest_sha256": (
+                "a" * 64
+                if step == "bind_host_pip_identity_before_bootstrap"
+                else "b" * 64
+            ),
+        }
+
+    def fake_run_tool(
+        journal,
+        step,
+        argv,
+        cwd,
+        environment,
+        primary_url,
+        torch_url,
+        attempt_state=None,
+        phase_flags=(),
+        durable_attempt=None,
+    ):
+        steps.append(step)
+        if step == "download_bootstrap_pip_wheel":
+            (tool_wheelhouse / "pip-25.0.1-py3-none-any.whl").write_bytes(
+                b"pip-wheel"
+            )
+        return b""
+
+    globals_map = namespace["bootstrap_pip_into_isolated_venv"].__globals__
+    monkeypatch.setitem(globals_map, "bind_pip_identity", fake_bind)
+    monkeypatch.setitem(globals_map, "run_tool", fake_run_tool)
+    monkeypatch.setitem(
+        globals_map,
+        "inspect_wheel_directory",
+        lambda directory: [
+            {
+                "filename": "pip-25.0.1-py3-none-any.whl",
+                "normalized_name": "pip",
+                "version": "25.0.1",
+                "sha256": "c" * 64,
+            }
+        ],
+    )
+
+    with pytest.raises(namespace["CandidateConstructionError"]) as caught:
+        namespace["bootstrap_pip_into_isolated_venv"](
+            [],
+            tmp_path,
+            tmp_path / "build-venv",
+            str(tmp_path / "build-venv" / "bin" / "python"),
+            tool_wheelhouse,
+            {},
+            {},
+            namespace["PRIMARY_SIMPLE_INDEX_URL"],
+            namespace["PYTORCH_CPU_SIMPLE_INDEX_URL"],
+            {},
+            object(),
+        )
+
+    assert caught.value.code == "HOST_PIP_IDENTITY_CHANGED_DURING_BOOTSTRAP"
+    assert identity_steps == [
+        "bind_host_pip_identity_before_bootstrap",
+        "rebind_host_pip_identity_before_target_install",
+    ]
+    assert steps == ["download_bootstrap_pip_wheel"]
 
 
 def test_wheel_only_and_hash_lock_candidate_guards(tmp_path, capsys):

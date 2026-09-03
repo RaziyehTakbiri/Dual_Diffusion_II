@@ -7,8 +7,9 @@
 **Capacity assumption:** one accountable Codex worker using internal subagents for parallel audits; user reviews the final outcome  
 **Schedule status:** aggressive, conditional go/no-go plan—not a completion promise  
 **Scientific state at baseline:** `DRAFT_NOT_EXECUTABLE`
-**Current marked-task view (2026-09-02):** 62 checked / 101 open / 163 total  
-**Current evidence view (2026-09-02):** 24 fields open / 148 closed; 7 blockers
+**Current marked-task view (2026-09-03):** 62 checked / 101 open / 163 total
+
+**Current evidence view (2026-09-03):** 24 fields open / 148 closed; 7 blockers
 open / 5 closed; Gate A 5/8
 
 > This file is a project-management tracker only. Neither the file nor a checked
@@ -580,9 +581,75 @@ implementation correction also has zero tracked delta.
 This checkpoint closes no timetable task: the marked view remains 62 checked /
 101 open / 163 total; fields remain 24 / 148; blockers remain 7 open / 5
 closed; Formal Tests remain `OPEN`/`OPEN`/`PENDING`; and B08 and Wave 2 remain
-open. The next eligible action is construction of the exact x86_64,
-standard-runtime successor described in the
+open. At that checkpoint, the next eligible action was construction of the
+exact x86_64 standard-runtime successor described in the
 [preflight record](PROJECT_B08_DATABRICKS_AWS_EXISTING_CLUSTER_PREFLIGHT_NO_GO.md).**
+
+**Additive native-DBR N0 construction-readiness acceptance checkpoint
+(2026-09-02): the [native-runtime governance successor](PROJECT_B08_NATIVE_DATABRICKS_RUNTIME_SUCCESSOR_V1.md)
+and its [independent hostile review](PROJECT_B08_NATIVE_DATABRICKS_RUNTIME_SUCCESSOR_V1_INDEPENDENT_REVIEW.md)
+are accepted exactly as `GO_NATIVE_DBR_N0_CONSTRUCTION_READINESS_ZERO_DELTA`
+with P0/P1/P2 `0/0/0`, 44/44 focused tests from both the project root and an
+unrelated working directory, and 293/293 broader B08 compatibility tests. The
+package selects native AWS Databricks Runtime as the prospective B08
+implementation route and supersedes only the still-draft Docker/ECR candidate.
+The custom-image, base/final-image, ECR, instance-profile-for-image-pull, and
+Container Services obligations are `SUPERSEDED_NOT_APPLICABLE`, not completed;
+all historical qualification, no-go, and Docker/ECR draft artifacts remain
+unchanged evidence of their respective checkpoints. The versioned
+[native profile template](requirements/b08-databricks-aws-dbr17.3-x86_64-cpu-py312.native-runtime-profile.template.json),
+[profile validator](src/heterodiff/experiments/b08_databricks_native_runtime_profile.py),
+and [data-free capture helper](research/diagnostics/b08_databricks_native_runtime_capture_v1.py)
+are independently accepted only as bounded offline N0 construction-readiness
+artifacts. They validate exact-pin/hash syntax and expected top-level versions,
+but do not prove F152 transitive completeness or artifact/payload closure,
+effective whole-runtime/every-worker F153 controls, or runtime/package
+ownership. They supply no observed production-environment manifest, native
+dependency lock, hardware/capacity or storage-reservation receipt, F104
+calibration, resource ceiling, provider-operation authority, or scientific
+execution authority. F151 and F152 remain `OPEN` and null; F153 retains only
+its previously accepted prospective policy closure, while F158 and F161 retain
+their prior closures; F150/F154--F157/F159--F160/F162, B08, Wave 2, and every
+capacity-related timetable task remain open. Exact tracked delta is zero: the
+marked view remains 62 checked / 101 open / 163 total; fields remain 24 open /
+148 closed; blockers remain 7 open / 5 closed; and Formal Tests remain
+`OPEN`/`OPEN`/`PENDING`.**
+
+**Additive native-DBR V2 target and historical N1-builder V1 checkpoint
+(2026-09-03): the [V2 target successor](PROJECT_B08_NATIVE_DATABRICKS_RUNTIME_TARGET_SUCCESSOR_V2.md)
+and its [independent review](PROJECT_B08_NATIVE_DATABRICKS_RUNTIME_TARGET_SUCCESSOR_V2_INDEPENDENT_REVIEW.md)
+are accepted exactly as `PASS_NATIVE_DBR_V2_TARGET_SUCCESSOR_ZERO_DELTA` with
+P0/P1/P2 `0/0/0`. V2 corrects only the prospective Ubuntu release from
+`24.04.3 LTS` to the bounded discovery's `24.04.4 LTS`; it supplies no
+operational runtime or F151/F152 evidence. The separately frozen historical
+N1-builder V1 bytes (`0f340a8a...` notebook; `ae1162f...` tests) and their
+[independent hostile review](PROJECT_B08_N1_ISOLATED_OVERLAY_LOCK_CANDIDATE_BUILDER_V1_INDEPENDENT_REVIEW.md)
+were accepted exactly as
+`PASS_N1_ISOLATED_OVERLAY_LOCK_CANDIDATE_BUILDER_V1_ZERO_DELTA`, with P0/P1/P2
+`0/0/0`, 49/49 focused tests from both working directories, 96/96 combined
+V1/V2/N1 tests, and 414/414 broader B08 tests. That exact-byte review remains
+historical evidence and is superseded only for future execution by V2 below.**
+
+**Additive N1 isolated-overlay/F152-lock builder V2 source-acceptance
+checkpoint (2026-09-03): the exact current
+[notebook](databricks/notebooks/b08_n1_isolated_overlay_lock_candidate.py),
+[focused tests](tests/unit/test_b08_n1_isolated_overlay_lock_candidate.py), and
+[independent hostile review](PROJECT_B08_N1_ISOLATED_OVERLAY_LOCK_CANDIDATE_BUILDER_V2_INDEPENDENT_REVIEW.md)
+are accepted as `PASS_N1_ISOLATED_OVERLAY_LOCK_CANDIDATE_BUILDER_V2_ZERO_DELTA`
+with P0/P1/P2 `0/0/0`, 62/62 focused passes from both working directories,
+109/109 combined V1/V2/N1 passes, 361/361 independently selected broader B08
+passes, and 427/427 expanded B08/Databricks compatibility passes. V2 narrowly
+accepts the Ubuntu `PRETTY_NAME` representation and an ensurepip-independent,
+full-payload-bound host-pip `--python` bootstrap into a private virtual
+environment. Data-free Databricks preflights ran, but no construction
+succeeded. No overlay, lock, manifest, success receipt, runtime capture,
+capacity reservation, calibration, data access, training, inference, result,
+or scientific authority exists. No checklist item is marked complete: the
+marked view remains 62 checked / 101 open / 163 total; fields remain 24 open /
+148 closed; blockers remain 7 open / 5 closed; Formal Tests remain
+`OPEN`/`OPEN`/`PENDING`; and F151/F152, B08, and Wave 2 remain open until
+bounded Databricks construction and separate acceptance of the resulting
+evidence.**
 
 #### Solo Block 3 — SW5–8 — 2026-09-28 to 2026-10-25
 
@@ -1272,6 +1339,10 @@ Update this table at each Sunday week close. A blank is not a zero.
 | 2026-09-01 B12 beta/formal-route checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | AMBER | 0 | The independently accepted eight local external author-extension components have zero tracked delta. The repaired whole-method initializer-to-path successor closes only the Solo Block 7 beta task, and the independently accepted Formal-route V2 closes only the nonconfirmatory/synthetic Tests 28--30 route task, moving the marked-task view `60/103/163 → 62/101/163`. PRE remains 23/143, POST 1/5, and total fields 24/148. Formal Tests 28/29 remain OPEN, Test 30 remains PENDING; B02/B03/B08/B09/B12, Gate-B0 feature completeness, all results, production runtime/data/training/science/claims, and all 50 real residual receipts remain open or absent. |
 | 2026-09-02 combined Wave-2/Wave-3 closure-attempt checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | Three independently reviewed packages establish an exact terminal local-host capacity no-go and exact PhysioNet/Retail future-acquisition readiness gates. The local storage shortfall is 1,094,591,299,584 bytes; no production runtime or accountable reservation exists. No dataset archive was downloaded and no raw hash, authenticated principal/acceptance, institutional/privacy determination, populated split, support/admission certificate, result, runtime, science, or claim exists. Therefore the marked-task view stays 62/101/163, fields stay 24/148, blockers stay 7/5, B02/B03/B08/B09 and Waves 2/3 remain open, and Formal Tests remain OPEN/OPEN/PENDING. |
 | 2026-09-02 AWS Databricks qualification-readiness checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The independently accepted data-free bundle makes AWS Databricks a viable B08 candidate and freezes the exact operator-capture and storage-evidence contract. User capability statements remain feasibility inputs, not receipts: no actual cluster/runtime/container/storage reservation or calibration exists. The marked-task view remains 62/101/163, fields 24/148, blockers 7/5, B08/Wave 2 open, and Formal Tests OPEN/OPEN/PENDING. |
+| 2026-09-02 native-DBR N0 construction-readiness acceptance checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The six-file native N0 package is independently accepted as `GO_NATIVE_DBR_N0_CONSTRUCTION_READINESS_ZERO_DELTA` with P0/P1/P2 `0/0/0`, 44/44 focused tests from two working directories, and 293/293 broader B08 compatibility tests. It prospectively supersedes only the still-draft Docker/ECR implementation route; route-specific obligations are superseded/not applicable rather than completed, and all historical records remain preserved. N0 does not prove F152 transitive/artifact closure or effective whole-runtime F153 satisfaction. F151/F152, hardware, calibration, ceilings, capacity/storage reservation, B08, and Wave 2 remain open. Exact delta is zero: marked tasks remain 62/101/163, fields 24/148, blockers 7/5, and Formal Tests OPEN/OPEN/PENDING; [independent review](PROJECT_B08_NATIVE_DATABRICKS_RUNTIME_SUCCESSOR_V1_INDEPENDENT_REVIEW.md). |
+| 2026-09-02 native-DBR V2 target/pending-N1-builder checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The independently accepted V2 target successor corrects only Ubuntu `24.04.3 LTS` to the discovery-observed `24.04.4 LTS`, with P0/P1/P2 `0/0/0` and exact zero tracked delta. The frozen N1 isolated-overlay/F152-lock builder remains pending independent review and has not run in Databricks. No lock, overlay, runtime capture, capacity, calibration, data, science, or result exists. No checklist item closes: marked tasks remain 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, and F151/F152, B08, and Wave 2 remain open pending Databricks execution and independent evidence acceptance. |
+| 2026-09-03 historical N1 V1 builder acceptance checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The historical V1 notebook hash `0f340a8a...` and test hash `ae1162f...` were independently accepted as `PASS_N1_ISOLATED_OVERLAY_LOCK_CANDIDATE_BUILDER_V1_ZERO_DELTA`, with P0/P1/P2 `0/0/0`, 49/49 focused tests from both working directories, 96/96 combined V1/V2/N1 tests, and 414/414 broader B08 tests. V1 remains exact-byte historical evidence and is superseded only for future execution by V2. Exact delta was zero: no checklist item closed; marked tasks remained 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, and F151/F152, B08, and Wave 2 remained open. |
+| 2026-09-03 N1 V2 builder source-acceptance checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The exact current notebook and tests are independently accepted as `PASS_N1_ISOLATED_OVERLAY_LOCK_CANDIDATE_BUILDER_V2_ZERO_DELTA`, with P0/P1/P2 `0/0/0`, 62/62 focused passes from both working directories, 109/109 combined V1/V2/N1 passes, 361/361 independent broader B08 passes, and 427/427 expanded compatibility passes. V2 corrects the Ubuntu PRETTY_NAME comparison and accepts the ensurepip-independent, full-payload-bound, hash-locked private-venv bootstrap. Data-free preflights ran, but no construction succeeded and no candidate lock, overlay, manifest, success receipt, runtime capture, capacity, calibration, data, science, or result exists. Exact delta is zero: no checklist item closes; marked tasks remain 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, and F151/F152, B08, and Wave 2 remain open. |
 | SW1 — 2026-09-06 |  |  |  |  |  |  |  |  |  |
 | SW2 — 2026-09-13 |  |  |  |  |  |  |  |  | Solo Block 1 target |
 | SW3 — 2026-09-20 |  |  |  |  |  |  |  |  |  |

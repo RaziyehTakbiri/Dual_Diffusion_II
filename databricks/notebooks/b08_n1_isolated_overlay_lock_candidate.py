@@ -43,6 +43,7 @@ import base64
 import csv
 import email.parser
 import hashlib
+import importlib.util
 import io
 import json
 import os
@@ -405,6 +406,26 @@ def read_os_release():
     return result
 
 
+def operating_system_release_matches(
+    expected_distribution,
+    expected_release,
+    observed_release,
+):
+    if not all(
+        type(value) is str and value
+        for value in (
+            expected_distribution,
+            expected_release,
+            observed_release,
+        )
+    ):
+        return False
+    return observed_release in {
+        expected_release,
+        f"{expected_distribution} {expected_release}",
+    }
+
+
 def observe_runtime(profile):
     target = profile["target"]
     os_release = read_os_release()
@@ -464,8 +485,11 @@ def observe_runtime(profile):
             == expected["operating_system_distribution"]
         ),
         "operating_system_release": (
-            observed["operating_system_release"]
-            == expected["operating_system_release"]
+            operating_system_release_matches(
+                expected["operating_system_distribution"],
+                expected["operating_system_release"],
+                observed["operating_system_release"],
+            )
         ),
         "architecture": (
             str(observed["architecture"]).casefold()
@@ -907,7 +931,7 @@ def run_tool(
             f"{step}:returncode={completed.returncode}",
             telemetry=(None if attempt_state is None else dict(attempt_state)),
         )
-    if attempt_state is not None and phase_flags:
+    if attempt_state is not None:
         attempt_state["last_completed_step"] = step
     return completed.stdout
 
@@ -926,27 +950,29 @@ def isolated_environment(venv_root, source_date_epoch, deterministic_environment
     return environment
 
 
-def ensurepip_bundle_binding():
-    # ensurepip is absent from this Databricks Runtime Python build.
-    # Pip is bootstrapped into the isolated venv from the reviewed primary
-    # index using the host pip, rather than from ensurepip's offline
-    # bundled wheels.  The pinned version comes from BUILD_TOOL_REQUIREMENTS.
+def required_bootstrap_pip_version():
     pip_requirement = next(
         (req for req in BUILD_TOOL_REQUIREMENTS if req.startswith("pip==")),
         None,
     )
     if pip_requirement is None:
         raise CandidateConstructionError("BOOTSTRAP_PIP_REQUIREMENT_NOT_DECLARED")
-    pip_version = pip_requirement.split("==", 1)[1]
+    return pip_requirement.split("==", 1)[1]
+
+
+def pip_bootstrap_plan():
+    ensurepip_spec = importlib.util.find_spec("ensurepip")
     return {
-        "source": "HOST_PIP_FROM_REVIEWED_INDEX",
-        "reported_pip_version": pip_version,
-        "ensurepip_available": False,
-        "bundled_wheels": [],
-        "note": (
-            "ensurepip stdlib module absent from runtime; pip bootstrapped "
-            "via host pip download from reviewed primary index"
-        ),
+        "method": "BOUND_HOST_PIP_INSTALLS_INSPECTED_PINNED_WHEEL",
+        "required_pip_version": required_bootstrap_pip_version(),
+        "ensurepip_observation": {
+            "available": ensurepip_spec is not None,
+            "origin": (
+                None
+                if ensurepip_spec is None
+                else ensurepip_spec.origin
+            ),
+        },
     }
 
 
@@ -1077,6 +1103,486 @@ def inspect_wheel_directory(directory):
     if len(names) != len(set(names)):
         raise CandidateConstructionError("DUPLICATE_DISTRIBUTION_WHEELS")
     return records
+
+
+PIP_IDENTITY_PROBE = """
+import base64
+import csv
+import hashlib
+import importlib.metadata
+import importlib.util
+import io
+import json
+import os
+from pathlib import Path
+import stat
+import sys
+
+spec = importlib.util.find_spec("pip")
+if spec is None or not isinstance(spec.origin, str):
+    raise RuntimeError("PIP_MODULE_ORIGIN_UNAVAILABLE")
+distribution = importlib.metadata.distribution("pip")
+record_candidates = [
+    item
+    for item in (distribution.files or ())
+    if str(item).endswith(".dist-info/RECORD")
+]
+if len(record_candidates) != 1:
+    raise RuntimeError("PIP_DISTRIBUTION_RECORD_UNAVAILABLE")
+install_prefix = Path(sys.prefix).resolve()
+module_path = Path(spec.origin).resolve()
+record_path = Path(
+    distribution.locate_file(record_candidates[0])
+).resolve()
+module_payload = module_path.read_bytes()
+record_payload = record_path.read_bytes()
+rows = list(csv.reader(io.StringIO(record_payload.decode("utf-8"))))
+declared_paths = set()
+resolved_paths = set()
+payload_manifest = []
+hashed_record_count = 0
+unhashed_record_count = 0
+for row in rows:
+    if len(row) != 3:
+        raise RuntimeError("PIP_RECORD_ROW_SHAPE_INVALID")
+    relative, declared_digest, declared_size = row
+    if (
+        not relative
+        or relative in declared_paths
+        or "\\\\" in relative
+        or Path(relative).is_absolute()
+    ):
+        raise RuntimeError("PIP_RECORD_PATH_INVALID")
+    declared_paths.add(relative)
+    located = Path(distribution.locate_file(relative))
+    observed_stat = located.lstat()
+    if stat.S_ISLNK(observed_stat.st_mode) or not stat.S_ISREG(
+        observed_stat.st_mode
+    ):
+        raise RuntimeError("PIP_RECORD_OBJECT_NOT_REGULAR_FILE")
+    resolved = located.resolve()
+    try:
+        install_relative = resolved.relative_to(install_prefix).as_posix()
+    except ValueError as error:
+        raise RuntimeError("PIP_RECORD_PATH_ESCAPES_INSTALL_PREFIX") from error
+    if resolved in resolved_paths:
+        raise RuntimeError("PIP_RECORD_RESOLVED_PATH_DUPLICATE")
+    resolved_paths.add(resolved)
+    payload = resolved.read_bytes()
+    actual_digest = hashlib.sha256(payload).digest()
+    if bool(declared_digest) != bool(declared_size):
+        raise RuntimeError("PIP_RECORD_HASH_SIZE_PAIR_INCOMPLETE")
+    if declared_digest:
+        algorithm, separator, encoded = declared_digest.partition("=")
+        if algorithm != "sha256" or separator != "=" or not encoded:
+            raise RuntimeError("PIP_RECORD_DIGEST_INVALID")
+        padding = "=" * (-len(encoded) % 4)
+        if base64.urlsafe_b64decode(encoded + padding) != actual_digest:
+            raise RuntimeError("PIP_RECORD_DIGEST_MISMATCH")
+        if int(declared_size) != len(payload):
+            raise RuntimeError("PIP_RECORD_SIZE_MISMATCH")
+        hashed_record_count += 1
+    else:
+        unhashed_record_count += 1
+    payload_manifest.append({
+        "install_relative_path": install_relative,
+        "record_declared": True,
+        "sha256": actual_digest.hex(),
+        "size_bytes": len(payload),
+    })
+
+module_root = module_path.parent
+dist_info_root = record_path.parent
+physical_payload_paths = set()
+for physical_root in (module_root, dist_info_root):
+    root_stat = physical_root.lstat()
+    if stat.S_ISLNK(root_stat.st_mode) or not stat.S_ISDIR(root_stat.st_mode):
+        raise RuntimeError("PIP_PAYLOAD_ROOT_NOT_PHYSICAL_DIRECTORY")
+    pending = [physical_root]
+    while pending:
+        current = pending.pop()
+        with os.scandir(current) as entries:
+            for entry in entries:
+                if entry.is_symlink():
+                    raise RuntimeError("PIP_PAYLOAD_SYMLINK_REJECTED")
+                if entry.is_dir(follow_symlinks=False):
+                    pending.append(Path(entry.path))
+                elif entry.is_file(follow_symlinks=False):
+                    physical_payload_paths.add(Path(entry.path).resolve())
+                else:
+                    raise RuntimeError("PIP_PAYLOAD_OBJECT_TYPE_INVALID")
+
+scoped_declared_paths = set()
+for resolved in resolved_paths:
+    for physical_root in (module_root, dist_info_root):
+        try:
+            resolved.relative_to(physical_root)
+        except ValueError:
+            continue
+        scoped_declared_paths.add(resolved)
+        break
+missing_physical_paths = scoped_declared_paths - physical_payload_paths
+if missing_physical_paths:
+    raise RuntimeError("PIP_PAYLOAD_RECORD_CLOSURE_MISMATCH")
+unrecorded_bytecode_paths = physical_payload_paths - scoped_declared_paths
+for path in unrecorded_bytecode_paths:
+    install_relative = path.relative_to(install_prefix).as_posix()
+    if path.suffix != ".pyc" or "__pycache__" not in path.parts:
+        raise RuntimeError("PIP_PAYLOAD_UNRECORDED_NONBYTECODE_FILE")
+    payload = path.read_bytes()
+    payload_manifest.append({
+        "install_relative_path": install_relative,
+        "record_declared": False,
+        "sha256": hashlib.sha256(payload).hexdigest(),
+        "size_bytes": len(payload),
+    })
+
+payload_manifest.sort(key=lambda item: item["install_relative_path"])
+payload_manifest_bytes = json.dumps(
+    payload_manifest,
+    sort_keys=True,
+    separators=(",", ":"),
+).encode("utf-8")
+print(json.dumps({
+    "pip_distribution_root": str(record_path.parent.parent),
+    "pip_install_prefix": str(install_prefix),
+    "pip_module_file": str(module_path),
+    "pip_module_file_sha256": hashlib.sha256(module_payload).hexdigest(),
+    "pip_module_file_size_bytes": len(module_payload),
+    "pip_payload_closure_exact": True,
+    "pip_payload_file_count": len(payload_manifest),
+    "pip_payload_hashed_record_count": hashed_record_count,
+    "pip_payload_manifest_sha256": hashlib.sha256(
+        b"heterodiff/pip-installed-payload/v1\\0" + payload_manifest_bytes
+    ).hexdigest(),
+    "pip_payload_unhashed_record_count": unhashed_record_count,
+    "pip_payload_unrecorded_bytecode_count": len(
+        unrecorded_bytecode_paths
+    ),
+    "pip_record_file": str(record_path),
+    "pip_record_file_sha256": hashlib.sha256(record_payload).hexdigest(),
+    "pip_record_file_size_bytes": len(record_payload),
+    "pip_version": distribution.version,
+    "python_executable": str(Path(sys.executable).resolve()),
+}, sort_keys=True, separators=(",", ":")))
+""".strip()
+
+
+def bind_pip_identity(
+    journal,
+    step,
+    python_executable,
+    cwd,
+    environment,
+    primary_url,
+    torch_url,
+    attempt_state,
+    durable_attempt,
+    expected_version,
+    expected_root=None,
+):
+    raw = run_tool(
+        journal,
+        step,
+        [python_executable, "-I", "-B", "-c", PIP_IDENTITY_PROBE],
+        cwd,
+        environment,
+        primary_url,
+        torch_url,
+        attempt_state,
+        (),
+        durable_attempt,
+    )
+    try:
+        identity = json.loads(raw.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise CandidateConstructionError(
+            "PIP_IDENTITY_OUTPUT_INVALID",
+            step,
+        ) from error
+    required_keys = {
+        "pip_distribution_root",
+        "pip_install_prefix",
+        "pip_module_file",
+        "pip_module_file_sha256",
+        "pip_module_file_size_bytes",
+        "pip_payload_closure_exact",
+        "pip_payload_file_count",
+        "pip_payload_hashed_record_count",
+        "pip_payload_manifest_sha256",
+        "pip_payload_unhashed_record_count",
+        "pip_payload_unrecorded_bytecode_count",
+        "pip_record_file",
+        "pip_record_file_sha256",
+        "pip_record_file_size_bytes",
+        "pip_version",
+        "python_executable",
+    }
+    if type(identity) is not dict or set(identity) != required_keys:
+        raise CandidateConstructionError("PIP_IDENTITY_SHAPE_INVALID", step)
+    if identity["pip_version"] != expected_version:
+        raise CandidateConstructionError(
+            "PIP_IDENTITY_VERSION_MISMATCH",
+            step,
+        )
+    payload_counts = (
+        identity["pip_payload_file_count"],
+        identity["pip_payload_hashed_record_count"],
+        identity["pip_payload_unhashed_record_count"],
+        identity["pip_payload_unrecorded_bytecode_count"],
+    )
+    if (
+        identity["pip_payload_closure_exact"] is not True
+        or any(type(value) is not int or value < 0 for value in payload_counts)
+        or payload_counts[0] <= 0
+        or sum(payload_counts[1:]) != payload_counts[0]
+        or type(identity["pip_payload_manifest_sha256"]) is not str
+        or re.fullmatch(
+            r"[0-9a-f]{64}",
+            identity["pip_payload_manifest_sha256"],
+        )
+        is None
+    ):
+        raise CandidateConstructionError(
+            "PIP_IDENTITY_PAYLOAD_CLOSURE_INVALID",
+            step,
+        )
+    expected_python = str(Path(python_executable).resolve())
+    if identity["python_executable"] != expected_python:
+        raise CandidateConstructionError(
+            "PIP_IDENTITY_PYTHON_MISMATCH",
+            step,
+        )
+    for prefix in ("pip_install_prefix", "pip_distribution_root"):
+        if (
+            type(identity[prefix]) is not str
+            or not Path(identity[prefix]).is_absolute()
+            or object_kind(Path(identity[prefix])) != "DIRECTORY"
+        ):
+            raise CandidateConstructionError(
+                "PIP_IDENTITY_DIRECTORY_BINDING_INVALID",
+                prefix,
+            )
+    install_prefix = Path(identity["pip_install_prefix"])
+    distribution_root = Path(identity["pip_distribution_root"])
+    try:
+        distribution_root.relative_to(install_prefix)
+        Path(identity["python_executable"]).relative_to(install_prefix)
+    except ValueError as error:
+        raise CandidateConstructionError(
+            "PIP_IDENTITY_ESCAPES_INSTALL_PREFIX",
+            step,
+        ) from error
+    root = None if expected_root is None else Path(expected_root).resolve()
+    if root is not None and install_prefix != root:
+        raise CandidateConstructionError(
+            "PIP_IDENTITY_INSTALL_PREFIX_MISMATCH",
+            step,
+        )
+    resolved_paths = {}
+    for prefix in ("pip_module_file", "pip_record_file"):
+        path_value = identity[prefix]
+        digest_value = identity[prefix + "_sha256"]
+        size_value = identity[prefix + "_size_bytes"]
+        if (
+            type(path_value) is not str
+            or not Path(path_value).is_absolute()
+            or type(digest_value) is not str
+            or re.fullmatch(r"[0-9a-f]{64}", digest_value) is None
+            or type(size_value) is not int
+            or size_value <= 0
+        ):
+            raise CandidateConstructionError(
+                "PIP_IDENTITY_FILE_BINDING_INVALID",
+                prefix,
+            )
+        path = Path(path_value)
+        resolved_paths[prefix] = path
+        if object_kind(path) != "REGULAR_FILE":
+            raise CandidateConstructionError(
+                "PIP_IDENTITY_FILE_NOT_REGULAR",
+                prefix,
+            )
+        observed_digest, observed_size = sha256_file(path)
+        if (
+            observed_digest != digest_value
+            or observed_size != size_value
+        ):
+            raise CandidateConstructionError(
+                "PIP_IDENTITY_FILE_BINDING_MISMATCH",
+                prefix,
+            )
+        if root is not None:
+            try:
+                path.relative_to(root)
+            except ValueError as error:
+                raise CandidateConstructionError(
+                    "PIP_IDENTITY_ESCAPES_EXPECTED_ROOT",
+                    prefix,
+                ) from error
+    if resolved_paths["pip_record_file"].parent.parent != distribution_root:
+        raise CandidateConstructionError(
+            "PIP_DISTRIBUTION_ROOT_BINDING_MISMATCH",
+            step,
+        )
+    try:
+        resolved_paths["pip_module_file"].relative_to(distribution_root)
+    except ValueError as error:
+        raise CandidateConstructionError(
+            "PIP_MODULE_AND_DISTRIBUTION_ROOT_MISMATCH",
+            step,
+        ) from error
+    return identity
+
+
+def bootstrap_pip_into_isolated_venv(
+    journal,
+    staging_root,
+    build_venv,
+    venv_python,
+    tool_wheelhouse,
+    provisional_environment,
+    isolated_venv_environment,
+    primary_url,
+    torch_url,
+    attempt_state,
+    durable_attempt,
+):
+    binding = pip_bootstrap_plan()
+    required_version = binding["required_pip_version"]
+    binding["host_pip_identity"] = bind_pip_identity(
+        journal,
+        "bind_host_pip_identity_before_bootstrap",
+        sys.executable,
+        staging_root,
+        provisional_environment,
+        primary_url,
+        torch_url,
+        attempt_state,
+        durable_attempt,
+        required_version,
+    )
+    attempt_state["host_pip_identity"] = binding["host_pip_identity"]
+    run_tool(
+        journal,
+        "download_bootstrap_pip_wheel",
+        [
+            sys.executable,
+            "-I",
+            "-B",
+            "-m",
+            "pip",
+            "--isolated",
+            "--disable-pip-version-check",
+            "download",
+            "--no-input",
+            "--no-deps",
+            "--only-binary=:all:",
+            "--index-url",
+            primary_url,
+            "--dest",
+            str(tool_wheelhouse),
+            "pip==" + required_version,
+        ],
+        staging_root,
+        provisional_environment,
+        primary_url,
+        torch_url,
+        attempt_state,
+        ("network_contact_begun", "package_resolution_begun"),
+        durable_attempt,
+    )
+    bootstrap_records = inspect_wheel_directory(tool_wheelhouse)
+    if {
+        record["normalized_name"]: record["version"]
+        for record in bootstrap_records
+    } != {"pip": required_version}:
+        raise CandidateConstructionError(
+            "BOOTSTRAP_PIP_WHEEL_IDENTITY_MISMATCH"
+        )
+    bootstrap_record = bootstrap_records[0]
+    binding["bootstrap_wheel"] = bootstrap_record
+    attempt_state["bootstrap_pip_wheel_binding"] = bootstrap_record
+    bootstrap_lock_path = tool_wheelhouse.parent / "bootstrap-pip.lock"
+    write_exclusive(
+        bootstrap_lock_path,
+        lock_candidate_bytes([bootstrap_record]),
+    )
+    binding["bootstrap_lock"] = {
+        "filename": bootstrap_lock_path.name,
+        "sha256": sha256_file(bootstrap_lock_path)[0],
+    }
+    attempt_state["bootstrap_pip_lock_binding"] = binding["bootstrap_lock"]
+    rebound_host_identity = bind_pip_identity(
+        journal,
+        "rebind_host_pip_identity_before_target_install",
+        sys.executable,
+        staging_root,
+        provisional_environment,
+        primary_url,
+        torch_url,
+        attempt_state,
+        durable_attempt,
+        required_version,
+    )
+    if rebound_host_identity != binding["host_pip_identity"]:
+        raise CandidateConstructionError(
+            "HOST_PIP_IDENTITY_CHANGED_DURING_BOOTSTRAP"
+        )
+    binding["host_pip_identity_reverified_before_target_install"] = True
+    attempt_state[
+        "host_pip_identity_reverified_before_target_install"
+    ] = True
+    run_tool(
+        journal,
+        "bootstrap_pip_into_isolated_venv",
+        [
+            sys.executable,
+            "-I",
+            "-B",
+            "-m",
+            "pip",
+            "--isolated",
+            "--disable-pip-version-check",
+            "--python",
+            venv_python,
+            "install",
+            "--no-input",
+            "--no-index",
+            "--no-deps",
+            "--only-binary=:all:",
+            "--no-compile",
+            "--require-hashes",
+            "--find-links",
+            str(tool_wheelhouse),
+            "--requirement",
+            str(bootstrap_lock_path),
+        ],
+        staging_root,
+        provisional_environment,
+        primary_url,
+        torch_url,
+        attempt_state,
+        ("bootstrap_pip_install_begun", "build_tool_install_begun"),
+        durable_attempt,
+    )
+    binding["isolated_venv_pip_identity"] = bind_pip_identity(
+        journal,
+        "bind_isolated_venv_pip_identity_after_bootstrap",
+        venv_python,
+        staging_root,
+        isolated_venv_environment,
+        primary_url,
+        torch_url,
+        attempt_state,
+        durable_attempt,
+        required_version,
+        expected_root=build_venv,
+    )
+    attempt_state["isolated_venv_pip_identity"] = binding[
+        "isolated_venv_pip_identity"
+    ]
+    return binding
 
 
 def lock_candidate_bytes(wheel_records):
@@ -2209,6 +2715,12 @@ def initial_attempt_state():
         "network_contact_begun": False,
         "package_resolution_begun": False,
         "isolated_venv_creation_begun": False,
+        "host_pip_identity": None,
+        "host_pip_identity_reverified_before_target_install": False,
+        "bootstrap_pip_wheel_binding": None,
+        "bootstrap_pip_lock_binding": None,
+        "isolated_venv_pip_identity": None,
+        "bootstrap_pip_install_begun": False,
         "build_tool_install_begun": False,
         "project_wheel_build_begun": False,
         "overlay_install_begun": False,
@@ -2752,7 +3264,6 @@ def construct_candidate(preflight_result):
 
         copy_source_tree(repo_root, source_manifest, copied_source)
 
-        bootstrap_pip_binding = ensurepip_bundle_binding()
         verify_durable_intent_custody(
             destination_binding,
             attempt_intent_sha256,
@@ -2775,63 +3286,22 @@ def construct_candidate(preflight_result):
             preflight_result["environment"]["expected"],
         )
 
-        # Bootstrap pip into the bare venv from the reviewed primary index.
-        # ensurepip is absent from this runtime's stdlib, so the host pip
-        # downloads the pinned pip wheel and the venv python installs it
-        # from the wheel directly (standard pip zip-app bootstrap).
-        pip_bootstrap_dir = staging_root / "pip-bootstrap"
-        pip_bootstrap_dir.mkdir(mode=0o750)
-        run_tool(
+        # Seed without depending on ensurepip: bind the selected host pip,
+        # retain and inspect one exact pip wheel, and use pip's supported
+        # --python target mode only against the private venv and hash-locked
+        # local wheelhouse. The observed ensurepip state is recorded, not
+        # asserted.
+        bootstrap_pip_binding = bootstrap_pip_into_isolated_venv(
             journal,
-            "download_bootstrap_pip_wheel",
-            [
-                sys.executable,
-                "-m",
-                "pip",
-                "--isolated",
-                "--disable-pip-version-check",
-                "download",
-                "--no-deps",
-                "--only-binary=:all:",
-                "--index-url",
-                primary_url,
-                "--dest",
-                str(pip_bootstrap_dir),
-                "pip==" + bootstrap_pip_binding["reported_pip_version"],
-            ],
             staging_root,
+            build_venv,
+            venv_python,
+            tool_wheelhouse,
             provisional_environment,
-            primary_url,
-            torch_url,
-            attempt_state,
-            ("network_contact_begun", "package_resolution_begun"),
-            destination_binding,
-        )
-        pip_bootstrap_wheels = sorted(pip_bootstrap_dir.glob("pip-*.whl"))
-        if len(pip_bootstrap_wheels) != 1:
-            raise CandidateConstructionError(
-                "BOOTSTRAP_PIP_WHEEL_DOWNLOAD_UNEXPECTED",
-                f"expected_1_got_{len(pip_bootstrap_wheels)}",
-            )
-        pip_bootstrap_wheel = pip_bootstrap_wheels[0]
-        run_tool(
-            journal,
-            "bootstrap_pip_into_isolated_venv",
-            [
-                venv_python,
-                str(pip_bootstrap_wheel) + "/pip",
-                "install",
-                "--no-index",
-                "--no-deps",
-                "--only-binary=:all:",
-                str(pip_bootstrap_wheel),
-            ],
-            staging_root,
             environment,
             primary_url,
             torch_url,
             attempt_state,
-            (),
             destination_binding,
         )
 
@@ -2850,7 +3320,11 @@ def construct_candidate(preflight_result):
                 primary_url,
                 "--dest",
                 str(tool_wheelhouse),
-                *BUILD_TOOL_REQUIREMENTS,
+                *(
+                    requirement
+                    for requirement in BUILD_TOOL_REQUIREMENTS
+                    if not requirement.startswith("pip==")
+                ),
             ],
             staging_root,
             environment,
@@ -3086,7 +3560,7 @@ def construct_candidate(preflight_result):
             "build_tools": {
                 "isolated_venv": True,
                 "system_site_packages": False,
-                "bootstrap_ensurepip_binding": bootstrap_pip_binding,
+                "bootstrap_pip_binding": bootstrap_pip_binding,
                 "installed_versions": installed_build_tool_versions,
                 "wheels": tool_records,
                 "lock_filename": tool_lock_path.name,
