@@ -1,4 +1,8 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "5"
+# ///
 # MAGIC %md
 # MAGIC # B08 N1 — isolated native overlay and F152 lock candidate
 # MAGIC
@@ -32,12 +36,12 @@
 
 # COMMAND ----------
 
+# DBTITLE 1,Cell 3
 from pathlib import Path, PurePosixPath
 from urllib.parse import urlsplit
 import base64
 import csv
 import email.parser
-import ensurepip
 import hashlib
 import io
 import json
@@ -726,6 +730,7 @@ def preflight():
 
 # COMMAND ----------
 
+# DBTITLE 1,Cell 7
 def require_regular_source_file(path, root):
     try:
         relative = path.relative_to(root)
@@ -922,29 +927,26 @@ def isolated_environment(venv_root, source_date_epoch, deterministic_environment
 
 
 def ensurepip_bundle_binding():
-    bundle_root = Path(ensurepip.__file__).resolve().parent / "_bundled"
-    if object_kind(bundle_root) != "DIRECTORY":
-        raise CandidateConstructionError("ENSUREPIP_BUNDLE_DIRECTORY_MISSING")
-    records = []
-    for path in sorted(bundle_root.iterdir(), key=lambda item: item.name):
-        if object_kind(path) != "REGULAR_FILE" or path.suffix != ".whl":
-            raise CandidateConstructionError("ENSUREPIP_BUNDLE_OBJECT_INVALID")
-        digest, size = sha256_file(path)
-        records.append(
-            {
-                "filename": path.name,
-                "sha256": digest,
-                "size_bytes": size,
-            }
-        )
-    if not records or not any(
-        record["filename"].startswith(f"pip-{ensurepip.version()}-")
-        for record in records
-    ):
-        raise CandidateConstructionError("ENSUREPIP_VERSION_WHEEL_BINDING_MISSING")
+    # ensurepip is absent from this Databricks Runtime Python build.
+    # Pip is bootstrapped into the isolated venv from the reviewed primary
+    # index using the host pip, rather than from ensurepip's offline
+    # bundled wheels.  The pinned version comes from BUILD_TOOL_REQUIREMENTS.
+    pip_requirement = next(
+        (req for req in BUILD_TOOL_REQUIREMENTS if req.startswith("pip==")),
+        None,
+    )
+    if pip_requirement is None:
+        raise CandidateConstructionError("BOOTSTRAP_PIP_REQUIREMENT_NOT_DECLARED")
+    pip_version = pip_requirement.split("==", 1)[1]
     return {
-        "reported_pip_version": ensurepip.version(),
-        "bundled_wheels": records,
+        "source": "HOST_PIP_FROM_REVIEWED_INDEX",
+        "reported_pip_version": pip_version,
+        "ensurepip_available": False,
+        "bundled_wheels": [],
+        "note": (
+            "ensurepip stdlib module absent from runtime; pip bootstrapped "
+            "via host pip download from reviewed primary index"
+        ),
     }
 
 
@@ -2559,6 +2561,7 @@ def commit_success_receipt(
 
 # COMMAND ----------
 
+# DBTITLE 1,Cell 8
 def construct_candidate(preflight_result):
     journal = []
     attempt_state = initial_attempt_state()
@@ -2759,7 +2762,7 @@ def construct_candidate(preflight_result):
         attempt_state["last_started_step"] = "create_isolated_build_venv"
         venv.EnvBuilder(
             system_site_packages=False,
-            with_pip=True,
+            with_pip=False,
             clear=False,
             symlinks=False,
             upgrade=False,
@@ -2770,6 +2773,66 @@ def construct_candidate(preflight_result):
             build_venv,
             source_date_epoch,
             preflight_result["environment"]["expected"],
+        )
+
+        # Bootstrap pip into the bare venv from the reviewed primary index.
+        # ensurepip is absent from this runtime's stdlib, so the host pip
+        # downloads the pinned pip wheel and the venv python installs it
+        # from the wheel directly (standard pip zip-app bootstrap).
+        pip_bootstrap_dir = staging_root / "pip-bootstrap"
+        pip_bootstrap_dir.mkdir(mode=0o750)
+        run_tool(
+            journal,
+            "download_bootstrap_pip_wheel",
+            [
+                sys.executable,
+                "-m",
+                "pip",
+                "--isolated",
+                "--disable-pip-version-check",
+                "download",
+                "--no-deps",
+                "--only-binary=:all:",
+                "--index-url",
+                primary_url,
+                "--dest",
+                str(pip_bootstrap_dir),
+                "pip==" + bootstrap_pip_binding["reported_pip_version"],
+            ],
+            staging_root,
+            provisional_environment,
+            primary_url,
+            torch_url,
+            attempt_state,
+            ("network_contact_begun", "package_resolution_begun"),
+            destination_binding,
+        )
+        pip_bootstrap_wheels = sorted(pip_bootstrap_dir.glob("pip-*.whl"))
+        if len(pip_bootstrap_wheels) != 1:
+            raise CandidateConstructionError(
+                "BOOTSTRAP_PIP_WHEEL_DOWNLOAD_UNEXPECTED",
+                f"expected_1_got_{len(pip_bootstrap_wheels)}",
+            )
+        pip_bootstrap_wheel = pip_bootstrap_wheels[0]
+        run_tool(
+            journal,
+            "bootstrap_pip_into_isolated_venv",
+            [
+                venv_python,
+                str(pip_bootstrap_wheel) + "/pip",
+                "install",
+                "--no-index",
+                "--no-deps",
+                "--only-binary=:all:",
+                str(pip_bootstrap_wheel),
+            ],
+            staging_root,
+            environment,
+            primary_url,
+            torch_url,
+            attempt_state,
+            (),
+            destination_binding,
         )
 
         run_tool(
