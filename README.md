@@ -11,22 +11,26 @@ manuscript revision and its AWS Databricks execution handoff.
 - `research/`: preregistrations, fixtures, diagnostics, and production helpers.
 - `PROJECT_COMPLETION_TIMETABLE.md`: marked project plan.
 - `PROJECT_EVIDENCE_LEDGER.md`: authoritative additive evidence view.
-- `PROJECT_B08_DATABRICKS_AWS_QUALIFICATION_BUNDLE.md`: current data-free
-  Databricks qualification-readiness history.
-- `PROJECT_B08_NATIVE_DATABRICKS_RUNTIME_SUCCESSOR_V1.md`: active prospective
-  native-DBR, lockfile-based B08 route; no custom container or ECR is required.
-- `PROJECT_B08_NATIVE_DATABRICKS_RUNTIME_SUCCESSOR_V1_INDEPENDENT_REVIEW.md`:
-  independently accepted bounded Stage-N0 construction-readiness review.
-- `PROJECT_B08_NATIVE_DATABRICKS_RUNTIME_TARGET_SUCCESSOR_V2.md`: accepted
-  Ubuntu-24.04.4 target correction for the observed DBR 17.3 runtime.
-- `PROJECT_B08_NATIVE_DATABRICKS_RUNTIME_TARGET_SUCCESSOR_V2_INDEPENDENT_REVIEW.md`:
-  independent zero-delta acceptance of the V2 target correction.
-- `databricks/notebooks/b08_n1_isolated_overlay_lock_candidate.py`: exact
-  independently accepted N1 V2 isolated-overlay/F152-lock candidate builder.
-- `PROJECT_B08_N1_ISOLATED_OVERLAY_LOCK_CANDIDATE_BUILDER_V1_INDEPENDENT_REVIEW.md`:
-  historical exact-byte review of the superseded V1 builder.
-- `PROJECT_B08_N1_ISOLATED_OVERLAY_LOCK_CANDIDATE_BUILDER_V2_INDEPENDENT_REVIEW.md`:
-  active hostile zero-delta acceptance of the exact N1 V2 notebook and tests.
+- `PROJECT_B08_N1_CANDIDATE_003_FORENSIC_OUTCOME_AND_RUNTIME_ROUTE_PIVOT.md`:
+  current operator-facing Databricks decision and conventional B08 route.
+- `databricks/notebooks/b08_conventional_runtime_integration.py`: the only
+  active B08 Databricks notebook. It performs the conventional, data-free
+  two-pass install, runtime verification, targeted integration tests, and
+  synthetic whole-method smoke route.
+- `requirements/b08-conventional-runtime-controller-anchor-v1.json`: the exact
+  content binding for that active notebook. The notebook requires and verifies
+  this anchor before installation and again before issuing its final receipt.
+- `requirements/b08-databricks-aws-dbr17.3-x86_64-cpu-py312.lock`: the exact
+  21-wheel, hash-pinned DBR 17.3 / CPython 3.12 / Linux x86_64 CPU dependency
+  lock used by that notebook.
+- `requirements/b08-conventional-runtime-source-manifest-v1.json`: the
+  content-addressed source/test/evidence bundle used by that notebook. This
+  replaces any need for command-line Git inside a Databricks Git folder.
+- `PROJECT_B08_DATABRICKS_AWS_QUALIFICATION_BUNDLE.md` and the native-runtime,
+  isolated-overlay, Unity Catalog probe, and Candidate 002/003 records:
+  preserved historical B08 qualification and diagnostic evidence. Their
+  source-review verdicts remain historical, but their prospective overlay and
+  one-shot custody instructions are superseded by the route-pivot record.
 - `PROJECT_B08_N1_CANDIDATE_002_TERMINAL_NO_GO.md`: frozen record of the spent
   candidate-002 construction failure before any network or package operation.
 - `PROJECT_B08_N1_CANDIDATE_002_FORENSIC_V1_BINDING_MISMATCH.md`: preserved V1
@@ -47,70 +51,73 @@ manuscript revision and its AWS Databricks execution handoff.
   PASS from the one authorized probe-001 execution; both exact leaves are
   retained and permanently spent.
 - `databricks/notebooks/b08_n1_uc_native_overlay_lock_candidate_launcher.py`:
-  hash-first entrypoint for the UC Volume-native candidate-003 builder.
+  historical hash-first entrypoint for the spent candidate-003 builder; do not
+  run it again.
 - `databricks/notebooks/b08_n1_uc_native_overlay_lock_candidate.py`: bounded,
-  default-off, flat append-only UC Volume-native overlay/lock candidate builder.
+  historical flat append-only candidate-003 builder; do not run it again.
 - `PROJECT_B08_N1_UC_NATIVE_OVERLAY_LOCK_CANDIDATE_BUILDER_V1.md` and its
   independent review: exact successor contract, source bindings, hostile-test
   acceptance, operator gates, and zero-delta project boundary.
 
 ## Databricks boundary
 
-AWS Databricks is a candidate final study-execution environment. The data-free
-qualification-readiness package and the bounded native-DBR Stage-N0 package are
-independently accepted; the latter disposition is exactly
-`GO_NATIVE_DBR_N0_CONSTRUCTION_READINESS_ZERO_DELTA`. B08 and Wave 2 remain
-open. The active prospective route uses native Databricks Runtime plus an exact
-dependency lock and observed runtime manifest; the draft Docker/ECR route is
-superseded and supplies no active prerequisite. N0 proves offline construction
-readiness only: it does not resolve F151/F152, prove transitive or payload
-closure, establish effective whole-runtime F153 controls, capture production
-runtime, reserve capacity/storage, or authorize any provider or scientific
-operation. Do not mount, inspect, copy, or run study/test data; do not calibrate,
-train, infer, or inspect outcomes until the required native runtime, lock,
-capacity, and physical storage-reservation receipts pass their separate gates.
+AWS Databricks is the selected development compute venue. B08, F151, F152, and
+Wave 2 remain open. The current route is conventional and project-scoped:
 
-The completed read-only discovery observed DBR 17.3, CPython 3.12.3, x86_64,
-Ubuntu `24.04.4 LTS`, and all 15 deterministic environment values exactly. The
-independently accepted V2 target successor corrects only the prospective Ubuntu
-patch release. The base-runtime package differences and absent Torch are the
-expected reason for constructing a separate native overlay; they are not an
-F151 or F152 receipt. The earlier N1 V2 overlay/lock-candidate notebook remains
-accepted only as historical source evidence and must not be reused on this
-Unity Catalog Volume. Candidate-002 is permanently spent: its repeatable
-path-visible snapshots contain exactly the expected intent and failure receipt.
-F151, F152, B08, and Wave 2 remain open.
+1. check in a fully resolved, hash-pinned dependency lock and a separately
+   content-addressed source manifest;
+2. install it on the selected DBR runtime and, from a fresh or restarted
+   notebook interpreter, bind the source-manifest, dependency-lock, and built
+   project-wheel digests in one receipt, capture a sanitized runtime,
+   installed-version, distribution-root, and import-origin manifest, and run
+   `pip check`;
+3. run the relevant unit/integration suites and one tiny data-free or synthetic
+   whole-method smoke test; and
+4. before confirmatory work, freeze the prospective time, accelerator, memory,
+   evaluation, tuning, final-run, total-compute, and durable-output ceilings,
+   supported by documented Unity Catalog quota or accountable administrative
+   capacity assurance plus projected-output and local-scratch fail-fast checks.
 
-The operator helpers and templates are already present at their canonical
-`requirements/`, `research/diagnostics/`, and `research/fixtures/` paths.
-Preserve those paths when running or reviewing the bundle.
+Docker/ECR, custom containers, bitwise Databricks infrastructure identity,
+disabled auto-termination, B08 overlay namespaces, and B08 one-shot runtime
+custody are not requirements unless a later external obligation specifically
+requires them. Separate Gate-C preregistration and scientific-custody controls
+are unchanged.
 
-The native-runtime discovery, candidate-002 forensics, and the one authorized
-Unity Catalog Volume capability probe are complete. Probe-001 passed exact
-exclusive-create, non-overwriting collision, exactly-one-winner process-race,
-and repeated content-bound readback checks. Its two exact 4 KiB leaves are
-retained evidence and permanently spent: do not rerun, delete, rename, repair,
-replace, or reuse them.
+Candidate 003 is permanently spent unresolved. Preserve its namespace and all
+historical records; do not rerun, reuse, repair, rename, replace, or delete it.
+Candidate 004 is neither authorized nor planned. Do not run the historical
+Candidate 002/003 builders, launchers, probes, or forensic notebooks again.
 
-This PASS clears only the observed storage-behavior prerequisite. It does not
-make the existing POSIX-oriented builder safe, create an F151/F152 value, or
-establish physical durability, capacity, runtime, or scientific readiness. A
-replacement candidate-003 builder and hash-first launcher now implement the
-verified flat append-only protocol and are locally accepted for a default-off,
-data-free Databricks preflight. No candidate construction has run or is
-authorized by that source acceptance.
+The existing F153 closure is CPU-only, single-threaded, and CUDA-hidden. Any GPU
+or multithreaded scientific route must explicitly supersede or reopen F153
+before execution. No real-data access, calibration, training, inference, or
+confirmatory outcome inspection is authorized merely by completing the
+conventional environment and synthetic integration checks above.
 
-The next operator action is to commit and push the complete current source,
-including every Python file under `src/heterodiff/data/` and
-`src/heterodiff/artifacts/`, then pull that exact commit into Databricks. Open
-only the hash-first launcher and use **Run all** once with its default
-`NOT_AUTHORIZED` value; this creates the launcher widget and must return
-`HOLD_REVIEWED_BUILDER_SHA256_REQUIRED` without executing the builder. Enter
-the exact builder SHA-256 listed in the independent review, leave all four
-builder construction gates at their defaults when they appear, and use
-**Run all** once more for the default-off builder preflight. Return that complete
-JSON for review. Do not authorize construction, and do not run the builder
-directly.
+### Exact operator sequence for the active B08 notebook
+
+1. Commit and push the complete handoff as one revision: the active controller
+   notebook, its controller anchor, the dependency lock, the source manifest,
+   and every file selected by that source manifest. Then pull that same revision
+   into the existing Databricks Git folder.
+2. Open only
+   `databricks/notebooks/b08_conventional_runtime_integration.py`, attach the
+   existing DBR 17.3 x86_64 CPU cluster, and choose **Run all**. Do not edit the
+   notebook or enter any parameters.
+3. The first pass verifies the checked-in source manifest, installs the exact
+   hash-pinned lock, builds and installs the project wheel from a verified
+   `/tmp` copy, and restarts Python. Wait for the restart to finish.
+4. Choose **Run all** exactly once more. The second pass verifies the installed
+   environment, runs the targeted tests and data-free synthetic whole-method
+   route, and writes then prints one final JSON receipt.
+5. Return that JSON for review. Its successful decision is
+   `PASS_CONVENTIONAL_RUNTIME_AND_SYNTHETIC_INTEGRATION`. If it instead reports
+   `STOP_CONVENTIONAL_RUNTIME_OR_INTEGRATION_FAILED`, do not rerun blindly;
+   return the failure JSON for diagnosis.
+
+This sequence does not require Docker, ECR, command-line Git, new cluster
+settings, widgets, copied code, or a new Candidate 004 namespace.
 
 ## Repository hygiene
 

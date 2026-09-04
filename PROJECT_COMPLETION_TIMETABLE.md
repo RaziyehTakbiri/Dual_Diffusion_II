@@ -7,10 +7,19 @@
 **Capacity assumption:** one accountable Codex worker using internal subagents for parallel audits; user reviews the final outcome  
 **Schedule status:** aggressive, conditional go/no-go plan—not a completion promise  
 **Scientific state at baseline:** `DRAFT_NOT_EXECUTABLE`
-**Current marked-task view (2026-09-03):** 62 checked / 101 open / 163 total
+**Current marked-task view (2026-09-04):** 62 checked / 101 open / 163 total
 
-**Current evidence view (2026-09-03):** 24 fields open / 148 closed; 7 blockers
+**Current evidence view (2026-09-04):** 24 fields open / 148 closed; 7 blockers
 open / 5 closed; Gate A 5/8
+
+**Active Databricks direction (2026-09-04):** the B08 custom-container/ECR and
+runtime-overlay append-only one-shot custody routes are prospectively retired.
+Candidate 003 is preserved as permanently spent unresolved evidence; no
+Candidate 004 or further causal forensic run is planned. Databricks remains the
+selected development compute venue under the conventional project-scoped
+reproducibility criteria in
+the [route-pivot record](PROJECT_B08_N1_CANDIDATE_003_FORENSIC_OUTCOME_AND_RUNTIME_ROUTE_PIVOT.md).
+This scope correction closes no tracked task or evidence field.
 
 > This file is a project-management tracker only. Neither the file nor a checked
 > box authorizes external data/access requests, reviewer outreach, compute purchase
@@ -143,20 +152,37 @@ complete.
   registry alone does not claim stochastic independence. Evidence:
   [theory/statistics closure](PROJECT_THEORY_STATISTICS_BLOCKER_CLOSURE.md) and
   [independent review](PROJECT_THEORY_STATISTICS_BLOCKER_CLOSURE_INDEPENDENT_REVIEW.md).
-- [ ] **B08 — Hardware, compute, and tuning budget.** Hardware, environment,
-  deterministic controls, time/storage ceilings, allocations, reserve, and
-  failure policy are committed. Partial evidence: the independently accepted
-  [local-host capacity-gap freeze](PROJECT_B08_LOCAL_HOST_CAPACITY_GAP_FREEZE_INDEPENDENT_REVIEW.md)
-  closes only F153 deterministic settings, F158 zero empirical-pilot
-  allocation, and F161 zero failure reserve. F150--F152, F154--F157,
-  F159--F160, and F162 remain open and null; production hardware/runtime,
-  calibration weights, ceilings, and capacity reservation remain absent. The
-  independently reviewed
-  [Wave-2 capacity preflight](PROJECT_B08_WAVE2_CAPACITY_PREFLIGHT_NO_GO_INDEPENDENT_REVIEW.md)
-  records a terminal local-host no-go: 39,280,066,560 bytes were available
-  against the frozen 1,133,871,366,144-byte combined reservation floor, a
-  1,094,591,299,584-byte shortfall, with zero bytes reserved. It closes no
-  field, blocker, or timetable task.
+- [ ] **B08 — Hardware, compute, and tuning budget.** The selected execution
+  platform and prospective resource budget must be frozen before confirmatory
+  work. Closure now requires: (1) a sanitized capture of the exact Databricks
+  cluster/runtime—cloud, DBR/Spark, Python, OS/architecture, node type,
+  core/device model, CPU/GPU, memory, driver/worker topology, and durable-output
+  location; (2) a checked-in fully resolved hash-pinned
+  project dependency file plus the content-addressed source-manifest and
+  project-wheel digests;
+  (3) an installed-distribution/version and import-origin manifest from that
+  runtime after installation in a fresh or restarted notebook interpreter,
+  `pip check`, the relevant unit/integration suites, and one tiny data-free or
+  synthetic whole-method smoke test; and (4) prospective per-run
+  wall-time, accelerator, peak-memory, model-evaluation, tuning, final-run,
+  total-compute, and durable-storage ceilings with documented Unity Catalog
+  quota or accountable administrative capacity assurance, projected-output
+  bounds, and local-scratch fail-fast checks verified against them. The historical
+  [local-host capacity no-go](PROJECT_B08_WAVE2_CAPACITY_PREFLIGHT_NO_GO_INDEPENDENT_REVIEW.md)
+  remains valid for that local snapshot but does not require a physically
+  reserved Databricks volume. F153/F158/F161 remain closed;
+  F150--F152/F154--F157/F159--F160/F162 remain open. F153 is specifically a
+  CPU-only, single-threaded, CUDA-hidden policy and must be explicitly
+  superseded or reopened before any GPU or multithreaded scientific route.
+  Docker/ECR, a custom container or image-pull profile, bitwise identity of
+  managed-cloud internals, disabled auto-termination, B08 runtime-overlay Unity
+  Catalog append-only candidate namespaces, B08 one-shot runtime-custody
+  protocols, and further Candidate 003 causal forensics are not B08 requirements
+  absent a specific external obligation. This does not alter the separate Gate-C
+  preregistration and scientific-custody tasks.
+  Candidate 003 is retained only as permanently spent unresolved diagnostic
+  evidence and supplies no F151/F152 value; see the
+  [route-pivot record](PROJECT_B08_N1_CANDIDATE_003_FORENSIC_OUTCOME_AND_RUNTIME_ROUTE_PIVOT.md).
 - [ ] **B09 — Data license, clinical governance, and Retail privacy.** Every
   required approval, use restriction, privacy control, retention rule, and release
   boundary is documented and approved. Partial evidence: F163/F166/F167 plans
@@ -647,9 +673,10 @@ capacity reservation, calibration, data access, training, inference, result,
 or scientific authority exists. No checklist item is marked complete: the
 marked view remains 62 checked / 101 open / 163 total; fields remain 24 open /
 148 closed; blockers remain 7 open / 5 closed; Formal Tests remain
-`OPEN`/`OPEN`/`PENDING`; and F151/F152, B08, and Wave 2 remain open until
-bounded Databricks construction and separate acceptance of the resulting
-evidence.**
+`OPEN`/`OPEN`/`PENDING`; and F151/F152, B08, and Wave 2 remained open. At this
+historical checkpoint, bounded Databricks construction and separate acceptance
+of its evidence were the prospective next route; the 2026-09-04 runtime-route
+pivot below supersedes that prospective action.**
 
 **Additive candidate-002 forensics and Unity Catalog Volume probe-source
 checkpoint (2026-09-03): the failed candidate-002 construction is frozen as a
@@ -692,10 +719,11 @@ physical durability or capacity, a safe successor writer, a lock, a runtime,
 or scientific readiness. No operational checklist item is marked complete:
 the marked view remains 62 checked / 101 open / 163 total; fields remain 24
 open / 148 closed; blockers remain 7 open / 5 closed; Formal Tests remain
-`OPEN`/`OPEN`/`PENDING`; and F151/F152, B08, and Wave 2 remain open. The next
-eligible work is local implementation and independent review of a Unity
-Catalog Volume-native append-only successor writer; candidate-003 is not yet
-authorized for execution.**
+`OPEN`/`OPEN`/`PENDING`; and F151/F152, B08, and Wave 2 remain open. At this
+historical checkpoint, the prospective next work was local implementation and
+independent review of a Unity Catalog Volume-native append-only successor
+writer; the 2026-09-04 runtime-route pivot below supersedes that prospective
+action.**
 
 **Additive UC-native candidate-003 builder source-acceptance checkpoint
 (2026-09-03): COMPLETE.** The exact [UC-native successor contract](PROJECT_B08_N1_UC_NATIVE_OVERLAY_LOCK_CANDIDATE_BUILDER_V1.md)
@@ -779,31 +807,50 @@ checked / 101 open / 163 total; fields remain 24 open / 148 closed (PRE
 remain open.**
 
 **Additive candidate-003 terminal no-go / forensic-source checkpoint
-(2026-09-04): COMPLETE WITH ZERO TRACKED DELTA.** A later operator-supplied
-invocation reproduced the exact package-bound inputs but observed the two flat
-reserved names `b08-n1-overlay-candidate-003.attempt-intent.json` and
-`b08-n1-overlay-candidate-003.construction-failure-receipt.json`. It safely
-stopped with `UC_CANDIDATE_RESERVED_NAMESPACE_NOT_EMPTY`, did not itself write,
-contact an endpoint, or resolve/build/install a package, and still observed the
-canonical F152 lock absent. Under the accepted append-only one-shot contract,
-candidate-003 and its authority are now permanently spent; neither the visible
-payloads' contents nor an earlier failed primitive are inferred from this
-preflight. The exact [terminal record](PROJECT_B08_N1_CANDIDATE_003_TERMINAL_NO_GO.md)
-freezes that preservation boundary. The independently accepted
-[read-only forensic source](PROJECT_B08_N1_CANDIDATE_003_FLAT_NAMESPACE_FORENSICS_INDEPENDENT_REVIEW.md)
-is bound at notebook SHA-256 `c0ee94d4...` and test SHA-256 `530cb3b4...`, with
-P0/P1/P2 `0/0/0`, 153/153 focused passes, 421/421 related passes from both the
-repository and `/private/tmp`, and 483/483 expanded passes. It may be run once
-to inspect the exact 132-name namespace and payload-read only the exact
-intent/failure-control pair through two independent path-visible snapshots.
-Candidate-003 must not be rerun, reused, edited, repaired, renamed, or deleted,
-and candidate-004 is not authorized. This
-completes only a non-counted terminal-classification/source-review checkpoint:
-no checkbox is marked complete; the marked view remains 62 checked / 101 open
-/ 163 total; fields remain 24 open / 148 closed (PRE 23/143, POST 1/5);
-blockers remain 7 open / 5 closed; Formal Tests remain
-`OPEN`/`OPEN`/`PENDING`; results remain 0/4; and F151/F152, B08, and Wave 2
-remain open.**
+(2026-09-04): COMPLETE WITH ZERO TRACKED DELTA.** A package-bound invocation
+observed the two flat reserved names
+`b08-n1-overlay-candidate-003.attempt-intent.json` and
+`b08-n1-overlay-candidate-003.construction-failure-receipt.json`, safely stopped
+with `UC_CANDIDATE_RESERVED_NAMESPACE_NOT_EMPTY`, and still observed the
+canonical F152 lock absent. Candidate 003 and its authority became permanently
+spent. The exact [terminal record](PROJECT_B08_N1_CANDIDATE_003_TERMINAL_NO_GO.md)
+froze the preservation boundary, and the exact
+[read-only forensic source review](PROJECT_B08_N1_CANDIDATE_003_FLAT_NAMESPACE_FORENSICS_INDEPENDENT_REVIEW.md)
+accepted one bounded fixed-target inspection with P0/P1/P2 `0/0/0`, 153/153
+focused passes, 421/421 related passes from two working directories, and 483/483
+expanded passes. At that historical checkpoint, one read-only forensic run was
+the sole eligible next action; the following checkpoint records its completion
+and prospectively supersedes that instruction. Candidate 003 was not eligible
+for rerun or alteration, Candidate 004 was unauthorized, and the exact tracked
+delta was zero.**
+
+**Additive candidate-003 forensic-outcome / runtime-route-pivot checkpoint
+(2026-09-04): COMPLETE WITH ZERO TRACKED DELTA.** The previously accepted
+read-only forensic source was run. The operator-supplied semantic output reports
+two complete equal snapshots of the exact reserved namespace: only the intent
+and failure receipt are present, 130/132 reserved names and the virtual prefix
+are absent, and no success receipt, overlay, or canonical F152 lock is accepted.
+The supplied semantic text does not cryptographically bind the exact remote
+notebook bytes or executed source identity, and this run did not inspect the
+canonical lock; its absence remains the separately accepted project state.
+The 15,973-byte intent is exact and valid at file SHA-256 `ea844115...` and
+internal record SHA-256 `f9832c8b...`. The 17,862-byte failure receipt at
+SHA-256 `c0118dae...` is incompatible solely because of
+`FAILURE_COMMAND_JOURNAL_ARGV_BINDING_MISMATCH`. A resolved-versus-presented
+Databricks Python path is a plausible provisional P2 portability hypothesis,
+but exact causality is not claimed because the semantic output omits the
+offending entry and argument. Candidate 003 is
+`PERMANENTLY_SPENT_UNRESOLVED` and must not be rerun, reused, edited, repaired,
+renamed, or deleted; Candidate 004 is not authorized. The old instruction to
+run one forensic inspection has now been satisfied and is prospectively
+superseded. The B08 runtime-overlay custody route is retired in favor of the
+conventional reproducibility route specified in the
+[outcome and pivot record](PROJECT_B08_N1_CANDIDATE_003_FORENSIC_OUTCOME_AND_RUNTIME_ROUTE_PIVOT.md).
+This is a project-direction correction, not evidentiary closure: no checkbox is
+marked complete; the marked view remains 62 checked / 101 open / 163 total;
+fields remain 24 open / 148 closed (PRE 23/143, POST 1/5); blockers remain 7
+open / 5 closed; Formal Tests remain `OPEN`/`OPEN`/`PENDING`; results remain
+0/4; and F151/F152, B08, and Wave 2 remain open.**
 
 #### Solo Block 3 — SW5–8 — 2026-09-28 to 2026-10-25
 
@@ -1502,7 +1549,8 @@ Update this table at each Sunday week close. A blank is not a zero.
 | 2026-09-03 UC-native candidate-003 builder source-acceptance checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The exact fixed builder/launcher successor is independently accepted as `PASS_UC_NATIVE_CANDIDATE_003_BUILDER_AND_HASH_FIRST_LAUNCHER_ZERO_DELTA`, with P0/P1/P2 `0/0/0`, 184/184 focused passes, and 685/685 broad B08 passes. It binds a flat 132-leaf append-only protocol, hash-first launch, clean Git source before intent, post-intent recheck before network/build, isolated wheel-only construction, complete artifact/installed-payload closure, and success-receipt ambiguity suppression. Current source is not yet committed, so the default local preflight correctly withholds the commit-dependent review package. Construction remains unauthorized and unexecuted. Exact delta is zero: marked tasks remain 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, and F151/F152, B08, and Wave 2 remain open. |
 | 2026-09-03 candidate-003 Databricks V1 HOLD / V2 portability-successor checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The V1 default-off Databricks preflight stopped solely because the standard Git folder exposed no usable local repository; it made no writes or external contact and left candidate-003 absent/unspent. The independently accepted V2 successor replaces only the failed prospective live-Git/runtime-presentation route with an exact reviewed 304-file content snapshot plus separately bound builder/launcher bytes, and claims neither live Git checkout identity nor whole-repository cleanliness. Both hostile audits report P0/P1/P2 0/0/0; 194/194 focused and 695/695 broad B08 tests pass, including Gitless and launcher-to-builder preflights. This non-counted corrective checkpoint has exact zero delta: marked tasks remain 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, results 0/4, and F151/F152, B08, and Wave 2 remain open; construction is unauthorized. |
 | 2026-09-03 candidate-003 V2 Databricks default-off preflight checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The complete operator-supplied V2 output is independently accepted as `PASS_DATABRICKS_V2_DEFAULT_OFF_PREFLIGHT_REVIEW_PACKAGE_REPRODUCED_CANDIDATE_003_UNSPENT_AS_OBSERVED`, with P0/P1/P2 0/0/0 and 194/194 focused tests. The error-free HOLD reproduces the exact builder, canonical launcher, reviewed 304-file source identity, runtime ABI/environment/profile, absent 132-leaf candidate namespace, absent canonical lock, and review-package digest `5404dd58...`. It performed no write/network/build/install/data/science action and leaves candidate-003 absent/unspent as observed. A separate exact-package-bound one-shot authorization record is independently accepted with P0/P1/P2 0/0/0, but operator activation and construction have not occurred. Exact delta is zero: marked tasks remain 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, results 0/4, and F151/F152, B08, and Wave 2 remain open. |
-| 2026-09-04 candidate-003 terminal no-go / forensic-source checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | A later package-bound invocation observed exactly the candidate-003 intent and failure-receipt reserved names, safely stopped on the nonempty flat namespace, and left the canonical F152 lock absent. Candidate-003 and its one-shot authority are permanently spent; no payload content, earlier failed primitive, construction success, or lock is inferred. The exact bounded read-only forensic source is independently accepted with P0/P1/P2 0/0/0, 153/153 focused passes, 421/421 related passes from two working directories, and 483/483 expanded passes. Run only that forensic notebook once after push/pull; do not rerun or alter candidate-003 and do not create candidate-004. This non-counted checkpoint has zero tracked delta: marked tasks remain 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, results 0/4, and F151/F152, B08, and Wave 2 remain open. |
+| 2026-09-04 candidate-003 terminal no-go / forensic-source checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | A package-bound invocation observed exactly the Candidate 003 intent and failure-receipt reserved names, safely stopped on the nonempty namespace, and left the canonical F152 lock absent. Candidate 003 and its one-shot authority became permanently spent. The bounded read-only forensic source was independently accepted with P0/P1/P2 0/0/0, 153/153 focused passes, 421/421 related passes from two working directories, and 483/483 expanded passes. At that historical checkpoint, running that forensic notebook once after push/pull was the sole eligible next action; the following outcome/pivot row records its completion and prospectively supersedes the instruction. Exact tracked delta was zero. |
+| 2026-09-04 candidate-003 forensic outcome / runtime-route pivot | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The completed read-only run produced two equal snapshots with exactly the valid intent and one failure receipt present. The validator reported no failure-receipt error other than `FAILURE_COMMAND_JOURNAL_ARGV_BINDING_MISMATCH`; a Databricks interpreter-path portability false negative is a plausible provisional hypothesis, not a proven cause. The supplied semantic text does not bind the exact remote code bytes, and this run did not inspect the canonical lock; no overlay, success receipt, or canonical lock is accepted in project state. Candidate 003 is permanently spent unresolved; it must remain unchanged, Candidate 004 is unauthorized, the earlier one-run instruction is complete, and further Candidate 003 custody forensics are retired. Future B08 Databricks acceptance uses the conventional pinned-lock/runtime-manifest/import-origin/test/smoke/resource-ceiling route. Exact tracked delta is zero: marked tasks remain 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, results 0/4, and F151/F152, B08, and Wave 2 remain open; [outcome and pivot](PROJECT_B08_N1_CANDIDATE_003_FORENSIC_OUTCOME_AND_RUNTIME_ROUTE_PIVOT.md). |
 | SW1 — 2026-09-06 |  |  |  |  |  |  |  |  |  |
 | SW2 — 2026-09-13 |  |  |  |  |  |  |  |  | Solo Block 1 target |
 | SW3 — 2026-09-20 |  |  |  |  |  |  |  |  |  |
@@ -1613,6 +1661,13 @@ A scientific-closure checkbox may be changed to `[x]` only when:
 Drafts, schemas, hashes, test counts, meetings, and newly added layers are
 activities. They are not completion unless they close a named item.
 
+For B08/F151/F152, reproducibility means a content-addressed source manifest
+and fully resolved hash-pinned dependency specification that installs and passes
+the named verification and smoke tests on a sanitized captured execution
+runtime. It does not mean bitwise reproduction of Databricks-managed
+infrastructure. Managed fields outside project control are recorded as observed
+rather than converted into closure gates.
+
 A **project-control** checkbox may instead be checked without reducing the
 scientific scorecard only when it names an exact pre-outcome control predicate,
 has durable content-addressed evidence, has responsible-owner and independent
@@ -1630,7 +1685,12 @@ preregistration field, blocker, Formal Test, admission, authorization, or result
   closing it. A third requires explicit scope review.
 - Two consecutive weekly reports with no reduction in a tracked count freeze
   new implementation and trigger a scope review.
-- No new environment rehearsal after V4 unless a genuinely new live defect is proven.
+- From 2026-09-04, environment work is limited to the conventional B08 runtime
+  capture, pinned lock/install verification, fresh-interpreter import checks,
+  smoke tests, and resource-ceiling/capacity evidence defined above. No further
+  B08 Docker/ECR/custom-container, Unity Catalog runtime-overlay candidate,
+  one-shot runtime-custody, or Candidate 003 causal-forensic work is in scope
+  absent a specific external obligation.
 - No irreversible successor/R1/R2/domain marker or entropy, and no scientific
   test-data access, before the Solo-Block-13/SW47 G0 premarker gate. Any minimum Test-28
   production entropy/campaign required for G0 must use its own separately frozen,
@@ -1648,6 +1708,15 @@ The timetable is credible only if Gate A reserves the required resources.
 Test 28 alone currently permits up to approximately 2,731 process-hours and
 768 GiB of raw-plus-stable storage before R1/R2/domain training. The main
 experiment compute budget is still unresolved.
+
+The historical 1.13-TB combined reservation floor and local-host no-go remain
+valid for their frozen planning snapshot. The conventional Databricks route does
+not require a physically pre-reserved volume of that size. Before execution it
+must instead freeze the actual durable-output ceiling—including the current
+Test-28 planning bound unless prospectively revised—and bind documented Unity
+Catalog quota or accountable administrative capacity assurance, projected-output
+bounds, and a local-scratch fail-fast check. A filesystem-style byte-accurate
+free-space value is not required from Unity Catalog object storage.
 
 The base plan uses 80 solo weeks. Solo weeks 81–104 are bounded contingency for
 pre-gate delay, approved infrastructure recovery, frozen-schedule completion,
