@@ -99,8 +99,28 @@ conventional environment and synthetic integration checks above.
 
 ### Exact operator sequence for the active B08 notebook
 
+**User-approved scope adjustment (2026-09-07):** resume the conventional
+runtime and current-model integration route with one explicitly deferred
+historical compatibility obligation, recorded as `OPEN_DEFERRED`:
+`tests/unit/test_configuration_totalized_jump_potential_composer_torch.py::test_checkpoint17_module_keeps_checkpoint14_source_and_api_isolated`.
+That unchanged test requires the absent historical source
+`src/heterodiff/models/configuration_potential_composer_torch.py` with SHA-256
+`2b1d60e4da640edb0e5be5bcfe90012d9b08a1f48af56f8240dcbdb1d4abe0cf`.
+The [C17 crosswalk](PROJECT_C17_FORK_B_ASSUMPTIONS_PROOF_CODE_CROSSWALK_DRAFT.md)
+records this historical source conflict as unresolved; no matching artifact
+was recovered. The test and its expected hash remain unchanged. It is
+explicitly deselected from this current execution scope, not passed or closed.
+Of the previously selected 236 cases, the remaining 235 remain mandatory.
+The 18 historical validator exclusions already defined by the runner are a
+separate prior scope boundary; this approval adds no other exclusion.
+The deferred check remains an open obligation to revisit when the exact
+historical artifact is recovered or its scientific compatibility obligation
+is separately resolved. Neither this scope adjustment nor a successful
+current-scope run establishes full historical compatibility, B08 closure,
+Wave 2 closure, or project completion.
+
 1. Commit/push the controller notebook, support module, matching controller
-   anchor, source manifest, README, and tests as one revision. Pull it into the
+   anchor, source manifest, README, timetable, and tests as one revision. Pull it into the
    existing Databricks Git folder. Remove the temporary diagnostic `%run` cell
    if it is still present; do not retain manual edits in the controller.
 2. Open `databricks/notebooks/b08_conventional_runtime_integration.py`, attach
@@ -108,11 +128,22 @@ conventional environment and synthetic integration checks above.
 3. The notebook uses seven cells: prepare the verified source, install the
    locked dependencies with `%pip`, restart Python, verify dependencies and
    build the wheel, install the project wheel with `%pip`, restart Python,
-   then verify installed versions/origins and run the synthetic integration.
+   then verify installed versions/origins and run the tests and synthetic integration.
    Allow both automatic Python restarts to complete.
+   The historical B12 source-contract tests run first in a separate process
+   importing the staged source. The remaining tests use the installed package.
+   Both groups remain mandatory and are reported separately; only the exact
+   user-approved historical check above is deselected, and no path assertion
+   is relaxed. Failure output includes readable per-test summaries and the
+   path to a complete local test log.
 4. Return the final JSON. Success is
-   `PASS_CONVENTIONAL_RUNTIME_AND_SYNTHETIC_INTEGRATION`. An error instead
-   reports the failing phase; return that output before trying again.
+   `PASS_CURRENT_SCOPE_WITH_DEFERRED_HISTORICAL_CHECK`: the installed-runtime
+   checks, all 235 required current-scope cases, and synthetic integration
+   passed, while the historical obligation remains `OPEN_DEFERRED`.
+   This is not a full-suite, scientific-execution, or B08-completion claim.
+   An error instead reports the failing phase; return that output before
+   trying again. These instructions do not imply that changes have already
+   been committed, pushed, or run in Databricks.
 
 The old subprocess installer reported completion in an environment that was
 subsequently replaced; the diagnostic found a changed `python_prefix`, missing

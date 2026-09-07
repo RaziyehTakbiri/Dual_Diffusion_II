@@ -21,6 +21,27 @@ reproducibility criteria in
 the [route-pivot record](PROJECT_B08_N1_CANDIDATE_003_FORENSIC_OUTCOME_AND_RUNTIME_ROUTE_PIVOT.md).
 This scope correction closes no tracked task or evidence field.
 
+**User-approved current-model test scope (2026-09-07):** one historical
+Checkpoint 14/17 compatibility check is `OPEN_DEFERRED`, not passed or
+closed, while conventional Databricks runtime and current-model integration
+may continue. The exact obligation is
+`tests/unit/test_configuration_totalized_jump_potential_composer_torch.py::test_checkpoint17_module_keeps_checkpoint14_source_and_api_isolated`.
+Its required historical source
+`src/heterodiff/models/configuration_potential_composer_torch.py` at SHA-256
+`2b1d60e4da640edb0e5be5bcfe90012d9b08a1f48af56f8240dcbdb1d4abe0cf`
+is absent, as documented by the unresolved
+[C17 crosswalk](PROJECT_C17_FORK_B_ASSUMPTIONS_PROOF_CODE_CROSSWALK_DRAFT.md).
+The test and expected hash remain unchanged; the one case is explicitly
+deselected from the current run, leaving 235 of the previously selected 236
+cases mandatory. The runner's existing 18 historical validator exclusions
+remain a separate prior scope boundary. The limited success decision is
+`PASS_CURRENT_SCOPE_WITH_DEFERRED_HISTORICAL_CHECK`, conditional on the
+required runtime checks, current-scope tests, and synthetic integration
+passing; no such Databricks result is claimed by this update. This is a
+non-counted scope note: marked tasks remain **62 checked / 101 open / 163
+total**, no evidence field closes, and full historical compatibility, B08,
+Wave 2, and project completion remain open.
+
 > This file is a project-management tracker only. Neither the file nor a checked
 > box authorizes external data/access requests, reviewer outreach, compute purchase
 > or reservation, file mutation, a marker, test-data access, scientific execution,
@@ -183,6 +204,13 @@ complete.
   Candidate 003 is retained only as permanently spent unresolved diagnostic
   evidence and supplies no F151/F152 value; see the
   [route-pivot record](PROJECT_B08_N1_CANDIDATE_003_FORENSIC_OUTCOME_AND_RUNTIME_ROUTE_PIVOT.md).
+  **Current execution scope (2026-09-07):** the exact historical
+  Checkpoint 14/17 compatibility check named in the scope note above is
+  `OPEN_DEFERRED` under the user's approval. It is deselected, not passed,
+  while all 235 remaining selected cases and the runtime/synthetic checks
+  remain required. `PASS_CURRENT_SCOPE_WITH_DEFERRED_HISTORICAL_CHECK` is
+  only a limited runtime/current-model integration outcome and does not close
+  B08 or the unresolved historical source obligation.
 - [ ] **B09 — Data license, clinical governance, and Retail privacy.** Every
   required approval, use restriction, privacy control, retention rule, and release
   boundary is documented and approved. Partial evidence: F163/F166/F167 plans

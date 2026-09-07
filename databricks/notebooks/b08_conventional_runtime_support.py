@@ -15,6 +15,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import xml.etree.ElementTree as ET
 from pathlib import Path, PurePosixPath
 from typing import Any, Mapping, Sequence
 
@@ -44,7 +45,7 @@ SOURCE_MANIFEST_RELATIVE_PATH = (
     "requirements/b08-conventional-runtime-source-manifest-v1.json"
 )
 EXPECTED_SOURCE_MANIFEST_FILE_SHA256 = (
-    "cc1aae99d55c2e31316b97f2f4faaea754a03a86fd7f882742e12c1b5b98beb8"
+    "9a7d815ada69a7405552ac885b229e13f63eb24ff1ed6e57d0730734452ed5ff"
 )
 SOURCE_MANIFEST_SCHEMA_VERSION = (
     "heterodiff-b08-conventional-runtime-source-manifest-v1"
@@ -108,6 +109,37 @@ TARGETED_TEST_FILES = (
     "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py",
     "tests/unit/test_formal_test28_30_nonconfirmatory_route_v2.py",
 )
+
+# This historical suite requires imported component paths to equal ROOT/src.
+# Keep its strict source checks in a fresh source-bound process; all remaining
+# selectors continue to exercise the installed package in a separate process.
+SOURCE_BOUND_TEST_FILES = ("tests/unit/test_b12_integration_stack.py",)
+
+# User-approved deferral on 2026-09-07: preserve this exact historical test,
+# but keep it OPEN_DEFERRED outside the current-model qualification scope.
+HISTORICAL_DEFERRED_NODEID = (
+    "tests/unit/test_configuration_totalized_jump_potential_composer_torch.py::"
+    "test_checkpoint17_module_keeps_checkpoint14_source_and_api_isolated"
+)
+
+
+def _historical_deferred_obligations() -> list[dict[str, Any]]:
+    return [{
+        "obligation_id": "B08_HISTORICAL_CHECKPOINT14_COMPATIBILITY",
+        "state": "OPEN_DEFERRED",
+        "test_nodeid": HISTORICAL_DEFERRED_NODEID,
+        "source_relative_path": (
+            "src/heterodiff/models/configuration_potential_composer_torch.py"
+        ),
+        "expected_source_sha256": (
+            "2b1d60e4da640edb0e5be5bcfe90012d9b08a1f48af56f8240dcbdb1d4abe0cf"
+        ),
+        "reason": "EXACT_HISTORICAL_SOURCE_UNAVAILABLE",
+        "authorization_basis": "USER_APPROVED_NARROW_DEFERRAL_2026_09_07",
+        "test_or_expected_hash_modified": False,
+        "passed": False,
+        "closed": False,
+    }]
 
 WHOLE_METHOD_TEST_FILE = (
     "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py"
@@ -238,6 +270,7 @@ def _run(
     cwd: Path,
     timeout_seconds: int,
     environment: Mapping[str, str] | None = None,
+    check: bool = True,
 ) -> subprocess.CompletedProcess[str]:
     result = subprocess.run(
         list(argv),
@@ -252,8 +285,8 @@ def _run(
         timeout=timeout_seconds,
         check=False,
     )
-    if result.returncode != 0:
-        tail = (result.stderr or result.stdout)[-8000:]
+    if check and result.returncode != 0:
+        tail = _clean_command_output(result.stderr or result.stdout)[-8000:]
         raise B08ConventionalRuntimeError(
             f"COMMAND_FAILED returncode={result.returncode}: {tail}"
         )
@@ -1054,50 +1087,182 @@ def _runtime_manifest(
     }
 
 
+def _clean_command_output(value: str) -> str:
+    return re.sub(r"\x1b\[[0-?]*[ -/]*[@-~]", "", value)
+
+
+def _read_pytest_report(path: Path) -> dict[str, Any]:
+    if not path.is_file():
+        return {"report_available": False, "passed": 0, "failed": 0,
+                "errors": 0, "skipped": 0, "failures": []}
+    cases = list(ET.parse(path).getroot().iter("testcase"))
+    summary: dict[str, Any] = {
+        "report_available": True, "passed": 0, "failed": 0,
+        "errors": 0, "skipped": 0, "failures": [],
+    }
+    for case in cases:
+        problem = case.find("error")
+        kind = "errors"
+        if problem is None:
+            problem = case.find("failure")
+            kind = "failed"
+        if problem is not None:
+            summary[kind] += 1
+            if len(summary["failures"]) < 32:
+                summary["failures"].append({
+                    "test": case.get("name", ""), "kind": kind,
+                    "message": _clean_command_output(problem.get("message", "") or problem.text or "")[:1600],
+                })
+        elif case.find("skipped") is not None:
+            summary["skipped"] += 1
+        else:
+            summary["passed"] += 1
+    return summary
+
+
+def _pytest_entrypoint(
+    source_bound: bool, deferred_nodeids: tuple[str, ...]
+) -> str:
+    # Use exact node identity, not pytest --deselect prefix matching. The
+    # collection report distinguishes deferred items from passes and skips.
+    return (
+        "import importlib, json, pathlib, sys\n"
+        "root = pathlib.Path(sys.argv.pop(1)).resolve()\n"
+        "selection_report = pathlib.Path(sys.argv.pop(1))\n"
+        f"source_bound = {source_bound!r}\n"
+        f"expected_deferred = {deferred_nodeids!r}\n"
+        "if source_bound:\n"
+        "    for name in ('heterodiff.evaluation.b12_integration_stack', "
+        "'heterodiff.evaluation.b12_independent_component_recomputation'):\n"
+        "        module = importlib.import_module(name)\n"
+        "        expected = root / 'src' / (name.replace('.', '/') + '.py')\n"
+        "        if pathlib.Path(module.__file__).resolve() != expected:\n"
+        "            raise RuntimeError('SOURCE_BOUND_IMPORT_ORIGIN_MISMATCH:' + name)\n"
+        "import pytest\n"
+        "class ExactScopePlugin:\n"
+        "    @pytest.hookimpl(trylast=True)\n"
+        "    def pytest_collection_modifyitems(self, session, config, items):\n"
+        "        deferred = [item for item in items if item.nodeid in expected_deferred]\n"
+        "        observed = [item.nodeid for item in deferred]\n"
+        "        if (len(set(expected_deferred)) != len(expected_deferred) or "
+        "sorted(observed) != sorted(expected_deferred)):\n"
+        "            raise pytest.UsageError('EXACT_HISTORICAL_DEFERRAL_COLLECTION_MISMATCH')\n"
+        "        selected = [item for item in items if item.nodeid not in expected_deferred]\n"
+        "        if deferred:\n"
+        "            config.hook.pytest_deselected(items=deferred)\n"
+        "        items[:] = selected\n"
+        "        selection_report.write_text(json.dumps({\n"
+        "            'deferred_nodeids': observed,\n"
+        "            'selected_nodeids': [item.nodeid for item in selected],\n"
+        "        }, sort_keys=True), encoding='utf-8')\n"
+        "raise SystemExit(pytest.main(sys.argv[1:], plugins=[ExactScopePlugin()]))\n"
+    )
+
+
 def _run_targeted_tests(project_root: Path) -> dict[str, Any]:
-    missing = [
-        name for name in TARGETED_TEST_FILES if not (project_root / name).is_file()
-    ]
+    # Keep cwd/rootdir/import paths consistent across /tmp aliases. Pytest's
+    # exact node IDs must retain their file prefix for the one allowed deferral.
+    project_root = project_root.resolve(strict=True)
+    missing = [name for name in TARGETED_TEST_FILES if not (project_root / name).is_file()]
     if missing:
-        raise B08ConventionalRuntimeError(
-            "TARGETED_TEST_FILE_ABSENT:" + ",".join(missing)
-        )
+        raise B08ConventionalRuntimeError("TARGETED_TEST_FILE_ABSENT:" + ",".join(missing))
     test_root = Path(tempfile.mkdtemp(prefix="heterodiff-b08-tests-", dir="/tmp"))
     pytest_config = test_root / "pytest.ini"
     pytest_config.write_text("[pytest]\naddopts = -ra\n", encoding="utf-8")
-    environment = dict(os.environ)
-    environment.pop("PYTHONPATH", None)
-    environment.pop("PYTEST_ADDOPTS", None)
-    environment["PYTEST_DISABLE_PLUGIN_AUTOLOAD"] = "1"
-    result = _run(
-        (
-            sys.executable,
-            "-m",
-            "pytest",
-            "-q",
-            "-p",
-            "no:cacheprovider",
-            "-c",
-            str(pytest_config),
-            "--basetemp",
-            str(test_root / "tmp"),
-            *TARGETED_PYTEST_SELECTORS,
-        ),
-        cwd=project_root,
-        timeout_seconds=3600,
-        environment=environment,
+    source_selectors = tuple(
+        selector for selector in TARGETED_PYTEST_SELECTORS
+        if selector.split("::", 1)[0] in SOURCE_BOUND_TEST_FILES
     )
-    output = (result.stdout + result.stderr).strip()
-    matches = re.findall(r"(\d+) passed", output)
-    if not matches:
-        raise B08ConventionalRuntimeError("PYTEST_PASS_COUNT_NOT_FOUND")
+    installed_selectors = tuple(
+        selector for selector in TARGETED_PYTEST_SELECTORS
+        if selector.split("::", 1)[0] not in SOURCE_BOUND_TEST_FILES
+    )
+    # Run the inexpensive source-contract fixture checks before the slower
+    # tensor tests, so a shared fixture error is reported promptly.
+    cohorts = []
+    for name, scope, selectors in (
+        ("source_bound_checkout", "STAGED_SOURCE_CONTRACT_TESTS_NOT_INSTALLED_WHEEL", source_selectors),
+        ("installed_wheel", "INSTALLED_PACKAGE_TEST_PROCESS", installed_selectors),
+    ):
+        if not selectors:
+            continue
+        environment = dict(os.environ)
+        environment.pop("PYTHONPATH", None)
+        environment.pop("PYTEST_ADDOPTS", None)
+        environment.pop("FORCE_COLOR", None)
+        environment["PYTEST_DISABLE_PLUGIN_AUTOLOAD"] = "1"
+        environment["NO_COLOR"] = "1"
+        environment["PYTHONSAFEPATH"] = "1"
+        expected_deferred = (
+            (HISTORICAL_DEFERRED_NODEID,)
+            if any(selector in (
+                HISTORICAL_DEFERRED_NODEID,
+                HISTORICAL_DEFERRED_NODEID.split("::", 1)[0],
+            ) for selector in selectors) else ()
+        )
+        selection_path = test_root / (name + "-selection.json")
+        report_path = test_root / (name + ".xml")
+        log_path = test_root / (name + ".log")
+        pytest_arguments = (
+            "-q", "--color=no", "--tb=short", "-p", "no:cacheprovider",
+            "-c", str(pytest_config), "--basetemp", str(test_root / (name + "-tmp")),
+            "--rootdir", str(project_root),
+            "--junitxml", str(report_path), *selectors,
+        )
+        source_bound = name == "source_bound_checkout"
+        if source_bound:
+            environment["PYTHONPATH"] = str(project_root / "src")
+        command = (
+            sys.executable, "-c", _pytest_entrypoint(source_bound, expected_deferred),
+            str(project_root), str(selection_path), *pytest_arguments,
+        )
+        result = _run(command, cwd=project_root, timeout_seconds=3600,
+                      environment=environment, check=False)
+        output = _clean_command_output(result.stdout + result.stderr).strip()
+        log_path.write_text(output + "\n", encoding="utf-8")
+        summary = _read_pytest_report(report_path)
+        selection = _read_json(selection_path) if selection_path.is_file() else {}
+        selected = selection.get("selected_nodeids", [])
+        deferred = selection.get("deferred_nodeids", [])
+        selection_verified = (
+            isinstance(selected, list) and all(isinstance(item, str) for item in selected)
+            and len(selected) == len(set(selected))
+            and deferred == list(expected_deferred)
+            and not any(item in expected_deferred for item in selected)
+            and bool(selected)
+        )
+        cohort = {
+            "name": name, "scope": scope, "selectors": list(selectors),
+            "returncode": result.returncode, "log_path": str(log_path),
+            "output_sha256": _sha256_bytes(output.encode("utf-8")),
+            "selection_report_path": str(selection_path),
+            "selection_verified": selection_verified,
+            "selected_count": len(selected),
+            "deselected_count": len(deferred),
+            "deferred_nodeids": deferred,
+            **summary,
+        }
+        cohorts.append(cohort)
+        if result.returncode != 0 or not summary["report_available"] or summary["failed"] or summary["errors"] or summary["skipped"] or summary["passed"] == 0 or not selection_verified or summary["passed"] != len(selected):
+            raise B08ConventionalRuntimeError(
+                "TARGETED_INTEGRATION_TESTS_FAILED:" + name,
+                diagnostics={
+                    "cohorts": cohorts,
+                    "open_deferred_obligations": _historical_deferred_obligations(),
+                    "output_excerpt": (output[:3000] + "\n...\n" + output[-3000:]) if len(output) > 6000 else output,
+                },
+            )
     return {
-        "returncode": result.returncode,
-        "passed": int(matches[-1]),
+        "returncode": 0,
+        "passed": sum(cohort["passed"] for cohort in cohorts),
         "test_file_count": len(TARGETED_TEST_FILES),
         "test_files": list(TARGETED_TEST_FILES),
         "pytest_selector_count": len(TARGETED_PYTEST_SELECTORS),
         "pytest_selectors": list(TARGETED_PYTEST_SELECTORS),
+        "cohorts": cohorts,
+        "deselected_count": sum(cohort["deselected_count"] for cohort in cohorts),
+        "open_deferred_obligations": _historical_deferred_obligations(),
+        "full_historical_suite_passed": False,
         "historical_validator_exclusion": {
             "excluded_expanded_item_count": 18,
             "excluded_function_count": len(
@@ -1112,7 +1277,10 @@ def _run_targeted_tests(project_root: Path) -> dict[str, Any]:
             ),
             "validator_rerun_claimed": False,
         },
-        "output_sha256": _sha256_bytes(output.encode("utf-8")),
+        "output_sha256": _sha256_bytes(_canonical_json_bytes([
+            {"name": cohort["name"], "output_sha256": cohort["output_sha256"]}
+            for cohort in cohorts
+        ])),
     }
 
 
@@ -1237,7 +1405,7 @@ def _verify_and_integrate(
     )
     receipt = {
         "schema_version": SCHEMA_VERSION,
-        "decision": "PASS_CONVENTIONAL_RUNTIME_AND_SYNTHETIC_INTEGRATION",
+        "decision": "PASS_CURRENT_SCOPE_WITH_DEFERRED_HISTORICAL_CHECK",
         "captured_at_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
         "scope": "DATA_FREE_RUNTIME_QUALIFICATION_AND_SYNTHETIC_INTEGRATION_ONLY",
         "project": {
@@ -1279,6 +1447,9 @@ def _verify_and_integrate(
         "installed_environment": installed,
         "cpu_determinism": cpu_runtime,
         "targeted_integration_tests": tests,
+        "current_scope_passed": True,
+        "full_historical_suite_passed": False,
+        "open_deferred_obligations": _historical_deferred_obligations(),
         "synthetic_whole_method_smoke": synthetic,
         "project_delta": {
             "fields_closed": 0,
@@ -1299,6 +1470,8 @@ def _verify_and_integrate(
             "candidate_002_003_or_004_executed": False,
         },
         "not_proven_by_this_run": [
+            "HISTORICAL_CHECKPOINT14_COMPATIBILITY",
+            "FULL_HISTORICAL_TEST_SUITE_PASS",
             "B08_CLOSURE",
             "COMPUTE_AND_STORAGE_CEILING_ACCEPTANCE",
             "REAL_DATA_READINESS",

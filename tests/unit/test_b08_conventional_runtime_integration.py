@@ -58,10 +58,10 @@ def test_exact_lock_manifest_and_targeted_test_roster_are_present(
 ) -> None:
     controller_anchor = workflow._load_controller_anchor(ROOT)
     assert controller_anchor["file_sha256"] == (
-        "ce40af15605917942e6722c456dca3572ad9106f2b2337d5d14b8afaa55ab4d7"
+        "d93615b5fe39df0d3894bba2521c7573dfa3ec64b3a236a373c7101b040ce2a6"
     )
     assert controller_anchor["record_sha256"] == (
-        "2450fbdd7306aecc88978fce0bdf8ca36fbacedd3bfe8768f899ccb47cb4fde7"
+        "6e71218321e20a0a3e19962dce8a7c62169433cfdabc7de553d6e92c49075326"
     )
     identity_payload = NOTEBOOK.read_bytes().removesuffix(b"\n")
     assert controller_anchor["controller"]["sha256"] == workflow._sha256_bytes(
@@ -103,13 +103,13 @@ def test_exact_lock_manifest_and_targeted_test_roster_are_present(
         workflow.EXPECTED_SOURCE_MANIFEST_FILE_SHA256
     )
     assert source_manifest["record_sha256"] == (
-        "9e10e3e1588539bca00466cab5262ee71a23ef0c345e607ef5ded29e817567db"
+        "a76e9c392345d54f27aef08ae415e0649b29248f4940a69c0fb7a7b7831d0c87"
     )
     assert set(workflow.TEST_PACKAGE_MARKERS) <= {
         record["relative_path"] for record in source_manifest["manifest"]["files"]
     }
     assert source_manifest["file_count"] == 323
-    assert source_manifest["total_size_bytes"] == 26370392
+    assert source_manifest["total_size_bytes"] == 26372604
     verification = workflow._verify_source_snapshot(ROOT, source_manifest)
     assert verification["file_count"] == 323
 
@@ -405,7 +405,7 @@ def test_final_receipt_file_and_printable_object_are_identical(
     monkeypatch.setattr(workflow, "DURABLE_OUTPUT_DIRECTORY", tmp_path)
     receipt = {
         "schema_version": workflow.SCHEMA_VERSION,
-        "decision": "PASS_CONVENTIONAL_RUNTIME_AND_SYNTHETIC_INTEGRATION",
+        "decision": "PASS_CURRENT_SCOPE_WITH_DEFERRED_HISTORICAL_CHECK",
         "project": {"source_manifest_record_sha256": "b" * 64},
         "safety": {"study_or_test_data_accessed": False},
     }

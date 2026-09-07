@@ -97,10 +97,10 @@ def test_sibling_import_without_staged_source_path():
 
     if not expected_to_pass:
         with pytest.raises(
-            workflow.B08ConventionalRuntimeError, match="COMMAND_FAILED"
+            workflow.B08ConventionalRuntimeError, match="TARGETED_INTEGRATION_TESTS_FAILED"
         ) as caught:
             workflow._run_targeted_tests(staged_root)
-        assert "tests" in str(caught.value)
+        assert "tests" in caught.value.diagnostics["output_excerpt"]
         return
 
     result = workflow._run_targeted_tests(staged_root)
