@@ -7,10 +7,10 @@
 **Capacity assumption:** one accountable Codex worker using internal subagents for parallel audits; user reviews the final outcome  
 **Schedule status:** aggressive, conditional go/no-go plan—not a completion promise  
 **Scientific state at baseline:** `DRAFT_NOT_EXECUTABLE`
-**Current marked-task view (2026-09-04):** 62 checked / 101 open / 163 total
+**Current marked-task view (2026-09-07):** 61 checked / 102 open / 163 total
 
-**Current evidence view (2026-09-04):** 24 fields open / 148 closed; 7 blockers
-open / 5 closed; Gate A 5/8
+**Current evidence view (2026-09-07):** 25 fields open / 147 closed; 8 blockers
+open / 4 closed (6 execution + 2 submission open); Gate A 5/8
 
 **Active Databricks direction (2026-09-04):** the B08 custom-container/ECR and
 runtime-overlay append-only one-shot custody routes are prospectively retired.
@@ -19,7 +19,8 @@ Candidate 004 or further causal forensic run is planned. Databricks remains the
 selected development compute venue under the conventional project-scoped
 reproducibility criteria in
 the [route-pivot record](PROJECT_B08_N1_CANDIDATE_003_FORENSIC_OUTCOME_AND_RUNTIME_ROUTE_PIVOT.md).
-This scope correction closes no tracked task or evidence field.
+That route-pivot checkpoint closed no tracked task or evidence field; the
+new successful conventional-runtime milestone is recorded below.
 
 **User-approved current-model test scope (2026-09-07):** one historical
 Checkpoint 14/17 compatibility check is `OPEN_DEFERRED`, not passed or
@@ -35,12 +36,79 @@ The test and expected hash remain unchanged; the one case is explicitly
 deselected from the current run, leaving 235 of the previously selected 236
 cases mandatory. The runner's existing 18 historical validator exclusions
 remain a separate prior scope boundary. The limited success decision is
-`PASS_CURRENT_SCOPE_WITH_DEFERRED_HISTORICAL_CHECK`, conditional on the
-required runtime checks, current-scope tests, and synthetic integration
-passing; no such Databricks result is claimed by this update. This is a
-non-counted scope note: marked tasks remain **62 checked / 101 open / 163
-total**, no evidence field closes, and full historical compatibility, B08,
-Wave 2, and project completion remain open.
+`PASS_CURRENT_SCOPE_WITH_DEFERRED_HISTORICAL_CHECK`; the receipt below now
+records that limited success. The scope deferral itself closes no evidence
+field. Full historical compatibility, B08, Waves 2/3, and project completion
+remain open.
+
+**COMPLETED — Databricks current-scope runtime and synthetic-integration
+milestone (2026-09-07).** The
+[archived operator-supplied receipt](research/fixtures/b08_conventional_runtime_integration_2026_09_07_receipt.json)
+records **235 passed = 44 source-bound + 191 installed-package tests**, with
+zero failures, errors, or skips in the required current-scope cases, and the
+synthetic whole-method smoke route passing. All 21 locked dependency versions,
+required installed import origins, `pip check`, and CPU single-threaded
+determinism checks passed after managed notebook installation and Python
+restarts. The one historical case remains `OPEN_DEFERRED`; the existing 18
+historical-validator exclusions are still separately disclosed. This is not
+full historical-suite passage or a scientific result.
+
+**CLOSED — F152 dependency-lock field.** The reviewed receipt binds the
+[checked-in lock](requirements/b08-databricks-aws-dbr17.3-x86_64-cpu-py312.lock),
+source manifest, and installed project-wheel digest; the
+[ledger acceptance](PROJECT_EVIDENCE_LEDGER.md#2026-09-07-conventional-databricks-milestone-and-f152-acceptance)
+closes this one field. At that earlier same-day checkpoint, fields moved from
+24 open / 148 closed to
+**23 open / 149 closed**. The notebook's zero field delta describes the run;
+this later user-authorized tracker update records the acceptance.
+
+The milestone is visibly marked complete without adding a new timetable box
+or closing the compound environment-lock/resource-ceiling task prematurely.
+At that F152 acceptance checkpoint, checkbox totals remained
+**62 checked / 101 open / 163 total** and blockers **7 open / 5 closed**.
+The later budget audit below updates those current totals. Formal Tests 28/29/30 remain
+**OPEN / OPEN / PENDING**, and scientific results remain **0/4**.
+The supplied receipt's integrity and current source bindings were checked
+offline, including independent agent review; its remote Volume was not
+independently reopened. The producer reports successful durable readback.
+
+**Latest audit — B06/F066/F072 reopened (2026-09-07).** Mandatory F144
+validation requires 16 checkpoints × 128 groups × 64 draws × 256 reverse
+steps × 256 seeds = **8,589,934,592 logical ODE steps per primary method per
+domain** before training work. This is 2,048 times the frozen FINAL_TRAINING
+ODE ceiling of 4,194,304; its metric-event ceiling is also zero despite
+mandatory validation. Batching does not change those logical event units.
+The two training-budget fields and the B06 blocker are therefore OPEN pending
+a prospective budget amendment; the old freeze artifacts, method identities,
+licenses, F104 formula, F144 schedule, CPU test receipt, and F152 closure are
+preserved. This is a correction of current execution validity, not erased work.
+Only the existing B06 checkbox reopens; no new checkbox is added.
+
+**COMPLETED — bounded two-track preparation, not track closure.** The
+supplied-input two-domain adapter and its source-only synthetic smoke notebook,
+the read-only runtime-facts notebook, and the requested GPU-training plan draft
+are prepared; see the
+[two-track readiness and GPU plan](PROJECT_TWO_TRACK_READINESS_AND_GPU_PLAN.md).
+Local regression passes total 519, including 47 adapter and 32 runtime-facts
+tests plus related admission/F105/F061 checks. No actual dataset, populated split,
+admission, GPU qualification, or training is claimed. The user approved
+preparing a GPU plan only, not adopting it, launching compute, or spending.
+Reported access to eight GPUs and up to 1,000 GB host RAM is not verified
+device/VRAM identity, storage capacity, or a run budget. F141/F153 remain the
+frozen CPU reference only; the GPU successor is DRAFT and F155 remains OPEN.
+
+**Next work — prospective design decisions and supplied evidence.** Resolve
+the B06/F144 budget conflict before execution and review the draft GPU successor
+before any adoption. Obtain the remaining selected-runtime facts and actual
+approved data/snapshot evidence; F150/F151 and B02/B03/B08/B09/B12 stay open.
+F061 still permits only 852–855 complete eligible natural groups under its
+all-group 70/15/15 and exact 128/128 rule; actual counts are unobserved, and
+larger held-out splits cannot silently be subsampled. The linked plan proposes
+a Unity Catalog data folder without claiming it exists or authorizing data
+transfer. The new adapter is outside the old 323-file release manifest: use
+the new source-only smoke/facts notebooks as instructed in that plan, not an
+unchanged rerun of the old bootstrap. No Docker/ECR or custody setup is revived.
+The agreed timetable dates are unchanged; whole tracks and science remain open.
 
 > This file is a project-management tracker only. Neither the file nor a checked
 > box authorizes external data/access requests, reviewer outreach, compute purchase
@@ -152,14 +220,14 @@ complete.
   failure behavior are frozen and tested through a typed certified-input
   envelope. Evidence: [theory/statistics closure](PROJECT_THEORY_STATISTICS_BLOCKER_CLOSURE.md)
   and [independent review](PROJECT_THEORY_STATISTICS_BLOCKER_CLOSURE_INDEPENDENT_REVIEW.md).
-- [x] **B06 — Baseline identities and matched compute.** Repositories, commits,
-  licenses, configs, capabilities, tuning rules, and equal-total-compute formula
-  are exact and reproducible. The independently accepted package closes exactly
-  F062--F103 using a content-addressed local primary pair, four controls, four
-  literature-family rows, bounded CSDI/EditPP revisions and MIT receipts, exact
-  capability/extension boundaries, frozen tuning grids, and equal prospective
-  F104 event ceilings. B08 hardware/calibration/capacity and B12 executable
-  adapters/runtime remain open. Evidence:
+- [ ] **B06 — Baseline identities and matched compute.** Reopened on
+  2026-09-07 because F066/F072 FINAL_TRAINING budgets cannot contain the
+  mandatory F144 validation schedule. The historical all-or-nothing F062--F103
+  freeze is preserved, including exact local/upstream identities, licenses,
+  configs, capabilities, tuning grids, and the F104 formula; its two training
+  budgets now require a prospective amendment before execution. B08 and B12
+  also remain open. Evidence:
+  [current budget audit](PROJECT_TWO_TRACK_READINESS_AND_GPU_PLAN.md),
   [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md),
   [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json),
   and [independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md).
@@ -191,8 +259,9 @@ complete.
   bounds, and local-scratch fail-fast checks verified against them. The historical
   [local-host capacity no-go](PROJECT_B08_WAVE2_CAPACITY_PREFLIGHT_NO_GO_INDEPENDENT_REVIEW.md)
   remains valid for that local snapshot but does not require a physically
-  reserved Databricks volume. F153/F158/F161 remain closed;
-  F150--F152/F154--F157/F159--F160/F162 remain open. F153 is specifically a
+  reserved Databricks volume. F152/F153/F158/F161 are closed following the
+  2026-09-07 F152 acceptance; F150/F151/F154--F157/F159--F160/F162 remain open.
+  F153 is specifically a
   CPU-only, single-threaded, CUDA-hidden policy and must be explicitly
   superseded or reopened before any GPU or multithreaded scientific route.
   Docker/ECR, a custom container or image-pull profile, bitwise identity of
@@ -208,9 +277,10 @@ complete.
   Checkpoint 14/17 compatibility check named in the scope note above is
   `OPEN_DEFERRED` under the user's approval. It is deselected, not passed,
   while all 235 remaining selected cases and the runtime/synthetic checks
-  remain required. `PASS_CURRENT_SCOPE_WITH_DEFERRED_HISTORICAL_CHECK` is
-  only a limited runtime/current-model integration outcome and does not close
-  B08 or the unresolved historical source obligation.
+  remain required and are now evidenced as passing by the
+  [2026-09-07 receipt](research/fixtures/b08_conventional_runtime_integration_2026_09_07_receipt.json).
+  F152 is closed, but this limited runtime/current-model integration outcome
+  does not close B08 or the unresolved historical source obligation.
 - [ ] **B09 — Data license, clinical governance, and Retail privacy.** Every
   required approval, use restriction, privacy control, retention rule, and release
   boundary is documented and approved. Partial evidence: F163/F166/F167 plans
@@ -261,7 +331,7 @@ complete.
   no production runtime. F139--F144/F147 are frozen separately, but B12 and
   Formal Tests 28--30 remain open or pending.
 
-**Execution blockers remaining:** B02, B03, B08, B09, and B12.  
+**Execution blockers remaining:** B02, B03, B06, B08, B09, and B12.
 **Submission-only blockers remaining:** B10 and B11.
 
 ## 5. Master timetable
@@ -984,9 +1054,12 @@ fully open.**
 - [ ] PhysioNet and Retail access, license, governance, privacy, and support routes are feasible.
 - [x] Baseline families and licenses are fixed. Exact local and upstream
   identities, immutable CSDI/EditPP revisions and MIT receipts, capability and
-  author-extension matrices, control/family configs, tuning grids, and
-  prospective matched-compute ceilings are independently accepted. This is a
-  bounded audit selection, not a universal SOTA or runtime claim. Evidence:
+  author-extension matrices, control/family configs, and tuning grids remain
+  independently accepted. The prospective budgets were historically accepted
+  but F066/F072 and B06 reopen after the 2026-09-07 F144 consistency audit.
+  This checked criterion covers families/licenses, not current budget validity,
+  universal SOTA, or runtime acceptance. Evidence:
+  [current budget audit](PROJECT_TWO_TRACK_READINESS_AND_GPU_PLAN.md),
   [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md) and
   [independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md).
 - [x] Pilot variance and power approach are valid. The accepted distribution-free
@@ -1165,8 +1238,11 @@ pre-outcome rescope. Do not continue on optimism alone.
 #### Solo Block 6 — SW17–20 — 2026-12-21 to 2027-01-17
 
 - [x] Freeze baseline repositories/commits/config interfaces and matched-compute
-  formula draft. Exact all-or-nothing F062--F103/B06 evidence is independently
-  accepted; B08 and B12 remain outside this completed task. Evidence:
+  formula draft. The historical all-or-nothing F062--F103/B06 freeze and its
+  draft are complete and preserved. This historical drafting task is not a
+  claim of current executable budget consistency: F066/F072 and B06 reopen
+  after the 2026-09-07 F144 audit; B08 and B12 remain open. Evidence:
+  [current budget audit](PROJECT_TWO_TRACK_READINESS_AND_GPU_PLAN.md),
   [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md),
   [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json),
   and [independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md).
@@ -1190,8 +1266,9 @@ pre-outcome rescope. Do not continue on optimism alone.
   (10,230 bytes; SHA-256
   `7694694d7fe2b0c2dd17f79b9e0f9d2f44c14c59c3f0568902e3cad7d75ae402`).
   That paragraph preserves the historical F104-only checkpoint. The later
-  independently accepted B06 successor now closes the compound task and B06,
-  while B08 and B12 remain open.
+  independently accepted B06 successor closed this freeze/draft task and B06
+  at its historical checkpoint. The 2026-09-07 budget audit reopens B06 and
+  F066/F072 while preserving the completed historical draft; B08/B12 stay open.
 - [x] Freeze power inputs, seed schedule, stopping rules, and failure taxonomy.
   The accepted theory/statistics package completes F110/F112/F114--F127/
   F130--F136/F138/F149 and preserves the earlier F128/F129/F137/F148 values,
@@ -1323,6 +1400,11 @@ pre-outcome rescope. Do not continue on optimism alone.
   [machine record](research/fixtures/manuscript_v3_formal_test28_30_nonconfirmatory_route_v2_successor.json),
   [validator](research/diagnostics/manuscript_v3_formal_test28_30_nonconfirmatory_route_v2_successor.py),
   and [independent hostile review](PROJECT_FORMAL_TEST28_30_NONCONFIRMATORY_ROUTE_V2_SUCCESSOR_INDEPENDENT_REVIEW.md).
+  **Additional completed runtime verification (2026-09-07):** the
+  [Databricks receipt](research/fixtures/b08_conventional_runtime_integration_2026_09_07_receipt.json)
+  records the synthetic route passing on the installed environment. The
+  production Formal-Test states remain OPEN/OPEN/PENDING; this already-checked
+  route task is not counted twice.
 - [ ] R1/R2 grids, tolerances, constraint/failure rules, and blinded pilot inputs are candidate-frozen.
 - [ ] Domain leakage reports and admission implementations are complete.
 - [x] Runtime identity, runner, capsule, ledger, and recomputation
@@ -1395,6 +1477,11 @@ Only defects tied to a named blocker or formal-test predicate may be fixed.
   any external seed-source contact, then acquire the scheduled 2,048-seed production
   sample/capsule and start the minimum required non-scientific campaign.
 - [ ] Freeze environment locks and per-run time/storage ceilings.
+  **Part complete (2026-09-07):** the installed hash-pinned dependency lock is
+  accepted and F152 is CLOSED; see the
+  [Databricks receipt](research/fixtures/b08_conventional_runtime_integration_2026_09_07_receipt.json).
+  Per-run and aggregate resource/storage ceilings remain open, so this
+  compound task is not yet checked.
 
 #### Solo Block 11 — SW37–41 — 2027-05-10 to 2027-06-13
 
@@ -1579,6 +1666,8 @@ Update this table at each Sunday week close. A blank is not a zero.
 | 2026-09-03 candidate-003 V2 Databricks default-off preflight checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The complete operator-supplied V2 output is independently accepted as `PASS_DATABRICKS_V2_DEFAULT_OFF_PREFLIGHT_REVIEW_PACKAGE_REPRODUCED_CANDIDATE_003_UNSPENT_AS_OBSERVED`, with P0/P1/P2 0/0/0 and 194/194 focused tests. The error-free HOLD reproduces the exact builder, canonical launcher, reviewed 304-file source identity, runtime ABI/environment/profile, absent 132-leaf candidate namespace, absent canonical lock, and review-package digest `5404dd58...`. It performed no write/network/build/install/data/science action and leaves candidate-003 absent/unspent as observed. A separate exact-package-bound one-shot authorization record is independently accepted with P0/P1/P2 0/0/0, but operator activation and construction have not occurred. Exact delta is zero: marked tasks remain 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, results 0/4, and F151/F152, B08, and Wave 2 remain open. |
 | 2026-09-04 candidate-003 terminal no-go / forensic-source checkpoint | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | A package-bound invocation observed exactly the Candidate 003 intent and failure-receipt reserved names, safely stopped on the nonempty namespace, and left the canonical F152 lock absent. Candidate 003 and its one-shot authority became permanently spent. The bounded read-only forensic source was independently accepted with P0/P1/P2 0/0/0, 153/153 focused passes, 421/421 related passes from two working directories, and 483/483 expanded passes. At that historical checkpoint, running that forensic notebook once after push/pull was the sole eligible next action; the following outcome/pivot row records its completion and prospectively supersedes the instruction. Exact tracked delta was zero. |
 | 2026-09-04 candidate-003 forensic outcome / runtime-route pivot | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The completed read-only run produced two equal snapshots with exactly the valid intent and one failure receipt present. The validator reported no failure-receipt error other than `FAILURE_COMMAND_JOURNAL_ARGV_BINDING_MISMATCH`; a Databricks interpreter-path portability false negative is a plausible provisional hypothesis, not a proven cause. The supplied semantic text does not bind the exact remote code bytes, and this run did not inspect the canonical lock; no overlay, success receipt, or canonical lock is accepted in project state. Candidate 003 is permanently spent unresolved; it must remain unchanged, Candidate 004 is unauthorized, the earlier one-run instruction is complete, and further Candidate 003 custody forensics are retired. Future B08 Databricks acceptance uses the conventional pinned-lock/runtime-manifest/import-origin/test/smoke/resource-ceiling route. Exact tracked delta is zero: marked tasks remain 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, results 0/4, and F151/F152, B08, and Wave 2 remain open; [outcome and pivot](PROJECT_B08_N1_CANDIDATE_003_FORENSIC_OUTCOME_AND_RUNTIME_ROUTE_PIVOT.md). |
+| 2026-09-07 Databricks current-scope completion / F152 acceptance | 22 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | Conventional runtime/testing milestone COMPLETE: 235 required cases passed (44 source-bound + 191 installed-package), 21 dependency pins and installed origins verified, pip check and synthetic smoke passed. F152 closes; PRE 22/144, POST 1/5, total fields 23/149. One historical case remains OPEN_DEFERRED; 18 prior historical-validator exclusions remain disclosed. Existing checkbox totals stay 62/101/163 because resource ceilings and other compound obligations remain open. B02/B03/B08/B09/B12 and Waves 2/3 remain open; Formal Tests OPEN/OPEN/PENDING; no training or scientific result. Overall RED is retained because the full scientific execution gates remain unapproved; the current-scope runtime milestone itself passed. [Receipt](research/fixtures/b08_conventional_runtime_integration_2026_09_07_receipt.json) and [ledger acceptance](PROJECT_EVIDENCE_LEDGER.md#2026-09-07-conventional-databricks-milestone-and-f152-acceptance). |
+| 2026-09-07 two-track readiness / budget reconciliation | 24 | 6 | 4 | 3 | 0/4 | 2 | RED | 0 | Bounded supplied-input adapter, source-only smoke notebook, read-only runtime-facts notebook, and GPU-plan DRAFT prepared; whole tracks, data admission, and GPU qualification remain open. Verified F144 validation exceeds F066/F072 training caps, so those two fields and B06 reopen without rewriting historical freezes. Current totals: boxes 61/102/163; fields 25/147 (PRE 24/142, POST 1/5); blockers 8/4. CPU 235-pass milestone and F152 remain accepted; one historical case remains OPEN_DEFERRED. GPU preparation is not adoption, launch, or spend authority. F141/F153 remain CPU-reference-only and F155 OPEN. No actual data, training, scientific result, new checkbox, or timetable-date change. [Readiness audit and GPU draft](PROJECT_TWO_TRACK_READINESS_AND_GPU_PLAN.md). |
 | SW1 — 2026-09-06 |  |  |  |  |  |  |  |  |  |
 | SW2 — 2026-09-13 |  |  |  |  |  |  |  |  | Solo Block 1 target |
 | SW3 — 2026-09-20 |  |  |  |  |  |  |  |  |  |

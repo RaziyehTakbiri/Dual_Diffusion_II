@@ -1,0 +1,497 @@
+{
+  "captured_at_utc": "2026-09-07T14:40:51.693647+00:00",
+  "cpu_determinism": {
+    "cuda_available": false,
+    "cuda_device_count": 0,
+    "deterministic_algorithms_enabled": true,
+    "native_threadpools": [
+      {
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "prefix": "libscipy_openblas",
+        "user_api": "blas",
+        "version": "0.3.31.188.0"
+      },
+      {
+        "internal_api": "openmp",
+        "num_threads": 1,
+        "prefix": "libgomp",
+        "user_api": "openmp",
+        "version": null
+      }
+    ],
+    "torch_num_interop_threads": 1,
+    "torch_num_threads": 1,
+    "torch_version": "2.12.1+cpu"
+  },
+  "current_scope_passed": true,
+  "decision": "PASS_CURRENT_SCOPE_WITH_DEFERRED_HISTORICAL_CHECK",
+  "deterministic_environment": {
+    "BLIS_NUM_THREADS": "1",
+    "CUDA_VISIBLE_DEVICES": "",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0",
+    "PYTHONNOUSERSITE": "1",
+    "PYTHONSAFEPATH": "1",
+    "PYTHONUTF8": "1",
+    "TZ": "UTC",
+    "VECLIB_MAXIMUM_THREADS": "1"
+  },
+  "durable_receipt_path": "/Volumes/development/team_eds_supplychain/b08_runtime_output/b08-conventional-runtime-integration-a76e9c392345-d5d155f0d6d75a64.json",
+  "durable_write_verified": true,
+  "full_historical_suite_passed": false,
+  "installed_environment": {
+    "all_locked_distributions_under_active_python_prefix": true,
+    "heterodiff_version": "0.1.0",
+    "import_origins": {
+      "heterodiff": {
+        "origin": "<PYTHON_PREFIX>/lib/python3.12/site-packages/heterodiff/__init__.py",
+        "under_active_python_prefix": true
+      },
+      "numpy": {
+        "origin": "<PYTHON_PREFIX>/lib/python3.12/site-packages/numpy/__init__.py",
+        "under_active_python_prefix": true
+      },
+      "pytest": {
+        "origin": "<PYTHON_PREFIX>/lib/python3.12/site-packages/pytest/__init__.py",
+        "under_active_python_prefix": true
+      },
+      "scipy": {
+        "origin": "<PYTHON_PREFIX>/lib/python3.12/site-packages/scipy/__init__.py",
+        "under_active_python_prefix": true
+      },
+      "threadpoolctl": {
+        "origin": "<PYTHON_PREFIX>/lib/python3.12/site-packages/threadpoolctl.py",
+        "under_active_python_prefix": true
+      },
+      "torch": {
+        "origin": "<PYTHON_PREFIX>/lib/python3.12/site-packages/torch/__init__.py",
+        "under_active_python_prefix": true
+      }
+    },
+    "lock_pin_count": 21,
+    "locked_distribution_roots": {
+      "filelock": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "3.32.5"
+      },
+      "fsspec": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "2026.7.0"
+      },
+      "iniconfig": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "2.3.0"
+      },
+      "jinja2": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "3.1.6"
+      },
+      "markupsafe": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "3.0.3"
+      },
+      "mpmath": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "1.3.0"
+      },
+      "networkx": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "3.6.1"
+      },
+      "numpy": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "2.4.6"
+      },
+      "packaging": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "25.0"
+      },
+      "pip": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "25.0.1"
+      },
+      "pluggy": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "1.6.0"
+      },
+      "pyflakes": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "3.4.0"
+      },
+      "pygments": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "2.21.0"
+      },
+      "pytest": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "9.1.1"
+      },
+      "scipy": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "1.17.1"
+      },
+      "setuptools": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "74.0.0"
+      },
+      "sympy": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "1.14.0"
+      },
+      "threadpoolctl": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "3.6.0"
+      },
+      "torch": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "2.12.1+cpu"
+      },
+      "typing-extensions": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "4.16.0"
+      },
+      "wheel": {
+        "distribution_root": "<PYTHON_PREFIX>/lib/python3.12/site-packages",
+        "under_active_python_prefix": true,
+        "version": "0.45.1"
+      }
+    },
+    "locked_versions": {
+      "filelock": "3.32.5",
+      "fsspec": "2026.7.0",
+      "iniconfig": "2.3.0",
+      "jinja2": "3.1.6",
+      "markupsafe": "3.0.3",
+      "mpmath": "1.3.0",
+      "networkx": "3.6.1",
+      "numpy": "2.4.6",
+      "packaging": "25.0",
+      "pip": "25.0.1",
+      "pluggy": "1.6.0",
+      "pyflakes": "3.4.0",
+      "pygments": "2.21.0",
+      "pytest": "9.1.1",
+      "scipy": "1.17.1",
+      "setuptools": "74.0.0",
+      "sympy": "1.14.0",
+      "threadpoolctl": "3.6.0",
+      "torch": "2.12.1+cpu",
+      "typing-extensions": "4.16.0",
+      "wheel": "0.45.1"
+    },
+    "pip_check_output_sha256": "9bc9eff87ccde9a897a86ea3cf9096facadba3cc998bc2b74cc3d856cf1cc971",
+    "pip_check_returncode": 0
+  },
+  "managed_installation": {
+    "environment_verified_by": "LOCKED_VERSIONS_IMPORT_ORIGINS_AND_PIP_CHECK",
+    "method": "DATABRICKS_PERCENT_PIP",
+    "python_prefix_changed": false,
+    "restart_count": 2
+  },
+  "not_proven_by_this_run": [
+    "HISTORICAL_CHECKPOINT14_COMPATIBILITY",
+    "FULL_HISTORICAL_TEST_SUITE_PASS",
+    "B08_CLOSURE",
+    "COMPUTE_AND_STORAGE_CEILING_ACCEPTANCE",
+    "REAL_DATA_READINESS",
+    "PRODUCTION_TRAINING_PORTABILITY",
+    "FORMAL_TEST_28_29_OR_30_CLOSURE",
+    "SCIENTIFIC_RESULT"
+  ],
+  "open_deferred_obligations": [
+    {
+      "authorization_basis": "USER_APPROVED_NARROW_DEFERRAL_2026_09_07",
+      "closed": false,
+      "expected_source_sha256": "2b1d60e4da640edb0e5be5bcfe90012d9b08a1f48af56f8240dcbdb1d4abe0cf",
+      "obligation_id": "B08_HISTORICAL_CHECKPOINT14_COMPATIBILITY",
+      "passed": false,
+      "reason": "EXACT_HISTORICAL_SOURCE_UNAVAILABLE",
+      "source_relative_path": "src/heterodiff/models/configuration_potential_composer_torch.py",
+      "state": "OPEN_DEFERRED",
+      "test_nodeid": "tests/unit/test_configuration_totalized_jump_potential_composer_torch.py::test_checkpoint17_module_keeps_checkpoint14_source_and_api_isolated",
+      "test_or_expected_hash_modified": false
+    }
+  ],
+  "project": {
+    "controller_anchor": {
+      "controller": {
+        "relative_path": "databricks/notebooks/b08_conventional_runtime_integration.py",
+        "sha256": "d162020908ec3aed0a2affa76c59a6a8b78180faf6691acd37dddea498a2128f",
+        "size_bytes": 6572
+      },
+      "file_sha256": "d93615b5fe39df0d3894bba2521c7573dfa3ec64b3a236a373c7101b040ce2a6",
+      "identity_scope": "CONTROLLER_BYTES_IGNORING_ONE_OPTIONAL_TERMINAL_LF",
+      "record_sha256": "6e71218321e20a0a3e19962dce8a7c62169433cfdabc7de553d6e92c49075326",
+      "relative_path": "requirements/b08-conventional-runtime-controller-anchor-v1.json",
+      "support_module": {
+        "relative_path": "databricks/notebooks/b08_conventional_runtime_support.py",
+        "sha256": "d2ea37f8b7bca6cbe8ab1835c31fda459965c87e6b1934ff0928d4e0e1429fc4",
+        "size_bytes": 63390
+      }
+    },
+    "live_source_verification_sha256": "1e7744c9f9e8c47d974e7e6f102b09a2bc37d5b2525d61ff3ecc4f5ca04f50c4",
+    "live_source_verified_before_and_after": true,
+    "lock_relative_path": "requirements/b08-databricks-aws-dbr17.3-x86_64-cpu-py312.lock",
+    "lock_sha256": "c6fa5d600cd2810c40ae47d5eeeba341e0467c4c75dd7c7d310cf3628ab6349f",
+    "project_wheel_name": "heterodiff-0.1.0-py3-none-any.whl",
+    "project_wheel_sha256": "69822a7bbfc21df840280798c70e4a571086993850b32dee0e83002fc4bb990e",
+    "source_manifest_file_count": 323,
+    "source_manifest_file_sha256": "9a7d815ada69a7405552ac885b229e13f63eb24ff1ed6e57d0730734452ed5ff",
+    "source_manifest_record_sha256": "a76e9c392345d54f27aef08ae415e0649b29248f4940a69c0fb7a7b7831d0c87",
+    "source_manifest_relative_path": "requirements/b08-conventional-runtime-source-manifest-v1.json",
+    "source_manifest_total_size_bytes": 26372604,
+    "staged_source_verification_sha256": "1e7744c9f9e8c47d974e7e6f102b09a2bc37d5b2525d61ff3ecc4f5ca04f50c4",
+    "staged_source_verified_before_and_after": true
+  },
+  "project_delta": {
+    "b08_closed": false,
+    "blockers_closed": 0,
+    "fields_closed": 0,
+    "formal_tests_closed": 0,
+    "result_slots_filled": 0,
+    "timetable_or_ledger_edited": false
+  },
+  "record_sha256": "d5d155f0d6d75a642d85e717a1c1075678db0dc23d08621fb25cb1756137e5a1",
+  "record_sha256_scope": "CANONICAL_JSON_WITHOUT_RECORD_SHA256_OR_DURABLE_RECEIPT_PATH",
+  "runtime_manifest": {
+    "databricks_runtime": "17.3",
+    "hardware": {
+      "configured_driver_node_type": null,
+      "configured_node_type": null,
+      "cpu_count": 32,
+      "cpu_model": "Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz",
+      "cuda_observation": {
+        "cuda_available": false,
+        "cuda_device_count": 0,
+        "observation_source": "TORCH_RUNTIME_API"
+      },
+      "memory_total": "125276160 kB"
+    },
+    "operating_system": {
+      "architecture": "x86_64",
+      "distribution": "Ubuntu 24.04.4 LTS",
+      "family": "Linux",
+      "release": "5.15.0-1113-aws"
+    },
+    "operator_declarations": {
+      "cloud_provider": "AWS",
+      "evidence_class": "OPERATOR_DECLARED_NOT_RUNTIME_OBSERVED",
+      "runtime_route": "DATABRICKS_DEDICATED_SINGLE_NODE_X86_64_CPU"
+    },
+    "project_root": "<PROJECT_ROOT>",
+    "python": {
+      "byteorder": "little",
+      "cache_tag": "cpython-312",
+      "implementation": "CPython",
+      "prefix": "<PYTHON_PREFIX>",
+      "version": "3.12.3"
+    },
+    "spark_version": null,
+    "storage_roles": {
+      "durable_output_directory": "/Volumes/development/team_eds_supplychain/b08_runtime_output",
+      "study_or_test_data_path_requested": false,
+      "transient_available_bytes": 132147884032,
+      "transient_root": "/tmp",
+      "transient_total_bytes": 157396975616
+    },
+    "topology": {
+      "cluster_profile": null,
+      "data_security_mode_if_exposed": null,
+      "executor_process_count_including_driver_if_reported": null,
+      "spark_master": null
+    }
+  },
+  "runtime_manifest_sha256": "9b1eb5054e9ca5c7f8f4e47e76614d53fb9ca8d24ab7b87aedca815fc51a015e",
+  "safety": {
+    "calibration_executed": false,
+    "candidate_002_003_or_004_executed": false,
+    "dependency_network_access_authorized": true,
+    "dependency_network_access_may_have_occurred": true,
+    "inference_executed": false,
+    "scientific_outcome_inspected": false,
+    "study_or_test_data_accessed": false,
+    "training_executed": false
+  },
+  "schema_version": "heterodiff-b08-conventional-runtime-integration-v1",
+  "scope": "DATA_FREE_RUNTIME_QUALIFICATION_AND_SYNTHETIC_INTEGRATION_ONLY",
+  "synthetic_whole_method_smoke": {
+    "canonical_receipt_bytes_sha256": "40be3b0efd2e5b92b3e3f6acf96db76cfff7700d5577dd9284f46aa348da0b6f",
+    "formal_test_states": [
+      "OPEN",
+      "OPEN",
+      "PENDING"
+    ],
+    "nested_whole_method_receipt_sha256": "7f3af61499f4c618daa38d72e38570c4759c5e146eeeef61bb182b9b4f20e102",
+    "production_receipt_issued": false,
+    "route_receipt_sha256": "eab918f4aa9a58f56466673f5e8bcaefb6180692acbdfd9a6e6a694c2a3b6c4f",
+    "science_executed": false,
+    "tracker_or_ledger_edited": false
+  },
+  "targeted_integration_tests": {
+    "cohorts": [
+      {
+        "deferred_nodeids": [],
+        "deselected_count": 0,
+        "errors": 0,
+        "failed": 0,
+        "failures": [],
+        "log_path": "/tmp/heterodiff-b08-tests-2hsrvtu5/source_bound_checkout.log",
+        "name": "source_bound_checkout",
+        "output_sha256": "fc4d33485c07db7a04a68edcedd500d501de4441c40c02ea49d69a6319e83a98",
+        "passed": 44,
+        "report_available": true,
+        "returncode": 0,
+        "scope": "STAGED_SOURCE_CONTRACT_TESTS_NOT_INSTALLED_WHEEL",
+        "selected_count": 44,
+        "selection_report_path": "/tmp/heterodiff-b08-tests-2hsrvtu5/source_bound_checkout-selection.json",
+        "selection_verified": true,
+        "selectors": [
+          "tests/unit/test_b12_integration_stack.py"
+        ],
+        "skipped": 0
+      },
+      {
+        "deferred_nodeids": [
+          "tests/unit/test_configuration_totalized_jump_potential_composer_torch.py::test_checkpoint17_module_keeps_checkpoint14_source_and_api_isolated"
+        ],
+        "deselected_count": 1,
+        "errors": 0,
+        "failed": 0,
+        "failures": [],
+        "log_path": "/tmp/heterodiff-b08-tests-2hsrvtu5/installed_wheel.log",
+        "name": "installed_wheel",
+        "output_sha256": "d488e2d9b4ec47d63184b7d5c077171c34a9146ce85f57c3c0fee07642b116b2",
+        "passed": 191,
+        "report_available": true,
+        "returncode": 0,
+        "scope": "INSTALLED_PACKAGE_TEST_PROCESS",
+        "selected_count": 191,
+        "selection_report_path": "/tmp/heterodiff-b08-tests-2hsrvtu5/installed_wheel-selection.json",
+        "selection_verified": true,
+        "selectors": [
+          "tests/unit/test_configuration_initial_tilt_composer_torch.py",
+          "tests/unit/test_plugin_bridge_operational_thinning_loop_route_evidence.py",
+          "tests/unit/test_configuration_totalized_jump_potential_composer_torch.py",
+          "tests/unit/test_b12_two_domain_adapter_stack.py",
+          "tests/unit/test_formal_test28_30_nonconfirmatory_route_v2.py",
+          "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_public_receipt_has_exact_core_and_separate_recomputation_parity",
+          "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_core_preserves_every_scope_nonclaim_and_only_proposes_beta",
+          "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_receipt_recomputes_custody_and_resigned_substitution_fails",
+          "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_frozen_empty_initializer_enters_zero_birth_then_test29_death",
+          "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_path_calls_actual_test29_cp24_test30_cp23_primitives",
+          "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_path_report_and_continuous_custody_digests_recompute",
+          "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_transform_is_exactly_typed_dimensioned_and_digest_bound",
+          "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_transform_and_path_reject_resigned_state_or_configuration_substitution",
+          "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_seed14_actual_initializer_coordinate_drives_first_heun_step",
+          "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_runtime_local_initializer_digest_varies_but_semantic_digest_and_core_do_not",
+          "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_predecessor_whole_run_is_neither_imported_nor_called",
+          "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_captured_independent_ignores_cache_spoof_and_restores_it",
+          "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_predecessor_machine_custody_refuses_filesystem_substitution",
+          "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_predecessor_machine_baseline_is_exact_and_not_reexecuted",
+          "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_sources_are_offline_and_independent_does_not_import_primary",
+          "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_direct_public_api_is_explicitly_non_authoritative",
+          "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_core_exact_hash_pin_is_stable"
+        ],
+        "skipped": 0
+      }
+    ],
+    "deselected_count": 1,
+    "full_historical_suite_passed": false,
+    "historical_validator_exclusion": {
+      "excluded_expanded_item_count": 18,
+      "excluded_function_count": 8,
+      "excluded_function_names": [
+        "test_authoritative_validator_passes_root_and_unrelated_physical_copy",
+        "test_isolated_validator_ignores_and_preserves_all_parent_module_cache_poison",
+        "test_isolated_validator_ignores_pythonpath_sitecustomize_cwd_and_shadow_source",
+        "test_two_concurrent_isolated_validators_have_identical_receipts",
+        "test_authoritative_validator_rejects_workspace_path_and_byte_attacks",
+        "test_private_capsule_tamper_fails_before_or_after_execution",
+        "test_workspace_replacement_after_child_is_detected",
+        "test_isolated_child_failure_and_output_tampering_fail_closed"
+      ],
+      "reason": "HISTORICAL_CPYTHON3115_VENV_M1_VALIDATOR_NOT_PORTABLE_TO_DBR17_3_PY312",
+      "validator_rerun_claimed": false
+    },
+    "open_deferred_obligations": [
+      {
+        "authorization_basis": "USER_APPROVED_NARROW_DEFERRAL_2026_09_07",
+        "closed": false,
+        "expected_source_sha256": "2b1d60e4da640edb0e5be5bcfe90012d9b08a1f48af56f8240dcbdb1d4abe0cf",
+        "obligation_id": "B08_HISTORICAL_CHECKPOINT14_COMPATIBILITY",
+        "passed": false,
+        "reason": "EXACT_HISTORICAL_SOURCE_UNAVAILABLE",
+        "source_relative_path": "src/heterodiff/models/configuration_potential_composer_torch.py",
+        "state": "OPEN_DEFERRED",
+        "test_nodeid": "tests/unit/test_configuration_totalized_jump_potential_composer_torch.py::test_checkpoint17_module_keeps_checkpoint14_source_and_api_isolated",
+        "test_or_expected_hash_modified": false
+      }
+    ],
+    "output_sha256": "5e69604d34dac74a4601ce8e465bd53f1d92d4a05a77bf3a58e8d33163306190",
+    "passed": 235,
+    "pytest_selector_count": 23,
+    "pytest_selectors": [
+      "tests/unit/test_configuration_initial_tilt_composer_torch.py",
+      "tests/unit/test_plugin_bridge_operational_thinning_loop_route_evidence.py",
+      "tests/unit/test_configuration_totalized_jump_potential_composer_torch.py",
+      "tests/unit/test_b12_two_domain_adapter_stack.py",
+      "tests/unit/test_b12_integration_stack.py",
+      "tests/unit/test_formal_test28_30_nonconfirmatory_route_v2.py",
+      "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_public_receipt_has_exact_core_and_separate_recomputation_parity",
+      "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_core_preserves_every_scope_nonclaim_and_only_proposes_beta",
+      "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_receipt_recomputes_custody_and_resigned_substitution_fails",
+      "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_frozen_empty_initializer_enters_zero_birth_then_test29_death",
+      "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_path_calls_actual_test29_cp24_test30_cp23_primitives",
+      "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_path_report_and_continuous_custody_digests_recompute",
+      "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_transform_is_exactly_typed_dimensioned_and_digest_bound",
+      "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_transform_and_path_reject_resigned_state_or_configuration_substitution",
+      "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_seed14_actual_initializer_coordinate_drives_first_heun_step",
+      "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_runtime_local_initializer_digest_varies_but_semantic_digest_and_core_do_not",
+      "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_predecessor_whole_run_is_neither_imported_nor_called",
+      "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_captured_independent_ignores_cache_spoof_and_restores_it",
+      "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_predecessor_machine_custody_refuses_filesystem_substitution",
+      "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_predecessor_machine_baseline_is_exact_and_not_reexecuted",
+      "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_sources_are_offline_and_independent_does_not_import_primary",
+      "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_direct_public_api_is_explicitly_non_authoritative",
+      "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py::test_core_exact_hash_pin_is_stable"
+    ],
+    "returncode": 0,
+    "test_file_count": 7,
+    "test_files": [
+      "tests/unit/test_configuration_initial_tilt_composer_torch.py",
+      "tests/unit/test_plugin_bridge_operational_thinning_loop_route_evidence.py",
+      "tests/unit/test_configuration_totalized_jump_potential_composer_torch.py",
+      "tests/unit/test_b12_two_domain_adapter_stack.py",
+      "tests/unit/test_b12_integration_stack.py",
+      "tests/unit/test_b12_whole_method_initializer_path_integration_successor.py",
+      "tests/unit/test_formal_test28_30_nonconfirmatory_route_v2.py"
+    ]
+  }
+}

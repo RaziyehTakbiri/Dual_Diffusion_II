@@ -4,6 +4,19 @@
 **Current project state:** `DRAFT_NOT_EXECUTABLE`  
 **Ledger role:** authoritative project-management index for the completion timetable  
 **Update rule:** change an item only with a durable evidence path or receipt  
+**Latest current checkpoint (2026-09-07):** bounded two-track preparation
+complete; GPU plan DRAFT only; F066/F072 and B06 reopened for the verified
+training-budget/validation conflict. Current totals: 25 fields open / 147
+closed; 61 timetable boxes checked / 102 open / 163 total; 8 blockers open /
+4 closed (6 execution + 2 submission open). Conventional CPU runtime/testing
+milestone COMPLETE and F152 CLOSED remain accepted for their exact snapshot.
+`DRAFT_NOT_EXECUTABLE` refers to the still-gated full scientific route, not to
+an inability to install or test the current model code.
+**This update's tracker-maintenance authority:** the visible user request on
+2026-09-07 to update the plan and report the current position. It does not
+authorize new runtime, data, training, or scientific execution. The subsequent
+user approval is to PREPARE the GPU-training plan only, not adopt its draft
+policies, launch compute, reserve capacity, or spend.
 **Tracker-maintenance authority:** normalized visible user instruction dated
 2026-08-30, `Okay, lets move forward then. Dont forget to keep the timetable
 updated for our record and for seeing how well we are going ahead.` Raw transport
@@ -25,6 +38,12 @@ timestamp are not bound.
 > above authorizes only the additive tracker maintenance performed in this update.
 
 ## 1. Bound baseline
+
+Dated package entries below retain their historical scope and deltas. Their
+old absent-runtime/lock statements do not override the later 2026-09-07
+conventional-runtime acceptance or the current field rows and totals. The
+later same-day reopening of F066/F072/B06 corrects current execution validity
+without rewriting the historical B06 freeze, F104 formula, or F144 schedule.
 
 | Item | Verified value | Evidence |
 |---|---:|---|
@@ -116,8 +135,9 @@ timestamp are not bound.
 | B12 external author-extension components | `B12_EXTERNAL_AUTHOR_EXTENSION_COMPONENT_IMPLEMENTATIONS_ACCEPTED`; independently accepted exact eight local CSDI/EditPP implementation-only components with corrected-roster interfaces and hostile custody checks; operational upstream runtimes/outputs, real adapters/data, domain-scale qualification, every operational receipt, and B12 remain open; zero direct timetable/field/blocker/Formal-Test/result/runtime/science delta | [component package](PROJECT_B12_EXTERNAL_AUTHOR_EXTENSION_COMPONENTS.md), [machine record](research/fixtures/manuscript_v3_b12_external_author_extension_components_v1.json), [validator](research/diagnostics/manuscript_v3_b12_external_author_extension_components_v1.py), and [independent review](PROJECT_B12_EXTERNAL_AUTHOR_EXTENSION_COMPONENTS_INDEPENDENT_REVIEW.md) |
 | B12 repaired whole-method nonconfirmatory beta | `B12_WHOLE_METHOD_INITIALIZER_PATH_INTEGRATED_NONCONFIRMATORY_BETA_ACCEPTED`; independently accepted typed selected-configuration-to-initial-state transformation, actual bounded Test-29 route/lineage plus Test-30 addressed continuous path, stable primary/independent parity, and isolated 56-source qualification capsule. Exactly the existing Solo Block 7 beta task closes; Gate-B0 feature completeness, B12, all Formal Tests/results/real receipts/runtime/data/science remain open or absent | [beta successor](PROJECT_B12_WHOLE_METHOD_INITIALIZER_PATH_INTEGRATION_SUCCESSOR.md), [machine record](research/fixtures/manuscript_v3_b12_whole_method_initializer_path_integration_successor_v1.json), [isolated validator](research/diagnostics/manuscript_v3_b12_whole_method_initializer_path_integration_successor_v1.py), and [independent hostile review](PROJECT_B12_WHOLE_METHOD_INITIALIZER_PATH_INTEGRATION_SUCCESSOR_INDEPENDENT_REVIEW.md) |
 | Formal Tests 28--30 nonconfirmatory route V2 | `FORMAL_TEST28_30_NONCONFIRMATORY_SYNTHETIC_ROUTES_RUN_END_TO_END_V2`; independently accepted exact aggregation of the historical CP63 16-by-2/32-launch/554-estimand Test-28 receipt (`fresh=false`), fresh exhaustive 1,024-case Test-29/Test-30 path, and the accepted repaired whole-method custody chain. Exactly the existing synthetic/nonconfirmatory route task closes; Tests 28/29 remain `OPEN`, Test 30 remains `PENDING`, and every field/blocker/result/B12/production/runtime/data/science delta is zero | [route V2 successor](PROJECT_FORMAL_TEST28_30_NONCONFIRMATORY_ROUTE_V2_SUCCESSOR.md), [machine record](research/fixtures/manuscript_v3_formal_test28_30_nonconfirmatory_route_v2_successor.json), [validator](research/diagnostics/manuscript_v3_formal_test28_30_nonconfirmatory_route_v2_successor.py), and [independent hostile review](PROJECT_FORMAL_TEST28_30_NONCONFIRMATORY_ROUTE_V2_SUCCESSOR_INDEPENDENT_REVIEW.md) |
-| Current additive effective field view | PRE: 23 open / 143 closed; POST: 1 open / 5 closed; total: 24 open / 148 closed | [F139--F144/F147 independent review](PROJECT_F139_F144_F147_TRAINING_CHECKPOINT_PLAN_FREEZE_INDEPENDENT_REVIEW.md) |
-| Current blocker, formal-test, and result view | B01/B04/B05/B06/B07 `CLOSED`; B02/B03/B08/B09/B10/B11/B12 `OPEN`; Formal Test 28 `OPEN`; Formal Test 29 `OPEN`; Formal Test 30 `PENDING`; zero formal tests closed; 0/4 result slots filled | [B08 independent review](PROJECT_B08_LOCAL_HOST_CAPACITY_GAP_FREEZE_INDEPENDENT_REVIEW.md), [B12 final replacement review](PROJECT_B12_INTEGRATED_OFFLINE_IMPLEMENTATION_GAP_PACKAGE_INDEPENDENT_REVIEW.md), and [two-macrostep independent review](PROJECT_FORMAL_TEST29_TEST30_TWO_MACROSTEP_PATH_INDEPENDENT_REVIEW.md) |
+| Conventional Databricks current-scope milestone, 2026-09-07 | COMPLETE; 235 required tests passed, 21 installed dependency pins and required import origins verified, pip check and CPU determinism passed, synthetic whole-method smoke passed. One historical compatibility case remains OPEN_DEFERRED. F152 CLOSED by subsequent ledger acceptance; no new timetable box or broader blocker closes | [Archived operator-supplied receipt](research/fixtures/b08_conventional_runtime_integration_2026_09_07_receipt.json) and [acceptance scope](#2026-09-07-conventional-databricks-milestone-and-f152-acceptance) |
+| Current additive effective field view | PRE: 24 open / 142 closed; POST: 1 open / 5 closed; total: 25 open / 147 closed; latest delta F066/F072 reopened, F152 acceptance preserved | [Current budget audit](#2026-09-07-two-track-readiness-audit-and-budget-reopening) and [F152 acceptance](#2026-09-07-conventional-databricks-milestone-and-f152-acceptance) |
+| Current blocker, formal-test, and result view | B01/B04/B05/B07 `CLOSED`; B02/B03/B06/B08/B09/B10/B11/B12 `OPEN`; 6 execution and 2 submission blockers open; Formal Test 28 `OPEN`; Formal Test 29 `OPEN`; Formal Test 30 `PENDING`; zero formal tests closed; 0/4 result slots filled | [Current budget audit](#2026-09-07-two-track-readiness-audit-and-budget-reopening), [B12 final replacement review](PROJECT_B12_INTEGRATED_OFFLINE_IMPLEMENTATION_GAP_PACKAGE_INDEPENDENT_REVIEW.md), and [two-macrostep independent review](PROJECT_FORMAL_TEST29_TEST30_TWO_MACROSTEP_PATH_INDEPENDENT_REVIEW.md) |
 | Current Block-9 start-only milestone view | `BLOCK9_INDEPENDENT_PROOF_AND_STATISTICAL_DESIGN_REVIEW_STARTED` and `BLOCK9_HOSTILE_INTEGRATION_RUNTIME_CUSTODY_AND_RECOMPUTATION_TESTING_STARTED` are tracker-only initiation/component-review milestones; neither is final audit completion, and they close no B01–B12 blocker, field, Formal Test, result, runtime or execution authority, scientific state, or claim | [C17 PO13 proof](PROJECT_C17_PO13_INITIALIZER_KL_PROOF.md), [Gate-A local statistical freeze](PROJECT_GATE_A_LOCAL_STATISTICAL_AND_DOWNSTREAM_DECISION_FREEZE.md), [B05 freeze](PROJECT_GATE_A_B05_KNOWN_LAW_DESIGN_FREEZE.md), [open Test-28 checkpoint](research/preregistrations/cp50_test28_mixed_initializer_v26.md), [Test-29 qualification](PROJECT_FORMAL_TEST29_FINITE_ACYCLIC_ROUTE_QUALIFICATION.md), [Test-30 qualification](PROJECT_FORMAL_TEST30_SYNTHETIC_COUPLED_PATH_QUALIFICATION.md), [single-macrostep qualification](PROJECT_FORMAL_TEST29_TEST30_SINGLE_MACROSTEP_INTEGRATION_QUALIFICATION.md), and [two-macrostep independent review](PROJECT_FORMAL_TEST29_TEST30_TWO_MACROSTEP_PATH_INDEPENDENT_REVIEW.md) |
 
 No test-secrecy claim is upgraded here: the final field remains null. This
@@ -405,9 +425,9 @@ accountable people and cannot substitute for required external approvals.
 | B03 | `retail-data-governance-representation-task-and-admission` | Owner C | EXECUTION | OPEN | F040/F042--F052/F055--F057, source-civil F060 V2, and F061 are frozen across the accepted [exact F105/domain instance](PROJECT_F105_TWO_DOMAIN_CKS_METRIC_INSTANCE.md), [governance controls](PROJECT_TWO_DOMAIN_GOVERNANCE_RELEASE_CONTROLS.md), and [F061 review](PROJECT_F061_PRESERVATION_FIRST_ALLOCATION_INDEPENDENT_REVIEW.md); the [external-evidence intake contract](PROJECT_B02_B03_B09_EXTERNAL_EVIDENCE_INTAKE_INDEPENDENT_REVIEW.md) is structurally qualified only. The later [Retail public-documentation acquisition selector](PROJECT_RETAIL_PUBLIC_DOCUMENTATION_ACQUISITION_SELECTOR_V1_INDEPENDENT_REVIEW.md) independently freezes the one official future archive selector and twelve exact readiness obligations with exactly zero eligible closure. F038/F039/F041/F053/F054/F059, every real identity/acceptance/evidence object, the exact snapshot/hash, applicable governance determination, support certificate, populated split, temporal feasibility, and actual admission remain pending |
 | B04 | `primary-metric-proof-and-effect-thresholds` | Owner A | EXECUTION | CLOSED | The generic characteristic CKS proof, exact F105 two-domain instance, current Markdown/TeX display, production evaluator, R=64 paired adapter, effect/floor/confidence choices, and Holm rule are jointly accepted; [F105 integration review](PROJECT_F105_MANUSCRIPT_PRODUCTION_INTEGRATION_INDEPENDENT_REVIEW.md) and [theory/statistics review](PROJECT_THEORY_STATISTICS_BLOCKER_CLOSURE_INDEPENDENT_REVIEW.md) |
 | B05 | `known-law-scaling-no-regression-and-failure-thresholds` | Owner A + Owner B | EXECUTION | CLOSED | F007--F018/F114--F127/F148/F149 are frozen, and the typed decision envelope derives failures from terminal statuses while refusing unauthenticated or mismatched inputs; [theory/statistics closure](PROJECT_THEORY_STATISTICS_BLOCKER_CLOSURE.md) and [independent review](PROJECT_THEORY_STATISTICS_BLOCKER_CLOSURE_INDEPENDENT_REVIEW.md) |
-| B06 | `baseline-identities-and-matched-compute` | Owner B | EXECUTION | CLOSED | Exact content-addressed local pair, parameter counts, primary/control/family/external configs, capability matrices, immutable upstream revisions and MIT receipts, tuning rules, and equal prospective F104 event ceilings are independently accepted; B08 hardware/calibration/capacity and B12 executable adapters/runtime remain open; [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md) and [independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md) |
+| B06 | `baseline-identities-and-matched-compute` | Owner B | EXECUTION | OPEN | Reopened 2026-09-07: F066/F072 FINAL_TRAINING budgets cannot contain mandatory F144 validation; a prospective budget amendment is required before execution. Exact identities, parameter counts, configs, capabilities, upstream revisions/licenses, tuning rules, and F104 formula remain frozen; historical acceptance artifacts are preserved. B08/B12 also remain open. [Current audit](PROJECT_TWO_TRACK_READINESS_AND_GPU_PLAN.md), [historical B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md), and [historical independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md) |
 | B07 | `power-analysis-and-seed-schedule` | Owner A | EXECUTION | CLOSED | Distribution-free width-6 Hoeffding/Holm planning certifies a minimum 246 seeds and freezes 256 deterministic addresses, 128 groups/domain, one case/group, 64 draws/case, analytic inference, and the accepted hierarchical paired formula without claiming independence from the registry alone; [theory/statistics closure](PROJECT_THEORY_STATISTICS_BLOCKER_CLOSURE.md) and [independent review](PROJECT_THEORY_STATISTICS_BLOCKER_CLOSURE_INDEPENDENT_REVIEW.md) |
-| B08 | `hardware-compute-and-tuning-budget` | Owner B | EXECUTION | OPEN | F153 deterministic settings, F158 zero empirical-pilot allocation, and F161 zero failure reserve remain closed under the accepted [B08 partial freeze](PROJECT_B08_LOCAL_HOST_CAPACITY_GAP_FREEZE.md) and [review](PROJECT_B08_LOCAL_HOST_CAPACITY_GAP_FREEZE_INDEPENDENT_REVIEW.md). F150--F152/F154--F157/F159--F160/F162 remain open. The historical [Wave-2 local-capacity no-go](PROJECT_B08_WAVE2_CAPACITY_PREFLIGHT_NO_GO_INDEPENDENT_REVIEW.md) remains valid for its snapshot but does not require a physically reserved Databricks volume. The completed [Candidate 003 forensic outcome](PROJECT_B08_N1_CANDIDATE_003_FORENSIC_OUTCOME_AND_RUNTIME_ROUTE_PIVOT.md) preserves Candidate 003 as permanently spent unresolved, supplies no lock or F151/F152 value, authorizes no Candidate 004, and prospectively retires only the B08 Docker/ECR, custom-container, Unity Catalog runtime-overlay namespace, one-shot runtime-custody, and Candidate 003 causal-forensic routes. B08 closure now requires a sanitized exact Databricks runtime/hardware capture including node type, core/device model, memory, and driver/worker topology; a fully resolved hash-pinned dependency file bound together with the content-addressed source-manifest and project-wheel digests; installed-distribution/version and import-origin evidence plus `pip check` from a fresh or restarted notebook interpreter; relevant unit/integration tests and one tiny data-free or synthetic whole-method smoke test; and prospective time, accelerator, memory, evaluation, tuning, final-run, total-compute, and durable-output ceilings backed by documented Unity Catalog quota or accountable administrative capacity assurance, projected-output bounds, and local-scratch fail-fast checks. Bitwise identity of managed-cloud internals and disabled auto-termination are not gates absent an external obligation. Separate Gate-C custody tasks are unchanged. F153 remains specifically CPU-only, single-threaded, and CUDA-hidden; a GPU or multithreaded scientific route must explicitly supersede or reopen it. Production runtime, weights, ceilings, accountable capacity, and B08 remain open |
+| B08 | `hardware-compute-and-tuning-budget` | Owner B | EXECUTION | OPEN | F153 deterministic settings, F158 zero empirical-pilot allocation, and F161 zero failure reserve remain closed under the accepted [B08 partial freeze](PROJECT_B08_LOCAL_HOST_CAPACITY_GAP_FREEZE.md) and [review](PROJECT_B08_LOCAL_HOST_CAPACITY_GAP_FREEZE_INDEPENDENT_REVIEW.md). F152 is additionally CLOSED by the [2026-09-07 conventional-runtime acceptance](#2026-09-07-conventional-databricks-milestone-and-f152-acceptance); F150/F151/F154--F157/F159--F160/F162 remain open. The historical [Wave-2 local-capacity no-go](PROJECT_B08_WAVE2_CAPACITY_PREFLIGHT_NO_GO_INDEPENDENT_REVIEW.md) remains valid for its snapshot but does not require a physically reserved Databricks volume. The completed [Candidate 003 forensic outcome](PROJECT_B08_N1_CANDIDATE_003_FORENSIC_OUTCOME_AND_RUNTIME_ROUTE_PIVOT.md) preserves Candidate 003 as permanently spent unresolved, supplies no lock or F151/F152 value, authorizes no Candidate 004, and prospectively retires only the B08 Docker/ECR, custom-container, Unity Catalog runtime-overlay namespace, one-shot runtime-custody, and Candidate 003 causal-forensic routes. B08 closure now requires a sanitized exact Databricks runtime/hardware capture including node type, core/device model, memory, and driver/worker topology; a fully resolved hash-pinned dependency file bound together with the content-addressed source-manifest and project-wheel digests; installed-distribution/version and import-origin evidence plus `pip check` from a fresh or restarted notebook interpreter; relevant unit/integration tests and one tiny data-free or synthetic whole-method smoke test; and prospective time, accelerator, memory, evaluation, tuning, final-run, total-compute, and durable-output ceilings backed by documented Unity Catalog quota or accountable administrative capacity assurance, projected-output bounds, and local-scratch fail-fast checks. Bitwise identity of managed-cloud internals and disabled auto-termination are not gates absent an external obligation. Separate Gate-C custody tasks are unchanged. F153 remains specifically CPU-only, single-threaded, and CUDA-hidden; a GPU or multithreaded scientific route must explicitly supersede or reopen it. The current-scope installed runtime and 235-test/synthetic-smoke milestone are complete. Full runtime/hardware documentation (unobserved node type, Spark version, and topology), weights, ceilings, accountable capacity, and B08 remain open |
 | B09 | `data-license-clinical-governance-and-retail-privacy-plan` | Owner C | EXECUTION | OPEN | F163/F166/F167 plans are independently accepted, and the [external-evidence intake contract](PROJECT_B02_B03_B09_EXTERNAL_EVIDENCE_INTAKE_INDEPENDENT_REVIEW.md) is structurally qualified; actual identities, acceptances, evidence objects, applicable determinations/approvals, and accountable-owner acceptance remain absent; [governance controls](PROJECT_TWO_DOMAIN_GOVERNANCE_RELEASE_CONTROLS.md) and [independent review](PROJECT_TWO_DOMAIN_GOVERNANCE_RELEASE_CONTROLS_INDEPENDENT_REVIEW.md) |
 | B10 | `code-model-artifact-release-and-submission-anonymization-plan` | Owner C | SUBMISSION | OPEN | F164/F165 release/anonymization plans are independently accepted, but the final venue package, populated manifest, actual scans/findings/dispositions, and release decision remain absent; [governance controls](PROJECT_TWO_DOMAIN_GOVERNANCE_RELEASE_CONTROLS.md) and [independent review](PROJECT_TWO_DOMAIN_GOVERNANCE_RELEASE_CONTROLS_INDEPENDENT_REVIEW.md) |
 | B11 | `proof-methods-statistics-and-reproduction-audit-plans` | Owner C coordinating | SUBMISSION | OPEN | Plan fields F168/F170/F171 are frozen by the [B11 pre-outcome plan package](PROJECT_B11_PREOUTCOME_AUDIT_PLAN_FREEZE.md), and governance/release controls are frozen; F169, actual assignments/receipts, reports, findings/dispositions, and observed clean-room reproduction remain pending |
@@ -485,13 +505,13 @@ which closes at Gate C; `POST` closes before submission.
 | F063 | PRE | Owner B | Method, runtime, and compute | B06 | CLOSED | `/method_and_baseline_plan/primary_method/commit` | Exact canonical value frozen as machine `field_closures[1]`; [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md), [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json), and [independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md) |
 | F064 | PRE | Owner B | Method, runtime, and compute | B06 | CLOSED | `/method_and_baseline_plan/primary_method/config_sha256` | Exact canonical value frozen as machine `field_closures[2]`; [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md), [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json), and [independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md) |
 | F065 | PRE | Owner B | Method, runtime, and compute | B06 | CLOSED | `/method_and_baseline_plan/primary_method/parameter_count` | Exact canonical value frozen as machine `field_closures[3]`; [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md), [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json), and [independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md) |
-| F066 | PRE | Owner B | Method, runtime, and compute | B06 | CLOSED | `/method_and_baseline_plan/primary_method/training_compute_budget` | Exact canonical value frozen as machine `field_closures[4]`; [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md), [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json), and [independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md) |
+| F066 | PRE | Owner B | Method, runtime, and compute | B06 | OPEN | `/method_and_baseline_plan/primary_method/training_compute_budget` | REOPENED_BUDGET_AMENDMENT_REQUIRED: mandatory F144 validation exceeds the FINAL_TRAINING ODE ceiling and requires metric events where its ceiling is zero. Historical canonical machine `field_closures[4]` is preserved, not silently amended; [current audit](PROJECT_TWO_TRACK_READINESS_AND_GPU_PLAN.md), [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md), [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json), and [historical review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md) |
 | F067 | PRE | Owner B | Method, runtime, and compute | B06 | CLOSED | `/method_and_baseline_plan/primary_method/inference_compute_budget` | Exact canonical value frozen as machine `field_closures[5]`; [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md), [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json), and [independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md) |
 | F068 | PRE | Owner B | Method, runtime, and compute | B06 | CLOSED | `/method_and_baseline_plan/primary_comparator/repository` | Exact canonical value frozen as machine `field_closures[6]`; [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md), [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json), and [independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md) |
 | F069 | PRE | Owner B | Method, runtime, and compute | B06 | CLOSED | `/method_and_baseline_plan/primary_comparator/commit` | Exact canonical value frozen as machine `field_closures[7]`; [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md), [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json), and [independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md) |
 | F070 | PRE | Owner B | Method, runtime, and compute | B06 | CLOSED | `/method_and_baseline_plan/primary_comparator/config_sha256` | Exact canonical value frozen as machine `field_closures[8]`; [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md), [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json), and [independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md) |
 | F071 | PRE | Owner B | Method, runtime, and compute | B06 | CLOSED | `/method_and_baseline_plan/primary_comparator/parameter_count` | Exact canonical value frozen as machine `field_closures[9]`; [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md), [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json), and [independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md) |
-| F072 | PRE | Owner B | Method, runtime, and compute | B06 | CLOSED | `/method_and_baseline_plan/primary_comparator/training_compute_budget` | Exact canonical value frozen as machine `field_closures[10]`; [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md), [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json), and [independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md) |
+| F072 | PRE | Owner B | Method, runtime, and compute | B06 | OPEN | `/method_and_baseline_plan/primary_comparator/training_compute_budget` | REOPENED_BUDGET_AMENDMENT_REQUIRED: mandatory F144 validation exceeds the FINAL_TRAINING ODE ceiling and requires metric events where its ceiling is zero. Historical canonical machine `field_closures[10]` is preserved, not silently amended; [current audit](PROJECT_TWO_TRACK_READINESS_AND_GPU_PLAN.md), [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md), [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json), and [historical review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md) |
 | F073 | PRE | Owner B | Method, runtime, and compute | B06 | CLOSED | `/method_and_baseline_plan/primary_comparator/inference_compute_budget` | Exact canonical value frozen as machine `field_closures[11]`; [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md), [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json), and [independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md) |
 | F074 | PRE | Owner B | Method, runtime, and compute | B06 | CLOSED | `/method_and_baseline_plan/required_controls/0/implementation` | Exact canonical value frozen as machine `field_closures[12]`; [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md), [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json), and [independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md) |
 | F075 | PRE | Owner B | Method, runtime, and compute | B06 | CLOSED | `/method_and_baseline_plan/required_controls/0/config_sha256` | Exact canonical value frozen as machine `field_closures[13]`; [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md), [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json), and [independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md) |
@@ -560,7 +580,7 @@ which closes at Gate C; `POST` closes before submission.
 | F138 | PRE | Owner A | Theory and statistics | B07 | CLOSED | `/power_and_seed_plan/confidence_interval_resample_count` | Analytic F112 inference, bootstrap resample count `0`; [theory/statistics closure](PROJECT_THEORY_STATISTICS_BLOCKER_CLOSURE.md) and [independent review](PROJECT_THEORY_STATISTICS_BLOCKER_CLOSURE_INDEPENDENT_REVIEW.md) |
 | F139 | PRE | Owner B | Method, runtime, and compute | B12 | CLOSED | `/training_and_checkpoint_plan/optimizer` | Exact `TORCH_ADAMW_EXACT_RATIONAL_SINGLE_GROUP_V1`; canonical value is machine `plan_semantics.field_closures[0]`; [human freeze](PROJECT_F139_F144_F147_TRAINING_CHECKPOINT_PLAN_FREEZE.md) and [independent review](PROJECT_F139_F144_F147_TRAINING_CHECKPOINT_PLAN_FREEZE_INDEPENDENT_REVIEW.md) |
 | F140 | PRE | Owner B | Method, runtime, and compute | B12 | CLOSED | `/training_and_checkpoint_plan/learning_rate_schedule` | Exact `CONSTANT_CANDIDATE_BASE_RATE_NO_WARMUP_V1`; canonical value is machine `plan_semantics.field_closures[1]`; [human freeze](PROJECT_F139_F144_F147_TRAINING_CHECKPOINT_PLAN_FREEZE.md) and [independent review](PROJECT_F139_F144_F147_TRAINING_CHECKPOINT_PLAN_FREEZE_INDEPENDENT_REVIEW.md) |
-| F141 | PRE | Owner B | Method, runtime, and compute | B12 | CLOSED | `/training_and_checkpoint_plan/precision` | Exact `CPU_BINARY32_TRAIN_BINARY64_F105_VALIDATION_V1`; canonical value is machine `plan_semantics.field_closures[2]`; [human freeze](PROJECT_F139_F144_F147_TRAINING_CHECKPOINT_PLAN_FREEZE.md) and [independent review](PROJECT_F139_F144_F147_TRAINING_CHECKPOINT_PLAN_FREEZE_INDEPENDENT_REVIEW.md) |
+| F141 | PRE | Owner B | Method, runtime, and compute | B12 | CLOSED | `/training_and_checkpoint_plan/precision` | Exact `CPU_BINARY32_TRAIN_BINARY64_F105_VALIDATION_V1`; frozen CPU reference only, not GPU qualification. The [GPU successor plan](PROJECT_TWO_TRACK_READINESS_AND_GPU_PLAN.md) is DRAFT and does not adopt or supersede this field. Canonical value is machine `plan_semantics.field_closures[2]`; [human freeze](PROJECT_F139_F144_F147_TRAINING_CHECKPOINT_PLAN_FREEZE.md) and [independent review](PROJECT_F139_F144_F147_TRAINING_CHECKPOINT_PLAN_FREEZE_INDEPENDENT_REVIEW.md) |
 | F142 | PRE | Owner B | Method, runtime, and compute | B12 | CLOSED | `/training_and_checkpoint_plan/batch_construction` | Exact `DOMAIN_LOCAL_CANONICAL_CYCLIC_EXACT16_NO_SHUFFLE_V1` over all 22 B06 method/domain rows; canonical value is machine `plan_semantics.field_closures[3]`; [human freeze](PROJECT_F139_F144_F147_TRAINING_CHECKPOINT_PLAN_FREEZE.md) and [independent review](PROJECT_F139_F144_F147_TRAINING_CHECKPOINT_PLAN_FREEZE_INDEPENDENT_REVIEW.md) |
 | F143 | PRE | Owner B | Method, runtime, and compute | B12 | CLOSED | `/training_and_checkpoint_plan/maximum_epochs_or_steps` | Exact integer `4096` in `COMPLETED_OPTIMIZER_UPDATES`; canonical value is machine `plan_semantics.field_closures[4]`; [human freeze](PROJECT_F139_F144_F147_TRAINING_CHECKPOINT_PLAN_FREEZE.md) and [independent review](PROJECT_F139_F144_F147_TRAINING_CHECKPOINT_PLAN_FREEZE_INDEPENDENT_REVIEW.md) |
 | F144 | PRE | Owner B | Method, runtime, and compute | B12 | CLOSED | `/training_and_checkpoint_plan/validation_metric` | Exact `F105_COMPLETE_F134_BINARY64_EXACT_CHECKPOINT_RULE_V1`; canonical value is machine `plan_semantics.field_closures[5]`; [human freeze](PROJECT_F139_F144_F147_TRAINING_CHECKPOINT_PLAN_FREEZE.md) and [independent review](PROJECT_F139_F144_F147_TRAINING_CHECKPOINT_PLAN_FREEZE_INDEPENDENT_REVIEW.md) |
@@ -571,7 +591,7 @@ which closes at Gate C; `POST` closes before submission.
 | F149 | PRE | Owner A | Theory and statistics | B05 | CLOSED | `/stopping_failure_and_exclusion_plan/maximum_admissible_failure_rate` | Exact typed B05 direction/threshold or terminal failure-rate value, enforced only through the certified roster/attempt/receipt envelope; [theory/statistics closure](PROJECT_THEORY_STATISTICS_BLOCKER_CLOSURE.md) and [independent review](PROJECT_THEORY_STATISTICS_BLOCKER_CLOSURE_INDEPENDENT_REVIEW.md) |
 | F150 | PRE | Owner B | Method, runtime, and compute | B08 | OPEN | `/compute_and_fairness_plan/hardware` | _pending_; requires the selected Databricks node type, core/device model, CPU/GPU and memory, driver/worker topology, and durable/local-scratch storage roles in the sanitized observed runtime manifest |
 | F151 | PRE | Owner B | Method, runtime, and compute | B08 | OPEN | `/compute_and_fairness_plan/software_environment_sha256` | _pending_; requires the canonical SHA-256 of a sanitized observed execution-runtime manifest containing DBR/Spark/Python/OS/architecture, node type, core/device model, CPU/GPU and memory, driver/worker topology, relevant deterministic variables, installed distributions/versions, and import origins for `heterodiff` plus its numerical/runtime dependencies. Installed-state and origin checks must run from a fresh or restarted notebook interpreter. Bitwise identity of Databricks-managed infrastructure is not required; see the [runtime-route pivot](PROJECT_B08_N1_CANDIDATE_003_FORENSIC_OUTCOME_AND_RUNTIME_ROUTE_PIVOT.md) |
-| F152 | PRE | Owner B | Method, runtime, and compute | B08 | OPEN | `/compute_and_fairness_plan/container_or_lockfile_sha256` | _pending_; requires the canonical SHA-256 of the checked-in fully resolved `--require-hashes` project dependency lock actually installed on the selected runtime, bound to the exact content-addressed source-manifest and project-wheel digests, with successful exact-version/import-origin verification and `pip check` from a fresh or restarted notebook interpreter. B08 Docker/ECR, a custom container, and Unity Catalog one-shot runtime-overlay artifacts are not required. Candidates 002 and 003 remain historical no-go evidence and do not populate F152; Candidate 004 is not authorized. See the [runtime-route pivot](PROJECT_B08_N1_CANDIDATE_003_FORENSIC_OUTCOME_AND_RUNTIME_ROUTE_PIVOT.md) |
+| F152 | PRE | Owner B | Method, runtime, and compute | B08 | CLOSED | `/compute_and_fairness_plan/container_or_lockfile_sha256` | `c6fa5d600cd2810c40ae47d5eeeba341e0467c4c75dd7c7d310cf3628ab6349f`; canonical SHA-256 of the [checked-in fully resolved hash-pinned dependency lock](requirements/b08-databricks-aws-dbr17.3-x86_64-cpu-py312.lock), bound to exact source-manifest record `a76e9c392345d54f27aef08ae415e0649b29248f4940a69c0fb7a7b7831d0c87` and installed project-wheel digest `69822a7bbfc21df840280798c70e4a571086993850b32dee0e83002fc4bb990e`. The [2026-09-07 receipt](research/fixtures/b08_conventional_runtime_integration_2026_09_07_receipt.json) reports all 21 exact dependency versions, active-prefix distribution/import origins, and pip check success after managed installation and two Python restarts. Accepted only for F152 after offline integrity/source-binding checks and independent agent review; see [acceptance scope](#2026-09-07-conventional-databricks-milestone-and-f152-acceptance). F150/F151 and B08 remain OPEN. Historical Candidates 002/003 do not supply this value; no Docker/ECR or Candidate 004 is required or revived. |
 | F153 | PRE | Owner B | Method, runtime, and compute | B08 | CLOSED | `/compute_and_fairness_plan/deterministic_settings` | `B08_CPU_SINGLE_THREAD_FAIL_CLOSED_DETERMINISM_V1`; prospective CPU-only, single-thread, fail-closed deterministic policy only; retained without reinterpretation by the [native governance successor](PROJECT_B08_NATIVE_DATABRICKS_RUNTIME_SUCCESSOR_V1.md); [human B08 freeze](PROJECT_B08_LOCAL_HOST_CAPACITY_GAP_FREEZE.md), [machine record](research/fixtures/manuscript_v3_b08_local_host_capacity_gap_freeze_v1.json), and [independent review](PROJECT_B08_LOCAL_HOST_CAPACITY_GAP_FREEZE_INDEPENDENT_REVIEW.md) |
 | F154 | PRE | Owner B | Method, runtime, and compute | B08 | OPEN | `/compute_and_fairness_plan/per_run_wall_time_ceiling` | _pending_ |
 | F155 | PRE | Owner B | Method, runtime, and compute | B08 | OPEN | `/compute_and_fairness_plan/per_run_accelerator_hour_ceiling` | _pending_ |
@@ -594,6 +614,126 @@ which closes at Gate C; `POST` closes before submission.
 | F172 | PRE | Joint | Final sealed freeze | B12 | OPEN | `/freeze_predicate/test_data_unopened_before_freeze` | _pending_ |
 
 ## 5. Progress summaries
+
+### 2026-09-07 conventional Databricks milestone and F152 acceptance
+
+This earlier same-day acceptance remains valid for its exact CPU snapshot.
+Its dated totals below precede the subsequent F066/F072/B06 reopening.
+
+**Disposition: COMPLETE for the approved current-scope runtime/testing
+milestone; GO_F152 for project-ledger acceptance only.** The normalized
+[operator-supplied JSON receipt](research/fixtures/b08_conventional_runtime_integration_2026_09_07_receipt.json)
+has capture time `2026-09-07T14:40:51.693647+00:00` and internal record SHA-256
+`d5d155f0d6d75a642d85e717a1c1075678db0dc23d08621fb25cb1756137e5a1`.
+The first JSON object and its duplicate Python-dictionary display were compared
+as data and found identical; only the normalized JSON object is archived.
+
+The receipt records 235 actual passes (44 source-bound B12 contract tests and
+191 installed-package tests), zero failures/errors/skips among required cases,
+21 exact locked dependency versions, required import origins under the active
+Python prefix, `pip check` return code 0, all 15 deterministic environment
+variables, and CPU single-threaded/no-CUDA runtime checks. Managed notebook
+installation completed with two Python restarts. The synthetic whole-method
+route passed. Exactly one unchanged historical Checkpoint 14/17 compatibility
+test remains `OPEN_DEFERRED`; the separate preexisting 18 historical-validator
+exclusions remain disclosed. Neither full historical-suite passage nor real
+data/model training is claimed.
+
+The main integrity review and an independent agent's F152 acceptance review
+checked the supplied receipt against the current lock and source bindings.
+The receipt's own digest, runtime-manifest digest, source-manifest/anchor
+bindings, executed controller/support bytes, all 323 selected source-file
+bindings, equal live/staged source projections, and test-cohort consistency
+were verified offline. The F152 lock value is
+`c6fa5d600cd2810c40ae47d5eeeba341e0467c4c75dd7c7d310cf3628ab6349f`;
+source-manifest file SHA-256 is
+`9a7d815ada69a7405552ac885b229e13f63eb24ff1ed6e57d0730734452ed5ff`,
+source-manifest record SHA-256 is
+`a76e9c392345d54f27aef08ae415e0649b29248f4940a69c0fb7a7b7831d0c87`,
+and installed project-wheel SHA-256 is
+`69822a7bbfc21df840280798c70e4a571086993850b32dee0e83002fc4bb990e`.
+This independent agent review is a bounded project-record review, not an
+externally appointed scientific audit or authentication of the remote writer.
+The producer reports durable readback; this update did not independently
+reopen the remote Unity Catalog Volume or assert its physical durability.
+
+The notebook's `project_delta` correctly says it edited no tracker and closed
+no field. The user's subsequent plan-update request authorizes this separate
+ledger acceptance, which closes **F152 only** under its existing definition.
+PRE moves 23 open / 143 closed to **22 open / 144 closed**; POST stays 1/5;
+total fields become **23 open / 149 closed**. The method/runtime workstream
+becomes 9 open / 56 closed. Existing timetable counts stay **62/101/163**:
+the runtime milestone is marked COMPLETE but no new checkbox is invented,
+and the compound lock-plus-resource-ceilings task remains partly open.
+
+F150/F151 remain open because configured node type, Spark version, and
+driver/worker topology are unobserved in the supplied manifest. B08 also
+still requires prospective resource ceilings and capacity assurance. B12,
+real-domain data/governance/admission, Waves 2/3, Formal Tests 28/29/30
+(`OPEN/OPEN/PENDING`), and all scientific result slots (`0/4`) remain open.
+No training, calibration, inference, study/test-data access, scientific
+outcome inspection, or scientific claim was performed or accepted here.
+No new environment/custody route, code change, runtime run, or timetable
+date change is part of this update.
+
+### 2026-09-07 two-track readiness audit and budget reopening
+
+**Disposition: bounded preparation COMPLETE; whole tracks NOT COMPLETE;
+F066/F072 and B06 OPEN pending a prospective amendment.** The
+[two-track readiness and GPU plan](PROJECT_TWO_TRACK_READINESS_AND_GPU_PLAN.md)
+records the prepared supplied-input adapter, source-only smoke notebook,
+read-only runtime-facts notebook, and user-requested GPU-training plan DRAFT.
+The combined local regression passes 519 tests, including 47 adapter and
+32 runtime-facts tests plus related admission/F105/F061 checks. These are non-counted bounded
+deliverables, not newly invented timetable tasks, actual data admission,
+full runtime/GPU qualification, training, or scientific results.
+
+The cross-contract audit found a definite budget conflict. F144 requires
+16 full-validation checkpoints for each final training seed. Per primary
+method per domain across the complete 256-seed roster, its 128 groups and
+64 draws at 256 reverse steps require
+`16 * 128 * 64 * 256 * 256 = 8,589,934,592` logical ODE steps, excluding
+training work. This is 2,048 times the F066/F072 FINAL_TRAINING ODE ceiling
+of 4,194,304; the same phase has a zero metric-event ceiling despite mandatory
+validation. Batch execution does not reduce the frozen logical event count.
+F144 stays the approved schedule; changing cadence, group/draw/seed counts,
+phase accounting, or ceilings silently is not a repair. Historical B06
+machine values, identities/licenses/configs, and F104 are unchanged. Only
+F066/F072 and the compound B06 blocker reopen for current execution validity.
+
+F061 remains an accepted conditional policy: all complete eligible natural
+groups are allocated by 70/15/15 Hamilton with exact 128 validation and 128
+test groups, allowing totals 852–855 only. No accepted rule allows selecting
+128 groups from larger held-out splits. Actual eligible-group counts and
+Retail temporal feasibility remain unobserved; a public source record count
+is not an observed eligible-group count. No real dataset, populated split,
+raw-archive digest, or governance/admission evidence was supplied in this
+preparation, and no data transfer is authorized by a proposed UC Volume folder.
+
+The user approved PREPARING the GPU plan, not adopting its successor policies,
+launching a cluster, spending, or running training. Access to eight GPUs and
+up to 1,000 GB host RAM is user-reported; it establishes neither observed
+device/VRAM identity nor storage capacity or compute ceilings. F141/F153 remain
+frozen CPU-reference policies only. The GPU successor is DRAFT, F155 remains
+OPEN, and F150/F151 and full B08 acceptance remain pending observed evidence.
+The next design action is review/authorization of a prospective budget and,
+if selected, GPU-policy amendment before any scientific execution.
+
+The accepted 235-pass CPU receipt, F152 lock closure, historical test deferral,
+and 18 separately disclosed exclusions remain intact. New adapter source is
+outside that old 323-file release manifest and is loaded explicitly by its
+new smoke notebook without replacing the verified wheel. The old bootstrap
+must not be rerun unchanged as the route for this new source. No legacy
+Docker/ECR or one-shot custody setup is revived.
+
+Current totals after reopening: **61 checked / 102 open / 163 timetable
+boxes; 25 open / 147 closed fields; PRE 24/142; POST 1/5; method/runtime
+11/54; 8 open / 4 closed blockers (6 execution + 2 submission open).**
+Only the existing B06 checkbox reopens. Gate A remains 5/8 because baseline
+families/licenses are still fixed; Solo Block 6's checked historical
+freeze/formula draft is expressly not current budget-validity acceptance.
+Formal Tests stay OPEN/OPEN/PENDING, results 0/4, and science
+DRAFT_NOT_EXECUTABLE. All agreed timetable dates remain unchanged.
 
 ### Project-control milestones (scientific scorecard effects are explicit)
 
@@ -627,7 +767,7 @@ which closes at Gate C; `POST` closes before submission.
 | `SYNTHETIC_SUPPLIED_INPUT_SINGLE_MACROSTEP_LEFT_JUMP_RIGHT_INTEGRATION_VALIDATED` | CLOSED_AS_BOUNDED_COMPONENT_INTEGRATION_PRECURSOR_ONLY | [single-macrostep qualification](PROJECT_FORMAL_TEST29_TEST30_SINGLE_MACROSTEP_INTEGRATION_QUALIFICATION.md) | 0 |
 | `SYNTHETIC_SUPPLIED_INPUT_TWO_MACROSTEP_ROLLING_LINEAGE_PATH_VALIDATED` | CLOSED_AS_EXACT_HASH_BOUND_BOUNDED_COMPONENT_INTEGRATION_PRECURSOR_ONLY; HASH_FIRST_PARENT_SOURCE_CUSTODY_REMEDIATION_ACCEPTED; DIRECT_GENERIC_API_UNAUTHENTICATED_AND_UNSUPPORTED; WRAPPER_SOLE_REUSABLE_ENTRYPOINT | [two-macrostep qualification](PROJECT_FORMAL_TEST29_TEST30_TWO_MACROSTEP_PATH_QUALIFICATION.md), [original independent review](PROJECT_FORMAL_TEST29_TEST30_TWO_MACROSTEP_PATH_INDEPENDENT_REVIEW.md), [authoritative custody wrapper](research/diagnostics/formal_test29_test30_two_macrostep_parent_custody_hash_first_v1.py), and [independent remediation review](PROJECT_FORMAL_TEST29_TEST30_TWO_MACROSTEP_PARENT_CUSTODY_REMEDIATION_INDEPENDENT_REVIEW.md) | 0 |
 | `MATCHED_TOTAL_COMPUTE_FORMULA_F104_FROZEN_PREOUTCOME` | CLOSED_AS_EXACT_PARAMETERIZED_FORMULA_ONLY; RESOURCE_VALUES_NULL; B06_B08_B12_OPEN | [F104 freeze](PROJECT_F104_MATCHED_TOTAL_COMPUTE_FORMULA_FREEZE.md), [machine F104 freeze](research/fixtures/manuscript_v3_f104_matched_total_compute_formula_freeze_v1.json), and [independent review](PROJECT_F104_MATCHED_TOTAL_COMPUTE_FORMULA_FREEZE_INDEPENDENT_REVIEW.md) | 1 (`F104`) |
-| `B06_BASELINE_IDENTITIES_CONFIGS_CAPABILITIES_AND_MATCHED_COMPUTE_FROZEN_PREOUTCOME` | CLOSED_AS_EXACT_42_PRE_FIELD_AND_B06_BLOCKER_FREEZE; BOUNDED_EXTERNAL_SELECTION_NOT_UNIVERSAL_SOTA; B08_B12_OPEN | [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md), [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json), and [independent review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md) | 42 (`F062`--`F103`) |
+| `B06_BASELINE_IDENTITIES_CONFIGS_CAPABILITIES_AND_MATCHED_COMPUTE_FROZEN_PREOUTCOME` | HISTORICALLY_CLOSED_AS_EXACT_42_PRE_FIELD_AND_B06_FREEZE; CURRENT_F066_F072_B06_REOPENED; BOUNDED_EXTERNAL_SELECTION_NOT_UNIVERSAL_SOTA; B08_B12_OPEN | [B06 freeze](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE.md), [machine record](research/fixtures/manuscript_v3_b06_baseline_identity_matched_compute_freeze_v1.json), [historical review](PROJECT_B06_BASELINE_IDENTITIES_MATCHED_COMPUTE_FREEZE_INDEPENDENT_REVIEW.md), and [current budget audit](PROJECT_TWO_TRACK_READINESS_AND_GPU_PLAN.md) | Historical 42 (`F062`--`F103`); current reopening of `F066`/`F072` separately counted |
 | `PREOUTCOME_PROOF_CODE_METHODS_STATISTICS_CLEAN_ROOM_AUDIT_PLANS_FROZEN` | CLOSED_AS_THREE_PREOUTCOME_AUDIT_PLAN_FIELDS_ONLY; F169_AND_B11_OPEN; REPORTS_AND_RUNS_ABSENT | [B11 plan freeze](PROJECT_B11_PREOUTCOME_AUDIT_PLAN_FREEZE.md), [machine B11 plan freeze](research/fixtures/manuscript_v3_b11_preoutcome_audit_plan_freeze_v1.json), and [independent review](PROJECT_B11_PREOUTCOME_AUDIT_PLAN_FREEZE_INDEPENDENT_REVIEW.md) | 3 (`F168`, `F170`, `F171`) |
 | `F137_PARAMETERIZED_NATURAL_GROUP_HIERARCHICAL_PAIRED_ANALYSIS_FORMULA_FROZEN_PREOUTCOME` | CLOSED_AS_EXACT_PARAMETERIZED_FORMULA_AND_EMPIRICAL_TRANSFORM_ONLY; F105_LATER_CLOSED; F112_F138_AND_B07_OPEN | [F137 freeze](PROJECT_F137_HIERARCHICAL_PAIRED_ANALYSIS_FORMULA_FREEZE.md), [machine F137 freeze](research/fixtures/manuscript_v3_f137_hierarchical_paired_analysis_formula_freeze_v1.json), [independent F137 review](PROJECT_F137_HIERARCHICAL_PAIRED_ANALYSIS_FORMULA_FREEZE_INDEPENDENT_REVIEW.md), and [independent F105 review](PROJECT_F105_TWO_DOMAIN_CKS_METRIC_INSTANCE_INDEPENDENT_REVIEW.md) | 1 (`F137`) |
 | `F146_EARLIEST_STEP_TIED_BEST_CHECKPOINT_RULE_FROZEN_PREOUTCOME` | CLOSED_AS_EXACT_EARLIEST_STEP_TIE_RULE_ONLY; F144_FUTURE_CERTIFICATE_INTEGRATION_AND_B12_OPEN | [F146 freeze](PROJECT_F146_CHECKPOINT_TIE_RULE_FREEZE.md), [machine F146 freeze](research/fixtures/manuscript_v3_f146_checkpoint_tie_rule_freeze_v1.json), and [independent review](PROJECT_F146_CHECKPOINT_TIE_RULE_FREEZE_INDEPENDENT_REVIEW.md) | 1 (`F146`) |
@@ -760,9 +900,12 @@ by the accepted manuscript-display/production integration plus theory/statistics
 successor.
 The minimum empirical-contribution
 route is frozen with all 14 components `PENDING`; C17 is retired as a selected
-claim route without proof or promotion. The current additive view closes 132 PRE
+claim route without proof or promotion. The current additive view closes 142 PRE
 and five POST fields, including the accepted 31-field theory/statistics package,
-17-field governance/release package, and 42-field B06 package. The locked-route manuscript successor
+17-field governance/release package, historical 42-field B06 package with
+F066/F072 now reopened, later allocation, compute-policy and training-plan
+fields, and the 2026-09-07 F152 lock acceptance.
+The locked-route manuscript successor
 synchronizes those current semantics without mutating historical manuscript
 bytes or changing scientific counts. The domain route remains unadmitted;
 the selected external baseline identities and code-license receipts are frozen,
@@ -773,35 +916,42 @@ and governance controls close post-execution plan fields F164/F165/F168/F170/F17
 F169, B11, all realized audit/reproduction evidence, and every report remain
 open or absent.
 
-These are additive pre-outcome design and project-control transitions only. The
-global state remains `DRAFT_NOT_EXECUTABLE`; no external contact, data or test
-access, entropy, training, live runtime, scientific execution, result, claim
-promotion, submission, domain admission, or formal-test closure is created.
-B01/B04/B05/B06/B07 close strictly as pre-outcome design/integration blockers;
-the other seven blockers remain open. F172 remains null.
+The prior design/control transitions are now supplemented by the completed
+2026-09-07 conventional Databricks runtime/testing milestone and F152 closure.
+The global scientific state remains `DRAFT_NOT_EXECUTABLE`: current model code
+has run on Databricks for the approved tests and synthetic integration, but
+this is not admission of the full scientific route. This tracker update
+performs no external contact, runtime execution, data access, training,
+scientific execution, result generation, claim promotion, submission,
+domain admission, or formal-test closure.
+B01/B04/B05/B07 remain closed strictly as pre-outcome design/integration
+blockers; B06 reopens for the training-budget conflict and eight blockers
+are now open. F172 remains null.
 
 ### Workstream totals
 
 | Workstream | Open | Closed |
 |---|---:|---:|
 | Theory and statistics | 0 | 54 |
-| Method, runtime, and compute | 10 | 55 |
+| Method, runtime, and compute | 11 | 54 |
 | Data, governance, and reproduction | 13 | 39 |
 | Final sealed freeze | 1 | 0 |
-| **Total** | **24** | **148** |
+| **Total** | **25** | **147** |
 
 ### Phase totals
 
 | Phase | Open | Closed |
 |---|---:|---:|
-| Pre-execution | 23 | 143 |
+| Pre-execution | 24 | 142 |
 | Post-execution | 1 | 5 |
-| **Total** | **24** | **148** |
+| **Total** | **25** | **147** |
 
 ## 6. Change log
 
 | Date | Change | Evidence |
 |---|---|---|
+| 2026-09-07 later readiness audit | Recorded the completed bounded adapter/source-smoke/runtime-facts preparation and GPU-plan DRAFT, not whole-track completion or GPU adoption. Verified mandatory F144 validation exceeds the frozen primary-pair FINAL_TRAINING ODE cap by 2,048 times and requires metric events despite cap zero; reopened F066/F072/B06 while preserving historical machine values, CPU 235-pass evidence, F152 closure, and historical test deferral. Current boxes 61/102/163; fields 25/147 (PRE 24/142, POST 1/5); method/runtime 11/54; blockers 8 OPEN / 4 CLOSED (6 execution + 2 submission open). Gate A 5/8; Formal Tests OPEN/OPEN/PENDING; results 0/4. F061 feasibility remains conditional on unobserved eligible groups; F141/F153 remain CPU-reference-only and F155 OPEN. User approval covers preparation only: no GPU adoption, compute launch, spend, actual data, or science. No new checkboxes or timetable-date changes. | [Readiness audit and GPU draft](PROJECT_TWO_TRACK_READINESS_AND_GPU_PLAN.md) and [current audit](#2026-09-07-two-track-readiness-audit-and-budget-reopening) |
+| 2026-09-07 | Archived the operator-supplied successful conventional Databricks receipt and marked the current-scope runtime/testing milestone COMPLETE: 235 passed (44 source-bound + 191 installed-package), exact 21 dependency pins and required import origins, pip check, CPU determinism, and synthetic smoke passed. Main integrity checks and independent agent review support GO_F152 under its existing definition. F152 alone closes: fields 23/149 (PRE 22/144, POST 1/5), method/runtime 9/56. The unchanged historical compatibility case remains OPEN_DEFERRED and 18 prior historical-validator exclusions remain disclosed. Existing timetable boxes remain 62/101/163; blockers 7 OPEN / 5 CLOSED; B08/B12 and Waves 2/3 open; Formal Tests OPEN/OPEN/PENDING; results 0/4. No code, scientific execution, remote state, or agreed timetable dates changed. Remote durable readback is producer-reported, not independently repeated here. | [Archived receipt](research/fixtures/b08_conventional_runtime_integration_2026_09_07_receipt.json), [F152 acceptance](#2026-09-07-conventional-databricks-milestone-and-f152-acceptance), and [updated timetable](PROJECT_COMPLETION_TIMETABLE.md) |
 | 2026-09-04 | Completed the one permitted Candidate 003 read-only forensic run and adopted `CANDIDATE_003_PERMANENTLY_SPENT_UNRESOLVED_CUSTODY_ROUTE_RETIRED` before any scientific outcome was accessed. The operator-supplied semantic output reports two equal snapshots, exactly the valid intent and one failure receipt present, and 130/132 reserved names plus the virtual prefix absent. The supplied text does not cryptographically bind the exact remote code bytes, and the run did not inspect the canonical lock; no overlay, success receipt, or canonical lock is accepted in project state. For the failure receipt, the validator reported no error other than `FAILURE_COMMAND_JOURNAL_ARGV_BINDING_MISMATCH`. A Databricks interpreter-path portability false negative is a plausible provisional hypothesis, not a proven cause, because the output omits the offending step/argument. Candidate 003 remains preserved and non-reusable; Candidate 004 and further causal forensics are not authorized. Only the B08 Docker/ECR, custom-container, runtime-overlay append-only namespace, and one-shot runtime-custody routes are prospectively retired in favor of conventional pinned-lock/runtime-manifest/import-origin/test/smoke/resource-ceiling evidence; separate Gate-C custody tasks and all scientific choices remain unchanged. Exact tracked delta is zero: marked tasks remain `62/101/163`, fields `24/148` (PRE `23/143`, POST `1/5`), blockers `7 OPEN / 5 CLOSED`, Formal Tests `OPEN/OPEN/PENDING`, results `0/4`, and F151/F152, B08, and Wave 2 remain open. | [outcome and route pivot](PROJECT_B08_N1_CANDIDATE_003_FORENSIC_OUTCOME_AND_RUNTIME_ROUTE_PIVOT.md) |
 | 2026-09-04 | Recorded candidate-003 as `TERMINAL_NO_GO_SPENT_ATTEMPT_FORENSIC_REVIEW_REQUIRED` after a later operator-supplied package-bound invocation observed exactly the flat intent and failure-receipt reserved names and safely stopped with `UC_CANDIDATE_RESERVED_NAMESPACE_NOT_EMPTY`; the canonical F152 lock remained absent. The preflight itself reported no write, network, resolution/build/install, data, Spark/REST, or science, but it did not read either visible payload and therefore proved neither contents, origin/lineage, an earlier failed primitive, package activity in an earlier invocation, overlay construction, nor success. Candidate-003 and its one-shot authority were permanently spent. The exact fixed-target flat-namespace forensic source was independently accepted as `PASS_CANDIDATE_003_FLAT_NAMESPACE_FORENSICS_V1_ZERO_DELTA`, with notebook SHA-256 `c0ee94d4...`, test SHA-256 `530cb3b4...`, P0/P1/P2 `0/0/0`, 153/153 focused passes, 421/421 relevant passes from both the repository and `/private/tmp`, and 483/483 expanded passes. At that checkpoint, the only eligible next action was one read-only forensic run after push/pull; the newer outcome-and-route-pivot entry above records its completion and prospectively supersedes that instruction. Exact tracked delta was zero. | [terminal no-go](PROJECT_B08_N1_CANDIDATE_003_TERMINAL_NO_GO.md), [forensic notebook](databricks/notebooks/b08_n1_candidate_003_flat_namespace_forensics_v1.py), and [independent review](PROJECT_B08_N1_CANDIDATE_003_FLAT_NAMESPACE_FORENSICS_INDEPENDENT_REVIEW.md) |
 | 2026-09-03 | Completed and independently accepted the non-counted candidate-003 V2 Databricks default-off preflight as `PASS_DATABRICKS_V2_DEFAULT_OFF_PREFLIGHT_REVIEW_PACKAGE_REPRODUCED_CANDIDATE_003_UNSPENT_AS_OBSERVED`, with P0/P1/P2 `0/0/0` and 194/194 focused passes. The complete semantic output has `errors=[]` and reproduces the exact builder `7c7edb28...`, canonical launcher `7035ee3f...`, 304-file selected-source manifest `0e2decc9...`, source-identity record `9716f236...`, valid profile, exact wheel-selection ABI/environment, absent candidate prefix and all 132 leaves, absent canonical F152 lock, and review-package digest `5404dd580fac351e888d40836a399d5490396f35df576013eb1a78ecd20d9b23`. The HOLD is expected because only the four deliberately absent construction gates remain unset. No write, network, resolution, build, install, data, Spark, REST, or science occurred; candidate-003 remains absent/unspent as observed. The exact package-bound one-shot authority is separately accepted as `PASS_EXACT_PACKAGE_BOUND_ONE_SHOT_CANDIDATE_003_CONSTRUCTION_AUTHORIZATION_ZERO_DELTA` with P0/P1/P2 `0/0/0`, but operator activation and construction have not occurred. Exact eligible delta is zero: no operational timetable task is marked complete; marked tasks remain `62/101/163`, fields `24/148` (PRE `23/143`, POST `1/5`), blockers `7 OPEN / 5 CLOSED`, Formal Tests `OPEN/OPEN/PENDING`, results `0/4`, and F151/F152, B08, and Wave 2 remain open. | [preflight outcome](PROJECT_B08_N1_UC_NATIVE_OVERLAY_LOCK_CANDIDATE_003_V2_DATABRICKS_PREFLIGHT_OUTCOME.md), [preflight independent review](PROJECT_B08_N1_UC_NATIVE_OVERLAY_LOCK_CANDIDATE_003_V2_DATABRICKS_PREFLIGHT_INDEPENDENT_REVIEW.md), [one-shot authorization](PROJECT_B08_N1_UC_NATIVE_OVERLAY_LOCK_CANDIDATE_003_V2_ONE_SHOT_CONSTRUCTION_AUTHORIZATION.md), and [authority independent review](PROJECT_B08_N1_UC_NATIVE_OVERLAY_LOCK_CANDIDATE_003_V2_ONE_SHOT_CONSTRUCTION_AUTHORIZATION_INDEPENDENT_REVIEW.md) |
