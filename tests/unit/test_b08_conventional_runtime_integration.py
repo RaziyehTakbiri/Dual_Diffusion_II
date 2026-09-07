@@ -58,10 +58,10 @@ def test_exact_lock_manifest_and_targeted_test_roster_are_present(
 ) -> None:
     controller_anchor = workflow._load_controller_anchor(ROOT)
     assert controller_anchor["file_sha256"] == (
-        "c15b580e2ee107e1f30efdfa9f37db3cf0ffc247c95e1dbdf3daf9638d8ebd85"
+        "ce40af15605917942e6722c456dca3572ad9106f2b2337d5d14b8afaa55ab4d7"
     )
     assert controller_anchor["record_sha256"] == (
-        "ac447cc7556f63cf1c3f3c0b0c1b5804f0ebd92b45dc3410aafd669d3a5930a9"
+        "2450fbdd7306aecc88978fce0bdf8ca36fbacedd3bfe8768f899ccb47cb4fde7"
     )
     identity_payload = NOTEBOOK.read_bytes().removesuffix(b"\n")
     assert controller_anchor["controller"]["sha256"] == workflow._sha256_bytes(
@@ -103,16 +103,20 @@ def test_exact_lock_manifest_and_targeted_test_roster_are_present(
         workflow.EXPECTED_SOURCE_MANIFEST_FILE_SHA256
     )
     assert source_manifest["record_sha256"] == (
-        "8afa3caa4d1e2fcb6bbd82102bc2c5b4342c330e4d9e21f65661ed6b94a13555"
+        "9e10e3e1588539bca00466cab5262ee71a23ef0c345e607ef5ded29e817567db"
     )
-    assert source_manifest["file_count"] == 321
-    assert source_manifest["total_size_bytes"] == 26370262
+    assert set(workflow.TEST_PACKAGE_MARKERS) <= {
+        record["relative_path"] for record in source_manifest["manifest"]["files"]
+    }
+    assert source_manifest["file_count"] == 323
+    assert source_manifest["total_size_bytes"] == 26370392
     verification = workflow._verify_source_snapshot(ROOT, source_manifest)
-    assert verification["file_count"] == 321
+    assert verification["file_count"] == 323
 
 
 def _write_bound_manifest(workflow, root: Path) -> dict:
     selected_payloads = {
+        **{relative: (ROOT / relative).read_bytes() for relative in workflow.TEST_PACKAGE_MARKERS},
         "README.md": b"# bounded source fixture\n",
         "pyproject.toml": b"[project]\nname='heterodiff'\n",
         "src/heterodiff/__init__.py": b"__version__ = '0.1.0'\n",

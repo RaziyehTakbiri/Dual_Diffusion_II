@@ -44,7 +44,7 @@ SOURCE_MANIFEST_RELATIVE_PATH = (
     "requirements/b08-conventional-runtime-source-manifest-v1.json"
 )
 EXPECTED_SOURCE_MANIFEST_FILE_SHA256 = (
-    "b788807e5634e2bc4b9aea1cc6bdbba0cfe45c5b597c4026fe8248978f5ff281"
+    "cc1aae99d55c2e31316b97f2f4faaea754a03a86fd7f882742e12c1b5b98beb8"
 )
 SOURCE_MANIFEST_SCHEMA_VERSION = (
     "heterodiff-b08-conventional-runtime-source-manifest-v1"
@@ -94,6 +94,10 @@ IMPORT_MODULES = (
     "torch",
     "pytest",
 )
+
+# These markers make cross-test imports work with PYTHONSAFEPATH enabled.
+# Pytest can add the staged repository root without exposing its src/ tree.
+TEST_PACKAGE_MARKERS = ("tests/__init__.py", "tests/unit/__init__.py")
 
 TARGETED_TEST_FILES = (
     "tests/unit/test_configuration_initial_tilt_composer_torch.py",
@@ -477,7 +481,7 @@ def _load_source_manifest(project_root: Path) -> dict[str, Any]:
         raise B08ConventionalRuntimeError(
             "SOURCE_MANIFEST_TOTAL_SIZE_MISMATCH"
         )
-    required_paths = {"README.md", "pyproject.toml", *TARGETED_TEST_FILES}
+    required_paths = {"README.md", "pyproject.toml", *TEST_PACKAGE_MARKERS, *TARGETED_TEST_FILES}
     absent_required_paths = sorted(required_paths.difference(normalized_paths))
     if absent_required_paths:
         raise B08ConventionalRuntimeError(
