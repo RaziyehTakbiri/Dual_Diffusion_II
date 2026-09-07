@@ -57,15 +57,17 @@ def test_exact_lock_manifest_and_targeted_test_roster_are_present(
 ) -> None:
     controller_anchor = workflow._load_controller_anchor(ROOT)
     assert controller_anchor["file_sha256"] == (
-        "6fe5be57c560a32933e12515edfde53db7e409ccc963d5b0794b799c06a63a2a"
+        "23a17161b6317c886385a648f7b3e50787ce21a78eb7a9b51bda1707820512e1"
     )
     assert controller_anchor["record_sha256"] == (
-        "18eed8c81d786270f0538fdf592a4b505df36299bcc1e48d40389c46046414dc"
+        "4e64cf1d2452686af9a66d016bf33630dd06c1cb100c459debf9b5718e47210d"
     )
-    assert controller_anchor["controller"]["sha256"] == workflow._sha256_file(
-        NOTEBOOK
+    identity_payload = NOTEBOOK.read_bytes().removesuffix(b"\n")
+    assert controller_anchor["controller"]["sha256"] == workflow._sha256_bytes(
+        identity_payload
     )
-    assert controller_anchor["controller"]["size_bytes"] == NOTEBOOK.stat().st_size
+    assert controller_anchor["controller"]["size_bytes"] == len(identity_payload)
+    assert controller_anchor["identity_scope"] == workflow.CONTROLLER_IDENTITY_SCOPE
 
     lock = ROOT / workflow.LOCK_RELATIVE_PATH
     assert workflow._sha256_file(lock) == workflow.EXPECTED_LOCK_SHA256
@@ -265,19 +267,17 @@ def _marker_fixture(workflow, tmp_path: Path) -> tuple[Path, dict]:
     return path, preflight
 
 
-def test_controller_anchor_rejects_controller_byte_drift(
-    workflow, tmp_path: Path
-) -> None:
+def _write_controller_fixture(workflow, tmp_path: Path) -> tuple[Path, dict]:
     controller_path = tmp_path / workflow.CONTROLLER_RELATIVE_PATH
     controller_path.parent.mkdir(parents=True)
-    controller_path.write_bytes(b"# reviewed controller\n")
+    controller_path.write_bytes(b"# reviewed controller\nvalue = 1\n")
     unsigned = {
         "schema_version": workflow.CONTROLLER_ANCHOR_SCHEMA_VERSION,
-        "identity_scope": "EXACT_CONTROLLER_BYTES",
+        "identity_scope": workflow.CONTROLLER_IDENTITY_SCOPE,
         "controller": {
             "relative_path": workflow.CONTROLLER_RELATIVE_PATH,
-            "sha256": workflow._sha256_file(controller_path),
-            "size_bytes": controller_path.stat().st_size,
+            "sha256": workflow._sha256_bytes(controller_path.read_bytes()[:-1]),
+            "size_bytes": len(controller_path.read_bytes()) - 1,
         },
     }
     anchor = {
@@ -287,6 +287,13 @@ def test_controller_anchor_rejects_controller_byte_drift(
     anchor_path = tmp_path / workflow.CONTROLLER_ANCHOR_RELATIVE_PATH
     anchor_path.parent.mkdir(parents=True, exist_ok=True)
     anchor_path.write_bytes(workflow._canonical_json_bytes(anchor) + b"\n")
+    return controller_path, anchor
+
+
+def test_controller_anchor_rejects_controller_byte_drift(
+    workflow, tmp_path: Path
+) -> None:
+    controller_path, anchor = _write_controller_fixture(workflow, tmp_path)
     assert workflow._load_controller_anchor(tmp_path)["controller"] == anchor[
         "controller"
     ]
@@ -297,6 +304,93 @@ def test_controller_anchor_rejects_controller_byte_drift(
         match="CONTROLLER_ANCHOR_CONTROLLER_BINDING_MISMATCH",
     ):
         workflow._load_controller_anchor(tmp_path)
+
+
+def test_controller_anchor_rejects_modified_record(workflow, tmp_path: Path) -> None:
+    _, anchor = _write_controller_fixture(workflow, tmp_path)
+    anchor["controller"]["sha256"] = "0" * 64
+    (tmp_path / workflow.CONTROLLER_ANCHOR_RELATIVE_PATH).write_bytes(
+        workflow._canonical_json_bytes(anchor) + b"\n"
+    )
+    with pytest.raises(
+        workflow.B08ConventionalRuntimeError,
+        match="CONTROLLER_ANCHOR_RECORD_SHA256_MISMATCH",
+    ):
+        workflow._load_controller_anchor(tmp_path)
+
+
+@pytest.mark.parametrize("suffix", [b"", b"\n"])
+def test_controller_anchor_accepts_only_one_terminal_lf_difference(
+    workflow, tmp_path: Path, suffix: bytes
+) -> None:
+    controller_path, _ = _write_controller_fixture(workflow, tmp_path)
+    identity = workflow._load_controller_anchor(tmp_path)
+    controller_path.write_bytes(b"# reviewed controller\nvalue = 1" + suffix)
+    assert workflow._load_controller_anchor(tmp_path) == identity
+
+
+@pytest.mark.parametrize(
+    "payload",
+    [
+        b"# reviewed controller\nvalue = 2\n",  # same-size executable edit
+        b"# reviewed controller\nvalue = 1\n\n",  # extra terminal LF
+        b"# reviewed controller\nvalue = 1 \n",  # trailing space
+        b"# reviewed controller\r\nvalue = 1\r\n",  # CRLF conversion
+        b"# reviewed controller\n\nvalue = 1\n",  # internal blank line
+        b"# reviewed controller\nvalue = ",  # truncation
+    ],
+)
+def test_controller_mismatch_reports_actual_payload_binding(
+    workflow, tmp_path: Path, payload: bytes
+) -> None:
+    controller_path, anchor = _write_controller_fixture(workflow, tmp_path)
+    controller_path.write_bytes(payload)
+    with pytest.raises(workflow.B08ConventionalRuntimeError) as caught:
+        workflow._load_controller_anchor(tmp_path)
+    assert str(caught.value) == "CONTROLLER_ANCHOR_CONTROLLER_BINDING_MISMATCH"
+    diagnostics = caught.value.diagnostics
+    assert diagnostics["expected"]["sha256"] == anchor["controller"]["sha256"]
+    assert diagnostics["observed"] == {
+        "sha256": workflow._sha256_bytes(payload), "size_bytes": len(payload)
+    }
+
+
+def test_managed_stat_size_is_not_used_as_content_length(
+    workflow, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    _write_controller_fixture(workflow, tmp_path)
+    fixture = _write_bound_manifest(workflow, tmp_path)
+    monkeypatch.setattr(
+        workflow, "EXPECTED_SOURCE_MANIFEST_FILE_SHA256",
+        fixture["manifest_file_sha256"],
+    )
+    original_stat = Path.stat
+
+    def managed_stat(path, *args, **kwargs):
+        observed = list(original_stat(path, *args, **kwargs))
+        observed[6] = 0  # st_size; preserve file type and other metadata
+        return os.stat_result(observed)
+
+    monkeypatch.setattr(Path, "stat", managed_stat)
+    assert workflow._load_controller_anchor(tmp_path)["controller"]["size_bytes"] > 0
+    manifest = workflow._load_source_manifest(tmp_path)
+    assert workflow._verify_source_snapshot(tmp_path, manifest)["total_size_bytes"] > 0
+
+
+def test_controller_mismatch_is_printed_before_any_runtime_install(
+    workflow, monkeypatch: pytest.MonkeyPatch, tmp_path: Path, capsys
+) -> None:
+    controller_path, _ = _write_controller_fixture(workflow, tmp_path)
+    controller_path.write_bytes(b"changed controller\n")
+    monkeypatch.setattr(workflow, "_find_project_root", lambda: tmp_path)
+    installs = []
+    monkeypatch.setattr(workflow, "_install_and_restart", lambda *args: installs.append(args))
+    with pytest.raises(workflow.B08ConventionalRuntimeError):
+        workflow.main()
+    failure = json.loads(capsys.readouterr().out)
+    assert failure["error_detail"] == "CONTROLLER_ANCHOR_CONTROLLER_BINDING_MISMATCH"
+    assert failure["diagnostics"]["observed"]["size_bytes"] == len(b"changed controller\n")
+    assert installs == []
 
 
 def test_restart_marker_binds_manifest_lock_wheel_prefix_and_new_pid(

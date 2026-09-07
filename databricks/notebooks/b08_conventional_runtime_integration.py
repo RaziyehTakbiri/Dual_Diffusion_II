@@ -9,6 +9,11 @@ Operator flow:
 4. After the restart completes, choose Run all once more.
 5. Return only the final JSON object printed by the second run.
 
+The controller source check ignores exactly one optional terminal LF.
+Every other byte must match the anchor. File sizes are
+counted from the bytes read, rather than workspace filesystem size metadata.
+A source mismatch reports expected and observed hashes and byte counts.
+
 This notebook never reads study/test data and never calibrates, trains, performs
 inference, or inspects a scientific outcome. Historical Candidate 002/003/004
 workflows are outside its scope.
@@ -46,6 +51,7 @@ CONTROLLER_ANCHOR_SCHEMA_VERSION = (
 CONTROLLER_ANCHOR_RECORD_DOMAIN = (
     b"heterodiff/b08/conventional-runtime-controller-anchor/v1\0"
 )
+CONTROLLER_IDENTITY_SCOPE = "CONTROLLER_BYTES_IGNORING_ONE_OPTIONAL_TERMINAL_LF"
 LOCK_RELATIVE_PATH = (
     "requirements/b08-databricks-aws-dbr17.3-x86_64-cpu-py312.lock"
 )
@@ -158,6 +164,12 @@ TARGETED_PYTEST_SELECTORS = (
 class B08ConventionalRuntimeError(RuntimeError):
     """Fail-closed error for this data-free integration workflow."""
 
+    def __init__(
+        self, message: str, *, diagnostics: Mapping[str, Any] | None = None
+    ) -> None:
+        super().__init__(message)
+        self.diagnostics = dict(diagnostics) if diagnostics is not None else None
+
 
 def _canonical_json_bytes(value: Mapping[str, Any]) -> bytes:
     return json.dumps(
@@ -173,15 +185,22 @@ def _sha256_bytes(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
 
 
-def _sha256_file(path: Path) -> str:
+def _file_content_binding(path: Path) -> dict[str, Any]:
+    """Hash and count the same byte stream; managed size metadata may differ."""
     digest = hashlib.sha256()
+    size_bytes = 0
     with path.open("rb") as handle:
         while True:
             chunk = handle.read(1024 * 1024)
             if not chunk:
                 break
             digest.update(chunk)
-    return digest.hexdigest()
+            size_bytes += len(chunk)
+    return {"sha256": digest.hexdigest(), "size_bytes": size_bytes}
+
+
+def _sha256_file(path: Path) -> str:
+    return _file_content_binding(path)["sha256"]
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -308,7 +327,7 @@ def _load_controller_anchor(project_root: Path) -> dict[str, Any]:
         raise B08ConventionalRuntimeError(
             "CONTROLLER_ANCHOR_SCHEMA_VERSION_MISMATCH"
         )
-    if anchor["identity_scope"] != "EXACT_CONTROLLER_BYTES":
+    if anchor["identity_scope"] != CONTROLLER_IDENTITY_SCOPE:
         raise B08ConventionalRuntimeError(
             "CONTROLLER_ANCHOR_IDENTITY_SCOPE_MISMATCH"
         )
@@ -344,19 +363,33 @@ def _load_controller_anchor(project_root: Path) -> dict[str, Any]:
         raise B08ConventionalRuntimeError(
             "CONTROLLER_ANCHOR_CONTROLLER_FILE_INVALID"
         )
-    observed_size = controller_path.stat().st_size
-    observed_sha256 = _sha256_file(controller_path)
-    if (
-        observed_size != controller["size_bytes"]
-        or observed_sha256 != controller["sha256"]
-    ):
+    payload = controller_path.read_bytes()
+    identity_payload = payload[:-1] if payload.endswith(b"\n") else payload
+    observed_binding = {
+        "sha256": _sha256_bytes(identity_payload),
+        "size_bytes": len(identity_payload),
+    }
+    expected_binding = {
+        "sha256": controller["sha256"], "size_bytes": controller["size_bytes"]
+    }
+    if expected_binding != observed_binding:
         raise B08ConventionalRuntimeError(
-            "CONTROLLER_ANCHOR_CONTROLLER_BINDING_MISMATCH"
+            "CONTROLLER_ANCHOR_CONTROLLER_BINDING_MISMATCH",
+            diagnostics={
+                "controller_relative_path": CONTROLLER_RELATIVE_PATH,
+                "identity_scope": CONTROLLER_IDENTITY_SCOPE,
+                "expected": expected_binding,
+                "observed": {"sha256": _sha256_bytes(payload), "size_bytes": len(payload)},
+                "observed_identity": observed_binding,
+            },
         )
     return {
         "relative_path": CONTROLLER_ANCHOR_RELATIVE_PATH,
         "file_sha256": file_sha256,
         "record_sha256": record_sha256,
+        "identity_scope": CONTROLLER_IDENTITY_SCOPE,
+        # Keep the reviewed identity stable across notebook serialization and
+        # Python restart. Raw byte comparisons are diagnostic, not new anchors.
         "controller": dict(controller),
     }
 
@@ -503,8 +536,9 @@ def _verify_source_snapshot(
             raise B08ConventionalRuntimeError(
                 f"SOURCE_SNAPSHOT_PARENT_IDENTITY_MISMATCH:{relative}"
             )
-        size_bytes = path.stat().st_size
-        sha256 = _sha256_file(path)
+        content_binding = _file_content_binding(path)
+        size_bytes = content_binding["size_bytes"]
+        sha256 = content_binding["sha256"]
         if size_bytes != record["size_bytes"] or sha256 != record["sha256"]:
             raise B08ConventionalRuntimeError(
                 f"SOURCE_SNAPSHOT_FILE_BINDING_MISMATCH:{relative}"
@@ -1374,6 +1408,8 @@ def main() -> None:
                 "candidate_002_003_or_004_executed": False,
             },
         }
+        if isinstance(error, B08ConventionalRuntimeError) and error.diagnostics:
+            failure["diagnostics"] = error.diagnostics
         print(json.dumps(failure, indent=2, sort_keys=True), flush=True)
         raise
 
