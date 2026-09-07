@@ -15,11 +15,13 @@ manuscript revision and its AWS Databricks execution handoff.
   current operator-facing Databricks decision and conventional B08 route.
 - `databricks/notebooks/b08_conventional_runtime_integration.py`: the only
   active B08 Databricks notebook. It performs the conventional, data-free
-  two-pass install, runtime verification, targeted integration tests, and
-  synthetic whole-method smoke route.
+  managed `%pip` installation, runtime verification, targeted integration
+  tests, and synthetic whole-method smoke route in one Run all.
+- `databricks/notebooks/b08_conventional_runtime_support.py`: the ordinary
+  Python support module reloaded after each managed Python restart.
 - `requirements/b08-conventional-runtime-controller-anchor-v1.json`: the exact
-  content binding for that active notebook. The notebook requires and verifies
-  this anchor before installation and again before issuing its final receipt.
+  content binding for the active notebook and support module. The notebook
+  verifies this anchor before installation and before its final receipt.
 - `requirements/b08-databricks-aws-dbr17.3-x86_64-cpu-py312.lock`: the exact
   21-wheel, hash-pinned DBR 17.3 / CPython 3.12 / Linux x86_64 CPU dependency
   lock used by that notebook.
@@ -97,27 +99,33 @@ conventional environment and synthetic integration checks above.
 
 ### Exact operator sequence for the active B08 notebook
 
-1. Commit and push the complete handoff as one revision: the active controller
-   notebook, its controller anchor, the dependency lock, the source manifest,
-   and every file selected by that source manifest. Then pull that same revision
-   into the existing Databricks Git folder.
-2. Open only
-   `databricks/notebooks/b08_conventional_runtime_integration.py`, attach the
-   existing DBR 17.3 x86_64 CPU cluster, and choose **Run all**. Do not edit the
-   notebook or enter any parameters.
-3. The first pass verifies the checked-in source manifest, installs the exact
-   hash-pinned lock, builds and installs the project wheel from a verified
-   `/tmp` copy, and restarts Python. Wait for the restart to finish.
-4. Choose **Run all** exactly once more. The second pass verifies the installed
-   environment, runs the targeted tests and data-free synthetic whole-method
-   route, and writes then prints one final JSON receipt.
-5. Return that JSON for review. Its successful decision is
-   `PASS_CONVENTIONAL_RUNTIME_AND_SYNTHETIC_INTEGRATION`. If it instead reports
-   `STOP_CONVENTIONAL_RUNTIME_OR_INTEGRATION_FAILED`, do not rerun blindly;
-   return the failure JSON for diagnosis.
+1. Commit/push the controller notebook, support module, matching controller
+   anchor, source manifest, README, and tests as one revision. Pull it into the
+   existing Databricks Git folder. Remove the temporary diagnostic `%run` cell
+   if it is still present; do not retain manual edits in the controller.
+2. Open `databricks/notebooks/b08_conventional_runtime_integration.py`, attach
+   the existing DBR 17.3 x86_64 CPU cluster, and choose **Run all once**.
+3. The notebook uses seven cells: prepare the verified source, install the
+   locked dependencies with `%pip`, restart Python, verify dependencies and
+   build the wheel, install the project wheel with `%pip`, restart Python,
+   then verify installed versions/origins and run the synthetic integration.
+   Allow both automatic Python restarts to complete.
+4. Return the final JSON. Success is
+   `PASS_CONVENTIONAL_RUNTIME_AND_SYNTHETIC_INTEGRATION`. An error instead
+   reports the failing phase; return that output before trying again.
 
-This sequence does not require Docker, ECR, command-line Git, new cluster
-settings, widgets, copied code, or a new Candidate 004 namespace.
+The old subprocess installer reported completion in an environment that was
+subsequently replaced; the diagnostic found a changed `python_prefix`, missing
+PyTorch/heterodiff, and reverted dependency versions. Its old `/tmp` marker is
+preserved and is not used by this route. The managed route records environment
+path changes, requires fresh interpreter PIDs after restart, and verifies the
+actual current packages and imports rather than requiring an unchanged path.
+Notebook-scoped packages still need installation when starting a new session;
+run the complete notebook for each qualification run.
+
+This sequence requires no Docker, ECR, new cluster settings, widgets, copied
+code, or new Candidate 004 namespace. Platform guidance:
+https://docs.databricks.com/aws/en/libraries/notebooks-python-libraries
 
 ## Repository hygiene
 
