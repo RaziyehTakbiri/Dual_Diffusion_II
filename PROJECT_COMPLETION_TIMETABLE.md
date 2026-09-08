@@ -7,10 +7,49 @@
 **Capacity assumption:** one accountable Codex worker using internal subagents for parallel audits; user reviews the final outcome  
 **Schedule status:** aggressive, conditional go/no-go plan—not a completion promise  
 **Scientific state at baseline:** `DRAFT_NOT_EXECUTABLE`
-**Current marked-task view (2026-09-07):** 61 checked / 102 open / 163 total
+**Current marked-task view (2026-09-08):** 61 checked / 102 open / 163 total
 
-**Current evidence view (2026-09-07):** 25 fields open / 147 closed; 8 blockers
+**Current evidence view (2026-09-08):** 31 fields open / 141 closed; 8 blockers
 open / 4 closed (6 execution + 2 submission open); Gate A 5/8
+
+**COMPLETED — GPU-capable amended implementation and bounded check preparation
+(2026-09-08).** The [device implementation and qualification record](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md)
+documents explicit-device BASE, conditional learner and sampler wiring, fixed
+four-case parity/performance checks and an inspection-first Databricks notebook.
+The device path and full learner/sampler tests passed locally on CPU, and the
+actual isolated notebook-to-harness CPU run passed. **CUDA was not executed**;
+GPU speed, full trajectory/checkpoint performance and installed-release
+qualification are not claimed. This requested local milestone is COMPLETE;
+the separate hardware/production gates and all compound task counts stay open.
+No paid/cloud job, real-data access, package installation or old CPU release
+change was performed.
+
+**COMPLETED — amended conditional learner/sampler and local qualification
+(2026-09-08).** The [connected factorized pipeline](PROJECT_FACTORIZED_CONDITIONAL_PIPELINE_LOCAL_INTEGRATION.md)
+now trains BASE with the actual relative-score/jump-flux objective, generates
+independent learned-BASE pairs, trains G+R/DIR across the full reverse-time
+interval, and samples conditional paths with cap-correct initialization.
+The local tests cover both domains, continuous and birth/death motion,
+clean-hold and nuisance isolation. This completes the requested bounded local
+integration milestone, not large-scale or GPU qualification. Numeric scientific
+settings, generalized proofs, production-scale cost, real-data admission and
+GPU qualification remain open. No checkbox or field is closed by this component
+milestone; current **61 checked / 102 open / 163**, **31 fields open / 141 closed**
+and **8 blockers open / 4 closed** remain unchanged.
+
+**COMPLETED — structural scientific repair and bounded local components
+(2026-09-08).** The user delegated the model-design decision. The selected
+[mixed-domain amendment](PROJECT_MIXED_DOMAIN_SCIENTIFIC_AMENDMENT.md) preserves
+exact discrete fields, uses genuine continuous log-value fibers, and replaces
+the atomic clean target/identity channel with explicit target smoothing and a
+dominated noisy half-thinning observation law. The mathematical specification,
+reference/likelihood oracle and metadata-aware energy are complete locally;
+this is not full numerical/production or GPU qualification. Six superseded
+observation fields are reopened (F025/F032/F035/F044/F052/F055), giving **31
+open / 141 closed**. B02/B03 were already open; no checkbox is newly added,
+closed or reopened. **61 checked / 102 open / 163** and **8 blockers open /
+4 closed** remain unchanged. Old frozen artifacts and the accepted CPU receipt
+remain historical evidence, not permission to execute an inconsistent route.
 
 **Active Databricks direction (2026-09-04):** the B08 custom-container/ECR and
 runtime-overlay append-only one-shot custody routes are prospectively retired.
@@ -97,17 +136,71 @@ Reported access to eight GPUs and up to 1,000 GB host RAM is not verified
 device/VRAM identity, storage capacity, or a run budget. F141/F153 remain the
 frozen CPU reference only; the GPU successor is DRAFT and F155 remains OPEN.
 
-**Next work — prospective design decisions and supplied evidence.** Resolve
-the B06/F144 budget conflict before execution and review the draft GPU successor
-before any adoption. Obtain the remaining selected-runtime facts and actual
-approved data/snapshot evidence; F150/F151 and B02/B03/B08/B09/B12 stay open.
+**COMPLETED — local GPU-capable code and budget-amendment draft (2026-09-07).**
+The user's subsequent authorization covers local code-and-plan work, with no
+paid jobs. The explicit-device synthetic optimizer, separate FP32 typed-energy
+view and all-22-row prospective budget amendment are implemented; the broader local CPU regression passed **795 tests**. Tests
+and scope are recorded in the
+[updated local milestone](PROJECT_TWO_TRACK_READINESS_AND_GPU_PLAN.md#completed-local-code-and-plan-milestone-2026-09-07).
+The operator's adapter-smoke and CPU-facts reports have also been reviewed.
+This completes a bounded local implementation milestone, not GPU hardware
+qualification, the actual diffusion objective/corruption pipeline, budget
+adoption or a scientific run. No new timetable box is added or compound task
+closed: totals remain **61 checked / 102 open / 163**, fields **25 open / 147
+closed**, blockers **8 open / 4 closed**, and scientific results **0/4**.
+
+**COMPLETED — local conditional-loss and F105 integration (2026-09-07).**
+The actual G+R/DIR logistic loss, finite candidate-base joint/product population,
+and genuine 128-group/R64 supplied-configuration F105 scoring are connected to
+the optimizer/checkpoints and locally tested. See the
+[integration record](PROJECT_CONDITIONAL_TRAINING_PIPELINE_LOCAL_INTEGRATION.md).
+This is not the full learned hybrid sampler, production-law adoption, admitted
+conditional generation or GPU qualification. No compound checkbox closes and
+the counts above are unchanged; the completed local milestone is marked here.
+
+**COMPLETED — local learned-potential hybrid and observation-model integration
+(2026-09-07).** The numerical hybrid sampler now executes continuous motion
+and repeated jumps with conditional initialization and guide/residual
+composition. The proposed trainable visible encoder and independent nuisance
+are connected to the real loss, optimizer and actual sampled-configuration
+F105 tests for both primary methods and both metric interfaces. See the
+[new implementation and verification record](PROJECT_HYBRID_SAMPLER_AND_OBSERVATION_INTEGRATION.md).
+The design is a local synthetic proposal, not an adopted real-domain law,
+trained production base, scalable GPU implementation or scientific result.
+The milestone is marked complete; no compound box or field closes.
+
+**COMPLETED — local domain-support audit, alternative observation integration
+and symbolic workload ledger (2026-09-07).** Exact F105 image checks and
+supplied scalar-fiber charts are implemented. The separate normalized affine
+association proposal now connects retained/overflow observations and likelihood
+gradients to the local conditional model/sampler. All 22 method roles have
+explicit symbolic work mappings and unresolved mechanism/cost inputs. See the
+[implementation, scientific findings and verification](PROJECT_DOMAIN_SUPPORT_AND_OBSERVATION_REVIEW.md).
+No real-domain law, budget or production schema was adopted. The original
+half-thinning identity kernel, F105 metric and accepted CPU release are unchanged.
+This bounded milestone is complete; no compound box or field closes.
+
+**Next work — hardware and scientific qualification of the connected successor.**
+The structural decision, local conditional learner/sampler connection and
+GPU-capable implementation/check preparation are complete. The
+[adopted amendment](PROJECT_MIXED_DOMAIN_SCIENTIFIC_AMENDMENT.md) remains the
+scientific basis. The next hardware gate is one separately authorized bounded
+selected-device check using the new inspection-first notebook; no eight-GPU
+campaign is implied. Establish the remaining derivative/path and numerical
+bounds, scalable matching/large-count performance, prospective noise/smoothing
+sensitivity instance and all-role B06/F144 compute amendment in parallel.
+Full GPU trajectory/checkpoint and installed-release qualification, followed by
+admitted-input production F105 integration, remain open.
+Selected runtime facts, spending/storage limits and approved data evidence
+remain external inputs; F150/F151 and B02/B03/B08/B09/B12 stay open. No paid
+GPU launch or Databricks reconfiguration is needed for the next local work.
 F061 still permits only 852–855 complete eligible natural groups under its
 all-group 70/15/15 and exact 128/128 rule; actual counts are unobserved, and
 larger held-out splits cannot silently be subsampled. The linked plan proposes
 a Unity Catalog data folder without claiming it exists or authorizing data
 transfer. The new adapter is outside the old 323-file release manifest: use
-the new source-only smoke/facts notebooks as instructed in that plan, not an
-unchanged rerun of the old bootstrap. No Docker/ECR or custody setup is revived.
+updated plan for the already-received smoke/facts results and next local work,
+not an unchanged rerun of the old bootstrap. No Docker/ECR or custody setup is revived.
 The agreed timetable dates are unchanged; whole tracks and science remain open.
 
 > This file is a project-management tracker only. Neither the file nor a checked
@@ -174,7 +267,10 @@ complete.
 - [ ] **B02 — PhysioNet task, governance, and admission.** Exact snapshot/hash,
   license/approval, representation, observation task, common-support route,
   leakage controls, split, and admission threshold are frozen. Partial evidence:
-  F021/F023--F032/F035--F037 are frozen across the
+  F021/F023--F032/F035--F037 were frozen in the predecessor;
+  F025/F032/F035 are now OPEN under the
+  [scientific amendment](PROJECT_MIXED_DOMAIN_SCIENTIFIC_AMENDMENT.md).
+  Unaffected evidence remains accepted across the
   [exact F105/domain instance](PROJECT_F105_TWO_DOMAIN_CKS_METRIC_INSTANCE.md)
   and [governance controls](PROJECT_TWO_DOMAIN_GOVERNANCE_RELEASE_CONTROLS.md);
   the snapshot/hash, applicable determination, support certificate, populated
@@ -191,8 +287,11 @@ complete.
 - [ ] **B03 — Retail task, governance, and admission.** Exact snapshot/hash,
   license/privacy plan, cancellation/timing/duplicate semantics, representation,
   split, support route, and admission threshold are frozen. Partial evidence:
-  F040/F042--F052/F055--F057, the source-civil F060 V2 successor, and the
-  preservation-first F061 shared allocation are frozen across the
+  F040/F042--F052/F055--F057 were frozen in the predecessor;
+  F044/F052/F055 are now OPEN under the
+  [scientific amendment](PROJECT_MIXED_DOMAIN_SCIENTIFIC_AMENDMENT.md).
+  Unaffected evidence, the source-civil F060 V2 successor, and the
+  preservation-first F061 allocation remain accepted across the
   [exact F105/domain instance](PROJECT_F105_TWO_DOMAIN_CKS_METRIC_INSTANCE.md),
   [governance controls](PROJECT_TWO_DOMAIN_GOVERNANCE_RELEASE_CONTROLS.md), and
   [F061 independent review](PROJECT_F061_PRESERVATION_FIRST_ALLOCATION_INDEPENDENT_REVIEW.md);
@@ -1668,6 +1767,10 @@ Update this table at each Sunday week close. A blank is not a zero.
 | 2026-09-04 candidate-003 forensic outcome / runtime-route pivot | 23 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | The completed read-only run produced two equal snapshots with exactly the valid intent and one failure receipt present. The validator reported no failure-receipt error other than `FAILURE_COMMAND_JOURNAL_ARGV_BINDING_MISMATCH`; a Databricks interpreter-path portability false negative is a plausible provisional hypothesis, not a proven cause. The supplied semantic text does not bind the exact remote code bytes, and this run did not inspect the canonical lock; no overlay, success receipt, or canonical lock is accepted in project state. Candidate 003 is permanently spent unresolved; it must remain unchanged, Candidate 004 is unauthorized, the earlier one-run instruction is complete, and further Candidate 003 custody forensics are retired. Future B08 Databricks acceptance uses the conventional pinned-lock/runtime-manifest/import-origin/test/smoke/resource-ceiling route. Exact tracked delta is zero: marked tasks remain 62/101/163, fields 24/148, blockers 7/5, Formal Tests OPEN/OPEN/PENDING, results 0/4, and F151/F152, B08, and Wave 2 remain open; [outcome and pivot](PROJECT_B08_N1_CANDIDATE_003_FORENSIC_OUTCOME_AND_RUNTIME_ROUTE_PIVOT.md). |
 | 2026-09-07 Databricks current-scope completion / F152 acceptance | 22 | 5 | 4 | 3 | 0/4 | 2 | RED | 0 | Conventional runtime/testing milestone COMPLETE: 235 required cases passed (44 source-bound + 191 installed-package), 21 dependency pins and installed origins verified, pip check and synthetic smoke passed. F152 closes; PRE 22/144, POST 1/5, total fields 23/149. One historical case remains OPEN_DEFERRED; 18 prior historical-validator exclusions remain disclosed. Existing checkbox totals stay 62/101/163 because resource ceilings and other compound obligations remain open. B02/B03/B08/B09/B12 and Waves 2/3 remain open; Formal Tests OPEN/OPEN/PENDING; no training or scientific result. Overall RED is retained because the full scientific execution gates remain unapproved; the current-scope runtime milestone itself passed. [Receipt](research/fixtures/b08_conventional_runtime_integration_2026_09_07_receipt.json) and [ledger acceptance](PROJECT_EVIDENCE_LEDGER.md#2026-09-07-conventional-databricks-milestone-and-f152-acceptance). |
 | 2026-09-07 two-track readiness / budget reconciliation | 24 | 6 | 4 | 3 | 0/4 | 2 | RED | 0 | Bounded supplied-input adapter, source-only smoke notebook, read-only runtime-facts notebook, and GPU-plan DRAFT prepared; whole tracks, data admission, and GPU qualification remain open. Verified F144 validation exceeds F066/F072 training caps, so those two fields and B06 reopen without rewriting historical freezes. Current totals: boxes 61/102/163; fields 25/147 (PRE 24/142, POST 1/5); blockers 8/4. CPU 235-pass milestone and F152 remain accepted; one historical case remains OPEN_DEFERRED. GPU preparation is not adoption, launch, or spend authority. F141/F153 remain CPU-reference-only and F155 OPEN. No actual data, training, scientific result, new checkbox, or timetable-date change. [Readiness audit and GPU draft](PROJECT_TWO_TRACK_READINESS_AND_GPU_PLAN.md). |
+| 2026-09-08 mixed-domain scientific amendment | 30 | 6 | 4 | 3 | 0/4 | 2 | RED | 0 | User-delegated structural model/observation amendment ADOPTED; exact mixed keys, normalized TRAIN-informed full-support reference, smooth-target/noisy-observation oracle, mathematical bounds and shared metadata energy complete locally. 1,022 selected CPU tests pass. Six obsolete observation definitions reopen, giving fields31/141; boxes61/102/163 and blockers8/4 unchanged. All323 historical CPU source hashes/sizes unchanged. Numeric science settings, scalable full-method integration and GPU/production qualification remain open; no paid jobs, real data or scientific results. [Amendment](PROJECT_MIXED_DOMAIN_SCIENTIFIC_AMENDMENT.md). |
+| 2026-09-07 local GPU-capable implementation / draft budget amendment | 24 | 6 | 4 | 3 | 0/4 | 2 | RED | 0 | COMPLETE bounded local synthetic optimizer, separate FP32 energy view and all-22-row prospective budget draft; no GPU execution or scientific objective completion. Operator adapter/CPU-facts reports reviewed. Full data/corruption/loss/validation integration, non-primary operation mappings, GPU qualification and budget adoption remain open. Boxes 61/102/163; fields 25/147; blockers 8/4 unchanged. No paid job, dataset access, new checkbox or timetable-date change. [Local implementation milestone](PROJECT_TWO_TRACK_READINESS_AND_GPU_PLAN.md#completed-local-code-and-plan-milestone-2026-09-07). |
+| 2026-09-07 local conditional-loss / F105 integration | 24 | 6 | 4 | 3 | 0/4 | 2 | RED | 0 | COMPLETE actual G+R/DIR objective, finite candidate-base same-context pairs and actual 128-group/R64 F105 supplied-configuration scoring retained in checkpoints. General learned hybrid sampling, production laws/encoder/nuisance, compatible authenticated validation, full budget adoption and GPU qualification remain open. No count delta: boxes 61/102/163, fields 25/147, blockers 8/4. No paid job, real data or scientific outcome. [Local integration](PROJECT_CONDITIONAL_TRAINING_PIPELINE_LOCAL_INTEGRATION.md). |
+| 2026-09-07 local hybrid sampler / observation-model integration | 24 | 6 | 4 | 3 | 0/4 | 2 | RED | 0 | COMPLETE bounded numerical continuous/jump sampler, conditional initialization and guide/residual composition; trainable visible encoder and independent nuisance proposal; actual hybrid paths connected to loss, AdamW and 128-group/R64 F105. 1,015 selected local tests passed. Real-domain chart/kernel, production design adoption, numerical/scalable GPU qualification, admitted generation and full budget remain open. Boxes 61/102/163, fields 25/147, blockers 8/4 unchanged. No paid jobs, real data or scientific outcome. [Hybrid integration](PROJECT_HYBRID_SAMPLER_AND_OBSERVATION_INTEGRATION.md). |
 | SW1 — 2026-09-06 |  |  |  |  |  |  |  |  |  |
 | SW2 — 2026-09-13 |  |  |  |  |  |  |  |  | Solo Block 1 target |
 | SW3 — 2026-09-20 |  |  |  |  |  |  |  |  |  |
