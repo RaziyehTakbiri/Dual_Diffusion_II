@@ -90,7 +90,7 @@ acknowledgement. CPU_REFERENCE requests CPU tensor computation only; ordinary
 PyTorch optimizer internals may probe accelerator availability. No private
 optimizer safety method is bypassed to manufacture a zero-query claim.
 
-No package install/restart, network access, environment repair, Docker/ECR,
+No package install/restart, network access, parent/cluster environment repair, Docker/ECR,
 old custody candidate, dataset or remote job is part of this notebook. It uses
 the current interpreter and the explicitly selected new source tree, not the
 historical 323-file installed release. The child deadline does not stop the
@@ -99,7 +99,7 @@ still needs an appropriate already-approved runtime and spending authority.
 
 ## Local verification and preserved state
 
-The final combined regression passed **442 tests in 26.88 seconds** across
+The initial combined regression passed **442 tests in 26.88 seconds** across
 13 suites: **103 new tests** (27 graph, 18 training/sampling connector,
 28 qualification harness, 30 notebook/supervisor) and **339 existing factorized
 scientific regressions**. The 30 notebook tests include an actual isolated-child
@@ -125,8 +125,35 @@ Formal Tests **OPEN / OPEN / PENDING**, scientific results **0/4**.
 
 ## Next gate
 
-The local device-port/preparation task is done. The next hardware step is one
-separately authorized, bounded selected-device synthetic check, followed by
+### 2026-09-08 inspection-driven compatibility follow-up
+
+The operator's `INSPECT_ONLY_COMPLETE` report identifies Python 3.12.3,
+PyTorch 2.7.0 and an absent cuBLAS setting. It does not query a GPU or
+establish a CUDA-enabled build. The wrapper now supplies `:4096:8` only to
+the isolated CUDA child before Torch imports when the setting is absent;
+valid inherited values are preserved and conflicting values are refused.
+Parent/cluster environment, package versions and GPU visibility are unchanged.
+An unset `CUDA_VISIBLE_DEVICES` is not an empty/disabled mask.
+
+The harness selects documented legacy FP32 controls for stable Torch 2.7/2.8
+and the newer API family for stable 2.9+ within major version 2, without mixing
+families or changing fixtures, tolerances or bounds. Forced/ambiguous TF32
+environment overrides are refused. This is an API-compatibility repair, not
+a claim that the actual Torch 2.7 CUDA runtime has passed.
+
+The updated 13-suite local regression passed **480 tests in 23.85 seconds**:
+27 graph, 18 connector, 50 harness, 46 notebook/supervisor and 339 existing
+scientific regressions. Legacy/modern backend and child-import-order checks
+use test doubles; the real supervised four-case CPU check still passes on
+local CPU Torch 2.12.1. No CUDA test or paid/remote job ran during this repair.
+The older 323-file CPU release, lock, field states and timetable counts remain
+unchanged. See the updated [run instructions](databricks/FACTORIZED_GPU_PARITY_AND_PERFORMANCE.md).
+
+### Pending hardware result
+
+The local device-port/preparation task is done. The user has authorized one
+bounded selected-device synthetic check; actual Databricks execution and its
+result remain pending. That check must be followed by
 review of the actual result—not a full campaign or an eight-GPU launch. Full
 trajectory/checkpoint/installed-release qualification, scalable matching/count
 workloads, prospective numerical sensitivity design and proofs, real-data

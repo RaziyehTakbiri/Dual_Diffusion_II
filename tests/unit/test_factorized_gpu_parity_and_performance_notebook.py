@@ -152,7 +152,7 @@ def test_widget_creation_and_values_use_plain_visible_controls(notebook):
     assert values["acknowledgement"] == ""
 
 
-@pytest.mark.parametrize("value", [None, "", ":4096:2", "other"])
+@pytest.mark.parametrize("value", ["", ":4096:2", "other"])
 def test_cublas_prelaunch_status_is_visible_and_cuda_stops_before_launch(notebook, tmp_path, monkeypatch, value):
     root = fake_repo(tmp_path)
     function = notebook["run_notebook"]
@@ -185,8 +185,8 @@ def test_complete_cuda_controls_forward_exact_index_without_fallback(notebook, t
     root = fake_repo(tmp_path)
     function = notebook["run_notebook"]
     received = []
-    def record_request(root_path, request):
-        received.append((root_path, request))
+    def record_request(root_path, request, *, environ):
+        received.append((root_path, request, dict(environ)))
         return {"decision": "FIXTURE_NO_EXECUTION"}
     monkeypatch.setitem(function.__globals__, "launch_child", record_request)
     environment = {"CUDA_VISIBLE_DEVICES": "3", "CUBLAS_WORKSPACE_CONFIG": ":4096:8"}
@@ -194,7 +194,7 @@ def test_complete_cuda_controls_forward_exact_index_without_fallback(notebook, t
                       maximum_seconds="300", acknowledgement="RUN BOUNDED LOCAL TEST")
     report = function(values, cwd=root, environ=environment)
     assert report["decision"] == "FIXTURE_NO_EXECUTION"
-    assert received == [(root, {"mode": "CUDA", "device": "cuda:0", "iterations": 3, "maximum_seconds": 300})]
+    assert received == [(root, {"mode": "CUDA", "device": "cuda:0", "iterations": 3, "maximum_seconds": 300}, environment)]
     assert environment == {"CUDA_VISIBLE_DEVICES": "3", "CUBLAS_WORKSPACE_CONFIG": ":4096:8"}
 
 
@@ -237,7 +237,7 @@ def test_notebook_interruption_requests_child_termination_before_propagating(not
     child = InterruptedChild()
     monkeypatch.setattr(subprocess, "Popen", lambda *args, **kwargs: child)
     with pytest.raises(KeyboardInterrupt):
-        notebook["launch_child"](tmp_path, {"maximum_seconds": 5})
+        notebook["launch_child"](tmp_path, {"mode": "CPU_REFERENCE", "maximum_seconds": 5})
     assert child.killed and child.calls == 2
 
 
@@ -256,3 +256,97 @@ def test_actual_four_case_cpu_harness_through_isolated_source_supervisor(noteboo
     assert result["scope"]["F105_factory_or_checkpoint_validation_executed"] is False
     assert result["scope"]["production_qualification"] is False
     assert result["scope"]["paid_or_remote_jobs_launched"] is False
+
+
+def test_missing_cublas_is_ready_as_planned_child_only_default_not_cluster_repair(notebook, tmp_path, monkeypatch):
+    root = fake_repo(tmp_path)
+    function = notebook["run_notebook"]
+    monkeypatch.setitem(function.__globals__, "launch_child", forbidden)
+    environment = {}
+    report = function(settings(notebook), cwd=root, environ=environment)
+    assert report["decision"] == "INSPECT_ONLY_COMPLETE"
+    assert report["wrapper_revision"] == "factorized-gpu-wrapper-v2-child-environment"
+    assert report["cublas_workspace_config_setting"] is None
+    assert report["cublas_inherited_value_ready"] is False
+    assert report["cublas_prelaunch_value_ready"] is True
+    assert report["cublas_cuda_child_value_planned"] == ":4096:8"
+    assert report["cublas_missing_default_is_child_only"] is True
+    assert report["parent_or_cluster_environment_modified"] is False
+    assert "No cluster setting or restart" in report["next_action"]
+    assert report["cuda_visible_devices_setting"] is None and environment == {}
+
+
+@pytest.mark.parametrize("mode,inherited,effective,inserted", [
+    ("CPU_REFERENCE", None, None, False),
+    ("CPU_REFERENCE", "explicit-test-value", "explicit-test-value", False),
+    ("CUDA", None, ":4096:8", True),
+    ("CUDA", ":16:8", ":16:8", False),
+    ("CUDA", ":4096:8", ":4096:8", False),
+])
+def test_child_environment_copy_preserves_parent_and_unrelated_settings(notebook, mode, inherited, effective, inserted):
+    environment = {"UNRELATED_TEST_KEY": "retained"}
+    if inherited is not None:
+        environment["CUBLAS_WORKSPACE_CONFIG"] = inherited
+    before = dict(environment)
+    child, report = notebook["prepare_child_environment"]({"mode": mode}, environment)
+    assert child is not environment and environment == before
+    assert child["UNRELATED_TEST_KEY"] == "retained"
+    assert "CUDA_VISIBLE_DEVICES" not in child
+    assert child.get("CUBLAS_WORKSPACE_CONFIG") == effective
+    assert report["cublas_effective_child_value"] == effective
+    assert report["cublas_default_inserted_for_child_only"] is inserted
+    assert report["parent_or_cluster_environment_modified"] is False
+    assert report["cuda_visible_devices_modified"] is False
+
+
+@pytest.mark.parametrize("value", ["", "other", ":4096:2"])
+def test_conflicting_cublas_is_refused_even_at_direct_supervisor_seam(notebook, tmp_path, monkeypatch, value):
+    monkeypatch.setattr(subprocess, "Popen", forbidden)
+    environment = {"CUBLAS_WORKSPACE_CONFIG": value}
+    with pytest.raises(ValueError, match="conflicts"):
+        notebook["launch_child"](tmp_path, {"mode": "CUDA"}, environ=environment)
+    assert environment == {"CUBLAS_WORKSPACE_CONFIG": value}
+
+
+@pytest.mark.parametrize("inherited,mask", [(None, None), (":16:8", "3")])
+def test_fake_cuda_child_receives_cublas_before_torch_import_without_parent_mutation(notebook, tmp_path, inherited, mask):
+    # This fixture is a tiny fake Torch module; no CUDA library is imported.
+    effective = inherited or ":4096:8"
+    root = fake_repo(tmp_path, cuda_build=True, harness_body=(
+        "import os\ndef run_qualification(**request):\n"
+        "    return {'fixture_only':True,'cublas':os.environ.get('CUBLAS_WORKSPACE_CONFIG'),"
+        "'mask':os.environ.get('CUDA_VISIBLE_DEVICES')}\n"))
+    torch_fixture = root / "src/torch.py"
+    torch_fixture.write_text(
+        "import os\nassert os.environ.get('CUBLAS_WORKSPACE_CONFIG') == " + repr(effective) + "\n"
+        + "assert os.environ.get('CUDA_VISIBLE_DEVICES') == " + repr(mask) + "\n"
+        + torch_fixture.read_text())
+    environment = {}
+    if inherited is not None:
+        environment["CUBLAS_WORKSPACE_CONFIG"] = inherited
+    if mask is not None:
+        environment["CUDA_VISIBLE_DEVICES"] = mask
+    before = dict(environment)
+    values = settings(notebook, mode="CUDA", device="cuda:0", acknowledgement="RUN BOUNDED LOCAL TEST")
+    report = notebook["run_notebook"](values, cwd=root, environ=environment)
+    assert report["decision"] == "LOCAL_HARNESS_COMPLETED_REVIEW_RESULT", report
+    assert report["result"] == {"fixture_only": True, "cublas": effective, "mask": mask}
+    assert report["child_environment"]["cublas_default_inserted_for_child_only"] is (inherited is None)
+    assert environment == before
+
+
+@pytest.mark.parametrize("name", ["TORCH_ALLOW_TF32_CUBLAS_OVERRIDE", "NVIDIA_TF32_OVERRIDE"])
+@pytest.mark.parametrize("value", ["1", "", "other"])
+def test_conflicting_tf32_override_is_visible_before_any_child(notebook, tmp_path, monkeypatch, name, value):
+    root = fake_repo(tmp_path)
+    function = notebook["run_notebook"]
+    monkeypatch.setitem(function.__globals__, "launch_child", forbidden)
+    environment = {name: value}
+    inspection = function(settings(notebook), cwd=root, environ=environment)
+    assert inspection["tf32_environment_overrides"][name] == value
+    assert inspection["tf32_environment_policy_ready"] is False
+    assert "TF32 override" in inspection["next_action"]
+    report = function(settings(notebook, mode="CUDA", device="cuda:0", acknowledgement="RUN BOUNDED LOCAL TEST"),
+                      cwd=root, environ=environment)
+    assert report["decision"] == "CUDA_TF32_OVERRIDE_CONFLICT"
+    assert environment == {name: value}

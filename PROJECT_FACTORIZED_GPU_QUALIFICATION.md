@@ -113,15 +113,46 @@ CPU_REFERENCE requests no CUDA tensor allocation, discovery or synchronization
 itself; INSPECT_ONLY is the stronger no-Torch/no-query boundary.
 
 CUDA additionally requires an explicit visible ordinal, a CUDA-enabled Torch
-build, and an already-set `CUBLAS_WORKSPACE_CONFIG` of `:4096:8` or `:16:8` before
-launch. The harness never repairs that environment. It requires the new
-`fp32_precision` API, temporarily sets global/CUDA-matmul/cuDNN precision to IEEE,
-disables cuDNN benchmarking, and restores settings afterward. It never mixes the
-new family with legacy `allow_tf32` flags, and does not enable autocast or mixed
-precision. The executed Torch/build version and active controls are reported.
-The current primary documentation explains the precision-family separation and
-the need for synchronization around asynchronous CUDA timing:
-[PyTorch CUDA semantics](https://docs.pytorch.org/docs/2.14/notes/cuda.html).
+build, and `CUBLAS_WORKSPACE_CONFIG` of `:4096:8` or `:16:8` before Torch import.
+The notebook launcher may supply `:4096:8` to its child only when the inherited
+setting is absent; invalid inherited values are refused. Parent Python, cluster
+settings and installed packages are not changed. The harness itself does not
+modify environment variables.
+
+The installed operator runtime reported Torch 2.7.0. A local compatibility repair
+therefore selects exactly one documented API family by stable Torch version:
+
+- Torch 2.7.x/2.8.x: CUDA-matmul `allow_tf32=False` and cuDNN `allow_tf32=False`.
+  No new precision API is read or written. These are the documented FP32
+  controls for these releases.
+  [PyTorch 2.7 CUDA semantics](https://docs.pytorch.org/docs/2.7/notes/cuda.html),
+  [PyTorch 2.8 CUDA semantics](https://docs.pytorch.org/docs/2.8/notes/cuda.html).
+- Stable Torch 2.9+ within major version 2: global/CUDA-matmul/cuDNN
+  `fp32_precision="ieee"` only. No legacy flag is read or written and a missing
+  modern API does not fall back to the old family. The documented families
+  must not be mixed.
+  [PyTorch 2.9 CUDA semantics](https://docs.pytorch.org/docs/2.9/notes/cuda.html).
+
+Older, prerelease, development, ambiguous and unsupported-major version strings
+are refused before accessing precision controls. Both branches disable cuDNN
+benchmarking and save/restore all touched settings, including on failure. No
+autocast, mixed precision, private AdamW override, tolerance change, new fixture,
+or larger resource limit is introduced. The result distinguishes the version-
+selected family from active settings actually entered.
+
+`TORCH_ALLOW_TF32_CUBLAS_OVERRIDE=1` forces TF32 despite PyTorch precision
+settings. The harness refuses this and any nonzero/ambiguous value for either
+that variable or `NVIDIA_TF32_OVERRIDE`; absent or literal `0` is accepted. It
+does not silently clear overrides. PyTorch documents the force-enable variable
+and the NVIDIA zero-value global disable.
+[PyTorch 2.7 CUDA environment variables](https://docs.pytorch.org/docs/2.7/cuda_environment_variables.html).
+
+Legacy/modern policy tests use fake backend objects with wrong-family access
+tripwires; they do not execute CUDA or claim that the installed Torch 2.7 graph
+has run. Static API inspection found no additional newer-than-2.7 dependency in
+the current harness/energy/training route; actual selected-runtime execution is
+still needed. Existing CPU reference results and the fixed parity policy remain
+unchanged.
 
 Reported phase timings are synchronized wall time, including relevant host
 work and waits. Model transfer/copy and final host readback have separate

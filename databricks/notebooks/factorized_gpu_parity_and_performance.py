@@ -12,9 +12,11 @@
 # MAGIC CUDA must already be available in the attached environment; no cluster
 # MAGIC is created or started by this notebook. Do not run CUDA without permission
 # MAGIC to use that attached compute. No dataset is needed or read.
-# MAGIC CUDA also requires the inherited `CUBLAS_WORKSPACE_CONFIG` setting to be
-# MAGIC `:4096:8` or `:16:8` before launching the child. Inspection reports this
-# MAGIC prerequisite; it never changes the setting. See the accompanying guide.
+# MAGIC The CUDA child receives `CUBLAS_WORKSPACE_CONFIG=:4096:8` before importing
+# MAGIC PyTorch if the setting is absent. Valid inherited values are preserved;
+# MAGIC conflicting values stop the test. Parent/cluster settings never change.
+# MAGIC PyTorch 2.7/2.8 use their documented FP32 controls; 2.9+ use the newer API.
+# MAGIC The scientific test, tolerances and limits are identical for both APIs.
 # MAGIC
 # MAGIC If source detection fails, put the absolute pulled Git-folder path
 # MAGIC (the folder containing pyproject.toml and src) in `repo_root` and rerun.
@@ -32,6 +34,7 @@ import sys
 
 
 SCOPE = "SOURCE_ONLY_FACTORIZED_LOCAL_QUALIFICATION_NOT_INSTALLED_RELEASE"
+WRAPPER_REVISION = "factorized-gpu-wrapper-v2-child-environment"
 HARNESS_RELATIVE = Path("src/heterodiff/experiments/factorized_device_qualification.py")
 MAXIMUM_PARENT_LEVELS = 8
 MAXIMUM_OUTPUT_BYTES = 262144
@@ -149,11 +152,38 @@ except Exception as error:
 '''
 
 
-def launch_child(root, request):
+def prepare_child_environment(request, environment):
+    """Copy, never mutate, the parent's environment; configure before Torch import."""
+    child = dict(environment)
+    inherited = child.get("CUBLAS_WORKSPACE_CONFIG")
+    inserted = False
+    if request["mode"] == "CUDA":
+        if inherited is None:
+            child["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
+            inserted = True
+        elif inherited not in (":4096:8", ":16:8"):
+            raise ValueError("Explicit CUBLAS_WORKSPACE_CONFIG conflicts with the bounded CUDA test; no override or child launch.")
+    return child, {
+        "cublas_inherited_value": inherited,
+        "cublas_effective_child_value": child.get("CUBLAS_WORKSPACE_CONFIG"),
+        "cublas_default_inserted_for_child_only": inserted,
+        "parent_or_cluster_environment_modified": False,
+        "cuda_visible_devices_modified": False,
+    }
+
+
+def launch_child(root, request, *, environ=None):
     """Supervise one local process; deadline includes imports, not just kernels."""
+    child_environment, environment_report = prepare_child_environment(
+        request, os.environ if environ is None else environ)
     process = subprocess.Popen(
         [sys.executable, "-I", "-B", "-c", CHILD_CODE, str(root), json.dumps(request)],
-        cwd=str(root), stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        cwd=str(root), stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+        env=child_environment)
+
+    def reported(result):
+        return {**result, "child_environment": environment_report}
+
     try:
         stdout, stderr = process.communicate(timeout=request["maximum_seconds"])
     except subprocess.TimeoutExpired:
@@ -163,10 +193,10 @@ def launch_child(root, request):
             stopped = True
         except subprocess.TimeoutExpired:
             stopped = False
-        return {"decision": "STOP_LOCAL_WALL_TIME_LIMIT", "child_termination_confirmed": stopped,
+        return reported({"decision": "STOP_LOCAL_WALL_TIME_LIMIT", "child_termination_confirmed": stopped,
                 "next_action": "Review the bounded workload before choosing another run; no result is a pass."
                 if stopped else "The local child did not confirm termination. Stop this notebook execution and inspect attached compute before another run.",
-                "maximum_seconds": request["maximum_seconds"], "termination_grace_seconds": 5}
+                "maximum_seconds": request["maximum_seconds"], "termination_grace_seconds": 5})
     except BaseException:
         # A notebook interruption must not deliberately leave its child running.
         process.kill()
@@ -176,18 +206,18 @@ def launch_child(root, request):
             pass  # Do not suppress the original interruption or claim completion.
         raise
     if len(stdout.encode()) > MAXIMUM_OUTPUT_BYTES:
-        return {"decision": "STOP_OUTPUT_LIMIT", "child_returncode": process.returncode}
+        return reported({"decision": "STOP_OUTPUT_LIMIT", "child_returncode": process.returncode})
     try:
         output = json.loads(stdout)
     except (ValueError, TypeError):
-        return {"decision": "STOP_CHILD_OUTPUT_INVALID", "child_returncode": process.returncode,
-                "error_tail": stderr[-4096:]}
+        return reported({"decision": "STOP_CHILD_OUTPUT_INVALID", "child_returncode": process.returncode,
+                "error_tail": stderr[-4096:]})
     if process.returncode or not output.get("child_completed"):
-        return {"decision": "STOP_LOCAL_QUALIFICATION", "child_returncode": process.returncode,
+        return reported({"decision": "STOP_LOCAL_QUALIFICATION", "child_returncode": process.returncode,
                 "error": output.get("error", "Child did not complete."),
-                "error_type": output.get("error_type"), "diagnostic_tail": stderr[-4096:]}
-    return {"decision": "LOCAL_HARNESS_COMPLETED_REVIEW_RESULT", "result": output["result"],
-            "child_returncode": process.returncode}
+                "error_type": output.get("error_type"), "diagnostic_tail": stderr[-4096:]})
+    return reported({"decision": "LOCAL_HARNESS_COMPLETED_REVIEW_RESULT", "result": output["result"],
+            "child_returncode": process.returncode})
 
 
 def run_notebook(settings, *, notebook_file=None, cwd=None, environ=None):
@@ -196,11 +226,22 @@ def run_notebook(settings, *, notebook_file=None, cwd=None, environ=None):
     mask = environment.get("CUDA_VISIBLE_DEVICES")
     cublas = environment.get("CUBLAS_WORKSPACE_CONFIG")
     cublas_ready = cublas in (":4096:8", ":16:8")
+    child_cublas = ":4096:8" if cublas is None else (cublas if cublas_ready else None)
+    tf32_overrides = {name: environment.get(name) for name in (
+        "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE", "NVIDIA_TF32_OVERRIDE")}
+    tf32_ready = all(value in (None, "0") for value in tf32_overrides.values())
     report = {"scope": SCOPE, "repo_root": None if root is None else str(root),
+              "wrapper_revision": WRAPPER_REVISION,
               "python_version": sys.version.split()[0], "package_metadata": package_metadata(),
               "cuda_visible_devices_setting": mask,
               "cublas_workspace_config_setting": cublas,
-              "cublas_prelaunch_value_ready": cublas_ready,
+              "cublas_inherited_value_ready": cublas_ready,
+              "cublas_prelaunch_value_ready": child_cublas is not None,
+              "cublas_cuda_child_value_planned": child_cublas,
+              "cublas_missing_default_is_child_only": cublas is None,
+              "parent_or_cluster_environment_modified": False,
+              "tf32_environment_overrides": tf32_overrides,
+              "tf32_environment_policy_ready": tf32_ready,
               "gpu_queried_by_notebook_inspection": False, "package_install_or_restart_requested": False,
               "network_or_cloud_operation_requested": False, "real_data_requested": False,
               "old_installed_release_replaced": False}
@@ -215,16 +256,23 @@ def run_notebook(settings, *, notebook_file=None, cwd=None, environ=None):
         action = "Inspection only. To run, select CPU_REFERENCE/cpu or CUDA/cuda:N, set limits and enter the acknowledgement."
         if mask is not None and mask.strip() in ("", "-1"):
             action += " CUDA_VISIBLE_DEVICES currently hides GPUs, possibly from the earlier CPU-only setup. It was not changed; use the intended GPU environment before selecting CUDA."
-        if not cublas_ready:
-            action += " A CUDA run also requires inherited CUBLAS_WORKSPACE_CONFIG=:4096:8 (or :16:8) before child launch. Arrange that prelaunch setting in the intended environment first; this inspection does not change it. CPU_REFERENCE does not require it."
+        if cublas is None:
+            action += " On an authorized CUDA run, CUBLAS_WORKSPACE_CONFIG=:4096:8 will be supplied only to the isolated child before PyTorch imports. No cluster setting or restart is needed for this missing value."
+        elif not cublas_ready:
+            action += " The explicitly inherited CUBLAS_WORKSPACE_CONFIG conflicts with the test; review it before CUDA execution. It will not be overridden. CPU_REFERENCE does not require it."
+        if not tf32_ready:
+            action += " An inherited TF32 override conflicts with the fixed full-FP32 check; review the reported override before CUDA execution. It will not be changed."
         return {**report, "decision": "INSPECT_ONLY_COMPLETE", "next_action": action}
     if request["mode"] == "CUDA" and mask is not None and mask.strip() in ("", "-1"):
         return {**report, "decision": "CUDA_HIDDEN_BY_EXISTING_ENVIRONMENT",
                 "next_action": "CUDA_VISIBLE_DEVICES hides all GPUs. Do not rerun the CPU-only bootstrap. Use the intended existing GPU-enabled environment and review its visibility setting; this notebook does not change it."}
-    if request["mode"] == "CUDA" and not cublas_ready:
+    if request["mode"] == "CUDA" and cublas is not None and not cublas_ready:
         return {**report, "decision": "CUDA_PRELAUNCH_CONFIG_REQUIRED",
-                "next_action": "The inherited CUBLAS_WORKSPACE_CONFIG must be :4096:8 or :16:8 before launching the CUDA child. Configure this in the intended execution environment before its Python process starts, then rerun INSPECT_ONLY to confirm. No setting, package, or compute was changed."}
-    return {**report, "request": request, **launch_child(root, request)}
+                "next_action": "An explicit inherited CUBLAS_WORKSPACE_CONFIG must be :4096:8 or :16:8. The notebook refuses to override a conflicting or empty value. Review the setting before another run; no child, package, or compute change occurred."}
+    if request["mode"] == "CUDA" and not tf32_ready:
+        return {**report, "decision": "CUDA_TF32_OVERRIDE_CONFLICT",
+                "next_action": "The reported TF32 environment overrides must be absent or 0 for this fixed FP32 check. Review the conflicting value; no child was launched and no setting was changed."}
+    return {**report, "request": request, **launch_child(root, request, environ=environment)}
 
 # COMMAND ----------
 

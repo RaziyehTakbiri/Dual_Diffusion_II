@@ -7,7 +7,7 @@ discover/synchronize CUDA in that mode. CUDA requires an explicit
 ordinal and preconfigured deterministic runtime; no environment is repaired.
 """
 
-from contextlib import contextmanager
+from contextlib import ExitStack, contextmanager
 from dataclasses import dataclass
 from fractions import Fraction
 import hashlib
@@ -97,41 +97,86 @@ class _Budget:
         return result, elapsed
 
 
+def _cuda_precision_family(version):
+    version = str(version)
+    match = re.fullmatch(r'2\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(?:\+[A-Za-z0-9]+(?:[._-][A-Za-z0-9]+)*)?', version)
+    _need(match is not None and int(match.group(1)) >= 7,
+          'supported stable Torch 2.7+ version required; ambiguous/prerelease version refused')
+    return 'legacy_allow_tf32_only' if int(match.group(1)) <= 8 else 'new_fp32_precision_only'
+
+
+@contextmanager
+def _cuda_precision_policy(torch_api, environment):
+    """Version-selected documented FP32 family, with no cross-family fallback.
+
+    Torch 2.7/2.8 uses allow_tf32; stable 2.9+ within major 2 uses
+    fp32_precision. Fake backend objects exercise this policy without CUDA.
+    """
+    version = str(torch_api.__version__)
+    family = _cuda_precision_family(version)
+    # These overrides can defeat or ambiguously change the selected policy.
+    # Do not mutate inherited environment to make a failing check pass.
+    for name in ('TORCH_ALLOW_TF32_CUBLAS_OVERRIDE', 'NVIDIA_TF32_OVERRIDE'):
+        _need(environment.get(name) in (None, '0'),
+              name + ' must be absent or 0 for the fixed IEEE policy')
+    backends = torch_api.backends
+    saved = []
+    settings = {}
+    def set_and_check(owner, attribute, value, label):
+        _need(hasattr(owner, attribute), family + ' missing required ' + label)
+        previous = getattr(owner, attribute)
+        _need(type(previous) is type(value), family + ' ambiguous existing ' + label)
+        saved.append((owner, attribute, previous))
+        setattr(owner, attribute, value)
+        _need(getattr(owner, attribute) == value, family + ' setting did not take effect: ' + label)
+        settings[label] = value
+    try:
+        if family == 'legacy_allow_tf32_only':
+            set_and_check(backends.cuda.matmul, 'allow_tf32', False, 'cuda.matmul.allow_tf32')
+            set_and_check(backends.cudnn, 'allow_tf32', False, 'cudnn.allow_tf32')
+        else:
+            set_and_check(backends, 'fp32_precision', 'ieee', 'global.fp32_precision')
+            set_and_check(backends.cuda.matmul, 'fp32_precision', 'ieee', 'cuda.matmul.fp32_precision')
+            set_and_check(backends.cudnn, 'fp32_precision', 'ieee', 'cudnn.fp32_precision')
+        set_and_check(backends.cudnn, 'benchmark', False, 'cudnn.benchmark')
+        yield {'family': family, 'torch_version': version, 'settings': settings,
+               'TF32_environment_overrides_absent_or_disabled': True}
+    finally:
+        failures = []
+        for owner, attribute, previous in reversed(saved):
+            try:
+                setattr(owner, attribute, previous)
+                if getattr(owner, attribute) != previous:
+                    failures.append(attribute)
+            except (AttributeError, TypeError, ValueError, RuntimeError):
+                failures.append(attribute)
+        _need(not failures, 'FP32 policy restoration failed: ' + ','.join(failures))
+
+
 @contextmanager
 def _numerical_policy(request):
     """Restore flags; never mix the legacy and new TF32 control families."""
     saved_threads = torch.get_num_threads()
     saved_deterministic = torch.are_deterministic_algorithms_enabled()
     saved_warn = torch.is_deterministic_algorithms_warn_only_enabled()
-    precision = []
-    saved_benchmark = None
     try:
         torch.set_num_threads(1)
         torch.use_deterministic_algorithms(True, warn_only=False)
-        if request.mode == 'CUDA':
-            _need(torch.version.cuda is not None, 'CUDA build required; no install attempted')
-            _need(os.environ.get('CUDA_VISIBLE_DEVICES') not in ('', '-1'),
-                  'CUDA visibility is disabled; not changed by qualification')
-            _need(os.environ.get('CUBLAS_WORKSPACE_CONFIG') in (':4096:8', ':16:8'),
-                  'deterministic CUBLAS_WORKSPACE_CONFIG required before launch')
-            # Current supported family (Torch >=2.9), deliberately no legacy fallback.
-            owners = (torch.backends, torch.backends.cuda.matmul, torch.backends.cudnn)
-            for owner in owners:
-                _need(hasattr(owner, 'fp32_precision'), 'new IEEE fp32_precision API required')
-                precision.append((owner, owner.fp32_precision))
-                owner.fp32_precision = 'ieee'
-            saved_benchmark = torch.backends.cudnn.benchmark
-            torch.backends.cudnn.benchmark = False
-            _need(torch.cuda.is_available(), 'selected CUDA runtime unavailable')
-            ordinal = int(request.device.split(':')[1])
-            _need(ordinal < torch.cuda.device_count(), 'selected CUDA ordinal unavailable')
-            torch.cuda.reset_peak_memory_stats(request.device)
-        yield
+        with ExitStack() as stack:
+            precision = {'family': 'NOT_ACCESSED', 'settings': {}}
+            if request.mode == 'CUDA':
+                _need(torch.version.cuda is not None, 'CUDA build required; no install attempted')
+                _need(os.environ.get('CUDA_VISIBLE_DEVICES') not in ('', '-1'),
+                      'CUDA visibility is disabled; not changed by qualification')
+                _need(os.environ.get('CUBLAS_WORKSPACE_CONFIG') in (':4096:8', ':16:8'),
+                      'deterministic CUBLAS_WORKSPACE_CONFIG required before launch')
+                precision = stack.enter_context(_cuda_precision_policy(torch, os.environ))
+                _need(torch.cuda.is_available(), 'selected CUDA runtime unavailable')
+                ordinal = int(request.device.split(':')[1])
+                _need(ordinal < torch.cuda.device_count(), 'selected CUDA ordinal unavailable')
+                torch.cuda.reset_peak_memory_stats(request.device)
+            yield precision
     finally:
-        if saved_benchmark is not None:
-            torch.backends.cudnn.benchmark = saved_benchmark
-        for owner, value in reversed(precision):
-            owner.fp32_precision = value
         torch.use_deterministic_algorithms(saved_deterministic, warn_only=saved_warn)
         torch.set_num_threads(saved_threads)
 
@@ -408,12 +453,15 @@ def run_qualification(*, mode='CPU_REFERENCE', device='cpu', iterations=1, maxim
     report['scope']['CPU_REFERENCE_explicit_CUDA_discovery_or_allocation_requested_by_harness'] = False
     budget = _Budget(request)
     try:
-        with _numerical_policy(request):
+        if mode == 'CUDA':
+            report['version_selected_CUDA_precision_family'] = _cuda_precision_family(torch.__version__)
+        with _numerical_policy(request) as precision:
             report['active_numerical_policy'] = {
                 'intraop_threads': torch.get_num_threads(),
                 'deterministic_algorithms': torch.are_deterministic_algorithms_enabled(),
                 'deterministic_warn_only': torch.is_deterministic_algorithms_warn_only_enabled(),
-                'CUDA_IEEE_precision_family': 'new_fp32_precision_only' if mode == 'CUDA' else 'NOT_ACCESSED',
+                'CUDA_IEEE_precision_family': precision['family'],
+                'CUDA_IEEE_precision_settings': precision['settings'],
                 'mixed_precision_or_autocast_used': False,
                 'CUDA_cudnn_benchmark': False if mode == 'CUDA' else 'NOT_ACCESSED',
                 'ordinary_AdamW_health_checks_and_math_unchanged': True,

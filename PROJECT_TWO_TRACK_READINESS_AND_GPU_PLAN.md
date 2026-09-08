@@ -168,6 +168,15 @@ Both the complete connector tests and actual supervised harness passed locally
 on CPU. The CUDA route is prepared but unexecuted. This is source-only, not an
 installed GPU release; analytic matching, path RNG/control and F105 remain CPU.
 
+**COMPLETE — inspection-driven compatibility repair (2026-09-08).** The
+reported Torch 2.7 runtime now has a version-selected FP32-control path, and
+an absent cuBLAS value is supplied only to the isolated test child before
+Torch imports. No cluster edit, restart or package upgrade is needed for
+these two issues. The updated local regression passed 480 tests; this is
+not an actual Torch 2.7/CUDA pass. The user has authorized one bounded
+GPU check, but its execution/result remain pending. See the
+[follow-up record](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-08-inspection-driven-compatibility-follow-up).
+
 **Next local-to-GPU steps, still OPEN.** One separately authorized selected-
 device synthetic run can now test the prepared route. Full trajectory/F105
 checkpoint performance, installed GPU release qualification and scalable

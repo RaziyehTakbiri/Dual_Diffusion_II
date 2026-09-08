@@ -1,6 +1,7 @@
 """Synthetic CPU tensor qualification; no CUDA tensor computation requested."""
 import json
 from dataclasses import FrozenInstanceError
+from types import SimpleNamespace
 
 import pytest
 import torch
@@ -168,3 +169,131 @@ def test_cuda_hidden_or_missing_cublas_policy_refuses_before_discovery(monkeypat
     monkeypatch.delenv('CUBLAS_WORKSPACE_CONFIG', raising=False)
     report = q.run_qualification(mode='CUDA', device='cuda:0')
     assert 'CUBLAS_WORKSPACE_CONFIG' in report['error_detail']
+
+
+class _FakePrecisionOwner:
+    """Wrong-family access is a test error, not a simulated compatibility path."""
+    def __init__(self, allowed, **values):
+        object.__setattr__(self, '_allowed', set(allowed))
+        object.__setattr__(self, 'writes', [])
+        for name, value in values.items():
+            object.__setattr__(self, name, value)
+
+    def __getattribute__(self, name):
+        if name in ('fp32_precision', 'allow_tf32') and name not in object.__getattribute__(self, '_allowed'):
+            raise AssertionError('precision families were mixed on read: ' + name)
+        return object.__getattribute__(self, name)
+
+    def __setattr__(self, name, value):
+        if name in ('fp32_precision', 'allow_tf32') and name not in self._allowed:
+            raise AssertionError('precision families were mixed on write: ' + name)
+        self.writes.append((name, value))
+        object.__setattr__(self, name, value)
+
+
+def _fake_torch(version, modern):
+    attribute, initial = ('fp32_precision', 'tf32') if modern else ('allow_tf32', True)
+    matmul = _FakePrecisionOwner((attribute,), **{attribute: initial})
+    cudnn = _FakePrecisionOwner((attribute,), **{attribute: initial, 'benchmark': True})
+    backends = _FakePrecisionOwner(('fp32_precision',) if modern else (),
+        **({'fp32_precision': 'tf32'} if modern else {}))
+    backends.cuda, backends.cudnn = SimpleNamespace(matmul=matmul), cudnn
+    return SimpleNamespace(__version__=version, backends=backends)
+
+
+@pytest.mark.parametrize('version,modern', [('2.7.0', False), ('2.8.1+cu128', False),
+                                         ('2.9.0', True), ('2.12.1+cpu', True)])
+def test_version_selected_precision_policy_uses_one_family_and_restores_every_flag(version, modern):
+    fake = _fake_torch(version, modern)
+    attribute, desired, initial = ('fp32_precision', 'ieee', 'tf32') if modern else ('allow_tf32', False, True)
+    with q._cuda_precision_policy(fake, {}) as observed:
+        expected_family = 'new_fp32_precision_only' if modern else 'legacy_allow_tf32_only'
+        assert observed['family'] == expected_family
+        assert observed['torch_version'] == version
+        assert getattr(fake.backends.cuda.matmul, attribute) == desired
+        assert getattr(fake.backends.cudnn, attribute) == desired
+        assert fake.backends.cudnn.benchmark is False
+        assert observed['settings']['cuda.matmul.'+attribute] == desired
+        assert observed['settings']['cudnn.'+attribute] == desired
+        assert observed['settings']['cudnn.benchmark'] is False
+    assert getattr(fake.backends.cuda.matmul, attribute) == initial
+    assert getattr(fake.backends.cudnn, attribute) == initial
+    assert fake.backends.cudnn.benchmark is True
+    if modern:
+        assert fake.backends.fp32_precision == 'tf32'
+
+
+@pytest.mark.parametrize('version', ['2.6.0', '1.13.1', '3.0.0', '2.7', '2.9.0rc1',
+                                    '2.10.0.dev20260101', '2.9.0a0+gitabc', 'unknown', '2.07.0'])
+def test_unsupported_or_ambiguous_versions_refuse_before_any_backend_access(version):
+    fake = SimpleNamespace(__version__=version)
+    with pytest.raises(q.DeviceQualificationError, match='stable Torch'):
+        with q._cuda_precision_policy(fake, {}):
+            raise AssertionError('Unsupported version entered precision context')
+
+
+@pytest.mark.parametrize('name,value', [('TORCH_ALLOW_TF32_CUBLAS_OVERRIDE', '1'),
+                                      ('TORCH_ALLOW_TF32_CUBLAS_OVERRIDE', ''),
+                                      ('NVIDIA_TF32_OVERRIDE', '1'),
+                                      ('NVIDIA_TF32_OVERRIDE', 'invalid')])
+def test_forced_or_ambiguous_tf32_override_refuses_without_modifying_environment(name, value):
+    environment = {name: value}
+    with pytest.raises(q.DeviceQualificationError, match=name):
+        with q._cuda_precision_policy(SimpleNamespace(__version__='2.7.0'), environment):
+            raise AssertionError('Forced TF32 entered precision context')
+    assert environment == {name: value}
+
+
+@pytest.mark.parametrize('modern', [False, True])
+def test_policy_restores_flags_when_body_raises_and_accepts_disabled_overrides(modern):
+    fake = _fake_torch('2.9.0' if modern else '2.7.0', modern)
+    environment = {'TORCH_ALLOW_TF32_CUBLAS_OVERRIDE': '0', 'NVIDIA_TF32_OVERRIDE': '0'}
+    with pytest.raises(RuntimeError, match='synthetic body failure'):
+        with q._cuda_precision_policy(fake, environment):
+            raise RuntimeError('synthetic body failure')
+    attribute, initial = ('fp32_precision', 'tf32') if modern else ('allow_tf32', True)
+    assert getattr(fake.backends.cuda.matmul, attribute) == initial
+    assert getattr(fake.backends.cudnn, attribute) == initial
+    assert fake.backends.cudnn.benchmark is True
+    assert environment == {'TORCH_ALLOW_TF32_CUBLAS_OVERRIDE': '0', 'NVIDIA_TF32_OVERRIDE': '0'}
+
+
+def test_missing_modern_api_never_falls_back_to_legacy_and_restores_prior_changes():
+    fake = _fake_torch('2.9.0', True)
+    del fake.backends.cudnn.fp32_precision
+    with pytest.raises(q.DeviceQualificationError, match='missing required cudnn.fp32_precision'):
+        with q._cuda_precision_policy(fake, {}):
+            raise AssertionError('Missing API entered context')
+    assert fake.backends.fp32_precision == fake.backends.cuda.matmul.fp32_precision == 'tf32'
+    assert fake.backends.cudnn.benchmark is True
+
+
+def test_setting_failure_restores_all_previously_touched_legacy_flags():
+    class FailingOwner(_FakePrecisionOwner):
+        def __setattr__(self, name, value):
+            if name == 'allow_tf32' and value is False:
+                raise RuntimeError('synthetic setter failure')
+            super().__setattr__(name, value)
+    fake = _fake_torch('2.7.0', False)
+    fake.backends.cudnn = FailingOwner(('allow_tf32',), allow_tf32=True, benchmark=True)
+    with pytest.raises(RuntimeError, match='synthetic setter failure'):
+        with q._cuda_precision_policy(fake, {}):
+            raise AssertionError('Failed setter entered context')
+    assert fake.backends.cuda.matmul.allow_tf32 is True
+    assert fake.backends.cudnn.allow_tf32 is True
+    assert fake.backends.cudnn.benchmark is True
+
+
+def test_one_restore_failure_still_attempts_all_other_settings_and_cannot_pass():
+    class RestoreFailure(_FakePrecisionOwner):
+        def __setattr__(self, name, value):
+            if name == 'fp32_precision' and value == 'tf32':
+                raise RuntimeError('synthetic restoration failure')
+            super().__setattr__(name, value)
+    fake = _fake_torch('2.9.0', True)
+    fake.backends.cudnn = RestoreFailure(('fp32_precision',), fp32_precision='tf32', benchmark=True)
+    with pytest.raises(q.DeviceQualificationError, match='restoration failed'):
+        with q._cuda_precision_policy(fake, {}):
+            assert fake.backends.cudnn.fp32_precision == 'ieee'
+    assert fake.backends.fp32_precision == fake.backends.cuda.matmul.fp32_precision == 'tf32'
+    assert fake.backends.cudnn.benchmark is True
