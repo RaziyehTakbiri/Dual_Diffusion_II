@@ -2,10 +2,11 @@
 
 Date: 2026-09-08
 
-The local CPU reference path is qualified for the fixed cases below. The operator's
-first bounded CUDA attempt stopped during startup with **0/4 cases complete**;
-CUDA remains unqualified. The identified initialization-order bug is repaired
-locally; see the [attempt and repair record](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-08-bounded-cuda-attempt-and-startup-repair).
+The local CPU reference path is qualified for the fixed cases below. The latest
+operator CUDA result, received 2026-09-13, completed **4/4 cases with exact GPU
+replays but failed CPU/GPU BASE parameter-update parity**. Startup is resolved
+for that Tesla T4/Torch 2.7.0+cu126 run; GPU parity qualification remains open.
+See the [result review](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-13-received-gpu-result-execution-complete-parity-failed).
 This does not
 adopt production numerical tolerances, training budgets, hardware selection,
 scientific settings, or a checkpoint-selection result. Historical CPU/frozen
@@ -22,6 +23,7 @@ run_qualification(
     device="cpu",               # CUDA requires explicit "cuda:N"
     iterations=1,               # integer 1..3; all four cases each time
     maximum_seconds=120,        # integer 5..300, soft inner bound
+    diagnostics="NONE",        # optional BASE_UPDATE: one iteration only
 )
 ```
 
@@ -41,6 +43,16 @@ batch metadata limit 32,768 bytes, zero optional warmups, and one mandatory
 fresh-weight replay per case. Extra iterations repeat the same initialized
 fixture; they are not a production training schedule. The fixture is invented,
 with no read of actual study/TRAIN/validation/test data.
+
+The optional `BASE_UPDATE` mode adds diagnostics after each original case and
+its exact replay. Two CPU-only AdamW replays use captured CPU/target objective
+gradients on fresh identical initial weights; no extra GPU optimizer step,
+forward or backward pass is requested. It reports at most eight selected scalar
+coordinates per case and all-parameter comparison summaries. Diagnostic mode
+requires one four-case iteration (at most eight extra CPU steps) inside the
+same deadline and memory/output limits. The scientific optimizer and all
+parity tolerances below remain unchanged. Diagnostic interpretations are not
+qualification decisions. See the [same-notebook run instructions](databricks/FACTORIZED_GPU_PARITY_AND_PERFORMANCE.md#next-diagnostic-check-same-notebook-one-bounded-run).
 
 ## Complete four-case comparison
 

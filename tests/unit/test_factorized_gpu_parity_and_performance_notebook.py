@@ -105,6 +105,7 @@ def test_missing_source_folder_gives_exact_widget_action(notebook, tmp_path):
     {"mode": "CUDA", "device": "cuda"}, {"mode": "CUDA", "device": "cuda:-1"},
     {"iterations": "0"}, {"iterations": "4"}, {"iterations": "1.0"},
     {"maximum_seconds": "4"}, {"maximum_seconds": "301"},
+    {"diagnostics": "AUTO"}, {"diagnostics": "BASE_UPDATE", "iterations": "2"},
 ])
 def test_invalid_execution_controls_never_launch(notebook, tmp_path, monkeypatch, change):
     root = fake_repo(tmp_path)
@@ -148,7 +149,8 @@ def test_widget_creation_and_values_use_plain_visible_controls(notebook):
         widgets = Widgets()
     values = notebook["read_settings"](Utilities())
     assert values["mode"] == "CPU_REFERENCE" and values["device"] == "cpu"
-    assert len(Utilities.widgets.created) == 6
+    assert len(Utilities.widgets.created) == 7
+    assert values["diagnostics"] == "NONE"
     assert values["acknowledgement"] == ""
 
 
@@ -194,7 +196,7 @@ def test_complete_cuda_controls_forward_exact_index_without_fallback(notebook, t
                       maximum_seconds="300", acknowledgement="RUN BOUNDED LOCAL TEST")
     report = function(values, cwd=root, environ=environment)
     assert report["decision"] == "FIXTURE_NO_EXECUTION"
-    assert received == [(root, {"mode": "CUDA", "device": "cuda:0", "iterations": 3, "maximum_seconds": 300}, environment)]
+    assert received == [(root, {"mode": "CUDA", "device": "cuda:0", "iterations": 3, "maximum_seconds": 300, "diagnostics": "NONE"}, environment)]
     assert environment == {"CUDA_VISIBLE_DEVICES": "3", "CUBLAS_WORKSPACE_CONFIG": ":4096:8"}
 
 
@@ -241,10 +243,11 @@ def test_notebook_interruption_requests_child_termination_before_propagating(not
     assert child.killed and child.calls == 2
 
 
-def test_actual_four_case_cpu_harness_through_isolated_source_supervisor(notebook):
+@pytest.mark.parametrize('diagnostics', ['NONE', 'BASE_UPDATE'])
+def test_actual_four_case_cpu_harness_through_isolated_source_supervisor(notebook, diagnostics):
     pytest.importorskip("torch")
     values = settings(notebook, mode="CPU_REFERENCE", device="cpu", iterations="1",
-                      maximum_seconds="120", acknowledgement="RUN BOUNDED LOCAL TEST")
+                      maximum_seconds="120", acknowledgement="RUN BOUNDED LOCAL TEST", diagnostics=diagnostics)
     report = notebook["run_notebook"](values, cwd=ROOT, environ={})
     assert report["decision"] == "LOCAL_HARNESS_COMPLETED_REVIEW_RESULT", report
     result = report["result"]
@@ -256,6 +259,15 @@ def test_actual_four_case_cpu_harness_through_isolated_source_supervisor(noteboo
     assert result["scope"]["F105_factory_or_checkpoint_validation_executed"] is False
     assert result["scope"]["production_qualification"] is False
     assert result["scope"]["paid_or_remote_jobs_launched"] is False
+    assert result["diagnostics"] == diagnostics
+    assert result["scope"]["diagnostics_change_parity_acceptance"] is False
+    assert result["bounds"]["additional_gpu_optimizer_steps_for_diagnostics"] == 0
+    if diagnostics == 'BASE_UPDATE':
+        assert sum(c['base_update_diagnostics']['cpu_optimizer_replay_steps'] for c in result['cases']) == 8
+        assert all(c['timing_seconds']['cpu_only_base_update_diagnostics'] >= 0 for c in result['cases'])
+    else:
+        assert all('base_update_diagnostics' not in c for c in result['cases'])
+    assert len(json.dumps({'child_completed': True, 'result': result}).encode()) < notebook['MAXIMUM_OUTPUT_BYTES']
 
 
 def test_missing_cublas_is_ready_as_planned_child_only_default_not_cluster_repair(notebook, tmp_path, monkeypatch):
@@ -265,7 +277,7 @@ def test_missing_cublas_is_ready_as_planned_child_only_default_not_cluster_repai
     environment = {}
     report = function(settings(notebook), cwd=root, environ=environment)
     assert report["decision"] == "INSPECT_ONLY_COMPLETE"
-    assert report["wrapper_revision"] == "factorized-gpu-wrapper-v2-child-environment"
+    assert report["wrapper_revision"] == "factorized-gpu-wrapper-v3-base-update-diagnostics"
     assert report["cublas_workspace_config_setting"] is None
     assert report["cublas_inherited_value_ready"] is False
     assert report["cublas_prelaunch_value_ready"] is True
@@ -350,3 +362,26 @@ def test_conflicting_tf32_override_is_visible_before_any_child(notebook, tmp_pat
                       cwd=root, environ=environment)
     assert report["decision"] == "CUDA_TF32_OVERRIDE_CONFLICT"
     assert environment == {name: value}
+
+
+def test_diagnostic_inspection_is_metadata_only_and_selected_mode_is_explicit(notebook, tmp_path, monkeypatch):
+    root = fake_repo(tmp_path)
+    function = notebook['run_notebook']
+    monkeypatch.setitem(function.__globals__, 'launch_child', forbidden)
+    before = 'torch' in sys.modules
+    report = function(settings(notebook, diagnostics='BASE_UPDATE'), cwd=root, environ={})
+    assert report['decision'] == 'INSPECT_ONLY_COMPLETE'
+    assert report['requested_diagnostics'] == 'BASE_UPDATE'
+    assert ('torch' in sys.modules) is before
+
+
+def test_diagnostic_request_reaches_single_isolated_child_without_changed_limits(notebook, tmp_path):
+    root = fake_repo(tmp_path, cuda_build=True)
+    report = notebook['run_notebook'](settings(notebook, mode='CUDA', device='cuda:0',
+        diagnostics='BASE_UPDATE', iterations='1', maximum_seconds='120',
+        acknowledgement='RUN BOUNDED LOCAL TEST'), cwd=root, environ={})
+    assert report['decision'] == 'LOCAL_HARNESS_COMPLETED_REVIEW_RESULT'
+    assert report['result'] == {'fixture_only': True, 'request': {
+        'mode': 'CUDA', 'device': 'cuda:0', 'iterations': 1,
+        'maximum_seconds': 120, 'diagnostics': 'BASE_UPDATE'}}
+    assert report['child_environment']['parent_or_cluster_environment_modified'] is False

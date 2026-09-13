@@ -1,0 +1,933 @@
+{
+  "child_environment": {
+    "cublas_default_inserted_for_child_only": true,
+    "cublas_effective_child_value": ":4096:8",
+    "cublas_inherited_value": null,
+    "cuda_visible_devices_modified": false,
+    "parent_or_cluster_environment_modified": false
+  },
+  "child_returncode": 0,
+  "cublas_cuda_child_value_planned": ":4096:8",
+  "cublas_inherited_value_ready": false,
+  "cublas_missing_default_is_child_only": true,
+  "cublas_prelaunch_value_ready": true,
+  "cublas_workspace_config_setting": null,
+  "cuda_visible_devices_setting": null,
+  "decision": "LOCAL_HARNESS_COMPLETED_REVIEW_RESULT",
+  "gpu_queried_by_notebook_inspection": false,
+  "network_or_cloud_operation_requested": false,
+  "old_installed_release_replaced": false,
+  "package_install_or_restart_requested": false,
+  "package_metadata": {
+    "numpy": "2.1.3",
+    "torch": "2.7.0"
+  },
+  "parent_or_cluster_environment_modified": false,
+  "python_version": "3.12.3",
+  "real_data_requested": false,
+  "repo_root": "/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffusion_II",
+  "request": {
+    "device": "cuda:0",
+    "iterations": 1,
+    "maximum_seconds": 120,
+    "mode": "CUDA"
+  },
+  "requested_mode": "CUDA",
+  "result": {
+    "active_numerical_policy": {
+      "CUDA_IEEE_precision_family": "legacy_allow_tf32_only",
+      "CUDA_IEEE_precision_settings": {
+        "cuda.matmul.allow_tf32": false,
+        "cudnn.allow_tf32": false,
+        "cudnn.benchmark": false
+      },
+      "CUDA_cudnn_benchmark": false,
+      "deterministic_algorithms": true,
+      "deterministic_warn_only": false,
+      "intraop_threads": 1,
+      "mixed_precision_or_autocast_used": false,
+      "ordinary_AdamW_health_checks_and_math_unchanged": true
+    },
+    "bounds": {
+      "batch_metadata_bytes": 32768,
+      "batch_rows": 3,
+      "mandatory_same_device_replays_per_case": 1,
+      "maximum_memory_bytes_soft": 2147483648,
+      "maximum_seconds_soft": 120,
+      "metadata_bytes_per_event": 2048,
+      "state_event_cap": 4,
+      "warmup_iterations": 0
+    },
+    "cases": [
+      {
+        "comparison": {
+          "all_tensor_names_sha256": "2d5968b6534f18f45308b341996d9c06fb5721b0d876a6ced0797f3bf9328845",
+          "categories": {
+            "coordinate_gradient": {
+              "absolute_tolerance": 2e-05,
+              "maximum_absolute_difference": 1.0477378964424133e-09,
+              "maximum_relative_difference": 6.901859015725886e-07,
+              "passed": true,
+              "relative_tolerance": 0.0002,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "coordinate_hessian": {
+              "absolute_tolerance": 0.0001,
+              "maximum_absolute_difference": 5.238689482212067e-10,
+              "maximum_relative_difference": 7.949459807707867e-07,
+              "passed": true,
+              "relative_tolerance": 0.001,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "exact": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 297983,
+              "tensor_count": 124
+            },
+            "forward": {
+              "absolute_tolerance": 2e-06,
+              "maximum_absolute_difference": 2.9802322387695312e-08,
+              "maximum_relative_difference": 4.084883887175507e-05,
+              "passed": true,
+              "relative_tolerance": 2e-05,
+              "scalar_count": 207,
+              "tensor_count": 6
+            },
+            "loss": {
+              "absolute_tolerance": 2e-06,
+              "maximum_absolute_difference": 4.63991689514387e-09,
+              "maximum_relative_difference": 7.573538054893146e-07,
+              "passed": true,
+              "relative_tolerance": 2e-05,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "optimizer_moment": {
+              "absolute_tolerance": 2e-06,
+              "maximum_absolute_difference": 6.05359673500061e-09,
+              "maximum_relative_difference": 1.1641532356165829e+19,
+              "passed": true,
+              "relative_tolerance": 0.0002,
+              "scalar_count": 595846,
+              "tensor_count": 120
+            },
+            "parameter_gradient": {
+              "absolute_tolerance": 2e-05,
+              "maximum_absolute_difference": 5.960464477539063e-08,
+              "maximum_relative_difference": 1.164153218269348e+20,
+              "passed": true,
+              "relative_tolerance": 0.0002,
+              "scalar_count": 394628,
+              "tensor_count": 77
+            },
+            "physical": {
+              "absolute_tolerance": 2e-05,
+              "maximum_absolute_difference": 8.940696716308594e-08,
+              "maximum_relative_difference": 2.4932399017148745e-06,
+              "passed": true,
+              "relative_tolerance": 0.0002,
+              "scalar_count": 12,
+              "tensor_count": 8
+            },
+            "updated_parameter": {
+              "absolute_tolerance": 2e-06,
+              "maximum_absolute_difference": 8.682161569595337e-05,
+              "maximum_relative_difference": 0.001835733153115473,
+              "passed": false,
+              "relative_tolerance": 2e-05,
+              "scalar_count": 297923,
+              "tensor_count": 60
+            }
+          },
+          "failure_count": 5,
+          "failure_names": [
+            "base/updated_parameters/event_hidden.weight",
+            "base/updated_parameters/event_output.weight",
+            "base/updated_parameters/context_output.weight",
+            "base/updated_parameters/readout_hidden.weight",
+            "base/updated_parameters/readout_middle.weight"
+          ],
+          "passed": false
+        },
+        "domain_id": "R3-PHYS",
+        "iteration": 0,
+        "method_id": "association-aware-guide-plus-residual",
+        "passed": false,
+        "same_device_repeatability": {
+          "all_tensor_names_sha256": "2d5968b6534f18f45308b341996d9c06fb5721b0d876a6ced0797f3bf9328845",
+          "categories": {
+            "coordinate_gradient": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "coordinate_hessian": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "exact": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 297983,
+              "tensor_count": 124
+            },
+            "forward": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 207,
+              "tensor_count": 6
+            },
+            "loss": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "optimizer_moment": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 595846,
+              "tensor_count": 120
+            },
+            "parameter_gradient": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 394628,
+              "tensor_count": 77
+            },
+            "physical": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 12,
+              "tensor_count": 8
+            },
+            "updated_parameter": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 297923,
+              "tensor_count": 60
+            }
+          },
+          "failure_count": 0,
+          "failure_names": [],
+          "passed": true
+        },
+        "timing_seconds": {
+          "cpu_physical_heun_seam": 0.30168167800002266,
+          "cpu_reference_graph_and_updates": 8.878090992000011,
+          "initial_model_transfer_and_copy": 0.04989680700009558,
+          "target_graph_and_updates": 2.7895343039999716,
+          "target_payload_host_readback": 0.009389988999942034,
+          "target_physical_heun_seam": 0.997148945000049,
+          "target_replay_graph_and_updates": 2.4001574139999775
+        },
+        "unique_parameters_including_base": 297923
+      },
+      {
+        "comparison": {
+          "all_tensor_names_sha256": "2d5968b6534f18f45308b341996d9c06fb5721b0d876a6ced0797f3bf9328845",
+          "categories": {
+            "coordinate_gradient": {
+              "absolute_tolerance": 2e-05,
+              "maximum_absolute_difference": 1.0477378964424133e-09,
+              "maximum_relative_difference": 1.3442529854789516e-06,
+              "passed": true,
+              "relative_tolerance": 0.0002,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "coordinate_hessian": {
+              "absolute_tolerance": 0.0001,
+              "maximum_absolute_difference": 5.238689482212067e-10,
+              "maximum_relative_difference": 7.949459807707867e-07,
+              "passed": true,
+              "relative_tolerance": 0.001,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "exact": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 297983,
+              "tensor_count": 124
+            },
+            "forward": {
+              "absolute_tolerance": 2e-06,
+              "maximum_absolute_difference": 2.9802322387695312e-08,
+              "maximum_relative_difference": 4.084883887175507e-05,
+              "passed": true,
+              "relative_tolerance": 2e-05,
+              "scalar_count": 207,
+              "tensor_count": 6
+            },
+            "loss": {
+              "absolute_tolerance": 2e-06,
+              "maximum_absolute_difference": 4.63991689514387e-09,
+              "maximum_relative_difference": 7.573538054893146e-07,
+              "passed": true,
+              "relative_tolerance": 2e-05,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "optimizer_moment": {
+              "absolute_tolerance": 2e-06,
+              "maximum_absolute_difference": 6.05359673500061e-09,
+              "maximum_relative_difference": 1.1641532356165829e+19,
+              "passed": true,
+              "relative_tolerance": 0.0002,
+              "scalar_count": 595846,
+              "tensor_count": 120
+            },
+            "parameter_gradient": {
+              "absolute_tolerance": 2e-05,
+              "maximum_absolute_difference": 5.960464477539063e-08,
+              "maximum_relative_difference": 1.164153218269348e+20,
+              "passed": true,
+              "relative_tolerance": 0.0002,
+              "scalar_count": 394628,
+              "tensor_count": 77
+            },
+            "physical": {
+              "absolute_tolerance": 2e-05,
+              "maximum_absolute_difference": 8.940696716308594e-08,
+              "maximum_relative_difference": 3.2262270261756447e-06,
+              "passed": true,
+              "relative_tolerance": 0.0002,
+              "scalar_count": 12,
+              "tensor_count": 8
+            },
+            "updated_parameter": {
+              "absolute_tolerance": 2e-06,
+              "maximum_absolute_difference": 8.682161569595337e-05,
+              "maximum_relative_difference": 0.001835733153115473,
+              "passed": false,
+              "relative_tolerance": 2e-05,
+              "scalar_count": 297923,
+              "tensor_count": 60
+            }
+          },
+          "failure_count": 5,
+          "failure_names": [
+            "base/updated_parameters/event_hidden.weight",
+            "base/updated_parameters/event_output.weight",
+            "base/updated_parameters/context_output.weight",
+            "base/updated_parameters/readout_hidden.weight",
+            "base/updated_parameters/readout_middle.weight"
+          ],
+          "passed": false
+        },
+        "domain_id": "R3-PHYS",
+        "iteration": 0,
+        "method_id": "unified-direct-conditioner",
+        "passed": false,
+        "same_device_repeatability": {
+          "all_tensor_names_sha256": "2d5968b6534f18f45308b341996d9c06fb5721b0d876a6ced0797f3bf9328845",
+          "categories": {
+            "coordinate_gradient": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "coordinate_hessian": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "exact": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 297983,
+              "tensor_count": 124
+            },
+            "forward": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 207,
+              "tensor_count": 6
+            },
+            "loss": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "optimizer_moment": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 595846,
+              "tensor_count": 120
+            },
+            "parameter_gradient": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 394628,
+              "tensor_count": 77
+            },
+            "physical": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 12,
+              "tensor_count": 8
+            },
+            "updated_parameter": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 297923,
+              "tensor_count": 60
+            }
+          },
+          "failure_count": 0,
+          "failure_names": [],
+          "passed": true
+        },
+        "timing_seconds": {
+          "cpu_physical_heun_seam": 0.28112410300002466,
+          "cpu_reference_graph_and_updates": 0.7098115250000774,
+          "initial_model_transfer_and_copy": 0.009268650999956662,
+          "target_graph_and_updates": 2.150918895000018,
+          "target_payload_host_readback": 0.009399298999937855,
+          "target_physical_heun_seam": 0.9511496119999947,
+          "target_replay_graph_and_updates": 2.2976465020000205
+        },
+        "unique_parameters_including_base": 297923
+      },
+      {
+        "comparison": {
+          "all_tensor_names_sha256": "836fd51af27441f579f7c31cdc1a931929f67194f0b1a72f56091dcf6d6e390c",
+          "categories": {
+            "coordinate_gradient": {
+              "absolute_tolerance": 2e-05,
+              "maximum_absolute_difference": 1.3969838619232178e-09,
+              "maximum_relative_difference": 9.024951735310199e-07,
+              "passed": true,
+              "relative_tolerance": 0.0002,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "coordinate_hessian": {
+              "absolute_tolerance": 0.0001,
+              "maximum_absolute_difference": 6.402842700481415e-10,
+              "maximum_relative_difference": 9.414027294346081e-07,
+              "passed": true,
+              "relative_tolerance": 0.001,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "exact": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 297983,
+              "tensor_count": 124
+            },
+            "forward": {
+              "absolute_tolerance": 2e-06,
+              "maximum_absolute_difference": 2.9802322387695312e-08,
+              "maximum_relative_difference": 0.0007062146892655367,
+              "passed": true,
+              "relative_tolerance": 2e-05,
+              "scalar_count": 207,
+              "tensor_count": 6
+            },
+            "loss": {
+              "absolute_tolerance": 2e-06,
+              "maximum_absolute_difference": 2.5652704405132454e-09,
+              "maximum_relative_difference": 9.282775857785042e-07,
+              "passed": true,
+              "relative_tolerance": 2e-05,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "optimizer_moment": {
+              "absolute_tolerance": 2e-06,
+              "maximum_absolute_difference": 9.313225746154785e-09,
+              "maximum_relative_difference": 3.0,
+              "passed": true,
+              "relative_tolerance": 0.0002,
+              "scalar_count": 595846,
+              "tensor_count": 120
+            },
+            "parameter_gradient": {
+              "absolute_tolerance": 2e-05,
+              "maximum_absolute_difference": 8.940696716308594e-08,
+              "maximum_relative_difference": 3.0,
+              "passed": true,
+              "relative_tolerance": 0.0002,
+              "scalar_count": 394628,
+              "tensor_count": 77
+            },
+            "physical": {
+              "absolute_tolerance": 2e-05,
+              "maximum_absolute_difference": 8.642673492431641e-07,
+              "maximum_relative_difference": 1.3517474272051381e-05,
+              "passed": true,
+              "relative_tolerance": 0.0002,
+              "scalar_count": 12,
+              "tensor_count": 8
+            },
+            "updated_parameter": {
+              "absolute_tolerance": 2e-06,
+              "maximum_absolute_difference": 0.00010221358388662338,
+              "maximum_relative_difference": 0.013014149067389081,
+              "passed": false,
+              "relative_tolerance": 2e-05,
+              "scalar_count": 297923,
+              "tensor_count": 60
+            }
+          },
+          "failure_count": 2,
+          "failure_names": [
+            "base/updated_parameters/context_output.weight",
+            "base/updated_parameters/readout_hidden.weight"
+          ],
+          "passed": false
+        },
+        "domain_id": "R4-RETAIL",
+        "iteration": 0,
+        "method_id": "association-aware-guide-plus-residual",
+        "passed": false,
+        "same_device_repeatability": {
+          "all_tensor_names_sha256": "836fd51af27441f579f7c31cdc1a931929f67194f0b1a72f56091dcf6d6e390c",
+          "categories": {
+            "coordinate_gradient": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "coordinate_hessian": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "exact": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 297983,
+              "tensor_count": 124
+            },
+            "forward": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 207,
+              "tensor_count": 6
+            },
+            "loss": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "optimizer_moment": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 595846,
+              "tensor_count": 120
+            },
+            "parameter_gradient": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 394628,
+              "tensor_count": 77
+            },
+            "physical": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 12,
+              "tensor_count": 8
+            },
+            "updated_parameter": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 297923,
+              "tensor_count": 60
+            }
+          },
+          "failure_count": 0,
+          "failure_names": [],
+          "passed": true
+        },
+        "timing_seconds": {
+          "cpu_physical_heun_seam": 0.4504715869999245,
+          "cpu_reference_graph_and_updates": 1.2385539509999717,
+          "initial_model_transfer_and_copy": 0.009373565000032613,
+          "target_graph_and_updates": 3.5360446280000133,
+          "target_payload_host_readback": 0.009327995999910854,
+          "target_physical_heun_seam": 2.973484456999927,
+          "target_replay_graph_and_updates": 3.581654544999992
+        },
+        "unique_parameters_including_base": 297923
+      },
+      {
+        "comparison": {
+          "all_tensor_names_sha256": "836fd51af27441f579f7c31cdc1a931929f67194f0b1a72f56091dcf6d6e390c",
+          "categories": {
+            "coordinate_gradient": {
+              "absolute_tolerance": 2e-05,
+              "maximum_absolute_difference": 1.3969838619232178e-09,
+              "maximum_relative_difference": 9.024951735310199e-07,
+              "passed": true,
+              "relative_tolerance": 0.0002,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "coordinate_hessian": {
+              "absolute_tolerance": 0.0001,
+              "maximum_absolute_difference": 6.402842700481415e-10,
+              "maximum_relative_difference": 9.414027294346081e-07,
+              "passed": true,
+              "relative_tolerance": 0.001,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "exact": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 297983,
+              "tensor_count": 124
+            },
+            "forward": {
+              "absolute_tolerance": 2e-06,
+              "maximum_absolute_difference": 2.9802322387695312e-08,
+              "maximum_relative_difference": 0.0007062146892655367,
+              "passed": true,
+              "relative_tolerance": 2e-05,
+              "scalar_count": 207,
+              "tensor_count": 6
+            },
+            "loss": {
+              "absolute_tolerance": 2e-06,
+              "maximum_absolute_difference": 2.5652704405132454e-09,
+              "maximum_relative_difference": 9.282775857785042e-07,
+              "passed": true,
+              "relative_tolerance": 2e-05,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "optimizer_moment": {
+              "absolute_tolerance": 2e-06,
+              "maximum_absolute_difference": 9.313225746154785e-09,
+              "maximum_relative_difference": 3.0,
+              "passed": true,
+              "relative_tolerance": 0.0002,
+              "scalar_count": 595846,
+              "tensor_count": 120
+            },
+            "parameter_gradient": {
+              "absolute_tolerance": 2e-05,
+              "maximum_absolute_difference": 8.940696716308594e-08,
+              "maximum_relative_difference": 3.0,
+              "passed": true,
+              "relative_tolerance": 0.0002,
+              "scalar_count": 394628,
+              "tensor_count": 77
+            },
+            "physical": {
+              "absolute_tolerance": 2e-05,
+              "maximum_absolute_difference": 8.642673492431641e-07,
+              "maximum_relative_difference": 1.3517474272051381e-05,
+              "passed": true,
+              "relative_tolerance": 0.0002,
+              "scalar_count": 12,
+              "tensor_count": 8
+            },
+            "updated_parameter": {
+              "absolute_tolerance": 2e-06,
+              "maximum_absolute_difference": 0.00010221358388662338,
+              "maximum_relative_difference": 0.021239087576657097,
+              "passed": false,
+              "relative_tolerance": 2e-05,
+              "scalar_count": 297923,
+              "tensor_count": 60
+            }
+          },
+          "failure_count": 2,
+          "failure_names": [
+            "base/updated_parameters/context_output.weight",
+            "base/updated_parameters/readout_hidden.weight"
+          ],
+          "passed": false
+        },
+        "domain_id": "R4-RETAIL",
+        "iteration": 0,
+        "method_id": "unified-direct-conditioner",
+        "passed": false,
+        "same_device_repeatability": {
+          "all_tensor_names_sha256": "836fd51af27441f579f7c31cdc1a931929f67194f0b1a72f56091dcf6d6e390c",
+          "categories": {
+            "coordinate_gradient": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "coordinate_hessian": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "exact": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 297983,
+              "tensor_count": 124
+            },
+            "forward": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 207,
+              "tensor_count": 6
+            },
+            "loss": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 4,
+              "tensor_count": 4
+            },
+            "optimizer_moment": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 595846,
+              "tensor_count": 120
+            },
+            "parameter_gradient": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 394628,
+              "tensor_count": 77
+            },
+            "physical": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 12,
+              "tensor_count": 8
+            },
+            "updated_parameter": {
+              "absolute_tolerance": 0.0,
+              "maximum_absolute_difference": 0.0,
+              "maximum_relative_difference": 0.0,
+              "passed": true,
+              "relative_tolerance": 0.0,
+              "scalar_count": 297923,
+              "tensor_count": 60
+            }
+          },
+          "failure_count": 0,
+          "failure_names": [],
+          "passed": true
+        },
+        "timing_seconds": {
+          "cpu_physical_heun_seam": 0.539800635000006,
+          "cpu_reference_graph_and_updates": 1.1614805419999357,
+          "initial_model_transfer_and_copy": 0.00943345700000009,
+          "target_graph_and_updates": 3.609386787999938,
+          "target_payload_host_readback": 0.009197763999964081,
+          "target_physical_heun_seam": 1.7076751719999947,
+          "target_replay_graph_and_updates": 3.433752494000032
+        },
+        "unique_parameters_including_base": 297923
+      }
+    ],
+    "completed_case_count": 4,
+    "cuda_build_version": "12.6",
+    "cuda_execution": "CUDA_NEURAL_CASE_EXECUTED_SELECTED_DEVICE_ONLY",
+    "decision": "FAIL_DEVICE_PARITY",
+    "device": "cuda:0",
+    "elapsed_seconds": 51.46031292600003,
+    "execution_progress": {
+      "cuda_device_initialization_completed": true,
+      "cuda_peak_memory_reset_completed": true,
+      "domain_id": "R4-RETAIL",
+      "iteration": 0,
+      "method_id": "unified-direct-conditioner",
+      "stage": "QUALIFICATION_COMPLETE"
+    },
+    "fixture_id": "factorized-device-four-cases-synthetic-v1",
+    "harness_revision": "factorized-device-qualification-v2-initialization-order",
+    "iterations": 1,
+    "memory": {
+      "exclusive_task_memory_claimed": false,
+      "process_lifetime_peak_rss_bytes": 1205760000,
+      "selected_device_peak_allocated_bytes": 87648256,
+      "selected_device_peak_reserved_bytes": 90177536
+    },
+    "mode": "CUDA",
+    "required_case_count": 4,
+    "schema_version": "factorized-device-qualification-v1",
+    "scope": {
+      "CPU_REFERENCE_explicit_CUDA_discovery_or_allocation_requested_by_harness": false,
+      "CPU_REFERENCE_library_internal_availability_probes_possible": true,
+      "F105_factory_or_checkpoint_validation_executed": false,
+      "actual_data_accessed": false,
+      "all_gpu_pipeline_claimed": false,
+      "files_written": false,
+      "host_work": [
+        "exact metadata and ordering",
+        "FP64 association guide",
+        "Heun control flow"
+      ],
+      "packages_installed": false,
+      "paid_or_remote_jobs_launched": false,
+      "physical_seam": "ONE_FIXED_INCREMENT_HEUN_STEP_NOT_A_COMPLETE_CONDITIONAL_PATH",
+      "production_qualification": false,
+      "speedup_claimed": false,
+      "synthetic_only": true,
+      "whole_cluster_allocation_proven": false
+    },
+    "selected_device": {
+      "compute_capability": [
+        7,
+        5
+      ],
+      "name": "Tesla T4",
+      "total_memory_bytes": 15636037632
+    },
+    "timing_scope": {
+      "all_transfers_separately_measured": false,
+      "cross_device_analytic_autograd_transfers_included_in_graph_time": true,
+      "explicit_cuda_synchronize_calls": 48,
+      "first_use_overheads_included": true,
+      "hard_deadline_provided_by_caller_not_harness": true,
+      "internal_scalar_synchronization_count": null,
+      "internal_scalar_synchronizations_included_in_wall_time": true,
+      "pure_kernel_active_time_measured": false,
+      "synchronized_wall_time": true
+    },
+    "tolerance_policy_id": "factorized-device-parity-fixed-tolerances-v1",
+    "torch_version": "2.7.0+cu126",
+    "version_selected_CUDA_precision_family": "legacy_allow_tf32_only"
+  },
+  "scope": "SOURCE_ONLY_FACTORIZED_LOCAL_QUALIFICATION_NOT_INSTALLED_RELEASE",
+  "tf32_environment_overrides": {
+    "NVIDIA_TF32_OVERRIDE": null,
+    "TORCH_ALLOW_TF32_CUBLAS_OVERRIDE": null
+  },
+  "tf32_environment_policy_ready": true,
+  "wrapper_revision": "factorized-gpu-wrapper-v2-child-environment"
+}

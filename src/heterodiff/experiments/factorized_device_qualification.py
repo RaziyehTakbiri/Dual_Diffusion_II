@@ -22,7 +22,7 @@ import torch
 
 POLICY_ID = 'factorized-device-parity-fixed-tolerances-v1'
 FIXTURE_ID = 'factorized-device-four-cases-synthetic-v1'
-HARNESS_REVISION = 'factorized-device-qualification-v2-initialization-order'
+HARNESS_REVISION = 'factorized-device-qualification-v3-base-update-diagnostics'
 # Prospective numerical policy, frozen before any CUDA result. No caller override.
 TOLERANCES = {
     'forward': (2e-6, 2e-5),
@@ -75,6 +75,7 @@ class DeviceQualificationRequest:
     device: str = 'cpu'
     iterations: int = 1
     maximum_seconds: int = 120
+    diagnostics: str = 'NONE'
 
     def __post_init__(self):
         _need(self.mode in ('CPU_REFERENCE', 'CUDA'), 'explicit CPU_REFERENCE or CUDA mode required')
@@ -85,6 +86,9 @@ class DeviceQualificationRequest:
         _need(type(self.iterations) is int and 1 <= self.iterations <= 3, 'iterations must be 1..3')
         _need(type(self.maximum_seconds) is int and 5 <= self.maximum_seconds <= 300,
               'maximum_seconds must be 5..300')
+        _need(self.diagnostics in ('NONE', 'BASE_UPDATE'), 'diagnostics must be NONE or BASE_UPDATE')
+        _need(self.diagnostics == 'NONE' or self.iterations == 1,
+              'BASE_UPDATE diagnostics require exactly one four-case iteration')
 
 
 def _rss():
@@ -442,7 +446,8 @@ def _case(domain, method, device, budget):
     source.update(physical_cpu)
     target.update(physical_target)
     host_target, readback_seconds = budget.timed(device, lambda: _host_payload(target))
-    comparison = _compare(_host_payload(source), host_target)
+    host_source = _host_payload(source)
+    comparison = _compare(host_source, host_target)
     # A mandatory independent reconstruction/replay, not an optional warmup.
     replay_base, replay_model, replay_joint, replay_product, replay_destinations, _ = _fixture(domain, method)
     replay_base = DeviceFactorizedEnergy.from_cpu(replay_base, device)
@@ -453,42 +458,58 @@ def _case(domain, method, device, budget):
         replay_joint.observations[0], replay_joint.states[0], device_path=True))
     replay.update(replay_physical)
     repeatability = _compare(host_target, _host_payload(replay), exact=True)
-    return {'domain_id': domain, 'method_id': method, 'passed': comparison['passed'] and repeatability['passed'],
+    result = {'domain_id': domain, 'method_id': method, 'passed': comparison['passed'] and repeatability['passed'],
         'comparison': comparison, 'same_device_repeatability': repeatability,
         'unique_parameters_including_base': parameter_count,
         'timing_seconds': {'initial_model_transfer_and_copy': transfer_seconds,
             'cpu_reference_graph_and_updates': cpu_seconds, 'target_graph_and_updates': target_seconds,
             'cpu_physical_heun_seam': physical_cpu_seconds, 'target_physical_heun_seam': physical_target_seconds,
             'target_payload_host_readback': readback_seconds, 'target_replay_graph_and_updates': replay_seconds}}
+    if budget.request.diagnostics == 'BASE_UPDATE':
+        from heterodiff.experiments.factorized_update_diagnostics import build_base_update_diagnostics
+        # Original execution, parity and exact replay are already complete. The
+        # diagnostic operates only on captured CPU copies, never the live model.
+        diagnostic, seconds = budget.timed('cpu', lambda: build_base_update_diagnostics(
+            host_source, host_target, optimizer_factory=_optimizer,
+            atol=TOLERANCES['updated_parameter'][0], rtol=TOLERANCES['updated_parameter'][1]))
+        result['base_update_diagnostics'] = diagnostic
+        result['timing_seconds']['cpu_only_base_update_diagnostics'] = seconds
+    return result
 
 
-def run_qualification(*, mode='CPU_REFERENCE', device='cpu', iterations=1, maximum_seconds=120):
+def run_qualification(*, mode='CPU_REFERENCE', device='cpu', iterations=1, maximum_seconds=120, diagnostics='NONE'):
     """Run all four fixed cases; a partial/failed roster never receives PASS.
 
     The wall/RSS/device-memory checks are observational soft limits, not kernel
     cancellation or hard allocation quotas. Use the notebook's isolated child
     supervisor for a hard process deadline. Each iteration starts fresh weights.
+    Optional BASE_UPDATE diagnostics add only two CPU optimizer replays per
+    case from captured gradients, not extra GPU steps or changed tolerances.
     """
-    request = DeviceQualificationRequest(mode, device, iterations, maximum_seconds)
+    request = DeviceQualificationRequest(mode, device, iterations, maximum_seconds, diagnostics)
     from heterodiff.evaluation.two_domain_count_normalized_event_cks import PHYSIONET_DOMAIN_ID, RETAIL_DOMAIN_ID
     from heterodiff.experiments.factorized_conditional_training import PRIMARY_METHOD_ID, PRIMARY_COMPARATOR_ID
     report = {'schema_version': 'factorized-device-qualification-v1', 'fixture_id': FIXTURE_ID,
         'harness_revision': HARNESS_REVISION,
         'tolerance_policy_id': POLICY_ID, 'mode': mode, 'device': device, 'iterations': iterations,
+        'diagnostics': diagnostics,
         'torch_version': torch.__version__, 'cuda_build_version': torch.version.cuda,
         'cuda_execution': 'CUDA_NOT_EXECUTED' if mode == 'CPU_REFERENCE' else 'CUDA_REQUESTED',
         'cases': [], 'required_case_count': 4*iterations,
         'bounds': {'batch_rows': 3, 'state_event_cap': 4, 'metadata_bytes_per_event': 2048,
             'batch_metadata_bytes': 32768, 'maximum_seconds_soft': maximum_seconds,
             'maximum_memory_bytes_soft': MAXIMUM_MEMORY_BYTES, 'warmup_iterations': 0,
-            'mandatory_same_device_replays_per_case': 1},
+            'mandatory_same_device_replays_per_case': 1,
+            'maximum_diagnostic_coordinates_per_case': 8 if diagnostics == 'BASE_UPDATE' else 0,
+            'maximum_additional_cpu_optimizer_replay_steps': 8 if diagnostics == 'BASE_UPDATE' else 0,
+            'additional_gpu_optimizer_steps_for_diagnostics': 0},
         'scope': {'synthetic_only': True, 'actual_data_accessed': False, 'paid_or_remote_jobs_launched': False,
             'packages_installed': False, 'files_written': False, 'production_qualification': False,
             'whole_cluster_allocation_proven': False, 'all_gpu_pipeline_claimed': False,
             'F105_factory_or_checkpoint_validation_executed': False,
             'physical_seam': 'ONE_FIXED_INCREMENT_HEUN_STEP_NOT_A_COMPLETE_CONDITIONAL_PATH',
             'host_work': ['exact metadata and ordering', 'FP64 association guide', 'Heun control flow'],
-            'speedup_claimed': False}}
+            'speedup_claimed': False, 'diagnostics_change_parity_acceptance': False}}
     report['scope']['CPU_REFERENCE_library_internal_availability_probes_possible'] = True
     report['scope']['CPU_REFERENCE_explicit_CUDA_discovery_or_allocation_requested_by_harness'] = False
     budget = _Budget(request)

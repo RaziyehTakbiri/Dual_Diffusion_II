@@ -1,16 +1,16 @@
 # Two-track readiness and GPU-training plan
 
-Date: 2026-09-08
+Date: 2026-09-13
 Status: the [mixed-domain scientific direction](PROJECT_MIXED_DOMAIN_SCIENTIFIC_AMENDMENT.md)
 is ADOPTED structurally, with factorized state/reference, smooth-law oracle
 and metadata-aware energy connected to actual BASE/conditional learning and
 conditional sampling, with bounded local CPU qualification completed. The
 structural choice and local connector no longer await work or user input.
 The explicit-device successor and bounded parity/performance notebook are now
-prepared and tested locally on CPU. The first operator-reported bounded CUDA
-attempt stopped during startup with **0/4 cases completed; CUDA is unqualified**.
-The identified startup-order repair is locally tested; another GPU attempt
-has not been launched by the agent.
+prepared and tested locally on CPU. The latest operator-reported bounded CUDA
+run completed **4/4 cases with exact GPU replays, but failed CPU/GPU BASE
+parameter-update parity**. Tesla T4 startup works with the repaired harness;
+numerical parity remains open. The agent has not launched another GPU attempt.
 Numeric scientific settings and scalable whole-method integration remain open.
 Authority: the user requested both tracks, local work without paid jobs, and
 then delegated the scientific model-design choice. No real-data access,
@@ -168,7 +168,8 @@ documents the neural FP32 CPU/CUDA implementation, actual BASE/conditional
 updates and CPU-orchestrated conditional paths, plus fixed-tolerance four-case
 checks and the inspection-first [notebook](databricks/notebooks/factorized_gpu_parity_and_performance.py).
 Both the complete connector tests and actual supervised harness passed locally
-on CPU. The CUDA attempt stopped during startup; no case is qualified. This is source-only, not an
+on CPU. The subsequent CUDA run completed the roster but failed BASE updated-weight
+parity; it is not a qualified GPU route. This is source-only, not an
 installed GPU release; analytic matching, path RNG/control and F105 remain CPU.
 
 **COMPLETE — inspection-driven compatibility repair (2026-09-08).** The
@@ -186,8 +187,24 @@ initializes the selected device before resetting allocator peaks and reports
 bounded failure-stage diagnostics. The local regression passed 494 tests;
 no retry or actual CUDA pass is claimed. See the [attempt and repair record](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-08-bounded-cuda-attempt-and-startup-repair).
 
-**Next local-to-GPU steps, still OPEN.** After the user's go-ahead, one further
-bounded selected-device synthetic run can test the repaired route. Full trajectory/F105
+**GPU result received 2026-09-13 — execution COMPLETE, parity FAIL.** All four
+cases ran on the Tesla T4 in 51.46 seconds and exact same-GPU replay passed.
+Only BASE updated-weight comparisons failed; the other categories passed.
+Record and evidence: [result review](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-13-received-gpu-result-execution-complete-parity-failed).
+
+**COMPLETE — three focused diagnostic-preparation tasks (2026-09-13).**
+The existing notebook/harness now reports bounded per-coordinate BASE
+gradient/state/update evidence and two fresh CPU AdamW replay controls.
+Local qualification passed **552 tests**, including supervised four-case CPU
+execution; exact instructions for one more bounded GPU check are ready.
+See the [completion record](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-13-focused-update-diagnostics-and-local-qualification).
+No tolerance, optimizer-setting, model, fixture or cluster change was made.
+
+**Next local-to-GPU step, OPEN.** Collect and review one `BASE_UPDATE`
+diagnostic report on the same authorized test GPU, using one iteration and
+the same 120-second bound. Preparation does not execute the GPU run or prove
+the cause of the earlier mismatch. CPU/GPU parity stays FAIL/OPEN; no blind
+retry or full campaign is authorized. Full trajectory/F105
 checkpoint performance, installed GPU release qualification and scalable
 matching/count measurements remain separate work. Specify the numerical
 regularization/noise sensitivity instance prospectively and establish the

@@ -4,15 +4,23 @@
 **Current project state:** `DRAFT_NOT_EXECUTABLE`  
 **Ledger role:** authoritative project-management index for the completion timetable  
 **Update rule:** change an item only with a durable evidence path or receipt  
-**Latest current checkpoint (2026-09-08):** the amended factorized BASE,
+**Latest current checkpoint (2026-09-13):** the amended factorized BASE,
 conditional learner and sampler now have an explicit-device successor, with
 bounded parity/performance checks and a conventional inspection-first notebook.
 The [device implementation record](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md)
 documents completed local CPU verification and actual supervised CPU harness
-execution. The operator's subsequent bounded CUDA attempt stopped during startup
-with **0/4 cases complete; CUDA remains unqualified**. The identified allocator
-initialization-order bug is fixed locally (494 tests passed), with bounded stage/
-error diagnostics; no further GPU attempt was launched. See the [attempt and repair](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-08-bounded-cuda-attempt-and-startup-repair).
+execution. After the startup repair, the operator's subsequent bounded CUDA run
+completed **4/4 cases with exact same-GPU replay; CPU/GPU parity is FAIL/OPEN**.
+Only BASE updated weights fail the existing thresholds; the other comparison
+categories pass. This is actual selected-device execution evidence on Tesla T4,
+not GPU qualification or a speedup claim. See the [archived result and review](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-13-received-gpu-result-execution-complete-parity-failed).
+The user-approved follow-up is **COMPLETE locally**: bounded per-coordinate
+BASE update diagnostics, two CPU optimizer replay controls, and tested
+same-notebook instructions for one further bounded GPU check. The final
+regression passed **552 tests**; the actual supervised CPU diagnostic route
+passed 4/4 with exact controls. See the [three-task completion record](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-13-focused-update-diagnostics-and-local-qualification).
+No GPU rerun, model/optimizer/tolerance change or field/checkbox closure is
+implied; the new GPU diagnostic output is still pending.
 Neural FP32 work
 can target one selected CUDA device; exact metadata, analytic guide, reference
 path orchestration and F105 stay CPU. No speedup or full GPU pipeline claim is made.
@@ -35,9 +43,10 @@ original snapshot. Formal Tests 28/29/30 are OPEN/OPEN/PENDING; results 0/4.
 `DRAFT_NOT_EXECUTABLE` refers to the full scientific route, not inability to
 install or test local components.
 
-**Hardware follow-up scope:** the user separately authorized one bounded GPU
-check and supplied its incomplete result. The follow-up records that report
-and local repair/testing only, not another GPU attempt or qualification PASS.
+**Hardware follow-up scope:** the user supplied the subsequent bounded GPU
+result after the instructed retry. This update archives and reviews that report
+and a local CPU-only scalar sensitivity illustration. No GPU retry, numerical
+setting/tolerance change, real-data access or qualification PASS is implied.
 
 **Preparation milestone's authority:** following structural scientific repair and local
 conditional integration, the user requested preparation of the GPU-capable

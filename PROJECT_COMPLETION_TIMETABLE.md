@@ -7,10 +7,28 @@
 **Capacity assumption:** one accountable Codex worker using internal subagents for parallel audits; user reviews the final outcome  
 **Schedule status:** aggressive, conditional go/no-go plan—not a completion promise  
 **Scientific state at baseline:** `DRAFT_NOT_EXECUTABLE`
-**Current marked-task view (2026-09-08):** 61 checked / 102 open / 163 total
+**Current marked-task view (2026-09-13):** 61 checked / 102 open / 163 total
 
-**Current evidence view (2026-09-08):** 31 fields open / 141 closed; 8 blockers
+**Current evidence view (2026-09-13):** 31 fields open / 141 closed; 8 blockers
 open / 4 closed (6 execution + 2 submission open); Gate A 5/8
+
+**Latest GPU result reviewed (2026-09-13):** GPU startup and bounded execution
+are COMPLETE for the reported Tesla T4 runtime: 4/4 cases ran and all exact
+same-GPU replays passed. CPU/GPU parity is **FAIL/OPEN**, specifically BASE
+updated weights; all other comparison categories passed. The [archived result
+and review](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-13-received-gpu-result-execution-complete-parity-failed)
+supersede the startup-only status below. Next is focused numerical diagnosis,
+not another environment setup. No checkbox/field closes or tolerance changes.
+
+**COMPLETED — all three focused diagnostic-preparation tasks (2026-09-13).**
+The existing notebook now reports bounded BASE gradient/state/update details;
+two fresh CPU AdamW replays isolate captured-gradient effects; local tests and
+the exact one-run GPU handoff are complete. **552 local tests passed**, including
+the real supervised four-case CPU diagnostic route. See the [three-task completion record](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-13-focused-update-diagnostics-and-local-qualification).
+No model, optimizer or tolerance change, paid/GPU job, or data access occurred.
+Actual follow-up GPU collection is PENDING and CPU/GPU parity stays FAIL/OPEN.
+This marks the requested local milestone complete without closing a compound
+timetable checkbox; 61 checked / 102 open / 163 total remains correct.
 
 **CUDA hardware follow-up (2026-09-08):** the operator's first bounded attempt
 stopped during startup with 0/4 cases complete. The identified allocator

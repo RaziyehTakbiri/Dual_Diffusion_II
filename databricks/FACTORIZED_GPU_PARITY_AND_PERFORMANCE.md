@@ -32,6 +32,7 @@ Use these visible fields, then choose **Run all**. Parameters are strings in Dat
 | `iterations` | `1` | `1` |
 | `maximum_seconds` | `120` | `120` |
 | `acknowledgement` | `RUN BOUNDED LOCAL TEST` | `RUN BOUNDED LOCAL TEST` |
+| `diagnostics` | `NONE` normally; `BASE_UPDATE` for replay diagnostics | `BASE_UPDATE` for the next diagnostic check |
 | `repo_root` | Leave blank if detected | Leave blank if detected |
 
 `iterations` allows 1–3. One iteration covers all four domain×method cases and includes gradients, Hessians and optimizer updates; it is not one cheap kernel call. The case roster and parity tolerances are not user-adjustable widgets. `maximum_seconds` allows 5–300 and covers child startup/imports as well as execution. Timeout kills the local child and allows up to five additional seconds to confirm termination. It never turns a partial or timed-out run into a pass. If termination is not confirmed, stop and inspect the attached compute before another attempt. The timeout does not stop a Databricks cluster or guarantee release of a malfunctioning GPU driver.
@@ -40,16 +41,60 @@ CUDA uses **one explicitly selected device**, not eight-device distributed train
 
 CPU_REFERENCE performs CPU tensor computation and does not explicitly discover or synchronize CUDA in the harness. Standard PyTorch optimizer internals may still probe accelerator availability; this mode is not advertised as zero CUDA-library inspection. The stricter no-Torch/no-device-query promise applies to INSPECT_ONLY. The standard optimizer implementation is not patched to suppress its internal checks.
 
+## Next diagnostic check: same notebook, one bounded run
+
+The September 13 report already establishes that CUDA starts and all four
+synthetic cases execute. The remaining issue is CPU/GPU BASE weight-update
+parity. No Docker, installation, new cluster, or environment reset is needed
+for this diagnostic extension.
+
+After syncing **all changed and new source files**, open the same notebook.
+In the fields directly below its toolbar, choose `mode=CUDA`, `device=cuda:0`,
+`iterations=1`, `maximum_seconds=120`, `diagnostics=BASE_UPDATE`, and
+`acknowledgement=RUN BOUNDED LOCAL TEST`. Use the same authorized test-GPU
+environment as before. If `repo_root` is not detected, its project path is
+`/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffusion_II`.
+Choose **Run all once**, save the full JSON output, and return `mode` to
+`INSPECT_ONLY`. Do not launch an automatic retry or a training campaign.
+
+The expected revisions are `factorized-gpu-wrapper-v3-base-update-diagnostics`
+and `factorized-device-qualification-v3-base-update-diagnostics`.
+The new dropdown defaults to `NONE`, so an ordinary run remains ordinary;
+`BASE_UPDATE` requires exactly one four-case iteration. Preparing these files
+does not launch or fund the next GPU invocation.
+
+Each case adds `base_update_diagnostics` and a separately timed CPU diagnostic
+section. It uses the already captured **BASE objective gradients**, not the
+earlier forward-only gradients. Two fresh CPU AdamW replays start from the
+same initial weights: a CPU-gradient control and a replay of the target/GPU
+gradients. All BASE parameter/state comparisons are summarized; at most eight
+deterministic scalar coordinates are printed per case, with any omissions
+explicit. Rows include gradients, initial/updated weights, first-step moments,
+actual deltas, ideal FP64 predictions and CPU replay residuals.
+
+This adds at most eight CPU optimizer steps across the complete run and **zero
+additional GPU optimizer steps**. The existing deadline, 2-GiB soft memory
+limit, 262,144-byte child-output limit, model, AdamW settings and parity
+tolerances are unchanged. The CPU work is included in the wall-time limit.
+Exact replay, original-tolerance comparisons and diagnostic residuals have
+different meanings: neither a diagnostic interpretation nor a small residual
+changes the original PASS/FAIL decision. The ideal formula is a real-arithmetic
+reference, not a claim of bitwise FP32 backend equivalence. A further GPU
+report is needed before attributing the observed update gap to its cause.
+
 ## Reading the result
 
 The first operator CUDA attempt stopped at startup with no cases completed.
-The updated source harness reports revision
+The startup-repair source harness reported revision
 `factorized-device-qualification-v2-initialization-order`: it initializes the
 selected CUDA device before resetting allocator peaks, with no warm-up/model
 step added. Failures now include `failed_stage`, bounded `error_detail`, and
 `error_diagnostics` frame locations (no locals/source lines). The local repair
-is tested, but another CUDA attempt has not been performed or authorized by
-this document. Keep the same fixed bounds; do not automatically retry.
+is tested. The subsequent report received 2026-09-13 completed all four cases
+on Tesla T4 with exact GPU replays but returned `FAIL_DEVICE_PARITY` for BASE
+updated weights. See the [result review](../PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-13-received-gpu-result-execution-complete-parity-failed).
+Keep the fixed bounds and tolerances; do not automatically retry or reinstall
+packages. The next step is focused numerical diagnosis, not cluster setup.
 
 - `INSPECT_ONLY_COMPLETE`: no numerical test or CUDA query ran.
 - `INPUT_REQUIRED`: one of the visible mode/device/limit/acknowledgement values needs correction; no test launched.

@@ -15,6 +15,8 @@ from heterodiff.experiments import factorized_device_qualification as q
     {'mode': 'CUDA', 'device': 'cuda:01'}, {'mode': 'CUDA', 'device': 'cuda:0;cmd'},
     {'iterations': 0}, {'iterations': 4}, {'iterations': True},
     {'maximum_seconds': 4}, {'maximum_seconds': 301}, {'maximum_seconds': 5.0},
+    {'diagnostics': 'AUTO'}, {'diagnostics': True},
+    {'diagnostics': 'BASE_UPDATE', 'iterations': 2},
 ])
 def test_request_rejects_ambiguous_or_unbounded_controls_before_work(kwargs):
     with pytest.raises(q.DeviceQualificationError):
@@ -77,7 +79,8 @@ def test_unmodified_adamw_has_cpu_parameters_gradients_and_moments():
         '_accelerator_graph_capture_health_check', '_cuda_graph_capture_health_check'))
 
 
-def test_cpu_full_roster_graph_optimizer_physical_parity_without_explicit_cuda_work(monkeypatch):
+@pytest.mark.parametrize('diagnostics', ['NONE', 'BASE_UPDATE'])
+def test_cpu_full_roster_graph_optimizer_physical_parity_without_explicit_cuda_work(monkeypatch, diagnostics):
     def forbidden(*args, **kwargs):
         raise AssertionError('CPU qualification attempted CUDA query')
     # Ordinary AdamW may internally call is_available; its safety guard is not overridden.
@@ -88,7 +91,8 @@ def test_cpu_full_roster_graph_optimizer_physical_parity_without_explicit_cuda_w
     threads = torch.get_num_threads()
     deterministic = torch.are_deterministic_algorithms_enabled()
     warn = torch.is_deterministic_algorithms_warn_only_enabled()
-    report = q.run_qualification(mode='CPU_REFERENCE', device='cpu', iterations=1, maximum_seconds=120)
+    report = q.run_qualification(mode='CPU_REFERENCE', device='cpu', iterations=1, maximum_seconds=120,
+                                 diagnostics=diagnostics)
     assert report['decision'] == 'PASS_CPU_REFERENCE_CUDA_NOT_EXECUTED', report
     assert report['cuda_execution'] == 'CUDA_NOT_EXECUTED'
     assert report['completed_case_count'] == report['required_case_count'] == 4
@@ -359,7 +363,7 @@ def test_cold_cuda_properties_initialize_allocator_before_reset_and_cases(monkey
     assert report['completed_case_count'] == 4
     assert report['execution_progress']['cuda_device_initialization_completed'] is True
     assert report['execution_progress']['cuda_peak_memory_reset_completed'] is True
-    assert report['harness_revision'] == 'factorized-device-qualification-v2-initialization-order'
+    assert report['harness_revision'] == 'factorized-device-qualification-v3-base-update-diagnostics'
     assert (state['threads'], state['deterministic'], state['warn_only']) == (4, False, True)
     assert fake.backends.cuda.matmul.allow_tf32 is True
     assert fake.backends.cudnn.allow_tf32 is True
@@ -467,3 +471,36 @@ def test_interrupts_are_not_swallowed_by_failure_reporting(monkeypatch, error_ty
     with pytest.raises(error_type):
         q.run_qualification()
     assert torch.are_deterministic_algorithms_enabled() is previous
+
+
+def test_diagnostics_run_after_original_replay_and_cannot_promote_parity_failure(monkeypatch):
+    from heterodiff.experiments import factorized_update_diagnostics as d
+    comparisons, diagnostic_calls = [], []
+    original_compare = q._compare
+    original_tolerances = dict(q.TOLERANCES)
+    def synthetic_failure(reference, target, *, exact=False):
+        result = original_compare(reference, target, exact=exact)
+        comparisons.append(exact)
+        if not exact:
+            # Inject a primary acceptance failure independently of diagnostics.
+            result.update(passed=False, failure_count=1,
+                          failure_names=['base/updated_parameters/synthetic_failure'])
+        return result
+    def diagnostic(reference, target, *, optimizer_factory, atol, rtol):
+        assert comparisons == [False, True] * (len(diagnostic_calls) + 1)
+        assert optimizer_factory is q._optimizer
+        assert (atol, rtol) == original_tolerances['updated_parameter']
+        for payload in (reference, target):
+            assert all(value is None or value.device.type == 'cpu' for _, value in payload.values())
+        assert any(key.startswith('base/objective_parameter_gradients/') for key in reference)
+        diagnostic_calls.append(True)
+        return {'diagnostic_only': True, 'cpu_optimizer_replay_steps': 2, 'synthetic_control_passed': True}
+    monkeypatch.setattr(q, '_compare', synthetic_failure)
+    monkeypatch.setattr(d, 'build_base_update_diagnostics', diagnostic)
+    report = q.run_qualification(diagnostics='BASE_UPDATE')
+    assert report['decision'] == 'FAIL_DEVICE_PARITY', report
+    assert report['completed_case_count'] == len(diagnostic_calls) == 4
+    assert all(not c['passed'] and c['same_device_repeatability']['passed'] for c in report['cases'])
+    assert report['bounds']['maximum_additional_cpu_optimizer_replay_steps'] == 8
+    assert report['bounds']['additional_gpu_optimizer_steps_for_diagnostics'] == 0
+    assert q.TOLERANCES == original_tolerances

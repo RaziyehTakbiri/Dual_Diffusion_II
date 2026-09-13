@@ -9,6 +9,10 @@
 # MAGIC `mode`: CPU_REFERENCE or CUDA; `device`: cpu or a specific cuda:N;
 # MAGIC `iterations`: 1 initially; `maximum_seconds`: 120 initially;
 # MAGIC `acknowledgement`: RUN BOUNDED LOCAL TEST. Then choose Run all again.
+# MAGIC For focused update-mismatch diagnostics, choose `diagnostics`: BASE_UPDATE
+# MAGIC and `iterations`: 1. This adds two CPU-only optimizer replays per case
+# MAGIC using captured gradients, at most eight reported coordinates per case,
+# MAGIC and no additional GPU steps. The original parity limits do not change.
 # MAGIC CUDA must already be available in the attached environment; no cluster
 # MAGIC is created or started by this notebook. Do not run CUDA without permission
 # MAGIC to use that attached compute. No dataset is needed or read.
@@ -34,13 +38,13 @@ import sys
 
 
 SCOPE = "SOURCE_ONLY_FACTORIZED_LOCAL_QUALIFICATION_NOT_INSTALLED_RELEASE"
-WRAPPER_REVISION = "factorized-gpu-wrapper-v2-child-environment"
+WRAPPER_REVISION = "factorized-gpu-wrapper-v3-base-update-diagnostics"
 HARNESS_RELATIVE = Path("src/heterodiff/experiments/factorized_device_qualification.py")
 MAXIMUM_PARENT_LEVELS = 8
 MAXIMUM_OUTPUT_BYTES = 262144
 DEFAULTS = {
     "mode": "INSPECT_ONLY", "device": "", "iterations": "1",
-    "maximum_seconds": "120", "acknowledgement": "", "repo_root": "",
+    "maximum_seconds": "120", "acknowledgement": "", "repo_root": "", "diagnostics": "NONE",
 }
 
 
@@ -55,6 +59,8 @@ def read_settings(dbutils_object=None):
     widgets.text("iterations", "1", "3. Iterations (1-3; each runs all four cases)")
     widgets.text("maximum_seconds", "120", "4. Wall-time limit seconds (5-300)")
     widgets.text("acknowledgement", "", "5. To run: RUN BOUNDED LOCAL TEST")
+    widgets.dropdown("diagnostics", "NONE", ["NONE", "BASE_UPDATE"],
+                     "6. Diagnostics (BASE_UPDATE requires iterations=1)")
     widgets.text("repo_root", "", "Optional: absolute source Git-folder path")
     return {name: widgets.get(name).strip() for name in DEFAULTS}
 
@@ -102,6 +108,9 @@ def validated_request(settings):
     mode = settings.get("mode", "INSPECT_ONLY")
     if mode not in ("INSPECT_ONLY", "CPU_REFERENCE", "CUDA"):
         raise ValueError("Choose INSPECT_ONLY, CPU_REFERENCE, or CUDA in mode.")
+    diagnostics = settings.get("diagnostics", "NONE")
+    if diagnostics not in ("NONE", "BASE_UPDATE"):
+        raise ValueError("Choose NONE or BASE_UPDATE in diagnostics.")
     if mode == "INSPECT_ONLY":
         return {"mode": mode}
     if settings.get("acknowledgement") != "RUN BOUNDED LOCAL TEST":
@@ -117,7 +126,9 @@ def validated_request(settings):
         if type(value) is not str or re.fullmatch(r"[0-9]{1,3}", value) is None or not lower <= int(value) <= upper:
             raise ValueError(f"Set {name} to an integer from {lower} to {upper}.")
         numbers[name] = int(value)
-    return {"mode": mode, "device": device, **numbers}
+    if diagnostics == "BASE_UPDATE" and numbers["iterations"] != 1:
+        raise ValueError("BASE_UPDATE diagnostics require iterations=1: one pass through all four cases.")
+    return {"mode": mode, "device": device, **numbers, "diagnostics": diagnostics}
 
 
 CHILD_CODE = r'''
@@ -232,6 +243,7 @@ def run_notebook(settings, *, notebook_file=None, cwd=None, environ=None):
     tf32_ready = all(value in (None, "0") for value in tf32_overrides.values())
     report = {"scope": SCOPE, "repo_root": None if root is None else str(root),
               "wrapper_revision": WRAPPER_REVISION,
+              "requested_diagnostics": settings.get("diagnostics", "NONE"),
               "python_version": sys.version.split()[0], "package_metadata": package_metadata(),
               "cuda_visible_devices_setting": mask,
               "cublas_workspace_config_setting": cublas,
@@ -253,7 +265,7 @@ def run_notebook(settings, *, notebook_file=None, cwd=None, environ=None):
     if root_error:
         return {**report, "decision": "SOURCE_FOLDER_REQUIRED", "next_action": root_error}
     if request["mode"] == "INSPECT_ONLY":
-        action = "Inspection only. To run, select CPU_REFERENCE/cpu or CUDA/cuda:N, set limits and enter the acknowledgement."
+        action = "Inspection only. To run, select CPU_REFERENCE/cpu or CUDA/cuda:N, set limits and enter the acknowledgement. For update diagnostics, select BASE_UPDATE and iterations=1; no extra GPU steps or relaxed tolerances."
         if mask is not None and mask.strip() in ("", "-1"):
             action += " CUDA_VISIBLE_DEVICES currently hides GPUs, possibly from the earlier CPU-only setup. It was not changed; use the intended GPU environment before selecting CUDA."
         if cublas is None:
