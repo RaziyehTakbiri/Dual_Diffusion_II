@@ -2,8 +2,13 @@
 
 Date: 2026-09-08; latest operator-result review: 2026-09-13
 
-Status: **LOCAL IMPLEMENTATION AND CPU QUALIFICATION COMPLETE; LATEST OPERATOR
-CUDA RUN COMPLETED 4/4 CASES WITH EXACT REPLAYS BUT FAILED CPU/GPU UPDATE PARITY.**
+Status: **LOCAL IMPLEMENTATION AND CPU QUALIFICATION COMPLETE; LEGACY GPU PARITY
+FAILED, BUT THE SEPARATE SHARED-FP64 BASE CANDIDATE NOW PASSES ITS BOUNDED GPU CHECK.**
+The [latest candidate result review](PROJECT_FACTORIZED_BASE_PRECISION_CUDA_RESULT.md)
+accepts the reported four-case T4 BASE pass and exact replays only; full
+candidate conditional/sampler GPU and production qualification remain open.
+The subsequent [precision propagation and full-path CPU check](PROJECT_FACTORIZED_PRECISION_PIPELINE_LOCAL_INTEGRATION.md)
+are COMPLETE locally, with the historical legacy default preserved.
 This fulfills the requested preparation of the GPU-capable amended model and
 bounded parity/performance checks. It does not launch paid work, admit data,
 freeze scientific settings, or declare the GPU/production route qualified.
@@ -11,14 +16,14 @@ freeze scientific settings, or declare the GPU/production route qualified.
 The requested September 13 follow-up is also **COMPLETE locally**: focused
 BASE update diagnostics, CPU replays of captured gradients, local regression
 and the then-required same-notebook instructions for one bounded GPU check. That
-diagnostic collection/review is now complete; the precision candidate has been
-validated only locally. See
+diagnostic collection/review is now complete; local candidate validation was
+followed by the bounded GPU result above. See
 the [completed three-task milestone](#2026-09-13-focused-update-diagnostics-and-local-qualification).
 
 The subsequent [separate BASE precision-candidate check preparation](databricks/FACTORIZED_BASE_PRECISION_CANDIDATE_CHECK.md)
 is also COMPLETE: 670 local tests passed, including actual supervised CPU
-execution of all four routing cases and 24 BASE steps. The candidate GPU run
-remains pending. This narrower check does not replace the legacy whole-component
+execution of all four routing cases and 24 BASE steps. The subsequent candidate
+GPU check also passed. This narrower check does not replace the legacy whole-component
 parity report or qualify conditional paths, F105 or production training.
 
 ## Delivered implementation
@@ -47,10 +52,12 @@ provides:
 The scientific formula is unchanged: the guide enters G+R, the observation
 likelihood enters DIR, the residual is gated exactly once, and nuisance enters
 the classifier but not physical dynamics or initialization. Initial tilting
-excludes BASE V. BASE coordinate derivatives are evaluated in neural FP32,
+excludes BASE V. In the legacy default described here, BASE coordinate derivatives are evaluated in neural FP32,
 with loss accumulation transferred differentiably to CPU64. Physical gradients
 propagate through CPU64-to-device-FP32-to-CPU64 transfers; transfers do not detach
-the learned graph.
+the learned graph. The opt-in shared-FP64 successor changes BASE graph evaluation
+only; its preserved physical FP32 gradient-return boundary is detailed in the
+local precision integration record above.
 
 This is deliberately a **hybrid implementation**. Neural tensors, derivatives,
 parameters and AdamW moments use the chosen device. Exact keys, reference/path
@@ -379,9 +386,12 @@ is zero: boxes61/102/163, fields31/141, blockers8/4, scientific results0/4.
 The local preparation and reported GPU startup/execution milestone are complete.
 Focused diagnostic implementation/local qualification and GPU-run handoff are
 also complete, as are the GPU diagnostic review and local precision candidate.
-CPU/GPU parameter-update parity is **FAIL/OPEN**. A separately declared bounded
-precision-successor comparison must retain the legacy control and original
-tolerances; no candidate GPU run, automatic retry or full campaign is authorized. Full
+Legacy CPU/GPU parameter-update parity is **FAIL/OPEN**. The later candidate
+BASE-only T4 check passed, and its local full-pipeline integration is complete.
+The [separate integrated GPU-check preparation](PROJECT_FACTORIZED_PRECISION_PIPELINE_GPU_CHECK_PREPARATION.md)
+is also complete and CPU-tested, retaining the original tolerances and visible
+legacy physical drift. Its CUDA execution still needs separate authorization;
+no automatic retry or full campaign is authorized. Full
 trajectory/checkpoint/installed-release qualification, scalable matching/count
 workloads, prospective numerical sensitivity design and proofs, real-data
 admission, and complete spend/storage/work budgets remain open in parallel.

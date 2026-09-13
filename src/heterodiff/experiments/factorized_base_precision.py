@@ -153,3 +153,21 @@ def precision_stable_base_objective(model, source, destination, continuous_rates
     a replacement of the legacy CPU comparator, or a qualified CUDA release.
     """
     return _precision_objective(model, source, destination, continuous_rates, jump_rates, jump_weight)
+
+
+def precision_stable_base_energy(model, batch):
+    """Evaluate the same BASE energy using the validated opt-in FP64 graph.
+
+    The caller supplies the original FP32-encoded device batch. Promotion is
+    differentiable: CPU64 physical coordinates passed through the existing
+    FP32 device encoding retain their graph, including the return gradient.
+    Parameters remain FP32 leaves (or frozen FP32 snapshot parameters); no
+    model, input, optimizer, or global precision policy is mutated.
+    """
+    _need(type(model) is DeviceFactorizedEnergy, 'exact device BASE model required')
+    _need(model.parameter_count == EXPECTED_PARAMETER_COUNT, 'device parameter count changed')
+    _parameters(model)
+    _validate_batch(model.architecture, batch, model.device)
+    promoted_batch = _promote_batch(batch, torch.float64)
+    promoted_parameters = {name: p.to(dtype=torch.float64) for name, p in model.named_parameters()}
+    return _functional_energy(model.architecture, promoted_batch, promoted_parameters)

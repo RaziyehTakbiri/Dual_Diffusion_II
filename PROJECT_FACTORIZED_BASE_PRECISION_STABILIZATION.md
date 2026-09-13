@@ -4,18 +4,21 @@ Date: 2026-09-13
 
 ## Decision and scope
 
-**COMPLETE: local precision analysis, opt-in implementation, and CPU qualification
-of the candidate. NOT COMPLETE: legacy CPU/GPU parity or candidate GPU qualification.**
+**COMPLETE: local precision analysis, opt-in implementation, CPU qualification,
+the subsequently reported bounded T4 BASE candidate GPU check, and the later
+[local conditional-pipeline precision integration](PROJECT_FACTORIZED_PRECISION_PIPELINE_LOCAL_INTEGRATION.md).
+NOT COMPLETE: legacy CPU/GPU parity or full-pipeline GPU/production qualification.**
 
 User authority: proceed with local precision analysis and stabilization while
-preserving the scientific objective and existing acceptance tolerances. No GPU,
-paid/cloud job, real-data access, installation or cluster change was performed.
+preserving the scientific objective and existing acceptance tolerances. The local
+implementation did not launch GPU/paid work or access real data. The later
+operator-executed GPU check is recorded in the [separate result review](PROJECT_FACTORIZED_BASE_PRECISION_CUDA_RESULT.md).
 
 The candidate is `BASE_GRAPH_FP64_SHARED_V1`. It is explicit opt-in; the existing
 `LEGACY_FP32` default and the existing Databricks qualification notebook/harness
 are unchanged. The separate paired candidate check is now prepared and locally
-tested as documented below. Its GPU execution still needs explicit authorization;
-rerunning the old notebook would still test the old route.
+tested as documented below. Its subsequent bounded GPU execution passed all
+four cases; rerunning the old notebook would still test the old route.
 
 ## Completed GPU diagnostic review
 
@@ -167,6 +170,15 @@ SHA-256 is `4e8658ac91ca4f8f1e1ef1382c7e38b01a92ebe6588c82ac04f9437ab8a13c05`.
 Independent review found no blocking issue; its step-split and hybrid host-work
 reporting recommendations were incorporated. No CUDA or paid work was launched.
 
+## Subsequent bounded GPU milestone complete
+
+The [operator result review](PROJECT_FACTORIZED_BASE_PRECISION_CUDA_RESULT.md)
+records candidate CPU/T4 parity PASS in all four cases with unchanged tolerances,
+exact candidate/legacy GPU replays, and 24 completed BASE steps in 22.44 seconds.
+Candidate parameter gradients match exactly, with a maximum update residual
+of 1.4901161193847656e-08. Legacy FP32 parity and CPU policy drift remain failed.
+This is the narrow synthetic BASE candidate success, not broader GPU readiness.
+
 ## Remaining work and unchanged project state
 
 The numerical mechanism is localized to cancellation in the BASE gradient graph;
@@ -174,9 +186,12 @@ this does not prove a unique offending CUDA operation. The old CPU/GPU result
 remains FAIL/OPEN. The candidate also differs from legacy FP32 updates above the
 old update threshold; this failure is retained prominently in the local report.
 
-Next is the separately authorized GPU execution of the now-prepared candidate
-comparison, using the same objective, fixtures, optimizer and numerical tolerances
-and retaining the legacy control. The candidate must
+The subsequent [local explicit-policy integration](PROJECT_FACTORIZED_PRECISION_PIPELINE_LOCAL_INTEGRATION.md)
+is complete for physical evaluation, learned-BASE populations and conditional
+sampling, including the actual coordinate-cast and RNG-identity boundaries.
+The [separate integrated GPU-check preparation](PROJECT_FACTORIZED_PRECISION_PIPELINE_GPU_CHECK_PREPARATION.md)
+is now complete and CPU-tested; its CUDA execution awaits separate authorization.
+The candidate must
 then pass broader trajectory/checkpoint/installed-release and resource checks
 before production adoption. No GPU speedup is claimed.
 

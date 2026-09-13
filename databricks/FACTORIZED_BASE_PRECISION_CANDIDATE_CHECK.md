@@ -1,12 +1,19 @@
 # Bounded BASE precision-candidate check
 
-Prepared and CPU-tested: 2026-09-13. **GPU execution remains pending.**
+Prepared and CPU-tested: 2026-09-13. **The subsequent operator-reported T4 GPU
+check PASSED all four BASE cases.** See the [result review](../PROJECT_FACTORIZED_BASE_PRECISION_CUDA_RESULT.md).
+This successful bounded run is complete. **Do not rerun it automatically.**
+The subsequent [local precision-policy integration and full-path controls](../PROJECT_FACTORIZED_PRECISION_PIPELINE_LOCAL_INTEGRATION.md)
+are now complete. The [separate integrated-pipeline GPU notebook](FACTORIZED_PRECISION_PIPELINE_GPU_CHECK.md)
+is also prepared and CPU-tested; its CUDA run awaits separate authorization.
+This notebook remains BASE-only. The instructions below preserve the
+original run handoff, not a new run request.
 
 This is a separate notebook for `BASE_GRAPH_FP64_SHARED_V1`. Do not rerun the
 old `factorized_gpu_parity_and_performance` notebook to test this candidate:
 that notebook still exercises the legacy FP32 route.
 
-## What to do now: sync and inspect
+## Original handoff: sync and inspect
 
 1. Push the project changes, including the new source module, notebook, tests
    and this guide. Pull them into the existing Databricks project folder.
@@ -104,7 +111,9 @@ completed all four cases and 24 steps in about 2.80 seconds of harness time;
 the complete wrapper output was about 22 KiB. This is not a GPU timing estimate.
 Local Python 3.11.5 / Torch 2.12.1 CPU differs from the reported Databricks
 Python 3.12.3 / Torch 2.7.0+cu126 environment. CUDA compatibility controls were
-tested with fake backends only; the new candidate has not run on GPU.
+tested with fake backends only during preparation. The later operator-executed
+candidate GPU pass is reviewed separately above; it does not extend these
+local test counts to GPU execution.
 
 The [complete CPU result](../research/fixtures/factorized_base_precision_candidate_cpu_check_2026_09_13.json)
 has SHA-256 `4e8658ac91ca4f8f1e1ef1382c7e38b01a92ebe6588c82ac04f9437ab8a13c05`.

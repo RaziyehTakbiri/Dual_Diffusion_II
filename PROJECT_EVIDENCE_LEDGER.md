@@ -4,13 +4,49 @@
 **Current project state:** `DRAFT_NOT_EXECUTABLE`  
 **Ledger role:** authoritative project-management index for the completion timetable  
 **Update rule:** change an item only with a durable evidence path or receipt  
-**Latest current checkpoint (2026-09-13):** the amended factorized BASE,
+**Latest current checkpoint (2026-09-13): separate bounded integrated-pipeline
+GPU-check preparation COMPLETE; CUDA execution PENDING.** The
+[new notebook, exact handoff and actual CPU result](PROJECT_FACTORIZED_PRECISION_PIPELINE_GPU_CHECK_PREPARATION.md)
+cover four cases, 36 optimizer updates and 48 tiny paths with common-input
+numerical comparisons and exact same-device replay. The real isolated notebook
+CPU rehearsal passed in 26.08 seconds with confirmed termination. **1,042 local
+tests passed.** A 300-second child deadline, five-second termination grace,
+bounded output and soft 2 GiB memory observation are fixed. No GPU/paid job,
+installation or real-data access occurred. The next action is inspection after
+sync, then one separately authorized selected-test-GPU run. No compound
+checkbox, field, blocker or scientific result closes; defaults and tolerances
+are unchanged.
+
+**Preceding checkpoint (2026-09-13): candidate precision conditional-pipeline
+integration and bounded local CPU qualification COMPLETE.** The
+[implementation and actual local result](PROJECT_FACTORIZED_PRECISION_PIPELINE_LOCAL_INTEGRATION.md)
+cover both domains and methods, exact fresh-run replay, 32 optimizer updates and
+64 tiny generated paths; **765 local tests passed**. Explicit policy reaches physical BASE evaluation,
+learned-BASE population generation, conditional source paths and conditional
+sampling. Scientific objectives, optimizer settings, tolerances and legacy
+defaults are unchanged. The physical FP32 encoding/gradient-return boundary is
+preserved, not advertised as end-to-end FP64. Candidate full-pipeline GPU,
+production and installed-release qualification remain open. No GPU/paid job or
+real-data access occurred; no compound checkbox, field, blocker or result closes.
+
+**Preceding checkpoint: bounded BASE candidate GPU check COMPLETE.**
+The [operator-supplied result and review](PROJECT_FACTORIZED_BASE_PRECISION_CUDA_RESULT.md)
+report 4/4 candidate CPU/GPU comparisons passed with unchanged tolerances,
+exact same-T4 replays, 24/24 BASE steps (16 GPU / 8 CPU), 22.44 seconds and
+confirmed child termination. Maximum candidate weight-update difference is
+1.4901161193847656e-08 in each case. Legacy FP32 parity and policy drift remain
+failed, not relabelled. The accepted scope is source-only synthetic BASE on two
+unique fixtures, not full learner/sampler, installed-release or production
+qualification. The normalized selected-field evidence extract is linked in
+the review. No additional GPU execution or scientific task closure occurred.
+
+**Background and preceding checkpoints:** the amended factorized BASE,
 conditional learner and sampler now have an explicit-device successor, with
 bounded parity/performance checks and a conventional inspection-first notebook.
 The [device implementation record](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md)
 documents completed local CPU verification and actual supervised CPU harness
 execution. After the startup repair, the operator's subsequent bounded CUDA run
-completed **4/4 cases with exact same-GPU replay; CPU/GPU parity is FAIL/OPEN**.
+completed **4/4 legacy cases with exact same-GPU replay; legacy CPU/GPU parity is FAIL/OPEN**.
 Only BASE updated weights fail the existing thresholds; the other comparison
 categories pass. This is actual selected-device execution evidence on Tesla T4,
 not GPU qualification or a speedup claim. See the [archived result and review](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-13-received-gpu-result-execution-complete-parity-failed).
@@ -25,7 +61,7 @@ precision candidate are also COMPLETE, with **583 local tests passed** and zero
 candidate update differences in the four-case CPU layout stress. The
 [precision record](PROJECT_FACTORIZED_BASE_PRECISION_STABILIZATION.md) archives
 both the compact operator report and the reproducible CPU experiment. Legacy
-CPU/GPU parity remains FAIL/OPEN, and the candidate has not run on CUDA. Its
+CPU/GPU parity remains FAIL/OPEN; at that local checkpoint the candidate had not run on CUDA. Its
 differences from the legacy FP32 reference remain reported; no comparator,
 objective, optimizer setting or tolerance was silently replaced. No GPU job,
 paid job, real-data access, production adoption, field or checkbox closure
@@ -36,8 +72,8 @@ fixed four-case/24-BASE-step controls, unchanged tolerances, visible legacy
 comparisons, bounded output and a supervised 120-second child. **670 local tests
 passed**, including the real CPU notebook route (4/4 cases, 24 steps). The
 [complete CPU result](research/fixtures/factorized_base_precision_candidate_cpu_check_2026_09_13.json)
-is archived. The new shared-FP64 candidate has **not** run on GPU; this preparation
-does not authorize paid execution or close any compound checkbox/field/blocker.
+is archived. That preparation did not execute the candidate on GPU or close a
+compound checkbox/field/blocker. The later bounded GPU pass is recorded above.
 The legacy neural path evaluates in FP32; the opt-in BASE candidate evaluates
 its differentiable graph in FP64 while retaining FP32 trainable parameters and
 AdamW moments. Both can target one selected CUDA device. Exact metadata, CPU
@@ -66,8 +102,10 @@ install or test local components.
 result after the instructed retry. Subsequent local work archived/reviewed its
 diagnostics, reproduced cancellation, implemented the opt-in precision candidate
 and prepared its separate bounded notebook. Legacy precision defaults, scientific
-objective, optimizer settings and acceptance tolerances remain unchanged. No
-candidate GPU execution, real-data access or GPU qualification PASS is implied.
+objective, optimizer settings and acceptance tolerances remain unchanged. The
+subsequent operator-supplied candidate report establishes the narrow selected-T4
+synthetic BASE pass above. No broader GPU qualification, real-data access or
+additional GPU run by this review is implied.
 
 **Preparation milestone's authority:** following structural scientific repair and local
 conditional integration, the user requested preparation of the GPU-capable

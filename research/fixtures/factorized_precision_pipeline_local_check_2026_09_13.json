@@ -1,0 +1,1488 @@
+{
+  "bounds": {
+    "base_updates": 16,
+    "cases": 4,
+    "conditional_paths": 16,
+    "conditional_updates": 16,
+    "fresh_runs_per_case": 2,
+    "hard_deadline_or_memory_quota_claimed": false,
+    "maximum_memory_bytes_soft": 2147483648,
+    "maximum_seconds_soft": 120,
+    "paired_base_paths": 48,
+    "per_initialization_trial_limit": 256,
+    "per_path_jump_candidate_limit": 20000,
+    "scripted_single_jump_diagnostic_operations": 16,
+    "state_cap": 4
+  },
+  "cases": [
+    {
+      "domain_id": "R3-PHYS",
+      "fresh_full_run_exact_replay": true,
+      "full_run_sha256": "402cd33a60f110258a8b54c54d158b671114b6105c97b77cde4259ef770f9566",
+      "method_id": "association-aware-guide-plus-residual",
+      "run": {
+        "base_frozen_during_conditional_work": true,
+        "base_optimizer_snapshot": {
+          "parameter_tensor_step_histogram": {
+            "2": 17
+          },
+          "parameters_and_moments_dtype": "FP32",
+          "parameters_moments_and_steps_sha256": "0557c64e2e10ddbf3365e4225a7ae13ef6f1b24831bbc939baf8d3ca3d2e87ed",
+          "steps_match_actual_non_none_gradients": true
+        },
+        "base_updates": [
+          {
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "changed_parameter_elements": 88513,
+            "continuous_loss": 0.002954477383255854,
+            "device": "cpu",
+            "forward_times": [
+              0.7188215999535003,
+              0.6009512146327906
+            ],
+            "jump_loss": 0.3479397633350966,
+            "loss": 0.3508942407183524,
+            "proposal_kinds": [
+              "death",
+              "death"
+            ],
+            "reference_rng_and_corruption_device": "cpu",
+            "scientific_training_completed": false
+          },
+          {
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "changed_parameter_elements": 88513,
+            "continuous_loss": 0.0014437650548894594,
+            "device": "cpu",
+            "forward_times": [
+              0.8444964394103148,
+              0.5996545189939668
+            ],
+            "jump_loss": 0.34576904581564794,
+            "loss": 0.3472128108705374,
+            "proposal_kinds": [
+              "birth",
+              "death"
+            ],
+            "reference_rng_and_corruption_device": "cpu",
+            "scientific_training_completed": false
+          }
+        ],
+        "candidate_population_law_id": "device-factorized-base-precision-v1-ecc50fa5d53f4702884c71e903d261fce1ed5f1b1bb356270188695b6690ed74",
+        "conditional_optimizer_snapshot": {
+          "parameter_tensor_step_histogram": {
+            "1": 7,
+            "2": 36
+          },
+          "parameters_and_moments_dtype": "FP32",
+          "parameters_moments_and_steps_sha256": "ccf981ea5c7d301afb38fe9c2b35aaa1dccce31b9593964fd60cd4165d228425",
+          "steps_match_actual_non_none_gradients": true
+        },
+        "conditional_paths": {
+          "overflow": {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "5e4425522e5f0c40b85c0347eccbd9a094f13109f7fee6666c546a3164ec47ac",
+            "grid": [
+              0,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 136,
+            "reference_initializer": false,
+            "state_grid_sha256": "1f86842b5b6632b37d0ad8e7f2975e29988519e139f55b0962f10031cfb3707d",
+            "stream_binding_sha256": "823723a2764a618e12337d3935c1500fa7e080245b2ce07163b46dee2883e907"
+          },
+          "retained": {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "4b0d882b6343b06d0d2943a9cf0c48be0f635c7196b8813d68355c72231d5856",
+            "grid": [
+              0,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": false,
+            "state_grid_sha256": "6f65561abfc5306bc0724a6a2db0ee4cb3b32e31a3c4a911e58676dd648aeac7",
+            "stream_binding_sha256": "236d3504b38922d21a0173baea9cf4e85ed4f568b905e8383f3c7f1630b28540"
+          }
+        },
+        "conditional_source_paths": [
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "35ecb9b1eaf0a051a251e4b713d8e529f278b853a96cd82f3e997efb63491733",
+            "grid": [
+              0,
+              0.20806055934549705,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "27ec521b9635746d99f743ac21cf2b14ca56282c7c21a9441ccd59cae8c6a719",
+            "stream_binding_sha256": "ace71abb8d64861406ffcc08009b9a2f996a8f6589acfb3233205a8044a1046d"
+          },
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "b2c972e7402cbea8ebeb04f4808779191793e7380136368576e1669d7d74815f",
+            "grid": [
+              0,
+              0.20806055934549705,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "1eb633798e2562917e0eeb69208521d0eb23bffdf9c718ec17529097bf87e6c5",
+            "stream_binding_sha256": "6559ab131fb70d06b2785b91b6fecdbfa1f529e170c31260a5e62b4775eaf64a"
+          },
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "146e950fdf430a4fe5aec5e3ee1b2203169aa170de2751dc6e242e4e7acd9820",
+            "grid": [
+              0,
+              0.25,
+              0.39325260160239184,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "ab1001b5b9e3606e8a0372dd8fe3b440e132fc7940cb206f38d7aaa3c0308aa3",
+            "stream_binding_sha256": "896417ada3e37d2d196268085ba0491c61895cd56e80b3aad85852ee11b15cbc"
+          },
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "76405738f8ff2e3b744b32bcad463283280c04ac9c8ad3441aa9aa3a781901a2",
+            "grid": [
+              0,
+              0.25,
+              0.39325260160239184,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "fec8b670d3afd19a36f50d336e7385f192e0efc72e371a42115b3fe9ff67fbed",
+            "stream_binding_sha256": "7efc87914e14351106762327b989ead2c258f3602753fbc4e874692606f92aa6"
+          }
+        ],
+        "conditional_updates": [
+          {
+            "actual_macrosteps": 10,
+            "base_paths_generated": 2,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "changed_parameter_elements": 200962,
+            "device": "cpu",
+            "law_id": "device-factorized-base-precision-v1-ecc50fa5d53f4702884c71e903d261fce1ed5f1b1bb356270188695b6690ed74-uniform-full",
+            "loss": 0.9405871292829485,
+            "reverse_times": [
+              0.20806055934549705
+            ],
+            "scientific_training_completed": false,
+            "time_policy": "UNIFORM_FULL_REVERSE_INTERVAL"
+          },
+          {
+            "actual_macrosteps": 10,
+            "base_paths_generated": 2,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "changed_parameter_elements": 178881,
+            "device": "cpu",
+            "law_id": "device-factorized-base-precision-v1-ecc50fa5d53f4702884c71e903d261fce1ed5f1b1bb356270188695b6690ed74-uniform-full",
+            "loss": 0.3091689420302181,
+            "reverse_times": [
+              0.39325260160239184
+            ],
+            "scientific_training_completed": false,
+            "time_policy": "UNIFORM_FULL_REVERSE_INTERVAL"
+          }
+        ],
+        "fixed_input_controls": {
+          "candidate_snapshot_exact_replay": true,
+          "candidate_snapshot_maximum_difference": 0,
+          "common_inputs": "EXPLICIT_STATE_AND_FIXED_BROWNIAN_INCREMENT_NOT_POPULATION_RUN_SEED",
+          "continuous_coordinate_motion_exercised": true,
+          "duplicate_occurrences_preserved": true,
+          "legacy_same_weights_fixed_input_drift": {
+            "failure_count": 0,
+            "gates_candidate_completion": false,
+            "maximum_absolute_difference": 4.2031173541623446e-9,
+            "passed_existing_physical_tolerance": true
+          }
+        },
+        "fixed_jump_controls": {
+          "controls": {
+            "birth": {
+              "counts": {
+                "accepted_birth": 1,
+                "accepted_death": 0,
+                "accepted_jumps": 1,
+                "jump_candidates": 1
+              },
+              "destination_count": 1,
+              "source_count": 0,
+              "state_and_journal_sha256": "543be3ac030adbd7eaeb54b7cd5ca6b3d81425ea51dee5bca5e290e394874731"
+            },
+            "death": {
+              "counts": {
+                "accepted_birth": 0,
+                "accepted_death": 1,
+                "accepted_jumps": 1,
+                "jump_candidates": 1
+              },
+              "destination_count": 3,
+              "source_count": 4,
+              "state_and_journal_sha256": "de57381a014fb8732b1aa3f2a3b0c7b3de97b1a30bf4846cf6bdf584d6af05b9"
+            }
+          },
+          "scope": "BASE_ONLY_ACCEPTED_JUMP_CONTROL_NOT_CONDITIONAL_PATH_FREQUENCY",
+          "scripted_streams_not_scientific_draws": true
+        },
+        "legacy_population_law_id": "device-factorized-b89ee05f61258d6376f52ffec06a040202bfc1b8be76d045260bf96b75883994",
+        "paired_paths": [
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 1,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              0,
+              0
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "7d2783a6610ddccdd040dac9d714ab4133effc353170578452a138151835ee51",
+            "grid": [
+              0,
+              0.25,
+              0.375,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 1,
+            "reference_initializer": true,
+            "state_grid_sha256": "8c19352aafa524feb1c840db36ce6c8088f756371366d158a0dc88a93efeebe7",
+            "stream_binding_sha256": "6c2f145b0c4c6c5116b0658c670b66c3c8f6830f1091d113be2ef733b82444f3"
+          },
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "dc7b940c55d04088661f27127d5daa1a84c26e8e59b55b596a9b7c510eccb28b",
+            "grid": [
+              0,
+              0.25,
+              0.375,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "3a8762d64d7c06aa6f91125baed7545b29920923f1b37e01bce4d17bc6001aca",
+            "stream_binding_sha256": "7b18ebbb564e83c548f75cb82ec98e04ff19990e5e7420e93b54421b81ff43d7"
+          }
+        ],
+        "sampler_did_not_mutate_models": true
+      }
+    },
+    {
+      "domain_id": "R3-PHYS",
+      "fresh_full_run_exact_replay": true,
+      "full_run_sha256": "af90d169949b4775cf08c7f9fcc0b8ae1587cd2d2656c978b68c9ff7a00e3283",
+      "method_id": "unified-direct-conditioner",
+      "run": {
+        "base_frozen_during_conditional_work": true,
+        "base_optimizer_snapshot": {
+          "parameter_tensor_step_histogram": {
+            "2": 17
+          },
+          "parameters_and_moments_dtype": "FP32",
+          "parameters_moments_and_steps_sha256": "0557c64e2e10ddbf3365e4225a7ae13ef6f1b24831bbc939baf8d3ca3d2e87ed",
+          "steps_match_actual_non_none_gradients": true
+        },
+        "base_updates": [
+          {
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "changed_parameter_elements": 88513,
+            "continuous_loss": 0.002954477383255854,
+            "device": "cpu",
+            "forward_times": [
+              0.7188215999535003,
+              0.6009512146327906
+            ],
+            "jump_loss": 0.3479397633350966,
+            "loss": 0.3508942407183524,
+            "proposal_kinds": [
+              "death",
+              "death"
+            ],
+            "reference_rng_and_corruption_device": "cpu",
+            "scientific_training_completed": false
+          },
+          {
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "changed_parameter_elements": 88513,
+            "continuous_loss": 0.0014437650548894594,
+            "device": "cpu",
+            "forward_times": [
+              0.8444964394103148,
+              0.5996545189939668
+            ],
+            "jump_loss": 0.34576904581564794,
+            "loss": 0.3472128108705374,
+            "proposal_kinds": [
+              "birth",
+              "death"
+            ],
+            "reference_rng_and_corruption_device": "cpu",
+            "scientific_training_completed": false
+          }
+        ],
+        "candidate_population_law_id": "device-factorized-base-precision-v1-ecc50fa5d53f4702884c71e903d261fce1ed5f1b1bb356270188695b6690ed74",
+        "conditional_optimizer_snapshot": {
+          "parameter_tensor_step_histogram": {
+            "1": 7,
+            "2": 36
+          },
+          "parameters_and_moments_dtype": "FP32",
+          "parameters_moments_and_steps_sha256": "a6743675bcaf49fb4565d5e76f80c6d446f13034bc322afbe77930e894a2d228",
+          "steps_match_actual_non_none_gradients": true
+        },
+        "conditional_paths": {
+          "overflow": {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "18f4fc06b5988ca3befd777d4659845b96bf85f636e51794773a101afa2250e7",
+            "grid": [
+              0,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 136,
+            "reference_initializer": false,
+            "state_grid_sha256": "1f86842b5b6632b37d0ad8e7f2975e29988519e139f55b0962f10031cfb3707d",
+            "stream_binding_sha256": "823723a2764a618e12337d3935c1500fa7e080245b2ce07163b46dee2883e907"
+          },
+          "retained": {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "4b0d882b6343b06d0d2943a9cf0c48be0f635c7196b8813d68355c72231d5856",
+            "grid": [
+              0,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": false,
+            "state_grid_sha256": "1c5bd6c297085574dcd51a531c473c7fd46f12ce5afd687992b09ea5320f7ac6",
+            "stream_binding_sha256": "236d3504b38922d21a0173baea9cf4e85ed4f568b905e8383f3c7f1630b28540"
+          }
+        },
+        "conditional_source_paths": [
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "35ecb9b1eaf0a051a251e4b713d8e529f278b853a96cd82f3e997efb63491733",
+            "grid": [
+              0,
+              0.20806055934549705,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "27ec521b9635746d99f743ac21cf2b14ca56282c7c21a9441ccd59cae8c6a719",
+            "stream_binding_sha256": "ace71abb8d64861406ffcc08009b9a2f996a8f6589acfb3233205a8044a1046d"
+          },
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "b2c972e7402cbea8ebeb04f4808779191793e7380136368576e1669d7d74815f",
+            "grid": [
+              0,
+              0.20806055934549705,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "1eb633798e2562917e0eeb69208521d0eb23bffdf9c718ec17529097bf87e6c5",
+            "stream_binding_sha256": "6559ab131fb70d06b2785b91b6fecdbfa1f529e170c31260a5e62b4775eaf64a"
+          },
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "146e950fdf430a4fe5aec5e3ee1b2203169aa170de2751dc6e242e4e7acd9820",
+            "grid": [
+              0,
+              0.25,
+              0.39325260160239184,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "ab1001b5b9e3606e8a0372dd8fe3b440e132fc7940cb206f38d7aaa3c0308aa3",
+            "stream_binding_sha256": "896417ada3e37d2d196268085ba0491c61895cd56e80b3aad85852ee11b15cbc"
+          },
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "76405738f8ff2e3b744b32bcad463283280c04ac9c8ad3441aa9aa3a781901a2",
+            "grid": [
+              0,
+              0.25,
+              0.39325260160239184,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "fec8b670d3afd19a36f50d336e7385f192e0efc72e371a42115b3fe9ff67fbed",
+            "stream_binding_sha256": "7efc87914e14351106762327b989ead2c258f3602753fbc4e874692606f92aa6"
+          }
+        ],
+        "conditional_updates": [
+          {
+            "actual_macrosteps": 10,
+            "base_paths_generated": 2,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "changed_parameter_elements": 200962,
+            "device": "cpu",
+            "law_id": "device-factorized-base-precision-v1-ecc50fa5d53f4702884c71e903d261fce1ed5f1b1bb356270188695b6690ed74-uniform-full",
+            "loss": 1.0828095053251232,
+            "reverse_times": [
+              0.20806055934549705
+            ],
+            "scientific_training_completed": false,
+            "time_policy": "UNIFORM_FULL_REVERSE_INTERVAL"
+          },
+          {
+            "actual_macrosteps": 10,
+            "base_paths_generated": 2,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "changed_parameter_elements": 178882,
+            "device": "cpu",
+            "law_id": "device-factorized-base-precision-v1-ecc50fa5d53f4702884c71e903d261fce1ed5f1b1bb356270188695b6690ed74-uniform-full",
+            "loss": 0.3017655677693158,
+            "reverse_times": [
+              0.39325260160239184
+            ],
+            "scientific_training_completed": false,
+            "time_policy": "UNIFORM_FULL_REVERSE_INTERVAL"
+          }
+        ],
+        "fixed_input_controls": {
+          "candidate_snapshot_exact_replay": true,
+          "candidate_snapshot_maximum_difference": 0,
+          "common_inputs": "EXPLICIT_STATE_AND_FIXED_BROWNIAN_INCREMENT_NOT_POPULATION_RUN_SEED",
+          "continuous_coordinate_motion_exercised": true,
+          "duplicate_occurrences_preserved": true,
+          "legacy_same_weights_fixed_input_drift": {
+            "failure_count": 0,
+            "gates_candidate_completion": false,
+            "maximum_absolute_difference": 4.2031173541623446e-9,
+            "passed_existing_physical_tolerance": true
+          }
+        },
+        "fixed_jump_controls": {
+          "controls": {
+            "birth": {
+              "counts": {
+                "accepted_birth": 1,
+                "accepted_death": 0,
+                "accepted_jumps": 1,
+                "jump_candidates": 1
+              },
+              "destination_count": 1,
+              "source_count": 0,
+              "state_and_journal_sha256": "543be3ac030adbd7eaeb54b7cd5ca6b3d81425ea51dee5bca5e290e394874731"
+            },
+            "death": {
+              "counts": {
+                "accepted_birth": 0,
+                "accepted_death": 1,
+                "accepted_jumps": 1,
+                "jump_candidates": 1
+              },
+              "destination_count": 3,
+              "source_count": 4,
+              "state_and_journal_sha256": "de57381a014fb8732b1aa3f2a3b0c7b3de97b1a30bf4846cf6bdf584d6af05b9"
+            }
+          },
+          "scope": "BASE_ONLY_ACCEPTED_JUMP_CONTROL_NOT_CONDITIONAL_PATH_FREQUENCY",
+          "scripted_streams_not_scientific_draws": true
+        },
+        "legacy_population_law_id": "device-factorized-b89ee05f61258d6376f52ffec06a040202bfc1b8be76d045260bf96b75883994",
+        "paired_paths": [
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 1,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              0,
+              0
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "7d2783a6610ddccdd040dac9d714ab4133effc353170578452a138151835ee51",
+            "grid": [
+              0,
+              0.25,
+              0.375,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 1,
+            "reference_initializer": true,
+            "state_grid_sha256": "8c19352aafa524feb1c840db36ce6c8088f756371366d158a0dc88a93efeebe7",
+            "stream_binding_sha256": "6c2f145b0c4c6c5116b0658c670b66c3c8f6830f1091d113be2ef733b82444f3"
+          },
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "dc7b940c55d04088661f27127d5daa1a84c26e8e59b55b596a9b7c510eccb28b",
+            "grid": [
+              0,
+              0.25,
+              0.375,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "3a8762d64d7c06aa6f91125baed7545b29920923f1b37e01bce4d17bc6001aca",
+            "stream_binding_sha256": "7b18ebbb564e83c548f75cb82ec98e04ff19990e5e7420e93b54421b81ff43d7"
+          }
+        ],
+        "sampler_did_not_mutate_models": true
+      }
+    },
+    {
+      "domain_id": "R4-RETAIL",
+      "fresh_full_run_exact_replay": true,
+      "full_run_sha256": "c0636b77ad908d35ee998b16f4ad46242d0ca2111f3113a27dd2d8733fb54a79",
+      "method_id": "association-aware-guide-plus-residual",
+      "run": {
+        "base_frozen_during_conditional_work": true,
+        "base_optimizer_snapshot": {
+          "parameter_tensor_step_histogram": {
+            "2": 17
+          },
+          "parameters_and_moments_dtype": "FP32",
+          "parameters_moments_and_steps_sha256": "45d0df1ef5b4738aca7e4d1103a43d671e7a881b4581ecdf5f7224153fb82b79",
+          "steps_match_actual_non_none_gradients": true
+        },
+        "base_updates": [
+          {
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "changed_parameter_elements": 88513,
+            "continuous_loss": 0.00294975124838812,
+            "device": "cpu",
+            "forward_times": [
+              0.7188215999535003,
+              0.6009512146327906
+            ],
+            "jump_loss": 0.34792451098490373,
+            "loss": 0.3508742622332919,
+            "proposal_kinds": [
+              "death",
+              "death"
+            ],
+            "reference_rng_and_corruption_device": "cpu",
+            "scientific_training_completed": false
+          },
+          {
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "changed_parameter_elements": 88513,
+            "continuous_loss": 0.0013720094725495975,
+            "device": "cpu",
+            "forward_times": [
+              0.8444964394103148,
+              0.5996545189939668
+            ],
+            "jump_loss": 0.34583589245822544,
+            "loss": 0.34720790193077505,
+            "proposal_kinds": [
+              "birth",
+              "death"
+            ],
+            "reference_rng_and_corruption_device": "cpu",
+            "scientific_training_completed": false
+          }
+        ],
+        "candidate_population_law_id": "device-factorized-base-precision-v1-a4c68b62df534d6a54a1e8e92404790aa502d3cdc7600a9a1b757f77e3f14225",
+        "conditional_optimizer_snapshot": {
+          "parameter_tensor_step_histogram": {
+            "1": 15,
+            "2": 28
+          },
+          "parameters_and_moments_dtype": "FP32",
+          "parameters_moments_and_steps_sha256": "c0599e17f303a0d37e215df60099cca4607cc136de718b1d174a00f420835bad",
+          "steps_match_actual_non_none_gradients": true
+        },
+        "conditional_paths": {
+          "overflow": {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "a6fbb9f6ff05a42775fac8db4faea59207f7dbedfb12974810f5b770b46f87ac",
+            "grid": [
+              0,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 136,
+            "reference_initializer": false,
+            "state_grid_sha256": "b2b9d4681d3f2ae93e7feaec00b4529464f60e7d183bc8328debe86133a52b23",
+            "stream_binding_sha256": "823723a2764a618e12337d3935c1500fa7e080245b2ce07163b46dee2883e907"
+          },
+          "retained": {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "4b0d882b6343b06d0d2943a9cf0c48be0f635c7196b8813d68355c72231d5856",
+            "grid": [
+              0,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": false,
+            "state_grid_sha256": "1990ff40d4d513e1c78ebe22852fee443996effa18f808f0c2f15f004a819b00",
+            "stream_binding_sha256": "236d3504b38922d21a0173baea9cf4e85ed4f568b905e8383f3c7f1630b28540"
+          }
+        },
+        "conditional_source_paths": [
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "f4773e72ab3fae8f2bea2f504ce7562b2e14c8092e849f83a38b33b291d77b81",
+            "grid": [
+              0,
+              0.043502030287869475,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "7304ac179ce755a3c3bfc34992189248d2ea89c08eda58bf46613228a5d04bf1",
+            "stream_binding_sha256": "d426d6a81943ca794e79e0f11ed5d34885d301a09d7189abb51178497ed58059"
+          },
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "fb148c255aba80f942e220dcae40f882d7d39c2657336e468e2987b228a9d4d2",
+            "grid": [
+              0,
+              0.043502030287869475,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "2386c8da987a705b9faa13615d8407dfccd599d1eff49a98d28ee6e7b94174f8",
+            "stream_binding_sha256": "2b55eba6752913599be89416e70c1a0db314038bcdd2a9fa93bea5cb6e60ece6"
+          },
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "b4fc5b81209c1694fb427773fb8493b91f664c3f9d48bc4473be253d5899de6a",
+            "grid": [
+              0,
+              0.25,
+              0.5,
+              0.6148285673928394,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "ae572af536a7f6e1c2e9e1d5aab48c2cd6b6c807b392f10fd40a1eb12addfecc",
+            "stream_binding_sha256": "7a8329066c3cf99ac10848c8f86c50bca622f8edb4fd230c49bec8a0f3e910bc"
+          },
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "67357414bc9a8f39ba02ada673d6210fb7929020797aa17ddd27b2215abbad87",
+            "grid": [
+              0,
+              0.25,
+              0.5,
+              0.6148285673928394,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "ae572af536a7f6e1c2e9e1d5aab48c2cd6b6c807b392f10fd40a1eb12addfecc",
+            "stream_binding_sha256": "7a998a1c0e25fa51f730f22a69f0ef97c27c765157f8dd34dc4f9a155e2f419b"
+          }
+        ],
+        "conditional_updates": [
+          {
+            "actual_macrosteps": 10,
+            "base_paths_generated": 2,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "changed_parameter_elements": 200450,
+            "device": "cpu",
+            "law_id": "device-factorized-base-precision-v1-a4c68b62df534d6a54a1e8e92404790aa502d3cdc7600a9a1b757f77e3f14225-uniform-full",
+            "loss": 0.4753047850741334,
+            "reverse_times": [
+              0.043502030287869475
+            ],
+            "scientific_training_completed": false,
+            "time_policy": "UNIFORM_FULL_REVERSE_INTERVAL"
+          },
+          {
+            "actual_macrosteps": 10,
+            "base_paths_generated": 2,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "changed_parameter_elements": 136898,
+            "device": "cpu",
+            "law_id": "device-factorized-base-precision-v1-a4c68b62df534d6a54a1e8e92404790aa502d3cdc7600a9a1b757f77e3f14225-uniform-full",
+            "loss": 0.7524471980422744,
+            "reverse_times": [
+              0.6148285673928394
+            ],
+            "scientific_training_completed": false,
+            "time_policy": "UNIFORM_FULL_REVERSE_INTERVAL"
+          }
+        ],
+        "fixed_input_controls": {
+          "candidate_snapshot_exact_replay": true,
+          "candidate_snapshot_maximum_difference": 0,
+          "common_inputs": "EXPLICIT_STATE_AND_FIXED_BROWNIAN_INCREMENT_NOT_POPULATION_RUN_SEED",
+          "continuous_coordinate_motion_exercised": true,
+          "duplicate_occurrences_preserved": true,
+          "legacy_same_weights_fixed_input_drift": {
+            "failure_count": 0,
+            "gates_candidate_completion": false,
+            "maximum_absolute_difference": 7.188531658819386e-9,
+            "passed_existing_physical_tolerance": true
+          }
+        },
+        "fixed_jump_controls": {
+          "controls": {
+            "birth": {
+              "counts": {
+                "accepted_birth": 1,
+                "accepted_death": 0,
+                "accepted_jumps": 1,
+                "jump_candidates": 1
+              },
+              "destination_count": 1,
+              "source_count": 0,
+              "state_and_journal_sha256": "4bbc8a9fbc4844134c525fab52dcaa27c865f762257275c057653ae1d4154ec1"
+            },
+            "death": {
+              "counts": {
+                "accepted_birth": 0,
+                "accepted_death": 1,
+                "accepted_jumps": 1,
+                "jump_candidates": 1
+              },
+              "destination_count": 3,
+              "source_count": 4,
+              "state_and_journal_sha256": "fe77095d57b6341e7252ea94f43f72ebe688b87d91cb4143ef0622ef5125107b"
+            }
+          },
+          "scope": "BASE_ONLY_ACCEPTED_JUMP_CONTROL_NOT_CONDITIONAL_PATH_FREQUENCY",
+          "scripted_streams_not_scientific_draws": true
+        },
+        "legacy_population_law_id": "device-factorized-901a2bf893fec5f04465610ea381d64db566067297a57fe9bc91fb1962b62a59",
+        "paired_paths": [
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "fca4457330814c908c864c6e3ccaa4ec3e199aaca8a10f0e92dd46fcc644a290",
+            "grid": [
+              0,
+              0.25,
+              0.375,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "7830fe7132bdad4e95a068d95cdc31d489072edfe9717eda623e8c07f0bd1bdf",
+            "stream_binding_sha256": "d9b9190f8f136f67c9314843ad4a89cd37df6167e03e9ab93d14b4ba99687ec2"
+          },
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "723ba2bed438fe143dd4f946ab71cb598ef03b9017fe3fb1b0113281b811c7ff",
+            "grid": [
+              0,
+              0.25,
+              0.375,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "8d0e6c0f780ce38f3d94ab7b4d2dc7f993177a0a45d0103eb2dddf30182fbb4f",
+            "stream_binding_sha256": "6c4214ab5ddd9987c31eccdec3fcda1bba9535118f396df5ef83c0c024b1bf73"
+          }
+        ],
+        "sampler_did_not_mutate_models": true
+      }
+    },
+    {
+      "domain_id": "R4-RETAIL",
+      "fresh_full_run_exact_replay": true,
+      "full_run_sha256": "566106d7757c02c5d4a1242a9418c16e9cacfe4d233ab97a864f12c7fc211dea",
+      "method_id": "unified-direct-conditioner",
+      "run": {
+        "base_frozen_during_conditional_work": true,
+        "base_optimizer_snapshot": {
+          "parameter_tensor_step_histogram": {
+            "2": 17
+          },
+          "parameters_and_moments_dtype": "FP32",
+          "parameters_moments_and_steps_sha256": "45d0df1ef5b4738aca7e4d1103a43d671e7a881b4581ecdf5f7224153fb82b79",
+          "steps_match_actual_non_none_gradients": true
+        },
+        "base_updates": [
+          {
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "changed_parameter_elements": 88513,
+            "continuous_loss": 0.00294975124838812,
+            "device": "cpu",
+            "forward_times": [
+              0.7188215999535003,
+              0.6009512146327906
+            ],
+            "jump_loss": 0.34792451098490373,
+            "loss": 0.3508742622332919,
+            "proposal_kinds": [
+              "death",
+              "death"
+            ],
+            "reference_rng_and_corruption_device": "cpu",
+            "scientific_training_completed": false
+          },
+          {
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "changed_parameter_elements": 88513,
+            "continuous_loss": 0.0013720094725495975,
+            "device": "cpu",
+            "forward_times": [
+              0.8444964394103148,
+              0.5996545189939668
+            ],
+            "jump_loss": 0.34583589245822544,
+            "loss": 0.34720790193077505,
+            "proposal_kinds": [
+              "birth",
+              "death"
+            ],
+            "reference_rng_and_corruption_device": "cpu",
+            "scientific_training_completed": false
+          }
+        ],
+        "candidate_population_law_id": "device-factorized-base-precision-v1-a4c68b62df534d6a54a1e8e92404790aa502d3cdc7600a9a1b757f77e3f14225",
+        "conditional_optimizer_snapshot": {
+          "parameter_tensor_step_histogram": {
+            "1": 15,
+            "2": 28
+          },
+          "parameters_and_moments_dtype": "FP32",
+          "parameters_moments_and_steps_sha256": "1b6afeb6f2de1da6fb367f23131dba28132d40c94612e3957740351ea031be5f",
+          "steps_match_actual_non_none_gradients": true
+        },
+        "conditional_paths": {
+          "overflow": {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "e7078bd987cfee659082813b60e8aa4e14358db707fcd7bfb7f04f7c2e3b8224",
+            "grid": [
+              0,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 136,
+            "reference_initializer": false,
+            "state_grid_sha256": "b2b9d4681d3f2ae93e7feaec00b4529464f60e7d183bc8328debe86133a52b23",
+            "stream_binding_sha256": "823723a2764a618e12337d3935c1500fa7e080245b2ce07163b46dee2883e907"
+          },
+          "retained": {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "4b0d882b6343b06d0d2943a9cf0c48be0f635c7196b8813d68355c72231d5856",
+            "grid": [
+              0,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": false,
+            "state_grid_sha256": "90257816ba041ff2ca89d9e5b01c377c22aed9510b50b068d38f5c1937935e4c",
+            "stream_binding_sha256": "236d3504b38922d21a0173baea9cf4e85ed4f568b905e8383f3c7f1630b28540"
+          }
+        },
+        "conditional_source_paths": [
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "f4773e72ab3fae8f2bea2f504ce7562b2e14c8092e849f83a38b33b291d77b81",
+            "grid": [
+              0,
+              0.043502030287869475,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "7304ac179ce755a3c3bfc34992189248d2ea89c08eda58bf46613228a5d04bf1",
+            "stream_binding_sha256": "d426d6a81943ca794e79e0f11ed5d34885d301a09d7189abb51178497ed58059"
+          },
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "fb148c255aba80f942e220dcae40f882d7d39c2657336e468e2987b228a9d4d2",
+            "grid": [
+              0,
+              0.043502030287869475,
+              0.25,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "2386c8da987a705b9faa13615d8407dfccd599d1eff49a98d28ee6e7b94174f8",
+            "stream_binding_sha256": "2b55eba6752913599be89416e70c1a0db314038bcdd2a9fa93bea5cb6e60ece6"
+          },
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "b4fc5b81209c1694fb427773fb8493b91f664c3f9d48bc4473be253d5899de6a",
+            "grid": [
+              0,
+              0.25,
+              0.5,
+              0.6148285673928394,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "ae572af536a7f6e1c2e9e1d5aab48c2cd6b6c807b392f10fd40a1eb12addfecc",
+            "stream_binding_sha256": "7a8329066c3cf99ac10848c8f86c50bca622f8edb4fd230c49bec8a0f3e910bc"
+          },
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "67357414bc9a8f39ba02ada673d6210fb7929020797aa17ddd27b2215abbad87",
+            "grid": [
+              0,
+              0.25,
+              0.5,
+              0.6148285673928394,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "ae572af536a7f6e1c2e9e1d5aab48c2cd6b6c807b392f10fd40a1eb12addfecc",
+            "stream_binding_sha256": "7a998a1c0e25fa51f730f22a69f0ef97c27c765157f8dd34dc4f9a155e2f419b"
+          }
+        ],
+        "conditional_updates": [
+          {
+            "actual_macrosteps": 10,
+            "base_paths_generated": 2,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "changed_parameter_elements": 200450,
+            "device": "cpu",
+            "law_id": "device-factorized-base-precision-v1-a4c68b62df534d6a54a1e8e92404790aa502d3cdc7600a9a1b757f77e3f14225-uniform-full",
+            "loss": 0.4569499199696908,
+            "reverse_times": [
+              0.043502030287869475
+            ],
+            "scientific_training_completed": false,
+            "time_policy": "UNIFORM_FULL_REVERSE_INTERVAL"
+          },
+          {
+            "actual_macrosteps": 10,
+            "base_paths_generated": 2,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "changed_parameter_elements": 136898,
+            "device": "cpu",
+            "law_id": "device-factorized-base-precision-v1-a4c68b62df534d6a54a1e8e92404790aa502d3cdc7600a9a1b757f77e3f14225-uniform-full",
+            "loss": 0.753506075947239,
+            "reverse_times": [
+              0.6148285673928394
+            ],
+            "scientific_training_completed": false,
+            "time_policy": "UNIFORM_FULL_REVERSE_INTERVAL"
+          }
+        ],
+        "fixed_input_controls": {
+          "candidate_snapshot_exact_replay": true,
+          "candidate_snapshot_maximum_difference": 0,
+          "common_inputs": "EXPLICIT_STATE_AND_FIXED_BROWNIAN_INCREMENT_NOT_POPULATION_RUN_SEED",
+          "continuous_coordinate_motion_exercised": true,
+          "duplicate_occurrences_preserved": true,
+          "legacy_same_weights_fixed_input_drift": {
+            "failure_count": 0,
+            "gates_candidate_completion": false,
+            "maximum_absolute_difference": 7.188531603308235e-9,
+            "passed_existing_physical_tolerance": true
+          }
+        },
+        "fixed_jump_controls": {
+          "controls": {
+            "birth": {
+              "counts": {
+                "accepted_birth": 1,
+                "accepted_death": 0,
+                "accepted_jumps": 1,
+                "jump_candidates": 1
+              },
+              "destination_count": 1,
+              "source_count": 0,
+              "state_and_journal_sha256": "4bbc8a9fbc4844134c525fab52dcaa27c865f762257275c057653ae1d4154ec1"
+            },
+            "death": {
+              "counts": {
+                "accepted_birth": 0,
+                "accepted_death": 1,
+                "accepted_jumps": 1,
+                "jump_candidates": 1
+              },
+              "destination_count": 3,
+              "source_count": 4,
+              "state_and_journal_sha256": "fe77095d57b6341e7252ea94f43f72ebe688b87d91cb4143ef0622ef5125107b"
+            }
+          },
+          "scope": "BASE_ONLY_ACCEPTED_JUMP_CONTROL_NOT_CONDITIONAL_PATH_FREQUENCY",
+          "scripted_streams_not_scientific_draws": true
+        },
+        "legacy_population_law_id": "device-factorized-901a2bf893fec5f04465610ea381d64db566067297a57fe9bc91fb1962b62a59",
+        "paired_paths": [
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "fca4457330814c908c864c6e3ccaa4ec3e199aaca8a10f0e92dd46fcc644a290",
+            "grid": [
+              0,
+              0.25,
+              0.375,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "7830fe7132bdad4e95a068d95cdc31d489072edfe9717eda623e8c07f0bd1bdf",
+            "stream_binding_sha256": "d9b9190f8f136f67c9314843ad4a89cd37df6167e03e9ab93d14b4ba99687ec2"
+          },
+          {
+            "accepted_births": 0,
+            "accepted_deaths": 0,
+            "base_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+            "cardinalities": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "exact_continuous_time_law_claimed": false,
+            "full_diagnostics_sha256": "723ba2bed438fe143dd4f946ab71cb598ef03b9017fe3fb1b0113281b811c7ff",
+            "grid": [
+              0,
+              0.25,
+              0.375,
+              0.5,
+              0.75,
+              1
+            ],
+            "jump_candidates": 0,
+            "reference_initializer": true,
+            "state_grid_sha256": "8d0e6c0f780ce38f3d94ab7b4d2dc7f993177a0a45d0103eb2dddf30182fbb4f",
+            "stream_binding_sha256": "6c4214ab5ddd9987c31eccdec3fcda1bba9535118f396df5ef83c0c024b1bf73"
+          }
+        ],
+        "sampler_did_not_mutate_models": true
+      }
+    }
+  ],
+  "completed_case_count": 4,
+  "decision": "PASS_LOCAL_CPU_PRECISION_PIPELINE_ONLY",
+  "device": "cpu",
+  "elapsed_seconds": 23.259151834063232,
+  "fixture_id": "factorized-precision-pipeline-tiny-cpu-v1",
+  "path_activity_first_runs_only": {
+    "accepted_births": 0,
+    "accepted_deaths": 2,
+    "jump_candidates": 546,
+    "recorded_paths": 32
+  },
+  "precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+  "process_lifetime_peak_rss_bytes": 386416640,
+  "progress": {
+    "base_updates_begun": 16,
+    "base_updates_completed": 16,
+    "conditional_updates_begun": 16,
+    "conditional_updates_completed": 16,
+    "domain_id": "R4-RETAIL",
+    "method_id": "unified-direct-conditioner",
+    "stage": "COMPLETE"
+  },
+  "schema_version": "factorized-precision-pipeline-local-check-v1",
+  "scope": {
+    "F105_executed": false,
+    "cloud_jobs_launched": false,
+    "equal_seeds_across_different_population_laws_claimed_as_coupling": false,
+    "explicit_CUDA_query_or_execution_requested": false,
+    "files_written": false,
+    "full_pipeline_GPU_qualified": false,
+    "installed_release_qualified": false,
+    "legacy_default_or_acceptance_tolerances_changed": false,
+    "library_internal_accelerator_availability_probes_possible": true,
+    "local_cpu_only": true,
+    "packages_installed": false,
+    "real_data_accessed": false,
+    "scientific_training_or_convergence_claimed": false,
+    "synthetic_only": true
+  },
+  "tolerance_policy_id": "factorized-device-parity-fixed-tolerances-v1",
+  "torch_version": "2.12.1",
+  "unchanged_physical_tolerance": [
+    0.00002,
+    0.0002
+  ]
+}

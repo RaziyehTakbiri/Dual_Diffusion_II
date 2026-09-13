@@ -22,7 +22,7 @@ from torch.nn import functional as F
 
 from heterodiff.models.factorized_device_energy_torch import (
     DeviceFactorizedEnergy, DeviceFactorizedObservationEncoder,
-    DeviceFactorizedObservationNuisance, device_configuration_batch,
+    DeviceFactorizedObservationNuisance, device_configuration_batch, _parameters,
 )
 from heterodiff.experiments.factorized_conditional_training import (
     FactorizedConditionalModel, FactorizedObservation, FactorizedTrainingBatch,
@@ -45,6 +45,12 @@ class DeviceFactorizedTrainingError(ValueError):
 def _need(ok, message):
     if not ok:
         raise DeviceFactorizedTrainingError(message)
+
+
+def _validated_base_precision_policy(value):
+    _need(type(value) is str and value in ('LEGACY_FP32', 'BASE_GRAPH_FP64_SHARED_V1'),
+          'exact supported BASE precision policy required')
+    return value
 
 
 def _cpu64(value):
@@ -144,8 +150,7 @@ class DeviceFactorizedConditionalModel(nn.Module):
 def device_base_objective_on_corrupted_states(model, states, destinations, forward_times,
                                              context, continuous_rates, jump_rates, *, jump_weight,
                                              precision_policy='LEGACY_FP32'):
-    _need(precision_policy in ('LEGACY_FP32', 'BASE_GRAPH_FP64_SHARED_V1'),
-          'unknown BASE precision policy')
+    _validated_base_precision_policy(precision_policy)
     _need(type(model) is DeviceFactorizedEnergy, 'exact device BASE energy required')
     _need(type(jump_weight) is float and math.isfinite(jump_weight) and jump_weight > 0, 'positive jump weight required')
     _need(type(states) is tuple and type(destinations) is tuple and type(forward_times) is tuple
@@ -231,8 +236,7 @@ def _update(model, optimizer, loss):
 
 def device_train_base_step(model, reference, train_sources, *, context, rng, optimizer,
                            sample_count, jump_weight, precision_policy='LEGACY_FP32'):
-    _need(precision_policy in ('LEGACY_FP32', 'BASE_GRAPH_FP64_SHARED_V1'),
-          'unknown BASE precision policy')
+    _validated_base_precision_policy(precision_policy)
     _need(type(model) is DeviceFactorizedEnergy and type(reference) is ExactFactorizedReference,
           'exact device model/reference required')
     _need(type(rng) is np.random.Generator, 'explicit CPU reference RNG required')
@@ -269,8 +273,11 @@ def device_train_base_step(model, reference, train_sources, *, context, rng, opt
 
 class DeviceFactorizedPhysicalPotential:
     """CPU physical interface backed by a frozen selected-device neural graph."""
-    def __init__(self, base, *, base_context, conditional_model=None, observation=None, clean_hold=None):
+    def __init__(self, base, *, base_context, conditional_model=None, observation=None, clean_hold=None,
+                 precision_policy='LEGACY_FP32'):
+        self._precision_policy = _validated_base_precision_policy(precision_policy)
         _need(type(base) is DeviceFactorizedEnergy, 'exact device BASE required')
+        _parameters(base)
         _need(type(base_context) is tuple and len(base_context) == 64 and
               all(type(x) is float and math.isfinite(x) for x in base_context), '64D explicit BASE context required')
         self.base = deepcopy(base).eval().requires_grad_(False)
@@ -282,6 +289,7 @@ class DeviceFactorizedPhysicalPotential:
                   'device conditional model and exact observation required')
             _need(conditional_model.device == base.device and
                   conditional_model.conditioner.architecture == base.architecture, 'BASE/conditional architecture or device mismatch')
+            _parameters(conditional_model)
             self.model = deepcopy(conditional_model).eval().requires_grad_(False)
             _need(clean_hold is None or clean_hold == self.model.clean_hold, 'clean hold mismatch')
             clean_hold = self.model.clean_hold
@@ -296,6 +304,11 @@ class DeviceFactorizedPhysicalPotential:
         self.initialization_upper_log_bound = extra
         self.initialization_residual_upper_bound = 0. if self.model is None else self.model.conditioner.architecture.value_bound
         self.upper_value_bound = base.architecture.value_bound+extra
+
+    @property
+    def precision_policy(self):
+        """The BASE arithmetic policy is fixed for this physical snapshot."""
+        return _validated_base_precision_policy(self._precision_policy)
 
     def _coordinates(self,state,gradient):
         return tuple(torch.tensor([] if not e.key.dimension else [e.coordinate],dtype=torch.float64,
@@ -332,7 +345,14 @@ class DeviceFactorizedPhysicalPotential:
         return float(value)
 
     def _value(self,u,state,coordinates):
-        return _cpu64(self.base(self._base_batch(u,state,coordinates)))[0]+self._tilt(u,state,coordinates)
+        policy = self.precision_policy
+        batch = self._base_batch(u,state,coordinates)
+        if policy == 'BASE_GRAPH_FP64_SHARED_V1':
+            from heterodiff.experiments.factorized_base_precision import precision_stable_base_energy
+            base_value = precision_stable_base_energy(self.base,batch)
+        else:
+            base_value = self.base(batch)
+        return _cpu64(base_value)[0]+self._tilt(u,state,coordinates)
 
     def value(self,u,state):
         with torch.no_grad():
@@ -357,7 +377,8 @@ class DeviceFactorizedPhysicalPotential:
 
 class DeviceFactorizedBasePopulation(FactorizedBasePopulation):
     """Reuse CPU path/RNG semantics with selected-device physical evaluations."""
-    def __init__(self, base, reference, reverse_grid, context):
+    def __init__(self, base, reference, reverse_grid, context, *, precision_policy='LEGACY_FP32'):
+        self._precision_policy = _validated_base_precision_policy(precision_policy)
         _need(type(base) is DeviceFactorizedEnergy and type(reference) is ExactFactorizedReference
               and type(context) is FactorizedPopulationContext, 'exact device population inputs required')
         _need(reference.reference.domain_id == context.domain_id and
@@ -365,19 +386,49 @@ class DeviceFactorizedBasePopulation(FactorizedBasePopulation):
               base.architecture.horizon == reference.schedule.horizon, 'population carrier mismatch')
         self.reference,self.context = deepcopy(reference),context
         self.physical = DeviceFactorizedPhysicalPotential(base,base_context=context.base_context,
-                                                         clean_hold=reference.schedule.clean_hold)
+            clean_hold=reference.schedule.clean_hold,precision_policy=precision_policy)
         self.sampler = LearnedFactorizedSampler(self.reference,self.physical,reverse_grid)
         record = {'scope':'DEVICE_NEURAL_CPU_ORCHESTRATED_QUERY_REFINED_POPULATION',
                   'base':_parameter_digest(self.physical.base), 'architecture':base.architecture.architecture_sha256,
                   'device':str(base.device),'torch_version':torch.__version__,'cuda_build':torch.version.cuda,
                   'reference':_reference_identity(reference),'context':context.binding().hex(),
                   'grid':reverse_grid,'schedule':reference.schedule.__dict__}
-        self.law_id = 'device-factorized-'+hashlib.sha256(json.dumps(record,sort_keys=True).encode()).hexdigest()
+        namespace = 'device-factorized-'
+        if precision_policy != 'LEGACY_FP32':
+            # The historical record/namespace is left byte-for-byte unchanged
+            # for default and explicit legacy callers. The successor identity
+            # intentionally changes sample_pair's identity-keyed RNG streams.
+            record['base_precision_policy'] = precision_policy
+            namespace = 'device-factorized-base-precision-v1-'
+        self.law_id = namespace+hashlib.sha256(json.dumps(record,sort_keys=True).encode()).hexdigest()
+
+    @property
+    def precision_policy(self):
+        return _validated_base_precision_policy(self._precision_policy)
+
+    def _validate_precision_binding(self):
+        policy = self.precision_policy
+        _need(type(self.physical) is DeviceFactorizedPhysicalPotential
+              and self.physical.precision_policy == policy,
+              'population/physical BASE precision policy mismatch')
+        return policy
+
+    def sample_pair(self, *, reverse_time, run_seed, record_id):
+        policy = self._validate_precision_binding()
+        joint,product,paths = super().sample_pair(
+            reverse_time=reverse_time,run_seed=run_seed,record_id=record_id)
+        if policy != 'LEGACY_FP32':
+            for path in paths:
+                path.diagnostics['base_precision_policy'] = policy
+                path.diagnostics['precision_policy_bound_in_population_law_id'] = True
+                path.diagnostics['legacy_common_random_streams_claimed'] = False
+        return joint,product,paths
 
 
 def device_train_conditional_step(model,population,*,optimizer,reverse_time,run_seed,record_id,sample_count):
     _need(type(model) is DeviceFactorizedConditionalModel and type(population) is DeviceFactorizedBasePopulation,
           'exact device conditional model/population required')
+    precision_policy = population._validate_precision_binding()
     _need(type(sample_count) is int and 0 < sample_count <= model.conditioner.architecture.limits.maximum_batch_size,
           'conditional sample count limit')
     _need(type(record_id) is bytes and bool(record_id),'explicit record id required')
@@ -405,10 +456,12 @@ def device_train_conditional_step(model,population,*,optimizer,reverse_time,run_
             'reverse_times':joint.reverse_times,'base_paths_generated':len(paths),
             'actual_macrosteps':sum(len(p.reverse_grid)-1 for p in paths),
             'time_policy':'UNIFORM_FULL_REVERSE_INTERVAL' if reverse_time is None else 'FIXED_TIME_DIAGNOSTIC',
-            'law_id':law,'scientific_training_completed':False}
+            'law_id':law,'base_precision_policy':precision_policy,'scientific_training_completed':False}
 
 
-def device_sample_conditional(base,model,reference,reverse_grid,context,observed,*,run_seed,record_id):
+def device_sample_conditional(base,model,reference,reverse_grid,context,observed,*,run_seed,record_id,
+                              precision_policy='LEGACY_FP32'):
+    _validated_base_precision_policy(precision_policy)
     _need(type(reference) is ExactFactorizedReference and type(context) is FactorizedPopulationContext,
           'exact reference/context required')
     _need(type(model) is DeviceFactorizedConditionalModel and
@@ -419,8 +472,18 @@ def device_sample_conditional(base,model,reference,reverse_grid,context,observed
           getattr(model.remaining_clocks,'__self__',None) == reference.schedule, 'conditional schedule mismatch')
     observation=FactorizedObservation(observed,context.domain_id,context.task_id,context.context_bytes)
     physical=DeviceFactorizedPhysicalPotential(base,base_context=context.base_context,conditional_model=model,
-                                               observation=observation,clean_hold=reference.schedule.clean_hold)
+        observation=observation,clean_hold=reference.schedule.clean_hold,precision_policy=precision_policy)
     draw=conditional_initializer(physical.model.guide,physical,observed,reference.schedule,model.method_id,
                                  maximum_trials=reference.limits.maximum_initialization_trials)
-    return LearnedFactorizedSampler(reference,physical,reverse_grid,initializer=draw).sample_path(
-        run_seed=run_seed,record_id=record_id,branch_id=b'device-conditional')
+    branch_id = b'device-conditional'
+    if precision_policy != 'LEGACY_FP32':
+        branch_id = b'device-conditional-base-precision-v1:'+precision_policy.encode('ascii')
+    path = LearnedFactorizedSampler(reference,physical,reverse_grid,initializer=draw).sample_path(
+        run_seed=run_seed,record_id=record_id,branch_id=branch_id)
+    if precision_policy != 'LEGACY_FP32':
+        path.diagnostics['base_precision_policy'] = precision_policy
+        path.diagnostics['conditioner_precision_policy'] = 'LEGACY_FP32'
+        path.diagnostics['precision_policy_bound_in_stream_namespace'] = True
+        path.diagnostics['legacy_common_random_streams_claimed'] = False
+        path.diagnostics['production_precision_policy_adopted'] = False
+    return path

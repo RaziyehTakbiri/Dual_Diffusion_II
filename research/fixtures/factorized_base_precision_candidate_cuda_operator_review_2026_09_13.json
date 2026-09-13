@@ -1,0 +1,463 @@
+{
+  "schema_version": "factorized-base-precision-candidate-operator-review-extract-v1",
+  "review_date": "2026-09-13",
+  "evidence_kind": "NORMALIZED_SELECTED_FIELD_EXTRACT_FROM_COMPLETE_USER_PASTED_JSON",
+  "raw_original_message_bytes_preserved": false,
+  "reported_execution_independently_repeated": false,
+  "raw_tensor_payloads_available_to_reviewer": false,
+  "omitted_fields": "Most wrapper booleans, per-route timings, legacy non-update category details, and failure-name lists. Refer to the user-pasted original for those fields.",
+  "reported_decision": "PASS_SELECTED_CUDA_BASE_PRECISION_CANDIDATE_ONLY",
+  "review_disposition": "ACCEPT_REPORTED_BOUNDED_SYNTHETIC_BASE_CANDIDATE_PASS_ONLY",
+  "source_scope": "SOURCE_ONLY_BASE_PRECISION_CANDIDATE_NOT_INSTALLED_RELEASE",
+  "wrapper_revision": "factorized-base-precision-candidate-wrapper-v1",
+  "reported_runtime": {
+    "device": "cuda:0",
+    "gpu": "Tesla T4",
+    "compute_capability": [
+      7,
+      5
+    ],
+    "gpu_total_memory_bytes": 15636037632,
+    "torch": "2.7.0+cu126",
+    "cuda_build_version": "12.6",
+    "python": "3.12.3",
+    "numpy": "2.1.3"
+  },
+  "precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+  "tolerance_policy_id": "factorized-device-parity-fixed-tolerances-v1",
+  "tolerance_values_sha256": "c665d0d0d2f8c0ea9eca5407324c31c8bc4932d961901f488809a195af204ffd",
+  "acceptance_tolerances_unchanged": {
+    "coordinate_gradient": [
+      0.00002,
+      0.0002
+    ],
+    "coordinate_hessian": [
+      0.0001,
+      0.001
+    ],
+    "forward": [
+      0.000002,
+      0.00002
+    ],
+    "loss": [
+      0.000002,
+      0.00002
+    ],
+    "optimizer_moment": [
+      0.000002,
+      0.0002
+    ],
+    "parameter_gradient": [
+      0.00002,
+      0.0002
+    ],
+    "physical": [
+      0.00002,
+      0.0002
+    ],
+    "updated_parameter": [
+      0.000002,
+      0.00002
+    ]
+  },
+  "reported_controls": {
+    "child_returncode": 0,
+    "child_termination_confirmed": true,
+    "captured_stdout_bytes": 23104,
+    "captured_stderr_bytes": 0,
+    "child_deadline_seconds": 120,
+    "termination_grace_seconds": 5,
+    "completed_case_count": 4,
+    "unique_base_fixtures": 2,
+    "optimizer_steps_begun": 24,
+    "optimizer_steps_completed": 24,
+    "cpu_optimizer_steps_begun": 8,
+    "gpu_optimizer_steps_begun": 16,
+    "stage": "COMPLETE",
+    "explicit_cuda_synchronize_calls": 32,
+    "retries": 0,
+    "warmups": 0
+  },
+  "reported_numerical_policy": {
+    "deterministic_algorithms": true,
+    "intraop_threads": 1,
+    "autocast_used": false,
+    "cuda_precision_family": "legacy_allow_tf32_only",
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "cudnn_benchmark": false,
+    "cublas_effective_child_value": ":4096:8",
+    "cublas_default_inserted_for_child_only": true,
+    "cuda_visible_devices_modified": false,
+    "parent_or_cluster_environment_modified": false
+  },
+  "reported_resources": {
+    "elapsed_seconds": 22.444928492000145,
+    "cuda_peak_allocated_bytes": 72496640,
+    "cuda_peak_reserved_bytes": 73400320,
+    "process_lifetime_peak_rss_bytes": 1188839424,
+    "maximum_memory_bytes_soft": 2147483648,
+    "timing_scope": "SYNCHRONIZED_WALL_INCLUDING_HOST_WORK_COPY_READBACK_AND_FIRST_USE_NOT_KERNEL_ONLY"
+  },
+  "cases": [
+    {
+      "domain_id": "R3-PHYS",
+      "method_id": "association-aware-guide-plus-residual",
+      "completed_base_steps": 6,
+      "initial_weights_exact_across_all_six_routes": true,
+      "candidate_cpu_vs_target": {
+        "passed": true,
+        "failure_count": 0,
+        "categories": {
+          "coordinate_gradient": {
+            "max_abs": 4.7704895589362195e-18,
+            "passed": true,
+            "scalars": 2,
+            "tensors": 2
+          },
+          "coordinate_hessian": {
+            "max_abs": 2.168404344971009e-18,
+            "passed": true,
+            "scalars": 2,
+            "tensors": 2
+          },
+          "exact": {
+            "max_abs": 0,
+            "passed": true,
+            "scalars": 96722,
+            "tensors": 36
+          },
+          "forward": {
+            "max_abs": 2.7755575615628914e-17,
+            "passed": true,
+            "scalars": 3,
+            "tensors": 1
+          },
+          "loss": {
+            "max_abs": 2.220446049250313e-16,
+            "passed": true,
+            "scalars": 3,
+            "tensors": 3
+          },
+          "optimizer_moment": {
+            "max_abs": 9.094947017729282e-13,
+            "passed": true,
+            "scalars": 193410,
+            "tensors": 34
+          },
+          "parameter_gradient": {
+            "max_abs": 0,
+            "passed": true,
+            "scalars": 193410,
+            "tensors": 34
+          },
+          "updated_parameter": {
+            "max_abs": 1.4901161193847656e-8,
+            "passed": true,
+            "scalars": 96705,
+            "tensors": 17
+          }
+        },
+        "all_tensor_names_sha256": "c58b8ab3c9bd2c8f1866ccce5ba926de22a57f58189bb4ef2822eb2e9b40efd9"
+      },
+      "candidate_target_exact_replay": {
+        "passed": true,
+        "failure_count": 0,
+        "all_eight_category_max_abs": 0
+      },
+      "legacy_target_exact_replay": {
+        "passed": true,
+        "failure_count": 0,
+        "all_eight_category_max_abs": 0
+      },
+      "legacy_cpu_vs_target": {
+        "passed": false,
+        "failure_count": 5,
+        "only_failed_category": "updated_parameter",
+        "updated_parameter_max_abs": 0.00008682161569595337
+      },
+      "legacy_cpu_vs_candidate_cpu_drift": {
+        "passed": false,
+        "failure_count": 3,
+        "only_failed_category": "updated_parameter",
+        "updated_parameter_max_abs": 0.000053241848945617676
+      }
+    },
+    {
+      "domain_id": "R3-PHYS",
+      "method_id": "unified-direct-conditioner",
+      "completed_base_steps": 6,
+      "initial_weights_exact_across_all_six_routes": true,
+      "candidate_cpu_vs_target": {
+        "passed": true,
+        "failure_count": 0,
+        "categories": {
+          "coordinate_gradient": {
+            "max_abs": 4.7704895589362195e-18,
+            "passed": true,
+            "scalars": 2,
+            "tensors": 2
+          },
+          "coordinate_hessian": {
+            "max_abs": 2.168404344971009e-18,
+            "passed": true,
+            "scalars": 2,
+            "tensors": 2
+          },
+          "exact": {
+            "max_abs": 0,
+            "passed": true,
+            "scalars": 96722,
+            "tensors": 36
+          },
+          "forward": {
+            "max_abs": 2.7755575615628914e-17,
+            "passed": true,
+            "scalars": 3,
+            "tensors": 1
+          },
+          "loss": {
+            "max_abs": 2.220446049250313e-16,
+            "passed": true,
+            "scalars": 3,
+            "tensors": 3
+          },
+          "optimizer_moment": {
+            "max_abs": 9.094947017729282e-13,
+            "passed": true,
+            "scalars": 193410,
+            "tensors": 34
+          },
+          "parameter_gradient": {
+            "max_abs": 0,
+            "passed": true,
+            "scalars": 193410,
+            "tensors": 34
+          },
+          "updated_parameter": {
+            "max_abs": 1.4901161193847656e-8,
+            "passed": true,
+            "scalars": 96705,
+            "tensors": 17
+          }
+        },
+        "all_tensor_names_sha256": "c58b8ab3c9bd2c8f1866ccce5ba926de22a57f58189bb4ef2822eb2e9b40efd9"
+      },
+      "candidate_target_exact_replay": {
+        "passed": true,
+        "failure_count": 0,
+        "all_eight_category_max_abs": 0
+      },
+      "legacy_target_exact_replay": {
+        "passed": true,
+        "failure_count": 0,
+        "all_eight_category_max_abs": 0
+      },
+      "legacy_cpu_vs_target": {
+        "passed": false,
+        "failure_count": 5,
+        "only_failed_category": "updated_parameter",
+        "updated_parameter_max_abs": 0.00008682161569595337
+      },
+      "legacy_cpu_vs_candidate_cpu_drift": {
+        "passed": false,
+        "failure_count": 3,
+        "only_failed_category": "updated_parameter",
+        "updated_parameter_max_abs": 0.000053241848945617676
+      }
+    },
+    {
+      "domain_id": "R4-RETAIL",
+      "method_id": "association-aware-guide-plus-residual",
+      "completed_base_steps": 6,
+      "initial_weights_exact_across_all_six_routes": true,
+      "candidate_cpu_vs_target": {
+        "passed": true,
+        "failure_count": 0,
+        "categories": {
+          "coordinate_gradient": {
+            "max_abs": 4.336808689942018e-18,
+            "passed": true,
+            "scalars": 2,
+            "tensors": 2
+          },
+          "coordinate_hessian": {
+            "max_abs": 1.951563910473908e-18,
+            "passed": true,
+            "scalars": 2,
+            "tensors": 2
+          },
+          "exact": {
+            "max_abs": 0,
+            "passed": true,
+            "scalars": 96722,
+            "tensors": 36
+          },
+          "forward": {
+            "max_abs": 1.3877787807814457e-17,
+            "passed": true,
+            "scalars": 3,
+            "tensors": 1
+          },
+          "loss": {
+            "max_abs": 2.0599841277224584e-18,
+            "passed": true,
+            "scalars": 3,
+            "tensors": 3
+          },
+          "optimizer_moment": {
+            "max_abs": 9.094947017729282e-13,
+            "passed": true,
+            "scalars": 193410,
+            "tensors": 34
+          },
+          "parameter_gradient": {
+            "max_abs": 0,
+            "passed": true,
+            "scalars": 193410,
+            "tensors": 34
+          },
+          "updated_parameter": {
+            "max_abs": 1.4901161193847656e-8,
+            "passed": true,
+            "scalars": 96705,
+            "tensors": 17
+          }
+        },
+        "all_tensor_names_sha256": "6ed6f42303adfb71ab4c2e968a5548628650679c56f4db1e830744f04c7664af"
+      },
+      "candidate_target_exact_replay": {
+        "passed": true,
+        "failure_count": 0,
+        "all_eight_category_max_abs": 0
+      },
+      "legacy_target_exact_replay": {
+        "passed": true,
+        "failure_count": 0,
+        "all_eight_category_max_abs": 0
+      },
+      "legacy_cpu_vs_target": {
+        "passed": false,
+        "failure_count": 2,
+        "only_failed_category": "updated_parameter",
+        "updated_parameter_max_abs": 0.00010221358388662338
+      },
+      "legacy_cpu_vs_candidate_cpu_drift": {
+        "passed": false,
+        "failure_count": 2,
+        "only_failed_category": "updated_parameter",
+        "updated_parameter_max_abs": 0.00008784793317317963
+      }
+    },
+    {
+      "domain_id": "R4-RETAIL",
+      "method_id": "unified-direct-conditioner",
+      "completed_base_steps": 6,
+      "initial_weights_exact_across_all_six_routes": true,
+      "candidate_cpu_vs_target": {
+        "passed": true,
+        "failure_count": 0,
+        "categories": {
+          "coordinate_gradient": {
+            "max_abs": 4.336808689942018e-18,
+            "passed": true,
+            "scalars": 2,
+            "tensors": 2
+          },
+          "coordinate_hessian": {
+            "max_abs": 1.951563910473908e-18,
+            "passed": true,
+            "scalars": 2,
+            "tensors": 2
+          },
+          "exact": {
+            "max_abs": 0,
+            "passed": true,
+            "scalars": 96722,
+            "tensors": 36
+          },
+          "forward": {
+            "max_abs": 1.3877787807814457e-17,
+            "passed": true,
+            "scalars": 3,
+            "tensors": 1
+          },
+          "loss": {
+            "max_abs": 2.0599841277224584e-18,
+            "passed": true,
+            "scalars": 3,
+            "tensors": 3
+          },
+          "optimizer_moment": {
+            "max_abs": 9.094947017729282e-13,
+            "passed": true,
+            "scalars": 193410,
+            "tensors": 34
+          },
+          "parameter_gradient": {
+            "max_abs": 0,
+            "passed": true,
+            "scalars": 193410,
+            "tensors": 34
+          },
+          "updated_parameter": {
+            "max_abs": 1.4901161193847656e-8,
+            "passed": true,
+            "scalars": 96705,
+            "tensors": 17
+          }
+        },
+        "all_tensor_names_sha256": "6ed6f42303adfb71ab4c2e968a5548628650679c56f4db1e830744f04c7664af"
+      },
+      "candidate_target_exact_replay": {
+        "passed": true,
+        "failure_count": 0,
+        "all_eight_category_max_abs": 0
+      },
+      "legacy_target_exact_replay": {
+        "passed": true,
+        "failure_count": 0,
+        "all_eight_category_max_abs": 0
+      },
+      "legacy_cpu_vs_target": {
+        "passed": false,
+        "failure_count": 2,
+        "only_failed_category": "updated_parameter",
+        "updated_parameter_max_abs": 0.00010221358388662338
+      },
+      "legacy_cpu_vs_candidate_cpu_drift": {
+        "passed": false,
+        "failure_count": 2,
+        "only_failed_category": "updated_parameter",
+        "updated_parameter_max_abs": 0.00008784793317317963
+      }
+    }
+  ],
+  "accepted_scope": {
+    "source_only": true,
+    "synthetic_only": true,
+    "base_only": true,
+    "two_unique_base_fixtures_four_routing_labels": true,
+    "method_specific_conditional_computation_exercised": false,
+    "legacy_parity_relabelled": false,
+    "full_conditional_learner_or_sampler_qualified": false,
+    "F105_executed": false,
+    "real_data_used": false,
+    "production_qualification": false,
+    "all_gpu_pipeline_claimed": false,
+    "speedup_claimed": false,
+    "production_precision_default_changed": false,
+    "additional_gpu_run_launched_by_review": false
+  },
+  "project_delta": {
+    "timetable_checked": 61,
+    "timetable_open": 102,
+    "timetable_total": 163,
+    "fields_open": 31,
+    "fields_closed": 141,
+    "blockers_open": 8,
+    "blockers_closed": 4,
+    "compound_checkboxes_closed_by_this_review": 0,
+    "completed_component_milestone": "REPORTED_SELECTED_T4_SYNTHETIC_BASE_PRECISION_CANDIDATE_PARITY_AND_EXACT_REPLAY"
+  }
+}
