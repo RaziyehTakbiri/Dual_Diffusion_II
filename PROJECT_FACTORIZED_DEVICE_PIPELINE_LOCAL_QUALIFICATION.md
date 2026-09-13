@@ -10,8 +10,16 @@ freeze scientific settings, or declare the GPU/production route qualified.
 
 The requested September 13 follow-up is also **COMPLETE locally**: focused
 BASE update diagnostics, CPU replays of captured gradients, local regression
-and exact same-notebook instructions for one further bounded GPU check. See
+and the then-required same-notebook instructions for one bounded GPU check. That
+diagnostic collection/review is now complete; the precision candidate has been
+validated only locally. See
 the [completed three-task milestone](#2026-09-13-focused-update-diagnostics-and-local-qualification).
+
+The subsequent [separate BASE precision-candidate check preparation](databricks/FACTORIZED_BASE_PRECISION_CANDIDATE_CHECK.md)
+is also COMPLETE: 670 local tests passed, including actual supervised CPU
+execution of all four routing cases and 24 BASE steps. The candidate GPU run
+remains pending. This narrower check does not replace the legacy whole-component
+parity report or qualify conditional paths, F105 or production training.
 
 ## Delivered implementation
 
@@ -271,7 +279,7 @@ The user-approved three-task **preparation milestone is COMPLETE**:
 | --- | --- |
 | Extend the existing notebook/harness with BASE gradient/state/update diagnostics | COMPLETE: explicit `diagnostics=BASE_UPDATE`, bounded coordinate details and first-step predictions |
 | Add CPU replay with captured target/GPU gradients plus CPU-gradient control | COMPLETE: two ordinary AdamW steps on fresh CPU clones per case, with all BASE parameters/moments/steps compared |
-| Test locally and prepare one further bounded GPU check | COMPLETE: 552 local tests pass and the exact same-notebook run settings are documented; remote diagnostic execution itself is PENDING |
+| Test locally and prepare one further bounded GPU check | COMPLETE: 552 local tests passed at that preparation checkpoint; the subsequent remote diagnostic execution/review is complete as recorded below |
 
 Implementation: [diagnostic helper](src/heterodiff/experiments/factorized_update_diagnostics.py),
 [harness](src/heterodiff/experiments/factorized_device_qualification.py),
@@ -332,11 +340,12 @@ observations, not a CUDA speedup or production forecast. The illustrative
 near-zero-gradient and perturbed-state tests do not establish the actual
 Tesla T4 cause.
 
-The [next GPU run instructions](databricks/FACTORIZED_GPU_PARITY_AND_PERFORMANCE.md#next-diagnostic-check-same-notebook-one-bounded-run)
-use the same notebook and test GPU, one `cuda:0` device, one iteration, a
+At the preparation checkpoint, the [GPU run instructions](databricks/FACTORIZED_GPU_PARITY_AND_PERFORMANCE.md#next-diagnostic-check-same-notebook-one-bounded-run)
+used the same notebook and test GPU, one `cuda:0` device, one iteration, a
 120-second limit, `diagnostics=BASE_UPDATE` and the existing explicit run
-acknowledgement. Sync all changed/new files first; no blind retry or automatic
-GPU execution is performed. Return the complete JSON for causal review.
+acknowledgement. That diagnostic collection is now complete. Do not repeat it
+as a precision-candidate check: the old notebook still selects the legacy route.
+No blind retry or automatic GPU execution is authorized.
 Original parity acceptance is never replaced by a diagnostic interpretation.
 
 The 323 accepted CPU source payloads, their manifest and dependency lock were
@@ -345,12 +354,34 @@ scientific fields, blockers and all compound timetable counts are unchanged:
 61/102/163 checked/open/total, 31/141 fields open/closed, 8/4 blockers open/closed,
 and scientific results 0/4. **GPU update parity remains FAIL/OPEN.**
 
+### 2026-09-13 focused GPU diagnostic execution and local precision candidate
+
+**COMPLETE:** the operator's four compact diagnostic records are received,
+archived and reviewed. The detailed original paste was truncated; the recovery
+contains all four summary records, not the missing full coordinate payloads.
+All same-device GPU replays and CPU-gradient controls pass exactly. The maximum
+GPU-gradient CPU-replay parameter residual is 1.49e-08, within the unchanged
+update tolerance. Original CPU/GPU update parity remains FAIL/OPEN.
+
+**COMPLETE locally:** shared-FP64 BASE graph/derivative accumulation candidate,
+actual bounded BASE-step connection, mathematical/precision regressions and
+CPU-only stress analysis. **583 tests passed.** All four candidate CPU layout
+stress cases have exact updated weights; original FP32 controls have 54/62
+failing weights per Physio/Retail case. This does not prove CUDA parity, and
+the new candidate differs from legacy FP32 updates beyond the original update
+tolerance. Default execution and all thresholds are unchanged. See the
+[complete precision record and archived evidence](PROJECT_FACTORIZED_BASE_PRECISION_STABILIZATION.md).
+No GPU or paid job was launched in this local step. Exact compound-count delta
+is zero: boxes61/102/163, fields31/141, blockers8/4, scientific results0/4.
+
 ### Pending qualification
 
 The local preparation and reported GPU startup/execution milestone are complete.
 Focused diagnostic implementation/local qualification and GPU-run handoff are
-also complete. CPU/GPU parameter-update parity is **FAIL/OPEN**, pending the
-new bounded GPU diagnostic output and its review. No automatic retry or full campaign is authorized. Full
+also complete, as are the GPU diagnostic review and local precision candidate.
+CPU/GPU parameter-update parity is **FAIL/OPEN**. A separately declared bounded
+precision-successor comparison must retain the legacy control and original
+tolerances; no candidate GPU run, automatic retry or full campaign is authorized. Full
 trajectory/checkpoint/installed-release qualification, scalable matching/count
 workloads, prospective numerical sensitivity design and proofs, real-data
 admission, and complete spend/storage/work budgets remain open in parallel.

@@ -19,11 +19,30 @@ BASE update diagnostics, two CPU optimizer replay controls, and tested
 same-notebook instructions for one further bounded GPU check. The final
 regression passed **552 tests**; the actual supervised CPU diagnostic route
 passed 4/4 with exact controls. See the [three-task completion record](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-13-focused-update-diagnostics-and-local-qualification).
-No GPU rerun, model/optimizer/tolerance change or field/checkbox closure is
-implied; the new GPU diagnostic output is still pending.
-Neural FP32 work
-can target one selected CUDA device; exact metadata, analytic guide, reference
-path orchestration and F105 stay CPU. No speedup or full GPU pipeline claim is made.
+The subsequent operator-supplied four-case GPU diagnostic collection and review
+are now COMPLETE. Local cancellation analysis and the opt-in shared-FP64 BASE
+precision candidate are also COMPLETE, with **583 local tests passed** and zero
+candidate update differences in the four-case CPU layout stress. The
+[precision record](PROJECT_FACTORIZED_BASE_PRECISION_STABILIZATION.md) archives
+both the compact operator report and the reproducible CPU experiment. Legacy
+CPU/GPU parity remains FAIL/OPEN, and the candidate has not run on CUDA. Its
+differences from the legacy FP32 reference remain reported; no comparator,
+objective, optimizer setting or tolerance was silently replaced. No GPU job,
+paid job, real-data access, production adoption, field or checkbox closure
+occurred in this local precision step.
+The subsequent **separate candidate-check preparation is COMPLETE**:
+[new notebook and handoff](databricks/FACTORIZED_BASE_PRECISION_CANDIDATE_CHECK.md),
+fixed four-case/24-BASE-step controls, unchanged tolerances, visible legacy
+comparisons, bounded output and a supervised 120-second child. **670 local tests
+passed**, including the real CPU notebook route (4/4 cases, 24 steps). The
+[complete CPU result](research/fixtures/factorized_base_precision_candidate_cpu_check_2026_09_13.json)
+is archived. The new shared-FP64 candidate has **not** run on GPU; this preparation
+does not authorize paid execution or close any compound checkbox/field/blocker.
+The legacy neural path evaluates in FP32; the opt-in BASE candidate evaluates
+its differentiable graph in FP64 while retaining FP32 trainable parameters and
+AdamW moments. Both can target one selected CUDA device. Exact metadata, CPU
+FP64 objective reduction, analytic guide, reference/path orchestration and F105
+retain host work. No speedup or full GPU pipeline claim is made.
 The earlier [CPU conditional integration](PROJECT_FACTORIZED_CONDITIONAL_PIPELINE_LOCAL_INTEGRATION.md)
 and [scientific qualification](PROJECT_FACTORIZED_LOCAL_QUALIFICATION.md) remain
 valid within their local synthetic scopes. The structural choice and requested
@@ -44,9 +63,11 @@ original snapshot. Formal Tests 28/29/30 are OPEN/OPEN/PENDING; results 0/4.
 install or test local components.
 
 **Hardware follow-up scope:** the user supplied the subsequent bounded GPU
-result after the instructed retry. This update archives and reviews that report
-and a local CPU-only scalar sensitivity illustration. No GPU retry, numerical
-setting/tolerance change, real-data access or qualification PASS is implied.
+result after the instructed retry. Subsequent local work archived/reviewed its
+diagnostics, reproduced cancellation, implemented the opt-in precision candidate
+and prepared its separate bounded notebook. Legacy precision defaults, scientific
+objective, optimizer settings and acceptance tolerances remain unchanged. No
+candidate GPU execution, real-data access or GPU qualification PASS is implied.
 
 **Preparation milestone's authority:** following structural scientific repair and local
 conditional integration, the user requested preparation of the GPU-capable
@@ -1068,11 +1089,13 @@ by the accepted manuscript-display/production integration plus theory/statistics
 successor.
 The minimum empirical-contribution
 route is frozen with all 14 components `PENDING`; C17 is retired as a selected
-claim route without proof or promotion. The current additive view closes 142 PRE
+claim route without proof or promotion. The current additive view closes 136 PRE
 and five POST fields, including the accepted 31-field theory/statistics package,
 17-field governance/release package, historical 42-field B06 package with
 F066/F072 now reopened, later allocation, compute-policy and training-plan
 fields, and the 2026-09-07 F152 lock acceptance.
+This current view also accounts for the six observation-definition fields
+reopened by the 2026-09-08 mixed-domain amendment.
 The locked-route manuscript successor
 synchronizes those current semantics without mutating historical manuscript
 bytes or changing scientific counts. The domain route remains unadmitted;
@@ -1102,22 +1125,23 @@ are now open. F172 remains null.
 |---|---:|---:|
 | Theory and statistics | 0 | 54 |
 | Method, runtime, and compute | 11 | 54 |
-| Data, governance, and reproduction | 13 | 39 |
+| Data, governance, and reproduction | 19 | 33 |
 | Final sealed freeze | 1 | 0 |
-| **Total** | **25** | **147** |
+| **Total** | **31** | **141** |
 
 ### Phase totals
 
 | Phase | Open | Closed |
 |---|---:|---:|
-| Pre-execution | 24 | 142 |
+| Pre-execution | 30 | 136 |
 | Post-execution | 1 | 5 |
-| **Total** | **25** | **147** |
+| **Total** | **31** | **141** |
 
 ## 6. Change log
 
 | Date | Change | Evidence |
 |---|---|---|
+| 2026-09-13 GPU diagnostic review and local precision stabilization | COMPLETE operator-report review, local BASE cancellation analysis, shared-FP64 opt-in implementation and CPU validation; 583 tests passed. Original objective, optimizer, tolerances and legacy default retained. Candidate CPU layout stress has zero update differences; legacy CPU/GPU parity remains FAIL/OPEN and candidate GPU qualification is pending. Reconciled stale current workstream/phase totals to actual rows: fields31/141, PRE30/136, POST1/5. Historical rows unchanged. No compound checkbox, blocker, Formal Test or result closes; boxes61/102/163, blockers8/4, results0/4. No GPU/paid job or real data. | [Precision milestone and reports](PROJECT_FACTORIZED_BASE_PRECISION_STABILIZATION.md) |
 | 2026-09-07 domain-support and observation review | COMPLETE bounded exact F105 semantic-image checks, supplied scalar-fiber charts, normalized alternative affine association/overflow training and sampler connection, and all-22-role symbolic work mapping. Discrete scoring coordinates are not Gaussian model fibers; frozen identity-half-thinning lacks the proposed continuous domination/common support. These are explicit scientific decisions, not new Databricks setup. No kernel/schema/budget adoption, field/checkbox delta, paid job or real data; boxes 61/102/163, fields 25/147, blockers 8/4, results 0/4. | [Implementation and verification](PROJECT_DOMAIN_SUPPORT_AND_OBSERVATION_REVIEW.md), [chart proposal](PROJECT_TWO_DOMAIN_GENERATIVE_CHART_PROPOSAL.md), [workload ledger](PROJECT_TWO_DOMAIN_COMPUTE_BUDGET_AMENDMENT.md). |
 | 2026-09-07 hybrid sampler and observation-model integration | COMPLETE local numerical continuous/jump sampler, conditional initializer and total neural potential; concrete trainable observation/independent nuisance proposal; actual synthetic trajectories connected to loss, AdamW and full 128-group/R64 F105 scoring. Paired-generation work added separately to draft budget. Real-domain chart/kernel, adoption, admitted generation, numerical/scalable GPU qualification and full budgets remain open. No frozen-source or count delta, paid jobs or science; boxes 61/102/163, fields 25/147, blockers 8/4, results 0/4. | [Hybrid implementation and verification](PROJECT_HYBRID_SAMPLER_AND_OBSERVATION_INTEGRATION.md). |
 | 2026-09-07 conditional-loss and F105 integration | COMPLETE bounded local equal-prior G+R/DIR loss, finite candidate-base pair construction and genuine supplied-configuration F105 checkpoint scoring/retention. General hybrid sampling, production laws/encoder/nuisance, authenticated generation/admission and GPU qualification remain open. Historical F144 helper domain incompatibility is explicit. No count delta, paid job or scientific run; boxes 61/102/163, fields 25/147, blockers 8/4, results 0/4. | [Local integration record](PROJECT_CONDITIONAL_TRAINING_PIPELINE_LOCAL_INTEGRATION.md). |

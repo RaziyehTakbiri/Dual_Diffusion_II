@@ -2,6 +2,15 @@
 
 Notebook: `databricks/notebooks/factorized_gpu_parity_and_performance.py`.
 
+**Current status (2026-09-13):** the requested BASE_UPDATE diagnostic collection
+and review are complete. The [shared-FP64 BASE candidate](../PROJECT_FACTORIZED_BASE_PRECISION_STABILIZATION.md)
+has passed local CPU checks only. This notebook still runs the legacy FP32
+qualification route; it does not select the candidate. **Do not rerun the
+historical diagnostic instructions below as a candidate GPU test.** The
+[separate candidate notebook and guide](FACTORIZED_BASE_PRECISION_CANDIDATE_CHECK.md)
+are now prepared and CPU-tested. Candidate GPU execution is pending and still
+requires explicit run authorization.
+
 This is a separate **source-only local-prototype** check. It does not replace the earlier installed-release receipt, modify the old notebook, use a dataset, or run the production training/validation schedule. It does not create compute, install packages, restart Python, access the network, or change parent/cluster environment variables. The isolated CUDA child receives the deterministic cuBLAS default only if it was absent. CUDA execution needs a deliberate choice and permission to use the attached compute; preparing this notebook does not itself authorize a GPU or paid run.
 
 ## First use: inspection only

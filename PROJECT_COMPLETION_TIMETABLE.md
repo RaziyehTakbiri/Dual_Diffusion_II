@@ -12,13 +12,40 @@
 **Current evidence view (2026-09-13):** 31 fields open / 141 closed; 8 blockers
 open / 4 closed (6 execution + 2 submission open); Gate A 5/8
 
+**COMPLETED — separate BASE precision-candidate check preparation (2026-09-13).**
+The [new inspection-first notebook and exact handoff](databricks/FACTORIZED_BASE_PRECISION_CANDIDATE_CHECK.md)
+compare the shared-FP64 candidate CPU/target graph, retain legacy FP32 controls
+and CPU policy drift, and require exact same-device replays. Four routing cases
+(two unique BASE fixtures), 24 BASE steps, fixed 120-second child deadline and
+five-second termination confirmation; no conditional/sampler qualification is
+claimed. **670 local tests passed**, including the actual isolated CPU notebook
+route (4/4 cases, 24/24 steps). GPU execution of this candidate is still PENDING
+and requires a separate go-ahead. No paid/GPU job, installation or real-data
+access occurred. This completes preparation, not a compound scientific task:
+**61 checked / 102 open / 163 total remains unchanged.**
+
+**COMPLETED — GPU diagnostic review and local precision stabilization candidate
+(2026-09-13).** The four-case operator diagnostic recovery is archived and
+reviewed. The BASE cancellation mechanism is reproduced locally, and the
+explicit shared-FP64 graph candidate is connected to the bounded BASE training
+step with the objective, FP32 parameter/AdamW state, optimizer settings and
+acceptance tolerances unchanged. **583 local tests passed.** CPU layout stress
+had 54/62 failing FP32 updates (Physio/Retail) and zero candidate update
+differences in all four cases. The [precision milestone and evidence](PROJECT_FACTORIZED_BASE_PRECISION_STABILIZATION.md)
+retain the legacy-versus-candidate discrepancy: legacy CPU/GPU parity stays
+FAIL/OPEN; the candidate has not run on GPU and is not the production default.
+The separately declared precision-successor comparison is now prepared as
+recorded above; its GPU execution remains pending. No paid/GPU job or real-data access occurred in this
+local step. No compound checkbox/field closes; 61/102/163 remains unchanged.
+
 **Latest GPU result reviewed (2026-09-13):** GPU startup and bounded execution
 are COMPLETE for the reported Tesla T4 runtime: 4/4 cases ran and all exact
 same-GPU replays passed. CPU/GPU parity is **FAIL/OPEN**, specifically BASE
 updated weights; all other comparison categories passed. The [archived result
 and review](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-13-received-gpu-result-execution-complete-parity-failed)
-supersede the startup-only status below. Next is focused numerical diagnosis,
-not another environment setup. No checkbox/field closes or tolerance changes.
+supersede the startup-only status below. The subsequently completed numerical
+diagnosis and local candidate are recorded above. No checkbox/field closes or
+tolerance changes.
 
 **COMPLETED — all three focused diagnostic-preparation tasks (2026-09-13).**
 The existing notebook now reports bounded BASE gradient/state/update details;
@@ -26,7 +53,8 @@ two fresh CPU AdamW replays isolate captured-gradient effects; local tests and
 the exact one-run GPU handoff are complete. **552 local tests passed**, including
 the real supervised four-case CPU diagnostic route. See the [three-task completion record](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-13-focused-update-diagnostics-and-local-qualification).
 No model, optimizer or tolerance change, paid/GPU job, or data access occurred.
-Actual follow-up GPU collection is PENDING and CPU/GPU parity stays FAIL/OPEN.
+The subsequent GPU diagnostic collection and review are now COMPLETE; see the
+precision milestone above. CPU/GPU parity stays FAIL/OPEN.
 This marks the requested local milestone complete without closing a compound
 timetable checkbox; 61 checked / 102 open / 163 total remains correct.
 
@@ -211,8 +239,10 @@ The structural decision, local conditional learner/sampler connection and
 GPU-capable implementation/check preparation are complete. The
 [adopted amendment](PROJECT_MIXED_DOMAIN_SCIENTIFIC_AMENDMENT.md) remains the
 scientific basis. The next hardware gate is one separately authorized bounded
-selected-device check using the new inspection-first notebook; no eight-GPU
-campaign is implied. Establish the remaining derivative/path and numerical
+selected-device BASE precision-candidate check using the
+[separate inspection-first notebook](databricks/FACTORIZED_BASE_PRECISION_CANDIDATE_CHECK.md),
+not the legacy full-component parity notebook; no eight-GPU campaign is implied.
+Establish the remaining derivative/path and numerical
 bounds, scalable matching/large-count performance, prospective noise/smoothing
 sensitivity instance and all-role B06/F144 compute amendment in parallel.
 Full GPU trajectory/checkpoint and installed-release qualification, followed by

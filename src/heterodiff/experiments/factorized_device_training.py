@@ -1,7 +1,9 @@
 """Explicit-device successor for the amended learner, not a scientific release.
 
-Neural parameters/activations/derivatives/AdamW moments are FP32 on the selected
-CPU or CUDA device. Exact keys, the analytic guide, RNG/path orchestration and
+By default neural parameters/activations/derivatives/AdamW moments are FP32 on
+the selected CPU or CUDA device. The explicit BASE_GRAPH_FP64_SHARED_V1 candidate
+uses FP64 BASE activations/derivatives/shared gradient accumulation, retaining
+FP32 input encoding, trainable parameters and AdamW moments. Exact keys, the analytic guide, RNG/path orchestration and
 F105 remain CPU. Loss accumulation and physical outputs remain CPU FP64 using
 differentiable device transfers. This hybrid boundary is intentional, measured,
 and not a claim of a fully GPU-resident or faster end-to-end sampler.
@@ -140,7 +142,10 @@ class DeviceFactorizedConditionalModel(nn.Module):
 
 
 def device_base_objective_on_corrupted_states(model, states, destinations, forward_times,
-                                             context, continuous_rates, jump_rates, *, jump_weight):
+                                             context, continuous_rates, jump_rates, *, jump_weight,
+                                             precision_policy='LEGACY_FP32'):
+    _need(precision_policy in ('LEGACY_FP32', 'BASE_GRAPH_FP64_SHARED_V1'),
+          'unknown BASE precision policy')
     _need(type(model) is DeviceFactorizedEnergy, 'exact device BASE energy required')
     _need(type(jump_weight) is float and math.isfinite(jump_weight) and jump_weight > 0, 'positive jump weight required')
     _need(type(states) is tuple and type(destinations) is tuple and type(forward_times) is tuple
@@ -162,6 +167,9 @@ def device_base_objective_on_corrupted_states(model, states, destinations, forwa
     # Preserve direct physical-time conversion, avoiding a roundtrip through S-u.
     time = torch.tensor(forward_times, dtype=torch.float32, device=model.device)
     source, dest = replace(source, forward_time=time), replace(dest, forward_time=time)
+    if precision_policy == 'BASE_GRAPH_FP64_SHARED_V1':
+        from heterodiff.experiments.factorized_base_precision import precision_stable_base_objective
+        return precision_stable_base_objective(model, source, dest, continuous_rates, jump_rates, jump_weight)
     values, dest_values = model(source), model(dest)
     total = values.sum()
     terms = [_cpu64(v)*0 for v in values]
@@ -222,7 +230,9 @@ def _update(model, optimizer, loss):
 
 
 def device_train_base_step(model, reference, train_sources, *, context, rng, optimizer,
-                           sample_count, jump_weight):
+                           sample_count, jump_weight, precision_policy='LEGACY_FP32'):
+    _need(precision_policy in ('LEGACY_FP32', 'BASE_GRAPH_FP64_SHARED_V1'),
+          'unknown BASE precision policy')
     _need(type(model) is DeviceFactorizedEnergy and type(reference) is ExactFactorizedReference,
           'exact device model/reference required')
     _need(type(rng) is np.random.Generator, 'explicit CPU reference RNG required')
@@ -247,11 +257,13 @@ def device_train_base_step(model, reference, train_sources, *, context, rng, opt
         cr,jr = reference.schedule.continuous_rate,reference.schedule.jump_rate
         crates.append(float(cr)); jrates.append(float(jr*rate))
     objective = device_base_objective_on_corrupted_states(model,tuple(states),tuple(destinations),
-        tuple(times),context,tuple(crates),tuple(jrates),jump_weight=jump_weight)
+        tuple(times),context,tuple(crates),tuple(jrates),jump_weight=jump_weight,
+        precision_policy=precision_policy)
     changed = _update(model,optimizer,objective.total)
     return {'loss':float(objective.total.detach()), 'continuous_loss':float(objective.continuous.detach()),
             'jump_loss':float(objective.jump.detach()), 'changed_parameter_elements':changed,
             'forward_times':tuple(times), 'proposal_kinds':tuple(kinds), 'device':str(model.device),
+            'base_precision_policy':precision_policy,
             'reference_rng_and_corruption_device':'cpu', 'scientific_training_completed':False}
 
 

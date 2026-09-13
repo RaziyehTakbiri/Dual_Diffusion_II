@@ -1,0 +1,1021 @@
+{
+  "candidate_precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+  "case_count": 4,
+  "cases": [
+    {
+      "checks": {
+        "fp32_control_exact": true,
+        "shared_fp64_cpu_layout_stress_pass": true,
+        "shared_fp64_replay_exact": true
+      },
+      "comparisons": {
+        "fp32_batched_vs_rowwise": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 1.6391277313232422e-7,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 2.0785916543530902e-8,
+          "losses": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 2.0785916543530902e-8,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 54,
+            "maximum_absolute_difference": 0.00011506769806146622,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": false
+          }
+        },
+        "legacy_fp32_vs_shared_fp64_NOT_legacy_GPU_parity": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 1.6391277313232422e-7,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 9.22130638514318e-9,
+          "losses": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 9.22130638514318e-9,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 47,
+            "maximum_absolute_difference": 0.0000629667192697525,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": false
+          }
+        },
+        "legacy_vs_functional_fp32": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 0,
+          "losses": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          }
+        },
+        "shared_fp64_batched_vs_rowwise": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 1.1926223897340549e-18,
+          "losses": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 1.1926223897340549e-18,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          }
+        },
+        "shared_fp64_exact_cpu_replay": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 0,
+          "losses": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          }
+        },
+        "shared_fp64_vs_separate_cast_fp64": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 9.546056389808655e-8,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 0,
+          "losses": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 5,
+            "maximum_absolute_difference": 0.000010021030902862549,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": false
+          }
+        }
+      },
+      "domain": "R3-PHYS",
+      "losses": {
+        "functional_fp32": {
+          "continuous": 0.0006931094036027669,
+          "jump": 1.132796000637174,
+          "total": 1.1334891100407767
+        },
+        "legacy_fp32": {
+          "continuous": 0.0006931094036027669,
+          "jump": 1.132796000637174,
+          "total": 1.1334891100407767
+        },
+        "replay_shared_fp64": {
+          "continuous": 0.0006931089499457819,
+          "jump": 1.1327960098584804,
+          "total": 1.1334891188084262
+        },
+        "rowwise_fp32": {
+          "continuous": 0.0006931094619282442,
+          "jump": 1.132796021364765,
+          "total": 1.1334891308266932
+        },
+        "rowwise_shared_fp64": {
+          "continuous": 0.0006931089499457831,
+          "jump": 1.1327960098584804,
+          "total": 1.1334891188084262
+        },
+        "separate_cast_fp64": {
+          "continuous": 0.0006931089499457819,
+          "jump": 1.1327960098584804,
+          "total": 1.1334891188084262
+        },
+        "shared_fp64": {
+          "continuous": 0.0006931089499457819,
+          "jump": 1.1327960098584804,
+          "total": 1.1334891188084262
+        }
+      },
+      "method": "association-aware-guide-plus-residual",
+      "sensitive_coordinate": {
+        "gradients": {
+          "functional_fp32": -2.9685907065868378e-9,
+          "legacy_fp32": -2.9685907065868378e-9,
+          "replay_shared_fp64": -3.863318109864622e-9,
+          "rowwise_fp32": -2.8958311304450035e-9,
+          "rowwise_shared_fp64": -3.863318109864622e-9,
+          "separate_cast_fp64": -3.899913281202316e-9,
+          "shared_fp64": -3.863318109864622e-9
+        },
+        "index": [
+          93,
+          167
+        ],
+        "parameter": "readout_hidden.weight"
+      }
+    },
+    {
+      "checks": {
+        "fp32_control_exact": true,
+        "shared_fp64_cpu_layout_stress_pass": true,
+        "shared_fp64_replay_exact": true
+      },
+      "comparisons": {
+        "fp32_batched_vs_rowwise": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 1.6391277313232422e-7,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 2.0785916543530902e-8,
+          "losses": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 2.0785916543530902e-8,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 54,
+            "maximum_absolute_difference": 0.00011506769806146622,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": false
+          }
+        },
+        "legacy_fp32_vs_shared_fp64_NOT_legacy_GPU_parity": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 1.6391277313232422e-7,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 9.22130638514318e-9,
+          "losses": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 9.22130638514318e-9,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 47,
+            "maximum_absolute_difference": 0.0000629667192697525,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": false
+          }
+        },
+        "legacy_vs_functional_fp32": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 0,
+          "losses": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          }
+        },
+        "shared_fp64_batched_vs_rowwise": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 1.1926223897340549e-18,
+          "losses": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 1.1926223897340549e-18,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          }
+        },
+        "shared_fp64_exact_cpu_replay": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 0,
+          "losses": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          }
+        },
+        "shared_fp64_vs_separate_cast_fp64": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 9.546056389808655e-8,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 0,
+          "losses": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 5,
+            "maximum_absolute_difference": 0.000010021030902862549,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": false
+          }
+        }
+      },
+      "domain": "R3-PHYS",
+      "losses": {
+        "functional_fp32": {
+          "continuous": 0.0006931094036027669,
+          "jump": 1.132796000637174,
+          "total": 1.1334891100407767
+        },
+        "legacy_fp32": {
+          "continuous": 0.0006931094036027669,
+          "jump": 1.132796000637174,
+          "total": 1.1334891100407767
+        },
+        "replay_shared_fp64": {
+          "continuous": 0.0006931089499457819,
+          "jump": 1.1327960098584804,
+          "total": 1.1334891188084262
+        },
+        "rowwise_fp32": {
+          "continuous": 0.0006931094619282442,
+          "jump": 1.132796021364765,
+          "total": 1.1334891308266932
+        },
+        "rowwise_shared_fp64": {
+          "continuous": 0.0006931089499457831,
+          "jump": 1.1327960098584804,
+          "total": 1.1334891188084262
+        },
+        "separate_cast_fp64": {
+          "continuous": 0.0006931089499457819,
+          "jump": 1.1327960098584804,
+          "total": 1.1334891188084262
+        },
+        "shared_fp64": {
+          "continuous": 0.0006931089499457819,
+          "jump": 1.1327960098584804,
+          "total": 1.1334891188084262
+        }
+      },
+      "method": "unified-direct-conditioner",
+      "sensitive_coordinate": {
+        "gradients": {
+          "functional_fp32": -2.9685907065868378e-9,
+          "legacy_fp32": -2.9685907065868378e-9,
+          "replay_shared_fp64": -3.863318109864622e-9,
+          "rowwise_fp32": -2.8958311304450035e-9,
+          "rowwise_shared_fp64": -3.863318109864622e-9,
+          "separate_cast_fp64": -3.899913281202316e-9,
+          "shared_fp64": -3.863318109864622e-9
+        },
+        "index": [
+          93,
+          167
+        ],
+        "parameter": "readout_hidden.weight"
+      }
+    },
+    {
+      "checks": {
+        "fp32_control_exact": true,
+        "shared_fp64_cpu_layout_stress_pass": true,
+        "shared_fp64_replay_exact": true
+      },
+      "comparisons": {
+        "fp32_batched_vs_rowwise": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 3.5762786865234375e-7,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 2.0639901121555226e-8,
+          "losses": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 2.0639901121555226e-8,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 62,
+            "maximum_absolute_difference": 0.00016148388385772705,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": false
+          }
+        },
+        "legacy_fp32_vs_shared_fp64_NOT_legacy_GPU_parity": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 2.41096131503582e-7,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 2.7616696485210923e-8,
+          "losses": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 2.7616696485210923e-8,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 50,
+            "maximum_absolute_difference": 0.00007970631122589111,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": false
+          }
+        },
+        "legacy_vs_functional_fp32": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 0,
+          "losses": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          }
+        },
+        "shared_fp64_batched_vs_rowwise": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 2.220446049250313e-16,
+          "losses": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 2.220446049250313e-16,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          }
+        },
+        "shared_fp64_exact_cpu_replay": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 0,
+          "losses": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          }
+        },
+        "shared_fp64_vs_separate_cast_fp64": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 1.4901161193847656e-8,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 0,
+          "losses": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 6,
+            "maximum_absolute_difference": 0.000015310943126678467,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": false
+          }
+        }
+      },
+      "domain": "R4-RETAIL",
+      "losses": {
+        "functional_fp32": {
+          "continuous": 0.0007122105576101252,
+          "jump": 1.1347536084183842,
+          "total": 1.1354658189759943
+        },
+        "legacy_fp32": {
+          "continuous": 0.0007122105576101252,
+          "jump": 1.1347536084183842,
+          "total": 1.1354658189759943
+        },
+        "replay_shared_fp64": {
+          "continuous": 0.0007122092692830352,
+          "jump": 1.1347536360350807,
+          "total": 1.1354658453043638
+        },
+        "rowwise_fp32": {
+          "continuous": 0.0007122090798925687,
+          "jump": 1.1347536290582854,
+          "total": 1.135465838138178
+        },
+        "rowwise_shared_fp64": {
+          "continuous": 0.0007122092692830361,
+          "jump": 1.1347536360350805,
+          "total": 1.1354658453043636
+        },
+        "separate_cast_fp64": {
+          "continuous": 0.0007122092692830352,
+          "jump": 1.1347536360350807,
+          "total": 1.1354658453043638
+        },
+        "shared_fp64": {
+          "continuous": 0.0007122092692830352,
+          "jump": 1.1347536360350807,
+          "total": 1.1354658453043638
+        }
+      },
+      "method": "association-aware-guide-plus-residual",
+      "sensitive_coordinate": {
+        "gradients": {
+          "functional_fp32": -3.738705345313065e-9,
+          "legacy_fp32": -3.738705345313065e-9,
+          "replay_shared_fp64": -5.419552806529282e-9,
+          "rowwise_fp32": -7.655785339011345e-9,
+          "rowwise_shared_fp64": -5.419552806529282e-9,
+          "separate_cast_fp64": -5.419451554189436e-9,
+          "shared_fp64": -5.419552806529282e-9
+        },
+        "index": [
+          5,
+          64
+        ],
+        "parameter": "readout_hidden.weight"
+      }
+    },
+    {
+      "checks": {
+        "fp32_control_exact": true,
+        "shared_fp64_cpu_layout_stress_pass": true,
+        "shared_fp64_replay_exact": true
+      },
+      "comparisons": {
+        "fp32_batched_vs_rowwise": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 3.5762786865234375e-7,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 2.0639901121555226e-8,
+          "losses": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 2.0639901121555226e-8,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 62,
+            "maximum_absolute_difference": 0.00016148388385772705,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": false
+          }
+        },
+        "legacy_fp32_vs_shared_fp64_NOT_legacy_GPU_parity": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 2.41096131503582e-7,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 2.7616696485210923e-8,
+          "losses": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 2.7616696485210923e-8,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 50,
+            "maximum_absolute_difference": 0.00007970631122589111,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": false
+          }
+        },
+        "legacy_vs_functional_fp32": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 0,
+          "losses": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          }
+        },
+        "shared_fp64_batched_vs_rowwise": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 2.220446049250313e-16,
+          "losses": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 2.220446049250313e-16,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          }
+        },
+        "shared_fp64_exact_cpu_replay": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 0,
+          "losses": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          }
+        },
+        "shared_fp64_vs_separate_cast_fp64": {
+          "gradients": {
+            "atol": 0.00002,
+            "exact": false,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 1.4901161193847656e-8,
+            "rtol": 0.0002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": true
+          },
+          "loss_maximum_absolute_difference": 0,
+          "losses": {
+            "atol": 0.000002,
+            "exact": true,
+            "failing_scalar_count": 0,
+            "maximum_absolute_difference": 0,
+            "rtol": 0.00002,
+            "scalar_count": 3,
+            "within_existing_tolerance": true
+          },
+          "updated_parameters": {
+            "atol": 0.000002,
+            "exact": false,
+            "failing_scalar_count": 6,
+            "maximum_absolute_difference": 0.000015310943126678467,
+            "rtol": 0.00002,
+            "scalar_count": 96705,
+            "within_existing_tolerance": false
+          }
+        }
+      },
+      "domain": "R4-RETAIL",
+      "losses": {
+        "functional_fp32": {
+          "continuous": 0.0007122105576101252,
+          "jump": 1.1347536084183842,
+          "total": 1.1354658189759943
+        },
+        "legacy_fp32": {
+          "continuous": 0.0007122105576101252,
+          "jump": 1.1347536084183842,
+          "total": 1.1354658189759943
+        },
+        "replay_shared_fp64": {
+          "continuous": 0.0007122092692830352,
+          "jump": 1.1347536360350807,
+          "total": 1.1354658453043638
+        },
+        "rowwise_fp32": {
+          "continuous": 0.0007122090798925687,
+          "jump": 1.1347536290582854,
+          "total": 1.135465838138178
+        },
+        "rowwise_shared_fp64": {
+          "continuous": 0.0007122092692830361,
+          "jump": 1.1347536360350805,
+          "total": 1.1354658453043636
+        },
+        "separate_cast_fp64": {
+          "continuous": 0.0007122092692830352,
+          "jump": 1.1347536360350807,
+          "total": 1.1354658453043638
+        },
+        "shared_fp64": {
+          "continuous": 0.0007122092692830352,
+          "jump": 1.1347536360350807,
+          "total": 1.1354658453043638
+        }
+      },
+      "method": "unified-direct-conditioner",
+      "sensitive_coordinate": {
+        "gradients": {
+          "functional_fp32": -3.738705345313065e-9,
+          "legacy_fp32": -3.738705345313065e-9,
+          "replay_shared_fp64": -5.419552806529282e-9,
+          "rowwise_fp32": -7.655785339011345e-9,
+          "rowwise_shared_fp64": -5.419552806529282e-9,
+          "separate_cast_fp64": -5.419451554189436e-9,
+          "shared_fp64": -5.419552806529282e-9
+        },
+        "index": [
+          5,
+          64
+        ],
+        "parameter": "readout_hidden.weight"
+      }
+    }
+  ],
+  "decision": "PASS_LOCAL_PRECISION_CONTROLS_ONLY",
+  "elapsed_seconds_not_GPU_forecast": 1.8741761669516563,
+  "fixture_id": "factorized-device-four-cases-synthetic-v1",
+  "runtime": {
+    "architecture": "arm64",
+    "deterministic_algorithms_during_run": true,
+    "device": "cpu",
+    "intraop_threads_during_run": 1,
+    "operating_system": "Darwin",
+    "python": "3.11.5",
+    "torch": "2.12.1"
+  },
+  "schema_version": "factorized-base-local-precision-analysis-v1",
+  "scope": {
+    "CPU_layout_stress_is_GPU_emulation": false,
+    "CUDA_queried_explicitly": false,
+    "GPU_execution": false,
+    "candidate_GPU_qualified": false,
+    "default_precision_route_changed": false,
+    "files_written": false,
+    "legacy_CPU_GPU_parity_closed": false,
+    "optimizer_or_scientific_objective_changed": false,
+    "packages_installed": false,
+    "paid_jobs_launched": false,
+    "production_precision_policy_adopted": false,
+    "real_data_accessed": false,
+    "tolerances_changed": false
+  },
+  "synthetic_adamw_steps": 28,
+  "unchanged_tolerance_policy_id": "factorized-device-parity-fixed-tolerances-v1",
+  "variants": [
+    "legacy_fp32",
+    "functional_fp32",
+    "rowwise_fp32",
+    "shared_fp64",
+    "rowwise_shared_fp64",
+    "separate_cast_fp64",
+    "replay_shared_fp64"
+  ]
+}
