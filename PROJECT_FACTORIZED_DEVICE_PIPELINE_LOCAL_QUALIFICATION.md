@@ -2,7 +2,8 @@
 
 Date: 2026-09-08
 
-Status: **LOCAL IMPLEMENTATION AND CPU QUALIFICATION COMPLETE; CUDA NOT RUN.**
+Status: **LOCAL IMPLEMENTATION AND CPU QUALIFICATION COMPLETE; OPERATOR CUDA
+ATTEMPT STOPPED DURING STARTUP, NO CASE COMPLETED; CUDA UNQUALIFIED.**
 This fulfills the requested preparation of the GPU-capable amended model and
 bounded parity/performance checks. It does not launch paid work, admit data,
 freeze scientific settings, or declare the GPU/production route qualified.
@@ -149,12 +150,55 @@ local CPU Torch 2.12.1. No CUDA test or paid/remote job ran during this repair.
 The older 323-file CPU release, lock, field states and timetable counts remain
 unchanged. See the updated [run instructions](databricks/FACTORIZED_GPU_PARITY_AND_PERFORMANCE.md).
 
-### Pending hardware result
+### 2026-09-08 bounded CUDA attempt and startup repair
 
-The local device-port/preparation task is done. The user has authorized one
-bounded selected-device synthetic check; actual Databricks execution and its
-result remain pending. That check must be followed by
-review of the actual result—not a full campaign or an eight-GPU launch. Full
+The user supplied the result of the authorized one-iteration, 120-second
+`cuda:0` check. This is an operator-reported result, not a run independently
+performed by the local agent. The child completed normally, but its nested
+decision was `STOP_DEVICE_QUALIFICATION_INCOMPLETE`: **0/4 cases completed**,
+`RuntimeError`, elapsed inner-harness time 0.19489117099999476 seconds.
+Torch reports `2.7.0+cu126` / CUDA build `12.6`; the child-only cuBLAS value
+was correctly `:4096:8`. No active numerical-policy or selected-device record
+was produced, and no explicit CUDA synchronization completed. This is not a
+successful parity test, not proof of zero driver/device interaction, and not
+evidence that the model or the cluster is defective. GPU model/VRAM remain
+unobserved. Child return code 0 means report delivery, not qualification PASS.
+
+Code review found a concrete cold-start ordering defect consistent with the
+early failure: the harness reset allocator peaks before Torch initialized its
+CUDA allocator. PyTorch 2.7's availability/count calls do not establish that
+initialization; `get_device_properties` does, while `reset_peak_memory_stats`
+calls the allocator directly. The allocator rejects an uninitialized device.
+The original exception text was suppressed, so the exact historical cause is
+not uniquely established. [PyTorch 2.7 device initialization](https://github.com/pytorch/pytorch/blob/v2.7.0/torch/cuda/__init__.py#L523-L537),
+[memory reset](https://github.com/pytorch/pytorch/blob/v2.7.0/torch/cuda/memory.py#L327-L342),
+[allocator check](https://github.com/pytorch/pytorch/blob/v2.7.0/c10/cuda/CUDACachingAllocator.cpp#L3405-L3425).
+
+The local fix now initializes through the selected-device properties query
+before resetting peaks and reuses those properties for reporting. No warm-up,
+additional model step, fallback or tolerance change is introduced. Revision
+`factorized-device-qualification-v2-initialization-order` reports startup stage,
+bounded error text with path/URI/common-credential redaction, and bounded frame
+locations without locals/source lines. Deferred CUDA initialization exceptions
+receive the same STOP report; KeyboardInterrupt/SystemExit still propagate.
+The notebook default, child-only cuBLAS handling and execution bounds are unchanged.
+
+The updated 13-suite local regression passed **494 tests in 26.64 seconds**:
+27 graph, 18 connector, 64 harness, 46 notebook/supervisor and 339 existing
+scientific regressions. New stateful fake-CUDA tests enforce cold initialization
+before reset/cases, failure-stage preservation, flag restoration, diagnostics
+bounds/redaction and interrupt propagation. These tests and the genuine CPU
+four-case harness do not establish actual CUDA success. No further GPU attempt,
+package/cluster change, data access or paid/remote job was performed by the agent.
+The 323 accepted CPU source payloads and lock remain unchanged; no completion
+counts, field states, scientific tolerances or workload limits changed.
+
+### Pending hardware qualification
+
+The local preparation and identified startup repair are done. The one authorized
+hardware attempt has returned an incomplete result; a further bounded attempt
+requires the user's go-ahead. No automatic retry or full campaign is authorized.
+Full
 trajectory/checkpoint/installed-release qualification, scalable matching/count
 workloads, prospective numerical sensitivity design and proofs, real-data
 admission, and complete spend/storage/work budgets remain open in parallel.

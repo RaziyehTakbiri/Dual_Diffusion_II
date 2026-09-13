@@ -7,7 +7,10 @@ and metadata-aware energy connected to actual BASE/conditional learning and
 conditional sampling, with bounded local CPU qualification completed. The
 structural choice and local connector no longer await work or user input.
 The explicit-device successor and bounded parity/performance notebook are now
-prepared and tested locally on CPU; **CUDA has not been executed or qualified**.
+prepared and tested locally on CPU. The first operator-reported bounded CUDA
+attempt stopped during startup with **0/4 cases completed; CUDA is unqualified**.
+The identified startup-order repair is locally tested; another GPU attempt
+has not been launched by the agent.
 Numeric scientific settings and scalable whole-method integration remain open.
 Authority: the user requested both tracks, local work without paid jobs, and
 then delegated the scientific model-design choice. No real-data access,
@@ -165,7 +168,7 @@ documents the neural FP32 CPU/CUDA implementation, actual BASE/conditional
 updates and CPU-orchestrated conditional paths, plus fixed-tolerance four-case
 checks and the inspection-first [notebook](databricks/notebooks/factorized_gpu_parity_and_performance.py).
 Both the complete connector tests and actual supervised harness passed locally
-on CPU. The CUDA route is prepared but unexecuted. This is source-only, not an
+on CPU. The CUDA attempt stopped during startup; no case is qualified. This is source-only, not an
 installed GPU release; analytic matching, path RNG/control and F105 remain CPU.
 
 **COMPLETE — inspection-driven compatibility repair (2026-09-08).** The
@@ -174,11 +177,17 @@ an absent cuBLAS value is supplied only to the isolated test child before
 Torch imports. No cluster edit, restart or package upgrade is needed for
 these two issues. The updated local regression passed 480 tests; this is
 not an actual Torch 2.7/CUDA pass. The user has authorized one bounded
-GPU check, but its execution/result remain pending. See the
+GPU check; its subsequent incomplete result is recorded below. See the
 [follow-up record](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-08-inspection-driven-compatibility-follow-up).
 
-**Next local-to-GPU steps, still OPEN.** One separately authorized selected-
-device synthetic run can now test the prepared route. Full trajectory/F105
+**COMPLETE locally — cold CUDA startup repair.** The operator's first bounded
+attempt returned a RuntimeError before any case completed. The harness now
+initializes the selected device before resetting allocator peaks and reports
+bounded failure-stage diagnostics. The local regression passed 494 tests;
+no retry or actual CUDA pass is claimed. See the [attempt and repair record](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-08-bounded-cuda-attempt-and-startup-repair).
+
+**Next local-to-GPU steps, still OPEN.** After the user's go-ahead, one further
+bounded selected-device synthetic run can test the repaired route. Full trajectory/F105
 checkpoint performance, installed GPU release qualification and scalable
 matching/count measurements remain separate work. Specify the numerical
 regularization/noise sensitivity instance prospectively and establish the

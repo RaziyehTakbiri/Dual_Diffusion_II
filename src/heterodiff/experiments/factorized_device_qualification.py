@@ -22,6 +22,7 @@ import torch
 
 POLICY_ID = 'factorized-device-parity-fixed-tolerances-v1'
 FIXTURE_ID = 'factorized-device-four-cases-synthetic-v1'
+HARNESS_REVISION = 'factorized-device-qualification-v2-initialization-order'
 # Prospective numerical policy, frozen before any CUDA result. No caller override.
 TOLERANCES = {
     'forward': (2e-6, 2e-5),
@@ -43,6 +44,29 @@ class DeviceQualificationError(ValueError):
 def _need(condition, detail):
     if not condition:
         raise DeviceQualificationError(detail)
+
+
+def _error_diagnostics(error):
+    """Bounded backend message and frame locations, without locals or source text."""
+    message = str(error)
+    message = re.sub(r'\x1b\[[0-?]*[ -/]*[@-~]', '', message)
+    message = re.sub(r'(?i)\b(?:https?|s3|dbfs)://[^\s\'\"]+', '<uri>', message)
+    message = re.sub(r'(?i)\bauthorization\s*[:=][^\r\n]*', '<credential>', message)
+    message = re.sub(r'''(?i)\b(?:token|password|secret|api[_-]?key)\s*[:=]\s*(?:'[^']*'|"[^"]*"|[^\s,;]+)''',
+                     '<credential>', message)
+    message = re.sub(r'(?<!\w)(?:/[^\s\'\"]+|[A-Za-z]:\\[^\s\'\"]+)', '<path>', message)
+    message = re.sub(r'[\x00-\x08\x0b-\x1f\x7f]', '?', message)
+    frames = []
+    trace = error.__traceback__
+    while trace is not None:
+        code = trace.tb_frame.f_code
+        leaf = re.split(r'[\\/]', code.co_filename)[-1]
+        frames.append({'file': re.sub(r'[^\w.<>-]', '?', leaf)[:160],
+                       'function': re.sub(r'[^\w.<>-]', '?', code.co_name)[:160], 'line': trace.tb_lineno})
+        frames = frames[-8:]
+        trace = trace.tb_next
+    return {'message': message[:2048], 'message_truncated': len(message) > 2048,
+            'frames': frames, 'frame_locals_or_source_text_included': False}
 
 
 @dataclass(frozen=True)
@@ -154,8 +178,10 @@ def _cuda_precision_policy(torch_api, environment):
 
 
 @contextmanager
-def _numerical_policy(request):
+def _numerical_policy(request, *, progress=None):
     """Restore flags; never mix the legacy and new TF32 control families."""
+    progress = {} if progress is None else progress
+    progress['stage'] = 'NUMERICAL_POLICY_SETUP'
     saved_threads = torch.get_num_threads()
     saved_deterministic = torch.are_deterministic_algorithms_enabled()
     saved_warn = torch.is_deterministic_algorithms_warn_only_enabled()
@@ -165,16 +191,29 @@ def _numerical_policy(request):
         with ExitStack() as stack:
             precision = {'family': 'NOT_ACCESSED', 'settings': {}}
             if request.mode == 'CUDA':
+                progress['stage'] = 'CUDA_PRECONDITIONS'
                 _need(torch.version.cuda is not None, 'CUDA build required; no install attempted')
                 _need(os.environ.get('CUDA_VISIBLE_DEVICES') not in ('', '-1'),
                       'CUDA visibility is disabled; not changed by qualification')
                 _need(os.environ.get('CUBLAS_WORKSPACE_CONFIG') in (':4096:8', ':16:8'),
                       'deterministic CUBLAS_WORKSPACE_CONFIG required before launch')
+                progress['stage'] = 'CUDA_PRECISION_CONFIGURATION'
                 precision = stack.enter_context(_cuda_precision_policy(torch, os.environ))
+                progress['stage'] = 'CUDA_AVAILABILITY'
                 _need(torch.cuda.is_available(), 'selected CUDA runtime unavailable')
+                progress['stage'] = 'CUDA_ORDINAL_CHECK'
                 ordinal = int(request.device.split(':')[1])
                 _need(ordinal < torch.cuda.device_count(), 'selected CUDA ordinal unavailable')
+                # Availability/count do not initialize Torch's allocator. This public
+                # API performs lazy initialization before the explicit-device reset.
+                # No warm-up tensor/kernel is added to the fixed workload.
+                progress['stage'] = 'CUDA_DEVICE_INITIALIZATION'
+                precision['device_properties'] = torch.cuda.get_device_properties(request.device)
+                progress['cuda_device_initialization_completed'] = True
+                progress['stage'] = 'CUDA_PEAK_MEMORY_RESET'
                 torch.cuda.reset_peak_memory_stats(request.device)
+                progress['cuda_peak_memory_reset_completed'] = True
+            progress['stage'] = 'NUMERICAL_POLICY_READY'
             yield precision
     finally:
         torch.use_deterministic_algorithms(saved_deterministic, warn_only=saved_warn)
@@ -434,6 +473,7 @@ def run_qualification(*, mode='CPU_REFERENCE', device='cpu', iterations=1, maxim
     from heterodiff.evaluation.two_domain_count_normalized_event_cks import PHYSIONET_DOMAIN_ID, RETAIL_DOMAIN_ID
     from heterodiff.experiments.factorized_conditional_training import PRIMARY_METHOD_ID, PRIMARY_COMPARATOR_ID
     report = {'schema_version': 'factorized-device-qualification-v1', 'fixture_id': FIXTURE_ID,
+        'harness_revision': HARNESS_REVISION,
         'tolerance_policy_id': POLICY_ID, 'mode': mode, 'device': device, 'iterations': iterations,
         'torch_version': torch.__version__, 'cuda_build_version': torch.version.cuda,
         'cuda_execution': 'CUDA_NOT_EXECUTED' if mode == 'CPU_REFERENCE' else 'CUDA_REQUESTED',
@@ -452,10 +492,12 @@ def run_qualification(*, mode='CPU_REFERENCE', device='cpu', iterations=1, maxim
     report['scope']['CPU_REFERENCE_library_internal_availability_probes_possible'] = True
     report['scope']['CPU_REFERENCE_explicit_CUDA_discovery_or_allocation_requested_by_harness'] = False
     budget = _Budget(request)
+    progress = {'stage': 'QUALIFICATION_START'}
+    report['execution_progress'] = progress
     try:
         if mode == 'CUDA':
             report['version_selected_CUDA_precision_family'] = _cuda_precision_family(torch.__version__)
-        with _numerical_policy(request) as precision:
+        with _numerical_policy(request, progress=progress) as precision:
             report['active_numerical_policy'] = {
                 'intraop_threads': torch.get_num_threads(),
                 'deterministic_algorithms': torch.are_deterministic_algorithms_enabled(),
@@ -467,14 +509,17 @@ def run_qualification(*, mode='CPU_REFERENCE', device='cpu', iterations=1, maxim
                 'ordinary_AdamW_health_checks_and_math_unchanged': True,
             }
             if mode == 'CUDA':
-                properties = torch.cuda.get_device_properties(device)
+                properties = precision['device_properties']
                 report['selected_device'] = {'name': properties.name, 'total_memory_bytes': properties.total_memory,
                     'compute_capability': [properties.major, properties.minor]}
                 report['cuda_execution'] = 'CUDA_CONTEXT_ACCESSED_NEURAL_EXECUTION_NOT_YET_COMPLETED'
             for iteration in range(iterations):
                 for domain in (PHYSIONET_DOMAIN_ID, RETAIL_DOMAIN_ID):
                     for method in (PRIMARY_METHOD_ID, PRIMARY_COMPARATOR_ID):
+                        progress.update(stage='CASE_BUDGET_CHECK', iteration=iteration,
+                                        domain_id=domain, method_id=method)
                         budget.check()
+                        progress['stage'] = 'CASE_EXECUTION'
                         result = _case(domain, method, device, budget)
                         result['iteration'] = iteration
                         report['cases'].append(result)
@@ -483,11 +528,15 @@ def run_qualification(*, mode='CPU_REFERENCE', device='cpu', iterations=1, maxim
             passed = len(report['cases']) == 4*iterations and all(case['passed'] for case in report['cases'])
             report['decision'] = ('PASS_CPU_REFERENCE_CUDA_NOT_EXECUTED' if mode == 'CPU_REFERENCE'
                                   else 'PASS_SELECTED_CUDA_SYNTHETIC_PARITY_ONLY') if passed else 'FAIL_DEVICE_PARITY'
-    except (RuntimeError, ValueError, ImportError, OSError) as error:
+            progress['stage'] = 'NUMERICAL_POLICY_RESTORATION'
+        progress['stage'] = 'QUALIFICATION_COMPLETE'
+    except Exception as error:
+        # Includes deferred CUDA initialization errors; interrupts still propagate.
         report['decision'] = 'STOP_DEVICE_QUALIFICATION_INCOMPLETE'
         report['error_type'] = type(error).__name__
-        # Exclude traceback, runtime paths, identities and arbitrary backend diagnostics.
-        report['error_detail'] = str(error)[:240] if isinstance(error, DeviceQualificationError) else 'local operation failed; inspect local traceback separately'
+        report['failed_stage'] = progress['stage']
+        report['error_diagnostics'] = _error_diagnostics(error)
+        report['error_detail'] = report['error_diagnostics']['message']
     report['completed_case_count'] = len(report['cases'])
     report['elapsed_seconds'] = time.perf_counter()-budget.started
     report['memory'] = {'process_lifetime_peak_rss_bytes': _rss(), 'exclusive_task_memory_claimed': False}

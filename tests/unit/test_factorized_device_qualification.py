@@ -297,3 +297,173 @@ def test_one_restore_failure_still_attempts_all_other_settings_and_cannot_pass()
             assert fake.backends.cudnn.fp32_precision == 'ieee'
     assert fake.backends.fp32_precision == fake.backends.cuda.matmul.fp32_precision == 'tf32'
     assert fake.backends.cudnn.benchmark is True
+
+
+def _fake_cold_cuda_runtime(monkeypatch, *, fail_at=None):
+    """Stateful API-order model only: no real CUDA module call or computation."""
+    fake = _fake_torch('2.7.0+cu126', False)
+    fake.version = SimpleNamespace(cuda='synthetic-12.6')
+    state = {'initialized': False, 'reset': False, 'calls': [],
+             'threads': 4, 'deterministic': False, 'warn_only': True}
+    def operation(name):
+        state['calls'].append(name)
+        if name == fail_at:
+            raise RuntimeError('synthetic ' + name + ' failure')
+    def properties(device):
+        assert device == 'cuda:0'
+        operation('properties')
+        state['initialized'] = True
+        return SimpleNamespace(name='FAKE_GPU_NOT_HARDWARE', total_memory=123, major=8, minor=0)
+    def reset(device):
+        assert device == 'cuda:0'
+        operation('reset')
+        if not state['initialized']:
+            raise RuntimeError('Invalid device argument 0: did you call init?')
+        state['reset'] = True
+    def available():
+        operation('available')
+        return True
+    def count():
+        operation('count')
+        return 1
+    def memory(device):
+        assert device == 'cuda:0' and state['initialized']
+        return 0
+    fake.cuda = SimpleNamespace(is_available=available, device_count=count,
+        get_device_properties=properties, reset_peak_memory_stats=reset,
+        max_memory_allocated=memory, max_memory_reserved=memory)
+    fake.get_num_threads = lambda: state['threads']
+    fake.set_num_threads = lambda value: state.update(threads=value)
+    fake.are_deterministic_algorithms_enabled = lambda: state['deterministic']
+    fake.is_deterministic_algorithms_warn_only_enabled = lambda: state['warn_only']
+    fake.use_deterministic_algorithms = lambda value, warn_only: state.update(
+        deterministic=value, warn_only=warn_only)
+    monkeypatch.setattr(q, 'torch', fake)
+    monkeypatch.setenv('CUBLAS_WORKSPACE_CONFIG', ':4096:8')
+    for name in ('CUDA_VISIBLE_DEVICES', 'TORCH_ALLOW_TF32_CUBLAS_OVERRIDE', 'NVIDIA_TF32_OVERRIDE'):
+        monkeypatch.delenv(name, raising=False)
+    monkeypatch.setattr(q, '_rss', lambda: 0)
+    return fake, state
+
+
+def test_cold_cuda_properties_initialize_allocator_before_reset_and_cases(monkeypatch):
+    fake, state = _fake_cold_cuda_runtime(monkeypatch)
+    def case(domain, method, device, budget):
+        assert state['initialized'] and state['reset']
+        state['calls'].append('case')
+        return {'domain_id': domain, 'method_id': method, 'passed': True}
+    monkeypatch.setattr(q, '_case', case)
+    report = q.run_qualification(mode='CUDA', device='cuda:0')
+    assert state['calls'] == ['available', 'count', 'properties', 'reset'] + ['case']*4
+    assert report['selected_device']['name'] == 'FAKE_GPU_NOT_HARDWARE'
+    assert report['completed_case_count'] == 4
+    assert report['execution_progress']['cuda_device_initialization_completed'] is True
+    assert report['execution_progress']['cuda_peak_memory_reset_completed'] is True
+    assert report['harness_revision'] == 'factorized-device-qualification-v2-initialization-order'
+    assert (state['threads'], state['deterministic'], state['warn_only']) == (4, False, True)
+    assert fake.backends.cuda.matmul.allow_tf32 is True
+    assert fake.backends.cudnn.allow_tf32 is True
+    assert fake.backends.cudnn.benchmark is True
+
+
+@pytest.mark.parametrize('failure,stage,initialized', [
+    ('available', 'CUDA_AVAILABILITY', False),
+    ('count', 'CUDA_ORDINAL_CHECK', False),
+    ('properties', 'CUDA_DEVICE_INITIALIZATION', False),
+    ('reset', 'CUDA_PEAK_MEMORY_RESET', True),
+])
+def test_cuda_startup_error_keeps_stage_message_and_restores_flags(monkeypatch, failure, stage, initialized):
+    fake, state = _fake_cold_cuda_runtime(monkeypatch, fail_at=failure)
+    def forbidden(*args, **kwargs):
+        raise AssertionError('case must not begin after startup failure')
+    monkeypatch.setattr(q, '_case', forbidden)
+    report = q.run_qualification(mode='CUDA', device='cuda:0')
+    assert report['decision'] == 'STOP_DEVICE_QUALIFICATION_INCOMPLETE'
+    assert report['completed_case_count'] == 0
+    assert report['failed_stage'] == stage
+    assert report['error_detail'] == 'synthetic ' + failure + ' failure'
+    assert report['error_diagnostics']['frames'][-1]['function'] == 'operation'
+    assert 'active_numerical_policy' not in report
+    assert state['initialized'] is initialized and state['reset'] is False
+    assert (state['threads'], state['deterministic'], state['warn_only']) == (4, False, True)
+    assert fake.backends.cuda.matmul.allow_tf32 is True
+    assert fake.backends.cudnn.allow_tf32 is True
+    assert fake.backends.cudnn.benchmark is True
+
+
+def test_bounded_diagnostics_retain_allocator_message_not_paths_locals_or_credentials():
+    try:
+        raise RuntimeError('Invalid device argument 0: did you call init? /secret/runtime/path '
+                           'https://private.example/token password=private-value token=hidden-value\x1b[31m')
+    except RuntimeError as error:
+        diagnostics = q._error_diagnostics(error)
+    serialized = json.dumps(diagnostics)
+    assert 'did you call init?' in diagnostics['message']
+    assert all(value not in serialized for value in ('/secret', 'private.example', 'private-value', 'hidden-value', '\\u001b'))
+    assert diagnostics['frame_locals_or_source_text_included'] is False
+    assert diagnostics['frames'][-1]['file'] == 'test_factorized_device_qualification.py'
+    assert diagnostics['frames'][-1]['line'] > 0
+
+
+def test_error_message_and_frame_list_are_bounded():
+    def nested(depth):
+        if depth:
+            return nested(depth-1)
+        raise RuntimeError('x'*3000)
+    try:
+        nested(12)
+    except RuntimeError as error:
+        diagnostics = q._error_diagnostics(error)
+    assert len(diagnostics['message']) == 2048
+    assert diagnostics['message_truncated'] is True
+    assert len(diagnostics['frames']) == 8
+
+
+@pytest.mark.parametrize('message', [
+    'Authorization: Bearer EXAMPLE_TEST_ONLY',
+    "password='EXAMPLE TEST ONLY'",
+    'token="EXAMPLE TEST ONLY"',
+])
+def test_diagnostics_redact_authorization_and_quoted_credentials(message):
+    diagnostics = q._error_diagnostics(RuntimeError(message))
+    assert diagnostics['message'] == '<credential>'
+    assert 'EXAMPLE' not in json.dumps(diagnostics)
+
+
+def test_diagnostic_frame_strings_are_bounded_and_not_absolute_paths():
+    def broken():
+        raise RuntimeError('synthetic failure')
+    broken.__code__ = broken.__code__.replace(co_filename='C:\\private\\'+'f'*300+'.py', co_name='n'*300)
+    try:
+        broken()
+    except RuntimeError as error:
+        diagnostics = q._error_diagnostics(error)
+    frame = diagnostics['frames'][-1]
+    assert frame['file'] == 'f'*160 and frame['function'] == 'n'*160
+    assert 'private' not in json.dumps(diagnostics)
+
+
+def test_deferred_cuda_initialization_exception_is_reported_with_stage(monkeypatch):
+    fake, state = _fake_cold_cuda_runtime(monkeypatch)
+    class FakeDeferredCudaCallError(Exception):
+        pass
+    def deferred(device):
+        raise FakeDeferredCudaCallError('synthetic deferred CUDA initialization failure')
+    fake.cuda.get_device_properties = deferred
+    report = q.run_qualification(mode='CUDA', device='cuda:0')
+    assert report['decision'] == 'STOP_DEVICE_QUALIFICATION_INCOMPLETE'
+    assert report['failed_stage'] == 'CUDA_DEVICE_INITIALIZATION'
+    assert report['error_type'] == 'FakeDeferredCudaCallError'
+    assert report['completed_case_count'] == 0
+    assert (state['threads'], state['deterministic'], state['warn_only']) == (4, False, True)
+
+
+@pytest.mark.parametrize('error_type', [KeyboardInterrupt, SystemExit])
+def test_interrupts_are_not_swallowed_by_failure_reporting(monkeypatch, error_type):
+    def interrupted(*args, **kwargs):
+        raise error_type('synthetic interruption')
+    monkeypatch.setattr(q, '_case', interrupted)
+    previous = torch.are_deterministic_algorithms_enabled()
+    with pytest.raises(error_type):
+        q.run_qualification()
+    assert torch.are_deterministic_algorithms_enabled() is previous

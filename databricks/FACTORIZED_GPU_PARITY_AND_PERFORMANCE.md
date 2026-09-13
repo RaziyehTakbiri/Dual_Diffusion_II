@@ -42,6 +42,15 @@ CPU_REFERENCE performs CPU tensor computation and does not explicitly discover o
 
 ## Reading the result
 
+The first operator CUDA attempt stopped at startup with no cases completed.
+The updated source harness reports revision
+`factorized-device-qualification-v2-initialization-order`: it initializes the
+selected CUDA device before resetting allocator peaks, with no warm-up/model
+step added. Failures now include `failed_stage`, bounded `error_detail`, and
+`error_diagnostics` frame locations (no locals/source lines). The local repair
+is tested, but another CUDA attempt has not been performed or authorized by
+this document. Keep the same fixed bounds; do not automatically retry.
+
 - `INSPECT_ONLY_COMPLETE`: no numerical test or CUDA query ran.
 - `INPUT_REQUIRED`: one of the visible mode/device/limit/acknowledgement values needs correction; no test launched.
 - `CUDA_HIDDEN_BY_EXISTING_ENVIRONMENT`: the existing visibility setting hides GPUs. Do not rerun the earlier CPU-only bootstrap. Use the intended existing GPU environment and review its setting; the notebook changes nothing.

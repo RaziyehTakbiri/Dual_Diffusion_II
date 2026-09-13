@@ -12,6 +12,14 @@
 **Current evidence view (2026-09-08):** 31 fields open / 141 closed; 8 blockers
 open / 4 closed (6 execution + 2 submission open); Gate A 5/8
 
+**CUDA hardware follow-up (2026-09-08):** the operator's first bounded attempt
+stopped during startup with 0/4 cases complete. The identified allocator
+initialization-order repair is COMPLETE locally (494 tests passed); hardware
+qualification remains OPEN. No additional GPU attempt was launched. The
+[attempt/repair record](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-08-bounded-cuda-attempt-and-startup-repair)
+supersedes the preparation-only hardware status below. No checkbox or field
+count changes; another bounded attempt requires the user's go-ahead.
+
 **COMPLETED — GPU-capable amended implementation and bounded check preparation
 (2026-09-08).** The [device implementation and qualification record](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md)
 documents explicit-device BASE, conditional learner and sampler wiring, fixed

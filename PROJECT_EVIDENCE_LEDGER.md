@@ -9,7 +9,11 @@ conditional learner and sampler now have an explicit-device successor, with
 bounded parity/performance checks and a conventional inspection-first notebook.
 The [device implementation record](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md)
 documents completed local CPU verification and actual supervised CPU harness
-execution. **CUDA_NOT_EXECUTED** remains the hardware status. Neural FP32 work
+execution. The operator's subsequent bounded CUDA attempt stopped during startup
+with **0/4 cases complete; CUDA remains unqualified**. The identified allocator
+initialization-order bug is fixed locally (494 tests passed), with bounded stage/
+error diagnostics; no further GPU attempt was launched. See the [attempt and repair](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-08-bounded-cuda-attempt-and-startup-repair).
+Neural FP32 work
 can target one selected CUDA device; exact metadata, analytic guide, reference
 path orchestration and F105 stay CPU. No speedup or full GPU pipeline claim is made.
 The earlier [CPU conditional integration](PROJECT_FACTORIZED_CONDITIONAL_PIPELINE_LOCAL_INTEGRATION.md)
@@ -31,7 +35,11 @@ original snapshot. Formal Tests 28/29/30 are OPEN/OPEN/PENDING; results 0/4.
 `DRAFT_NOT_EXECUTABLE` refers to the full scientific route, not inability to
 install or test local components.
 
-**This update's authority:** following structural scientific repair and local
+**Hardware follow-up scope:** the user separately authorized one bounded GPU
+check and supplied its incomplete result. The follow-up records that report
+and local repair/testing only, not another GPU attempt or qualification PASS.
+
+**Preparation milestone's authority:** following structural scientific repair and local
 conditional integration, the user requested preparation of the GPU-capable
 implementation and bounded parity/performance checks. This update covers local
 code, synthetic CPU tests, a dormant GPU test route and consequent plan updates.

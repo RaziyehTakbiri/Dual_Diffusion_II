@@ -2,8 +2,11 @@
 
 Date: 2026-09-08
 
-The local CPU reference path is qualified for the fixed cases below. The CUDA
-path is prepared but **CUDA has not been executed or qualified**. This does not
+The local CPU reference path is qualified for the fixed cases below. The operator's
+first bounded CUDA attempt stopped during startup with **0/4 cases complete**;
+CUDA remains unqualified. The identified initialization-order bug is repaired
+locally; see the [attempt and repair record](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-08-bounded-cuda-attempt-and-startup-repair).
+This does not
 adopt production numerical tolerances, training budgets, hardware selection,
 scientific settings, or a checkpoint-selection result. Historical CPU/frozen
 artifacts are not changed by this work.
