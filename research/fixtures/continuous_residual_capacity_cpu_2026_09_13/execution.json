@@ -1,0 +1,11 @@
+{
+  "protocol_sha256": "e57b2d865db4dae69ee3a4e44905a271457abad37792233dcb45e45f7264a768",
+  "recorded_before_fits": true,
+  "source_sha256": {
+    "compact_fiber_residual.py": "160d808e1dbc27579a7c6ed49d7a06d541c731e9b90e314b64eabf8eeae142bf",
+    "continuous_fiber_conditional_benchmark.py": "033ddd18c35ed0795c6b7cd8e53ff2bb35e60ceff1de89e22ecc207de9a39a10",
+    "continuous_fiber_grid_target.py": "398e9f31f035d7dab256fafcbf6e7196cff2a56b454e1d0834dc27267ce04405",
+    "continuous_fiber_initialization_diagnostic.py": "81857aed1d7f7006c3adaf10beb63596fdb8736963434fa78ace4a6c206c12c8",
+    "continuous_residual_capacity.py": "c277d65b54de47b99e8ca83ffd14ea9ba91b6bf1d68d407e17499561b5375a80"
+  }
+}

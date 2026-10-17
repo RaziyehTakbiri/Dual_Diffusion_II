@@ -1,0 +1,276 @@
+{
+  "schema_version": "heterodiff-continuous-curvature-learnability-verification-v1",
+  "date": "2026-09-13",
+  "decision": "TWO_BOUNDED_EXPERIMENTS_COMPLETE_LEARNED_DERIVATIVE_ACCURACY_NOT_QUALIFIED",
+  "scope": {
+    "local_cpu_only": true,
+    "synthetic_only": true,
+    "independent_backward_target_used_for_learner_training_or_selection": false,
+    "all_192_fits_frozen_before_backward_target_evaluation": true,
+    "old_scientific_targets_and_acceptance_tolerances_preserved": true,
+    "learned_conditional_sampler_integration": false,
+    "general_amortized_BCE_repaired": false,
+    "GPU_cloud_paid_job_real_data_or_publication": false
+  },
+  "scientific_results": {
+    "curvature": {
+      "completed_routes": 4,
+      "completed_active_profiles": 32,
+      "all_tolerance_route_pass_count": 4,
+      "score_only_curvature_not_Hessian_labels": true,
+      "largest_real_absolute_bound": 2.917810623474728
+    },
+    "learnability": {
+      "completed_routes": 24,
+      "completed_fits": 192,
+      "unique_forward_label_suffixes": 589824,
+      "all_tolerance_route_pass_count": 0,
+      "solver_success_count": 192,
+      "maximum_projected_gradient": 2.1530366795350514e-7,
+      "maximum_coefficient_real_absolute_bound": 3.490098285040475,
+      "coefficient_boundaries_active": 0,
+      "route_mean_validation_risk_improved_count": 24,
+      "larger_budget_value_score_hessian_RMS_improved_pairs": 12,
+      "matched_budget_pair_count": 12
+    },
+    "statistics_are_descriptive_not_universal_superiority": true
+  },
+  "tests": {
+    "focused_development": {
+      "passed": 553,
+      "failed": 0,
+      "seconds": 6.53,
+      "python": "3.11.5",
+      "numpy": "2.4.6",
+      "scipy": "1.17.1"
+    },
+    "focused_installed_reader": {
+      "passed": 553,
+      "failed": 0,
+      "seconds": 6.36,
+      "python": "3.11.5",
+      "numpy": "2.1.3",
+      "scipy": "1.15.1",
+      "outside_checkout": true,
+      "source_PYTHONPATH_disabled": true,
+      "pytest_auto_plugins_disabled": true
+    },
+    "new_focused_test_count": 148,
+    "test_files": [
+      "tests/unit/test_localized_score_curvature.py",
+      "tests/unit/test_continuous_localized_curvature.py",
+      "tests/unit/test_localized_likelihood_learner.py",
+      "tests/unit/test_continuous_forward_labels.py",
+      "tests/unit/test_continuous_localized_learnability.py",
+      "tests/unit/test_localized_fiber_residual.py",
+      "tests/unit/test_continuous_localized_residual.py",
+      "tests/unit/test_compact_fiber_residual.py",
+      "tests/unit/test_continuous_residual_capacity.py",
+      "tests/unit/test_continuous_fiber_grid_target.py",
+      "tests/unit/test_continuous_fiber_conditional_benchmark.py",
+      "tests/unit/test_continuous_fiber_initialization_diagnostic.py",
+      "tests/unit/test_continuous_residual_diagnostic.py"
+    ],
+    "no_remote_CI_or_universal_platform_support_claim": true,
+    "final_new_modules_tests_and_audit_scripts_pyflakes": "PASS"
+  },
+  "portability": {
+    "curvature": {
+      "all_tolerance_route_pass_counts": [
+        4,
+        4
+      ],
+      "development": {
+        "path": "/Users/mahtab/Documents/Claude/Projects/Dual Diffusion 2/research/fixtures/continuous_localized_curvature_cpu_2026_09_13/report.json",
+        "sha256": "d1e438b8f7b3f189e036f680b50467832bb8557425ee90e8ff830eeaaf269997",
+        "size_bytes": 7044260
+      },
+      "development_environment": {
+        "numpy": "2.4.6",
+        "python": "3.11.5",
+        "scipy": "1.17.1"
+      },
+      "physical_arrays": {
+        "gradient": {
+          "exact": true,
+          "maximum_absolute_difference": 0,
+          "scalars": 9216
+        },
+        "hessian": {
+          "exact": true,
+          "maximum_absolute_difference": 0,
+          "scalars": 9216
+        },
+        "value": {
+          "exact": true,
+          "maximum_absolute_difference": 0,
+          "scalars": 9216
+        }
+      },
+      "protocol_sha256": "6a304da5e3bbf6d2f3bc19e2184122d803b8a8024997f5c8ebf4ccee5ab76f47",
+      "reader": {
+        "path": "/tmp/heterodiff-curvature-learning-reader-Ro7r10/curvature/report.json",
+        "sha256": "6e4644f770979aff0c3db142d52387cb04d3c619fc8588fc9b0cf039cd9c1bfe",
+        "size_bytes": 7044260
+      },
+      "reader_elapsed_seconds": 0.9039004999212921,
+      "reader_environment": {
+        "numpy": "2.1.3",
+        "python": "3.11.5",
+        "scipy": "1.15.1"
+      },
+      "sources_exact": true
+    },
+    "learnability": {
+      "all_tolerance_route_pass_counts": [
+        0,
+        0
+      ],
+      "development": {
+        "path": "/Users/mahtab/Documents/Claude/Projects/Dual Diffusion 2/research/fixtures/continuous_localized_learnability_cpu_2026_09_13/report.json",
+        "sha256": "d8db24c1c4f2d22069da8ec15640cd9b553dfec5f3ecf87b5f0530069289a692",
+        "size_bytes": 24574054
+      },
+      "development_environment": {
+        "numpy": "2.4.6",
+        "python": "3.11.5",
+        "scipy": "1.17.1"
+      },
+      "physical_arrays": {
+        "gradient": {
+          "exact": false,
+          "maximum_absolute_difference": 6.01856550708213e-10,
+          "scalars": 55728
+        },
+        "hessian": {
+          "exact": false,
+          "maximum_absolute_difference": 3.6176561746259495e-9,
+          "scalars": 55728
+        },
+        "value": {
+          "exact": false,
+          "maximum_absolute_difference": 2.836921808579973e-10,
+          "scalars": 55728
+        }
+      },
+      "physical_coefficients": {
+        "exact": false,
+        "maximum_absolute_difference": 4.099358630327288e-10,
+        "scalars": 6720
+      },
+      "protocol_sha256": "c99b27fbd042359f65f54cd7c191a4bdd28e98f62303ad341fcdb8287ee8036e",
+      "raw_dataset_file_count": 48,
+      "raw_dataset_files_exact": true,
+      "reader": {
+        "path": "/tmp/heterodiff-curvature-learning-reader-Ro7r10/learnability/report.json",
+        "sha256": "c6f0df93930880710ec0da48964dda018f434a1077596ac36b81107bc961e886",
+        "size_bytes": 24573783
+      },
+      "reader_elapsed_seconds": 4.034385500010103,
+      "reader_environment": {
+        "numpy": "2.1.3",
+        "python": "3.11.5",
+        "scipy": "1.15.1"
+      },
+      "solver_success_counts": [
+        192,
+        192
+      ],
+      "sources_exact": true
+    },
+    "wheel": {
+      "path": "/tmp/heterodiff-curvature-learning-reader-wheel-tpr4vB/heterodiff-0.1.0-py3-none-any.whl",
+      "sha256": "3c64e7533b28bc7c2902ca9678dbe095ca7c76d333dc05989def037383d25dd5",
+      "size_bytes": 4163952
+    }
+  },
+  "preserved_previous_artifacts": {
+    "src/heterodiff/models/localized_fiber_residual.py": {
+      "sha256": "28b0caa974f1c6243076e5d1cff85321255519d822157a76f164b883eb8ce0ac",
+      "unchanged": true
+    },
+    "src/heterodiff/experiments/continuous_localized_residual.py": {
+      "sha256": "a466a4a503f1f59f40e9172b7ec899b082bd097603f75c616b0142de879b95cd",
+      "unchanged": true
+    },
+    "src/heterodiff/models/compact_fiber_residual.py": {
+      "sha256": "160d808e1dbc27579a7c6ed49d7a06d541c731e9b90e314b64eabf8eeae142bf",
+      "unchanged": true
+    },
+    "src/heterodiff/experiments/continuous_residual_capacity.py": {
+      "sha256": "9b4a91c0f5a4d4154fd721aa5a9aef2131731f71a7bbe162f4e5c23ebda72d6b",
+      "unchanged": true
+    },
+    "research/fixtures/continuous_localized_residual_cpu_2026_09_13/report.json": {
+      "sha256": "5cfc1a95284ce1149dd3211799666988b8b0422807affec2961c26264ab4c099",
+      "unchanged": true
+    },
+    "research/fixtures/continuous_residual_capacity_cpu_2026_09_13_export_repair/report.json": {
+      "sha256": "7821074d779708fd6b58d273f65cea9f028280d8dca5753dda45db52a8bf8d98",
+      "unchanged": true
+    },
+    "research/fixtures/continuous_residual_diagnostic_cpu_2026_09_13/report.json": {
+      "sha256": "c1ea8e051f23c214b1d3faa81116e9149c9f954051f70038159951b18ea2f0c5",
+      "unchanged": true
+    }
+  },
+  "plan_counts": {
+    "active_checked": 19,
+    "active_open": 7,
+    "historical_checked": 61,
+    "historical_open": 102
+  },
+  "independent_review": {
+    "kind": "IN_SESSION_INDEPENDENT_SOURCE_MATHEMATICAL_AND_SAVED_RESULT_REVIEW_NOT_EXTERNAL_PEER_REVIEW",
+    "curvature_all_raw_metrics_and_inputs_checked": true,
+    "learnability_check_count": 28970,
+    "learnability_failure_count": 0,
+    "learnability_all48_dataset_pairs_all192_fits_checked": true,
+    "verification_does_not_relabel_accuracy_failures": true
+  },
+  "audit_and_formulation_bindings": {
+    "research/fixtures/continuous_localized_curvature_cpu_2026_09_13/independent_raw_audit.json": {
+      "sha256": "45c677f1a62a56e3b773665acac168c259f72165a14e6496207dc8eacb18e18f",
+      "size_bytes": 12630,
+      "decision": "PASS_INDEPENDENT_RAW_RECEIPT_AUDIT"
+    },
+    "research/fixtures/continuous_localized_learnability_independent_review_2026_09_13.json": {
+      "sha256": "5da45bcfd0aeb1829f5c402bc87304f51fcf74fa2d50930ea63ed8637a1a3835",
+      "size_bytes": 77884,
+      "decision": "PASS_SAVED_LEARNABILITY_AUDIT"
+    },
+    "docs/LOCALIZED_CURVATURE_PROTOCOL.md": {
+      "sha256": "222e000b9d38bbfca24986161cbf1a65ce45893cb10e7a8833e4e2d94ff71183",
+      "size_bytes": 8959
+    },
+    "docs/LOCALIZED_CURVATURE_FORMULATION.md": {
+      "sha256": "f4c419e70595da9e07c51e8835cd057796dd0ab0cbbed44378f41cebb0039204",
+      "size_bytes": 4419
+    },
+    "docs/LOCALIZED_LEARNABILITY_PROTOCOL.md": {
+      "sha256": "ffb2ba90699679a15e01bbcc7495c2a8af8158a8d4736e0cacdfa20173d530b8",
+      "size_bytes": 7694
+    },
+    "docs/LOCALIZED_LEARNABILITY_FORMULATION.md": {
+      "sha256": "a6e92f24edd35f08c06245bf9c88bc4263ce473baf100f50f80256810736321c",
+      "size_bytes": 18475
+    },
+    "scripts/audit_localized_curvature.py": {
+      "sha256": "1cc2fefb48ad246180eeb98e7965ce8c0506acc1d5730404ebbd8c806bc1f872",
+      "size_bytes": 22858
+    },
+    "scripts/audit_localized_learnability.py": {
+      "sha256": "0fa3684346ed6afbcd0b31863da08fd1b73cf7875f74ad67d25c84cc7421a523",
+      "size_bytes": 24135
+    }
+  },
+  "build_and_execution_notes": [
+    "Initial development build failed before wheel generation because bdist_wheel was absent. Used the already installed reader wheel/build tools; no dependency installation or download.",
+    "Only the project distribution in an existing temporary reader environment was replaced.",
+    "One declared development experiment per protocol, without retries; separate identical-protocol reader reproductions test installation portability.",
+    "Reader wheel binds the tested implementation. Subsequent Markdown progress/result documentation is not scientific source used by those runs.",
+    "Raw training and validation dataset exports are identical across the two tested numerical environments. Learner coefficients and physical arrays are not bitwise identical; measured differences are recorded, not hidden.",
+    "No commit, push, deletion of project evidence, paid execution or publication.",
+    "After the raw curvature audit, an unused local variable was removed from its read-only audit script. This lint-only change does not alter the experiment or overwrite evidence."
+  ]
+}

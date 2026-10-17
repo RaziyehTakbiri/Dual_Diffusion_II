@@ -27,6 +27,8 @@ from heterodiff.experiments.two_domain_baseline_registry import (
 
 OBSERVATION_ENCODER_PARAMETERS = 51_200
 NUISANCE_PARAMETERS = 53_313
+LEGACY_RESIDUAL_GATE = 'LEGACY_CUBIC_V1'
+LINEAR_RESIDUAL_GATE = 'LINEAR_ACTIVE_TIME_V1'
 
 
 class FactorizedTrainingError(ValueError):
@@ -36,6 +38,20 @@ class FactorizedTrainingError(ValueError):
 def _need(value, message):
     if not value:
         raise FactorizedTrainingError(message)
+
+
+def _validated_residual_gate_policy(value):
+    _need(type(value) is str and value in (LEGACY_RESIDUAL_GATE, LINEAR_RESIDUAL_GATE),
+          'explicit supported residual gate policy required')
+    return value
+
+
+def _conditional_gate(model, reverse_times):
+    policy = _validated_residual_gate_policy(model.residual_gate_policy)
+    direct = torch.tensor([model.horizon-u for u in reverse_times], dtype=torch.float64, device='cpu')
+    gate = (direct-model.clean_hold).clamp(min=0)/(model.horizon-model.clean_hold)
+    # Preserve the historical arithmetic exactly for default callers.
+    return gate.pow(3) if policy == LEGACY_RESIDUAL_GATE else gate
 
 
 def _label(value):
@@ -244,8 +260,9 @@ class FactorizedTrainingBatch:
 
 class FactorizedConditionalModel(nn.Module):
     def __init__(self, conditioner, *, guide, method_id, clean_hold, remaining_clocks,
-                 observation_seed, nuisance_seed):
+                 observation_seed, nuisance_seed, residual_gate_policy=LEGACY_RESIDUAL_GATE):
         super().__init__()
+        self._residual_gate_policy = _validated_residual_gate_policy(residual_gate_policy)
         _need(type(conditioner) is BoundedFactorizedConfigurationEnergy, 'exact shared conditioner energy required')
         _need(method_id in (PRIMARY_METHOD_ID, PRIMARY_COMPARATOR_ID), 'unknown conditional method')
         _need(type(clean_hold) is float and math.isfinite(clean_hold)
@@ -263,6 +280,10 @@ class FactorizedConditionalModel(nn.Module):
             observation_cap=guide.oracle.parameters.observation_cap,
             coordinate_scale=conditioner.architecture.coordinate_scale, initialization_seed=nuisance_seed)
         self.nuisance = FactorizedObservationNuisance(independent, initialization_seed=nuisance_seed)
+
+    @property
+    def residual_gate_policy(self):
+        return _validated_residual_gate_policy(self._residual_gate_policy)
 
     @property
     def horizon(self):
@@ -284,8 +305,7 @@ class FactorizedConditionalModel(nn.Module):
         self._rows(states, reverse_times, observations)
         context = self.encoder(observations)
         batch = configuration_batch(self.conditioner, states, reverse_times, context, coordinates=coordinates)
-        direct = torch.tensor([self.horizon-u for u in reverse_times], dtype=torch.float64, device='cpu')
-        gate = ((direct-self.clean_hold).clamp(min=0)/(self.horizon-self.clean_hold)).pow(3)
+        gate = _conditional_gate(self, reverse_times)
         # Exactly one gate, based on the declared binary64 clock, not a second FP32 clock.
         return self.conditioner(batch).to(torch.float64)*gate
 

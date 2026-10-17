@@ -1,16 +1,29 @@
 # Two-track readiness and GPU-training plan
 
+**Current priority update (2026-09-13):** the
+[paper-first research and reproducibility plan](PROJECT_RESEARCH_AND_REPRODUCIBILITY_PLAN.md)
+now controls next-work ordering. Its five first-package deliverables are marked
+complete, with scientific drafts, a portable reader workflow and 1,256 passing
+local regression tests. The next priorities are the guide/initializer proof,
+conditional-law approximation contract and independently anchored known-law
+comparisons, not more platform setup. This plan retains the data/resource
+history and unresolved production work; no new GPU job is launched.
+
+
 Date: 2026-09-13
 Status: the [mixed-domain scientific direction](PROJECT_MIXED_DOMAIN_SCIENTIFIC_AMENDMENT.md)
 is ADOPTED structurally, with factorized state/reference, smooth-law oracle
 and metadata-aware energy connected to actual BASE/conditional learning and
 conditional sampling, with bounded local CPU qualification completed. The
 structural choice and local connector no longer await work or user input.
-The explicit-device successor and bounded parity/performance notebook are now
-prepared and tested locally on CPU. The latest operator-reported bounded CUDA
-run completed **4/4 cases with exact GPU replays, but failed CPU/GPU BASE
-parameter-update parity**. Tesla T4 startup works with the repaired harness;
-numerical parity remains open. The agent has not launched another GPU attempt.
+The opt-in shared-FP64 BASE precision candidate now has an
+[accepted bounded integrated T4 result](PROJECT_FACTORIZED_PRECISION_PIPELINE_CUDA_RESULT.md):
+**4/4 cases passed the reported comparisons and exact GPU replay**, under the
+unchanged acceptance tolerances. The older legacy FP32 update-parity failures
+remain historical failures, not relabelled passes. The subsequent
+[local multi-step/checkpoint milestone](PROJECT_FACTORIZED_MULTISTEP_CHECKPOINT_LOCAL_QUALIFICATION.md)
+tests four BASE plus four conditional updates, with exact fresh-object disk
+restoration and continuation. No additional GPU job is launched by this step.
 Numeric scientific settings and scalable whole-method integration remain open.
 Authority: the user requested both tracks, local work without paid jobs, and
 then delegated the scientific model-design choice. No real-data access,
@@ -23,13 +36,13 @@ The conventional Databricks installation and current-model synthetic integration
 | Parallel track | Completed locally | Still required to close the full track |
 |---|---|---|
 | Data and integration readiness | Supplied-input adapters for both domains; preservation, lineage and exact-F105 checks; split-input preparation; a source-only synthetic smoke notebook | Actual archives and source hashes, lossless Retail workbook decoding, applicable research-use determinations, eligible-group inventory, leakage/support checks, populated splits, admission and production-scale integration |
-| Runtime and resource readiness | CPU facts reviewed; explicit-device optimizer/FP32 energy; actual classifier loss; numerical hybrid sampler, trainable visible encoder and independent nuisance; synthetic sampled-configuration F105 tests; expanded budget draft | Adopted structural amendment has a locally connected learner/sampler; numeric settings, real-dataset support and production-scale adapter remain open; numerical/scalable GPU qualification; admitted generation and compatible production checkpoint consumer; complete budget, spend and storage limits |
+| Runtime and resource readiness | CPU facts reviewed; explicit-device optimizer/energy; actual classifier loss; numerical hybrid sampler, trainable visible encoder and independent nuisance; bounded integrated T4 candidate pass; local multi-step/checkpoint continuity; synthetic sampled-configuration F105 tests; expanded budget draft | Numeric scientific settings, real-dataset support and production-scale adapter remain open; multi-step/resume and production-scale GPU qualification; admitted generation and compatible production checkpoint consumer; complete budget, spend and storage limits |
 
-These are bounded completed components, not a claim that B02/B03/B08/B09/B12 or Waves 2/3 are closed. No real dataset was downloaded or opened; no GPU training or scientific run was launched. The user supplied successful adapter-smoke and CPU-runtime-facts reports; this agent did not independently execute those notebooks remotely.
+These are bounded completed components, not a claim that B02/B03/B08/B09/B12 or Waves 2/3 are closed. No real dataset was downloaded or opened, and no full scientific training campaign was launched. The operator completed the separately reported bounded synthetic GPU checks; this agent did not independently execute those notebooks remotely. The earlier successful adapter-smoke and CPU-runtime-facts reports remain separately scoped evidence.
 
 ## User inputs recorded without assumptions
 
-- Databricks capacity reported by the user: **8 GPUs and up to 1000 GB memory**. GPU model, per-device VRAM, selected topology, actual allocation, hourly cost and spending limit are unknown. The memory statement is not interpreted as GPU VRAM or durable storage.
+- Databricks capacity reported by the user: **8 GPUs and up to 1000 GB memory**. Later bounded checks identify one selected Tesla T4 with 15,636,037,632 bytes of reported device memory. This does not establish the model/VRAM of the other reported GPUs, whole-cluster allocation, production topology, hourly cost or spending limit. Host RAM is not treated as GPU VRAM or durable storage.
 - Neither PhysioNet nor Retail source files are staged in Databricks yet. Research-use approval/determination references have not been supplied.
 - The proposed project location is `/Workspace/Users/Hadi.Mohebalizadeh@nike.com/Diffusion II/Dual_Diffusion_II`. Keep code and notebooks there.
 - Proposed bulk-data locations, subject to applicable permissions, retention and capacity approval:
@@ -200,11 +213,20 @@ execution; exact instructions for one more bounded GPU check are ready.
 See the [completion record](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md#2026-09-13-focused-update-diagnostics-and-local-qualification).
 No tolerance, optimizer-setting, model, fixture or cluster change was made.
 
-**Next local-to-GPU step, OPEN.** Collect and review one `BASE_UPDATE`
-diagnostic report on the same authorized test GPU, using one iteration and
-the same 120-second bound. Preparation does not execute the GPU run or prove
-the cause of the earlier mismatch. CPU/GPU parity stays FAIL/OPEN; no blind
-retry or full campaign is authorized. Full trajectory/F105
+**Subsequent precision milestones, COMPLETE within bounded scopes.** The
+diagnostic collection, local cancellation analysis, shared-FP64 BASE candidate,
+separate BASE GPU check, conditional-pipeline connection and integrated GPU
+check have all been completed. The [integrated result review](PROJECT_FACTORIZED_PRECISION_PIPELINE_CUDA_RESULT.md)
+records the reported four-case candidate pass and the limits of the recovered
+operator summary. It does not erase the legacy FP32 discrepancy or establish
+production equivalence. The [local multi-step/checkpoint result](PROJECT_FACTORIZED_MULTISTEP_CHECKPOINT_LOCAL_QUALIFICATION.md)
+records the next bounded continuity check without GPU work.
+
+**Next local-to-GPU step, OPEN.** Prepare a separate bounded multi-step/resume
+GPU check after accepting the local result. The new checkpoint codec is
+CPU-only; GPU restoration must be explicitly implemented and tested, not
+assumed from the earlier integrated GPU pass. No new paid execution or full
+campaign is authorized. Full trajectory/F105
 checkpoint performance, installed GPU release qualification and scalable
 matching/count measurements remain separate work. Specify the numerical
 regularization/noise sensitivity instance prospectively and establish the
@@ -237,7 +259,15 @@ The source contains explicit CPU/device checks and CPU RNG/checkpoint assumption
 
 The explicit-device optimizer, model/input placement, AdamW state, synthetic random-stream separation and checkpoint inspection are now implemented and tested locally on CPU. The conditional loss and supplied-configuration CPU64 F105 connection are also implemented. The additive numerical hybrid sampler and trainable observation/nuisance proposal are now implemented and tested locally. The structural chart/kernel successor is now adopted; its numerical instance, full-domain support and new production adapter remain open, followed by sampler qualification, scalable device-local generation and installed GPU release/hardware qualification. Keep exact CPU-only reference/certification routines as reference routines; audit the remaining initializer/guide/residual/generation boundaries. Preserve source/order/seed bindings and checkpoint eligibility rules. Any random-stream or precision change needs an explicit versioned successor, not a claim of identical CPU trajectories. Synthetic archive inspection does not authorize production save/restore/retry.
 
-Proposed numerics: binary32 model/gradient/optimizer state, mixed precision off, IEEE FP32 rather than TF32 for matrix/convolution operations. Retain the existing CPU binary64 F105 scoring and exact aggregation route. This limits the initial GPU change to training and compatible generation kernels; moving the certified metric to GPU is not implied. PyTorch exposes backend-specific FP32 controls; use one consistent API family for the selected version. [PyTorch CUDA precision documentation](https://docs.pytorch.org/docs/2.12/notes/cuda.html).
+Current opt-in candidate numerics: binary32 trainable parameters, gradients and
+optimizer moments; shared FP64 BASE forward/coordinate-derivative graph; FP32
+conditional neural arithmetic; mixed precision off and TF32 disabled. The
+physical encoding and returned-gradient boundaries remain FP32, with host FP64
+reduction/analytic work. This is not end-to-end FP64 or all-GPU execution. The
+legacy FP32 default is preserved. Retain existing CPU binary64 F105 scoring
+and aggregation; moving the certified metric to GPU is not implied. The
+[precision design and evidence](PROJECT_FACTORIZED_BASE_PRECISION_STABILIZATION.md)
+describe this explicit candidate rather than silently replacing the reference.
 
 Enable deterministic algorithms in error-on-unsupported mode and disable cuDNN algorithm benchmarking. Select any required CUDA workspace configuration against the chosen build before initialization. Qualify repeatability on the selected device/build; do not promise bitwise equality between CPU and GPU or across library/hardware changes. [PyTorch reproducibility guidance](https://docs.pytorch.org/docs/2.12/notes/randomness.html).
 
@@ -259,12 +289,12 @@ Admit the actual datasets with frozen splits and leakage/support checks, approve
 
 ## Databricks status and what the user needs to do now
 
-The two requested notebook reports have been received. The adapter smoke passed
+The earlier two requested notebook reports were received. The adapter smoke passed
 on tiny invented inputs; its one-group F061 incompatibility is expected and is
 not a finding about either absent real dataset. The runtime report identifies
 the attached `m6i.8xlarge` single-node CPU environment, 32 CPUs and about 119.5 GiB
-host RAM. NVIDIA metadata was unavailable; no GPU model, VRAM or CUDA readiness
-was established. Its notebook-scoped missing Torch/heterodiff metadata does not
+host RAM. NVIDIA metadata was unavailable in that CPU report; the later
+selected-T4 checks are separate evidence. Its notebook-scoped missing Torch/heterodiff metadata does not
 invalidate the earlier successful notebook's accepted installation receipt.
 The supplied report's record digest is
 `e155b6f04a4dd2ed5e7575c919edeea80b5e07f2ab08feff5ecbf414c20b5b70`;
@@ -276,19 +306,19 @@ bootstrap: it binds its earlier exact source roster, and these additive modules
 belong to a future release. Do not start a paid GPU cluster or repeat the old
 Docker/ECR/custody setup. The accepted CPU receipt and old release are preserved.
 
-Still needed before paid qualification or bulk data staging: selected GPU
-model/VRAM/driver/runtime, an enforceable spending or job-hour limit, durable
+Still needed before expanded paid qualification or bulk data staging: the
+intended production GPU/topology/runtime (the selected test T4 is now known),
+an enforceable spending or job-hour limit, durable
 storage allowance, and the applicable research-use determination or route for
 obtaining it. Unknown values stay uncommitted, not inferred from GPU count or RAM.
 
 ## Local verification record
 
-**Latest local device checkpoint:** [GPU-capable preparation and CPU
-qualification](PROJECT_FACTORIZED_DEVICE_PIPELINE_LOCAL_QUALIFICATION.md) is
-complete. The new notebook/harness was exercised through an actual isolated
-CPU child, not just mocked. Exact test counts and scope are recorded there.
-CUDA qualification remains unexecuted, and no scientific field/compound box
-closes from these local tests.
+**Latest local checkpoint:** the [multi-step/checkpoint qualification](PROJECT_FACTORIZED_MULTISTEP_CHECKPOINT_LOCAL_QUALIFICATION.md)
+records actual CPU synthetic uninterrupted/resumed execution and regression
+tests. The preceding [selected-T4 integrated result](PROJECT_FACTORIZED_PRECISION_PIPELINE_CUDA_RESULT.md)
+is accepted within its bounded candidate scope. Neither closes a scientific
+field/compound box, production checkpointing or installed GPU release readiness.
 
 **Previous local scientific checkpoint:** the
 [factorized conditional pipeline](PROJECT_FACTORIZED_CONDITIONAL_PIPELINE_LOCAL_INTEGRATION.md)

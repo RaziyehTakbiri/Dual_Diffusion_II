@@ -1,0 +1,15 @@
+{
+  "protocol_sha256": "a0612a26aa1994a7f900c5144c7a53b41ff99ad3e367c8085ab3ab8a1b3aa64a",
+  "recorded_before_fits": true,
+  "sources": {
+    "evaluation/continuous_fiber_conditional_benchmark.py": "033ddd18c35ed0795c6b7cd8e53ff2bb35e60ceff1de89e22ecc207de9a39a10",
+    "evaluation/continuous_fiber_grid_target.py": "398e9f31f035d7dab256fafcbf6e7196cff2a56b454e1d0834dc27267ce04405",
+    "evaluation/continuous_fiber_initialization_diagnostic.py": "81857aed1d7f7006c3adaf10beb63596fdb8736963434fa78ace4a6c206c12c8",
+    "experiments/continuous_forward_labels.py": "5e4f7aec0967410d67d418995f21fb5dff1dfc036b2401d4771342bc6ce911c1",
+    "experiments/continuous_localized_error_decomposition.py": "c8e911ec14531ff7586e60bc0b614d487b7a59e04af794767ae751442999619a",
+    "experiments/continuous_localized_learnability.py": "71104d58b791c706cfb801a512e20abb64b07747500eb228d3f5502c4b017792",
+    "experiments/continuous_residual_capacity.py": "9b4a91c0f5a4d4154fd721aa5a9aef2131731f71a7bbe162f4e5c23ebda72d6b",
+    "experiments/localized_population_risk.py": "6b83ec54074ab3e57130105aae7d2b8d52b3bdd0018a4255ac4dc9eeb01c06aa",
+    "models/localized_likelihood_learner.py": "19eb7f73d28ddea5285507d6facb84641d8a20dfbe6719cc2530834d6a9e576b"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "schema_version": "continuous-localized-residual-verification-v1",
+  "date": "2026-09-13",
+  "decision": "BOUNDED_FORMULATION_AND_COMPARISON_COMPLETE_PRIMARY_CURVATURE_GAP_RETAINED",
+  "development": {
+    "environment": {
+      "python": "3.11.5",
+      "numpy": "2.4.6",
+      "scipy": "1.17.1"
+    },
+    "focused_tests_passed": 483,
+    "focused_tests_elapsed_seconds": 13.43,
+    "new_primitive_tests": 66,
+    "new_construction_tests": 27,
+    "pyflakes_new_source_and_test_files_passed": true,
+    "git_diff_whitespace_check_passed": true,
+    "report_relative_path": "research/fixtures/continuous_localized_residual_cpu_2026_09_13/report.json",
+    "report_sha256": "5cfc1a95284ce1149dd3211799666988b8b0422807affec2961c26264ab4c099",
+    "report_size_bytes": 30509015,
+    "comparison_elapsed_seconds": 1.1768542909994721,
+    "protocol_sha256": "de45c892a45e67ccee208bb59077c58fe55e5bed9993fd5f876729db00ccc20e",
+    "completed_routes": 24,
+    "completed_active_profiles": 192,
+    "completed_terminal_zero_controls": 24,
+    "retries": 0,
+    "whole_process_time_or_training_throughput_claimed": false
+  },
+  "scientific_outcome": {
+    "all_quantities_passed_routes": 13,
+    "primary_passed_routes": 4,
+    "primary_total_routes": 12,
+    "extra_hessian_supervision_passed_routes": 9,
+    "extra_hessian_supervision_total_routes": 12,
+    "primary_256_cell_likelihood_and_score_checks_all_passed": true,
+    "primary_256_cell_GR_hessian_checks_all_passed": true,
+    "primary_256_cell_DIR_hessian_failure_counts": {
+      "reference_pressure": 16,
+      "higher_pressure_shifted_observation": 28
+    },
+    "extra_hessian_supervision_256_cell_all_quantities_passed": true,
+    "largest_whole_projection_real_absolute_bound": 2.9185107241868398,
+    "bound_includes_core_collars_tails_atoms": true,
+    "floating_point_sampling_bound_certified": false,
+    "primary_has_oracle_hessian_construction_labels": false,
+    "original_tolerance_values_preserved": true
+  },
+  "installed_reader": {
+    "environment": {
+      "python": "3.11.5",
+      "numpy": "2.1.3",
+      "scipy": "1.15.1"
+    },
+    "wheel_path": "/tmp/heterodiff-localized-reader-wheel-BoyS8C/heterodiff-0.1.0-py3-none-any.whl",
+    "wheel_sha256": "db4ed8e0b892412299e623f9fa43d27381aae454b8f55bddc0ec2a07b3b353df",
+    "isolated_temporary_environment": true,
+    "only_project_wheel_replaced": true,
+    "dependencies_downloaded": false,
+    "tests_run_outside_checkout": true,
+    "checkout_pythonpath_cleared": true,
+    "focused_tests_passed": 324,
+    "focused_tests_elapsed_seconds": 2.95,
+    "tested_modules": [
+      "test_localized_fiber_residual",
+      "test_continuous_localized_residual",
+      "test_compact_fiber_residual",
+      "test_continuous_residual_capacity",
+      "test_continuous_fiber_grid_target",
+      "test_continuous_fiber_initialization_diagnostic"
+    ],
+    "full_comparison_report_path": "/tmp/heterodiff-localized-reader-ITM58N/result/report.json",
+    "full_comparison_report_sha256": "e09fae9ee7c2909a981f543baa324043653d9f3f3085c85de6b86abbd37fa2a8",
+    "full_comparison_report_size_bytes": 30509015,
+    "completed_routes": 24,
+    "comparison_elapsed_seconds": 1.2081293342635036,
+    "same_source_bindings": true,
+    "same_protocol_hash": true,
+    "all_route_failure_counts_equal": true,
+    "all_physical_value_score_hessian_arrays_exactly_equal": true,
+    "maximum_physical_array_difference": 0,
+    "torch_imported_by_comparison_module": false,
+    "universal_bitwise_reproducibility_claimed": false,
+    "temporary_files_not_required_for_reader_reproduction": true
+  },
+  "source_sha256": {
+    "src/heterodiff/models/localized_fiber_residual.py": "28b0caa974f1c6243076e5d1cff85321255519d822157a76f164b883eb8ce0ac",
+    "src/heterodiff/experiments/continuous_localized_residual.py": "a466a4a503f1f59f40e9172b7ec899b082bd097603f75c616b0142de879b95cd",
+    "tests/unit/test_localized_fiber_residual.py": "700cd766cd4af4acb3ded806c500535d66ad5d1f941333b981ad4d81f519ef1f",
+    "tests/unit/test_continuous_localized_residual.py": "13c5db72e13ac036d865d3328368913bbcb1805585188d931020b49ce480d1ee",
+    "docs/LOCALIZED_RESIDUAL_FORMULATION.md": "531322428c4d3812c771f7afbe673b36c9b2ef296b876df4c9602e6c625a1ecb",
+    "docs/LOCALIZED_RESIDUAL_PROTOCOL.md": "21f2f06adb0abd95a36e0064aa6ca1877661d6a759eb94411810b5982b9f1803"
+  },
+  "prior_preserved_sha256": {
+    "src/heterodiff/models/compact_fiber_residual.py": "160d808e1dbc27579a7c6ed49d7a06d541c731e9b90e314b64eabf8eeae142bf",
+    "src/heterodiff/experiments/continuous_residual_capacity.py": "9b4a91c0f5a4d4154fd721aa5a9aef2131731f71a7bbe162f4e5c23ebda72d6b",
+    "research/fixtures/continuous_residual_capacity_cpu_2026_09_13_export_repair/report.json": "7821074d779708fd6b58d273f65cea9f028280d8dca5753dda45db52a8bf8d98",
+    "research/fixtures/continuous_residual_diagnostic_cpu_2026_09_13/report.json": "c1ea8e051f23c214b1d3faa81116e9149c9f954051f70038159951b18ea2f0c5"
+  },
+  "independent_review_relative_path": "research/fixtures/continuous_localized_residual_independent_review_2026_09_13.json",
+  "independent_review_sha256": "74ec5b428afb673a2213ef1e40c597958b84b812baaec9c3ea8be4a52e6f0c16",
+  "independent_review_scalar_identities_checked": 1053634,
+  "plan": {
+    "new_bounded_deliverables_completed": 2,
+    "current_checked": 17,
+    "current_broad_open": 7,
+    "historical_checked": 61,
+    "historical_open": 102,
+    "historical_total": 163
+  },
+  "scope": {
+    "synthetic_local_cpu_only": true,
+    "old_models_or_results_replaced": false,
+    "learner_sampler_integration_performed": false,
+    "non_oracle_learnability_established": false,
+    "endpoint_or_conditional_path_law_qualification": false,
+    "arbitrary_count_observation_or_learned_BASE_theorem": false,
+    "real_data_accessed": false,
+    "gpu_cloud_paid_jobs_launched": false,
+    "network_dependency_resolution": false,
+    "commit_push_or_publication": false
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "schema_version": "heterodiff-mixed-continuous-conditional-verification-v1",
+  "date": "2026-09-13",
+  "completed_deliverables": [
+    "OPT_IN_COMMON_GRID_MIXED_NEURAL_LEARNER_AND_SAMPLER",
+    "INDEPENDENT_CONTINUOUS_FIBER_TARGET_AND_ACTUAL_SAMPLER_COMPARISON"
+  ],
+  "independent_review": {
+    "kind": "IN_SESSION_INDEPENDENT_AGENT_REVIEW_NOT_PEER_REVIEW",
+    "common_path_time_measure_and_linear_gate": true,
+    "continuous_oracle_and_quadrature": true,
+    "occurrence_attached_fiber_and_other_carrier_mapping": true,
+    "actual_sampler_and_report_crosscheck": true,
+    "corrections_applied": [
+      "METHOD_SPECIFIC_INITIALIZER_DESCRIPTIONS",
+      "SAMPLING_WIDTH_NOT_TOTAL_APPROXIMATION_ERROR",
+      "SHARED_TARGET_NOT_DIFFERENT_INTENDED_LAWS",
+      "LINEAR_GATE_PERMITS_NOT_GUARANTEES_FIRST_ORDER_FIT",
+      "TERMINAL_MAXIMUM_BOUND_REGRESSION",
+      "ZERO_BASE_CONTROL_GUARD"
+    ]
+  },
+  "checks": {
+    "development_regression": {
+      "passed": 1459,
+      "failed": 0,
+      "elapsed_seconds": 176.53,
+      "selection": "tests/unit/test_factorized*.py tests/unit/test_two_domain_factorized_state.py tests/unit/test_research_config.py tests/unit/test_research_workflow.py tests/unit/test_finite_conditional_benchmark.py tests/unit/test_finite_conditional_learning_benchmark.py tests/unit/test_continuous_fiber_conditional_benchmark.py tests/unit/test_mixed_continuous_conditional_benchmark.py",
+      "versions": {
+        "python": "3.11.5",
+        "torch": "2.12.1",
+        "numpy": "2.4.6",
+        "scipy": "1.17.1"
+      }
+    },
+    "new_test_count": 104,
+    "new_test_breakdown": {
+      "independent_continuous_oracle": 56,
+      "common_grid_pipeline": 31,
+      "actual_sampler_benchmark": 17
+    },
+    "reader_compatibility_suite": {
+      "passed": 219,
+      "failed": 0,
+      "elapsed_seconds": 15.99,
+      "selection": "continuous oracle, common grid, mixed benchmark, existing CPU/device conditional training and checkpoint tests",
+      "versions": {
+        "python": "3.11.5",
+        "torch": "2.7.0",
+        "numpy": "2.1.3",
+        "scipy": "1.15.1"
+      }
+    },
+    "pyflakes": "PASS",
+    "git_diff_check": "PASS",
+    "full_repository_suite_claimed": false,
+    "local_four_case_trained_base_smoke": {
+      "passed": true,
+      "asserted_by": "test_factorized_common_grid_pipeline.py",
+      "domains": 2,
+      "methods": 2,
+      "base_updates": 8,
+      "conditional_updates": 8,
+      "paired_base_paths": 16,
+      "conditional_paths": 8,
+      "maximum_seconds_soft": 30,
+      "independent_target_for_changed_base_claimed": false
+    }
+  },
+  "source_sha256": {
+    "src/heterodiff/experiments/factorized_common_grid_pipeline.py": "a75e67c9c3de3f043ed2a80826cf4a93c7e100081d3829e988278ed6ec943d54",
+    "src/heterodiff/evaluation/continuous_fiber_conditional_benchmark.py": "033ddd18c35ed0795c6b7cd8e53ff2bb35e60ceff1de89e22ecc207de9a39a10",
+    "src/heterodiff/experiments/mixed_continuous_conditional_benchmark.py": "b4bba42c82127cab96faa70e392fb448cf2281ee5f1d53fb0c890d828162d3c7",
+    "src/heterodiff/experiments/factorized_conditional_training.py": "4306f46f6d3b2fb58d877e7d9b34d08a9e94ebaf5cd1a3475458dd10329bf7d1",
+    "src/heterodiff/experiments/factorized_device_training.py": "0b24543d16354d9bd26daa14eac5c0372cced71658101054bb371927b3db6788",
+    "src/heterodiff/experiments/factorized_training_checkpoint.py": "093eac1f3b6886c08cf3a27aefb7ae3884e99aff09c25905ceea69f187e17a26"
+  },
+  "full_default_experiment": {
+    "result_relative_path": "research/fixtures/mixed_continuous_conditional_benchmark_cpu_2026_09_13_verified.json",
+    "result_sha256": "9ed56a63752207aab9c4774d21176e919dd20a63ab05b4240c779147acbfad13",
+    "decision": "MIXED_CONTINUOUS_BENCHMARK_COMPLETE_REVIEW_METRICS",
+    "elapsed_seconds": 65.4766989168711,
+    "route_count": 5,
+    "oracle_draws_per_route": 2048,
+    "neural_draws_per_method": 64,
+    "conditional_updates_per_method": 8,
+    "pairs_per_update": 2,
+    "retry_or_failed_path_filtering": false,
+    "previous_local_run": {
+      "path": "research/fixtures/mixed_continuous_conditional_benchmark_cpu_2026_09_13.json",
+      "elapsed_seconds": 54.23546141711995,
+      "retained": true,
+      "reason_for_final_run": "Independent-review metadata and scope clarifications plus guarded zero-BASE control; no parameter, seed, objective or sample-budget tuning. All final default probability discrepancies equal the preceding run."
+    },
+    "maximum_category_errors": [
+      0.001672281385726837,
+      0.013519103184847003,
+      0.007171446934847003,
+      0.034026915684847,
+      0.10916756236427316
+    ],
+    "maximum_joint_cdf_grid_errors": [
+      0.006242973946369176,
+      0.012035179772026283,
+      0.009349150965417857,
+      0.056156521067539766,
+      0.1276833720415529
+    ],
+    "oracle_route_hoeffding_width": 0.049622129534941765,
+    "neural_route_hoeffding_width": 0.28070515432859666,
+    "width_scope": "Sampling deviations from each route's own probabilities, under ideal independent draws; comparison to target is a finite-indicator null check, not a total-bias bound."
+  },
+  "installed_wheel_reproduction": {
+    "completed": true,
+    "working_directory_outside_checkout": true,
+    "all_five_default_routes_completed": true,
+    "elapsed_seconds": 61.61435779184103,
+    "wheel_sha256": "3dbf16019832e0bc3f0fcdb0c14075273fc7d5d56cb405fa579e8df994c1d939",
+    "report_sha256": "8e85d14fc3d04497bb9ce375b7da26c5fad4b196a590bfd7e2a397cd6998222a",
+    "report_temporary_local_path": "/tmp/heterodiff-continuous-reader-A9OOFK/installed-wheel-result.json",
+    "pip_check": "PASS_NO_BROKEN_REQUIREMENTS",
+    "isolated_import_origins_verified": true,
+    "three_new_installed_module_payloads_match_source": true,
+    "only_project_wheel_replaced_in_existing_temporary_reader_environment": true,
+    "dependencies_downloaded": false,
+    "build_note": "Development environment lacked bdist_wheel; used existing reader environment's wheel/setuptools with indexes disabled and no build isolation.",
+    "wheel_scope": "Tested module bytes match current source. Subsequent Markdown edits are not bound by this wheel hash.",
+    "cross_dependency_version_bitwise_equivalence_claimed": false
+  },
+  "plan": {
+    "completed_bounded_packages": [
+      5,
+      3,
+      2
+    ],
+    "active_completed_subdeliverables": 10,
+    "active_remaining_subdeliverables": 7,
+    "historical_compound_checked_open_total": [
+      61,
+      102,
+      163
+    ],
+    "historical_compound_delta": 0
+  },
+  "scope": {
+    "real_data_accessed": false,
+    "F105_executed": false,
+    "GPU_requested": false,
+    "cloud_or_paid_jobs_launched": false,
+    "commit_push_or_publication": false,
+    "legacy_default_changed": false,
+    "legacy_checkpoint_relabelled": false,
+    "new_successor_checkpoint_resume_completed": false,
+    "full_posterior_recovery_proved": false,
+    "superiority_or_convergence_order_claimed": false,
+    "continuous_empirical_TV_or_KL_claimed": false
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "schema_version": "heterodiff-continuous-multiseed-verification-v1",
+  "date": "2026-09-13",
+  "scientific_protocol": {
+    "path": "docs/MIXED_CONTINUOUS_MULTISEED_PROTOCOL.md",
+    "sha256": "231df4874ed6dd7cacbced5242570268ac25d832df2207fe95ebeef20636ebc8",
+    "specified_before_default_results": true,
+    "choices_changed_after_default_launch": false
+  },
+  "independent_review": {
+    "kind": "IN_SESSION_AGENT_REVIEW_NOT_PEER_REVIEW",
+    "guide_initializer_algebra": true,
+    "native_guide_crosschecks": true,
+    "prepared_sampler_exact_path_equivalence": true,
+    "statistical_estimands_and_family_bounds": true,
+    "runner_protocol_consistency": true,
+    "corrections": [
+      "EXPLICIT_OTHER_FULL_CARRIER_TV_JUSTIFICATION",
+      "DISTINGUISH_MIXTURE_ERROR_FROM_MEAN_SEED_ERROR",
+      "LABEL_REDUCED_RUNS_TEST_SCOPE",
+      "DISCLOSE_UNINSTRUMENTED_INITIALIZATION_ATTEMPTS",
+      "STATIONARY_ONLY_ZERO_CLOCK_INITIAL_IDENTITY"
+    ]
+  },
+  "tests": {
+    "development_regression": {
+      "passed": 1600,
+      "failed": 0,
+      "elapsed_seconds": 150.89,
+      "selection": "tests/unit/test_factorized*.py tests/unit/test_two_domain_factorized_state.py tests/unit/test_research_config.py tests/unit/test_research_workflow.py tests/unit/test_finite_conditional_benchmark.py tests/unit/test_finite_conditional_learning_benchmark.py tests/unit/test_continuous_fiber_conditional_benchmark.py tests/unit/test_mixed_continuous_conditional_benchmark.py tests/unit/test_continuous_fiber_initialization_diagnostic.py tests/unit/test_continuous_multiseed_statistics.py tests/unit/test_continuous_multiseed_benchmark.py",
+      "versions": {
+        "python": "3.11.5",
+        "torch": "2.12.1",
+        "numpy": "2.4.6",
+        "scipy": "1.17.1"
+      }
+    },
+    "new_test_count": 141,
+    "new_test_breakdown": {
+      "initializer_diagnostic": 53,
+      "prepared_sampler": 23,
+      "statistics": 18,
+      "multiseed_runner": 47
+    },
+    "reader_installed_wheel": {
+      "passed": 141,
+      "failed": 0,
+      "elapsed_seconds": 10.66,
+      "source_path_injection_disabled": true,
+      "working_directory_outside_checkout": true,
+      "all_four_module_origins_in_site_packages": true,
+      "all_four_module_sha256_match_source": true,
+      "includes_actual_reduced_fourteen_route_run": true,
+      "full_default_experiment_rerun": false,
+      "versions": {
+        "python": "3.11.5",
+        "torch": "2.7.0",
+        "numpy": "2.1.3",
+        "scipy": "1.15.1"
+      }
+    },
+    "direct_development_reduced_smoke": {
+      "routes": 14,
+      "elapsed_seconds": 4.209044499788433,
+      "is_default_protocol_run": false
+    },
+    "pyflakes": "PASS",
+    "git_diff_check": "PASS",
+    "full_repository_test_suite_claimed": false
+  },
+  "installed_package": {
+    "wheel_sha256": "9d29b45656229c00e96c05d72f3d1e5223253680eb4103550b9fc81533251047",
+    "pip_check": "PASS_NO_BROKEN_REQUIREMENTS",
+    "existing_reader_environment_used": true,
+    "only_project_wheel_replaced": true,
+    "dependencies_downloaded": false,
+    "inspection_imports_torch": false
+  },
+  "source_sha256": {
+    "src/heterodiff/experiments/continuous_multiseed_benchmark.py": "ad517e308e7bd22726ee251fde18bff25d5b92838ec3855073b26f0ddc3bf528",
+    "src/heterodiff/evaluation/continuous_multiseed_statistics.py": "6156ad5734c5d12a9f2e9d6ed7b478b308f2f84308a76651f6b1da7571b53c35",
+    "src/heterodiff/evaluation/continuous_fiber_initialization_diagnostic.py": "81857aed1d7f7006c3adaf10beb63596fdb8736963434fa78ace4a6c206c12c8",
+    "src/heterodiff/experiments/factorized_prepared_conditional_sampler.py": "5f6df5d0fd1ae308f03aa2649720a09658a8698401a74c624e88fc541c39abeb"
+  },
+  "full_default_experiment": {
+    "status": "INCOMPLETE_CPU_DEADLINE_COMPLETE_ROUTES_REVIEWED",
+    "directory": "research/fixtures/continuous_multiseed_cpu_2026_09_13",
+    "complete_report_present": false,
+    "predeclared_deadline_seconds": 2400,
+    "parent_exit_code": 2,
+    "child_termination_confirmed": true,
+    "saved_complete_routes": 20,
+    "declared_routes": 22,
+    "completed_record_endpoint_draws": 25600,
+    "completed_record_conditional_updates": 320,
+    "additional_unsaved_interrupted_work_unknown": true,
+    "original_familywise_alpha_allocation_retained": true,
+    "partial_results_independently_reviewed_in_session": true,
+    "review_path": "research/fixtures/continuous_multiseed_cpu_2026_09_13_review.json",
+    "continuation_launched": false,
+    "full_roster_completion_claimed": false
+  },
+  "timing_scope": {
+    "exclusive_hardware_benchmark": false,
+    "local_tests_and_packaging_overlapped_parts_of_experiment": true,
+    "wall_times_include_host_work_and_first_use": true,
+    "matched_quality_speedup_claimed": false
+  },
+  "scope": {
+    "synthetic_local_CPU_only": true,
+    "real_data": false,
+    "GPU": false,
+    "cloud_or_paid_jobs": false,
+    "commit_push_or_publication": false,
+    "legacy_default_or_tolerances_changed": false,
+    "successor_general_resume_claimed": false,
+    "trained_BASE_known_law_target_claimed": false,
+    "full_posterior_recovery_or_general_superiority_claimed": false
+  }
+}

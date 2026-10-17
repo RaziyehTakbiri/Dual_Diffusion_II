@@ -1,0 +1,949 @@
+{
+  "audit_script_sha256": "57c0ddd127b64ea97dcf3ca42feaf9aaf37d5129a30b60e8e8be5dfc9c5decfa",
+  "check_counts": {
+    "checks": 100800,
+    "default_fit_objective_gradient_box_checks": 384,
+    "evaluation_array_readbacks": 5184,
+    "independent_gaussian_label_rows": 589824,
+    "independent_label_diagnostics": 96,
+    "paired_dataset_splits": 96,
+    "paired_route_comparisons": 24
+  },
+  "decision": "PASS_INDEPENDENT_LOCALIZED_VARIANCE_REDUCTION_AUDIT",
+  "errors": [],
+  "independent_arithmetic_dependency_sha256": "20b043be40fe6bb03194631f3f46bf27e72a35abc25afedb36da5c7af0bc2cc7",
+  "input_file_sha256": {
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-01.json": "b6a378e8eeafe8f5d085ca894f6d1006a03dfaca6f3df3e2bd723ab65d6a79c4",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-02.json": "6e7178abd3d043ca2f1abd69abfa08edd64df7cfcd7904bfb7b1a04b7d6ab1af",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-03.json": "f3af1b451447353d873ba936aa1ce038ede8d70cdb6548e08749351465d2c719",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-04.json": "d796b87f10945450772faaa057087f54346e5970e7bc08eee24a659096a35560",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-05.json": "6a4851353cd89d9c589dcce2d4bffea0373cc3d8e6100aa8cc20697d78c96c27",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-06.json": "7d877e1067758dc4dec27da36a190374cd5c9eadbfec66bb5fa5a03857c92cac",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-07.json": "f5d1ce261085332168a2397c0e46bee12e4adc769f03656778d84333d5a00dc1",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-08.json": "b05866379b17b259f83350c713b6f481c42a7aec52fe8e9e443acad3a66e55e1",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-09.json": "b4d7ec61fe54248ceee2d00e0d7cd5889be6b9491a756da008e5239946124ec1",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-10.json": "6ebc87978ebb06ec192dce0b153236b78a3e6fd4e6bdb59714f0f23038697415",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-11.json": "87ad01574f64258f96e69c01145fa1f5494281be207fe464fbffc7f31965d675",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-12.json": "98ade2a58f0b4555d63de6197702677ac0cbe675884fedd83023d449e1abeb65",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-13.json": "82c10a6db7e332e3e481ffc6ef3a0bbc85b1565ebe8aa306f8407798173479db",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-14.json": "5872a1fe8f8eb6dbc534cce60b74798f9eda68e2b43cf32ce7fdfdfbab5aeb6b",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-15.json": "4140b08d8baf9645e28cc1709e56cc025f79a09ed16eecb93d315aa666be78bf",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-16.json": "f9d458cd54e30edd48a1dad50181c78f4d952f8b3c47fd43bfcc18554d88f295",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-17.json": "779a0dc0f8205de20dcf5899b55cb08bf978f6fd18937f7809425e3f807c8b94",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-18.json": "ef9bcf3ab689639456c484bb01a24898f08b42445ceaec7a5b7aaaca63b6834a",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-19.json": "cb8078c47fb1bbd9b4a35b69d2acf2312c2266995e0cc8e0bee8d4e1f692017b",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-20.json": "3c92b7eca7a75a2ee26f7957ec97a0935e46c9f819d7c6aa202660fec6026ba3",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-21.json": "f5d896e13e35a30402ebe40e38d39260a6fee81d52dfe1eca083fc1eb8400410",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-22.json": "7e603998bb004a5f657ee1a89318a7111e2e1f37e2673731cd1340014f6133b5",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-23.json": "81ddf3d55b92914f92ef8195c058f570b9ba87e373996c855b059b594cfb8997",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-24.json": "19d07891674dde26895e94a44badc3730f7bdf56d6a91157a494cb4914763616",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-25.json": "f907df1872cf43cacc37199f0ece1489cb30f2c608f80d621ca9d62dd47f3449",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-26.json": "0afc385107618711db3df5e19d598d3e14cb11e45fc5a95e47dcdef42d4d3d0a",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-27.json": "2f3acb0141098905b53820702694ee8644188e2402ce1213e6bad3eba96672e9",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-28.json": "092499afe04d789c879b178ad7c2466bce98912adc038cf25f5b9ac4de0b018c",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-29.json": "e8bc55d69b75abf9ce12059cf0b46b1a41b51ef3b8fbbad1e7cc09f9090b76de",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-30.json": "e7317c1ef76694f4043f14da9b669cd4d8c5f7136edd95c18e22350ca89d05b3",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-31.json": "e3a2b2ca2018ff379c237e3dd80e1fccdc15a864276f8db2ef404d8eab27c36e",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-32.json": "852c310c91b666c3ef87d801d458f5ecbcf1de38b3e99ea4231048f931371513",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-33.json": "46f12a8b1231554ad6185391d05bfee99624c3ae6a8ede1ad81e628dddff1ea7",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-34.json": "1c59aaa02cfec1bac5a03eb49d429bf51b1ce3b6936e56d047856a9f15ca1be1",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-35.json": "717960a212bb633a5190ab309d566318011945aaa3f014fc27e25737453cc4b4",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-36.json": "256bd7ef5fbaabd73c9ee371c96b6963ff8384fe93a13ee97c8ce34e382c3d7e",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-37.json": "97c48deccfd740d432f6d9530b3dac6a85643fde34cf5d317aa438037fe87f40",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-38.json": "ab6481bbe6fff77f5caccec0b92b1654d6bee55901e83ed6d273962a15549bf8",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-39.json": "2f233719600348503d1cd5d79fe128c33718c78605519c3e55463f5a944943ce",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-40.json": "622e9b4f196366aaf4d2c67fb3550ad692448f94fdc5bf06cf8a171654c8385e",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-41.json": "dadc1ab55e45d24911c60ea6763d8dac84ac1c484b2abdf22a533ecfa8cd879a",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-42.json": "daf5279df3cc0c8611cdbf51e90fc9738ed4fdc3b33f1ae35fd779bdeaac5ae3",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-43.json": "b71d84afdeabe6dcbe0ae8a4bcb9acbdaf628ba6de5baf37f528a8e59fec105d",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-44.json": "db9df10c6c8cd46baafcb9cdc50daf3c8056fe805141c6f1638bc6edac1b9b01",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-45.json": "d8ea2135fcc5279182d151b24eab61bdc75b5c1d21fe80f34acedc614885cc34",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-46.json": "074d921c9c647013ae08732011f2f5bb599beb5b40f211f5dcc1d823051eeddc",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-47.json": "fb8cd8549a95a48f7a0657c79051799e3eeeaeed3be2725eadb75b1bf1f9df6d",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-48.json": "6cb5856972190a7373a95131fd3a06a618d23302958c24a84992071bed8f3843",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/freeze-barrier.json": "1ec9fe2e3b8908138a6faccc0be6a21b2e19f1602879ade4f0a3f482f5ec2e68",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-01.json": "d457899304c54955436a8976d8f42f79145d13d6cb404331f7c7353a757a7547",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-02.json": "c8bf8b16bf35fafebe7ae7458bcce8640c8016ce898d5a54a5ba12b4f7e4c518",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-03.json": "67ea32d4d4e9cb6e30564c6d44c73f664d2cae14bb1e7f6d4e897558cffa10cd",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-04.json": "757ab236b6b6b653e1ae935c752e246257700a669f84e4b9ae515160663a1e5d",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-05.json": "f2a6f6835035494f4c6f8181447c9ff8e3b0523083820112a792870bbcea53e1",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-06.json": "8a5d753dbbd3f139df99d16f8433485a3ae0e6ad1f9b3b7c39b62abcda67de74",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-07.json": "64a7579c8b192bcb59780a7e6465d5c7acfad2fbbac6dcb012c877d1ea15e23e",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-08.json": "bfbffe5d80b98b8701bf107a7f1db947c8ac73b28b3e305c992fd724dd667c67",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-09.json": "4570288c0b8ac2d4a096efd9334109e5be2ec9b46a1337b9fb854a44078d3998",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-10.json": "f219ad53a7cc3cfa23e27ca71bb55f9fa15443c00a88fc25f168e932dbf102aa",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-11.json": "db6717605f0da442662d766bfb10e5d25968fb4908326189dab3b357259dcbe4",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-12.json": "6e35e0af70f68152a7bd2f8f5485d64b6c5b13bf6156c673563509f7f94361c0",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-13.json": "d842b9e0eeef2ef5990adad089f0734d547a685598d5d12ee66e6796165b3316",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-14.json": "07e7fc3a151139511ec632560fcb22f6d574a7d358b95f44304e09f16d29053f",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-15.json": "f1fec88cbaad7cc1fd8671d275c7ec97d03580ffa71a01093191d16b297fe9bb",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-16.json": "1c6bb0266b00401c14a009dcffbc6041023069edd8e7b38ea34b6d9bbfac1716",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-17.json": "012b793053031f17538c64172fe5aac52c0dc2070c90c4a0a06ba6f48097101e",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-18.json": "6cfd89f77f2b2dcdef165e8c1fc71c5580fb962c68a8b66ef4a442f2a2eb25c0",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-19.json": "3f83140f77d10c8cb9f9abc1323cc238885341efff0b44ac699680c71b832b41",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-20.json": "56576af96711340060bc638aad3b756719cbb047c46c6ac785db858809ad6129",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-21.json": "2eae918ec960fd0f46af8e2e16ae109cfc25d66ff9b00bcdf58e3d78cadc6ffa",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-22.json": "8377c6aaea100b9025003c239019802b8fd940082e296533031011f440d5dc62",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-23.json": "325995db4bea89271c0ab927343c88738de80c234bf8b6ff70e99c67e6e7270a",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-24.json": "8f26a30ce2b8258e8d6998b398ae518d94a109494a1be679bbe96e9486f09b73",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/protocol.json": "c99b27fbd042359f65f54cd7c191a4bdd28e98f62303ad341fcdb8287ee8036e",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/report.json": "d8db24c1c4f2d22069da8ec15640cd9b553dfec5f3ecf87b5f0530069289a692",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-01.json": "64874d4f7e2f6c86739ac81e3ec251c20661e4e2bc9ae52fc6513138d1f99e57",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-02.json": "79186c11bb3c876e53fada8079e17e1f6d2a4eaa28270f6640c2fdecfc77411e",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-03.json": "c39c3ec4729d3a1199f76a9e4edf01b187dade14f7de8960f39653f19ea95acd",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-04.json": "18f495de0e1ad93f40a2195e06182f1b09041f686a49153f299b3679459e54f9",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-05.json": "30f87b6591be6fbe6a4598dc60988203020e1d148701fc61b77e696b188ab66f",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-06.json": "0ad42e7c5b80ff9cb91084af45ddb72a71a33756bfdc1ec1f551c03d1e49d8c4",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-07.json": "76b7eb0ee41383c7146960dbe4272808f7280d9345d7852e79b5689ecc368324",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-08.json": "9660d562d5731a5f575e8aa2303a6531986b2021ca457703b0d3b7554bff0a58",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-09.json": "f9415fddd8df82ec52358fadf44895ddd428bfd6735028997faffa86b05c0ac5",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-10.json": "4e25d796bd15fbba9ea666cedeca1b5008cabfbbcbef399451cb5561fb474348",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-11.json": "1c7f4e603da25c702fed7d81bc62dac432852f7826ad22a0425fa7d673ed0c11",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-12.json": "260cb58d1cda5fa97df4850290f5f378ed4fcdc2a420e3ef6527b48240fac7db",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-13.json": "9a6a31e9e83949d5b4bb162427c8d359c6e92b7713ab343af0b768754edae449",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-14.json": "1edd4c79f91673465ae7818187504b8abcc223af8b628f2c44dbe1f12dbd8051",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-15.json": "a6c9ca2cbe899becf1849df55d02e7afc6afd3f7e92f20fc8843edbcf98b09b4",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-16.json": "7f22c14f9ddb3fb7c575df4df56ad7184a35c28a3fc359f8252622df12eb28f1",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-17.json": "67075e1de367ee33e0c725df9be9914083d7fca7a8e558a206172a4640c4e469",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-18.json": "f1548bb58df6f6d01f45b9088877e865760a049d60cd7e0de9a49cc74e0c2400",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-19.json": "0ded306f32d8426d185916db7e535a9ec3f1c16199d4dc3b33e705814de13966",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-20.json": "3d4e56b20d355a217ad7943d4be469f28f4d4a04d4686d4f3f2b0ebd788cdc7f",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-21.json": "7452cfbc47ea500b138f33040ab211d2b5021d42bbcc534e300cee95a66c7ae1",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-22.json": "c0fb6750e8c5ad2ea967e8416d608fa78c4ddf6136ac666383c2d1e7781707eb",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-23.json": "ebacaf6ab7d03244a6455e87db8b337894a5cc550c997e2d94c366a4a93f6081",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/route-24.json": "f7a0b9e3f88e53c6e4dcf090152c62335e9c5367ff8d41f5ce81978390e372a3",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-01.json": "b891403509dbbfdc1c6bc35e60323a4efd7fa5721da48786c2983356332609b1",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-02.json": "950c513d0741b1390fad037f7ea7d0c956d703c9d9eca585345088023526e281",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-03.json": "5c0ae97c8d2cfc72f40a055bf9845c23fcaafce70bf28c0a0f84654fd8596973",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-04.json": "b59475cffb06cd443627cddba00b831b70aafa27a343f7e2b5c221abde0ec0ff",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-05.json": "4ad5174e1d5d45a555198db2263589d84f455cdca6059a74990cb82d7de00499",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-06.json": "ce464c6adf5e6c24051c3daebea4ec8826ba8022afe89e113daab21fd7de42af",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-07.json": "a607ba56ff7b47ad0ab22b58f472c5a023ae564d673ed33a58776d605466e11d",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-08.json": "b6fdb9ebc645e302a89a4716fe81c74d5cb281c666b86d91f5c439038dc320d8",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-09.json": "3a0c0ac4871bf95348e1429471f7ea477225376c805e092cc0346425e9f3a94a",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-10.json": "1116264c8e448d90dc871e79c7533ae95f4d4b7ad887620e4bf4986c24cd5925",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-11.json": "3b44eb29bd1670b7ed02f9861f5ffa9244fc4c9eade877575cac817af5247da1",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-12.json": "b1401a32d040ff32fa869edf73b3fab3307090faf5be0d41e85d574b9a2a2196",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-13.json": "bb16f336dde314ca1e58e4e11668eea486d969c1f3a7da8871d7087b129f90a4",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-14.json": "0cd953be81d086546fd16c0293730594aa9cb6dcc898652898bd7aa866b049e1",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-15.json": "52f24ada6f0cec1c0310d3455081ca628ac7937078db96f05ddc9d73f641f0c5",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-16.json": "469dd07daeb357bc3b4799c70d0afe6c8420fb5226a9195bff137e9796ef8e70",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-17.json": "6708296f2a76d2ba8eb6dcafc2d274f5bd46f1748b816a6afc3657c9f5636ba9",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-18.json": "4953601260dfff0096086c389645b8dbb5d5614276c6cca2364c8a5a9ad768c1",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-19.json": "f20ef90820851934566608e03407ef982acea7ced56a258097261a5c5014079e",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-20.json": "18ae4888b5ff0f935a2c0699333f8036937202f444ba8a54b52c361c6e44c512",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-21.json": "d104656b6b5b64334231a36ce16f37d9e85863bf92453b8cb524d40b06028f84",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-22.json": "6a5d6b72ac8996338281e3b4b5523db074d9cae79e580c25e9d38b3912f9854f",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-23.json": "64f45b02e6093a072b16872b3cd60fab2939eba538862b40596710030cb6df2f",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-24.json": "03ed5f396fb6e5638b829c62475e1818dd6f3781b78eca4b982d569725c0050b",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-25.json": "36840315beb8d797256f24350d92219044c54fd2878e1b7ec8b1cd2d576192b1",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-26.json": "b356842e84f0b686e05b5b7fa8b50d14b0724fc369ddf825c07890fe8611ecdf",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-27.json": "ca9e437639bc32352f6357b75ad64ce62c652547eb1fc6462b37f71cd32c6b9f",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-28.json": "c558d18e2469cc859be07ec686acea975f3cd0f11f8adc0bd72aadf035587432",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-29.json": "f3ce4de64eba83f923ec9aca28b60dbcc2766a0d157ca511cae33ec6b24fa933",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-30.json": "8bf667446fbf5d1f885039c65a4cc98c323cc66927e32826d2058e985378bb24",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-31.json": "05b26979c5d6d8071c1d80e394b2d2ec88c0b4feaba01f60e7acfbc99e3bff3c",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-32.json": "c6e262c106453c63a9693e115550957fbcc7663b688bbb825810691ac02eb49d",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-33.json": "7c034cf405a7637c6af6fe8ba4213def315763f7934e05ae47029904ecd6e458",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-34.json": "e328e38ccac124ad48c29b7f14aaf08873c254b78ea0927f30e1ea8d39e2218a",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-35.json": "93a85647988a5a7dada14fbbc34752e562cc656527fa79a2c015eeb42ec60219",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-36.json": "71e884d4112647aa8d9c066ef6f5249e7151453e67e17d4ec8ba5c9503e1d859",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-37.json": "6ef446f4a01d8b66d4db20d915a5cdbc2d402638c76f7983b98347ba71caad0e",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-38.json": "c0949f8594fba3e74661f7263e503f3c17a4d67a7d5443c76beb01dbe72c2a91",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-39.json": "23cb1781a3e73ebe475d91ea46a5a0be74e56c5ddce80916d69aacffef01de79",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-40.json": "53d162cb2f9836a9c600272beb533e7b7a5c850bae6d7891795dfebeb6a1ff44",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-41.json": "62cf72cf44b7fe3413219919aeae2593e51947cddb8cb1e0fa8f2536fb3e741e",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-42.json": "650c3f66d7e36bc646f252495ed06de70ed8dc36d0c6525bb7b86746e450a522",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-43.json": "aefd3c58b5f88c0411195358098fae54c92cd68e5ce84e061173b59f13d2b05d",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-44.json": "f8e8dda858baa9511fe86cee338918f9345ef613288ba4bfa4ae7b8cb1a1fdec",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-45.json": "e878605f1c3ee0b173ba37f045125431f357de91559c048618733b0920b0b76f",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-46.json": "dd919c6461a723f932b20742da6b2490f1b199d2702f0c1090873dc7e998924f",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-47.json": "1ab90859b16109d251b9cb42ae9525dbca724441dd7d39c6c377105495f8c2f4",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/dataset-48.json": "930c6ecc34bcb9995922e69fdfbcc33a0356be9f425b6f6a220b92d7571fb3e7",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/execution.json": "242db207f5434850b0cfa95244c21ebe04b3bcf795c5b996db3e6abae5ed52ad",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/freeze-barrier.json": "879f1f6e5e427f2c20cf088ab4a3202f98c20f55f3fb63203ba0346b5267f6a9",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-01.json": "84853e4b4e3e6a16c3b3cc117a3eecbd07cf697cd92b5fbb7098425e3c306e39",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-02.json": "9c9083e1ad7d05a94430a2a64929ceef234f55d0999c3136c2490cdb44da5328",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-03.json": "0940521ae3b4ec72aaa883d464a6e1067f7d5a89786431cf99369bec526b36d9",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-04.json": "f6e12aa8165eb5a1118b34702dd84e082c72e6be83621e6bf6f114e10b3fb218",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-05.json": "0c7df9fc83393ef5f8ce651c36503073f332dbbc93c50d386a2eae14edce574e",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-06.json": "5c6f4b5aa8f2c9e137a6ccd671475a97d930d9b32276a011735113b725fe187b",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-07.json": "c68c732e7a6f107e9299a1a5dc0f43ae6506dcae131ede75250da07a4f490a56",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-08.json": "d130686d768ad6a4af1fef65c40a836988363048ff02b1e5b1c1b9e09b066228",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-09.json": "881b9d8dd454c907fdbae53389b09e9a8340caff26bb98782043c9b9b7cd08f0",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-10.json": "4961c328153b95f9adfe2bcfe2c6e5d1c17d86546edbcac5d42a1e2d422bd0a0",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-11.json": "50529f1de5696cd10812f2fb255d73ae9780b3f38d21979006e59160be01bcf1",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-12.json": "17bfdf208e7faf7537cad1677984f6ebd1a5bd9197fafef564c3f7e56b04c12a",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-13.json": "a6bbaca4c7f14cfc0d3a3ed401244c2f1444af68971d3c5ace3da756574efce9",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-14.json": "d71797c88e7764768ec032ca6e3782e5b6a99b6421e6763aa76e6252a2930c1d",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-15.json": "f430ea20b6fdd7c7314cc9c04f008706a3ae69feec73999ac2bb2981eb4e1c64",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-16.json": "56d0ed5f54e3845093048510e5ace5acb4f38cf94f6467470bd7887cd87a628b",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-17.json": "acc85a052eb785a041021c113cbfb4bcb04890479ed06ac96eabf86ecd134436",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-18.json": "9e5541f6f0dd6191864fb5975b93d93fde765c4ce63e23ee7c30d88c8824890e",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-19.json": "231b6d7f1cc8d948679ffd2e99671a16c179aaed93f46f71e38c47e1f54d8851",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-20.json": "160214e01b8d8f1dcad7be61c7a3cdd8c57cb722f117dfe4058cfc3911ab8061",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-21.json": "200b9fac7518d16bb17466df6b5fce325bf019091a91e646484b61bfb45ed1c3",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-22.json": "c8985c31adbaa4d87f386a27e5c38081331d6856d64cf34b91519ec6e450a065",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-23.json": "1c3d1d3a1b755ceb3d88267b1bbf695725c8c94d0e97db7b708fb9450c86b6ef",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-24.json": "becb34377d9eb00a229a5e256a01c0ef650b55bcfe1b456d426df05ccea09947",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-25.json": "95cb81741bc2ab81cbcb1579cb0a27c80d53c958ae6d02befac09585a3141e77",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-26.json": "dfd61150b1871e87e3555aa336ac65e012d39aed4858291fc7a7d109afae8c8a",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-27.json": "bbd8865eb81c708f5f50d84a30c474b051f938772367dc7e5d037f4e4abce91a",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-28.json": "63f5ec6fc8bf283053bcba66ce122c6698c53b618ce53d6a2e956ab838563f3d",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-29.json": "01406dff2d5152bd91d9162e717eb4d0baa30e4a8039711db995068ab369e9e2",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-30.json": "b51a86de92d2992d706f26b3ebec199e921af63f3c262fb5429e87894e9f6aab",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-31.json": "f00a412640265902e3ec40b3715f928aba40aabd5f3c85514b88132e10bcd3cc",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-32.json": "c7b5e4da82a2b779e3e4f9f0406d628256fd10c4d5db7093f47837f1b391c2a5",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-33.json": "686c74cce8a44af43c2640381716615ad2fcef0af4c54fd01b31ed7a23be6faa",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-34.json": "3ef890e5ccc74f990e953b87558b7ccc451155baf2ceb2a49963bd6c3fa79466",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-35.json": "7ce949ac376b981f1cc866c2d2b94114f40075f37eef82ee3608931ec63562ad",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-36.json": "b8fb3790fa0375867918d02f7ea0ea297fe1a30a7cbef368bb9ffdda2a2e6c29",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-37.json": "bc4a564170c78fca800f36bea2b68730cdbaf39588a3147c264819d242ca75ef",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-38.json": "acb4af00e049cbe67ab8fc3afc9d644ff6f933e8839a29222346b960f28fc30d",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-39.json": "b58de3fab4836b2d3b277d8fbc24b9c17b3b08742398a48f6eaa314cf10a7c35",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-40.json": "e22257fb61858a092a14cc27d7458e1c00acf9084cb300b0803d8d02267b2248",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-41.json": "2b8e5f286ad035e9df8ae66315e31eec989ab3e1219637f41e6a0e3b20a51feb",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-42.json": "0be1b92c11bc43ff3fe01f0614f732c73756a751903a90a9f70bae913925ff11",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-43.json": "67ea61256bfa6fd3a58668f51464f448133d58d14060f9e8c8f5c0dae8000946",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-44.json": "51e5245b2248be821b5aefe320d5216b1008cc670879971c2e56651023718802",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-45.json": "ab08367029c318dc40d87d5a505099ac08f702f2892dfd3f9867e1f40e7e826f",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-46.json": "c993a34879daf77b98af619a2679068fb4f8a95dc0cb85be3e99874a08a8949b",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-47.json": "34777a9686200d4f1837297c45e71d8a186865c9a7c6d11b384ae9549d164bd4",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/frozen-48.json": "e5154b4adbfbd46d163bacf987b11dda6ab32f5c8f79bad570f2c151f44dfa7b",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/protocol.json": "add4d2b0b537c4d7dde09f0c70847c2c02fcfaa4b5e74560b71df35adfb033a7",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/report.json": "29849c4f18e1df312722d8899d9361d441398a39b9ea094fa9317151e434889f",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-01.json": "5d83cc1ef37f0f9351a1d9ded566a9a4d65601b770a3b0e4846fa10e6834263e",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-02.json": "81ea5f993c71ad6a2e252b9291009aadee59c73d7f6ea03df711104c0fd53c98",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-03.json": "aa574b1106d591b2f3fbd336cd532f550e0f4d1dbb23fd7dbf7561d78d1ba1be",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-04.json": "2d0d91518dfebc4a003d01962d8e953cfee1171410e45142f329ece607b8db2f",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-05.json": "14b79c658df0b424f25f7ced976c2d625f9383a1302eb8c588247696f4acde3e",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-06.json": "592d7639ad3dd04ec9703ff5490ca34cb84fe911636a98d57e48a057a49c2cfa",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-07.json": "23d8555482b3bc29dfd16418d804e53322c37d66ce9674bdf7ef05759d8c0c9b",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-08.json": "38cca1fdb3e1970d3b300b4c48e8c377c6d3eb73af58952cbe915cbb071a54b3",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-09.json": "0d9917cf59b93861963bf2a8f6a6e1f157dd6b8c2aeb824ac14c74feaf69a289",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-10.json": "a4fbf4e6a1f0d610f64b94fb8b25ed1e707b0dd7c74e2d2470cd4baa4012102f",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-11.json": "a8f9c179811c2e4a4874b84c4524f668c32f69d93030abde2f06c3bd41d25c3f",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-12.json": "cc4c38670e1cd191390deada5fe996bc2873e4bcd74092c34aff14794df37797",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-13.json": "a9be67cf3ccaebcd9ea99471819e814ef171049acc0a5b400ac4a5b8d59004be",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-14.json": "4f1ff2fb91eadea6cf18756ca0df0d56d4a51efd997743035b18f8a20584eb08",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-15.json": "68bcf02b5fce67fca0293bd46aeee0769feeb30727324e70fbe5053e38dcb601",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-16.json": "86052ad27f4ae387a2f36d4ac6c3d82c59e9b4ad9bf6c50c8152192b13ab0b26",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-17.json": "97284c20655781f0faf0b491ea21e721894ed1faf35bb1351a313b23a1c9827e",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-18.json": "0c6352c0f076e1b7e5bfe0f12a5f3abaa7ca483620cde63426aab12cbac1a3d6",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-19.json": "6ec5ea26e3cb1319142a3d9929a0582f99726eba1f9d3c518f784fab062a6583",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-20.json": "8c3369585752849ed0c90f04d76a022df8e7d62c3f85b7e1f4405f7463919b4c",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-21.json": "1662bea07ea459cfbaeff499215fa6d8d0056744197eb732ac9df025059200c3",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-22.json": "fec5c5282de99c5af974581f643f8a003900f7a031da908ddf81ba851b1ae677",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-23.json": "49cd2b8bdeb8c1ebd33c738aed7d129340f4f953de06266a633f4fd8163c00d0",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-24.json": "940676c2d09e9431c8d1836e3bf931273f9ceb387b3d400cb2a5f6a014b87fa7",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-25.json": "38aa53137036d76bcb3b38858053bf7397719de5e71b2390a50ed40b90be20bc",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-26.json": "9aff7abef836b87982c16a14b155be32e8af818b22715b8c743e4bd3d459887a",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-27.json": "9a1561f08531fa785a23c359a2afb99f503fd711844bea680dfc94d985938109",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-28.json": "93341ac3d4fb239aadb296c3870933a2e95752fa07b468d2cd44280c32e6625e",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-29.json": "78da71ac9fd477e37504fb2561956ba5d21f1fc51ec282b157cd3a4a9ab44388",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-30.json": "c4c33b5e3a57178d007c9b6565b2ea773cfe5660f763a2c4a69b112115fd0b2d",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-31.json": "662dc090495a551bb03e65f901e6ac56d082edbb07140fd11635847b2b93c89d",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-32.json": "0d4cda130ef8e2c14e04cd971ed8f4bdfbf883b2fca6d7bc6901f9050281826e",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-33.json": "dda745bb178b0cedb4dc41f5f4ba1c4daf2d5c0e84407a4953b698af405130cb",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-34.json": "078cb653c3cf385d13c2df6fdd1ab7424aa7963556bb793fdd37291b1bf323bc",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-35.json": "faeeb22a148d76badc3a4a81571c8c75616d70454f62986940179d06fb296611",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-36.json": "1156a5f0ab8b4d6dd0d14ce9859ffa6b2ce06c216270420246499721c1397c4c",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-37.json": "a64e266cefb7dda0d3312e351d7ccf351d1ad8d4248f6af82de2efe5a64e26c8",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-38.json": "f7e9cdeda16d5879f037feba2897ee90e4ed0b57197ec9ca3b87565b600621a3",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-39.json": "3ace42b9213e013cc755b2187ea917c4bcd2f9fca0e3150b6bd0a098fb5df88f",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-40.json": "8d847e705acd90244572499d714db555843bd7fc0148490aab268319d0ff5919",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-41.json": "875a2ab5a19a2a9ba7486f069a16d9a9e831855d7fd3020180ad178f8296e769",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-42.json": "c0a03b6e02f7ba8864d9816599ead5a1d1257c004eb14c1ddf7f5610f77d1d0d",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-43.json": "513a887ccc79c9aa8ce8e4e175a710851462e3eb95138ba4eeae963f0f591766",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-44.json": "bb68f9081a5de207d09b5a867af0772c50ff254ea6d79618ae4123434e884552",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-45.json": "a801c19a36a8d42f5c1d052bef6cc64444463e47fb17d4b40e5ec05de586d958",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-46.json": "da701a582f84053a2223988fae7203427cbba78544d1403529635daebd415982",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-47.json": "e2e92a905f6febed46a9a847fe480ce7a25be6ae23736fd8e410fc82b235822f",
+    "research/fixtures/continuous_localized_variance_reduction_cpu_2026_09_13/route-48.json": "f4fcb0ed16e9231b35862b04f54882e4ec74ec2e23df5bde423069264c516f57"
+  },
+  "maximum_arithmetic_discrepancies_by_check": {
+    "RB validation change": 8.673617379884035e-19,
+    "RB validation risk": 0,
+    "active error aggregates": 4.440892098500626e-15,
+    "atomic value error": 8.881784197001252e-16,
+    "baseline raw readback": 0,
+    "conditional Gaussian convolution": 8.326672684688674e-17,
+    "conditional raw second moment variance": 3.8163916471489756e-17,
+    "default box gap": 2.3672876809863186e-17,
+    "default fitted objective": 3.552713678800501e-15,
+    "default projected gradient": 2.873559273560214e-19,
+    "default solver distance": 7.2382100313461706e-12,
+    "default zero objective": 2.7755575615628914e-15,
+    "derivative bound readback": 0,
+    "deterministic conditional labels": 0,
+    "empty-centered value": 8.881784197001252e-16,
+    "evaluation envelope": 4.440892098500626e-16,
+    "fit model bound": 4.440892098500626e-16,
+    "global ridge box radius": 0,
+    "label mean and gradient noise": 0,
+    "max default projected gradient": 0,
+    "mean validation change": 0,
+    "observation bound": 0,
+    "paired RMS comparison": 0,
+    "paired validation risk difference": 0,
+    "physical quotient binding": 4.440892098500626e-16,
+    "physical raw readback": 1.2434497875801753e-14,
+    "pointwise baseline acceptance": 0,
+    "pointwise physical acceptance": 5.093170329928398e-11,
+    "quotient box": 0,
+    "raw terminal label": 5.551115123125783e-17,
+    "raw validation change": 8.673617379884035e-19,
+    "removed covariance matrix": 0,
+    "removed covariance trace": 0,
+    "removed label variance": 0,
+    "residual raw readback": 1.2434497875801753e-14,
+    "simultaneous Hoeffding gradient bound": 0,
+    "stored model bound": 4.440892098500626e-16,
+    "target raw readback": 0,
+    "terminal channel identity": 1.7763568394002505e-15,
+    "terminal residual zero": 0,
+    "time gate": 0
+  },
+  "original_report_sha256": "d8db24c1c4f2d22069da8ec15640cd9b553dfec5f3ecf87b5f0530069289a692",
+  "paired_route_summaries": [
+    {
+      "budget": 1024,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.7141474115390717,
+          "rb_over_raw_rms": 0.5682144527448405,
+          "rb_rms": 0.405788880626818
+        },
+        "hessian": {
+          "raw_rms": 3.3491487336750354,
+          "rb_over_raw_rms": 0.592896592358464,
+          "rb_rms": 1.9856988714975936
+        },
+        "value": {
+          "raw_rms": 0.27971201463329887,
+          "rb_over_raw_rms": 0.5732456558125258,
+          "rb_rms": 0.16034369726710823
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "association-aware-guide-plus-residual",
+      "scenario": "reference-pressure",
+      "seed": 11,
+      "validation_risk_rb_minus_raw": -0.0014705795634682856
+    },
+    {
+      "budget": 8192,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.25096503218499466,
+          "rb_over_raw_rms": 0.6256374890061654,
+          "rb_rms": 0.15701313256457156
+        },
+        "hessian": {
+          "raw_rms": 1.158154808449645,
+          "rb_over_raw_rms": 0.6337125708549646,
+          "rb_rms": 0.7339372611106635
+        },
+        "value": {
+          "raw_rms": 0.09374033818271102,
+          "rb_over_raw_rms": 0.5961496378743975,
+          "rb_rms": 0.05588326866184672
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "association-aware-guide-plus-residual",
+      "scenario": "reference-pressure",
+      "seed": 11,
+      "validation_risk_rb_minus_raw": -0.00022272895157217365
+    },
+    {
+      "budget": 1024,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.7367607998022225,
+          "rb_over_raw_rms": 0.5778938212821167,
+          "rb_rms": 0.425769513968575
+        },
+        "hessian": {
+          "raw_rms": 3.4539010615954573,
+          "rb_over_raw_rms": 0.6110331757881925,
+          "rb_rms": 2.110448134524882
+        },
+        "value": {
+          "raw_rms": 0.28210885931570967,
+          "rb_over_raw_rms": 0.573884643823004,
+          "rb_rms": 0.16189794224770998
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "unified-direct-conditioner",
+      "scenario": "reference-pressure",
+      "seed": 11,
+      "validation_risk_rb_minus_raw": -0.0015076655625773927
+    },
+    {
+      "budget": 8192,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.28576553831294066,
+          "rb_over_raw_rms": 0.7208924327238325,
+          "rb_rms": 0.20600621410305137
+        },
+        "hessian": {
+          "raw_rms": 1.3119948319196415,
+          "rb_over_raw_rms": 0.746895685894288,
+          "rb_rms": 0.9799232798763817
+        },
+        "value": {
+          "raw_rms": 0.09867713678643181,
+          "rb_over_raw_rms": 0.6506937536896409,
+          "rb_rms": 0.06420859653890947
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "unified-direct-conditioner",
+      "scenario": "reference-pressure",
+      "seed": 11,
+      "validation_risk_rb_minus_raw": -0.00022488445741064567
+    },
+    {
+      "budget": 1024,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.6562929266810767,
+          "rb_over_raw_rms": 0.5864881777547473,
+          "rb_rms": 0.38490804264251466
+        },
+        "hessian": {
+          "raw_rms": 3.2429985102498944,
+          "rb_over_raw_rms": 0.567585183547849,
+          "rb_rms": 1.8406779046855875
+        },
+        "value": {
+          "raw_rms": 0.23223076936153206,
+          "rb_over_raw_rms": 0.6726207270497476,
+          "rb_rms": 0.15620322893127594
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "association-aware-guide-plus-residual",
+      "scenario": "reference-pressure",
+      "seed": 29,
+      "validation_risk_rb_minus_raw": -0.0012570846536782698
+    },
+    {
+      "budget": 8192,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.2552633796357139,
+          "rb_over_raw_rms": 0.6355512396631877,
+          "rb_rms": 0.16223295736809287
+        },
+        "hessian": {
+          "raw_rms": 1.1925761684141845,
+          "rb_over_raw_rms": 0.6060016253339121,
+          "rb_rms": 0.7227030963934851
+        },
+        "value": {
+          "raw_rms": 0.08303644006760656,
+          "rb_over_raw_rms": 0.7094802371467922,
+          "rb_rms": 0.0589127131909909
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "association-aware-guide-plus-residual",
+      "scenario": "reference-pressure",
+      "seed": 29,
+      "validation_risk_rb_minus_raw": -0.00010126647839239084
+    },
+    {
+      "budget": 1024,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.6847406158304665,
+          "rb_over_raw_rms": 0.5995676695415935,
+          "rb_rms": 0.41054833527394835
+        },
+        "hessian": {
+          "raw_rms": 3.3730862349323636,
+          "rb_over_raw_rms": 0.5831671820948952,
+          "rb_rms": 1.967073194588586
+        },
+        "value": {
+          "raw_rms": 0.23714030400778555,
+          "rb_over_raw_rms": 0.6725831481331096,
+          "rb_rms": 0.15949657221879907
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "unified-direct-conditioner",
+      "scenario": "reference-pressure",
+      "seed": 29,
+      "validation_risk_rb_minus_raw": -0.001292630448520106
+    },
+    {
+      "budget": 8192,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.291023469650333,
+          "rb_over_raw_rms": 0.7178798155831957,
+          "rb_rms": 0.20891987472296278
+        },
+        "hessian": {
+          "raw_rms": 1.3877844251896037,
+          "rb_over_raw_rms": 0.7044314326496246,
+          "rb_rms": 0.9775989708451482
+        },
+        "value": {
+          "raw_rms": 0.08995230131931724,
+          "rb_over_raw_rms": 0.7503138027576706,
+          "rb_rms": 0.06749245326970074
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "unified-direct-conditioner",
+      "scenario": "reference-pressure",
+      "seed": 29,
+      "validation_risk_rb_minus_raw": -0.0001089376551611787
+    },
+    {
+      "budget": 1024,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.7940828286639752,
+          "rb_over_raw_rms": 0.5088428968950984,
+          "rb_rms": 0.4040634069120312
+        },
+        "hessian": {
+          "raw_rms": 3.4701393133403102,
+          "rb_over_raw_rms": 0.5329828664796226,
+          "rb_rms": 1.8495247983077479
+        },
+        "value": {
+          "raw_rms": 0.2921987149123718,
+          "rb_over_raw_rms": 0.566246776186244,
+          "rb_rms": 0.1654565803248939
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "association-aware-guide-plus-residual",
+      "scenario": "reference-pressure",
+      "seed": 47,
+      "validation_risk_rb_minus_raw": -0.002020311454080964
+    },
+    {
+      "budget": 8192,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.24372499247955706,
+          "rb_over_raw_rms": 0.4879652197477288,
+          "rb_rms": 0.1189293195133006
+        },
+        "hessian": {
+          "raw_rms": 1.156626434833319,
+          "rb_over_raw_rms": 0.505449433235819,
+          "rb_rms": 0.584616175952067
+        },
+        "value": {
+          "raw_rms": 0.08849665000740292,
+          "rb_over_raw_rms": 0.4941236599038204,
+          "rb_rms": 0.043728288590885386
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "association-aware-guide-plus-residual",
+      "scenario": "reference-pressure",
+      "seed": 47,
+      "validation_risk_rb_minus_raw": -0.00017697231558301552
+    },
+    {
+      "budget": 1024,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.8043812926979075,
+          "rb_over_raw_rms": 0.5125037562759882,
+          "rb_rms": 0.4122484339858127
+        },
+        "hessian": {
+          "raw_rms": 3.5237148999010057,
+          "rb_over_raw_rms": 0.5430743250262295,
+          "rb_rms": 1.9136390908486067
+        },
+        "value": {
+          "raw_rms": 0.2951687264710702,
+          "rb_over_raw_rms": 0.5629077691475726,
+          "rb_rms": 0.16615276933996015
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "unified-direct-conditioner",
+      "scenario": "reference-pressure",
+      "seed": 47,
+      "validation_risk_rb_minus_raw": -0.002073532041638501
+    },
+    {
+      "budget": 8192,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.260627948150189,
+          "rb_over_raw_rms": 0.604585516792601,
+          "rb_rms": 0.15757188272297726
+        },
+        "hessian": {
+          "raw_rms": 1.2378188393354506,
+          "rb_over_raw_rms": 0.6525471322951965,
+          "rb_rms": 0.8077351339093168
+        },
+        "value": {
+          "raw_rms": 0.09208732129345995,
+          "rb_over_raw_rms": 0.5438943341177175,
+          "rb_rms": 0.050085772295590705
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "unified-direct-conditioner",
+      "scenario": "reference-pressure",
+      "seed": 47,
+      "validation_risk_rb_minus_raw": -0.0001752033018324814
+    },
+    {
+      "budget": 1024,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.8675499426673361,
+          "rb_over_raw_rms": 0.45849006712638785,
+          "rb_rms": 0.39776303144904085
+        },
+        "hessian": {
+          "raw_rms": 3.7060367403568226,
+          "rb_over_raw_rms": 0.47785094998063865,
+          "rb_rms": 1.770933177042657
+        },
+        "value": {
+          "raw_rms": 0.3524742206740417,
+          "rb_over_raw_rms": 0.4617368318837226,
+          "rb_rms": 0.16275032997471614
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "association-aware-guide-plus-residual",
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 11,
+      "validation_risk_rb_minus_raw": -0.0026379156676077514
+    },
+    {
+      "budget": 8192,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.3028377998731018,
+          "rb_over_raw_rms": 0.47684161663018326,
+          "rb_rms": 0.14440566606821775
+        },
+        "hessian": {
+          "raw_rms": 1.3380222681619742,
+          "rb_over_raw_rms": 0.5001031199541908,
+          "rb_rms": 0.6691491108759863
+        },
+        "value": {
+          "raw_rms": 0.11650011403597221,
+          "rb_over_raw_rms": 0.5139461995723674,
+          "rb_rms": 0.059874790858535344
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "association-aware-guide-plus-residual",
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 11,
+      "validation_risk_rb_minus_raw": -0.0003462192853237872
+    },
+    {
+      "budget": 1024,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.8824334520834657,
+          "rb_over_raw_rms": 0.49012349324918064,
+          "rb_rms": 0.43250136609508166
+        },
+        "hessian": {
+          "raw_rms": 3.830074704436267,
+          "rb_over_raw_rms": 0.5213300453677955,
+          "rb_rms": 1.9967330194258048
+        },
+        "value": {
+          "raw_rms": 0.3552566113531326,
+          "rb_over_raw_rms": 0.47091227533419555,
+          "rb_rms": 0.16729469917981968
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "unified-direct-conditioner",
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 11,
+      "validation_risk_rb_minus_raw": -0.002724959243552774
+    },
+    {
+      "budget": 8192,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.34785553673201464,
+          "rb_over_raw_rms": 0.5875919689361854,
+          "rb_rms": 0.20439711973371802
+        },
+        "hessian": {
+          "raw_rms": 1.5803606540882462,
+          "rb_over_raw_rms": 0.6441594134811726,
+          "rb_rms": 1.0180041920262068
+        },
+        "value": {
+          "raw_rms": 0.12551927649512062,
+          "rb_over_raw_rms": 0.5468512395224732,
+          "rb_rms": 0.06864037193532074
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "unified-direct-conditioner",
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 11,
+      "validation_risk_rb_minus_raw": -0.0003735822160207264
+    },
+    {
+      "budget": 1024,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.8600014275260519,
+          "rb_over_raw_rms": 0.4500489355163441,
+          "rb_rms": 0.387042727000636
+        },
+        "hessian": {
+          "raw_rms": 3.43043957827319,
+          "rb_over_raw_rms": 0.5271665497685403,
+          "rb_rms": 1.8084129966677238
+        },
+        "value": {
+          "raw_rms": 0.36923708562155133,
+          "rb_over_raw_rms": 0.45509885411632456,
+          "rb_rms": 0.16803937456361923
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "association-aware-guide-plus-residual",
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 29,
+      "validation_risk_rb_minus_raw": -0.0026188006371247324
+    },
+    {
+      "budget": 8192,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.29230763760446243,
+          "rb_over_raw_rms": 0.49763545741385345,
+          "rb_rms": 0.14546264494485958
+        },
+        "hessian": {
+          "raw_rms": 1.3412150332595856,
+          "rb_over_raw_rms": 0.5095678127233717,
+          "rb_rms": 0.6834400108897912
+        },
+        "value": {
+          "raw_rms": 0.10939830827048935,
+          "rb_over_raw_rms": 0.5164622728114348,
+          "rb_rms": 0.056500098931102916
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "association-aware-guide-plus-residual",
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 29,
+      "validation_risk_rb_minus_raw": -0.00029764539496720394
+    },
+    {
+      "budget": 1024,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.8671830968921687,
+          "rb_over_raw_rms": 0.4732572780823877,
+          "rb_rms": 0.4104007120342432
+        },
+        "hessian": {
+          "raw_rms": 3.5203967132646956,
+          "rb_over_raw_rms": 0.5636024569436806,
+          "rb_rms": 1.9841042370124402
+        },
+        "value": {
+          "raw_rms": 0.36880307597184203,
+          "rb_over_raw_rms": 0.4582103572143822,
+          "rb_rms": 0.16898938918282067
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "unified-direct-conditioner",
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 29,
+      "validation_risk_rb_minus_raw": -0.0026310347629540307
+    },
+    {
+      "budget": 8192,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.3167378969762022,
+          "rb_over_raw_rms": 0.6483150996049007,
+          "rb_rms": 0.20534596122677332
+        },
+        "hessian": {
+          "raw_rms": 1.5006931848607452,
+          "rb_over_raw_rms": 0.6896256968789257,
+          "rb_rms": 1.0349165834110459
+        },
+        "value": {
+          "raw_rms": 0.1136373468281861,
+          "rb_over_raw_rms": 0.5878820463937405,
+          "rb_rms": 0.06680535600010928
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "unified-direct-conditioner",
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 29,
+      "validation_risk_rb_minus_raw": -0.00028701574299930255
+    },
+    {
+      "budget": 1024,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.7454756266696662,
+          "rb_over_raw_rms": 0.5657537695869671,
+          "rb_rms": 0.4217556459235702
+        },
+        "hessian": {
+          "raw_rms": 3.2863250605530454,
+          "rb_over_raw_rms": 0.592680340627437,
+          "rb_rms": 1.9477402563010615
+        },
+        "value": {
+          "raw_rms": 0.3242876588216647,
+          "rb_over_raw_rms": 0.4945603436744752,
+          "rb_rms": 0.16037981599623347
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "association-aware-guide-plus-residual",
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 47,
+      "validation_risk_rb_minus_raw": -0.0017698130215688876
+    },
+    {
+      "budget": 8192,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.26198390571004837,
+          "rb_over_raw_rms": 0.5700185348592002,
+          "rb_rms": 0.14933568208953263
+        },
+        "hessian": {
+          "raw_rms": 1.3086759866358257,
+          "rb_over_raw_rms": 0.541110714339374,
+          "rb_rms": 0.7081385979672966
+        },
+        "value": {
+          "raw_rms": 0.09119358219434105,
+          "rb_over_raw_rms": 0.6644020579491835,
+          "rb_rms": 0.060589203681678215
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "association-aware-guide-plus-residual",
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 47,
+      "validation_risk_rb_minus_raw": -0.0002311635474004925
+    },
+    {
+      "budget": 1024,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.7647750592065438,
+          "rb_over_raw_rms": 0.5902653035880745,
+          "rb_rms": 0.45142018249913823
+        },
+        "hessian": {
+          "raw_rms": 3.3689562968581814,
+          "rb_over_raw_rms": 0.6265339101231602,
+          "rb_rms": 2.1107653617045985
+        },
+        "value": {
+          "raw_rms": 0.3285981002549679,
+          "rb_over_raw_rms": 0.5003434110980294,
+          "rb_rms": 0.16441189436190287
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "unified-direct-conditioner",
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 47,
+      "validation_risk_rb_minus_raw": -0.0018012816006206175
+    },
+    {
+      "budget": 8192,
+      "errors": {
+        "gradient": {
+          "raw_rms": 0.3081387819497299,
+          "rb_over_raw_rms": 0.6955102092512999,
+          "rb_rms": 0.2143136687122973
+        },
+        "hessian": {
+          "raw_rms": 1.507104106092512,
+          "rb_over_raw_rms": 0.6965596881713618,
+          "rb_rms": 1.0497879661815792
+        },
+        "value": {
+          "raw_rms": 0.10116087743931326,
+          "rb_over_raw_rms": 0.7001976088299768,
+          "rb_rms": 0.0708326044901495
+        }
+      },
+      "exact_shared_design_and_skeleton": true,
+      "method": "unified-direct-conditioner",
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 47,
+      "validation_risk_rb_minus_raw": -0.0002533468259237337
+    }
+  ],
+  "protocol_sha256": "add4d2b0b537c4d7dde09f0c70847c2c02fcfaa4b5e74560b71df35adfb033a7",
+  "report_sha256": "29849c4f18e1df312722d8899d9361d441398a39b9ea094fa9317151e434889f",
+  "schema_version": "independent-localized-variance-reduction-audit-v1",
+  "scope": {
+    "all_saved_terminal_gaussian_labels_recomputed": true,
+    "audit_numeric_thresholds_change_scientific_acceptance_tolerances": false,
+    "forward_simulator_called": false,
+    "full_jump_skeleton_replayed": false,
+    "historical_execution_order_authenticated": false,
+    "new_runner_or_label_module_imported": false,
+    "optimizer_or_fit_called": false,
+    "original_archive_unchanged_through_audit": true,
+    "real_arithmetic_bounds_interval_certified": false,
+    "statistical_superiority_certified": false,
+    "unchanged_backward_oracle_evaluation_only": true
+  },
+  "unique_generation_work_totals": {
+    "accepted_birth_death_events": 385298,
+    "accepted_births": 162332,
+    "accepted_deaths": 222966,
+    "conditional_gaussian_affine_updates": 2452916,
+    "conditional_gaussian_birth_resets": 121631,
+    "conditional_gaussian_death_resets": 222966,
+    "conditional_gaussian_second_moment_evaluations": 264614,
+    "conditional_variance_evaluations": 589824,
+    "continuous_half_step_updates": 2452916,
+    "potential_uniformization_events": 579311,
+    "raw_birth_normal_draws": 121631,
+    "raw_half_step_normal_draws": 2452916,
+    "raw_normal_draws_total": 2574547,
+    "raw_observation_density_evaluations": 589824,
+    "rb_gaussian_convolution_evaluations": 264614,
+    "rb_initial_raw_formula_evaluations": 589824,
+    "rb_observation_mean_evaluations": 589824,
+    "selected_births": 121631,
+    "skeleton_acceptance_uniform_draws": 579311,
+    "skeleton_birth_uniform_draws": 162332,
+    "skeleton_poisson_draws": 2654208
+  }
+}

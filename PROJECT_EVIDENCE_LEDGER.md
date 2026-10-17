@@ -1,19 +1,182 @@
 # Project Evidence and Ownership Ledger
 
+**Latest checkpoint (2026-09-13): focused curvature and controlled learnability
+COMPLETE, 2/2 bounded deliverables.** The fixed FD7 score-only curvature control
+passes every value/score/Hessian check in four routes, with no tolerance change.
+The forward-simulator-supervised comparison completes 24 routes and 192 fits,
+freezing every model before independent target evaluation. All route-mean
+validation risks improve over their respective baselines and all matched
+larger-budget RMS errors improve, but no learned route passes the full accuracy
+checks. G+R scores do not consistently improve on guide-only. No learner or
+sampler promotion is claimed. **553 focused tests pass in both local numerical
+environments**, and both full commands run from the installed reader wheel.
+[Results](docs/LOCALIZED_CURVATURE_AND_LEARNABILITY_RESULTS.md) and
+[verification](research/fixtures/continuous_curvature_learnability_verification_2026_09_13.json).
+The active plan now has **19 checked sub-deliverables / 7 open broad obligations**;
+historical compound counts remain **61 checked / 102 open / 163 total**.
+No real data, GPU/cloud/paid jobs, dependency downloads or publication occurred.
+
+**Preceding checkpoint (2026-09-13): localized derivative/envelope work COMPLETE,
+2/2 bounded deliverables.** The C² local quintic formulation has independently
+reviewed derivative and mesh-uniform coefficient bounds. All 24 fixed routes
+and 192 active profiles completed without retry; the largest whole-profile
+real-arithmetic bound is 2.91851. At 256 cells, all primary value/score checks
+pass, and both G+R Hessian checks pass. DIR retains 16/28 Hessian failures;
+the extra-Hessian-label control is not relabeled as primary success.
+**483 focused development tests and 324 installed-wheel tests pass**; all
+exported physical arrays match across the two tested local environments.
+[Results](docs/LOCALIZED_RESIDUAL_RESULTS.md) preserve failures and limitations.
+The active plan has **17 checked sub-deliverables / 7 open broad obligations**.
+The historical count remains **61 checked / 102 open / 163 total**. No old
+model, tolerance, real data or learner/sampler was changed, and no paid/cloud job
+or publication occurred.
+
+**Preceding checkpoint (2026-09-13): residual formulation and controlled comparison
+COMPLETE, 2/2 bounded deliverables.** The preceding 12-fit diagnosis established
+the old residual amplitude obstruction. A new compact finite-fiber C² capacity
+proof and immutable polynomial residual now accompany all 24 fixed
+oracle-supervised routes (192 continuous fits). The first run had an export-only
+failure; its files and additional eight fits are preserved and disclosed.
+All degree-64 value checks pass, but derivative failures and large coefficient
+envelopes prevent promotion to the general learner or sampler. **390 focused
+development tests pass**; reader-wheel verification and an independent audit
+accompany [the full result](docs/RESIDUAL_CAPACITY_COMPARISON_RESULTS.md).
+The active plan has **15 checked sub-deliverables**, while the seven broad
+scientific/release obligations remain open. Historical compound counts remain
+**61 checked / 102 open / 163 total**. No old scientific acceptance tolerance,
+real dataset, cloud job or published release was changed.
+
+**Preceding checkpoint (2026-09-13): fixed multi-seed comparison COMPLETE with
+authorized local time extension, 22/22 routes.** The missing original seed pair
+finished in 504.54 seconds in the same development numerical environment.
+The [complete report](research/fixtures/continuous_multiseed_completion_cpu_2026_09_13/report.json)
+preserves all 20 original route records and adds only routes 21/22. Its completed
+work totals are 26,624 endpoint draws and 384 conditional updates, excluding
+unknown additional work from the interrupted first attempt. That original
+2,400-second timeout and partial review remain unchanged. No settings, seeds,
+draw counts, checkpoints or uncertainty rules changed. The
+[result interpretation](docs/MIXED_CONTINUOUS_MULTISEED_RESULTS.md) retains both
+methods and every control: G+R has lower combined point error in all six seed
+pairs, but both mixture-advantage intervals include zero, DIR has lower
+category-only point error in the harder setting, and residual benefit over
+guide-only is not established. Independent in-session review recomputed the
+statistics and checked all preserved records. **28 continuation tests and 46
+installed-wheel tests pass**; see the
+[verification](research/fixtures/continuous_multiseed_completion_verification_2026_09_13.json).
+The active plan now has **12 checked sub-deliverables**, with the broader
+scientific and release obligations still open. Historical compound counts
+remain **61 checked / 102 open / 163 total**. No GPU/cloud/paid job, real data,
+commit, push or publication occurred.
+
+**Preceding checkpoint (2026-09-13): guide/initializer diagnostic COMPLETE;
+multi-seed experiment PARTIAL, 20/22 routes.** The independent capped/uncapped
+continuous-fiber derivation and known-initial-law TV diagnostic are implemented
+and tested. The [predeclared CPU comparison](docs/MIXED_CONTINUOUS_MULTISEED_RESULTS.md)
+stopped at its 2,400-second limit with confirmed child termination; no complete
+`report.json` exists. All three first-setting seed pairs and two second-setting
+pairs are saved; second-setting seed 1203 remains missing for both methods.
+The [separate partial review](research/fixtures/continuous_multiseed_cpu_2026_09_13_review.json)
+preserves the 20 route hashes and original alpha allocation. It records 25,600
+completed draws and 320 updates, not unknown additional interrupted work.
+G+R has lower observed error than DIR in the five complete pairs, but the
+first-setting mixture-advantage interval includes zero and residual benefit
+over guide-only is not demonstrated. No continuation has been launched.
+The [verification record](research/fixtures/continuous_multiseed_verification_2026_09_13.json)
+records **1,600 development tests and 141 installed-wheel tests passing**.
+The [active plan](PROJECT_RESEARCH_AND_REPRODUCIBILITY_PLAN.md) now has **11
+explicitly checked sub-deliverables**, with the full multi-seed comparison
+unchecked. Historical compound counts remain **61 checked / 102 open / 163
+total**. No GPU/cloud/paid job, real data, commit, push or publication occurred.
+
+**Preceding checkpoint (2026-09-13): mixed-learner extension COMPLETE, 2/2 bounded
+deliverables.** The actual mixed neural learner now has an opt-in common-grid
+population and linear terminal gate, with its legacy default preserved. An
+independent capped jump/OU Gaussian-mixture oracle supplies continuous-fiber
+targets, exact initial laws and derivatives. The actual hybrid sampler and both
+neural methods completed the five predeclared CPU routes; see the
+[full comparison](docs/MIXED_CONTINUOUS_CONDITIONAL_BENCHMARK.md) and
+[verification record](research/fixtures/mixed_continuous_conditional_verification_2026_09_13.json).
+The exact-h controls have small finite-indicator discrepancies; the 64-draw
+neural results are not a superiority or posterior-accuracy claim. A separate
+four-case trained-BASE smoke covers 8 BASE + 8 conditional updates and 24 paths.
+The [active plan](PROJECT_RESEARCH_AND_REPRODUCIBILITY_PLAN.md) now checks 10
+sub-deliverables across its 5+3+2 completed packages. Historical compound counts
+stay **61 checked / 102 open / 163 total**. This explicitly identified source
+successor is not the historical B08 release or a new GPU qualification. No real
+data, cloud/paid job, commit, push or publication is included.
+
+**Preceding checkpoint (2026-09-13): association/initializer proof and independent
+conditional benchmark COMPLETE, 3/3 bounded scientific deliverables.** The
+[marked current plan](PROJECT_RESEARCH_AND_REPRODUCIBILITY_PLAN.md) links the
+independently reviewed ideal-reference proof, the selected finite-grid
+conditional-law contract, and the [complete 12-case result](docs/FINITE_CONDITIONAL_BENCHMARK.md).
+G+R has lower final TV than DIR in all 12 declared toy cases; guide-only beats
+trained G+R in two. This is finite atomic population-risk evidence, not a
+general superiority result or the full mixed learner. **1,355 tests pass in
+150.00 seconds**; 99 benchmark tests also pass in the reader environment, and
+the installed-wheel default benchmark completes outside the checkout.
+See the [verification record](research/fixtures/finite_conditional_benchmark_verification_2026_09_13.json).
+The legacy model/gate, tolerances and C17 status are unchanged. No GPU/paid job,
+real data, remote CI, commit, push or publication. Historical compound counts
+remain 61 checked / 102 open / 163 total; the three scientific sub-deliverables
+are now explicitly checked in the active plan.
+
+**Preceding checkpoint (2026-09-13): paper-first work package COMPLETE, 5/5
+bounded deliverables.** The
+[current marked plan](PROJECT_RESEARCH_AND_REPRODUCIBILITY_PLAN.md) links the
+scientific specification, five limited proposition drafts, independent
+primary-source/assumption audit and portable two-domain synthetic reader route.
+Both examples run from a wheel installed in a new local CPU environment outside
+the checkout; 106 reader tests pass there and the expanded development regression
+passes **1,256 tests in 152.85 seconds**. See the
+[verification record](research/fixtures/reader_cpu_verification_2026_09_13.json).
+Final theorem/novelty claims, general-domain support, general resume and paper
+results remain open. README/packaging intentionally supersede their historical
+B08 snapshot bytes; the old lock/manifest/receipt are unchanged. No GPU/paid job,
+real-data access, push or publication occurred. Historical compound counts
+remain 61 checked / 102 open / 163 total.
+
+
 **Initialized:** 2026-08-30  
 **Current project state:** `DRAFT_NOT_EXECUTABLE`  
 **Ledger role:** authoritative project-management index for the completion timetable  
 **Update rule:** change an item only with a durable evidence path or receipt  
-**Latest current checkpoint (2026-09-13): separate bounded integrated-pipeline
-GPU-check preparation COMPLETE; CUDA execution PENDING.** The
+**Preceding checkpoint (2026-09-13): local multi-step training/checkpoint
+continuity COMPLETE within its synthetic CPU scope.** The
+[implementation and local verification record](PROJECT_FACTORIZED_MULTISTEP_CHECKPOINT_LOCAL_QUALIFICATION.md)
+cover four BASE and four conditional updates per route, uninterrupted versus
+fresh-object disk restoration midway through each phase. Across four cases,
+64 updates, 80 tiny generated paths and eight checkpoint roundtrips are checked.
+Model parameters, gradients, AdamW moments/steps, explicit PCG64 state,
+conditional stream counters, source paths and final paths match exactly after
+restoration. This is same-runtime CPU continuity, not a fresh OS-process restart,
+GPU checkpoint qualification, convergence or production resume. No new GPU job,
+package installation, real-data access or scientific outcome occurred. The
+objective, optimizer, acceptance tolerances and legacy defaults are unchanged.
+The final combined regression passed **1,150 local tests in 153.81 seconds**;
+the standalone four-case continuity run passed in 34.91 seconds. The complete
+final result and exact scope are in the linked record.
+
+**Preceding checkpoint: selected-T4 integrated candidate check COMPLETE.** The
+[operator result review](PROJECT_FACTORIZED_PRECISION_PIPELINE_CUDA_RESULT.md)
+accepts the reported four-case pass and exact GPU replay, with unchanged
+tolerances, 36 updates and 48 paths in 199.49 seconds. The attachment was
+display-truncated; a subsequent user recovery summary supplies all case-level
+comparison outcomes. The normalized evidence extract does not reconstruct
+missing raw tensor/category data or claim an independent remote rerun. Legacy
+FP32 update failures remain failures. No production, installed-release, F105,
+compound checkbox, field or blocker closes from this bounded GPU pass.
+
+**Historical preparation checkpoint: separate bounded integrated-pipeline
+GPU-check preparation COMPLETE; CUDA execution was PENDING then.** The
 [new notebook, exact handoff and actual CPU result](PROJECT_FACTORIZED_PRECISION_PIPELINE_GPU_CHECK_PREPARATION.md)
 cover four cases, 36 optimizer updates and 48 tiny paths with common-input
 numerical comparisons and exact same-device replay. The real isolated notebook
 CPU rehearsal passed in 26.08 seconds with confirmed termination. **1,042 local
 tests passed.** A 300-second child deadline, five-second termination grace,
 bounded output and soft 2 GiB memory observation are fixed. No GPU/paid job,
-installation or real-data access occurred. The next action is inspection after
-sync, then one separately authorized selected-test-GPU run. No compound
+installation or real-data access occurred in that local preparation. Its next
+action was the selected-test-GPU run, whose later result is recorded above. No compound
 checkbox, field, blocker or scientific result closes; defaults and tolerances
 are unchanged.
 
@@ -25,8 +188,9 @@ cover both domains and methods, exact fresh-run replay, 32 optimizer updates and
 learned-BASE population generation, conditional source paths and conditional
 sampling. Scientific objectives, optimizer settings, tolerances and legacy
 defaults are unchanged. The physical FP32 encoding/gradient-return boundary is
-preserved, not advertised as end-to-end FP64. Candidate full-pipeline GPU,
-production and installed-release qualification remain open. No GPU/paid job or
+preserved, not advertised as end-to-end FP64. Candidate bounded integrated GPU
+testing was pending at that checkpoint and is now recorded above; production
+and installed-release qualification remain open. No GPU/paid job or
 real-data access occurred; no compound checkbox, field, blocker or result closes.
 
 **Preceding checkpoint: bounded BASE candidate GPU check COMPLETE.**

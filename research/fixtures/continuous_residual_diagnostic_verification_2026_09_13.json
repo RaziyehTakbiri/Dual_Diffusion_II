@@ -1,0 +1,141 @@
+{
+  "schema_version": "continuous-residual-likelihood-score-verification-v1",
+  "date": "2026-09-13",
+  "decision": "BOUNDED_DIAGNOSIS_COMPLETE_MODEL_REMEDY_NOT_IMPLEMENTED",
+  "diagnosis": {
+    "completed_fits": 12,
+    "original_replay_checks_passed": 60,
+    "checkpoints_per_fit": 4,
+    "query_rows": 5184,
+    "replayed_optimizer_updates": 384,
+    "replayed_training_validation_base_paths": 2304,
+    "new_conditional_endpoint_draws": 0,
+    "elapsed_seconds": 173.49184566689655,
+    "parent_deadline_seconds": 1200,
+    "parent_exit_code": 0,
+    "environment": {
+      "python": "3.11.5",
+      "torch": "2.12.1",
+      "numpy": "2.4.6",
+      "scipy": "1.17.1"
+    },
+    "inference_scope": "POST_OUTCOME_FINITE_QUERY_DIAGNOSIS_NOT_CAUSAL_ENDPOINT_ATTRIBUTION"
+  },
+  "tests": {
+    "development": {
+      "passed": 294,
+      "failed": 0,
+      "elapsed_seconds": 13.82,
+      "selection": [
+        "tests/unit/test_continuous_fiber_conditional_benchmark.py",
+        "tests/unit/test_continuous_fiber_initialization_diagnostic.py",
+        "tests/unit/test_continuous_fiber_grid_target.py",
+        "tests/unit/test_continuous_residual_diagnostic.py",
+        "tests/unit/test_factorized_common_grid_pipeline.py",
+        "tests/unit/test_continuous_multiseed_benchmark.py"
+      ]
+    },
+    "installed_reader": {
+      "passed": 107,
+      "failed": 0,
+      "elapsed_seconds": 4.44,
+      "cwd": "/tmp/heterodiff-multiseed-reader-TNwX1q",
+      "pythonpath": "",
+      "pytest_root_config": "/dev/null",
+      "selection": [
+        "tests/unit/test_continuous_fiber_grid_target.py",
+        "tests/unit/test_continuous_residual_diagnostic.py"
+      ],
+      "environment": {
+        "numpy": "2.1.3",
+        "python": "3.11.5",
+        "scipy": "1.15.1",
+        "torch": "2.7.0"
+      },
+      "imports": {
+        "heterodiff.evaluation.continuous_fiber_grid_target": {
+          "origin": "/private/tmp/heterodiff-reader-validation-KTPoyL/reader-venv/lib/python3.11/site-packages/heterodiff/evaluation/continuous_fiber_grid_target.py",
+          "sha256": "398e9f31f035d7dab256fafcbf6e7196cff2a56b454e1d0834dc27267ce04405"
+        },
+        "heterodiff.experiments.continuous_residual_diagnostic": {
+          "origin": "/private/tmp/heterodiff-reader-validation-KTPoyL/reader-venv/lib/python3.11/site-packages/heterodiff/experiments/continuous_residual_diagnostic.py",
+          "sha256": "8be4b59029b0d1897ce88ed202ffc0f7de5d5d919b9684be988297e75d6d1919"
+        }
+      }
+    },
+    "new_test_count": 107,
+    "new_test_breakdown": {
+      "grid_target": 82,
+      "residual_diagnostic": 25
+    },
+    "static_analysis": "PYFLAKES_CLEAN_FOR_FOUR_NEW_PYTHON_FILES",
+    "tracked_diff_whitespace": "GIT_DIFF_CHECK_CLEAN"
+  },
+  "installed_wheel": {
+    "path": "/tmp/heterodiff-residual-reader-wheel-5IRGI2/heterodiff-0.1.0-py3-none-any.whl",
+    "sha256": "42afb8d0147793ac59afdccb0cc317570b1a5de436adc158ce832d7bcef17b0d",
+    "only_project_wheel_replaced_in_existing_temporary_reader_environment": true,
+    "dependencies_downloaded": false,
+    "dependency_check": "NO_BROKEN_REQUIREMENTS_FOUND",
+    "note": "Source modules match saved diagnostic hashes. README prose changed after this validation wheel was built; this is not a published release artifact."
+  },
+  "independent_review": {
+    "mathematical_grid_kernel_and_capacity_derivation": "REVIEWED",
+    "raw_and_derived_metrics": "INDEPENDENTLY_RECOMPUTED_MATCH",
+    "original_replay_route_files": "12_MATCH_COMBINED_REPORT",
+    "interpretation": "RMS_VERSUS_MAX_ERROR_AND_FINITE_QUERY_SCOPE_EXPLICIT",
+    "pre_execution_corrections": [
+      "CONSTANT_BASELINE_AUTOGRAD_ZERO_CASE",
+      "SCIPY_VERSION_BOUND_FROM_ORIGINAL_VERIFICATION"
+    ],
+    "final_prose_clarifications": [
+      "NUISANCE_MOVEMENT_VERSUS_RESIDUAL_SATURATION",
+      "CURRENT_MIXED_SAMPLER_NOT_PRODUCTION_QUALIFICATION"
+    ]
+  },
+  "artifacts": {
+    "PROJECT_COMPLETION_TIMETABLE.md": {
+      "checked": 61,
+      "open": 102
+    },
+    "PROJECT_RESEARCH_AND_REPRODUCIBILITY_PLAN.md": {
+      "checked": 13,
+      "open": 7
+    },
+    "diagnostic_selected_source_hashes_match": true,
+    "protocol_hash_matches": true,
+    "sha256": {
+      "docs/RESIDUAL_LIKELIHOOD_SCORE_ANALYSIS.md": "3591f078a8d97c5a380206548c2b6f8fbe452f9149de60a1038dda1d53b7419c",
+      "docs/RESIDUAL_LIKELIHOOD_SCORE_DIAGNOSTIC_PROTOCOL.md": "d2cf8da253b07f3e14332156b38cddea2d0e8727ea12e562c8640aa906f602a4",
+      "docs/RESIDUAL_LIKELIHOOD_SCORE_RESULTS.md": "ccc93e71af6ad729af44ed8e0b60c217cb49cbd11dabda4ab6dd6bc772f19418",
+      "research/fixtures/continuous_multiseed_completion_cpu_2026_09_13/report.json": "5cc83ec15fb3600ae975887c53d1a7b4c50e91ef3ea1e193a7670b8df355510e",
+      "research/fixtures/continuous_multiseed_cpu_2026_09_13_review.json": "1099b2bbc835568cd3eec73b22252ebe3bd405230e4fa9a840b118ac5a6d2652",
+      "research/fixtures/continuous_multiseed_verification_2026_09_13.json": "ebfca4c9aad509023576b2e8d4a546574ed3fbda8d0e652a42180c381b47784b",
+      "research/fixtures/continuous_residual_diagnostic_cpu_2026_09_13/report.json": "c1ea8e051f23c214b1d3faa81116e9149c9f954051f70038159951b18ea2f0c5",
+      "research/fixtures/continuous_residual_diagnostic_summary_2026_09_13.json": "e28151f5cf50dc3e1476627bb16671a2ca51e109e1a73e3790f543f7f763914a",
+      "src/heterodiff/evaluation/continuous_fiber_grid_target.py": "398e9f31f035d7dab256fafcbf6e7196cff2a56b454e1d0834dc27267ce04405",
+      "src/heterodiff/experiments/continuous_residual_diagnostic.py": "8be4b59029b0d1897ce88ed202ffc0f7de5d5d919b9684be988297e75d6d1919",
+      "tests/unit/test_continuous_fiber_grid_target.py": "e8b4bf46f84e35f0186a99d06a382210bbfeaad944d84d875ecb44cd1866eef2",
+      "tests/unit/test_continuous_residual_diagnostic.py": "a7a5335a713622e433b3459ff9a265477a6c54336535074b9615ecb5e82a5a6c"
+    }
+  },
+  "plan": {
+    "completed_bounded_subdeliverables": 13,
+    "open_broad_obligations": 7,
+    "historical_compound_checked": 61,
+    "historical_compound_open": 102,
+    "counts_are_separate_not_additive": true,
+    "newly_checked": "DIAGNOSE_FITTED_RESIDUAL_AGAINST_INDEPENDENT_LIKELIHOOD_SCORE_TARGETS"
+  },
+  "scope": {
+    "scientific_model_or_objective_changed": false,
+    "acceptance_tolerances_changed": false,
+    "hyperparameters_selected": false,
+    "GPU_cloud_or_paid_jobs_launched": false,
+    "real_data_accessed": false,
+    "old_experiment_artifacts_overwritten": false,
+    "general_conditional_law_approximation_closed": false,
+    "remedy_proven": false,
+    "committed_pushed_or_published": false
+  }
+}

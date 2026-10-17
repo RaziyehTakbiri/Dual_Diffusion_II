@@ -1,0 +1,15 @@
+{
+  "protocol_sha256": "6a304da5e3bbf6d2f3bc19e2184122d803b8a8024997f5c8ebf4ccee5ab76f47",
+  "recorded_before_constructions": true,
+  "source_sha256": {
+    "compact_fiber_residual.py": "160d808e1dbc27579a7c6ed49d7a06d541c731e9b90e314b64eabf8eeae142bf",
+    "continuous_fiber_conditional_benchmark.py": "033ddd18c35ed0795c6b7cd8e53ff2bb35e60ceff1de89e22ecc207de9a39a10",
+    "continuous_fiber_grid_target.py": "398e9f31f035d7dab256fafcbf6e7196cff2a56b454e1d0834dc27267ce04405",
+    "continuous_fiber_initialization_diagnostic.py": "81857aed1d7f7006c3adaf10beb63596fdb8736963434fa78ace4a6c206c12c8",
+    "continuous_localized_curvature.py": "1a49044d46282be6f45bf74d310ef2bb8d781d1a6249eec13379d23791301925",
+    "continuous_localized_residual.py": "a466a4a503f1f59f40e9172b7ec899b082bd097603f75c616b0142de879b95cd",
+    "continuous_residual_capacity.py": "9b4a91c0f5a4d4154fd721aa5a9aef2131731f71a7bbe162f4e5c23ebda72d6b",
+    "localized_fiber_residual.py": "28b0caa974f1c6243076e5d1cff85321255519d822157a76f164b883eb8ce0ac",
+    "localized_score_curvature.py": "e09f27b6ab95c695cddfda95a9af300524123422ece4a8b1528b95c35996f962"
+  }
+}

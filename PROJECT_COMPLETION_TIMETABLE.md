@@ -1,5 +1,49 @@
 # Project Completion Timetable
 
+**Current next-work ordering (2026-09-13):** use the
+[research and reproducibility plan](PROJECT_RESEARCH_AND_REPRODUCIBILITY_PLAN.md).
+Its paper-first reader package has **5/5 completed deliverables**, followed by
+**3/3 completed bounded scientific deliverables**: the independently reviewed
+association/initializer proof, finite-grid conditional-law contract and known-law
+benchmark. The subsequent **2/2 mixed-learner deliverables are now complete**:
+the opt-in common-grid/linear-gate neural integration and the independent
+continuous-fiber target with a completed five-route actual-sampler comparison.
+The next independent continuous-fiber guide/initializer diagnostic is also
+complete, and the paired multi-seed comparison is **22/22 routes complete with
+an authorized time extension**. The residual diagnosis and two bounded
+formulation/comparison deliverables are also complete, followed by **2/2 localized
+derivative/envelope deliverables**, and **2/2 focused curvature/learnability
+deliverables**. There are now **19 explicitly checked
+sub-deliverables** in the active plan. The first attempt stopped at its
+40-minute CPU limit; a separate 504.54-second continuation completed only the
+missing seed pair without changing settings or replacing the original results.
+See the [complete result and scope](docs/MIXED_CONTINUOUS_MULTISEED_RESULTS.md).
+These sub-deliverables do not close the larger
+compound obligations below; **61 checked / 102 open / 163 total** remains correct.
+Older next-GPU instructions below are historical, not the immediate next action.
+
+The [residual capacity comparison](docs/RESIDUAL_CAPACITY_COMPARISON_RESULTS.md)
+records all 24 oracle-supervised routes; it does not qualify the old BCE learner
+or sampler. The [localized follow-up](docs/LOCALIZED_RESIDUAL_RESULTS.md) records
+all 24 routes with coefficient bounds below 2.92 and finest-mesh primary
+value/score checks passing. Its original DIR 16/28 Hessian failures remain
+archived. The separate seven-point curvature control now passes all four routes.
+The subsequent non-oracle learner completes 24 routes/192 fits, with improving
+validation risk but no full derivative-accuracy pass. Next is a controlled
+separation of finite-label noise and approximation/regularization bias before
+sampler integration—not another Databricks setup.
+[Complete result](docs/LOCALIZED_CURVATURE_AND_LEARNABILITY_RESULTS.md).
+The
+[completion verification](research/fixtures/continuous_multiseed_completion_verification_2026_09_13.json)
+records 28 continuation tests and 46 installed-wheel tests passing; the earlier
+verification records the preceding 1,600-test development regression. The
+original timed-out attempt remains incomplete even though its fixed scientific
+roster has now been completed with the disclosed extension. Full-hybrid
+approximation, real-data experiments, generalization and publication claims
+remain open; neither overall method superiority nor residual benefit over
+guide-only is established by this partial comparison.
+
+
 **Route:** minimum defensible two-domain manuscript  
 **Baseline date:** 2026-08-30  
 **Base solo window:** 2026-08-31 through 2028-03-12 (solo weeks 1–80)  

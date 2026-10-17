@@ -1,0 +1,262 @@
+{
+  "checkpoint_resume": false,
+  "decision": "AUTHORIZED_FIXED_MISSING_PAIR_COMPLETION_INTENT",
+  "interrupted_unsaved_prefix_recomputed": true,
+  "missing_routes": [
+    [
+      "higher-pressure-shifted-observation",
+      "neural",
+      "association-aware-guide-plus-residual",
+      1203
+    ],
+    [
+      "higher-pressure-shifted-observation",
+      "neural",
+      "unified-direct-conditioner",
+      1203
+    ]
+  ],
+  "original_evidence": {
+    "original_protocol_sha256": "ef221ff31ac53a38ea40ff3e24bce3a132cb8c107e8dae46fddcf1a906645f34",
+    "original_source_sha256": {
+      "src/heterodiff/evaluation/continuous_fiber_initialization_diagnostic.py": "81857aed1d7f7006c3adaf10beb63596fdb8736963434fa78ace4a6c206c12c8",
+      "src/heterodiff/evaluation/continuous_multiseed_statistics.py": "6156ad5734c5d12a9f2e9d6ed7b478b308f2f84308a76651f6b1da7571b53c35",
+      "src/heterodiff/experiments/continuous_multiseed_benchmark.py": "ad517e308e7bd22726ee251fde18bff25d5b92838ec3855073b26f0ddc3bf528",
+      "src/heterodiff/experiments/factorized_prepared_conditional_sampler.py": "5f6df5d0fd1ae308f03aa2649720a09658a8698401a74c624e88fc541c39abeb"
+    },
+    "original_verification_sha256": "ebfca4c9aad509023576b2e8d4a546574ed3fbda8d0e652a42180c381b47784b",
+    "partial_review_sha256": "1099b2bbc835568cd3eec73b22252ebe3bd405230e4fa9a840b118ac5a6d2652",
+    "preserved_route_artifacts": [
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-01.json",
+        "sha256": "783542454e1ca50b4ad2582c3ddedc609d423889b1436ce96966e7996ec1c681",
+        "size_bytes": 1958
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-02.json",
+        "sha256": "afe01105ca385c738dffb03f9207ae73b5fecb13a3f7e59d4519b008e29f05ce",
+        "size_bytes": 1987
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-03.json",
+        "sha256": "e71b67aff6e604a8eb6ef091b2a61a45c6bf0ab354e7a918142ce477f6f4ee6e",
+        "size_bytes": 1963
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-04.json",
+        "sha256": "06964531df9d3f730fb6500393f700c6ef123d96496bce59d0274a2f5a98598c",
+        "size_bytes": 1963
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-05.json",
+        "sha256": "3cbba1c06c38938640426b9be5352b131d679c68aceff34b209c8f9b409c39e2",
+        "size_bytes": 1982
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-06.json",
+        "sha256": "bda04e81fb0750ad9f8b19b84e38052e02975006d25de206b8751e59a7ba9926",
+        "size_bytes": 63735
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-07.json",
+        "sha256": "d9f80d0a6472d698e672e4589c4820292d9bb8168edf09377932d1d5226843cc",
+        "size_bytes": 63397
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-08.json",
+        "sha256": "a9e8950d8344cb9b728296526fda085a39530c72b1ada5813f6b10dc63237f63",
+        "size_bytes": 63727
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-09.json",
+        "sha256": "edbe22d1cfc30b30059afc74ee2aa4623e16b5341a3d6366ac4d18086807e210",
+        "size_bytes": 63343
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-10.json",
+        "sha256": "9b7a700c3d37e7ccc73e22e4ba1556cce175284cba6504cb20508a3a81bee20d",
+        "size_bytes": 63735
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-11.json",
+        "sha256": "37466613c6a995ef9b8054307adc735daf107af6ed2ba4d7086c1ffa43b8d9b5",
+        "size_bytes": 63407
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-12.json",
+        "sha256": "650cce4fc7cf87253138d4d8bacc62d960e99b82ad476a05231b3de79ae7f9ce",
+        "size_bytes": 2010
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-13.json",
+        "sha256": "61b98b6ad0afd13e0d96a25d4df20c77ac78e733ca46f745027e6edd90c0857d",
+        "size_bytes": 2006
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-14.json",
+        "sha256": "5c636f5d9e8ba64efabbcff40f0ab9a84c901b3497e0b5785cf9c56f1e67de2b",
+        "size_bytes": 2019
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-15.json",
+        "sha256": "c8da7a6691ed029a6236bf9fbf4718d89b65d1ba8930567a6f70a37e1fe19dc0",
+        "size_bytes": 2016
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-16.json",
+        "sha256": "bcbfe005dcd731f49f47927656a8076530ca13b074b415487aa3c9bf7d1d326f",
+        "size_bytes": 1986
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-17.json",
+        "sha256": "b8dc4577a771dda4c7ed0851f79ecba9c9348e76bbcc88cc54d7ce4c77c8b7a2",
+        "size_bytes": 63837
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-18.json",
+        "sha256": "b5d16ce1e7e644dbd2d205caf55676f13ea0a79ee4024927c30faa3fcf9d7841",
+        "size_bytes": 63483
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-19.json",
+        "sha256": "4952b26881fa9b2005e3886e8eafaa1e526914e1a552cf12f1cdbb05831b7c4a",
+        "size_bytes": 63852
+      },
+      {
+        "path": "research/fixtures/continuous_multiseed_cpu_2026_09_13/route-20.json",
+        "sha256": "4e2cd52f547b393d30f60cd0ffee73e749ce43ae46cfe5c32b37f3051d85b21c",
+        "size_bytes": 63488
+      }
+    ],
+    "scientific_protocol": {
+      "choices_changed_after_default_launch": false,
+      "path": "docs/MIXED_CONTINUOUS_MULTISEED_PROTOCOL.md",
+      "sha256": "231df4874ed6dd7cacbced5242570268ac25d832df2207fe95ebeef20636ebc8",
+      "specified_before_default_results": true
+    }
+  },
+  "original_single_attempt_success_claimed": false,
+  "schema_version": "continuous-multiseed-authorized-completion-v1",
+  "separate_supervisor_seconds": 1800,
+  "specification": {
+    "alpha_allocation": {
+      "routes": 0.005,
+      "seed_mixtures": 0.0025,
+      "signed_contrasts": 0.0025
+    },
+    "budget": {
+      "control_draws": 2048,
+      "maximum_seconds": 2400,
+      "neural_draws": 512,
+      "pairs_per_update": 2,
+      "seeds": [
+        1201,
+        1202,
+        1203
+      ],
+      "updates": 32,
+      "validation_pairs": 32
+    },
+    "checkpoint_selection": false,
+    "common_random_numbers_between_methods": false,
+    "control_seeds": {
+      "direct": 4201,
+      "purpose": "scenario_id || control_name",
+      "sampler": 4202
+    },
+    "controls": [
+      "direct-posterior",
+      "exact-h-exact-initial",
+      "exact-h-guide-initial",
+      "guide-only",
+      "zero-clock-baseline"
+    ],
+    "factorial_separation_of_theta_and_observation_effects": false,
+    "grid": [
+      0.0,
+      0.125,
+      0.25,
+      0.375,
+      0.5,
+      0.625,
+      0.75,
+      0.875,
+      1.0
+    ],
+    "is_default_protocol_run": true,
+    "joint_cdf_grid": [
+      -3.0,
+      -2.7,
+      -2.4,
+      -2.1,
+      -1.8,
+      -1.5,
+      -1.2000000000000002,
+      -0.8999999999999999,
+      -0.6000000000000001,
+      -0.30000000000000027,
+      0.0,
+      0.2999999999999998,
+      0.5999999999999996,
+      0.8999999999999999,
+      1.2000000000000002,
+      1.5,
+      1.7999999999999998,
+      2.0999999999999996,
+      2.3999999999999995,
+      2.7,
+      3.0
+    ],
+    "methods": [
+      "association-aware-guide-plus-residual",
+      "unified-direct-conditioner"
+    ],
+    "primary_metric": "MAXIMUM_ABSOLUTE_ERROR_OVER_FIXED_3_CATEGORY_AND_21_JOINT_CDF_INDICATORS",
+    "process": {
+      "clean_hold": 0.0,
+      "continuous_rate": 1.0,
+      "death_rate": 1.0,
+      "horizon": 1.0,
+      "observation_cap": 1,
+      "observation_contamination": 0.1,
+      "observation_sd": 0.5,
+      "selected_key_mass": "COMPUTED_FROM_ACTUAL_REFERENCE_AND_RECORDED_IN_INITIALIZER_DIAGNOSTICS",
+      "state_cap": 1
+    },
+    "retry_failed_draws": false,
+    "same_training_pairs_and_initial_tensors_within_seed": true,
+    "scenarios": [
+      {
+        "id": "reference-pressure",
+        "observation_value": 0.7,
+        "theta": 0.8
+      },
+      {
+        "id": "higher-pressure-shifted-observation",
+        "observation_value": 1.4,
+        "theta": 2.5
+      }
+    ],
+    "schema_version": "continuous-multiseed-mechanism-comparison-v1",
+    "scope": "SYNTHETIC_CAP_ONE_ZERO_BASE_LOCAL_CPU_MECHANISM_ONLY",
+    "seed_derivation": "FIRST_8_BYTES_BIG_ENDIAN_SHA256(UINT64_BIG_ENDIAN_SEED || UTF8_PURPOSE)",
+    "seed_purposes": [
+      "conditioner",
+      "observation-encoder",
+      "nuisance",
+      "training-paths",
+      "validation-times",
+      "validation-paths",
+      "evaluation-paths"
+    ],
+    "total_route_count": 22,
+    "training_seed_population_confidence_claimed": false,
+    "validation_checkpoints": [
+      0,
+      8,
+      16,
+      32
+    ],
+    "validation_used_for_model_selection_or_early_stopping": false
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "alpha_allocation": {
+    "routes": 0.005,
+    "seed_mixtures": 0.0025,
+    "signed_contrasts": 0.0025
+  },
+  "budget": {
+    "control_draws": 2048,
+    "maximum_seconds": 2400,
+    "neural_draws": 512,
+    "pairs_per_update": 2,
+    "seeds": [
+      1201,
+      1202,
+      1203
+    ],
+    "updates": 32,
+    "validation_pairs": 32
+  },
+  "checkpoint_selection": false,
+  "common_random_numbers_between_methods": false,
+  "control_seeds": {
+    "direct": 4201,
+    "purpose": "scenario_id || control_name",
+    "sampler": 4202
+  },
+  "controls": [
+    "direct-posterior",
+    "exact-h-exact-initial",
+    "exact-h-guide-initial",
+    "guide-only",
+    "zero-clock-baseline"
+  ],
+  "factorial_separation_of_theta_and_observation_effects": false,
+  "grid": [
+    0.0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1.0
+  ],
+  "is_default_protocol_run": true,
+  "joint_cdf_grid": [
+    -3.0,
+    -2.7,
+    -2.4,
+    -2.1,
+    -1.8,
+    -1.5,
+    -1.2000000000000002,
+    -0.8999999999999999,
+    -0.6000000000000001,
+    -0.30000000000000027,
+    0.0,
+    0.2999999999999998,
+    0.5999999999999996,
+    0.8999999999999999,
+    1.2000000000000002,
+    1.5,
+    1.7999999999999998,
+    2.0999999999999996,
+    2.3999999999999995,
+    2.7,
+    3.0
+  ],
+  "methods": [
+    "association-aware-guide-plus-residual",
+    "unified-direct-conditioner"
+  ],
+  "primary_metric": "MAXIMUM_ABSOLUTE_ERROR_OVER_FIXED_3_CATEGORY_AND_21_JOINT_CDF_INDICATORS",
+  "process": {
+    "clean_hold": 0.0,
+    "continuous_rate": 1.0,
+    "death_rate": 1.0,
+    "horizon": 1.0,
+    "observation_cap": 1,
+    "observation_contamination": 0.1,
+    "observation_sd": 0.5,
+    "selected_key_mass": "COMPUTED_FROM_ACTUAL_REFERENCE_AND_RECORDED_IN_INITIALIZER_DIAGNOSTICS",
+    "state_cap": 1
+  },
+  "retry_failed_draws": false,
+  "same_training_pairs_and_initial_tensors_within_seed": true,
+  "scenarios": [
+    {
+      "id": "reference-pressure",
+      "observation_value": 0.7,
+      "theta": 0.8
+    },
+    {
+      "id": "higher-pressure-shifted-observation",
+      "observation_value": 1.4,
+      "theta": 2.5
+    }
+  ],
+  "schema_version": "continuous-multiseed-mechanism-comparison-v1",
+  "scope": "SYNTHETIC_CAP_ONE_ZERO_BASE_LOCAL_CPU_MECHANISM_ONLY",
+  "seed_derivation": "FIRST_8_BYTES_BIG_ENDIAN_SHA256(UINT64_BIG_ENDIAN_SEED || UTF8_PURPOSE)",
+  "seed_purposes": [
+    "conditioner",
+    "observation-encoder",
+    "nuisance",
+    "training-paths",
+    "validation-times",
+    "validation-paths",
+    "evaluation-paths"
+  ],
+  "total_route_count": 22,
+  "training_seed_population_confidence_claimed": false,
+  "validation_checkpoints": [
+    0,
+    8,
+    16,
+    32
+  ],
+  "validation_used_for_model_selection_or_early_stopping": false
+}

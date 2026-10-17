@@ -1,0 +1,250 @@
+{
+  "amplitude_99_percent_threshold": "POSTHOC_DESCRIPTIVE_ONLY_NOT_ACCEPTANCE_OR_SELECTION",
+  "coverage": [
+    {
+      "scenario": "reference-pressure",
+      "seed": 1201,
+      "shared_between_methods": true,
+      "training_near_fixed_y_out_of_128": 5,
+      "validation_near_fixed_y_out_of_64": 2
+    },
+    {
+      "scenario": "reference-pressure",
+      "seed": 1202,
+      "shared_between_methods": true,
+      "training_near_fixed_y_out_of_128": 4,
+      "validation_near_fixed_y_out_of_64": 1
+    },
+    {
+      "scenario": "reference-pressure",
+      "seed": 1203,
+      "shared_between_methods": true,
+      "training_near_fixed_y_out_of_128": 9,
+      "validation_near_fixed_y_out_of_64": 3
+    },
+    {
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 1201,
+      "shared_between_methods": true,
+      "training_near_fixed_y_out_of_128": 4,
+      "validation_near_fixed_y_out_of_64": 3
+    },
+    {
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 1202,
+      "shared_between_methods": true,
+      "training_near_fixed_y_out_of_128": 8,
+      "validation_near_fixed_y_out_of_64": 3
+    },
+    {
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 1203,
+      "shared_between_methods": true,
+      "training_near_fixed_y_out_of_128": 4,
+      "validation_near_fixed_y_out_of_64": 2
+    }
+  ],
+  "elapsed_seconds": 173.49184566689655,
+  "groups": [
+    {
+      "base_selected_score_rms": 0.18361551784670602,
+      "maximum_finite_query_log_error_floor_any_gauge": 0.2266863361395855,
+      "method": "association-aware-guide-plus-residual",
+      "numerical_grid_capacity_violation_nodes": 7,
+      "scenario": "reference-pressure",
+      "seeds": [
+        {
+          "active_probe_count": 96,
+          "active_probes_at_99_percent_amplitude": 96,
+          "final_bce": 0.6354321342788233,
+          "final_maximum_residual_diameter": 8.568167686462402e-8,
+          "final_maximum_residual_gradient": 0,
+          "final_nuisance": 0.02227729558944702,
+          "final_selected_score_rms": 0.18361551784670602,
+          "initial_bce": 0.6709941230405093,
+          "initial_nuisance": 0.14594684541225433,
+          "initial_selected_score_rms": 0.18368750090362831,
+          "seed": 1201
+        },
+        {
+          "active_probe_count": 96,
+          "active_probes_at_99_percent_amplitude": 96,
+          "final_bce": 0.7116825666290169,
+          "final_maximum_residual_diameter": 4.470348358154297e-7,
+          "final_maximum_residual_gradient": 0,
+          "final_nuisance": -0.037905849516391754,
+          "final_selected_score_rms": 0.18361551784670602,
+          "initial_bce": 0.7459290754649116,
+          "initial_nuisance": 0.08918594568967819,
+          "initial_selected_score_rms": 0.18391568645059037,
+          "seed": 1202
+        },
+        {
+          "active_probe_count": 96,
+          "active_probes_at_99_percent_amplitude": 8,
+          "final_bce": 0.7002869408513575,
+          "final_maximum_residual_diameter": 0.009880602359771729,
+          "final_maximum_residual_gradient": 0.001967885997146368,
+          "final_nuisance": -0.09517284482717514,
+          "final_selected_score_rms": 0.18350225425181052,
+          "initial_bce": 0.7214558364222246,
+          "initial_nuisance": 0.060193292796611786,
+          "initial_selected_score_rms": 0.1836124351171047,
+          "seed": 1203
+        }
+      ]
+    },
+    {
+      "base_selected_score_rms": 1.4398148314086758,
+      "maximum_finite_query_log_error_floor_any_gauge": 1.0192830806787567,
+      "method": "unified-direct-conditioner",
+      "numerical_grid_capacity_violation_nodes": 8,
+      "scenario": "reference-pressure",
+      "seeds": [
+        {
+          "active_probe_count": 96,
+          "active_probes_at_99_percent_amplitude": 96,
+          "final_bce": 0.6597163181870064,
+          "final_maximum_residual_diameter": 8.158385753631592e-7,
+          "final_maximum_residual_gradient": 1.1403062494252936e-8,
+          "final_nuisance": 0.3457490801811218,
+          "final_selected_score_rms": 1.4398148307556204,
+          "initial_bce": 0.694989182442289,
+          "initial_nuisance": 0.14594684541225433,
+          "initial_selected_score_rms": 1.4397369003135099,
+          "seed": 1201
+        },
+        {
+          "active_probe_count": 96,
+          "active_probes_at_99_percent_amplitude": 62,
+          "final_bce": 0.7178233788973997,
+          "final_maximum_residual_diameter": 0.1454319879412651,
+          "final_maximum_residual_gradient": 0.0011175526306033134,
+          "final_nuisance": 0.7069729566574097,
+          "final_selected_score_rms": 1.439863288364717,
+          "initial_bce": 0.7916630295098306,
+          "initial_nuisance": 0.08918594568967819,
+          "initial_selected_score_rms": 1.4394962509348006,
+          "seed": 1202
+        },
+        {
+          "active_probe_count": 96,
+          "active_probes_at_99_percent_amplitude": 0,
+          "final_bce": 0.7771165018543181,
+          "final_maximum_residual_diameter": 0.20196510665118694,
+          "final_maximum_residual_gradient": 0.0019145666155964136,
+          "final_nuisance": 0.02998509258031845,
+          "final_selected_score_rms": 1.4396894616736933,
+          "initial_bce": 0.8060559975137968,
+          "initial_nuisance": 0.060193292796611786,
+          "initial_selected_score_rms": 1.43980885856547,
+          "seed": 1203
+        }
+      ]
+    },
+    {
+      "base_selected_score_rms": 0.29682962424632836,
+      "maximum_finite_query_log_error_floor_any_gauge": 0.5057689381972981,
+      "method": "association-aware-guide-plus-residual",
+      "numerical_grid_capacity_violation_nodes": 8,
+      "scenario": "higher-pressure-shifted-observation",
+      "seeds": [
+        {
+          "active_probe_count": 96,
+          "active_probes_at_99_percent_amplitude": 96,
+          "final_bce": 0.5980229810577797,
+          "final_maximum_residual_diameter": 0.000018283724784851074,
+          "final_maximum_residual_gradient": 2.6495278859783866e-8,
+          "final_nuisance": 0.04349304363131523,
+          "final_selected_score_rms": 0.29682961768750177,
+          "initial_bce": 0.6099399914288262,
+          "initial_nuisance": 0.14649426937103271,
+          "initial_selected_score_rms": 0.2969789892113661,
+          "seed": 1201
+        },
+        {
+          "active_probe_count": 96,
+          "active_probes_at_99_percent_amplitude": 90,
+          "final_bce": 0.6405768140061947,
+          "final_maximum_residual_diameter": 0.007076486945152283,
+          "final_maximum_residual_gradient": 0.00001164841069112299,
+          "final_nuisance": -0.0501873642206192,
+          "final_selected_score_rms": 0.2968283785671844,
+          "initial_bce": 0.6462478678072671,
+          "initial_nuisance": 0.08925735950469971,
+          "initial_selected_score_rms": 0.29742754100983665,
+          "seed": 1202
+        },
+        {
+          "active_probe_count": 96,
+          "active_probes_at_99_percent_amplitude": 0,
+          "final_bce": 0.6393692625348169,
+          "final_maximum_residual_diameter": 0.24203357845544815,
+          "final_maximum_residual_gradient": 0.0039005738217383623,
+          "final_nuisance": -0.16300585865974426,
+          "final_selected_score_rms": 0.29784148430173524,
+          "initial_bce": 0.6423975523927996,
+          "initial_nuisance": 0.060440413653850555,
+          "initial_selected_score_rms": 0.2968489365715577,
+          "seed": 1203
+        }
+      ]
+    },
+    {
+      "base_selected_score_rms": 1.2621948273956836,
+      "maximum_finite_query_log_error_floor_any_gauge": 1.7823016001890033,
+      "method": "unified-direct-conditioner",
+      "numerical_grid_capacity_violation_nodes": 8,
+      "scenario": "higher-pressure-shifted-observation",
+      "seeds": [
+        {
+          "active_probe_count": 96,
+          "active_probes_at_99_percent_amplitude": 0,
+          "final_bce": 0.6064846062835055,
+          "final_maximum_residual_diameter": 0.15038515254855156,
+          "final_maximum_residual_gradient": 0.04780638962984085,
+          "final_nuisance": 0.2380865216255188,
+          "final_selected_score_rms": 1.2697432870437684,
+          "initial_bce": 0.6263946175550629,
+          "initial_nuisance": 0.14649426937103271,
+          "initial_selected_score_rms": 1.2620199548467954,
+          "seed": 1201
+        },
+        {
+          "active_probe_count": 96,
+          "active_probes_at_99_percent_amplitude": 96,
+          "final_bce": 0.7522471371597137,
+          "final_maximum_residual_diameter": 0.00028658658266067505,
+          "final_maximum_residual_gradient": 6.117046780218516e-8,
+          "final_nuisance": 0.1620013564825058,
+          "final_selected_score_rms": 1.2621948402777337,
+          "initial_bce": 0.7562447799483226,
+          "initial_nuisance": 0.08925735950469971,
+          "initial_selected_score_rms": 1.2614938922102612,
+          "seed": 1202
+        },
+        {
+          "active_probe_count": 96,
+          "active_probes_at_99_percent_amplitude": 0,
+          "final_bce": 0.7102834628676851,
+          "final_maximum_residual_diameter": 0.02710679266601801,
+          "final_maximum_residual_gradient": 0.006683233194053173,
+          "final_nuisance": 0.11283637583255768,
+          "final_selected_score_rms": 1.2635123305822782,
+          "initial_bce": 0.7144219470978732,
+          "initial_nuisance": 0.060440413653850555,
+          "initial_selected_score_rms": 1.2621728993574715,
+          "seed": 1203
+        }
+      ]
+    }
+  ],
+  "model_settings_changed": false,
+  "new_endpoint_draws": 0,
+  "query_rows": 5184,
+  "replay_checks_passed": 60,
+  "report_path": "research/fixtures/continuous_residual_diagnostic_cpu_2026_09_13/report.json",
+  "report_sha256": "c1ea8e051f23c214b1d3faa81116e9149c9f954051f70038159951b18ea2f0c5",
+  "schema_version": "continuous-residual-likelihood-score-derived-summary-v1",
+  "score_rms_scope": "FORTY_UNWEIGHTED_SELECTED_COORDINATE_PROBES_EIGHT_ACTIVE_NODES_TIMES_FIVE_COORDINATES"
+}

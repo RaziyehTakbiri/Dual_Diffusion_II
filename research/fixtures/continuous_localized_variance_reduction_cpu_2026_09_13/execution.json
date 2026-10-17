@@ -1,0 +1,15 @@
+{
+  "before_training": true,
+  "protocol_sha256": "add4d2b0b537c4d7dde09f0c70847c2c02fcfaa4b5e74560b71df35adfb033a7",
+  "source_sha256": {
+    "evaluation/continuous_fiber_conditional_benchmark.py": "033ddd18c35ed0795c6b7cd8e53ff2bb35e60ceff1de89e22ecc207de9a39a10",
+    "evaluation/continuous_fiber_grid_target.py": "398e9f31f035d7dab256fafcbf6e7196cff2a56b454e1d0834dc27267ce04405",
+    "evaluation/continuous_fiber_initialization_diagnostic.py": "81857aed1d7f7006c3adaf10beb63596fdb8736963434fa78ace4a6c206c12c8",
+    "experiments/continuous_forward_labels.py": "5e4f7aec0967410d67d418995f21fb5dff1dfc036b2401d4771342bc6ce911c1",
+    "experiments/continuous_localized_learnability.py": "71104d58b791c706cfb801a512e20abb64b07747500eb228d3f5502c4b017792",
+    "experiments/continuous_localized_variance_reduction.py": "a960d6f83fbfc21fa539d9b8494e5272741a22d08216d4a679afe0a7e487d893",
+    "experiments/continuous_rao_blackwell_labels.py": "a376122ecd25dd6298b081894a368efb9a9ff265205f788da9e52902b4357e07",
+    "experiments/continuous_residual_capacity.py": "9b4a91c0f5a4d4154fd721aa5a9aef2131731f71a7bbe162f4e5c23ebda72d6b",
+    "models/localized_likelihood_learner.py": "19eb7f73d28ddea5285507d6facb84641d8a20dfbe6719cc2530834d6a9e576b"
+  }
+}

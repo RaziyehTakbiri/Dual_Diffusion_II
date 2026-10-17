@@ -1,0 +1,434 @@
+{
+  "date": "2026-09-13",
+  "decision": "FIXED_DIAGNOSTIC_COMPLETE_LEARNER_UNCHANGED",
+  "exact_numerical_or_strict_tolerance_replay_claimed": false,
+  "independent_audit": {
+    "path": "/Users/mahtab/Documents/Claude/Projects/Dual Diffusion 2/research/fixtures/continuous_localized_error_decomposition_independent_review_2026_09_13.json",
+    "sha256": "aa8561b896aa5a6517b10aabe9c4360b002e692dff2cd724bded207b5fcf237c",
+    "size_bytes": 66670,
+    "check_counts": {
+      "checks": 404174,
+      "common_q32_stage_risks": 960,
+      "contrast_summaries": 1872,
+      "cross_inner_products": 18720,
+      "strict_fit_objective_gradient_box_checks": 512
+    }
+  },
+  "installed_reader": {
+    "dependencies_downloaded": false,
+    "elapsed_seconds": 10.028736874926835,
+    "environment": {
+      "numpy": "2.1.3",
+      "python": "3.11.5",
+      "scipy": "1.15.1"
+    },
+    "outside_checkout": true,
+    "path": "/tmp/heterodiff-error-decomposition-reader-ACEYna/result/report.json",
+    "science": {
+      "active_coefficients": 0,
+      "all_tolerance_passing_routes_by_stage": {
+        "A": 0,
+        "M": 0,
+        "N": 0,
+        "P": 0,
+        "U": 0
+      },
+      "completed_controls": 512,
+      "gradient_threshold_met_count": 0,
+      "label_noise_largest_recorded_contrast_count": 72,
+      "maximum_box_gap": 2.6945907832966805e-7,
+      "maximum_projected_gradient": 8.285345656636564e-9,
+      "new_forward_simulations": 0,
+      "route_quantity_count": 72,
+      "solver_success_count": 512
+    },
+    "sha256": "9e37bf3fed7fdfd494b04463e96652b3123a8989f41c515a13460b8818ea0664",
+    "size_bytes": 45566710,
+    "source_PYTHONPATH_disabled": true
+  },
+  "maximum_cross_environment_difference": {
+    "population_coefficient": 0.00006596144398085535,
+    "population_readback": {
+      "gradient": 0.00009883792818626835,
+      "hessian": 0.0011063576380863083,
+      "value": 0.000010892018283747973
+    },
+    "same_data_coefficient": 0.0000017192392879616936,
+    "same_data_readback": {
+      "gradient": 0.000003828667626465387,
+      "hessian": 0.000023795788166580678,
+      "value": 0.000001662807258995258
+    }
+  },
+  "primary": {
+    "elapsed_seconds": 9.899499583989382,
+    "environment": {
+      "numpy": "2.4.6",
+      "python": "3.11.5",
+      "scipy": "1.17.1"
+    },
+    "path": "/Users/mahtab/Documents/Claude/Projects/Dual Diffusion 2/research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/report.json",
+    "science": {
+      "active_coefficients": 0,
+      "all_tolerance_passing_routes_by_stage": {
+        "A": 0,
+        "M": 0,
+        "N": 0,
+        "P": 0,
+        "U": 0
+      },
+      "completed_controls": 512,
+      "gradient_threshold_met_count": 0,
+      "label_noise_largest_recorded_contrast_count": 72,
+      "maximum_box_gap": 3.14244373020243e-7,
+      "maximum_projected_gradient": 1.3893478254995425e-8,
+      "new_forward_simulations": 0,
+      "route_quantity_count": 72,
+      "solver_success_count": 512
+    },
+    "sha256": "85be711c6abf6340ffda39518290452fe9b19e1b220dec646f99f7cc1ffafa4b",
+    "size_bytes": 45581073
+  },
+  "protocol_sha256": "a0612a26aa1994a7f900c5144c7a53b41ff99ad3e367c8085ab3ab8a1b3aa64a",
+  "protocols_identical": true,
+  "schema_version": "heterodiff-localized-error-decomposition-verification-v1",
+  "scope": {
+    "learner_changed": false,
+    "oracle_controls_are_learned_models": false,
+    "penalties_or_family_selected_from_results": false,
+    "primary_whole_box_bounds_can_be_vacuous": true,
+    "real_data_GPU_cloud_paid_jobs_publication": false,
+    "separate_post_result_analytic_sensitivity_not_part_of_primary_protocol": true,
+    "tolerances_changed": false
+  },
+  "source_bindings_identical": true,
+  "sources": {
+    "evaluation/continuous_fiber_conditional_benchmark.py": "033ddd18c35ed0795c6b7cd8e53ff2bb35e60ceff1de89e22ecc207de9a39a10",
+    "evaluation/continuous_fiber_grid_target.py": "398e9f31f035d7dab256fafcbf6e7196cff2a56b454e1d0834dc27267ce04405",
+    "evaluation/continuous_fiber_initialization_diagnostic.py": "81857aed1d7f7006c3adaf10beb63596fdb8736963434fa78ace4a6c206c12c8",
+    "experiments/continuous_forward_labels.py": "5e4f7aec0967410d67d418995f21fb5dff1dfc036b2401d4771342bc6ce911c1",
+    "experiments/continuous_localized_error_decomposition.py": "c8e911ec14531ff7586e60bc0b614d487b7a59e04af794767ae751442999619a",
+    "experiments/continuous_localized_learnability.py": "71104d58b791c706cfb801a512e20abb64b07747500eb228d3f5502c4b017792",
+    "experiments/continuous_residual_capacity.py": "9b4a91c0f5a4d4154fd721aa5a9aef2131731f71a7bbe162f4e5c23ebda72d6b",
+    "experiments/localized_population_risk.py": "6b83ec54074ab3e57130105aae7d2b8d52b3bdd0018a4255ac4dc9eeb01c06aa",
+    "models/localized_likelihood_learner.py": "19eb7f73d28ddea5285507d6facb84641d8a20dfbe6719cc2530834d6a9e576b"
+  },
+  "tests": {
+    "development": {
+      "failed": 0,
+      "passed": 638,
+      "seconds": 6.54
+    },
+    "installed_reader": {
+      "failed": 0,
+      "passed": 638,
+      "seconds": 6.52
+    },
+    "new_manufactured_and_guard_tests": 85,
+    "no_remote_CI_claim": true,
+    "test_files": [
+      "tests/unit/test_continuous_localized_error_decomposition.py",
+      "tests/unit/test_localized_population_risk.py",
+      "tests/unit/test_localized_score_curvature.py",
+      "tests/unit/test_continuous_localized_curvature.py",
+      "tests/unit/test_localized_likelihood_learner.py",
+      "tests/unit/test_continuous_forward_labels.py",
+      "tests/unit/test_continuous_localized_learnability.py",
+      "tests/unit/test_localized_fiber_residual.py",
+      "tests/unit/test_continuous_localized_residual.py",
+      "tests/unit/test_compact_fiber_residual.py",
+      "tests/unit/test_continuous_residual_capacity.py",
+      "tests/unit/test_continuous_fiber_grid_target.py",
+      "tests/unit/test_continuous_fiber_conditional_benchmark.py",
+      "tests/unit/test_continuous_fiber_initialization_diagnostic.py",
+      "tests/unit/test_continuous_residual_diagnostic.py"
+    ],
+    "post_result_manufactured_tests": {
+      "development": {
+        "passed": 24,
+        "failed": 0,
+        "seconds": 0.23
+      },
+      "reader_environment": {
+        "passed": 24,
+        "failed": 0,
+        "seconds": 0.24
+      },
+      "test_file": "tests/unit/test_localized_fit_sensitivity.py",
+      "standalone_script_not_installed_package": true
+    }
+  },
+  "wheel": {
+    "path": "/tmp/heterodiff-error-decomposition-wheel-HrgS8F/heterodiff-0.1.0-py3-none-any.whl",
+    "sha256": "d89329dc1b90a003fa44e6d1326d7985d73b4ed8d87f784e0e19a84c92df4f11",
+    "size_bytes": 4177709
+  },
+  "post_result_sensitivity": {
+    "path": "/Users/mahtab/Documents/Claude/Projects/Dual Diffusion 2/research/fixtures/continuous_localized_error_sensitivity_2026_09_13.json",
+    "sha256": "82c5940b505a51ed45a87277798d841e1d24cd5d93052df2b2a0bc0a64fba94e",
+    "size_bytes": 2154691,
+    "summary": {
+      "coefficient_distance_estimate_range": {
+        "maximum": 0.003870835888726174,
+        "minimum": 8.030734349810457e-7
+      },
+      "finite_probe_response_ranges": {
+        "gradient": {
+          "continuous_rms_optimum_response_estimate": {
+            "maximum": 0.002178669464089898,
+            "minimum": 4.5200355181959473e-7
+          },
+          "max_abs_optimum_response_estimate": {
+            "maximum": 0.009175950022204633,
+            "minimum": 0.0000019037132845152154
+          }
+        },
+        "hessian": {
+          "continuous_rms_optimum_response_estimate": {
+            "maximum": 0.012973666692065922,
+            "minimum": 0.0000026916168430290164
+          },
+          "max_abs_optimum_response_estimate": {
+            "maximum": 0.0592163274148873,
+            "minimum": 0.000012285475497047064
+          }
+        },
+        "value": {
+          "continuous_rms_optimum_response_estimate": {
+            "maximum": 0.0007223149609335301,
+            "minimum": 1.4985702661912172e-7
+          },
+          "max_abs_optimum_response_estimate": {
+            "maximum": 0.003870835888726174,
+            "minimum": 8.030734349810457e-7
+          }
+        }
+      },
+      "fit_count": 512,
+      "nonvacuous_unvalidated_count": 512,
+      "primary_predeclared_distance_estimate_range": {
+        "maximum": 54.866234031804176,
+        "minimum": 0.15327045769870254
+      },
+      "raw_gradient_to_curvature_ratio_range": {
+        "maximum": 0.0038633538605018234,
+        "minimum": 8.030731125176611e-7
+      },
+      "strictly_interior_count": 512
+    },
+    "by_group": {
+      "empirical_M": {
+        "coefficient_distance_estimate_range": {
+          "maximum": 0.00002743517996348958,
+          "minimum": 8.030734349810457e-7
+        },
+        "finite_probe_response_ranges": {
+          "gradient": {
+            "continuous_rms_optimum_response_estimate": {
+              "maximum": 0.00001544167475618186,
+              "minimum": 4.5200355181959473e-7
+            },
+            "max_abs_optimum_response_estimate": {
+              "maximum": 0.00006503604064651135,
+              "minimum": 0.0000019037132845152154
+            }
+          },
+          "hessian": {
+            "continuous_rms_optimum_response_estimate": {
+              "maximum": 0.00009195297623436348,
+              "minimum": 0.0000026916168430290164
+            },
+            "max_abs_optimum_response_estimate": {
+              "maximum": 0.00041970536755020797,
+              "minimum": 0.000012285475497047064
+            }
+          },
+          "value": {
+            "continuous_rms_optimum_response_estimate": {
+              "maximum": 0.0000051195249587431435,
+              "minimum": 1.4985702661912172e-7
+            },
+            "max_abs_optimum_response_estimate": {
+              "maximum": 0.00002743517996348958,
+              "minimum": 8.030734349810457e-7
+            }
+          }
+        },
+        "fit_count": 192,
+        "nonvacuous_unvalidated_count": 192,
+        "primary_predeclared_distance_estimate_range": {
+          "maximum": 0.7156243262077712,
+          "minimum": 0.1580078953986737
+        },
+        "raw_gradient_to_curvature_ratio_range": {
+          "maximum": 0.00002743480362238143,
+          "minimum": 8.030731125176611e-7
+        },
+        "strictly_interior_count": 192
+      },
+      "empirical_N": {
+        "coefficient_distance_estimate_range": {
+          "maximum": 0.00005951508461745668,
+          "minimum": 8.296143124001855e-7
+        },
+        "finite_probe_response_ranges": {
+          "gradient": {
+            "continuous_rms_optimum_response_estimate": {
+              "maximum": 0.000033497596187538026,
+              "minimum": 4.669418754389569e-7
+            },
+            "max_abs_optimum_response_estimate": {
+              "maximum": 0.00014108256141977048,
+              "minimum": 0.000001966629350125951
+            }
+          },
+          "hessian": {
+            "continuous_rms_optimum_response_estimate": {
+              "maximum": 0.00019947341948177427,
+              "minimum": 0.0000027805724348570676
+            },
+            "max_abs_optimum_response_estimate": {
+              "maximum": 0.0009104660693821904,
+              "minimum": 0.000012691499759586229
+            }
+          },
+          "value": {
+            "continuous_rms_optimum_response_estimate": {
+              "maximum": 0.000011105775924424631,
+              "minimum": 1.5480967079915083e-7
+            },
+            "max_abs_optimum_response_estimate": {
+              "maximum": 0.00005951508461745668,
+              "minimum": 8.296143124001855e-7
+            }
+          }
+        },
+        "fit_count": 192,
+        "nonvacuous_unvalidated_count": 192,
+        "primary_predeclared_distance_estimate_range": {
+          "maximum": 0.7408965971808744,
+          "minimum": 0.15327045769870254
+        },
+        "raw_gradient_to_curvature_ratio_range": {
+          "maximum": 0.000059513313629941825,
+          "minimum": 8.296139682703271e-7
+        },
+        "strictly_interior_count": 192
+      },
+      "population_regularized": {
+        "coefficient_distance_estimate_range": {
+          "maximum": 0.000016862025770685894,
+          "minimum": 0.0000012836919021835674
+        },
+        "finite_probe_response_ranges": {
+          "gradient": {
+            "continuous_rms_optimum_response_estimate": {
+              "maximum": 0.000009490658272619181,
+              "minimum": 7.225158671108565e-7
+            },
+            "max_abs_optimum_response_estimate": {
+              "maximum": 0.000039972013847339246,
+              "minimum": 0.000003043035942870084
+            }
+          },
+          "hessian": {
+            "continuous_rms_optimum_response_estimate": {
+              "maximum": 0.0000565155197457611,
+              "minimum": 0.000004302479193896878
+            },
+            "max_abs_optimum_response_estimate": {
+              "maximum": 0.0002579564899207843,
+              "minimum": 0.00001963801157288459
+            }
+          },
+          "value": {
+            "continuous_rms_optimum_response_estimate": {
+              "maximum": 0.0000031465279944537483,
+              "minimum": 2.395425414125599e-7
+            },
+            "max_abs_optimum_response_estimate": {
+              "maximum": 0.000016862025770685894,
+              "minimum": 0.0000012836919021835674
+            }
+          }
+        },
+        "fit_count": 64,
+        "nonvacuous_unvalidated_count": 64,
+        "primary_predeclared_distance_estimate_range": {
+          "maximum": 0.5188838875143298,
+          "minimum": 0.18352849089592832
+        },
+        "raw_gradient_to_curvature_ratio_range": {
+          "maximum": 0.000016861883607528404,
+          "minimum": 0.0000012836910782514702
+        },
+        "strictly_interior_count": 64
+      },
+      "population_unregularized": {
+        "coefficient_distance_estimate_range": {
+          "maximum": 0.003870835888726174,
+          "minimum": 0.00014401663806823105
+        },
+        "finite_probe_response_ranges": {
+          "gradient": {
+            "continuous_rms_optimum_response_estimate": {
+              "maximum": 0.002178669464089898,
+              "minimum": 0.00008105862937614653
+            },
+            "max_abs_optimum_response_estimate": {
+              "maximum": 0.009175950022204633,
+              "minimum": 0.0003413964092688262
+            }
+          },
+          "hessian": {
+            "continuous_rms_optimum_response_estimate": {
+              "maximum": 0.012973666692065922,
+              "minimum": 0.00048269260545271754
+            },
+            "max_abs_optimum_response_estimate": {
+              "maximum": 0.0592163274148873,
+              "minimum": 0.0022031769463226086
+            }
+          },
+          "value": {
+            "continuous_rms_optimum_response_estimate": {
+              "maximum": 0.0007223149609335301,
+              "minimum": 0.000026874136566473147
+            },
+            "max_abs_optimum_response_estimate": {
+              "maximum": 0.003870835888726174,
+              "minimum": 0.00014401663806823105
+            }
+          }
+        },
+        "fit_count": 64,
+        "nonvacuous_unvalidated_count": 64,
+        "primary_predeclared_distance_estimate_range": {
+          "maximum": 54.866234031804176,
+          "minimum": 6.127230940488462
+        },
+        "raw_gradient_to_curvature_ratio_range": {
+          "maximum": 0.0038633538605018234,
+          "minimum": 0.0001440062681700294
+        },
+        "strictly_interior_count": 64
+      }
+    },
+    "scope": {
+      "interval_certified_numerical_bound": false,
+      "learned_sampler_or_GPU_work": false,
+      "learner_or_optimizer_changed": false,
+      "new_fits_or_labels_or_oracle_evaluations": false,
+      "population_quadrature_or_statistical_approximation_error_resolved": false,
+      "post_result_analysis_not_predeclared_test": true,
+      "primary_loose_global_bounds_preserved": true,
+      "scientific_success_or_new_acceptance_decision_claimed": false
+    }
+  },
+  "plan": {
+    "checked_bounded_deliverables": 20,
+    "open_broad_obligations": 7,
+    "historical_checked": 61,
+    "historical_open": 102
+  }
+}

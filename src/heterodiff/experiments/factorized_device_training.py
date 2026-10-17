@@ -26,6 +26,7 @@ from heterodiff.models.factorized_device_energy_torch import (
 )
 from heterodiff.experiments.factorized_conditional_training import (
     FactorizedConditionalModel, FactorizedObservation, FactorizedTrainingBatch,
+    _conditional_gate, _validated_residual_gate_policy,
 )
 from heterodiff.experiments.factorized_base_training import BaseObjective
 from heterodiff.models.two_domain_conditional_training_loss import SamplingLawWeights
@@ -71,11 +72,16 @@ class DeviceFactorizedConditionalModel(nn.Module):
         self.nuisance = DeviceFactorizedObservationNuisance.from_cpu(cpu_model.nuisance, device)
         self.guide = deepcopy(cpu_model.guide)
         self.method_id, self.clean_hold = cpu_model.method_id, cpu_model.clean_hold
+        self._residual_gate_policy = cpu_model.residual_gate_policy
         self.remaining_clocks = deepcopy(cpu_model.remaining_clocks)
         self.device = self.conditioner.device
         # Preserve parent mode without overwriting individually copied submodule modes.
         self.training = cpu_model.training
         return self
+
+    @property
+    def residual_gate_policy(self):
+        return _validated_residual_gate_policy(self._residual_gate_policy)
 
     @property
     def horizon(self):
@@ -95,8 +101,7 @@ class DeviceFactorizedConditionalModel(nn.Module):
         context = self.encoder(observations)
         batch = device_configuration_batch(states, reverse_times, context, self.conditioner.architecture,
                                            device=self.device, coordinates=coordinates)
-        direct = torch.tensor([self.horizon-u for u in reverse_times], dtype=torch.float64, device='cpu')
-        gate = ((direct-self.clean_hold).clamp(min=0)/(self.horizon-self.clean_hold)).pow(3)
+        gate = _conditional_gate(self, reverse_times)
         return _cpu64(self.conditioner(batch))*gate
 
     def forward(self, batch):

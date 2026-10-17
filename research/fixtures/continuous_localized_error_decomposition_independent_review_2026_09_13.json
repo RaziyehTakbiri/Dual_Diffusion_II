@@ -1,0 +1,1140 @@
+{
+  "atom_control_max_abs": {
+    "M_minus_P": 7.810659647944362e-07,
+    "U_minus_T": 6.218455812501134e-07
+  },
+  "audit_script_sha256": "20b043be40fe6bb03194631f3f46bf27e72a35abc25afedb36da5c7af0bc2cc7",
+  "check_counts": {
+    "checks": 404174,
+    "common_q32_stage_risks": 960,
+    "contrast_summaries": 1872,
+    "cross_inner_products": 18720,
+    "strict_fit_objective_gradient_box_checks": 512
+  },
+  "decision": "PASS_INDEPENDENT_ERROR_DECOMPOSITION_AUDIT",
+  "input_file_sha256": {
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-01.json": "25ba1ccfdea552f2dc54126c8ae6258e2d54b546214d9180796ce1ede4c7e221",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-02.json": "274118bd4d6847d4030973fb41e1cde78da89af379738c428bf50f299efe8b73",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-03.json": "e30930d2f6ff271f0446850f7491e2d28c08f7829525967d81b07831b9bbd834",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-04.json": "9af547b3692df1c89d2878291711af025b8149bcce56e02203613628fce86258",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-05.json": "7e8ee238022cc7f9aaada82c581deb0277e75b7ead14099d523ae9e727c6f99d",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-06.json": "72c54f5aea1d0efc4356810ae38fbe6b20d46a2764f24586ded159274cac65d2",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-07.json": "76ba6a602e7589152ad485b34c525cc07ce1ed659202b4365d28d36601e9e87a",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-08.json": "6e4aaff47a8ab4e76abab1de28c1a47137bd3ffd43e6a353d5df4d8fb5b01d43",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-09.json": "7ea05f99b54a9ec684139c60259649e0d9af4c26123bd95f07d44f78f349a4ea",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-10.json": "cc7ef55713fe8f0d3df03baf0d611a23759e013f9c331ba3b4b73bceb8c1e60f",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-11.json": "ceb0facae36de510301e3b17387ae745461b611e7c98c88f15be3615d9dcde9e",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-12.json": "a52b1d0c868042c3557643dac058fa26a48523b9c21cc5abdddd4ab00c17b1a6",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-13.json": "e1448f3c3c46d2cb64452e1e6a5ff806e00e2b2a52f2a92056900738b0ccc618",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-14.json": "0c593149a21775e7eb8d664eac703b79c8ccf2e0d5f9ed90bef80928d42fed20",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-15.json": "507ada3848f4bdc26b113b83db738f9214432642b2552b83d4d0190eb3b47194",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-16.json": "dd6e0127403a8d8af3e2ab987dcca384d18f6b613f832d5bc56b5c2818863bcc",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-17.json": "c0a45b9946e0b10c6a9fd612732c62f2205719e9dc63b89107e606e2d974de0d",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-18.json": "13ee53aaf53f9b55c23fccfa70f2e11232fd657ccd79c7c79f310b812c0165ff",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-19.json": "15881116743f2e741a1d2868898f3e9c53e6089e409698e718314cd4196c269c",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-20.json": "8582ca86d105e0b44471ffe7edf4e1e9adae95425ec990985acecb4e541299ee",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-21.json": "ebf92e9907055c67ff1ee7c08ccf3d780f5eaa9f130cfd2725508871088caf4c",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-22.json": "cd5b337641656eb442d64ad27f5ff93e30e2de1d08e5bf601f5b4a835e981578",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-23.json": "b54c806a533b4f76072f9686500d449a15bbcfe1a2b6cbdc80d6c0f9dcc071d6",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/empirical-24.json": "366e5689f7403f4ad2f3cf0aa2b6b1d6cb577a0b4aa060682e0fe692383ba94f",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/execution.json": "68b58f6c9a560c25a84918ebc89d2bcdbc1a9453924b876ebcfdb7bdbb1a3916",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/freeze-barrier.json": "618cb32b3a9ceb6429a713383918aa1a24dbd76b5bc6fe36efd9c964977cada1",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-001.json": "7f55d98a6ba988bcd9c0433fb9a8566c050c9240840b811588fa6651129b16f5",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-002.json": "86032f132e76213f29ea4c7ae6d721fc6d533a3910c86c66ac40fbe8c2ae9155",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-003.json": "e84d28b2be28c6f79380ef2223bc372be6741f2293ac84828b676a13bd976e36",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-004.json": "84985b985a9d4259a8459bb9926c534f19ff1dc8ba9b276e2f7753412c26a0e6",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-005.json": "1bbeecb7d107135e7f5d48bf74ebe398749901b0cbcb4f16f1b97e609fceec24",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-006.json": "3833ac2e273690dcfc71205947f91923112d0ebb9cb8bed14545c8e5cb4821ff",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-007.json": "9d3311f9b7774fa0a15b682298cbe09da2f5385d51d51406014ee3bd3641cccf",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-008.json": "d351ae9425f3e454cd070fd4073c7753a972a2bb214ffe79c38bfd61d0c14842",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-009.json": "4448ea12d2bf2a9279886409f12eccdc168630dc86b89df0ebe79dd63fb5c0e3",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-010.json": "65c23117debfcd7d2a02b26b32d49ed7209e72ef20b8f0fc6b4958ccd8fa3e21",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-011.json": "c9fd6e40f460fb1f1e9fb491101bd88d8004947e7de999e30a4f2a35ce6b0fae",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-012.json": "b552ba843e7a0feff4748b10bb22fbe1383cf189fca6951264f214c8a5be9160",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-013.json": "4f9823c0bf3a93513679d97d57e539cac6cf5fb1ceddd04b85e1722bd9413a4c",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-014.json": "e311afd6d1181ae4ef06f5c7b66a439860ce5b0293422ffdeef2147841502f34",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-015.json": "fdb550340026066d396baf6eeff7b1935c790846e3779ac9571c35c8e8a8c394",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-016.json": "eed69d67754ddff50d2e95e9c4800e8971a3b2ebb2d4ea186a2b447c4bf02a20",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-017.json": "523e5fe253d63170c19ed90b9f32c6f6b29e0ce776a544a7ba9a999b91394ba8",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-018.json": "ffd9e87249c5a527d752a344a5706e2c0972d258364321b33934a60da89bad79",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-019.json": "27bcd0be90326472c5ad1939ff30711ac6442eb5c6b062a76285ffbacd575403",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-020.json": "089a57e144d6695c18ba595bdba0cdae03095a5f6a4fb2e1f53719d0fd5c7d18",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-021.json": "92a265fdc4a2457ebd97fbb6b05409de5333ed6100a330269fb25028e51c76a8",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-022.json": "c203e1b02dda13622bf99b71f37c03de5bb977c38f5d340f2f939f41b76de097",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-023.json": "a73f4db563cc367e6476a0d639dad987592a4e163cacce3451dc177a7e06c7fe",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-024.json": "d01d34ed147c5227438fae34f61aa5e331c61dc51679e23e91c5d2d857cf4495",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-025.json": "2cf398857d8b2f79b17383ec8d533dea40274bcef807a9fb5cc88b0483fc517f",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-026.json": "16c993a5006babc49dacd2a502d094737d1f5eddfef5003f6bce7951ff8f9c41",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-027.json": "ad8e17ed8cacc3a39f70831a0e38f289b6b2152a05e8c1a838b5af4b53b7d41c",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-028.json": "012f8180378f20d9aa3e0e8f921456d8fea590a5e6c661a545876c9590ef388c",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-029.json": "a0b34c88b2da3cc98905b49b55f4e24d36fe892302e6b0ea74dc37304cc5c993",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-030.json": "dde5f439f05e354f87d614579cbdfbdec8b62b0f8a3b7b7d0ef430b831a31c2a",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-031.json": "b773a14cd0aa01d1083c22563b5a46c875ea3e49d23748b07496168eba283cde",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-032.json": "e739d56107790872fa76c560e64345c26c8494be52ce3d7f28fa63ab1f556521",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-033.json": "796dcd94391961cc2e2add4dea64f44e878b6d204622919589a0e71f80771672",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-034.json": "aa68f48b17b51b6d55c996f5f41d2e25bdfdcf5a92a18c72905c28a3f756278c",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-035.json": "09e128c8b688c5a0583faf4dd05f0366716d3dac204719427b3c5a7186893c1c",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-036.json": "a79264f1b13851a6eb885e8e6b02bc1f107de51a9a992627de32dd6b02a536d7",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-037.json": "67a8a27ffb9f4581f4c2cc8d30cc18ececa33bdf5280ceb7a847dea9962459ae",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-038.json": "ad17cf4f62fa4e30497eb6b311b9123ae2608f0cef935cee2fcaae6bee4e5e36",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-039.json": "2fe1e45dcc22dfc47ba9653edd65bafa45cb2ef7befe2f6a3b24875ec9c624e0",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-040.json": "188119d229f0f8b0ae7585b8ffb43a95d2abd9cb0b27b48d686a504e7d144f5b",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-041.json": "0b163857c15a5bd8f5f168c2228dfe816df5c7163ff60dea7a544c2a7e46d9ac",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-042.json": "86f5fe632d3ac4de5830fd24503cef4c3a2e019e76c424e5ac98f38d0b2d439f",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-043.json": "52e1c0d550a510821685b1172b2077eb5bde5e39e28bf4e9fbbe4dfaa2881927",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-044.json": "556a550b4e813d7d28ff47838dfa7dd6dbe9997fce7f45a0a55842be68b50629",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-045.json": "53c998166be3110c805e9959408015919bbc43ed63fd5c9bc50f37dce24f8d4a",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-046.json": "930f871d4c45c93be3e104bde1460b6b4b227b901c3695d5a3f0d58486db917d",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-047.json": "17ccc09d6f588b17d55f027429e54ca40b8eef91d262835c5917dacbaabb4007",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-048.json": "558dead573c64e8eb9e0ff234cb3bd35e5a884ee677ed4fd5dfcb807062e6ded",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-049.json": "e0bcb7c04c93f0593968cfdd7addea2913c93e5eb6c8e8cb0c18deb488876d51",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-050.json": "2a6fee33a40814645fb21362f9fd5d16879afaf88c20ce709e217fb512507c55",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-051.json": "9951f37a4695152b8b997412dd3f1c2a52f43fa490b3351895ecbccb01eff502",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-052.json": "977c827ed4c06dd3c0832b7a2c4440f65629b7c0342e3ba924eaa2794dd44dc4",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-053.json": "115dcee849f2d74b5426cc748b9030242156ce7f0ce87d80158ca027019e0d94",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-054.json": "9b9c6ea666ceea0ea12c6c34a10f94eb0873b73d968e26115c207f63d2c1b148",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-055.json": "8b75bb2f991d14d302e5a917e583e332fa0287d9556407e7f92843023626bd68",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-056.json": "e3ff1216b141e03c5acf726316601127da2d5c8ae84ce41011f8b10a75621d88",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-057.json": "97b7dba8646d9f5649633bc305aa956d650366ce44560dcff7fca33d8c0c78d7",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-058.json": "dea043e71dbd6f5af6a486a7c9e413c48b812daa836cb74b7079b287b7b63adf",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-059.json": "462471cbf62f9e9a80f93eeafd6229dc0cbbd4add3e2b96536a6fb43e57bb100",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-060.json": "fb555446b0d92d852d06143e71591df53d85f289b41ce85251fc44b5cece870d",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-061.json": "a8b7b01e947c773072400f0fb348e860e2b7309d7fc3538621bc63817408a4bb",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-062.json": "d981d9ed8a1b21764e8896e2a6bcd176c4988d907e5e87c974c4cb00c3e0da1b",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-063.json": "1a8cb86fa54b8891296cdda2a239afb568471fa36e680e82cfb2e79595108bce",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-064.json": "fe4bd8247eb851b6f0afef1267773a7a7e3d48fb5f8a5c872735dff905e61f32",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-065.json": "766ae72a158ff1ab9068528c35da208f6c849d449cc6ce877bb6eb8da013bd49",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-066.json": "ae92b9f58f32f0dd0302d443d412af7f2d4aa6c33a9fffb4ab90335517d2b9bd",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-067.json": "3241e4311f664da649948f5ebed3273c819ff92ccf34bb6725005632e7c936f1",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-068.json": "c22e1bd7b21021ba099ee6f53861bfa0ce6c66cc322e7a075e10d44f5f7eaa8e",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-069.json": "b496a1bf4f6ddabb8a378c8d428f13d82ce5bd970649d3d821a6096028aab490",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-070.json": "1466166d1b2f2c90dd8cea46327a6955f77ab2d4b2e24db92923694726647111",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-071.json": "c4fed95256ff4f8deb0e4c3807cd294de59d4395d0a513ce9418fd3e5f03a8df",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-072.json": "b7e60cc258026e3fac8576b581d73d31cc45edc72fa825451716753fd9c04739",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-073.json": "017d24523bb15063342819ece156b0602cfc6219fa1b54483557baeacdf3bdb0",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-074.json": "b34c19d451593cbb4f65fb3e4942112815392ebfdc4e95d42905f762b1f648b6",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-075.json": "1ef1e77d9240002925b1fe322954550832b86227610ddd41fc88b77e6917bd14",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-076.json": "47d0a2273e20d97bc98678c4e1fa85a8558dc437481c4d9fe2503689fd981469",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-077.json": "232e110337f61a81d93cae6a6bf3c7624f250cf9e4b29d5255cb4807567addd6",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-078.json": "78109ad7bb65d8c05ee0a20a7a1ad772d2f717b4fa4501a06541186d36a04748",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-079.json": "b2ed71014d15873139e150ce33849c379510018924963fc993e8a469ae422a22",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-080.json": "2a74bffa1c4d48a2a8cf66066333274439684177dfc8d7da3892dc55c7a8f3bb",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-081.json": "6ff7c489b32c1f4bd004bbe28c43e86d20c5ca130523d7cfba9b92a632cbfc24",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-082.json": "97e75edd36b74fe05428d527d22ebde7e1b49aa2a0180005001b8f949a2ef8e4",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-083.json": "69afc65f98f5a8cce9e2d79d4a77110404aa5eba66dd9d6f6886ae91d37c21b5",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-084.json": "b01e087d05d7ee80ff8c348241ed27f5a8761d6a85b885678918bdffdeb42bd3",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-085.json": "1aa1cccec015cfa1e8c207efdcf5abeaf92ed1055cdbbd966adfa97b89ba686e",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-086.json": "f5694b57b58b049308504fcb62a7ba67c53a40e13e4f30e3c723d8e4bca1554b",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-087.json": "7e0544373890a502259f996a8173e300f42df5bf6f25542172b7e7c1431522a2",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-088.json": "06b7fe136eb5d6fd25559d8809a777e6e36931f67ab17d4982af77ddddb8143b",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-089.json": "96428fd37253302ac0f3a04e6988cdeee518cdb6c87e0cb99da249f8f3a2c37c",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-090.json": "490f00d30f4a7dc75b463bfd363f13805f8395b708dc01fd1d28ef38e8de128a",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-091.json": "b657277875fae225acf62e597c4ffefad1fa1c255e4c4568049f93ab93c2ea4d",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-092.json": "137921094a7f7b4a56c3603aa72b9f85f4463735245991f642d493d2911c4186",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-093.json": "91971b2d5fa13134b8a822eb85a6d5973f4c111492e78b7b997789e0616cc90d",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-094.json": "422d7d1be4b3008fe0001c05e8a4d36051100e904539732f835202b30a36e484",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-095.json": "96747254724e5905e72232597e76c07d94434bb6b4644b25ac073e9dcbc50215",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-096.json": "8f9642816546e620e98642c42d3adfb1070a7f6487dbb383a3bbb31000f599e4",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-097.json": "5a860710846577edd056adb3142bf6cf221619d6bc8352412d69b9956fce93da",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-098.json": "2a06984f1f3ce0e9324ef1145cb7e7443036a854b2afd127b22b5ee57be1c1e4",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-099.json": "dc1142be0fe8eae06505c6fdac0232e677c66854312a91372e167ecd0282d825",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-100.json": "70f04daf924a929ff27332af54950d215aac6dd8eda87f8ab583b3cdc49914f9",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-101.json": "6e527a906d5df6ebd603a1b1715d6e8ba13ced8f853fe9cf365397bd94dfd5fd",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-102.json": "b0375d6a26db122df186b1535c8b7bed944e97d9d14556a539a4b4408c382f0f",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-103.json": "38fb3cd094e5dfb58e9c3d3d0dcc970442bfd237086940f50b6a481fa1310a6a",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-104.json": "924190bafa1d4c60dff7fa49fa43fbaec8f4c779ca857aea72ab701bd6fe770b",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-105.json": "acaaf15f8b62bd00f8b7455c9234c9565d0b5896a9b6237252282e41d09f467a",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-106.json": "523a81aaa9dd07b5a0a3b9c779374bb51e22ee4f8a69619d71555dfa9a12e5ae",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-107.json": "92341a0c4f52192a8acf56ad9038ef0ac0f2397e71564b94ac3f866263015371",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-108.json": "9131e318d2014c69ccc7106d96fb0c0ee1e91f2cdfc649c4df4511f0fb994e5a",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-109.json": "c48a06f1f49ab2f3f624f883e6485c91932193499525118e1d7b1ec4e731c35d",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-110.json": "3ff00d1d612ef738c150ab22258c9c6e8e8d3b34ff1f7cbb895f66bb959b9f06",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-111.json": "c28e8a809d0dd6c81cca2f1eab09d32f235680ec1abe27f27625c29cf7fcf8f9",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-112.json": "28895ce144b8d4b30f9d1c8ff71fc233710ea4ea45d01aa9d7d3f6e9c6eb93d4",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-113.json": "3036de25391bd28f7b8db4cf78c4fb54b5e7e117fbe97d046a642671ffef7f64",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-114.json": "d7d851edf4096b772fedf3fd39f02adefe9cc096c4bffeae6c3c397b224b9380",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-115.json": "c8aa388bfd39d97e544205ccb7b740df6d95253b44854971a8925ad9dab733a2",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-116.json": "de7a25c1f442ca1d4498439e7365cbee28df3c633e8b9d9945845fc80a50e533",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-117.json": "6222e95d4c4d33ea3032312027f2f35d2329158ae4ffe71d8be27e449f9ec793",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-118.json": "56083a097834bad43b70fb871c39bfd4fc20c0c0a3806c8e5f157736e9f4d570",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-119.json": "c484fc3530130d4a5e4a2de0a145059e4c0c31524d915dcc307cfcfb4a2463c6",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-120.json": "1930e6e310ecbea4a07beeb3705b5a52e48f33c9d639f52819d9298afaa9e6df",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-121.json": "1211cbb3c28fad7886aa8be81afec679043ad9243e0c6e7a1ac1bb8c0c7b9037",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-122.json": "929caef5d376fb7401b116a2b14efcd7e4a337764921152741e916f1c2145c3a",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-123.json": "1bd81dcc929fd21dd47edb0b392f0a869086348e6eb4aa5d656cfc8c5df62f9e",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-124.json": "af4c3ae45962ceb1152769c9f1ec8a73478108cb87d557f68e2263e0a2dac238",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-125.json": "84f8a0099d7ebbdc4f0939f744c133de852d69189847b12b2b30d40200a79d6e",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-126.json": "c0c993abc901a4ddeaae00e97ff58fd9f63fb7ee9f3eae6836984e78e6802157",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-127.json": "eae15a8ae4cd069e80d718b06771bb09b47bccbd21630e6c3e4b9c7809b986e8",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/population-128.json": "297850409fef0d2b4f9061fc27b28b9ade5696b57ce6798b382ea15c9e89e7ab",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/protocol.json": "a0612a26aa1994a7f900c5144c7a53b41ff99ad3e367c8085ab3ab8a1b3aa64a",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/report.json": "85be711c6abf6340ffda39518290452fe9b19e1b220dec646f99f7cc1ffafa4b",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-01.json": "9cea664366a7a145065caf90d7c44fac33801c6c8a27e04af9b2afddf161d00f",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-02.json": "57e1615813457f40df9a3ac26b30d5d1714c566e4e589373b26b9a98e2ae605d",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-03.json": "767562ffceee1a5515d75fccae0a7a34a88345f6fb31335a86d08bfa8d05f6c5",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-04.json": "de34630845f179e2d1396c3d5144400a99482649cf42bf2e033d546f47b459be",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-05.json": "a367a64d7356e0e3bd658cd1c05714a9420170f66ec5961d499ed0d02c34f33f",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-06.json": "4d44edc6ef04dec8a7194cc15fed7b25270987a9f4b703d7dd0c216bb643d551",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-07.json": "74bc6d6d2d8d7b8b5414ce047bd71d5fbf35d3ffffedd8be1ffe5835a2c5ef9d",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-08.json": "397d5d142831272c42f6457cc97204dac0f6532f182edb9ed8a4e27da0f899ed",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-09.json": "796865bf947ef4ba949a2b3cd9e57c5f41329b1c6f614de0905cd3a357064c44",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-10.json": "48dc6050c968268a668cd67786e584869c9d748c505d2e14435639bd05cd7c86",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-11.json": "59cec47dfc20fbdc2720a742194c65cc98d8dc86facb15316c895ed7f5b173ee",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-12.json": "2820b3fc771b5734243b0b8829b5ee1289137c5abeb32a42a7693bbc40ce3ad7",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-13.json": "7c4d2b0e27464b65a2c0ef6ea329bea3836c74929abc6d1da197bdc78f9c0378",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-14.json": "971dce150c64543dea36729489046dddaf4cb3b4499c20ee4d030e6fc2d3f1f4",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-15.json": "3de4ab13f82979aa20596b4c49145958cb60400d7e62bb8225cce949b9f5c3b0",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-16.json": "6c264bff054648cd610d9ac62aedc91f72fd2890c08a7441c347400470fc4737",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-17.json": "aafa2804c7bb795e0df7ef2346c81d982d5638172930713dd255a066f10d1d4f",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-18.json": "0a665ca464c3979c38a1b5d05fa67997f74308844085efca2b03a586dbe7ee39",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-19.json": "82603ef9c9c1205b1d1ed3c17f5dbf972fceab8d0b011268c40b0dbf739736e6",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-20.json": "bf5b99846ce4f314ac2b7cc46a3808a0776da4ee5e833a066970e7d2efc1abef",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-21.json": "2348e3beb16b3f7fc69e6fd8533b95c1a38b39e9e7ccba17c8d386c97c0b545a",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-22.json": "0c07778579461cb06d7fe33f95b5283cc53f70b3c9f1aabad691c19fa66fddb6",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-23.json": "62eda1d915a6978c96c805c5b440213caa22f55e85f43f14beca74a6efae50a3",
+    "research/fixtures/continuous_localized_error_decomposition_cpu_2026_09_13/route-24.json": "7453b7845d9bb60eb4a3d7179884bd48070573a4a297e745e35e269c65d0f461",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-01.json": "b6a378e8eeafe8f5d085ca894f6d1006a03dfaca6f3df3e2bd723ab65d6a79c4",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-02.json": "6e7178abd3d043ca2f1abd69abfa08edd64df7cfcd7904bfb7b1a04b7d6ab1af",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-03.json": "f3af1b451447353d873ba936aa1ce038ede8d70cdb6548e08749351465d2c719",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-04.json": "d796b87f10945450772faaa057087f54346e5970e7bc08eee24a659096a35560",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-05.json": "6a4851353cd89d9c589dcce2d4bffea0373cc3d8e6100aa8cc20697d78c96c27",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-06.json": "7d877e1067758dc4dec27da36a190374cd5c9eadbfec66bb5fa5a03857c92cac",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-07.json": "f5d1ce261085332168a2397c0e46bee12e4adc769f03656778d84333d5a00dc1",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-08.json": "b05866379b17b259f83350c713b6f481c42a7aec52fe8e9e443acad3a66e55e1",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-09.json": "b4d7ec61fe54248ceee2d00e0d7cd5889be6b9491a756da008e5239946124ec1",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-10.json": "6ebc87978ebb06ec192dce0b153236b78a3e6fd4e6bdb59714f0f23038697415",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-11.json": "87ad01574f64258f96e69c01145fa1f5494281be207fe464fbffc7f31965d675",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-12.json": "98ade2a58f0b4555d63de6197702677ac0cbe675884fedd83023d449e1abeb65",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-13.json": "82c10a6db7e332e3e481ffc6ef3a0bbc85b1565ebe8aa306f8407798173479db",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-14.json": "5872a1fe8f8eb6dbc534cce60b74798f9eda68e2b43cf32ce7fdfdfbab5aeb6b",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-15.json": "4140b08d8baf9645e28cc1709e56cc025f79a09ed16eecb93d315aa666be78bf",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-16.json": "f9d458cd54e30edd48a1dad50181c78f4d952f8b3c47fd43bfcc18554d88f295",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-17.json": "779a0dc0f8205de20dcf5899b55cb08bf978f6fd18937f7809425e3f807c8b94",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-18.json": "ef9bcf3ab689639456c484bb01a24898f08b42445ceaec7a5b7aaaca63b6834a",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-19.json": "cb8078c47fb1bbd9b4a35b69d2acf2312c2266995e0cc8e0bee8d4e1f692017b",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-20.json": "3c92b7eca7a75a2ee26f7957ec97a0935e46c9f819d7c6aa202660fec6026ba3",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-21.json": "f5d896e13e35a30402ebe40e38d39260a6fee81d52dfe1eca083fc1eb8400410",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-22.json": "7e603998bb004a5f657ee1a89318a7111e2e1f37e2673731cd1340014f6133b5",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-23.json": "81ddf3d55b92914f92ef8195c058f570b9ba87e373996c855b059b594cfb8997",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-24.json": "19d07891674dde26895e94a44badc3730f7bdf56d6a91157a494cb4914763616",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-25.json": "f907df1872cf43cacc37199f0ece1489cb30f2c608f80d621ca9d62dd47f3449",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-26.json": "0afc385107618711db3df5e19d598d3e14cb11e45fc5a95e47dcdef42d4d3d0a",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-27.json": "2f3acb0141098905b53820702694ee8644188e2402ce1213e6bad3eba96672e9",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-28.json": "092499afe04d789c879b178ad7c2466bce98912adc038cf25f5b9ac4de0b018c",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-29.json": "e8bc55d69b75abf9ce12059cf0b46b1a41b51ef3b8fbbad1e7cc09f9090b76de",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-30.json": "e7317c1ef76694f4043f14da9b669cd4d8c5f7136edd95c18e22350ca89d05b3",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-31.json": "e3a2b2ca2018ff379c237e3dd80e1fccdc15a864276f8db2ef404d8eab27c36e",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-32.json": "852c310c91b666c3ef87d801d458f5ecbcf1de38b3e99ea4231048f931371513",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-33.json": "46f12a8b1231554ad6185391d05bfee99624c3ae6a8ede1ad81e628dddff1ea7",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-34.json": "1c59aaa02cfec1bac5a03eb49d429bf51b1ce3b6936e56d047856a9f15ca1be1",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-35.json": "717960a212bb633a5190ab309d566318011945aaa3f014fc27e25737453cc4b4",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-36.json": "256bd7ef5fbaabd73c9ee371c96b6963ff8384fe93a13ee97c8ce34e382c3d7e",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-37.json": "97c48deccfd740d432f6d9530b3dac6a85643fde34cf5d317aa438037fe87f40",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-38.json": "ab6481bbe6fff77f5caccec0b92b1654d6bee55901e83ed6d273962a15549bf8",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-39.json": "2f233719600348503d1cd5d79fe128c33718c78605519c3e55463f5a944943ce",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-40.json": "622e9b4f196366aaf4d2c67fb3550ad692448f94fdc5bf06cf8a171654c8385e",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-41.json": "dadc1ab55e45d24911c60ea6763d8dac84ac1c484b2abdf22a533ecfa8cd879a",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-42.json": "daf5279df3cc0c8611cdbf51e90fc9738ed4fdc3b33f1ae35fd779bdeaac5ae3",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-43.json": "b71d84afdeabe6dcbe0ae8a4bcb9acbdaf628ba6de5baf37f528a8e59fec105d",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-44.json": "db9df10c6c8cd46baafcb9cdc50daf3c8056fe805141c6f1638bc6edac1b9b01",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-45.json": "d8ea2135fcc5279182d151b24eab61bdc75b5c1d21fe80f34acedc614885cc34",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-46.json": "074d921c9c647013ae08732011f2f5bb599beb5b40f211f5dcc1d823051eeddc",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-47.json": "fb8cd8549a95a48f7a0657c79051799e3eeeaeed3be2725eadb75b1bf1f9df6d",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/dataset-48.json": "6cb5856972190a7373a95131fd3a06a618d23302958c24a84992071bed8f3843",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/freeze-barrier.json": "1ec9fe2e3b8908138a6faccc0be6a21b2e19f1602879ade4f0a3f482f5ec2e68",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-01.json": "d457899304c54955436a8976d8f42f79145d13d6cb404331f7c7353a757a7547",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-02.json": "c8bf8b16bf35fafebe7ae7458bcce8640c8016ce898d5a54a5ba12b4f7e4c518",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-03.json": "67ea32d4d4e9cb6e30564c6d44c73f664d2cae14bb1e7f6d4e897558cffa10cd",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-04.json": "757ab236b6b6b653e1ae935c752e246257700a669f84e4b9ae515160663a1e5d",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-05.json": "f2a6f6835035494f4c6f8181447c9ff8e3b0523083820112a792870bbcea53e1",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-06.json": "8a5d753dbbd3f139df99d16f8433485a3ae0e6ad1f9b3b7c39b62abcda67de74",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-07.json": "64a7579c8b192bcb59780a7e6465d5c7acfad2fbbac6dcb012c877d1ea15e23e",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-08.json": "bfbffe5d80b98b8701bf107a7f1db947c8ac73b28b3e305c992fd724dd667c67",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-09.json": "4570288c0b8ac2d4a096efd9334109e5be2ec9b46a1337b9fb854a44078d3998",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-10.json": "f219ad53a7cc3cfa23e27ca71bb55f9fa15443c00a88fc25f168e932dbf102aa",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-11.json": "db6717605f0da442662d766bfb10e5d25968fb4908326189dab3b357259dcbe4",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-12.json": "6e35e0af70f68152a7bd2f8f5485d64b6c5b13bf6156c673563509f7f94361c0",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-13.json": "d842b9e0eeef2ef5990adad089f0734d547a685598d5d12ee66e6796165b3316",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-14.json": "07e7fc3a151139511ec632560fcb22f6d574a7d358b95f44304e09f16d29053f",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-15.json": "f1fec88cbaad7cc1fd8671d275c7ec97d03580ffa71a01093191d16b297fe9bb",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-16.json": "1c6bb0266b00401c14a009dcffbc6041023069edd8e7b38ea34b6d9bbfac1716",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-17.json": "012b793053031f17538c64172fe5aac52c0dc2070c90c4a0a06ba6f48097101e",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-18.json": "6cfd89f77f2b2dcdef165e8c1fc71c5580fb962c68a8b66ef4a442f2a2eb25c0",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-19.json": "3f83140f77d10c8cb9f9abc1323cc238885341efff0b44ac699680c71b832b41",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-20.json": "56576af96711340060bc638aad3b756719cbb047c46c6ac785db858809ad6129",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-21.json": "2eae918ec960fd0f46af8e2e16ae109cfc25d66ff9b00bcdf58e3d78cadc6ffa",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-22.json": "8377c6aaea100b9025003c239019802b8fd940082e296533031011f440d5dc62",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-23.json": "325995db4bea89271c0ab927343c88738de80c234bf8b6ff70e99c67e6e7270a",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/frozen-24.json": "8f26a30ce2b8258e8d6998b398ae518d94a109494a1be679bbe96e9486f09b73",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/protocol.json": "c99b27fbd042359f65f54cd7c191a4bdd28e98f62303ad341fcdb8287ee8036e",
+    "research/fixtures/continuous_localized_learnability_cpu_2026_09_13/report.json": "d8db24c1c4f2d22069da8ec15640cd9b553dfec5f3ecf87b5f0530069289a692"
+  },
+  "maximum_arithmetic_discrepancies_by_check": {
+    "atomic five-term contrasts": 0,
+    "coefficient distance estimate": 4.263256414560601e-14,
+    "common q32 unpenalized excess risk": 0,
+    "conditional label perturbation": 0,
+    "conditional label perturbation norm": 0,
+    "continuous five-term contrasts": 3.552713678800501e-15,
+    "convex box gap": 0,
+    "cross-quadrature objective": 0,
+    "empirical solve readback bounds": 1.0658141036401503e-14,
+    "feature Gram spectrum": 0,
+    "feature readback norms": 0,
+    "fit coefficient identity": 0,
+    "global curvature estimate": 0,
+    "independent target readback": 0,
+    "known coefficient bound": 0,
+    "original A arrays preserved": 8.881784197001252e-15,
+    "original objective readback": 2.6645352591003757e-15,
+    "pooled active contrasts": 5.329070518200751e-15,
+    "population coefficient readback": 0,
+    "population solve readback bounds": 6.821210263296962e-13,
+    "projected gradient": 0,
+    "projected maximum": 0,
+    "q16": 0,
+    "quadrature weight sum": 0,
+    "stage raw coefficient readback": 0,
+    "strict gradient": 0,
+    "strict objective": 0,
+    "terminal zero-residual chain": 1.7763568394002505e-15,
+    "unchanged original target": 0,
+    "unchanged stage accuracy": 0,
+    "zero objective": 0
+  },
+  "original_protocol_sha256": "c99b27fbd042359f65f54cd7c191a4bdd28e98f62303ad341fcdb8287ee8036e",
+  "original_report_sha256": "d8db24c1c4f2d22069da8ec15640cd9b553dfec5f3ecf87b5f0530069289a692",
+  "protocol_sha256": "a0612a26aa1994a7f900c5144c7a53b41ff99ad3e367c8085ab3ab8a1b3aa64a",
+  "report_sha256": "85be711c6abf6340ffda39518290452fe9b19e1b220dec646f99f7cc1ffafa4b",
+  "route_summaries": [
+    {
+      "budget": 1024,
+      "method": "association-aware-guide-plus-residual",
+      "primary_term_rms": {
+        "gradient": [
+          6.368376102733587e-05,
+          0.6947023862506381,
+          0.0013031695507132609,
+          0.014463977423885938,
+          0.001619689882786446
+        ],
+        "hessian": [
+          0.0003542270500727199,
+          3.353618860521503,
+          0.005138561305294655,
+          0.06320477716488451,
+          0.016962227056947134
+        ],
+        "value": [
+          2.2868913159486258e-05,
+          0.2668752240086009,
+          0.0006015840969407501,
+          0.004334051983597627,
+          0.00011418637368343804
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.6935961015231203,
+        "hessian": 3.35139476073947,
+        "value": 0.26614644359895945
+      },
+      "scenario": "reference-pressure",
+      "seed": 11
+    },
+    {
+      "budget": 8192,
+      "method": "association-aware-guide-plus-residual",
+      "primary_term_rms": {
+        "gradient": [
+          5.039621698176322e-05,
+          0.29873525976275883,
+          0.00039732466572835445,
+          0.014463977423885938,
+          0.001619689882786446
+        ],
+        "hessian": [
+          0.0002965226916825051,
+          1.231269374492072,
+          0.0017090105335939314,
+          0.06320477716488451,
+          0.016962227056947134
+        ],
+        "value": [
+          1.4962254308264653e-05,
+          0.11923833974396614,
+          0.00014650571283031824,
+          0.004334051983597627,
+          0.00011418637368343804
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.2976779992719073,
+        "hessian": 1.2309551899876172,
+        "value": 0.11871923081112122
+      },
+      "scenario": "reference-pressure",
+      "seed": 11
+    },
+    {
+      "budget": 1024,
+      "method": "unified-direct-conditioner",
+      "primary_term_rms": {
+        "gradient": [
+          9.179137861799259e-05,
+          0.6952055528921026,
+          0.015665974080139658,
+          0.11822958278349721,
+          0.007816703830879007
+        ],
+        "hessian": [
+          0.0004215520011264636,
+          3.3565766547411884,
+          0.07448994118063533,
+          0.601292281244266,
+          0.09194052683518322
+        ],
+        "value": [
+          3.712360752164221e-05,
+          0.2667577258089951,
+          0.00591228424790151,
+          0.02906226319648826,
+          0.000641917470421163
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.6990452000784284,
+        "hessian": 3.4177869524268614,
+        "value": 0.265941466262726
+      },
+      "scenario": "reference-pressure",
+      "seed": 11
+    },
+    {
+      "budget": 8192,
+      "method": "unified-direct-conditioner",
+      "primary_term_rms": {
+        "gradient": [
+          5.730951243718394e-05,
+          0.29895127837518654,
+          0.003447057900670335,
+          0.11822958278349721,
+          0.007816703830879007
+        ],
+        "hessian": [
+          0.000313728414631295,
+          1.2320795305519199,
+          0.017850720215051793,
+          0.601292281244266,
+          0.09194052683518322
+        ],
+        "value": [
+          1.931933627065451e-05,
+          0.11925463656924001,
+          0.0012058711546448792,
+          0.02906226319648826,
+          0.000641917470421163
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.3127629571414921,
+        "hessian": 1.392061871593427,
+        "value": 0.11898740415273851
+      },
+      "scenario": "reference-pressure",
+      "seed": 11
+    },
+    {
+      "budget": 1024,
+      "method": "association-aware-guide-plus-residual",
+      "primary_term_rms": {
+        "gradient": [
+          6.14842228613005e-05,
+          0.6749439588886188,
+          0.001233715753170029,
+          0.014463977423885938,
+          0.001619689882786446
+        ],
+        "hessian": [
+          0.0003658024797532448,
+          3.149604669454614,
+          0.004403737664090064,
+          0.06320477716488451,
+          0.016962227056947134
+        ],
+        "value": [
+          3.0197571726566676e-05,
+          0.24088057244024566,
+          0.0004778917198995801,
+          0.004334051983597627,
+          0.00011418637368343804
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.6759292368882233,
+        "hessian": 3.1511841233757183,
+        "value": 0.24142074437521274
+      },
+      "scenario": "reference-pressure",
+      "seed": 29
+    },
+    {
+      "budget": 8192,
+      "method": "association-aware-guide-plus-residual",
+      "primary_term_rms": {
+        "gradient": [
+          6.19397204330028e-05,
+          0.24108266949589768,
+          0.0003578227620909165,
+          0.014463977423885938,
+          0.001619689882786446
+        ],
+        "hessian": [
+          0.00041185642548104514,
+          1.1680379000151355,
+          0.00138975428841881,
+          0.06320477716488451,
+          0.016962227056947134
+        ],
+        "value": [
+          2.2672595637717513e-05,
+          0.09788938648638183,
+          0.0001737713326357426,
+          0.004334051983597627,
+          0.00011418637368343804
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.242952394305774,
+        "hessian": 1.174461919942264,
+        "value": 0.09833818614126964
+      },
+      "scenario": "reference-pressure",
+      "seed": 29
+    },
+    {
+      "budget": 1024,
+      "method": "unified-direct-conditioner",
+      "primary_term_rms": {
+        "gradient": [
+          6.447434371753322e-05,
+          0.6760451979261674,
+          0.012320740372684868,
+          0.11822958278349721,
+          0.007816703830879007
+        ],
+        "hessian": [
+          0.00034879456755480256,
+          3.157688165014109,
+          0.059974633879972226,
+          0.601292281244266,
+          0.09194052683518322
+        ],
+        "value": [
+          2.9135192730303293e-05,
+          0.2405854061615951,
+          0.004338298805330594,
+          0.02906226319648826,
+          0.000641917470421163
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.6828810768428675,
+        "hessian": 3.180764967747512,
+        "value": 0.24293323509089243
+      },
+      "scenario": "reference-pressure",
+      "seed": 29
+    },
+    {
+      "budget": 8192,
+      "method": "unified-direct-conditioner",
+      "primary_term_rms": {
+        "gradient": [
+          6.133121382515664e-05,
+          0.2410632711022072,
+          0.003826636625509591,
+          0.11822958278349721,
+          0.007816703830879007
+        ],
+        "hessian": [
+          0.0003544520885540117,
+          1.1693203358063704,
+          0.018307539400413464,
+          0.601292281244266,
+          0.09194052683518322
+        ],
+        "value": [
+          1.987788804273067e-05,
+          0.0978070254761894,
+          0.0014901841147487763,
+          0.02906226319648826,
+          0.000641917470421163
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.2695698702271014,
+        "hessian": 1.2963302721617447,
+        "value": 0.10337320998631931
+      },
+      "scenario": "reference-pressure",
+      "seed": 29
+    },
+    {
+      "budget": 1024,
+      "method": "association-aware-guide-plus-residual",
+      "primary_term_rms": {
+        "gradient": [
+          5.703831289164728e-05,
+          0.7891710538468474,
+          0.0013646887892898602,
+          0.014463977423885938,
+          0.001619689882786446
+        ],
+        "hessian": [
+          0.00034370305830178695,
+          3.84542663006609,
+          0.004893404563270533,
+          0.06320477716488451,
+          0.016962227056947134
+        ],
+        "value": [
+          1.934080094530769e-05,
+          0.2713464274658476,
+          0.0007312255519187046,
+          0.004334051983597627,
+          0.00011418637368343804
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.7900005945976287,
+        "hessian": 3.847925408720357,
+        "value": 0.27160802914189464
+      },
+      "scenario": "reference-pressure",
+      "seed": 47
+    },
+    {
+      "budget": 8192,
+      "method": "association-aware-guide-plus-residual",
+      "primary_term_rms": {
+        "gradient": [
+          5.116342585098437e-05,
+          0.2540224744236398,
+          0.00039846252823632977,
+          0.014463977423885938,
+          0.001619689882786446
+        ],
+        "hessian": [
+          0.00027285050036530945,
+          1.273248701020344,
+          0.0016315153118366,
+          0.06320477716488451,
+          0.016962227056947134
+        ],
+        "value": [
+          1.8860222683529513e-05,
+          0.08593502757274768,
+          0.00015194938106459136,
+          0.004334051983597627,
+          0.00011418637368343804
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.25313555666022913,
+        "hessian": 1.2694372134149612,
+        "value": 0.08575300271582864
+      },
+      "scenario": "reference-pressure",
+      "seed": 47
+    },
+    {
+      "budget": 1024,
+      "method": "unified-direct-conditioner",
+      "primary_term_rms": {
+        "gradient": [
+          6.27610325637745e-05,
+          0.7886400214813564,
+          0.01392807862662709,
+          0.11822958278349721,
+          0.007816703830879007
+        ],
+        "hessian": [
+          0.00034069692830486904,
+          3.8463211030911544,
+          0.06347235991342054,
+          0.601292281244266,
+          0.09194052683518322
+        ],
+        "value": [
+          2.4483162691261077e-05,
+          0.27034166451952835,
+          0.005655752462391499,
+          0.02906226319648826,
+          0.000641917470421163
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.8013095979740575,
+        "hessian": 3.925187411252042,
+        "value": 0.27146996978956445
+      },
+      "scenario": "reference-pressure",
+      "seed": 47
+    },
+    {
+      "budget": 8192,
+      "method": "unified-direct-conditioner",
+      "primary_term_rms": {
+        "gradient": [
+          5.271891526881105e-05,
+          0.25503353197610656,
+          0.00464589636687195,
+          0.11822958278349721,
+          0.007816703830879007
+        ],
+        "hessian": [
+          0.00027418189531688684,
+          1.2770043712499195,
+          0.021589826618750255,
+          0.601292281244266,
+          0.09194052683518322
+        ],
+        "value": [
+          1.6862554964036188e-05,
+          0.08638784536075958,
+          0.0014711455483185352,
+          0.02906226319648826,
+          0.000641917470421163
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.2774243048512507,
+        "hessian": 1.3833851399973027,
+        "value": 0.09038595121579075
+      },
+      "scenario": "reference-pressure",
+      "seed": 47
+    },
+    {
+      "budget": 1024,
+      "method": "association-aware-guide-plus-residual",
+      "primary_term_rms": {
+        "gradient": [
+          5.736907973236461e-05,
+          0.8540153062163327,
+          0.0032907837024973275,
+          0.035398852926393616,
+          0.005331380023304985
+        ],
+        "hessian": [
+          0.0003273641475093916,
+          3.9881538961047163,
+          0.012455921083851258,
+          0.15782248757965453,
+          0.05487507622044066
+        ],
+        "value": [
+          2.14763533086308e-05,
+          0.34444492340398547,
+          0.0015654294979989879,
+          0.01089942707975531,
+          0.00036808337890799673
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.8539338853156343,
+        "hessian": 3.983684851224133,
+        "value": 0.3444493478861218
+      },
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 11
+    },
+    {
+      "budget": 8192,
+      "method": "association-aware-guide-plus-residual",
+      "primary_term_rms": {
+        "gradient": [
+          7.64035002541889e-05,
+          0.2663650425147242,
+          0.0008391723772468461,
+          0.035398852926393616,
+          0.005331380023304985
+        ],
+        "hessian": [
+          0.00033894876249621075,
+          1.1929328842733586,
+          0.00291489427934315,
+          0.15782248757965453,
+          0.05487507622044066
+        ],
+        "value": [
+          3.286592515617976e-05,
+          0.10276282907388724,
+          0.00041395241191779147,
+          0.01089942707975531,
+          0.00036808337890799673
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.2662621330587359,
+        "hessian": 1.1977615935709862,
+        "value": 0.10300689853340488
+      },
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 11
+    },
+    {
+      "budget": 1024,
+      "method": "unified-direct-conditioner",
+      "primary_term_rms": {
+        "gradient": [
+          6.0696360987004004e-05,
+          0.8538565551959275,
+          0.013882011295928474,
+          0.1593713459635447,
+          0.014969454925988656
+        ],
+        "hessian": [
+          0.00028811552377534913,
+          3.993352308883378,
+          0.06241339409384139,
+          0.8208510190342209,
+          0.1833853362293381
+        ],
+        "value": [
+          2.1466599439337734e-05,
+          0.3427216003613616,
+          0.005633737942094174,
+          0.03918262067237337,
+          0.001124417687332764
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.8582875724277825,
+        "hessian": 4.030813360606235,
+        "value": 0.3427491479511451
+      },
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 11
+    },
+    {
+      "budget": 8192,
+      "method": "unified-direct-conditioner",
+      "primary_term_rms": {
+        "gradient": [
+          6.296289491806536e-05,
+          0.26678745497302464,
+          0.004142457526415989,
+          0.1593713459635447,
+          0.014969454925988656
+        ],
+        "hessian": [
+          0.00028820440074835347,
+          1.1945542546711512,
+          0.019018503446858463,
+          0.8208510190342209,
+          0.1833853362293381
+        ],
+        "value": [
+          2.5592622272510072e-05,
+          0.10300459940524194,
+          0.0017539806148340004,
+          0.03918262067237337,
+          0.001124417687332764
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.3265361027991858,
+        "hessian": 1.5414491047606897,
+        "value": 0.1142585627667262
+      },
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 11
+    },
+    {
+      "budget": 1024,
+      "method": "association-aware-guide-plus-residual",
+      "primary_term_rms": {
+        "gradient": [
+          7.28768132587383e-05,
+          0.8620157987131837,
+          0.0028141265149876442,
+          0.035398852926393616,
+          0.005331380023304985
+        ],
+        "hessian": [
+          0.0003267308336761806,
+          3.6532019979282593,
+          0.009759703501281624,
+          0.15782248757965453,
+          0.05487507622044066
+        ],
+        "value": [
+          3.017369304828154e-05,
+          0.34575840329267854,
+          0.0013742847102547926,
+          0.01089942707975531,
+          0.00036808337890799673
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.8643582861349532,
+        "hessian": 3.6579433881503727,
+        "value": 0.3468502633993506
+      },
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 29
+    },
+    {
+      "budget": 8192,
+      "method": "association-aware-guide-plus-residual",
+      "primary_term_rms": {
+        "gradient": [
+          5.573908757472757e-05,
+          0.26763404285693637,
+          0.001309793975153441,
+          0.035398852926393616,
+          0.005331380023304985
+        ],
+        "hessian": [
+          0.0002925604198143131,
+          1.1993955383154267,
+          0.004141084741186701,
+          0.15782248757965453,
+          0.05487507622044066
+        ],
+        "value": [
+          2.3920099125682554e-05,
+          0.11590181716086316,
+          0.0007099593660413867,
+          0.01089942707975531,
+          0.00036808337890799673
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.27181855801276666,
+        "hessian": 1.2181610474492073,
+        "value": 0.1166699156160648
+      },
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 29
+    },
+    {
+      "budget": 1024,
+      "method": "unified-direct-conditioner",
+      "primary_term_rms": {
+        "gradient": [
+          5.7502620377373204e-05,
+          0.8663407541148938,
+          0.010085503594235611,
+          0.1593713459635447,
+          0.014969454925988656
+        ],
+        "hessian": [
+          0.0002803872413137645,
+          3.657996963447879,
+          0.04977775382601053,
+          0.8208510190342209,
+          0.1833853362293381
+        ],
+        "value": [
+          2.8112682434389344e-05,
+          0.3477625155897215,
+          0.004149618908674035,
+          0.03918262067237337,
+          0.001124417687332764
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.88614741438594,
+        "hessian": 3.779483634911113,
+        "value": 0.35138138512508976
+      },
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 29
+    },
+    {
+      "budget": 8192,
+      "method": "unified-direct-conditioner",
+      "primary_term_rms": {
+        "gradient": [
+          5.810932765916394e-05,
+          0.2681183788922876,
+          0.00513205792982829,
+          0.1593713459635447,
+          0.014969454925988656
+        ],
+        "hessian": [
+          0.00034583447642263956,
+          1.1987604536637864,
+          0.02374730058476487,
+          0.8208510190342209,
+          0.1833853362293381
+        ],
+        "value": [
+          2.344500996057964e-05,
+          0.11637637079782605,
+          0.001955714765303933,
+          0.03918262067237337,
+          0.001124417687332764
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.29681535932199243,
+        "hessian": 1.3452164647222429,
+        "value": 0.12100985921361362
+      },
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 29
+    },
+    {
+      "budget": 1024,
+      "method": "association-aware-guide-plus-residual",
+      "primary_term_rms": {
+        "gradient": [
+          8.327081362748028e-05,
+          0.7424807098405422,
+          0.0031703365214850493,
+          0.035398852926393616,
+          0.005331380023304985
+        ],
+        "hessian": [
+          0.0003354687861302873,
+          3.3337596379577197,
+          0.012216831926244058,
+          0.15782248757965453,
+          0.05487507622044066
+        ],
+        "value": [
+          3.935410994823952e-05,
+          0.3524767208607762,
+          0.001331059976257907,
+          0.01089942707975531,
+          0.00036808337890799673
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.7400147556149225,
+        "hessian": 3.3174849304358096,
+        "value": 0.351212513887829
+      },
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 47
+    },
+    {
+      "budget": 8192,
+      "method": "association-aware-guide-plus-residual",
+      "primary_term_rms": {
+        "gradient": [
+          6.984040524668103e-05,
+          0.28528919232444655,
+          0.0011411155884656437,
+          0.035398852926393616,
+          0.005331380023304985
+        ],
+        "hessian": [
+          0.0003582238750748809,
+          1.1890053546240142,
+          0.0046353360470511975,
+          0.15782248757965453,
+          0.05487507622044066
+        ],
+        "value": [
+          2.3927178479474713e-05,
+          0.11613407461805324,
+          0.000480322410676918,
+          0.01089942707975531,
+          0.00036808337890799673
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.28552352537311093,
+        "hessian": 1.1996268292482668,
+        "value": 0.11480829624245098
+      },
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 47
+    },
+    {
+      "budget": 1024,
+      "method": "unified-direct-conditioner",
+      "primary_term_rms": {
+        "gradient": [
+          9.33077364957334e-05,
+          0.74350823892757,
+          0.013430297924060187,
+          0.1593713459635447,
+          0.014969454925988656
+        ],
+        "hessian": [
+          0.000350554884486682,
+          3.3367853249367476,
+          0.062516713033745,
+          0.8208510190342209,
+          0.1833853362293381
+        ],
+        "value": [
+          4.258726912778031e-05,
+          0.35202597788222856,
+          0.00492473651591964,
+          0.03918262067237337,
+          0.001124417687332764
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.7626121233847771,
+        "hessian": 3.388744565025035,
+        "value": 0.35399281132021565
+      },
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 47
+    },
+    {
+      "budget": 8192,
+      "method": "unified-direct-conditioner",
+      "primary_term_rms": {
+        "gradient": [
+          7.411021495231943e-05,
+          0.2855351346088856,
+          0.005402829748949808,
+          0.1593713459635447,
+          0.014969454925988656
+        ],
+        "hessian": [
+          0.0003443337741848773,
+          1.1883840327532533,
+          0.02475577944118011,
+          0.8208510190342209,
+          0.1833853362293381
+        ],
+        "value": [
+          3.636284880346949e-05,
+          0.11599146642107651,
+          0.0023762600976706748,
+          0.03918262067237337,
+          0.001124417687332764
+        ]
+      },
+      "primary_total_rms": {
+        "gradient": 0.33394877623938385,
+        "hessian": 1.495486421913151,
+        "value": 0.12074915262786774
+      },
+      "scenario": "higher-pressure-shifted-observation",
+      "seed": 47
+    }
+  ],
+  "schema_version": "independent-localized-error-decomposition-audit-v1",
+  "scope": {
+    "all_frozen_control_contents_bound": true,
+    "forward_label_simulation": false,
+    "global_bounds_are_interval_certified": false,
+    "historical_execution_order_independently_authenticated": false,
+    "new_fit_or_optimizer_call": false,
+    "new_runner_or_summary_helper_imported": false,
+    "numeric_readback_thresholds_are_scientific_acceptance_tolerances": false,
+    "original_archive_unchanged_through_audit": true,
+    "unchanged_backward_oracle_readback_only": true,
+    "variance_or_causal_attribution_claimed": false
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "schema_version": "factorized-precision-pipeline-cuda-operator-review-extract-v1",
+  "review_date": "2026-09-13",
+  "evidence_kind": "NORMALIZED_SELECTED_FIELDS_FROM_TRUNCATED_ATTACHMENT_AND_USER_RECOVERY_SUMMARY",
+  "review_disposition": "ACCEPT_REPORTED_BOUNDED_SYNTHETIC_INTEGRATED_CANDIDATE_CUDA_PASS_ONLY",
+  "reported_decision": "PASS_SELECTED_CUDA_PRECISION_PIPELINE_CANDIDATE_ONLY",
+  "evidence_sources": {
+    "supplied_attachment": {
+      "attachment_id": "6ea67fc8-2589-4f61-8603-e2af54dad26d",
+      "filename": "pasted-text.txt",
+      "size_bytes": 51283,
+      "sha256": "40926fec31a3079f62d8c2cf7398c095fd0e93e80ed30692654922d40834895f",
+      "has_explicit_output_truncation_marker": true,
+      "truncation_marker": "... [*** WARNING: max output size exceeded, skipping output. ***] ...",
+      "parses_as_complete_original_json": false,
+      "copied_verbatim_into_this_repository": false,
+      "retained_fields_basis": "VISIBLE_NOTEBOOK_PREFIX_AND_RESULT_TAIL_ONLY"
+    },
+    "user_recovery_summary": {
+      "kind": "USER_REPORTED_SELECTED_CASE_COMPARISON_RESULTS_IN_CONVERSATION",
+      "case_roster": "R3-PHYS/R4-RETAIL crossed with association-aware-guide-plus-residual/unified-direct-conditioner",
+      "summary": "All four cases report all five named comparisons passed=true with failure_count=0; exact_gpu_replay=true.",
+      "underlying_missing_category_values_or_tensor_hashes_recovered": false,
+      "raw_message_byte_hash_available": false
+    }
+  },
+  "review_limits": {
+    "full_raw_original_json_recovered": false,
+    "raw_original_message_bytes_preserved": false,
+    "missing_detail_reconstructed_or_invented": false,
+    "underlying_tensors_available": false,
+    "remote_tensor_hashes_recomputed": false,
+    "runtime_independently_authenticated": false,
+    "reported_execution_independently_repeated": false,
+    "comparison_category_detail_complete": false,
+    "selected_fields_consistent_with_predeclared_local_harness_contract": true
+  },
+  "source_scope": "SOURCE_ONLY_PRECISION_PIPELINE_CHECK_NOT_INSTALLED_RELEASE",
+  "reported_harness_schema_version": "factorized-precision-pipeline-device-check-v1",
+  "wrapper_revision": "factorized-precision-pipeline-gpu-wrapper-v1",
+  "fixture_id": "factorized-integrated-precision-device-fixed-v1",
+  "precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+  "reported_runtime": {
+    "mode": "CUDA",
+    "device": "cuda:0",
+    "gpu": "Tesla T4",
+    "compute_capability": [7, 5],
+    "gpu_total_memory_bytes": 15636037632,
+    "torch": "2.7.0+cu126",
+    "cuda_build_version": "12.6",
+    "python": "3.12.3",
+    "numpy_package_metadata": "2.1.3"
+  },
+  "reported_controls_from_visible_attachment": {
+    "child_returncode": 0,
+    "child_termination_confirmed": true,
+    "captured_stdout_bytes": 52642,
+    "captured_stderr_bytes": 0,
+    "captured_stdout_count_is_not_supplied_attachment_size": true,
+    "maximum_seconds": 300,
+    "termination_grace_seconds": 5,
+    "completed_case_count": 4,
+    "routes_per_case": 3,
+    "optimizer_steps_begun": 36,
+    "optimizer_steps_completed": 36,
+    "base_updates_begun": 12,
+    "base_updates_completed": 12,
+    "conditional_updates_begun": 12,
+    "conditional_updates_completed": 12,
+    "conditional_control_updates_begun": 12,
+    "conditional_control_updates_completed": 12,
+    "cpu_optimizer_steps_begun": 12,
+    "gpu_optimizer_steps_begun": 24,
+    "generated_paths": 48,
+    "stage": "COMPLETE",
+    "iterations": 1,
+    "retries": 0,
+    "warmups": 0,
+    "state_cap": 4,
+    "reverse_grid": [0.0, 0.25, 0.5, 0.75, 1.0],
+    "per_initialization_trial_limit": 256,
+    "per_path_jump_candidate_limit": 20000
+  },
+  "reported_case_summary_basis": "USER_RECOVERY_SUMMARY_NOT_RECONSTRUCTED_RAW_CASE_JSON",
+  "reported_cases": [
+    {
+      "domain_id": "R3-PHYS",
+      "method_id": "association-aware-guide-plus-residual",
+      "exact_gpu_replay": true,
+      "comparisons": {
+        "candidate_target_exact_replay": {"passed": true, "failure_count": 0},
+        "common_base_cpu_vs_target": {"passed": true, "failure_count": 0},
+        "common_conditional_cpu_vs_target": {"passed": true, "failure_count": 0},
+        "legacy_shared_weight_physical_drift": {"passed": true, "failure_count": 0},
+        "shared_weight_physical_cpu_vs_target": {"passed": true, "failure_count": 0}
+      }
+    },
+    {
+      "domain_id": "R3-PHYS",
+      "method_id": "unified-direct-conditioner",
+      "exact_gpu_replay": true,
+      "comparisons": {
+        "candidate_target_exact_replay": {"passed": true, "failure_count": 0},
+        "common_base_cpu_vs_target": {"passed": true, "failure_count": 0},
+        "common_conditional_cpu_vs_target": {"passed": true, "failure_count": 0},
+        "legacy_shared_weight_physical_drift": {"passed": true, "failure_count": 0},
+        "shared_weight_physical_cpu_vs_target": {"passed": true, "failure_count": 0}
+      }
+    },
+    {
+      "domain_id": "R4-RETAIL",
+      "method_id": "association-aware-guide-plus-residual",
+      "exact_gpu_replay": true,
+      "comparisons": {
+        "candidate_target_exact_replay": {"passed": true, "failure_count": 0},
+        "common_base_cpu_vs_target": {"passed": true, "failure_count": 0},
+        "common_conditional_cpu_vs_target": {"passed": true, "failure_count": 0},
+        "legacy_shared_weight_physical_drift": {"passed": true, "failure_count": 0},
+        "shared_weight_physical_cpu_vs_target": {"passed": true, "failure_count": 0}
+      }
+    },
+    {
+      "domain_id": "R4-RETAIL",
+      "method_id": "unified-direct-conditioner",
+      "exact_gpu_replay": true,
+      "comparisons": {
+        "candidate_target_exact_replay": {"passed": true, "failure_count": 0},
+        "common_base_cpu_vs_target": {"passed": true, "failure_count": 0},
+        "common_conditional_cpu_vs_target": {"passed": true, "failure_count": 0},
+        "legacy_shared_weight_physical_drift": {"passed": true, "failure_count": 0},
+        "shared_weight_physical_cpu_vs_target": {"passed": true, "failure_count": 0}
+      }
+    }
+  ],
+  "tolerance_policy_id": "factorized-device-parity-fixed-tolerances-v1",
+  "reported_tolerance_values_sha256": "c665d0d0d2f8c0ea9eca5407324c31c8bc4932d961901f488809a195af204ffd",
+  "acceptance_tolerances_unchanged": {
+    "coordinate_gradient": [0.00002, 0.0002],
+    "coordinate_hessian": [0.0001, 0.001],
+    "forward": [0.000002, 0.00002],
+    "loss": [0.000002, 0.00002],
+    "optimizer_moment": [0.000002, 0.0002],
+    "parameter_gradient": [0.00002, 0.0002],
+    "physical": [0.00002, 0.0002],
+    "updated_parameter": [0.000002, 0.00002]
+  },
+  "reported_numerical_policy_from_visible_attachment": {
+    "deterministic_algorithms": true,
+    "intraop_threads": 1,
+    "autocast_used": false,
+    "cuda_precision_family": "legacy_allow_tf32_only",
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "cudnn_benchmark": false,
+    "cublas_effective_child_value": ":4096:8",
+    "cublas_default_inserted_for_child_only": true,
+    "parent_or_cluster_environment_modified": false,
+    "cuda_visible_devices_modified": false,
+    "physical_gradient_boundary": "CPU64_ROOT_FP32_ENCODING_FP64_BASE_GRAPH_FP32_CAST_BACK_CPU64",
+    "conditional_neural_arithmetic_and_trainable_parameters_moments": "FP32"
+  },
+  "reported_resources_from_visible_attachment": {
+    "elapsed_seconds": 199.48732787899985,
+    "cuda_peak_allocated_bytes": 79369728,
+    "cuda_peak_reserved_bytes": 79691776,
+    "process_lifetime_peak_rss_bytes": 1218785280,
+    "maximum_memory_bytes_soft": 2147483648,
+    "timing_scope": "SYNCHRONIZED_WALL_INCLUDING_HOST_COPY_READBACK_FIRST_USE_NOT_KERNEL_ONLY"
+  },
+  "claim_boundaries": {
+    "legacy_shared_weight_physical_drift_is_gating": false,
+    "legacy_FP32_training_failures_relabelled": false,
+    "cross_device_generated_conditional_update_parity_claimed": false,
+    "generated_CPU_GPU_paths_compared_as_common_noise": false,
+    "all_FP64_or_all_GPU_pipeline_claimed": false,
+    "long_run_or_multistep_checkpoint_qualification_claimed": false,
+    "production_or_installed_release_qualification_claimed": false,
+    "real_data_admission_or_F105_scoring_claimed": false,
+    "scientific_training_convergence_or_speedup_claimed": false,
+    "operator_run_assumed_free": false,
+    "rerun_required_for_this_bounded_milestone": false
+  },
+  "review_actions": {
+    "new_GPU_or_paid_execution_performed": false,
+    "network_or_real_data_access_performed": false,
+    "tolerance_optimizer_or_scientific_default_changed": false,
+    "next_step": "AUTHORIZED_LOCAL_MULTISTEP_TRAINING_AND_CHECKPOINT_WORK_ONLY"
+  }
+}

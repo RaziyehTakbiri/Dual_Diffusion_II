@@ -1,0 +1,8 @@
+{
+  "before_evaluation_probe_comparisons": true,
+  "empirical_routes": 24,
+  "frozen_record_sha256": "627d32f33927089e25277bcda8ba4df5cbda3e32c73d1b4a649f875e400124d9",
+  "new_fits": 512,
+  "oracle_likelihood_labels_used_for_controls": true,
+  "population_profiles": 128
+}

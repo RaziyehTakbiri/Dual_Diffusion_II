@@ -2,7 +2,17 @@
 
 ## Status and scope
 
-Preparation is complete locally; the selected-device CUDA result is still pending.
+The reported bounded T4 CUDA check is now **COMPLETE**:
+`PASS_SELECTED_CUDA_PRECISION_PIPELINE_CANDIDATE_ONLY`, with four cases,
+36 updates (24 GPU + 12 CPU), 48 tiny paths and exact GPU replay reported.
+The [result review](../PROJECT_FACTORIZED_PRECISION_PIPELINE_CUDA_RESULT.md)
+distinguishes the truncated original attachment from the user's recovered
+case summaries; it does not claim a complete raw JSON archive.
+**No rerun is needed.** The current next step is the authorized local multi-step
+training and checkpoint work, not another GPU setup or paid run. The original
+handoff instructions below are retained as historical reference, not a new
+instruction or authorization to execute them.
+
 This is a new source-only notebook, separate from both earlier GPU notebooks.
 It does not install packages, replace the installed release, change cluster
 settings, access research data or launch a cloud job. Running its CUDA mode

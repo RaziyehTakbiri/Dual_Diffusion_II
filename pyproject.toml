@@ -7,7 +7,7 @@ name = "heterodiff"
 version = "0.1.0"
 description = "Research infrastructure for heterogeneous marked event diffusion"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 authors = [{name = "HeteroDiff contributors"}]
 dependencies = [
   "numpy>=1.21",
@@ -15,6 +15,7 @@ dependencies = [
 ]
 
 [project.scripts]
+heterodiff-research = "heterodiff.research:main"
 heterodiff-maestro-evidence = "heterodiff.data.maestro_evidence:main"
 
 [project.optional-dependencies]

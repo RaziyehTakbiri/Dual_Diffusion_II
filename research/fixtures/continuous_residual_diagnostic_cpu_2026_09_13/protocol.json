@@ -1,0 +1,101 @@
+{
+  "archive_sha256": "5cc83ec15fb3600ae975887c53d1a7b4c50e91ef3ea1e193a7670b8df355510e",
+  "checkpoints": [
+    0,
+    8,
+    16,
+    32
+  ],
+  "coordinates": [
+    -3.0,
+    -1.5,
+    0.0,
+    1.5,
+    3.0
+  ],
+  "maximum_seconds": 1200,
+  "original_environment_verification_sha256": "ebfca4c9aad509023576b2e8d4a546574ed3fbda8d0e652a42180c381b47784b",
+  "protocol_sha256": "d2cf8da253b07f3e14332156b38cddea2d0e8727ea12e562c8640aa906f602a4",
+  "roster": [
+    [
+      "reference-pressure",
+      1201,
+      "association-aware-guide-plus-residual"
+    ],
+    [
+      "reference-pressure",
+      1201,
+      "unified-direct-conditioner"
+    ],
+    [
+      "reference-pressure",
+      1202,
+      "association-aware-guide-plus-residual"
+    ],
+    [
+      "reference-pressure",
+      1202,
+      "unified-direct-conditioner"
+    ],
+    [
+      "reference-pressure",
+      1203,
+      "association-aware-guide-plus-residual"
+    ],
+    [
+      "reference-pressure",
+      1203,
+      "unified-direct-conditioner"
+    ],
+    [
+      "higher-pressure-shifted-observation",
+      1201,
+      "association-aware-guide-plus-residual"
+    ],
+    [
+      "higher-pressure-shifted-observation",
+      1201,
+      "unified-direct-conditioner"
+    ],
+    [
+      "higher-pressure-shifted-observation",
+      1202,
+      "association-aware-guide-plus-residual"
+    ],
+    [
+      "higher-pressure-shifted-observation",
+      1202,
+      "unified-direct-conditioner"
+    ],
+    [
+      "higher-pressure-shifted-observation",
+      1203,
+      "association-aware-guide-plus-residual"
+    ],
+    [
+      "higher-pressure-shifted-observation",
+      1203,
+      "unified-direct-conditioner"
+    ]
+  ],
+  "schema_version": "continuous-residual-likelihood-score-diagnosis-v1",
+  "selected_source_sha256": {
+    "heterodiff.evaluation.continuous_fiber_conditional_benchmark": "033ddd18c35ed0795c6b7cd8e53ff2bb35e60ceff1de89e22ecc207de9a39a10",
+    "heterodiff.evaluation.continuous_fiber_grid_target": "398e9f31f035d7dab256fafcbf6e7196cff2a56b454e1d0834dc27267ce04405",
+    "heterodiff.experiments.continuous_multiseed_benchmark": "ad517e308e7bd22726ee251fde18bff25d5b92838ec3855073b26f0ddc3bf528",
+    "heterodiff.experiments.continuous_residual_diagnostic": "8be4b59029b0d1897ce88ed202ffc0f7de5d5d919b9684be988297e75d6d1919",
+    "heterodiff.experiments.factorized_common_grid_pipeline": "a75e67c9c3de3f043ed2a80826cf4a93c7e100081d3829e988278ed6ec943d54",
+    "heterodiff.experiments.factorized_device_training": "0b24543d16354d9bd26daa14eac5c0372cced71658101054bb371927b3db6788"
+  },
+  "times": [
+    0.0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1.0
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "schema_version": "heterodiff-finite-conditional-benchmark-verification-v1",
+  "date": "2026-09-13",
+  "completed_deliverables": [
+    "IDEAL_REFERENCE_ASSOCIATION_AND_INITIALIZER_PROOF",
+    "FINITE_GRID_CONDITIONAL_LAW_CONTRACT_V2",
+    "INDEPENDENT_FINITE_POPULATION_CONDITIONAL_BENCHMARK"
+  ],
+  "scientific_scope": "FINITE_ATOMIC_KNOWN_LAW_MECHANISM_EXPERIMENT_NOT_FULL_MIXED_NEURAL_QUALIFICATION",
+  "independent_review": {
+    "association_appendix_algebra": true,
+    "finite_oracle_and_observation_enumeration": true,
+    "learning_population_loss_and_normalized_path_law": true,
+    "path_density_identity_and_bound_exhaustively_tested": true,
+    "complete_result_table_and_curve_audit": true,
+    "review_kind": "IN_SESSION_INDEPENDENT_AGENT_REVIEW_NOT_PEER_REVIEW",
+    "corrected_during_review": [
+      "unrepresentable_likelihood_normalizer_checks",
+      "objective_work_count_scope",
+      "probability_vs_reference_density_documentation_convention"
+    ]
+  },
+  "checks": {
+    "development_regression": {
+      "passed": 1355,
+      "failed": 0,
+      "elapsed_seconds": 150,
+      "selection": "tests/unit/test_factorized*.py tests/unit/test_two_domain_factorized_state.py tests/unit/test_research_config.py tests/unit/test_research_workflow.py tests/unit/test_finite_conditional_benchmark.py tests/unit/test_finite_conditional_learning_benchmark.py",
+      "versions": {
+        "numpy": "2.4.6",
+        "python": "3.11.5",
+        "scipy": "1.17.1",
+        "torch": "2.12.1"
+      }
+    },
+    "independent_focused_benchmark_suite": {
+      "passed": 99,
+      "failed": 0,
+      "elapsed_seconds": 2.46
+    },
+    "reader_environment_focused_benchmark_suite": {
+      "passed": 99,
+      "failed": 0,
+      "elapsed_seconds": 2.63,
+      "versions": {
+        "numpy": "2.1.3",
+        "python": "3.11.5",
+        "scipy": "1.15.1",
+        "torch": "2.7.0"
+      }
+    },
+    "pyflakes": "PASS",
+    "git_diff_check": "PASS",
+    "full_repository_suite_claimed": false,
+    "oracle_transition_crosscheck": "INDEPENDENT_UNIFORMIZATION",
+    "observation_crosscheck": "EXHAUSTIVE_LABELED_RETENTION_MASKS",
+    "path_density_crosscheck": "ALL_243_PATHS_OF_N1_CASE_FOR_ALL_FOUR_OBSERVATIONS"
+  },
+  "full_experiment": {
+    "scenario_count": 3,
+    "observation_case_count": 12,
+    "states_per_scenario": 10,
+    "methods": [
+      "guide-only",
+      "association-aware-guide-plus-residual",
+      "unified-direct-conditioner"
+    ],
+    "grid": [
+      0,
+      0.25,
+      0.5,
+      0.75,
+      1
+    ],
+    "steps_per_learned_route": 2048,
+    "learned_route_count": 24,
+    "optimizer_updates": 49152,
+    "all_objective_evaluation_class_state_terms": 3934080,
+    "maximum_seconds": 120,
+    "first_execution_elapsed_seconds": 10.048582875169814,
+    "archived_verification_execution_elapsed_seconds": 10.058877582661808,
+    "rerun_reason": "VERIFICATION_AFTER_NORMALIZER_GUARDS_AND_WORK_ACCOUNTING_CHANGE_NO_SCIENTIFIC_SETTINGS_CHANGED",
+    "complete_result": "research/fixtures/finite_conditional_benchmark_cpu_2026_09_13.json",
+    "max_exact_oracle_terminal_tv": 3.0814380994753643e-16,
+    "gr_lower_final_tv_than_dir_cases": 12,
+    "guide_only_lower_final_tv_than_gr_cases": 2,
+    "final_vacuous_defect_bounds_per_learned_method": 10,
+    "settings_changed_after_observing_results": false,
+    "target_selection_or_best_checkpoint_selection": false,
+    "statistical_significance_claimed": false,
+    "full_model_or_general_superiority_claimed": false
+  },
+  "installed_reader_check": {
+    "installed_project_wheel": true,
+    "temporary_existing_reader_environment_reused": true,
+    "project_only_reinstalled_without_dependencies": true,
+    "dependency_downloads": false,
+    "executed_outside_checkout": true,
+    "pythonpath_unset": true,
+    "both_new_module_origins_under_reader_site_packages": true,
+    "both_new_module_bytes_match_repository": true,
+    "versions": {
+      "numpy": "2.1.3",
+      "python": "3.11.5",
+      "scipy": "1.15.1",
+      "torch": "2.7.0"
+    },
+    "default_experiment_observation_cases": 12,
+    "elapsed_seconds": 11.994986874982715,
+    "wheel_sha256": "3a696d620ee0546f17c0a623fda95eb95bc204c76026a944bc58ae0586350f9e",
+    "result_sha256": "edebc225368680887e5eb24a73361eac35281d019a312ee0b140694b95846d1c",
+    "max_absolute_terminal_tv_difference_from_development": 6.245004513516506e-17,
+    "max_absolute_population_loss_difference_from_development": 2.220446049250313e-16,
+    "whole_current_repository_wheel_identity_claimed": false,
+    "note": "Reader documentation was updated after this wheel build; the two tested benchmark modules remain byte-identical. No across-platform bitwise equality is promised."
+  },
+  "source_sha256": {
+    "src/heterodiff/evaluation/finite_conditional_benchmark.py": "90d6293a6e1b7328548d2ac1204dc6c69962e76e96994f97d8b4050a16dac27e",
+    "src/heterodiff/experiments/finite_conditional_learning_benchmark.py": "4583273ad54ce563cf8cd622b7155a180399f0c320ec710656142dcf8e9efbfc",
+    "tests/unit/test_finite_conditional_benchmark.py": "96dac66b1c0bc6a6277fd26e3f3b345b79daf17cb3ead8b7f23a694bf288f202",
+    "tests/unit/test_finite_conditional_learning_benchmark.py": "29761508afc643d69d707b70e4f6406ab9d063ed518abd9875133feaa12b7c51",
+    "manuscript_v3/hybrid_diffusion_association_initializer_proof_v1.md": "714a41a47e57820e72d052c23ddb0fa55aca1f48addada7c1766e4f2921e595d",
+    "manuscript_v3/hybrid_diffusion_conditional_law_contract_v2.md": "ef86eed64697c021662689bac10fde9b45f2e7dc3dd5601e1d06919b390ccc1e",
+    "docs/FINITE_CONDITIONAL_BENCHMARK.md": "ddd0d9f164e7aefdb43fca54045b6572c3520c5d965ad45ecba6b7d9a691215c",
+    "research/fixtures/finite_conditional_benchmark_cpu_2026_09_13.json": "fa7f27e77525f92b51966f68292903e0c19579db5e48b8b56121187f7f9ed4ae"
+  },
+  "unchanged": {
+    "legacy_mixed_learner": true,
+    "legacy_cubic_gate": true,
+    "selected_precision_policy": true,
+    "existing_acceptance_tolerances": true,
+    "retired_C17_status": true,
+    "historical_B08_lock_and_manifest": true
+  },
+  "safety": {
+    "local_cpu_only": true,
+    "real_data_accessed": false,
+    "F105_executed": false,
+    "gpu_or_paid_jobs_launched": false,
+    "remote_ci_executed": false,
+    "network_dependency_operations": false,
+    "commit_push_or_publication": false
+  },
+  "plan": {
+    "active_scientific_package_completed": 3,
+    "active_scientific_package_total": 3,
+    "preceding_reader_package_completed": 5,
+    "preceding_reader_package_total": 5,
+    "historical_compound_checked": 61,
+    "historical_compound_open": 102,
+    "historical_compound_total": 163,
+    "full_hybrid_conditional_law_extension_complete": false
+  }
+}

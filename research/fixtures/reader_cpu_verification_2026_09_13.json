@@ -1,0 +1,112 @@
+{
+  "schema_version": "heterodiff-reader-work-package-verification-v1",
+  "date": "2026-09-13",
+  "scope": "LOCAL_SCIENTIFIC_DRAFT_AND_SYNTHETIC_READER_WORKFLOW_NOT_PAPER_RESULTS",
+  "scientific_documents": [
+    "manuscript_v3/hybrid_diffusion_scientific_core_v1.md",
+    "manuscript_v3/hybrid_diffusion_claims_and_proof_plan_v1.md",
+    "manuscript_v3/hybrid_diffusion_related_work_and_claim_audit_v1.md"
+  ],
+  "scientific_review": {
+    "primary_papers_reviewed": 5,
+    "limited_propositions_drafted": 5,
+    "independent_algebra_and_assumption_review": true,
+    "final_paper_theorems_complete": false,
+    "novelty_established": false
+  },
+  "checks": {
+    "development_cpu_regression": {
+      "passed": 1256,
+      "failed": 0,
+      "elapsed_seconds": 152.85,
+      "torch": "2.12.1",
+      "numpy": "2.4.6",
+      "python": "3.11.5",
+      "selection": "tests/unit/test_factorized*.py tests/unit/test_two_domain_factorized_state.py tests/unit/test_research_config.py tests/unit/test_research_workflow.py"
+    },
+    "fresh_reader_cpu_suite": {
+      "passed": 106,
+      "failed": 0,
+      "elapsed_seconds": 41.29,
+      "selection": "tests/unit/test_research_config.py tests/unit/test_research_workflow.py"
+    },
+    "independent_reader_cpu_suite": {
+      "passed": 106,
+      "failed": 0,
+      "elapsed_seconds": 6.09,
+      "torch": "2.12.1"
+    },
+    "pip_check": "PASS",
+    "pyflakes": "PASS",
+    "git_diff_check": "PASS",
+    "wheel_built_and_installed": true,
+    "installed_module_origin_in_fresh_venv_site_packages": true,
+    "installed_cli_run_outside_checkout": true,
+    "same_runtime_cpu_replay_tested": true,
+    "weights_only_reload_into_fresh_models_tested": true,
+    "general_resume_claimed": false
+  },
+  "installed_reader_environment": {
+    "os": "macOS",
+    "architecture": "arm64",
+    "python": "3.11.5",
+    "torch": "2.7.0",
+    "numpy": "2.1.3",
+    "scipy": "1.15.1",
+    "threadpoolctl": "3.6.0",
+    "pytest": "8.3.5",
+    "isolated_virtual_environment": true,
+    "system_site_packages": false,
+    "dependencies_installed_in_new_temporary_environment": true,
+    "global_or_databricks_environment_modified": false
+  },
+  "installed_examples": [
+    {
+      "domain": "R3-PHYS",
+      "decision": "SYNTHETIC_TRAIN_SAMPLE_EVALUATE_COMPLETED",
+      "method_count": 2,
+      "base_steps_per_method": 2,
+      "conditional_steps_per_method": 2,
+      "draws_per_method": 2,
+      "elapsed_seconds": 6.348220041953027,
+      "config_sha256": "a9cbba077c0c2ca69a60d441a517dac3251bb2e382e7d4e35ae37b1bd6c4b7f9"
+    },
+    {
+      "domain": "R4-RETAIL",
+      "decision": "SYNTHETIC_TRAIN_SAMPLE_EVALUATE_COMPLETED",
+      "method_count": 2,
+      "base_steps_per_method": 2,
+      "conditional_steps_per_method": 2,
+      "draws_per_method": 2,
+      "elapsed_seconds": 4.987218665890396,
+      "config_sha256": "b565c643a79477238b35a0d36b3cf978b291e75d884e8ad5a80f35547aa4f52d"
+    }
+  ],
+  "source_sha256": {
+    "src/heterodiff/research.py": "3be25294361d4071f167ad2aaed738093b475ecda09608742c6a6032709d9ed2",
+    "src/heterodiff/research_config.py": "289e567f0c676977d9a6a5193ff6e28473f1461902bf0557cd7b1bf214734771",
+    "tests/unit/test_research_workflow.py": "e4041f2df826e273ea2b5f2b6e8345531586148cddf3feb2102d113fc0a4bd23",
+    "tests/unit/test_research_config.py": "40a402e26210516ca359bcc4c46fa1b4f553a9d187175cc2e612d475d42dd23f"
+  },
+  "built_wheel_sha256": "2dc4cbf7a057da4b08b2da1eec75fe76ac2107a96c90650588b85a4ff87f5146",
+  "historical_snapshot": {
+    "manifest_entries": 323,
+    "changed_current_files": [
+      "README.md",
+      "pyproject.toml"
+    ],
+    "old_manifest_modified": false,
+    "old_dependency_lock_modified": false,
+    "old_receipt_relabelled_as_current": false
+  },
+  "boundaries": {
+    "gpu_or_paid_jobs_launched": false,
+    "real_data_accessed": false,
+    "paper_F105_executed": false,
+    "method_superiority_claimed": false,
+    "remote_CI_executed": false,
+    "CI_manual_only_prepared": true,
+    "published_or_pushed": false,
+    "full_repository_test_suite_claimed": false
+  }
+}

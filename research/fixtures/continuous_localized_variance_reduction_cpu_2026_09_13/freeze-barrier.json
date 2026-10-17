@@ -1,0 +1,6 @@
+{
+  "backward_target_queried_during_training": false,
+  "frozen_models": 384,
+  "frozen_records_sha256": "e373fb7d8024a7af045fb2f6c5095efaa4e137b85a0c60d76c6ea8b1dbe00248",
+  "frozen_routes": 48
+}

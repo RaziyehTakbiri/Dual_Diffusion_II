@@ -1,0 +1,284 @@
+{
+  "completed_record_work": {
+    "conditional_updates": 384,
+    "control_endpoint_draws": 20480,
+    "endpoint_draws": 26624,
+    "evaluation_macrosteps": 180224,
+    "neural_endpoint_draws": 6144,
+    "neural_fits": 12,
+    "routes": 22,
+    "training_BASE_paths": 1536,
+    "training_pairs": 768,
+    "unknown_original_interrupted_work_excluded": true,
+    "validation_BASE_paths": 768,
+    "validation_distinct_pairs_across_fits": 384,
+    "validation_pair_loss_evaluations": 1536
+  },
+  "completion": {
+    "additional_original_unsaved_work_unknown": true,
+    "artifact_sha256": {
+      "continuation-intent.json": "43465be802664ecf0d5e47265a5f3a3adbb6e7bfa973fc3e4825828dac0b31ae",
+      "report.json": "5cc83ec15fb3600ae975887c53d1a7b4c50e91ef3ea1e193a7670b8df355510e",
+      "route-21.json": "2cbfc6fdec0c96fc3a395c5efaa74dde5793da25c035b912a9dfb5487c0f4872",
+      "route-22.json": "770d5c4310eef0d0af9d72acc90ff2ee1d65e7a5b9e901e02509e38cbb50c524"
+    },
+    "checkpoint_resumed": false,
+    "child_exit_confirmed": true,
+    "continuation_elapsed_seconds": 504.54023379227147,
+    "implicit_retries": 0,
+    "interrupted_unsaved_prefix_recomputed_from_original_seed": true,
+    "local_CPU_time_extension_authorized": true,
+    "new_complete_routes": 2,
+    "original_attempt_timed_out": true,
+    "original_deadline_seconds": 2400,
+    "original_single_attempt_success": false,
+    "output_directory": "research/fixtures/continuous_multiseed_completion_cpu_2026_09_13",
+    "parent_exit_code": 0,
+    "preserved_completed_routes": 20,
+    "scientific_settings_or_statistical_families_changed": false,
+    "separate_supervisor_seconds": 1800,
+    "total_attempted_work_or_total_elapsed_time_known": false
+  },
+  "continuation_environment": {
+    "numpy": "2.4.6",
+    "python": "3.11.5",
+    "scipy": "1.17.1",
+    "torch": "2.12.1"
+  },
+  "date": "2026-09-13",
+  "decision": "COMPLETE_FIXED_ROSTER_WITH_AUTHORIZED_TIME_EXTENSION",
+  "installed_reader_package": {
+    "dependencies_downloaded": false,
+    "only_project_wheel_replaced": true,
+    "pip_check": "PASS_NO_BROKEN_REQUIREMENTS",
+    "wheel_sha256": "927ebac61e08076c2e3dbfac77a29e70a3c9237819d726368a69bedd69ae2e5b"
+  },
+  "new_code_tests": {
+    "development_completion_tests": {
+      "complete_summary_equivalence": true,
+      "elapsed_seconds": 26.7,
+      "exact_reduced_original_versus_completion_route_equivalence": true,
+      "failed": 0,
+      "passed": 28
+    },
+    "git_diff_check": "PASS",
+    "installed_reader_tests": {
+      "completion_import_origin_in_site_packages": true,
+      "completion_module_bytes_match_source": true,
+      "elapsed_seconds": 26.95,
+      "failed": 0,
+      "full_default_or_full_completion_reexecuted_in_reader_environment": false,
+      "outside_checkout_cwd": true,
+      "passed": 46,
+      "selection": [
+        "tests/unit/test_continuous_multiseed_completion.py",
+        "tests/unit/test_continuous_multiseed_statistics.py"
+      ],
+      "source_path_injection_disabled": true,
+      "torch_imported_by_completion_inspection": false,
+      "versions": {
+        "numpy": "2.1.3",
+        "python": "3.11.5",
+        "scipy": "1.15.1",
+        "torch": "2.7.0"
+      }
+    },
+    "portable_test_followup": {
+      "elapsed_seconds": 19.38,
+      "failed": 0,
+      "may_have_overlapped_continuation_startup": true,
+      "passed": 1,
+      "test_only_change": "GUARANTEED_DIFFERENT_ENVIRONMENT_VERSION_SENTINEL"
+    },
+    "preceding_1600_test_regression_reexecuted_this_turn": false,
+    "pyflakes": "PASS"
+  },
+  "new_source_and_amendment_sha256": {
+    "docs/MIXED_CONTINUOUS_MULTISEED_TIME_EXTENSION.md": "c4d8f474408a4c9ca3dbfcb8f8d7d2a782e2be38fd31134e42129550eae1f145",
+    "src/heterodiff/experiments/continuous_multiseed_completion.py": "806c155e38398ad8026bf8faa8d6236b138fafc202794cbd05d64d2e97ea5471",
+    "tests/unit/test_continuous_multiseed_completion.py": "a7ca126d5e89ea036687d304228a81664bbc07779c94d355c940c61a8035b22a"
+  },
+  "original_evidence_preserved": {
+    "all_twenty_original_route_bytes_and_records_match": true,
+    "original_four_source_hashes_match": true,
+    "original_partial_review_sha256": "1099b2bbc835568cd3eec73b22252ebe3bd405230e4fa9a840b118ac5a6d2652",
+    "original_single_attempt_report_still_absent": true,
+    "original_verification_path": "research/fixtures/continuous_multiseed_verification_2026_09_13.json",
+    "original_verification_sha256": "ebfca4c9aad509023576b2e8d4a546574ed3fbda8d0e652a42180c381b47784b"
+  },
+  "plan": {
+    "completed_research_subdeliverables": 12,
+    "historical_compound_counts": [
+      61,
+      102,
+      163
+    ],
+    "remaining_scientific_and_reader_release_obligations": 7
+  },
+  "schema_version": "heterodiff-continuous-multiseed-completion-verification-v1",
+  "scientific_review": {
+    "DIR_lower_category_only_point_error_in_second_setting": true,
+    "all_six_seed_pairs_lower_GR_combined_point_error": true,
+    "alpha_allocation": {
+      "routes": 0.005,
+      "seed_mixtures": 0.0025,
+      "signed_contrasts": 0.0025
+    },
+    "exact_twenty_two_route_roster_and_counts_checked": true,
+    "kind": "IN_SESSION_INDEPENDENT_AGENT_NOT_EXTERNAL_PEER_REVIEW",
+    "primary_error_superiority_established": false,
+    "residual_added_benefit_over_guide_only_established": false,
+    "route_mixture_contrast_family_counts": [
+      22,
+      4,
+      2
+    ],
+    "source_and_original_record_preservation_checked": true,
+    "statistical_scope": "FIXED_INDICATORS_CONDITIONAL_ON_THESE_FITTED_MODELS_AND_IDEAL_INDEPENDENT_DRAWS_NOT_NEW_SEED_POPULATION_OR_CONTINUOUS_TV",
+    "stdlib_only_recomputation_of_summaries": true
+  },
+  "scope": {
+    "GPU_or_cloud_or_paid_jobs": false,
+    "commit_push_or_publication": false,
+    "exact_known_law_target_for_trained_BASE": false,
+    "exclusive_hardware_timing": false,
+    "general_checkpoint_resume": false,
+    "general_superiority_or_posterior_recovery": false,
+    "local_CPU_only": true,
+    "matched_quality_speedup": false,
+    "real_data": false,
+    "training_seed_or_setting_selection_from_results": false
+  },
+  "summaries": [
+    {
+      "methods": {
+        "association-aware-guide-plus-residual": {
+          "alpha_family": 0.0025,
+          "draws_per_seed": 512,
+          "mixture_error_interval": [
+            0,
+            0.08723996429858319
+          ],
+          "mixture_is_equal_weight_over_this_fitted_seed_roster_only": true,
+          "mixture_maximum_category_error": 0.026727396950879792,
+          "mixture_maximum_indicator_error": 0.026727396950879792,
+          "mixture_maximum_joint_cdf_grid_error": 0.024667776117915485,
+          "mixture_sampling_half_width": 0.060512567347703404,
+          "per_seed_maximum_indicator_errors": [
+            0.036397618164506707,
+            0.03839687191106862,
+            0.03245994152177695
+          ],
+          "seed_count": 3,
+          "seed_error_mean_descriptive": 0.03575147719911743,
+          "seed_error_range_descriptive": [
+            0.03245994152177695,
+            0.03839687191106862
+          ],
+          "seed_error_sd_descriptive": 0.0030207464677111506,
+          "training_seed_population_confidence_claimed": false
+        },
+        "unified-direct-conditioner": {
+          "alpha_family": 0.0025,
+          "draws_per_seed": 512,
+          "mixture_error_interval": [
+            0.06267113257309873,
+            0.18369626726850555
+          ],
+          "mixture_is_equal_weight_over_this_fitted_seed_roster_only": true,
+          "mixture_maximum_category_error": 0.09744881236427316,
+          "mixture_maximum_indicator_error": 0.12318369992080214,
+          "mixture_maximum_joint_cdf_grid_error": 0.12318369992080214,
+          "mixture_sampling_half_width": 0.060512567347703404,
+          "per_seed_maximum_indicator_errors": [
+            0.1322982832541355,
+            0.1342514082541355,
+            0.11010524704155289
+          ],
+          "seed_count": 3,
+          "seed_error_mean_descriptive": 0.12555164618327463,
+          "seed_error_range_descriptive": [
+            0.11010524704155289,
+            0.1342514082541355
+          ],
+          "seed_error_sd_descriptive": 0.013412572801310082,
+          "training_seed_population_confidence_claimed": false
+        }
+      },
+      "mixture_error_advantage_gr_interval": [
+        -0.024568831725484463,
+        0.21748143766532915
+      ],
+      "mixture_error_advantage_gr_point": 0.09645630296992234,
+      "scenario": "reference-pressure",
+      "signed_indicator_intervals_excluding_zero": 8
+    },
+    {
+      "methods": {
+        "association-aware-guide-plus-residual": {
+          "alpha_family": 0.0025,
+          "draws_per_seed": 512,
+          "mixture_error_interval": [
+            0.028394688641377487,
+            0.1494198233367843
+          ],
+          "mixture_is_equal_weight_over_this_fitted_seed_roster_only": true,
+          "mixture_maximum_category_error": 0.08862460192590249,
+          "mixture_maximum_indicator_error": 0.08890725598908089,
+          "mixture_maximum_joint_cdf_grid_error": 0.08890725598908089,
+          "mixture_sampling_half_width": 0.060512567347703404,
+          "per_seed_maximum_indicator_errors": [
+            0.10610314677851318,
+            0.09456134412526007,
+            0.09253085192590249
+          ],
+          "seed_count": 3,
+          "seed_error_mean_descriptive": 0.09773178094322525,
+          "seed_error_range_descriptive": [
+            0.09253085192590249,
+            0.10610314677851318
+          ],
+          "seed_error_sd_descriptive": 0.0073205566116301924,
+          "training_seed_population_confidence_claimed": false
+        },
+        "unified-direct-conditioner": {
+          "alpha_family": 0.0025,
+          "draws_per_seed": 512,
+          "mixture_error_interval": [
+            0.11504980536753201,
+            0.23607494006293883
+          ],
+          "mixture_is_equal_weight_over_this_fitted_seed_roster_only": true,
+          "mixture_maximum_category_error": 0.03832852307409751,
+          "mixture_maximum_indicator_error": 0.17556237271523542,
+          "mixture_maximum_joint_cdf_grid_error": 0.17556237271523542,
+          "mixture_sampling_half_width": 0.060512567347703404,
+          "per_seed_maximum_indicator_errors": [
+            0.18858320604856876,
+            0.17881758104856876,
+            0.15928633104856876
+          ],
+          "seed_count": 3,
+          "seed_error_mean_descriptive": 0.17556237271523542,
+          "seed_error_range_descriptive": [
+            0.15928633104856876,
+            0.18858320604856876
+          ],
+          "seed_error_sd_descriptive": 0.014917238590351042,
+          "training_seed_population_confidence_claimed": false
+        }
+      },
+      "mixture_error_advantage_gr_interval": [
+        -0.03437001796925228,
+        0.20768025142156132
+      ],
+      "mixture_error_advantage_gr_point": 0.08665511672615453,
+      "scenario": "higher-pressure-shifted-observation",
+      "signed_indicator_intervals_excluding_zero": 9
+    }
+  ],
+  "user_authorization": {
+    "message": "Yes, take any additional time required.",
+    "scope": "LOCAL_CPU_TIME_TO_COMPLETE_ORIGINAL_MISSING_PAIR_ONLY"
+  }
+}

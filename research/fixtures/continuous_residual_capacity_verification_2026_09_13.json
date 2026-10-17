@@ -1,0 +1,121 @@
+{
+  "schema_version": "continuous-residual-capacity-verification-v1",
+  "date": "2026-09-13",
+  "decision": "LOCAL_FORMULATION_AND_CONTROLLED_COMPARISON_VERIFIED_NOT_SAMPLER_QUALIFICATION",
+  "primary_report": {
+    "relative_path": "research/fixtures/continuous_residual_capacity_cpu_2026_09_13_export_repair/report.json",
+    "sha256": "7821074d779708fd6b58d273f65cea9f028280d8dca5753dda45db52a8bf8d98",
+    "size_bytes": 19618740,
+    "completed_routes": 24,
+    "completed_continuous_fits": 192,
+    "child_comparison_seconds": 0.7708404157310724,
+    "parent_deadline_seconds": 300,
+    "parent_returncode": 0,
+    "protocol_sha256": "e57b2d865db4dae69ee3a4e44905a271457abad37792233dcb45e45f7264a768"
+  },
+  "deviation": {
+    "relative_path": "docs/RESIDUAL_CAPACITY_EXPORT_REPAIR.md",
+    "sha256": "1e4163ace8bf8e0fd53e56da6b708e170cf4195da0a7a576927c43988df8bfc9",
+    "failed_attempt_preserved": "research/fixtures/continuous_residual_capacity_cpu_2026_09_13",
+    "failure": "NUMPY_BOOLEAN_JSON_SERIALIZATION",
+    "additional_completed_continuous_fits_before_export_failure": 8,
+    "complete_route_files_in_failed_attempt": 0,
+    "empty_first_route_preserved": true,
+    "only_export_metadata_changed": true,
+    "numerical_settings_changed": false
+  },
+  "protocol_document": {
+    "relative_path": "docs/RESIDUAL_CAPACITY_COMPARISON_PROTOCOL.md",
+    "sha256": "0ad4bb79ad2d71a97887f742dbfa49caee5b11e10e400980898488f16343f433"
+  },
+  "proof": {
+    "relative_path": "docs/RESIDUAL_CAPACITY_FORMULATION.md",
+    "sha256": "be787a459021916f0d95330f10145d8a6fb476fbcd9c1a35c221aca07ec5bc2f",
+    "independent_mathematical_review_completed": true,
+    "scope": "COMPACT_ONE_DIMENSIONAL_FINITE_FIBER_FIXED_OBSERVATION_MACRO_NODE_C2_CAPACITY_AS_DEGREE_GROWS",
+    "arbitrary_accuracy_at_finite_implementation_degree_cap_claimed": false
+  },
+  "independent_result_audit": {
+    "relative_path": "research/fixtures/continuous_residual_capacity_independent_review_2026_09_13.json",
+    "sha256": "5fad1b6b0577854dd722823d315665ddbe9037e4391666bf4ede225999dc0a03",
+    "scalar_identities_checked": 169668,
+    "all_routes_and_bindings_consistent": true,
+    "additional_fits_or_endpoints_executed": false
+  },
+  "development_tests": {
+    "passed": 390,
+    "seconds": 12.77,
+    "python": "3.11.5",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "test_files": [
+      "tests/unit/test_compact_fiber_residual.py",
+      "tests/unit/test_continuous_residual_capacity.py",
+      "tests/unit/test_continuous_fiber_conditional_benchmark.py",
+      "tests/unit/test_continuous_fiber_initialization_diagnostic.py",
+      "tests/unit/test_continuous_fiber_grid_target.py",
+      "tests/unit/test_continuous_residual_diagnostic.py",
+      "tests/unit/test_factorized_common_grid_pipeline.py",
+      "tests/unit/test_continuous_multiseed_benchmark.py"
+    ]
+  },
+  "installed_reader_verification": {
+    "wheel_path": "/tmp/heterodiff-residual-capacity-reader-wheel-ENY8hf/heterodiff-0.1.0-py3-none-any.whl",
+    "wheel_sha256": "6a84f2aa6961f8a941040085b0ff20cba4e1b388396cad37a29d92b1ebe04e72",
+    "published_release": false,
+    "note": "Wheel built before final narrative/status edits; executed new source files match primary report hashes. Only the project wheel was reinstalled into an existing temporary reader environment; no dependency download.",
+    "test_passed": 231,
+    "test_seconds": 2.72,
+    "tests_outside_checkout": true,
+    "pythonpath_empty": true,
+    "pytest_repository_pythonpath_disabled": true,
+    "actual_imports_from_site_packages": true,
+    "source_hashes_match_primary": true,
+    "python": "3.11.5",
+    "numpy": "2.1.3",
+    "scipy": "1.15.1",
+    "pip_check": "NO_BROKEN_REQUIREMENTS",
+    "full_comparison": {
+      "report_path": "/tmp/heterodiff-capacity-reader-0pGbvK/result/report.json",
+      "sha256": "a212108dc51f94745e0cd320ca29bc9607e233e7ffa80a7bd90420435950a40c",
+      "completed_routes": 24,
+      "additional_continuous_fits": 192,
+      "child_comparison_seconds": 0.7901371666230261,
+      "protocol_sha256": "e57b2d865db4dae69ee3a4e44905a271457abad37792233dcb45e45f7264a768",
+      "all_24_route_failure_counts_match_primary": true,
+      "maximum_physical_array_differences": {
+        "value": 0,
+        "gradient": 0,
+        "hessian": 0
+      },
+      "whole_report_byte_identity_claimed": false
+    }
+  },
+  "checks": {
+    "new_four_python_files_pyflakes_clean": true,
+    "git_diff_check_clean": true,
+    "new_primitive_tests": 69,
+    "new_fit_layer_tests": 27,
+    "current_plan_checked": 15,
+    "current_plan_open": 7,
+    "historical_timetable_checked": 61,
+    "historical_timetable_open": 102
+  },
+  "preserved_artifacts": {
+    "src/heterodiff/evaluation/continuous_fiber_grid_target.py": "398e9f31f035d7dab256fafcbf6e7196cff2a56b454e1d0834dc27267ce04405",
+    "src/heterodiff/experiments/continuous_residual_diagnostic.py": "8be4b59029b0d1897ce88ed202ffc0f7de5d5d919b9684be988297e75d6d1919",
+    "research/fixtures/continuous_residual_diagnostic_cpu_2026_09_13/report.json": "c1ea8e051f23c214b1d3faa81116e9149c9f954051f70038159951b18ea2f0c5",
+    "research/fixtures/continuous_multiseed_completion_cpu_2026_09_13/report.json": "5cc83ec15fb3600ae975887c53d1a7b4c50e91ef3ea1e193a7670b8df355510e"
+  },
+  "conclusions": {
+    "degree_64_routes": 8,
+    "degree_64_value_pass_routes": 8,
+    "complete_value_score_hessian_pass_routes": 0,
+    "score_gap_and_envelope_growth_remain": true,
+    "old_neural_BCE_learning_gap_closed": false,
+    "sampler_qualified": false,
+    "old_model_or_acceptance_tolerances_changed": false,
+    "real_data_gpu_cloud_or_paid_jobs_requested": false,
+    "commit_push_or_publication_performed": false
+  }
+}

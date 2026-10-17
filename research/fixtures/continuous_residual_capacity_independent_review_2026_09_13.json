@@ -1,0 +1,101 @@
+{
+  "schema_version": "continuous-residual-capacity-independent-review-v1",
+  "date": "2026-09-13",
+  "decision": "CONSISTENT_COMPLETE_CONTROLLED_COMPARISON_NO_FULL_APPROXIMATION_PASS",
+  "report_path": "research/fixtures/continuous_residual_capacity_cpu_2026_09_13_export_repair/report.json",
+  "report_sha256": "7821074d779708fd6b58d273f65cea9f028280d8dca5753dda45db52a8bf8d98",
+  "protocol_sha256": "e57b2d865db4dae69ee3a4e44905a271457abad37792233dcb45e45f7264a768",
+  "review_method": {
+    "new_fits_or_optimizer_updates": 0,
+    "new_endpoint_samples": 0,
+    "original_artifacts_modified": false,
+    "all_24_route_files_equal_report_records": true,
+    "fixed_route_roster_exact": true,
+    "protocol_file_report_and_execution_binding_match": true,
+    "all_five_recorded_source_hashes_match_current_sources": true,
+    "polynomial_evaluation": "Independent NumPy chebval and chebder followed by the explicit tanh chain rule; not the component's differentiated recurrence.",
+    "target_and_baseline_evaluation": "Re-evaluated the independently reviewed numerical-grid and uncapped likelihood APIs; no target samples or fitting.",
+    "metrics": "Recomputed physical sums, atomic corrections, canonical and EMPTY-centered errors, full E-to-C log/relative-rate contrasts, old-class capacity floors, pointwise failures, and aggregate maximum/RMS errors from raw arrays.",
+    "scope": "Arithmetic/source consistency review, not interval-certified arithmetic, a new fit, or a sampling-law review. The least-squares solve was not repeated."
+  },
+  "audit_counts": {
+    "routes": 24,
+    "nodes_including_terminal": 216,
+    "completed_continuous_fits_in_reviewed_run": 192,
+    "evaluation_rows_including_terminal": 55296,
+    "active_evaluation_rows": 49152,
+    "reference_train_and_evaluation_rows_recomputed": 6930,
+    "scalar_identity_checks": 169668,
+    "active_probes_per_route_and_quantity": 2048
+  },
+  "independent_polynomial_evaluation_max_abs_difference": {
+    "value": 3.958777750057152e-13,
+    "gradient": 2.4589219549397967e-12,
+    "hessian": 1.993321063764597e-10
+  },
+  "oracle_target_recomputation_max_abs_difference": {
+    "value": 0.0,
+    "gradient": 0.0,
+    "hessian": 0.0
+  },
+  "uncapped_baseline_recomputation_max_abs_difference": {
+    "value": 0.0,
+    "gradient": 0.0,
+    "hessian": 0.0
+  },
+  "failure_table_columns": ["setting", "method", "objective", "degree", "value_failures", "score_failures", "hessian_failures"],
+  "failure_table_legend": {
+    "A": "reference-pressure",
+    "B": "higher-pressure-shifted-observation",
+    "GR": "association-aware-guide-plus-residual",
+    "DIR": "unified-direct-conditioner",
+    "V": "VALUE_ONLY",
+    "VS": "VALUE_AND_SCORE"
+  },
+  "all_route_failure_counts": [
+    ["A", "GR", "V", 16, 1572, 1957, 1983],
+    ["A", "GR", "V", 32, 67, 456, 822],
+    ["A", "GR", "V", 64, 0, 0, 2],
+    ["A", "GR", "VS", 16, 1651, 1938, 1982],
+    ["A", "GR", "VS", 32, 80, 478, 834],
+    ["A", "GR", "VS", 64, 0, 0, 1],
+    ["A", "DIR", "V", 16, 2042, 2047, 2046],
+    ["A", "DIR", "V", 32, 1677, 2009, 2034],
+    ["A", "DIR", "V", 64, 0, 9, 356],
+    ["A", "DIR", "VS", 16, 2031, 2045, 2048],
+    ["A", "DIR", "VS", 32, 1707, 2001, 2039],
+    ["A", "DIR", "VS", 64, 0, 0, 333],
+    ["B", "GR", "V", 16, 1924, 2020, 2024],
+    ["B", "GR", "V", 32, 340, 943, 1308],
+    ["B", "GR", "V", 64, 0, 8, 88],
+    ["B", "GR", "VS", 16, 1895, 2021, 2028],
+    ["B", "GR", "VS", 32, 320, 989, 1374],
+    ["B", "GR", "VS", 64, 0, 4, 85],
+    ["B", "DIR", "V", 16, 2023, 2047, 2048],
+    ["B", "DIR", "V", 32, 1904, 2046, 2046],
+    ["B", "DIR", "V", 64, 0, 1275, 1865],
+    ["B", "DIR", "VS", 16, 2040, 2047, 2047],
+    ["B", "DIR", "VS", 32, 1880, 2036, 2043],
+    ["B", "DIR", "VS", 64, 0, 1163, 1811]
+  ],
+  "conclusions": {
+    "all_eight_degree_64_routes_pass_value_checks": true,
+    "routes_passing_all_active_value_score_hessian_checks": 0,
+    "each_route_has_at_least_one_hessian_failure": true,
+    "rank_deficient_nodes_reported": 0,
+    "largest_continuous_fiber_real_arithmetic_coefficient_envelope": 532.6718302180582,
+    "largest_envelope_route": ["B", "DIR", "V", 64],
+    "envelope_is_not_a_floating_point_safe_sampler_certificate": true,
+    "atomic_corrections_are_exact_controls_not_learned": true,
+    "native_neural_BCE_gap_closed": false,
+    "sampler_or_endpoint_law_qualified": false,
+    "degree_selected_or_new_acceptance_tolerance_adopted": false
+  },
+  "interpretation_notes": [
+    "This audits the repaired completed export only. The preceding export failure and eight fits in that attempt remain separately disclosed in docs/RESIDUAL_CAPACITY_EXPORT_REPAIR.md; the 192 figure is not total work across both attempts.",
+    "All three fixed degrees and both objectives remain visible. Stronger value approximation is not sufficient to infer score/Hessian accuracy.",
+    "The coefficient-envelope field covers the fitted continuous component; exact EMPTY/OTHER corrections are recorded separately. It is not a bound for an integrated mixed sampler.",
+    "Finite-node, finite-fiber C2 approximation as degree grows remains an existence theorem. These fixed finite degrees, finite collocation data and solver do not attain a full pointwise approximation pass.",
+    "No numerical outcome was promoted to general neural-learning, real-data, or publication-level superiority evidence."
+  ]
+}

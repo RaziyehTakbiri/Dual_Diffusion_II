@@ -1,0 +1,31 @@
+name: Reader CPU demonstration
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  reader-cpu:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install CPU dependencies and package
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install torch==2.7.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -r requirements/reader-cpu.txt
+          python -m pip install --no-deps .
+          python -m pip check
+      - name: Reader tests
+        run: python -m pytest -q -p no:cacheprovider tests/unit/test_research_config.py tests/unit/test_research_workflow.py
+      - name: Installed command outside checkout
+        working-directory: /tmp
+        run: |
+          heterodiff-research run --config "$GITHUB_WORKSPACE/configs/synthetic_physio_cpu.json" --output "$RUNNER_TEMP/reader-physio"
+          heterodiff-research run --config "$GITHUB_WORKSPACE/configs/synthetic_retail_cpu.json" --output "$RUNNER_TEMP/reader-retail"

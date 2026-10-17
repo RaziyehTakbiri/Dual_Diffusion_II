@@ -1,0 +1,15 @@
+{
+  "schema_version": "heterodiff-synthetic-research-config-v1",
+  "experiment_id": "synthetic-retail-cpu",
+  "domain": "R4-RETAIL",
+  "methods": ["association-aware-guide-plus-residual", "unified-direct-conditioner"],
+  "device": "cpu",
+  "precision_policy": "BASE_GRAPH_FP64_SHARED_V1",
+  "base_steps": 2,
+  "conditional_steps": 2,
+  "base_samples": 2,
+  "conditional_samples": 1,
+  "draws": 2,
+  "seed": 7,
+  "maximum_seconds": 120
+}
